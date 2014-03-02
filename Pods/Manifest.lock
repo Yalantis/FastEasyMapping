@@ -1,0 +1,32 @@
+PODS:
+  - CMFactory (1.2.0):
+    - Mantle (= 0.2.3)
+    - SBJson (= 3.2)
+  - Kiwi (2.0.5)
+  - libextobjc/EXTKeyPathCoding (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTScope (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.4)
+  - MagicalRecord (2.2):
+    - MagicalRecord/Core
+  - MagicalRecord/Core (2.2)
+  - Mantle (0.2.3):
+    - libextobjc/EXTKeyPathCoding
+    - libextobjc/EXTScope
+  - SBJson (3.2)
+
+DEPENDENCIES:
+  - CMFactory (= 1.2.0)
+  - Kiwi (= 2.0.5)
+  - MagicalRecord
+
+SPEC CHECKSUMS:
+  CMFactory: 62231d22193d320249ffc93ba9afd938195ffd6c
+  Kiwi: 89ade77eb49c889178cb2779e02514a7b9b9449e
+  libextobjc: 2c9fc8226f0f38e562587f65172f93f0c9b4a47a
+  MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
+  Mantle: 4a20405b7aba3452007294badee2b3cb137825c3
+  SBJson: abc2bf2baef456d5dae213f9826fe2b6fdf19861
+
+COCOAPODS: 0.29.0
