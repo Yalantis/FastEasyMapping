@@ -20,10 +20,9 @@
 
 @implementation EMKObjectDeserializer
 
-+ (id)deserializeObjectRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping
-{
-    id object = [[mapping.objectClass alloc] init];
-    return [self fillObject:object fromRepresentation:externalRepresentation usingMapping:mapping];
++ (id)deserializeObjectRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping {
+	id object = [[mapping.objectClass alloc] init];
+	return [self fillObject:object fromRepresentation:externalRepresentation usingMapping:mapping];
 }
 
 + (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(EMKObjectMapping *)mapping {
@@ -34,34 +33,33 @@
 	}
 
 	for (EMKRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
-		id relationshipRepresentation = relationshipMapping.keyPath ? objectRepresentation[relationshipMapping.keyPath] : objectRepresentation;
-		if (!relationshipRepresentation) continue;
-
+		id deserializedRelationship = nil;
 		if (relationshipMapping.isToMany) {
-			id deserializedRelationship = [self deserializeCollectionRepresentation:relationshipRepresentation
-			                                                           usingMapping:relationshipMapping.objectMapping];
+			deserializedRelationship = [self deserializeCollectionRepresentation:objectRepresentation
+			                                                        usingMapping:relationshipMapping.objectMapping];
 
 			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
-			[object setValue:[deserializedRelationship ek_propertyRepresentation:property]
-			      forKeyPath:relationshipMapping.property];
+			deserializedRelationship = [deserializedRelationship ek_propertyRepresentation:property];
 		} else {
-			id deserializedRelationship = [self deserializeObjectRepresentation:relationshipRepresentation
-			                                                       usingMapping:relationshipMapping.objectMapping];
+			deserializedRelationship = [self deserializeObjectRepresentation:objectRepresentation
+			                                                    usingMapping:relationshipMapping.objectMapping];
+		}
+
+		if (deserializedRelationship) {
 			[object setValue:deserializedRelationship forKeyPath:relationshipMapping.property];
 		}
 	}
 
-    return object;
+	return object;
 }
 
-+ (NSArray *)deserializeCollectionRepresentation:(NSArray *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping
-{
-    NSMutableArray *array = [NSMutableArray array];
-    for (NSDictionary *representation in externalRepresentation) {
-        id parsedObject = [self deserializeObjectRepresentation:representation usingMapping:mapping];
-        [array addObject:parsedObject];
-    }
-    return [NSArray arrayWithArray:array];
++ (NSArray *)deserializeCollectionRepresentation:(NSArray *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping {
+	NSMutableArray *array = [NSMutableArray array];
+	for (NSDictionary *representation in externalRepresentation) {
+		id parsedObject = [self deserializeObjectRepresentation:representation usingMapping:mapping];
+		[array addObject:parsedObject];
+	}
+	return [NSArray arrayWithArray:array];
 }
 
 @end

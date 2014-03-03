@@ -18,61 +18,71 @@
 #import "NSDictionary+EMKFieldMapping.h"
 #import "EMKAttributeMapping+Extension.h"
 #import "EMKRelationshipMapping.h"
+#import "KWExample.h"
 
 @implementation EMKManagedObjectDeserializer
 
-+ (id)getExistingObjectFromExternalRepresentation:(NSDictionary *)externalRepresentation withMapping:(EMKManagedObjectMapping *)mapping inManagedObjectContext:(NSManagedObjectContext *)moc {
++ (id)getExistingObjectFromRepresentation:(id)representation withMapping:(EMKManagedObjectMapping *)mapping inManagedObjectContext:(NSManagedObjectContext *)moc {
 	EMKAttributeMapping *primaryKeyFieldMapping = [mapping primaryKeyMapping];
-	id primaryKeyValue = [primaryKeyFieldMapping mapValue:[externalRepresentation valueForKeyPath:primaryKeyFieldMapping.keyPath]];
+	id primaryKeyValue = [primaryKeyFieldMapping mapValue:[representation valueForKeyPath:primaryKeyFieldMapping.keyPath]];
 
 //	id primaryKeyValue = [self getValueOfField:primaryKeyFieldMapping fromRepresentation:externalRepresentation];
-	if (!primaryKeyValue || primaryKeyValue == (id)[NSNull null])
-		return nil;
+	if (!primaryKeyValue || primaryKeyValue == (id) [NSNull null]) {
+			return nil;
+	}
 
 	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
 	[request setPredicate:[NSPredicate predicateWithFormat:@"%K = %@", mapping.primaryKey, primaryKeyValue]];
 
 	NSArray *array = [moc executeFetchRequest:request error:NULL];
-	if (array.count == 0)
-		return nil;
+	if (array.count == 0) {
+			return nil;
+	}
 
 	return [array lastObject];
 }
 
-+ (id)deserializeObjectRepresentation:(NSDictionary *)representation usingMapping:(EMKManagedObjectMapping *)mapping context:(NSManagedObjectContext *)context
-{
-	NSManagedObject* object = [self getExistingObjectFromExternalRepresentation:representation
-	                                                                withMapping:mapping
-			                                             inManagedObjectContext:context];
-	if (!object)
-		object = [NSEntityDescription insertNewObjectForEntityForName:mapping.entityName inManagedObjectContext:context];
++ (id)deserializeObjectRepresentation:(NSDictionary *)representation usingMapping:(EMKManagedObjectMapping *)mapping context:(NSManagedObjectContext *)context {
+	NSManagedObject *object = [self getExistingObjectFromRepresentation:representation
+	                                                        withMapping:mapping
+			                                     inManagedObjectContext:context];
+	if (!object) {
+			object = [NSEntityDescription insertNewObjectForEntityForName:mapping.entityName
+			                                       inManagedObjectContext:context];
+	}
 	return [self fillObject:object fromRepresentation:representation usingMapping:mapping];
 }
 
-+ (id)fillObject:(NSManagedObject *)object fromRepresentation:(NSDictionary *)representation usingMapping:(EMKManagedObjectMapping *)mapping {
-	NSDictionary *objectRepresentation = mapping.rootPath ? representation[mapping.rootPath] : representation;
++ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
+                                 usingMapping:(EMKManagedObjectMapping *)mapping
+			                          context:(NSManagedObjectContext *)context {
+	id objectRepresentation = [mapping mappedExternalRepresentation:externalRepresentation];
+	return [self deserializeObjectRepresentation:objectRepresentation usingMapping:mapping context:context];
+}
 
++ (id)fillObject:(NSManagedObject *)object fromRepresentation:(NSDictionary *)representation usingMapping:(EMKManagedObjectMapping *)mapping {
 	for (EMKAttributeMapping *attributeMapping in mapping.attributeMappings) {
-		[attributeMapping mapValueToObject:object fromRepresentation:objectRepresentation];
+		[attributeMapping mapValueToObject:object fromRepresentation:representation];
 	}
 
 	NSManagedObjectContext *context = object.managedObjectContext;
 	for (EMKRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
-		id relationshipRepresentation = relationshipMapping.keyPath ? objectRepresentation[relationshipMapping.keyPath] : objectRepresentation;
-		if (!relationshipRepresentation) continue;
+		id deserializedRelationship = nil;
 
 		if (relationshipMapping.isToMany) {
-			id deserializedRelationship = [self deserializeCollectionRepresentation:relationshipRepresentation
-			                                                           usingMapping:relationshipMapping.objectMapping
-						                                                    context:context];
+			deserializedRelationship = [self deserializeCollectionExternalRepresentation:representation
+			                                                                usingMapping:relationshipMapping.objectMapping
+						                                                         context:context];
 
 			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
-			[object setValue:[deserializedRelationship ek_propertyRepresentation:property]
-			          forKey:relationshipMapping.property];
+			deserializedRelationship = [deserializedRelationship ek_propertyRepresentation:property];
 		} else {
-			id deserializedRelationship = [self deserializeObjectRepresentation:relationshipRepresentation
-			                                                       usingMapping:relationshipMapping.objectMapping
-						                                                context:context];
+			deserializedRelationship = [self deserializeObjectExternalRepresentation:representation
+			                                                            usingMapping:relationshipMapping.objectMapping
+						                                                     context:context];
+		}
+
+		if (deserializedRelationship) {
 			[object setValue:deserializedRelationship forKey:relationshipMapping.property];
 		}
 	}
@@ -80,29 +90,39 @@
 	return object;
 }
 
-+ (NSArray *)deserializeCollectionRepresentation:(NSArray *)externalRepresentation
++ (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKManagedObjectMapping *)mapping {
+	id objectRepresentation = [mapping mappedExternalRepresentation:externalRepresentation];
+	return [self fillObject:object fromRepresentation:objectRepresentation usingMapping:mapping];
+}
+
++ (NSArray *)deserializeCollectionRepresentation:(NSArray *)representation
                                     usingMapping:(EMKManagedObjectMapping *)mapping
-			                             context:(NSManagedObjectContext *)context
-{
+			                             context:(NSManagedObjectContext *)context {
 	NSMutableArray *array = [NSMutableArray array];
-	for (NSDictionary *representation in externalRepresentation) {
-		id parsedObject = [self deserializeObjectRepresentation:representation usingMapping:mapping context:context];
-		[array addObject:parsedObject];
+	for (id objectRepresentation in representation) {
+		[array addObject:[self deserializeObjectRepresentation:objectRepresentation usingMapping:mapping context:context]];
 	}
 	return [NSArray arrayWithArray:array];
 }
 
++ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation
+                                            usingMapping:(EMKManagedObjectMapping *)mapping
+			                                     context:(NSManagedObjectContext *)context {
+	id representation = [mapping mappedExternalRepresentation:externalRepresentation];
+	return [self deserializeCollectionRepresentation:representation usingMapping:mapping context:context];
+}
+
 + (NSArray *)syncArrayOfObjectsFromExternalRepresentation:(NSArray *)externalRepresentation
                                               withMapping:(EMKManagedObjectMapping *)mapping
-		                                     fetchRequest:(NSFetchRequest*)fetchRequest
-					               inManagedObjectContext:(NSManagedObjectContext *)moc
-{
+		                                     fetchRequest:(NSFetchRequest *)fetchRequest
+					               inManagedObjectContext:(NSManagedObjectContext *)moc {
 	NSAssert(mapping.primaryKey, @"A objectMapping with a primary key is required");
-	EMKAttributeMapping * primaryKeyFieldMapping = [mapping primaryKeyMapping];
+	EMKAttributeMapping *primaryKeyFieldMapping = [mapping primaryKeyMapping];
 
 	// Create a dictionary that maps primary keys to existing objects
-	NSArray* existing = [moc executeFetchRequest:fetchRequest error:NULL];
-	NSDictionary* existingByPK = [NSDictionary dictionaryWithObjects:existing forKeys:[existing valueForKey:primaryKeyFieldMapping.property]];
+	NSArray *existing = [moc executeFetchRequest:fetchRequest error:NULL];
+	NSDictionary *existingByPK = [NSDictionary dictionaryWithObjects:existing
+	                                                         forKeys:[existing valueForKey:primaryKeyFieldMapping.property]];
 
 	NSMutableArray *array = [NSMutableArray array];
 	for (NSDictionary *representation in externalRepresentation) {
@@ -112,18 +132,21 @@
 		id object = [existingByPK objectForKey:primaryKeyValue];
 
 		// Create a new object if necessary
-		if (!object)
-			object = [NSEntityDescription insertNewObjectForEntityForName:mapping.entityName inManagedObjectContext:moc];
+		if (!object) {
+					object = [NSEntityDescription insertNewObjectForEntityForName:mapping.entityName
+					                                       inManagedObjectContext:moc];
+		}
 
-		[self fillObject:object fromRepresentation:representation usingMapping:mapping];
+		[self fillObject:object fromExternalRepresentation:representation usingMapping:mapping];
 		[array addObject:object];
 	}
 
 	// Any object returned by the fetch request not in the external represntation has to be deleted
-	NSMutableSet* toDelete = [NSMutableSet setWithArray:existing];
+	NSMutableSet *toDelete = [NSMutableSet setWithArray:existing];
 	[toDelete minusSet:[NSSet setWithArray:array]];
-	for (NSManagedObject* o in toDelete)
-		[moc deleteObject:o];
+	for (NSManagedObject *o in toDelete) {
+			[moc deleteObject:o];
+	}
 
 	return [NSArray arrayWithArray:array];
 }

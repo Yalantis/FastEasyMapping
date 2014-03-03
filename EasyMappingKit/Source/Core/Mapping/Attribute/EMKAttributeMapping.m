@@ -16,7 +16,6 @@
 }
 
 @synthesize property = _property;
-@synthesize keyPath = _keypath;
 
 #pragma mark - Init
 
@@ -58,7 +57,7 @@
 		} else {
 			return nil;
 		}
-	}                   reverseMap:^id(id value) {
+	} reverseMap:^id(id value) {
 		if ([value isKindOfClass:[NSDate class]]) {
 			return [EMKTransformer transformDate:value withDateFormat:dateFormat];
 		} else {

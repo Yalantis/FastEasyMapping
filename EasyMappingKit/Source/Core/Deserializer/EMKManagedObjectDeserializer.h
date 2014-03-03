@@ -14,11 +14,11 @@
 
 @interface EMKManagedObjectDeserializer : EMKDeserializer
 
-+ (id)deserializeObjectRepresentation:(NSDictionary *)representation
-                         usingMapping:(EMKManagedObjectMapping *)mapping
-			                  context:(NSManagedObjectContext *)context;
++ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
+                                 usingMapping:(EMKManagedObjectMapping *)mapping
+			                          context:(NSManagedObjectContext *)context;
 
-+ (id)fillObject:(NSManagedObject *)object fromRepresentation:(NSDictionary *)representation usingMapping:(EMKManagedObjectMapping *)mapping;
++ (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKManagedObjectMapping *)mapping;
 
 /** Get an array of managed objects from an external representation. If the objectMapping has
     a primary key existing objects will be updated. This method is slow and it doesn't
@@ -26,9 +26,9 @@
     syncArrayOfObjectsFromExternalRepresentation:withMapping:fetchRequest:inManagedObjectContext:
     instead.
  */
-+ (NSArray *)deserializeCollectionRepresentation:(NSArray *)representation
-                                    usingMapping:(EMKManagedObjectMapping *)mapping
-			                             context:(NSManagedObjectContext *)context;
++ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation
+                                            usingMapping:(EMKManagedObjectMapping *)mapping
+			                                     context:(NSManagedObjectContext *)context;
 
 /** Synchronize the objects in the managed obejct context with the objets from an external
     representation. Any new objects will be created, any existing objects will be updated

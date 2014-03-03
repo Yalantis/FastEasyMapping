@@ -10,6 +10,5 @@
 @protocol EMKPropertyMapping <NSObject>
 
 @property (nonatomic, copy, readonly) NSString *property;
-@property (nonatomic, copy) NSString *keyPath;
 
 @end

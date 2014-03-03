@@ -30,3 +30,9 @@
 - (void)addRelationshipMapping:(EMKRelationshipMapping *)relationshipMapping;
 
 @end
+
+@interface EMKMapping (Shortcut)
+
+- (id)mappedExternalRepresentation:(id)externalRepresentation;
+
+@end

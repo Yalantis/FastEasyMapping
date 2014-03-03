@@ -87,3 +87,11 @@
 }
 
 @end
+
+@implementation EMKMapping (Shortcut)
+
+- (id)mappedExternalRepresentation:(id)externalRepresentation {
+	return self.rootPath ? [externalRepresentation valueForKeyPath:self.rootPath] : externalRepresentation;
+}
+
+@end
