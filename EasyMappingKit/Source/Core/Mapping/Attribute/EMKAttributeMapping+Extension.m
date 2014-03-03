@@ -18,11 +18,11 @@
 
 - (void)mapValueToObject:(id)object fromRepresentation:(id)representation {
 	id value = [self mappedValueFromRepresentation:representation];
-    if (value == NSNull.null && ![EMKPropertyHelper propertyNameIsNative:self.property fromObject:object]) {
-        [object setValue:nil forKeyPath:self.property];
-	} else if (value) {
-        [object setValue:value forKeyPath:self.property];
-    }
+	if (value == NSNull.null && ![EMKPropertyHelper propertyNameIsNative:self.property fromObject:object]) {
+		[object setValue:nil forKeyPath:self.property];
+	} else if (value && ![[object valueForKeyPath:self.property] isEqual:value]) {
+		[object setValue:value forKeyPath:self.property];
+	}
 }
 
 @end

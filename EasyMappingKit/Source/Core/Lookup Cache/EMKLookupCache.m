@@ -133,6 +133,7 @@ void EMKLookupCacheRemoveCurrent() {
 	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, lookupValues];
 	[fetchRequest setPredicate:predicate];
+	[fetchRequest setFetchLimit:lookupValues.count];
 
 	NSMutableDictionary *output = [NSMutableDictionary new];
 	NSArray *existingObjects = [_context executeFetchRequest:fetchRequest error:NULL];
@@ -157,7 +158,10 @@ void EMKLookupCacheRemoveCurrent() {
 }
 
 - (void)addExistingObject:(id)object usingMapping:(EMKManagedObjectMapping *)mapping {
+	id primaryKeyValue = [object valueForKeyPath:mapping.primaryKey];
+	NSParameterAssert(object);
 
+	[_lookupObjectsMap[mapping.entityName] setObject:object forKey:primaryKeyValue];
 }
 
 @end
