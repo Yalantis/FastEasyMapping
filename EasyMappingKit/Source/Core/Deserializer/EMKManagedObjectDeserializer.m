@@ -18,48 +18,49 @@
 #import "NSDictionary+EMKFieldMapping.h"
 #import "EMKAttributeMapping+Extension.h"
 #import "EMKRelationshipMapping.h"
+#import "EMKLookupCache.h"
 
 @implementation EMKManagedObjectDeserializer
 
-+ (id)getExistingObjectFromRepresentation:(id)representation withMapping:(EMKManagedObjectMapping *)mapping inManagedObjectContext:(NSManagedObjectContext *)moc {
-	EMKAttributeMapping *primaryKeyFieldMapping = [mapping primaryKeyMapping];
-	id primaryKeyValue = [primaryKeyFieldMapping mapValue:[representation valueForKeyPath:primaryKeyFieldMapping.keyPath]];
+#pragma mark - Deserialization
 
-//	id primaryKeyValue = [self getValueOfField:primaryKeyFieldMapping fromRepresentation:externalRepresentation];
-	if (!primaryKeyValue || primaryKeyValue == (id) [NSNull null]) {
-			return nil;
-	}
-
-	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
-	[request setPredicate:[NSPredicate predicateWithFormat:@"%K = %@", mapping.primaryKey, primaryKeyValue]];
-
-	NSArray *array = [moc executeFetchRequest:request error:NULL];
-	if (array.count == 0) {
-			return nil;
-	}
-
-	return [array lastObject];
-}
-
-+ (id)deserializeObjectRepresentation:(NSDictionary *)representation usingMapping:(EMKManagedObjectMapping *)mapping context:(NSManagedObjectContext *)context {
-	NSManagedObject *object = [self getExistingObjectFromRepresentation:representation
-	                                                        withMapping:mapping
-			                                     inManagedObjectContext:context];
++ (id)_deserializeObjectRepresentation:(NSDictionary *)representation usingMapping:(EMKManagedObjectMapping *)mapping context:(NSManagedObjectContext *)context {
+	id object = [EMKLookupCacheGetCurrent() existingObjectForRepresentation:representation mapping:mapping];
 	if (!object) {
-			object = [NSEntityDescription insertNewObjectForEntityForName:mapping.entityName
-			                                       inManagedObjectContext:context];
+		object = [NSEntityDescription insertNewObjectForEntityForName:mapping.entityName inManagedObjectContext:context];
 	}
-	return [self fillObject:object fromRepresentation:representation usingMapping:mapping];
+
+	[self _fillObject:object fromRepresentation:representation usingMapping:mapping];
+
+	if ([object isInserted]) {
+		[EMKLookupCacheGetCurrent() addExistingObject:object usingMapping:mapping];
+	}
+
+	return object;
 }
+
++ (id)_deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
+                                  usingMapping:(EMKManagedObjectMapping *)mapping
+			                           context:(NSManagedObjectContext *)context {
+	id objectRepresentation = [mapping mappedExternalRepresentation:externalRepresentation];
+	return [self _deserializeObjectRepresentation:objectRepresentation usingMapping:mapping context:context];
+}
+
 
 + (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
                                  usingMapping:(EMKManagedObjectMapping *)mapping
 			                          context:(NSManagedObjectContext *)context {
-	id objectRepresentation = [mapping mappedExternalRepresentation:externalRepresentation];
-	return [self deserializeObjectRepresentation:objectRepresentation usingMapping:mapping context:context];
+	EMKLookupCache *cache = [[EMKLookupCache alloc] initWithMapping:mapping
+	                                         externalRepresentation:externalRepresentation
+						                                    context:context];
+	EMKLookupCacheSetCurrent(cache);
+	id object = [self _deserializeObjectExternalRepresentation:externalRepresentation usingMapping:mapping context:context];
+	EMKLookupCacheRemoveCurrent();
+
+	return object;
 }
 
-+ (id)fillObject:(NSManagedObject *)object fromRepresentation:(NSDictionary *)representation usingMapping:(EMKManagedObjectMapping *)mapping {
++ (id)_fillObject:(NSManagedObject *)object fromRepresentation:(NSDictionary *)representation usingMapping:(EMKManagedObjectMapping *)mapping {
 	for (EMKAttributeMapping *attributeMapping in mapping.attributeMappings) {
 		[attributeMapping mapValueToObject:object fromRepresentation:representation];
 	}
@@ -69,16 +70,16 @@
 		id deserializedRelationship = nil;
 
 		if (relationshipMapping.isToMany) {
-			deserializedRelationship = [self deserializeCollectionExternalRepresentation:representation
-			                                                                usingMapping:relationshipMapping.objectMapping
-						                                                         context:context];
+			deserializedRelationship = [self _deserializeCollectionExternalRepresentation:representation
+			                                                                 usingMapping:relationshipMapping.objectMapping
+						                                                          context:context];
 
 			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
 			deserializedRelationship = [deserializedRelationship ek_propertyRepresentation:property];
 		} else {
-			deserializedRelationship = [self deserializeObjectExternalRepresentation:representation
-			                                                            usingMapping:relationshipMapping.objectMapping
-						                                                     context:context];
+			deserializedRelationship = [self _deserializeObjectExternalRepresentation:representation
+			                                                             usingMapping:relationshipMapping.objectMapping
+						                                                      context:context];
 		}
 
 		if (deserializedRelationship) {
@@ -91,24 +92,41 @@
 
 + (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKManagedObjectMapping *)mapping {
 	id objectRepresentation = [mapping mappedExternalRepresentation:externalRepresentation];
-	return [self fillObject:object fromRepresentation:objectRepresentation usingMapping:mapping];
+	return [self _fillObject:object fromRepresentation:objectRepresentation usingMapping:mapping];
 }
 
-+ (NSArray *)deserializeCollectionRepresentation:(NSArray *)representation
-                                    usingMapping:(EMKManagedObjectMapping *)mapping
-			                             context:(NSManagedObjectContext *)context {
++ (NSArray *)_deserializeCollectionRepresentation:(NSArray *)representation
+                                     usingMapping:(EMKManagedObjectMapping *)mapping
+			                              context:(NSManagedObjectContext *)context {
 	NSMutableArray *array = [NSMutableArray array];
 	for (id objectRepresentation in representation) {
-		[array addObject:[self deserializeObjectRepresentation:objectRepresentation usingMapping:mapping context:context]];
+		[array addObject:[self _deserializeObjectRepresentation:objectRepresentation
+		                                           usingMapping:mapping
+					                                    context:context]];
 	}
 	return [NSArray arrayWithArray:array];
+}
+
++ (NSArray *)_deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation
+                                             usingMapping:(EMKManagedObjectMapping *)mapping
+			                                      context:(NSManagedObjectContext *)context {
+	id representation = [mapping mappedExternalRepresentation:externalRepresentation];
+	return [self _deserializeCollectionRepresentation:representation usingMapping:mapping context:context];
 }
 
 + (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation
                                             usingMapping:(EMKManagedObjectMapping *)mapping
 			                                     context:(NSManagedObjectContext *)context {
-	id representation = [mapping mappedExternalRepresentation:externalRepresentation];
-	return [self deserializeCollectionRepresentation:representation usingMapping:mapping context:context];
+	EMKLookupCache *cache = [[EMKLookupCache alloc] initWithMapping:mapping
+	                                         externalRepresentation:externalRepresentation
+						                                    context:context];
+	EMKLookupCacheSetCurrent(cache);
+	NSArray *output = [self _deserializeCollectionExternalRepresentation:externalRepresentation
+	                                                        usingMapping:mapping
+				                                                 context:context];
+	EMKLookupCacheRemoveCurrent();
+
+	return output;
 }
 
 + (NSArray *)syncArrayOfObjectsFromExternalRepresentation:(NSArray *)externalRepresentation

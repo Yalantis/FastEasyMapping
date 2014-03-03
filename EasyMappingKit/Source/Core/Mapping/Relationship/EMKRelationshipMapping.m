@@ -49,16 +49,7 @@
 - (void)setObjectMapping:(EMKMapping *)objectMapping {
 	_objectMapping = objectMapping;
 
-    if (!_objectMapping) {
-	    [_objectMapping setRootPath:self.keyPath];
-    } else {
-	    NSAssert(
-		    !self.keyPath,
-		    @"Serious error: keyPath (%@) and mapping rootPath (%@) both exists",
-		    self.keyPath,
-		    objectMapping.rootPath
-	    );
-    }
+	[_objectMapping setRootPath:self.keyPath];
 }
 
 - (void)setObjectMapping:(EMKMapping *)objectMapping forKeyPath:(NSString *)keyPath {
@@ -71,7 +62,13 @@
 - (void)setKeyPath:(NSString *)keyPath {
 	_keyPath = [keyPath copy];
 
-	[self.objectMapping setRootPath:keyPath];
+	[self.objectMapping setRootPath:_keyPath];
+}
+
+- (NSString *)keyPath {
+	NSParameterAssert(_keyPath == self.objectMapping.rootPath);
+
+	return _keyPath;
 }
 
 @end

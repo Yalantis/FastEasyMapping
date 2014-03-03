@@ -10,15 +10,19 @@
 
 @implementation EMKAttributeMapping (Extension)
 
-- (void)mapValueToObject:(id)object fromRepresentation:(NSDictionary *)representation {
-	id value = [self mapValue:[representation valueForKeyPath:self.keyPath]];
-	if (value == [NSNull null]) {
-		if (![EMKPropertyHelper propertyNameIsNative:self.property fromObject:object]) {
-			[object setValue:nil forKeyPath:self.property];
-		}
+- (id)mappedValueFromRepresentation:(id)representation {
+	id value = self.keyPath ? [representation valueForKeyPath:self.keyPath] : representation;
+    
+	return [self mapValue:value];
+}
+
+- (void)mapValueToObject:(id)object fromRepresentation:(id)representation {
+	id value = [self mappedValueFromRepresentation:representation];
+    if (value == NSNull.null && ![EMKPropertyHelper propertyNameIsNative:self.property fromObject:object]) {
+        [object setValue:nil forKeyPath:self.property];
 	} else if (value) {
-		[object setValue:value forKeyPath:self.property];
-	}
+        [object setValue:value forKeyPath:self.property];
+    }
 }
 
 @end

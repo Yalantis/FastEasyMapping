@@ -19,16 +19,12 @@ OBJC_EXTERN void EMKLookupCacheRemoveCurrent();
 @property (nonatomic, strong, readonly) NSManagedObjectContext *context;
 
 - (instancetype)initWithMapping:(EMKManagedObjectMapping *)mapping
-                 representation:(id)representation
-                        context:(NSManagedObjectContext *)context;
+         externalRepresentation:(id)externalRepresentation
+					    context:(NSManagedObjectContext *)context;
 
 #pragma mark -
 
 - (id)existingObjectForRepresentation:(id)representation mapping:(EMKManagedObjectMapping *)mapping;
 - (void)addExistingObject:(id)object usingMapping:(EMKManagedObjectMapping *)mapping;
-
-
-- (void)addPrimaryKeyValue:(id)value forObjectOfClass:(Class)class;
-- (id)cachedObjectOfClass:(Class)class withPrimaryKeyValue:(id)value;
 
 @end

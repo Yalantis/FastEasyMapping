@@ -10,6 +10,7 @@
 
 @interface EMKAttributeMapping (Extension)
 
-- (void)mapValueToObject:(id)object fromRepresentation:(NSDictionary *)representation;
+- (id)mappedValueFromRepresentation:(id)representation;
+- (void)mapValueToObject:(id)object fromRepresentation:(id)representation;
 
 @end

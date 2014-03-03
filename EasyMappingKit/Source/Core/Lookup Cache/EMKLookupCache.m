@@ -9,6 +9,7 @@
 #import "EMKManagedObjectMapping.h"
 #import "EMKRelationshipMapping.h"
 #import "EMKAttributeMapping.h"
+#import "EMKAttributeMapping+Extension.h"
 
 #import <CoreData/CoreData.h>
 
@@ -35,7 +36,7 @@ void EMKLookupCacheRemoveCurrent() {
 }
 
 @implementation EMKLookupCache {
-	id _representation;
+	id _externalRepresentation;
 
 	NSManagedObjectContext *_context;
 
@@ -47,10 +48,10 @@ void EMKLookupCacheRemoveCurrent() {
 
 
 - (instancetype)initWithMapping:(EMKManagedObjectMapping *)mapping
-                 representation:(id)representation
-			            context:(NSManagedObjectContext *)context {
+         externalRepresentation:(id)externalRepresentation
+					    context:(NSManagedObjectContext *)context {
 	NSParameterAssert(mapping);
-	NSParameterAssert(representation);
+	NSParameterAssert(externalRepresentation);
 	NSParameterAssert(context);
 
 	self = [self init];
@@ -60,7 +61,8 @@ void EMKLookupCacheRemoveCurrent() {
 		
 		_lookupKeysMap = [NSMutableDictionary new];
 		_lookupObjectsMap = [NSMutableDictionary new];
-		[self fillUsingRepresentation:representation];
+
+		[self fillUsingExternalRepresentation:externalRepresentation];
 	}
 
 	return self;
@@ -72,8 +74,10 @@ void EMKLookupCacheRemoveCurrent() {
 	EMKAttributeMapping *primaryKeyMapping = mapping.primaryKeyMapping;
 	NSParameterAssert(primaryKeyMapping);
 
-	id primaryKeyValue = [primaryKeyMapping mapValue:objectRepresentation];
-	[_lookupKeysMap[mapping.entityName] addObject:primaryKeyValue];
+	id primaryKeyValue = [primaryKeyMapping mappedValueFromRepresentation:objectRepresentation];
+    if (primaryKeyValue) {
+        [_lookupKeysMap[mapping.entityName] addObject:primaryKeyValue];
+    }
 
 	for (EMKRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
 		[self inspectExternalRepresentation:objectRepresentation usingMapping:relationshipMapping.objectMapping];
@@ -111,73 +115,49 @@ void EMKLookupCacheRemoveCurrent() {
 	}
 }
 
-- (void)fillUsingRepresentation:(id)representation {
+- (void)fillUsingExternalRepresentation:(id)externalRepresentation {
 	// ie. drop previous results
-	_representation = representation;
+	_externalRepresentation = externalRepresentation;
 
 	[_lookupKeysMap removeAllObjects];
 	[_lookupObjectsMap removeAllObjects];
 
 	[self prepareLookupMapsStructure];
-	[self inspectExternalRepresentation:_representation usingMapping:self.mapping];
+	[self inspectExternalRepresentation:_externalRepresentation usingMapping:self.mapping];
 }
 
-- (NSDictionary *)existingObjectsMapOfClass:(Class)class {
-	return nil;
-	NSSet *lookupValues = _lookupKeysMap[class];
-	if (lookupValues.count == 0) return @{};
+- (NSMutableDictionary *)fetchExistingObjectsForMapping:(EMKManagedObjectMapping *)mapping {
+	NSSet *lookupValues = _lookupKeysMap[mapping.entityName];
+	if (lookupValues.count == 0) return [NSMutableDictionary dictionary];
 
-//	NSAttributeDescription *primaryKeyAttribute = [[class entityDescription] MR_primaryAttributeToRelateBy];
-//	NSParameterAssert(primaryKeyAttribute);
-//	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", primaryKeyAttribute.name, lookupValues];
-//
-//	NSMutableDictionary *output = [NSMutableDictionary new];
-//	NSArray *existingObjects = [class MR_findAllWithPredicate:predicate inContext:_context];
-//	for (NSManagedObject *existingObject in existingObjects) {
-//		output[[existingObject valueForKey:primaryKeyAttribute.name]] = existingObject;
-//	}
-//
-//	return output;
-}
+	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, lookupValues];
+	[fetchRequest setPredicate:predicate];
 
-- (id)cachedObjectOfClass:(Class)class withPrimaryKeyValue:(id)value {
-	NSDictionary *cachedObjects = _lookupObjectsMap[(id<NSCopying>)class];
-	if (!cachedObjects) {
-		cachedObjects = [self existingObjectsMapOfClass:class];
-		_lookupObjectsMap[(id<NSCopying>)class] = cachedObjects;
+	NSMutableDictionary *output = [NSMutableDictionary new];
+	NSArray *existingObjects = [_context executeFetchRequest:fetchRequest error:NULL];
+	for (NSManagedObject *object in existingObjects) {
+		output[[object valueForKey:mapping.primaryKey]] = object;
 	}
 
-	return cachedObjects[value];
+	return output;
 }
-
 
 - (id)existingObjectForRepresentation:(id)representation mapping:(EMKManagedObjectMapping *)mapping {
 	NSDictionary *entityObjectsMap = _lookupObjectsMap[mapping.entityName];
 	if (!entityObjectsMap) {
-
+		entityObjectsMap = [self fetchExistingObjectsForMapping:mapping];
+		_lookupObjectsMap[mapping.entityName] = entityObjectsMap;
 	}
 
+	id primaryKeyValue = [mapping.primaryKeyMapping mappedValueFromRepresentation:representation];
+	if (primaryKeyValue == nil || primaryKeyValue == NSNull.null) return nil;
 
-	return entityObjectsMap;
+	return entityObjectsMap[primaryKeyValue];
 }
 
 - (void)addExistingObject:(id)object usingMapping:(EMKManagedObjectMapping *)mapping {
 
 }
-
-
-#pragma mark - Preparation
-
-- (void)addPrimaryKeyValue:(id)value forObjectOfClass:(Class)class {
-	NSMutableSet *primaryKeys = [_lookupKeysMap objectForKey:class];
-	if (!primaryKeys) {
-		primaryKeys = [NSMutableSet new];
-		[_lookupKeysMap setObject:primaryKeys forKey:(id<NSCopying>) class];
-	}
-
-	[primaryKeys addObject:value];
-}
-
-
 
 @end
