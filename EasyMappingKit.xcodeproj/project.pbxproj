@@ -297,13 +297,13 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		69ED74A3F93755AF6DBD3662 /* Relationship Mapping */ = {
+		69ED74A3F93755AF6DBD3662 /* Relationship */ = {
 			isa = PBXGroup;
 			children = (
 				69ED7C1A1592194E312212F9 /* EMKRelationshipMapping.h */,
 				69ED757758DA67B4E8247495 /* EMKRelationshipMapping.m */,
 			);
-			path = "Relationship Mapping";
+			path = Relationship;
 			sourceTree = "<group>";
 		};
 		69ED752D2981B7C6882366D2 /* Foundation */ = {
@@ -321,9 +321,9 @@
 			isa = PBXGroup;
 			children = (
 				69ED7A4034F64A92A077C593 /* Abstract */,
-				69ED7C716C176C89DA2C9636 /* Object Mapping */,
-				69ED7C6CCD04878CED1E5BAE /* Property Mapping */,
-				69ED74A3F93755AF6DBD3662 /* Relationship Mapping */,
+				69ED7C716C176C89DA2C9636 /* Object */,
+				69ED7C6CCD04878CED1E5BAE /* Attribute */,
+				69ED74A3F93755AF6DBD3662 /* Relationship */,
 			);
 			path = Mapping;
 			sourceTree = "<group>";
@@ -365,7 +365,7 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		69ED7C6CCD04878CED1E5BAE /* Property Mapping */ = {
+		69ED7C6CCD04878CED1E5BAE /* Attribute */ = {
 			isa = PBXGroup;
 			children = (
 				69ED724125F45703B27BFC0C /* EMKAttributeMapping.h */,
@@ -373,10 +373,10 @@
 				69ED7539B5509DF9599396EA /* EMKAttributeMapping+Extension.h */,
 				69ED718D4E6F950EE17E08C6 /* EMKAttributeMapping+Extension.m */,
 			);
-			path = "Property Mapping";
+			path = Attribute;
 			sourceTree = "<group>";
 		};
-		69ED7C716C176C89DA2C9636 /* Object Mapping */ = {
+		69ED7C716C176C89DA2C9636 /* Object */ = {
 			isa = PBXGroup;
 			children = (
 				69ED70753A27735A60785078 /* EMKObjectMapping.h */,
@@ -384,7 +384,7 @@
 				69ED7EA48925307F4DB06848 /* EMKManagedObjectMapping.h */,
 				69ED790F30E4E551B1416E60 /* EMKManagedObjectMapping.m */,
 			);
-			path = "Object Mapping";
+			path = Object;
 			sourceTree = "<group>";
 		};
 		69ED7C8732A1C26BF1CF78CD /* Deserializer */ = {
