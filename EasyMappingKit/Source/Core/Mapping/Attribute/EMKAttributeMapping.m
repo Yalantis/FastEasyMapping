@@ -16,6 +16,7 @@
 }
 
 @synthesize property = _property;
+@synthesize keyPath = _keyPath;
 
 #pragma mark - Init
 

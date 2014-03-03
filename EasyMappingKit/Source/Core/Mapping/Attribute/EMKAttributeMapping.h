@@ -12,8 +12,6 @@
 
 @interface EMKAttributeMapping : NSObject <EMKPropertyMapping>
 
-@property (nonatomic, copy) NSString *keyPath;
-
 - (id)mapValue:(id)value;
 - (id)reverseMapValue:(id)value;
 

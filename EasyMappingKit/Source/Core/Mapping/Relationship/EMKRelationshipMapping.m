@@ -11,7 +11,9 @@
 @implementation EMKRelationshipMapping
 
 @synthesize property = _property;
-@synthesize keyPath = _keypath;
+@synthesize keyPath = _keyPath;
+
+#pragma mark - Init
 
 - (id)initWithProperty:(NSString *)property keyPath:(NSString *)keyPath objectMapping:(EMKMapping *)objectMapping {
 	NSParameterAssert(property.length > 0);
@@ -19,8 +21,6 @@
 	self = [super init];
 	if (self) {
 		_property = [property copy];
-
-		[self setKeyPath:keyPath];
 		[self setObjectMapping:objectMapping];
 	}
 
@@ -42,6 +42,36 @@
 
 + (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath objectMapping:(EMKMapping *)objectMapping {
 	return [[self alloc] initWithProperty:property keyPath:keyPath objectMapping:objectMapping];
+}
+
+#pragma mark - Property objectMapping
+
+- (void)setObjectMapping:(EMKMapping *)objectMapping {
+	_objectMapping = objectMapping;
+
+    if (!_objectMapping) {
+	    [_objectMapping setRootPath:self.keyPath];
+    } else {
+	    NSAssert(
+		    !self.keyPath,
+		    @"Serious error: keyPath (%@) and mapping rootPath (%@) both exists",
+		    self.keyPath,
+		    objectMapping.rootPath
+	    );
+    }
+}
+
+- (void)setObjectMapping:(EMKMapping *)objectMapping forKeyPath:(NSString *)keyPath {
+	[self setObjectMapping:objectMapping];
+	[self setKeyPath:keyPath];
+}
+
+#pragma mark - Property keyPath
+
+- (void)setKeyPath:(NSString *)keyPath {
+	_keyPath = [keyPath copy];
+
+	[self.objectMapping setRootPath:keyPath];
 }
 
 @end

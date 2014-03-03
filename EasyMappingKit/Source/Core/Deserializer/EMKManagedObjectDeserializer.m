@@ -18,7 +18,6 @@
 #import "NSDictionary+EMKFieldMapping.h"
 #import "EMKAttributeMapping+Extension.h"
 #import "EMKRelationshipMapping.h"
-#import "KWExample.h"
 
 @implementation EMKManagedObjectDeserializer
 

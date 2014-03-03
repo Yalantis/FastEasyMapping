@@ -15,6 +15,8 @@
 @property (nonatomic, strong) EMKMapping *objectMapping;
 @property (nonatomic, getter=isToMany) BOOL toMany;
 
+- (void)setObjectMapping:(EMKMapping *)objectMapping forKeyPath:(NSString *)keyPath;
+
 + (instancetype)mappingOfProperty:(NSString *)property
                           keyPath:(NSString *)keyPath
 	                configuration:(void (^)(EMKRelationshipMapping *mapping))configuration;

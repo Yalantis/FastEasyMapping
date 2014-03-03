@@ -66,15 +66,13 @@
 		[mapping addAttributeMappingFromArray:@[@"name", @"email", @"gender"]];
 		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"car"
 		                                                            configuration:^(EMKRelationshipMapping *relationshipMapping) {
-            [relationshipMapping setKeyPath:@"car"];
-            [relationshipMapping setObjectMapping:[self carMapping]];
+            [relationshipMapping setObjectMapping:[self carMapping] forKeyPath:@"car"];
 		}]];
 
 		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"phones"
 		                                                            configuration:^(EMKRelationshipMapping *relationshipMapping) {
-            [relationshipMapping setKeyPath:@"phones"];
             [relationshipMapping setToMany:YES];
-            [relationshipMapping setObjectMapping:[self phoneMapping]];
+            [relationshipMapping setObjectMapping:[self phoneMapping] forKeyPath:@"phones"];
         }]];
 	}];
 }
@@ -86,8 +84,7 @@
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
 		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"car"
 		                                                            configuration:^(EMKRelationshipMapping *relationshipMapping) {
-            [relationshipMapping setKeyPath:@"car"];
-            [relationshipMapping setObjectMapping:[self carMapping]];
+            [relationshipMapping setObjectMapping:[self carMapping] forKeyPath:@"car"];
         }]];
 	}];
 }
@@ -99,9 +96,8 @@
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
 		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"phones"
 		                                                            configuration:^(EMKRelationshipMapping *relationshipMapping) {
-            [relationshipMapping setKeyPath:@"phones"];
             [relationshipMapping setToMany:YES];
-            [relationshipMapping setObjectMapping:[self phoneMapping]];
+            [relationshipMapping setObjectMapping:[self phoneMapping] forKeyPath:@"phones"];
         }]];
 	}];
 }

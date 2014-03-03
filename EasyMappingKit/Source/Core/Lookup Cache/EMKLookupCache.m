@@ -69,8 +69,6 @@ void EMKLookupCacheRemoveCurrent() {
 #pragma mark - Inspection
 
 - (void)inspectObjectRepresentation:(id)objectRepresentation usingMapping:(EMKManagedObjectMapping *)mapping {
-	id representation = mapping.rootPath ? [objectRepresentation valueForKeyPath:objectRepresentation] : objectRepresentation;
-
 	EMKAttributeMapping *primaryKeyMapping = mapping.primaryKeyMapping;
 	NSParameterAssert(primaryKeyMapping);
 
@@ -78,13 +76,12 @@ void EMKLookupCacheRemoveCurrent() {
 	[_lookupKeysMap[mapping.entityName] addObject:primaryKeyValue];
 
 	for (EMKRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
-		id relationshipRepresentation = relationshipMapping.keyPath ? [objectRepresentation valueForKeyPath:relationshipMapping.keyPath] : objectRepresentation;
-		[self inspectExternalRepresentation:relationshipRepresentation usingMapping:relationshipMapping.objectMapping];
+		[self inspectExternalRepresentation:objectRepresentation usingMapping:relationshipMapping.objectMapping];
 	}
 }
 
 - (void)inspectExternalRepresentation:(id)externalRepresentation usingMapping:(EMKManagedObjectMapping *)mapping {
-	id representation = mapping.rootPath ? [externalRepresentation valueForKeyPath:mapping.rootPath] : externalRepresentation;
+	id representation = [mapping mappedExternalRepresentation:externalRepresentation];
 
 	if ([representation isKindOfClass:NSArray.class]) {
 		for (id objectRepresentation in representation) {
@@ -126,20 +123,21 @@ void EMKLookupCacheRemoveCurrent() {
 }
 
 - (NSDictionary *)existingObjectsMapOfClass:(Class)class {
+	return nil;
 	NSSet *lookupValues = _lookupKeysMap[class];
 	if (lookupValues.count == 0) return @{};
 
-	NSAttributeDescription *primaryKeyAttribute = [[class entityDescription] MR_primaryAttributeToRelateBy];
-	NSParameterAssert(primaryKeyAttribute);
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", primaryKeyAttribute.name, lookupValues];
-
-	NSMutableDictionary *output = [NSMutableDictionary new];
-	NSArray *existingObjects = [class MR_findAllWithPredicate:predicate inContext:_context];
-	for (NSManagedObject *existingObject in existingObjects) {
-		output[[existingObject valueForKey:primaryKeyAttribute.name]] = existingObject;
-	}
-
-	return output;
+//	NSAttributeDescription *primaryKeyAttribute = [[class entityDescription] MR_primaryAttributeToRelateBy];
+//	NSParameterAssert(primaryKeyAttribute);
+//	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", primaryKeyAttribute.name, lookupValues];
+//
+//	NSMutableDictionary *output = [NSMutableDictionary new];
+//	NSArray *existingObjects = [class MR_findAllWithPredicate:predicate inContext:_context];
+//	for (NSManagedObject *existingObject in existingObjects) {
+//		output[[existingObject valueForKey:primaryKeyAttribute.name]] = existingObject;
+//	}
+//
+//	return output;
 }
 
 - (id)cachedObjectOfClass:(Class)class withPrimaryKeyValue:(id)value {
@@ -160,7 +158,7 @@ void EMKLookupCacheRemoveCurrent() {
 	}
 
 
-	return entityObjectsMap
+	return entityObjectsMap;
 }
 
 - (void)addExistingObject:(id)object usingMapping:(EMKManagedObjectMapping *)mapping {

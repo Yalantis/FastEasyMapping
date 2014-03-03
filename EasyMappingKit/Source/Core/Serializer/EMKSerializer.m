@@ -78,19 +78,17 @@
 + (void)setRelationshipObjectOn:(NSMutableDictionary *)representation
                    usingMapping:(EMKRelationshipMapping *)relationshipMapping
 			         fromObject:(id)object {
-	id propertyValue = [EMKPropertyHelper performSelector:NSSelectorFromString(relationshipMapping.property) onObject:object];
-	if (propertyValue) {
+	id value = [EMKPropertyHelper performSelector:NSSelectorFromString(relationshipMapping.property) onObject:object];
+	if (value) {
 		id relationshipRepresentation = nil;
 		if (relationshipMapping.isToMany) {
-			relationshipRepresentation = [self serializeCollection:propertyValue
-			                                          usingMapping:relationshipMapping.objectMapping];
+			relationshipRepresentation = [self serializeCollection:value usingMapping:relationshipMapping.objectMapping];
 		} else {
-			relationshipRepresentation = [self serializeObject:propertyValue
-			                                      usingMapping:relationshipMapping.objectMapping];
+			relationshipRepresentation = [self serializeObject:value usingMapping:relationshipMapping.objectMapping];
 		}
 
 		// todo: if there are no keypath - just add all fields
-		[representation setObject:relationshipRepresentation forKey:relationshipMapping.keyPath];
+		[representation setObject:relationshipRepresentation forKey:relationshipMapping.objectMapping.rootPath];
 	}
 }
 
