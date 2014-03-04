@@ -1,5 +1,5 @@
 //
-//  EKManagedObjectMapperSpec.m
+//  EKManagedObjectDeserializerSpec.m
 //  EasyMappingCoreDataExample
 //
 //  Created by Alejandro Isaza on 2013-03-20.
@@ -21,20 +21,21 @@
 #import "EMKObjectDeserializer.h"
 #import "NSManagedObject+MagicalFinders.h"
 #import "NSManagedObject+MagicalRecord.h"
+#import "NSManagedObject+MagicalDataImport.h"
 
-SPEC_BEGIN(EKManagedObjectMapperSpec)
+SPEC_BEGIN(EKManagedObjectDeserializerSpec)
 
-describe(@"EKManagedObjectMapper", ^{
+describe(@"EKManagedObjectDeserializer", ^{
     
     beforeEach(^{
         [MagicalRecord setDefaultModelFromClass:[self class]];
-        [MagicalRecord setupCoreDataStackWithInMemoryStore];
+        [MagicalRecord setupAutoMigratingCoreDataStack];
     });
     
     afterEach(^{
         [MagicalRecord cleanUp];
     });
-        
+    
     describe(@".objectFromExternalRepresentation:usingMapping:", ^{
         
         context(@"a simple object", ^{
@@ -333,7 +334,6 @@ describe(@"EKManagedObjectMapper", ^{
         });
         
     });
-    
 });
 
 SPEC_END

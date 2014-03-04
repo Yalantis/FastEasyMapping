@@ -33,7 +33,6 @@
 		69ED7118E43D74A843AA1E54 /* EMKMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7A4A3BD1A49CCC1AB9A4 /* EMKMapping.m */; };
 		69ED7144E37E067666813AF9 /* NSArray+EMKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757059F6C7A26468D880 /* NSArray+EMKExtension.m */; };
 		69ED7182CE6019414096618D /* EMKDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C6921FAE7BE48AC5B64 /* EMKDeserializer.m */; };
-		69ED7275F52203B001CB799D /* EKManagedObjectMapperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED759115F507BCDE8EA2CF /* EKManagedObjectMapperSpec.m */; };
 		69ED7299E71FA1B0B34E9764 /* EMKAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7141C706CAC006EADE5A /* EMKAttributeMapping.m */; };
 		69ED73EA3882D6453266FB46 /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7F66EADE6C46DA08E81C /* EasyMappingCoreDataExample.xcdatamodel */; };
 		69ED749AAEEA59355D537093 /* Male.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED717EADF381A7F466890E /* Male.json */; };
@@ -46,6 +45,7 @@
 		69ED78FC89BF855B3437E4A8 /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED73ABBB8D6D19748F59FE /* MappingProvider.m */; };
 		69ED7907DC5AB1674B8CF3F5 /* EMKTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED74270CBA655E787B8FCA /* EMKTransformer.m */; };
 		69ED79344D2710F40CE5649F /* Car.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED783924C864E6279DFC88 /* Car.json */; };
+		69ED79680ECCD155C4ACF7F9 /* EKManagedObjectDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED769698B41E468839F9FB /* EKManagedObjectDeserializerSpec.m */; };
 		69ED797C93C27C8E3BBC1BDB /* EMKSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED73028D190C49BF2E0F8D /* EMKSerializer.m */; };
 		69ED7A9D4C100F6C8EEEDC03 /* EMKRelationshipMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757758DA67B4E8247495 /* EMKRelationshipMapping.m */; };
 		69ED7AB4E97F7AB978DA28DE /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED77C89B6E98D69D0301B0 /* Car.m */; };
@@ -113,11 +113,11 @@
 		69ED7539B5509DF9599396EA /* EMKAttributeMapping+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMKAttributeMapping+Extension.h"; sourceTree = "<group>"; };
 		69ED757059F6C7A26468D880 /* NSArray+EMKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+EMKExtension.m"; sourceTree = "<group>"; };
 		69ED757758DA67B4E8247495 /* EMKRelationshipMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKRelationshipMapping.m; sourceTree = "<group>"; };
-		69ED759115F507BCDE8EA2CF /* EKManagedObjectMapperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKManagedObjectMapperSpec.m; sourceTree = "<group>"; };
 		69ED75CC8C4DEB31139E38B6 /* EMKMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKMapping.h; sourceTree = "<group>"; };
 		69ED763C36518D190E24517F /* Address.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Address.json; sourceTree = "<group>"; };
 		69ED7645386941DA79C1E53A /* NSArray+EMKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+EMKExtension.h"; sourceTree = "<group>"; };
 		69ED76861B278358552D32C0 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		69ED769698B41E468839F9FB /* EKManagedObjectDeserializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKManagedObjectDeserializerSpec.m; sourceTree = "<group>"; };
 		69ED76FF15989E4B2D1938D8 /* EMKTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKTransformer.h; sourceTree = "<group>"; };
 		69ED771F4A0CC2BB6D9583BC /* EMKManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKManagedObjectDeserializer.h; sourceTree = "<group>"; };
 		69ED772E50A1A831B78D48B3 /* EMKManagedObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKManagedObjectDeserializer.m; sourceTree = "<group>"; };
@@ -260,8 +260,8 @@
 		69ED70B2B69E366D21CAF60F /* Specs */ = {
 			isa = PBXGroup;
 			children = (
-				69ED759115F507BCDE8EA2CF /* EKManagedObjectMapperSpec.m */,
 				69ED734A965963433BBA26B2 /* EKManagedObjectMappingSpec.m */,
+				69ED769698B41E468839F9FB /* EKManagedObjectDeserializerSpec.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -596,13 +596,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69ED7275F52203B001CB799D /* EKManagedObjectMapperSpec.m in Sources */,
 				69ED7B5A4AEF8A7C51C3BD9E /* EKManagedObjectMappingSpec.m in Sources */,
 				69ED78FC89BF855B3437E4A8 /* MappingProvider.m in Sources */,
 				69ED7C39C3F28A6F5AA7C832 /* Person.m in Sources */,
 				69ED7AB4E97F7AB978DA28DE /* Car.m in Sources */,
 				69ED7FE6802392B08E4E6A3B /* Phone.m in Sources */,
 				69ED73EA3882D6453266FB46 /* EasyMappingCoreDataExample.xcdatamodel in Sources */,
+				69ED79680ECCD155C4ACF7F9 /* EKManagedObjectDeserializerSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
