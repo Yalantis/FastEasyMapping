@@ -8,11 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "EMKDeserializer.h"
-
 @class EMKManagedObjectMapping, NSManagedObject, NSFetchRequest, NSManagedObjectContext;
 
-@interface EMKManagedObjectDeserializer : EMKDeserializer
+@interface EMKManagedObjectDeserializer : NSObject
 
 + (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
                                  usingMapping:(EMKManagedObjectMapping *)mapping

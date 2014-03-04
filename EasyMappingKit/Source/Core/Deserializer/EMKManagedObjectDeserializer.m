@@ -12,10 +12,8 @@
 
 #import "EMKManagedObjectMapping.h"
 #import "EMKAttributeMapping.h"
-#import "EMKPropertyHelper.h"
 
 #import "NSArray+EMKExtension.h"
-#import "NSDictionary+EMKFieldMapping.h"
 #import "EMKAttributeMapping+Extension.h"
 #import "EMKRelationshipMapping.h"
 #import "EMKLookupCache.h"

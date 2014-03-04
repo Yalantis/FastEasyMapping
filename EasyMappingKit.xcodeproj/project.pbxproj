@@ -19,23 +19,22 @@
 		2CF809A418C3AE9A00C07899 /* EMKAttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED724125F45703B27BFC0C /* EMKAttributeMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809A518C3AE9A00C07899 /* EMKRelationshipMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7C1A1592194E312212F9 /* EMKRelationshipMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809A618C3AE9A00C07899 /* EMKSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7C1B2AB96554F9FDF10B /* EMKSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809A718C3AE9A00C07899 /* EMKDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED79908EBF04E097CB09E4 /* EMKDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809A818C3AE9A00C07899 /* EMKObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7039B8922439BE9D1B8C /* EMKObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809A918C3AE9A00C07899 /* EMKManagedObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED771F4A0CC2BB6D9583BC /* EMKManagedObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809AA18C3AE9A00C07899 /* EasyMappingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED77A829DD1436A5A2CA1B /* EasyMappingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809AB18C3AE9A00C07899 /* EMKTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7A8B2E60F728B99A0CB9 /* EMKTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809AC18C3AEC800C07899 /* EMKAttributeMapping+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7539B5509DF9599396EA /* EMKAttributeMapping+Extension.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		2CF809AD18C3AEC800C07899 /* NSArray+EMKExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7645386941DA79C1E53A /* NSArray+EMKExtension.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		2CF809AE18C3AEC800C07899 /* NSDictionary+EMKFieldMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7F8651468AFFBB5FE484 /* NSDictionary+EMKFieldMapping.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		2CF809AF18C3AEC800C07899 /* EMKPropertyHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7E6CB1B484C7F335B55F /* EMKPropertyHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		2CF809B018C3AEC800C07899 /* EMKTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED76FF15989E4B2D1938D8 /* EMKTransformer.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		69ED70D8C859F4A0BDE4DCF8 /* EMKAttributeMapping+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED718D4E6F950EE17E08C6 /* EMKAttributeMapping+Extension.m */; };
 		69ED7118E43D74A843AA1E54 /* EMKMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7A4A3BD1A49CCC1AB9A4 /* EMKMapping.m */; };
 		69ED7144E37E067666813AF9 /* NSArray+EMKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757059F6C7A26468D880 /* NSArray+EMKExtension.m */; };
-		69ED7182CE6019414096618D /* EMKDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C6921FAE7BE48AC5B64 /* EMKDeserializer.m */; };
+		69ED72338B6419101B1C8CDB /* NSObject+EMKKVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED769040647781DD8B196D /* NSObject+EMKKVC.h */; };
 		69ED7299E71FA1B0B34E9764 /* EMKAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7141C706CAC006EADE5A /* EMKAttributeMapping.m */; };
 		69ED73EA3882D6453266FB46 /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7F66EADE6C46DA08E81C /* EasyMappingCoreDataExample.xcdatamodel */; };
 		69ED749AAEEA59355D537093 /* Male.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED717EADF381A7F466890E /* Male.json */; };
+		69ED74D218BD6B3888549434 /* NSObject+EMKKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED770C14BAB15CA7926116 /* NSObject+EMKKVC.m */; };
 		69ED756EBF9D955A7B6A580A /* EMKLookupCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7D24C1EE78C03CAB9C9B /* EMKLookupCache.m */; };
 		69ED7687C035FA51A536AB56 /* EMKPropertyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7F5DB5E0C3FF6672226E /* EMKPropertyHelper.m */; };
 		69ED7687DEAC011EE09F5D1A /* EMKManagedObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED790F30E4E551B1416E60 /* EMKManagedObjectMapping.m */; };
@@ -51,7 +50,6 @@
 		69ED7AB4E97F7AB978DA28DE /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED77C89B6E98D69D0301B0 /* Car.m */; };
 		69ED7B2C4E0F983FCF28D04B /* CarWithNestedAttributes.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED728DDEFE606C14EB8B95 /* CarWithNestedAttributes.json */; };
 		69ED7B5A4AEF8A7C51C3BD9E /* EKManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED734A965963433BBA26B2 /* EKManagedObjectMappingSpec.m */; };
-		69ED7BBFC6EEA0F04B11F639 /* NSDictionary+EMKFieldMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7A0E32DD0F816A66B6FE /* NSDictionary+EMKFieldMapping.m */; };
 		69ED7C04B0D06A2E75D9CDDD /* EMKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7972B98B6046006A3F97 /* EMKObjectMapping.m */; };
 		69ED7C39C3F28A6F5AA7C832 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED76861B278358552D32C0 /* Person.m */; };
 		69ED7D1074E091D346E99840 /* Female.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7488F1418C2F22FA30B6 /* Female.json */; };
@@ -117,8 +115,10 @@
 		69ED763C36518D190E24517F /* Address.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Address.json; sourceTree = "<group>"; };
 		69ED7645386941DA79C1E53A /* NSArray+EMKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+EMKExtension.h"; sourceTree = "<group>"; };
 		69ED76861B278358552D32C0 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		69ED769040647781DD8B196D /* NSObject+EMKKVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EMKKVC.h"; sourceTree = "<group>"; };
 		69ED769698B41E468839F9FB /* EKManagedObjectDeserializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKManagedObjectDeserializerSpec.m; sourceTree = "<group>"; };
 		69ED76FF15989E4B2D1938D8 /* EMKTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKTransformer.h; sourceTree = "<group>"; };
+		69ED770C14BAB15CA7926116 /* NSObject+EMKKVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EMKKVC.m"; sourceTree = "<group>"; };
 		69ED771F4A0CC2BB6D9583BC /* EMKManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKManagedObjectDeserializer.h; sourceTree = "<group>"; };
 		69ED772E50A1A831B78D48B3 /* EMKManagedObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKManagedObjectDeserializer.m; sourceTree = "<group>"; };
 		69ED778EB69BB07083D73605 /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
@@ -131,14 +131,11 @@
 		69ED795441DBD23340FA7E43 /* Phone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phone.h; sourceTree = "<group>"; };
 		69ED796C38E3BCB5A62710FD /* CarWithDate.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CarWithDate.json; sourceTree = "<group>"; };
 		69ED7972B98B6046006A3F97 /* EMKObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKObjectMapping.m; sourceTree = "<group>"; };
-		69ED79908EBF04E097CB09E4 /* EMKDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKDeserializer.h; sourceTree = "<group>"; };
 		69ED79ACE44B6BFB58B0B3F5 /* EMKObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKObjectDeserializer.m; sourceTree = "<group>"; };
-		69ED7A0E32DD0F816A66B6FE /* NSDictionary+EMKFieldMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+EMKFieldMapping.m"; sourceTree = "<group>"; };
 		69ED7A4A3BD1A49CCC1AB9A4 /* EMKMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKMapping.m; sourceTree = "<group>"; };
 		69ED7A8B2E60F728B99A0CB9 /* EMKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKTypes.h; sourceTree = "<group>"; };
 		69ED7C1A1592194E312212F9 /* EMKRelationshipMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKRelationshipMapping.h; sourceTree = "<group>"; };
 		69ED7C1B2AB96554F9FDF10B /* EMKSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKSerializer.h; sourceTree = "<group>"; };
-		69ED7C6921FAE7BE48AC5B64 /* EMKDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKDeserializer.m; sourceTree = "<group>"; };
 		69ED7D24C1EE78C03CAB9C9B /* EMKLookupCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKLookupCache.m; sourceTree = "<group>"; };
 		69ED7D29C73691B2E16D94FC /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
 		69ED7DE30D50997F9408F36E /* EMKLookupCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKLookupCache.h; sourceTree = "<group>"; };
@@ -147,7 +144,6 @@
 		69ED7F2F8ED456187192D245 /* Person.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Person.json; sourceTree = "<group>"; };
 		69ED7F5DB5E0C3FF6672226E /* EMKPropertyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKPropertyHelper.m; sourceTree = "<group>"; };
 		69ED7F66EADE6C46DA08E81C /* EasyMappingCoreDataExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyMappingCoreDataExample.xcdatamodel; sourceTree = "<group>"; };
-		69ED7F8651468AFFBB5FE484 /* NSDictionary+EMKFieldMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EMKFieldMapping.h"; sourceTree = "<group>"; };
 		7AEACCE5C88A456CB10752EF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FFF304ED83840FB9FA7E2BD /* libPods-EasyMappingKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyMappingKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -316,8 +312,8 @@
 			children = (
 				69ED7645386941DA79C1E53A /* NSArray+EMKExtension.h */,
 				69ED757059F6C7A26468D880 /* NSArray+EMKExtension.m */,
-				69ED7F8651468AFFBB5FE484 /* NSDictionary+EMKFieldMapping.h */,
-				69ED7A0E32DD0F816A66B6FE /* NSDictionary+EMKFieldMapping.m */,
+				69ED770C14BAB15CA7926116 /* NSObject+EMKKVC.m */,
+				69ED769040647781DD8B196D /* NSObject+EMKKVC.h */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -395,8 +391,6 @@
 		69ED7C8732A1C26BF1CF78CD /* Deserializer */ = {
 			isa = PBXGroup;
 			children = (
-				69ED79908EBF04E097CB09E4 /* EMKDeserializer.h */,
-				69ED7C6921FAE7BE48AC5B64 /* EMKDeserializer.m */,
 				69ED7039B8922439BE9D1B8C /* EMKObjectDeserializer.h */,
 				69ED79ACE44B6BFB58B0B3F5 /* EMKObjectDeserializer.m */,
 				69ED771F4A0CC2BB6D9583BC /* EMKManagedObjectDeserializer.h */,
@@ -434,17 +428,16 @@
 				2CF809A418C3AE9A00C07899 /* EMKAttributeMapping.h in Headers */,
 				2CF809A518C3AE9A00C07899 /* EMKRelationshipMapping.h in Headers */,
 				2CF809A618C3AE9A00C07899 /* EMKSerializer.h in Headers */,
-				2CF809A718C3AE9A00C07899 /* EMKDeserializer.h in Headers */,
 				2CF809A818C3AE9A00C07899 /* EMKObjectDeserializer.h in Headers */,
 				2CF809A918C3AE9A00C07899 /* EMKManagedObjectDeserializer.h in Headers */,
 				2CF809AA18C3AE9A00C07899 /* EasyMappingKit.h in Headers */,
 				2CF809AB18C3AE9A00C07899 /* EMKTypes.h in Headers */,
 				2CF809AC18C3AEC800C07899 /* EMKAttributeMapping+Extension.h in Headers */,
 				2CF809AD18C3AEC800C07899 /* NSArray+EMKExtension.h in Headers */,
-				2CF809AE18C3AEC800C07899 /* NSDictionary+EMKFieldMapping.h in Headers */,
 				2CF809AF18C3AEC800C07899 /* EMKPropertyHelper.h in Headers */,
 				2CF809B018C3AEC800C07899 /* EMKTransformer.h in Headers */,
 				69ED7E8934131F087C5492A3 /* EMKLookupCache.h in Headers */,
+				69ED72338B6419101B1C8CDB /* NSObject+EMKKVC.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,14 +574,13 @@
 				69ED70D8C859F4A0BDE4DCF8 /* EMKAttributeMapping+Extension.m in Sources */,
 				69ED7A9D4C100F6C8EEEDC03 /* EMKRelationshipMapping.m in Sources */,
 				69ED797C93C27C8E3BBC1BDB /* EMKSerializer.m in Sources */,
-				69ED7182CE6019414096618D /* EMKDeserializer.m in Sources */,
 				69ED776944D5FF7D7166F975 /* EMKObjectDeserializer.m in Sources */,
 				69ED7DADB8044F2B42C1CD94 /* EMKManagedObjectDeserializer.m in Sources */,
 				69ED7144E37E067666813AF9 /* NSArray+EMKExtension.m in Sources */,
-				69ED7BBFC6EEA0F04B11F639 /* NSDictionary+EMKFieldMapping.m in Sources */,
 				69ED7687C035FA51A536AB56 /* EMKPropertyHelper.m in Sources */,
 				69ED7907DC5AB1674B8CF3F5 /* EMKTransformer.m in Sources */,
 				69ED756EBF9D955A7B6A580A /* EMKLookupCache.m in Sources */,
+				69ED74D218BD6B3888549434 /* NSObject+EMKKVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

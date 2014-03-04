@@ -9,11 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#import "EMKDeserializer.h"
-
 @class EMKObjectMapping;
 
-@interface EMKObjectDeserializer : EMKDeserializer
+@interface EMKObjectDeserializer : NSObject
 
 + (id)deserializeObjectRepresentation:(NSDictionary *)externalRepresentation
                          usingMapping:(EMKObjectMapping *)mapping;

@@ -13,7 +13,6 @@
 #import <objc/runtime.h>
 #import "EMKManagedObjectDeserializer.h"
 #import "NSArray+EMKExtension.h"
-#import "NSDictionary+EMKFieldMapping.h"
 #import "EMKAttributeMapping+Extension.h"
 #import "EMKObjectMapping.h"
 #import "EMKRelationshipMapping.h"
