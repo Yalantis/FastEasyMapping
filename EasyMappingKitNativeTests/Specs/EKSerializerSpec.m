@@ -9,12 +9,11 @@
 #import "Kiwi.h"
 #import "CMFactory.h"
 #import "CMFixture.h"
-#import "EasyMapping.h"
-#import "MappingProvider.h"
-#import "Person.h"
-#import "Car.h"
-#import "Phone.h"
-#import "Address.h"
+#import "MappingProviderNative.h"
+#import "PersonNative.h"
+#import "CarNative.h"
+#import "PhoneNative.h"
+#import "AddressNative.h"
 #import "Native.h"
 #import "NativeChild.h"
 #import <CoreLocation/CoreLocation.h>
@@ -39,12 +38,12 @@ describe(@"EKSerializer", ^{
        
         context(@"a simple object", ^{
            
-            __block Car *car;
+            __block CarNative *car;
             __block NSDictionary *representation;
             
             beforeEach(^{
                
-                CMFactory *factory = [CMFactory forClass:[Car class]];
+                CMFactory *factory = [CMFactory forClass:[CarNative class]];
                 [factory addToField:@"model" value:^{
                    return @"i30";
                 }];
@@ -52,7 +51,7 @@ describe(@"EKSerializer", ^{
                    return @"2013";
                 }];
                 car = [factory build];
-                representation = [EKSerializer serializeObject:car withMapping:[MappingProvider carMapping]];
+                representation = [EKSerializer serializeObject:car withMapping:[MappingProviderNative carMapping]];
             });
             
             specify(^{
@@ -71,12 +70,12 @@ describe(@"EKSerializer", ^{
         
         context(@"a simple object with root path", ^{
             
-            __block Car *car;
+            __block CarNative *car;
             __block NSDictionary *representation;
             
             beforeEach(^{
                 
-                CMFactory *factory = [CMFactory forClass:[Car class]];
+                CMFactory *factory = [CMFactory forClass:[CarNative class]];
                 [factory addToField:@"model" value:^{
                     return @"i30";
                 }];
@@ -84,7 +83,7 @@ describe(@"EKSerializer", ^{
                     return @"2013";
                 }];
                 car = [factory build];
-                representation = [EKSerializer serializeObject:car withMapping:[MappingProvider carWithRootKeyMapping]];
+                representation = [EKSerializer serializeObject:car withMapping:[MappingProviderNative carWithRootKeyMapping]];
             });
             
             specify(^{
@@ -107,12 +106,12 @@ describe(@"EKSerializer", ^{
 
         context(@"nested keypaths", ^{
 
-            __block Car *car;
+            __block CarNative *car;
             __block NSDictionary *representation;
 
             beforeEach(^{
 
-                CMFactory *factory = [CMFactory forClass:[Car class]];
+                CMFactory *factory = [CMFactory forClass:[CarNative class]];
                 [factory addToField:@"model" value:^{
                     return @"i30";
                 }];
@@ -120,7 +119,7 @@ describe(@"EKSerializer", ^{
                     return @"2013";
                 }];
                 car = [factory build];
-                representation = [EKSerializer serializeObject:car withMapping:[MappingProvider carNestedAttributesMapping]];
+                representation = [EKSerializer serializeObject:car withMapping:[MappingProviderNative carNestedAttributesMapping]];
             });
 
             specify(^{
@@ -138,7 +137,7 @@ describe(@"EKSerializer", ^{
 
         context(@"serialization of dates", ^{
 
-            __block Car *car;
+            __block CarNative *car;
             __block NSDictionary *representation;
             __block NSDate *date = [NSDate date];
 
@@ -148,7 +147,7 @@ describe(@"EKSerializer", ^{
 
             beforeEach(^{
 
-                CMFactory *factory = [CMFactory forClass:[Car class]];
+                CMFactory *factory = [CMFactory forClass:[CarNative class]];
                 [factory addToField:@"model" value:^{
                     return @"i30";
                 }];
@@ -156,7 +155,7 @@ describe(@"EKSerializer", ^{
                     return date;
                 }];
                 car = [factory build];
-                representation = [EKSerializer serializeObject:car withMapping:[MappingProvider carWithDateMapping]];
+                representation = [EKSerializer serializeObject:car withMapping:[MappingProviderNative carWithDateMapping]];
             });
 
             specify(^{
@@ -176,12 +175,12 @@ describe(@"EKSerializer", ^{
            
             context(@"when male", ^{
                 
-                __block Person *person;
+                __block PersonNative *person;
                 __block NSDictionary *representation;
                 
                 beforeEach(^{
                     
-                    CMFactory *factory = [CMFactory forClass:[Person class]];
+                    CMFactory *factory = [CMFactory forClass:[PersonNative class]];
                     [factory addToField:@"name" value:^{
                         return @"Lucas";
                     }];
@@ -192,7 +191,7 @@ describe(@"EKSerializer", ^{
                         return @(GenderMale);
                     }];
                     person = [factory build];
-                    representation = [EKSerializer serializeObject:person withMapping:[MappingProvider personWithOnlyValueBlockMapping]];
+                    representation = [EKSerializer serializeObject:person withMapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
                     
                 });
                 
@@ -208,12 +207,12 @@ describe(@"EKSerializer", ^{
             
             context(@"when female", ^{
                 
-                __block Person *person;
+                __block PersonNative *person;
                 __block NSDictionary *representation;
                 
                 beforeEach(^{
                     
-                    CMFactory *factory = [CMFactory forClass:[Person class]];
+                    CMFactory *factory = [CMFactory forClass:[PersonNative class]];
                     [factory addToField:@"name" value:^{
                         return @"A woman";
                     }];
@@ -224,7 +223,7 @@ describe(@"EKSerializer", ^{
                         return @(GenderFemale);
                     }];
                     person = [factory build];
-                    representation = [EKSerializer serializeObject:person withMapping:[MappingProvider personWithOnlyValueBlockMapping]];
+                    representation = [EKSerializer serializeObject:person withMapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
                     
                 });
                 
@@ -236,12 +235,12 @@ describe(@"EKSerializer", ^{
             
             context(@"reverse block with custom object", ^{
                 
-                __block Address *address;
+                __block AddressNative *address;
                 __block NSDictionary *representation;
                 
                 beforeEach(^{
                    
-                    CMFactory *factory = [CMFactory forClass:[Address class]];
+                    CMFactory *factory = [CMFactory forClass:[AddressNative class]];
                     [factory addToField:@"street" value:^{
                         return @"A street";
                     }];
@@ -249,7 +248,7 @@ describe(@"EKSerializer", ^{
                         return [[CLLocation alloc] initWithLatitude:-30.12345 longitude:-3.12345];
                     }];
                     address = [factory build];
-                    representation = [EKSerializer serializeObject:address withMapping:[MappingProvider addressMapping]];
+                    representation = [EKSerializer serializeObject:address withMapping:[MappingProviderNative addressMapping]];
                     
                 });
                 
@@ -269,12 +268,12 @@ describe(@"EKSerializer", ^{
             
             context(@"with hasOneRelation", ^{
                
-                __block Person *person;
+                __block PersonNative *person;
                 __block NSDictionary *representation;
                
                 beforeEach(^{
                     
-                    CMFactory *factory = [CMFactory forClass:[Person class]];
+                    CMFactory *factory = [CMFactory forClass:[PersonNative class]];
                     [factory addToField:@"name" value:^{
                         return @"Lucas";
                     }];
@@ -282,13 +281,13 @@ describe(@"EKSerializer", ^{
                         return @"lucastoc@gmail.com";
                     }];
                     [factory addToField:@"car" value:^{
-                        Car *car = [[Car alloc] init];
+                        CarNative *car = [[CarNative alloc] init];
                         car.model = @"HB20";
                         car.year = @"2012";
                         return car;
                     }];
                     person = [factory build];
-                    representation = [EKSerializer serializeObject:person withMapping:[MappingProvider personWithCarMapping]];
+                    representation = [EKSerializer serializeObject:person withMapping:[MappingProviderNative personWithCarMapping]];
                     
                 });
                 
@@ -303,13 +302,15 @@ describe(@"EKSerializer", ^{
             });
             
             context(@"with hasOneRelation for different naming", ^{
-                __block Person * person;
+                __block PersonNative * person;
                 __block NSDictionary * representation;
                 
                 beforeEach(^{
                     
-                    EKObjectMapping * mapping = [[EKObjectMapping alloc] initWithObjectClass:[Person class]];
-                    [mapping hasOneMapping:[MappingProvider carMapping] forKey:@"vehicle" forField:@"car"];
+                    EKObjectMapping * mapping = [[EKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+                    [mapping hasOneMapping:[
+
+MappingProviderNative carMapping] forKey:@"vehicle" forField:@"car"];
                     NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
                     person = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:mapping];
                     
@@ -331,12 +332,12 @@ describe(@"EKSerializer", ^{
             
             context(@"with hasManyRelation", ^{
                 
-                __block Person *person;
+                __block PersonNative *person;
                 __block NSDictionary *representation;
                 
                 beforeEach(^{
                     
-                    CMFactory *factory = [CMFactory forClass:[Person class]];
+                    CMFactory *factory = [CMFactory forClass:[PersonNative class]];
                     [factory addToField:@"name" value:^{
                         return @"Lucas";
                     }];
@@ -344,18 +345,18 @@ describe(@"EKSerializer", ^{
                         return @"lucastoc@gmail.com";
                     }];
                     [factory addToField:@"phones" value:^{
-                        Phone *phone1 = [[Phone alloc] init];
+                        PhoneNative *phone1 = [[PhoneNative alloc] init];
                         phone1.DDI = @"55";
                         phone1.DDD = @"85";
                         phone1.number = @"1111-1111";
-                        Phone *phone2 = [[Phone alloc] init];
+                        PhoneNative *phone2 = [[PhoneNative alloc] init];
                         phone2.DDI = @"55";
                         phone2.DDD = @"11";
                         phone2.number = @"2222-2222";
                         return @[phone1, phone2];
                     }];
                     person = [factory build];
-                    representation = [EKSerializer serializeObject:person withMapping:[MappingProvider personWithPhonesMapping]];
+                    representation = [EKSerializer serializeObject:person withMapping:[MappingProviderNative personWithPhonesMapping]];
                     
                 });
                 
@@ -364,19 +365,21 @@ describe(@"EKSerializer", ^{
                 });
                 
                 specify(^{
-                    NSLog(@"Person representation: %@", representation);
+                    NSLog(@"PersonNative representation: %@", representation);
                     [[[representation objectForKey:@"phones"] should] beKindOfClass:[NSArray class]];
                 });
                 
             });
             
             context(@"with hasManyRelation for different naming", ^{
-                __block Person * person;
+                __block PersonNative * person;
                 __block NSDictionary * representation;
                 
                 beforeEach(^{
-                    EKObjectMapping * mapping = [[EKObjectMapping alloc] initWithObjectClass:[Person class]];
-                    [mapping hasManyMapping:[MappingProvider phoneMapping] forKey:@"cellphones" forField:@"phones"];
+                    EKObjectMapping * mapping = [[EKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+                    [mapping hasManyMapping:[
+
+MappingProviderNative phoneMapping] forKey:@"cellphones" forField:@"phones"];
                     NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
                     person = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:mapping];
                     
@@ -412,8 +415,8 @@ describe(@"EKSerializer", ^{
             
             beforeEach(^{
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Native"];
-                native = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider nativeMapping]];
-                representation = [EKSerializer serializeObject:native withMapping:[MappingProvider nativeMapping]];
+                native = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProviderNative nativeMapping]];
+                representation = [EKSerializer serializeObject:native withMapping:[MappingProviderNative nativeMapping]];
             });
             
             specify(^{
@@ -489,8 +492,8 @@ describe(@"EKSerializer", ^{
             
             beforeEach(^{
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"NativeChild"];
-                nativeChild = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider nativeChildMapping]];
-                representation = [EKSerializer serializeObject:nativeChild withMapping:[MappingProvider nativeChildMapping]];
+                nativeChild = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProviderNative nativeChildMapping]];
+                representation = [EKSerializer serializeObject:nativeChild withMapping:[MappingProviderNative nativeChildMapping]];
             });
             
             specify(^{

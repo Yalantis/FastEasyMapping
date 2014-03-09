@@ -13,12 +13,10 @@
 
 @interface EMKObjectDeserializer : NSObject
 
-+ (id)deserializeObjectRepresentation:(NSDictionary *)externalRepresentation
-                         usingMapping:(EMKObjectMapping *)mapping;
++ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping;
 
-+ (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(EMKObjectMapping *)mapping;
++ (id)fillObject:(id)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping;
 
-+ (NSArray *)deserializeCollectionRepresentation:(NSArray *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping;
-
++ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping;
 
 @end

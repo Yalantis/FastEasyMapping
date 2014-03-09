@@ -311,7 +311,7 @@ describe(@"EKManagedObjectDeserializer", ^{
         
     });
     
-    describe(@".deserializeCollectionRepresentation:usingMapping:", ^{
+    describe(@".deserializeCollectionExternalRepresentation:usingMapping:", ^{
         
         __block NSManagedObjectContext* moc;
         __block NSArray *carsArray;

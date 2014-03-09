@@ -19,29 +19,32 @@
 
 @implementation EMKObjectDeserializer
 
-+ (id)deserializeObjectRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping {
++ (id)deserializeObjectRepresentation:(NSDictionary *)representation usingMapping:(EMKObjectMapping *)mapping {
 	id object = [[mapping.objectClass alloc] init];
-	return [self fillObject:object fromRepresentation:externalRepresentation usingMapping:mapping];
+	return [self fillObject:object fromRepresentation:representation usingMapping:mapping];
+}
+
++ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping {
+	NSDictionary *representation = [mapping mappedExternalRepresentation:externalRepresentation];
+	return [self deserializeObjectRepresentation:representation usingMapping:mapping];
 }
 
 + (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(EMKObjectMapping *)mapping {
-	NSDictionary *objectRepresentation = mapping.rootPath ? representation[mapping.rootPath] : representation;
-
 	for (EMKAttributeMapping *attributeMapping in mapping.attributeMappings) {
-		[attributeMapping mapValueToObject:object fromRepresentation:objectRepresentation];
+		[attributeMapping mapValueToObject:object fromRepresentation:representation];
 	}
 
 	for (EMKRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
 		id deserializedRelationship = nil;
 		if (relationshipMapping.isToMany) {
-			deserializedRelationship = [self deserializeCollectionRepresentation:objectRepresentation
-			                                                        usingMapping:relationshipMapping.objectMapping];
+			deserializedRelationship = [self deserializeCollectionExternalRepresentation:representation
+			                                                                usingMapping:relationshipMapping.objectMapping];
 
 			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
 			deserializedRelationship = [deserializedRelationship ek_propertyRepresentation:property];
 		} else {
-			deserializedRelationship = [self deserializeObjectRepresentation:objectRepresentation
-			                                                    usingMapping:relationshipMapping.objectMapping];
+			deserializedRelationship = [self deserializeObjectExternalRepresentation:representation
+			                                                            usingMapping:relationshipMapping.objectMapping];
 		}
 
 		if (deserializedRelationship) {
@@ -52,13 +55,23 @@
 	return object;
 }
 
-+ (NSArray *)deserializeCollectionRepresentation:(NSArray *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping {
-	NSMutableArray *array = [NSMutableArray array];
-	for (NSDictionary *representation in externalRepresentation) {
-		id parsedObject = [self deserializeObjectRepresentation:representation usingMapping:mapping];
-		[array addObject:parsedObject];
++ (id)fillObject:(id)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping {
+	NSDictionary *representation = [mapping mappedExternalRepresentation:externalRepresentation];
+	return [self fillObject:object fromRepresentation:representation usingMapping:mapping];
+}
+
++ (NSArray *)deserializeCollectionRepresentation:(NSArray *)representation usingMapping:(EMKObjectMapping *)mapping {
+	NSMutableArray *output = [NSMutableArray new];
+	for (NSDictionary *objectRepresentation in representation) {
+		id parsedObject = [self deserializeObjectRepresentation:objectRepresentation usingMapping:mapping];
+		[output addObject:parsedObject];
 	}
-	return [NSArray arrayWithArray:array];
+	return [output copy];
+}
+
++ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping {
+	NSArray *representation = [mapping mappedExternalRepresentation:externalRepresentation];
+	return [self deserializeCollectionRepresentation:representation usingMapping:mapping];
 }
 
 @end

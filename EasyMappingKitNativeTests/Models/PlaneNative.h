@@ -1,5 +1,5 @@
 //
-//  Plane.h
+//  PlaneNative.h
 //  EasyMappingExample
 //
 //  Created by Dany L'Hebreux on 2013-10-03.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Plane : NSObject
+@interface PlaneNative : NSObject
 
 @property (nonatomic, strong) NSNumber *flightNumber;
 @property (nonatomic, strong) NSSet *persons;

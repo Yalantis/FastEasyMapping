@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 EasyKit. All rights reserved.
 //
 
-#import "Cat.h"
+#import "CatNative.h"
 
-@implementation Cat
+@implementation CatNative
 
 @end

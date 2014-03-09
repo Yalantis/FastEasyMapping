@@ -1,5 +1,5 @@
 //
-//  EKObjectMappingSpec.m
+//  EMKObjectMappingSpec.m
 //  EasyMappingExample
 //
 //  Created by Lucas Medeiros on 22/02/13.
@@ -7,143 +7,23 @@
 //
 
 #import "Kiwi.h"
-#import "EasyMapping.h"
-#import "Person.h"
-#import "Car.h"
-#import "MappingProvider.h"
+#import "PersonNative.h"
+#import "CarNative.h"
+#import "MappingProviderNative.h"
+#import "EMKObjectMapping.h"
+#import "EMKAttributeMapping.h"
+#import "EMKRelationshipMapping.h"
 
-SPEC_BEGIN(EKObjectMappingSpec)
+SPEC_BEGIN(EMKObjectMappingSpec)
 
-describe(@"EKObjectMapping", ^{
+describe(@"EMKObjectMapping", ^{
    
-    describe(@"class methods", ^{
-        
-        specify(^{
-            [[EKObjectMapping should] respondToSelector:@selector(mappingForClass:withBlock:)];
-        });
-        
-        specify(^{
-            [[EKObjectMapping should] respondToSelector:@selector(mappingForClass:withRootPath:withBlock:)];
-        });
-        
-    });
-    
-    describe(@"constructors", ^{
-        
-        __block EKObjectMapping *mapping;
-        
-        beforeEach(^{
-            mapping = [[EKObjectMapping alloc] init];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(initWithObjectClass:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(initWithObjectClass:withRootPath:)];
-        });
-        
-    });
-    
-    describe(@"instance methods", ^{
-       
-        __block EKObjectMapping *mapping;
-        
-        beforeEach(^{
-            mapping = [[EKObjectMapping alloc] init];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(mapKey:toField:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(mapKey:toField:withDateFormat:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(mapFieldsFromArray:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(mapFieldsFromDictionary:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(mapKey:toField:withValueBlock:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(mapKey:toField:withValueBlock:withReverseBlock:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(hasOneMapping:forKey:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(hasOneMapping:forKey:forField:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(hasManyMapping:forKey:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(hasManyMapping:forKey:forField:)];
-        });
-        
-    });
-    
-    describe(@"properties", ^{
-        
-        __block EKObjectMapping *mapping;
-        
-        beforeEach(^{
-            mapping = [[EKObjectMapping alloc] init];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(objectClass)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(setObjectClass:)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(rootPath)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(fieldMappings)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(hasOneMappings)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(hasManyMappings)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(field)];
-        });
-        
-        specify(^{
-            [[mapping should] respondToSelector:@selector(setField:)];
-        });
-        
-    });
-    
     describe(@".mappingForClass:withBlock:", ^{
         
-        __block EKObjectMapping *mapping;
+        __block EMKObjectMapping *mapping;
         
         beforeEach(^{
-           mapping = [EKObjectMapping mappingForClass:[Car class] withBlock:^(EKObjectMapping *mapping) {
+           mapping = [EMKObjectMapping mappingForClass:[CarNative class] configuration:^(EMKObjectMapping *mapping) {
                
            }];
         });
@@ -153,17 +33,17 @@ describe(@"EKObjectMapping", ^{
         });
         
         specify(^{
-            [[mapping.objectClass should] equal:[Car class]];
+            [[mapping.objectClass should] equal:[CarNative class]];
         });
         
     });
     
-    describe(@".mappingForClass:withRootPath:withBlock:", ^{
+    describe(@".mappingForClass:rootPath:configuration:", ^{
         
-        __block EKObjectMapping *mapping;
+        __block EMKObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [EKObjectMapping mappingForClass:[Car class] withRootPath:@"car" withBlock:^(EKObjectMapping *mapping) {
+            mapping = [EMKObjectMapping mappingForClass:[CarNative class] rootPath:@"car" configuration:^(EMKObjectMapping *mapping) {
                 
             }];
         });
@@ -173,7 +53,7 @@ describe(@"EKObjectMapping", ^{
         });
         
         specify(^{
-            [[mapping.objectClass should] equal:[Car class]];
+            [[mapping.objectClass should] equal:[CarNative class]];
         });
         
         specify(^{
@@ -184,10 +64,10 @@ describe(@"EKObjectMapping", ^{
         
     describe(@"#initWithObjectClass:", ^{
         
-        __block EKObjectMapping *mapping;
+        __block EMKObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [[EKObjectMapping alloc] initWithObjectClass:[Car class]];
+            mapping = [[EMKObjectMapping alloc] initWithObjectClass:[CarNative class]];
         });
         
         specify(^{
@@ -195,17 +75,17 @@ describe(@"EKObjectMapping", ^{
         });
         
         specify(^{
-            [[mapping.objectClass should] equal:[Car class]];
+            [[mapping.objectClass should] equal:[CarNative class]];
         });
         
     });
     
-    describe(@"#initWithObjectClass:withRootPath:", ^{
+    describe(@"#initWithObjectClass:rootPath:", ^{
         
-        __block EKObjectMapping *mapping;
+        __block EMKObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [[EKObjectMapping alloc] initWithObjectClass:[Car class] withRootPath:@"car"];
+            mapping = [[EMKObjectMapping alloc] initWithObjectClass:[CarNative class] rootPath:@"car"];
         });
         
         specify(^{
@@ -213,7 +93,7 @@ describe(@"EKObjectMapping", ^{
         });
         
         specify(^{
-            [[mapping.objectClass should] equal:[Car class]];
+            [[mapping.objectClass should] equal:[CarNative class]];
         });
         
         specify(^{
@@ -224,13 +104,13 @@ describe(@"EKObjectMapping", ^{
     
     describe(@"#mapKey:toField:", ^{
        
-        __block EKObjectMapping *mapping;
-        __block EKFieldMapping *fieldMapping;
+        __block EMKObjectMapping *mapping;
+        __block EMKAttributeMapping *fieldMapping;
         
         beforeEach(^{
-            mapping = [[EKObjectMapping alloc] initWithObjectClass:[Car class]];
-            [mapping mapKey:@"created_at" toField:@"createdAt"];
-            fieldMapping = [mapping.fieldMappings objectForKey:@"createdAt"];
+            mapping = [[EMKObjectMapping alloc] initWithObjectClass:[CarNative class]];
+	        [mapping addAttributeMappingOfProperty:@"createdAt" atKeypath:@"created_at"];
+	        fieldMapping = [mapping attributeMappingForProperty:@"createdAt"];
         });
         
         specify(^{
@@ -238,26 +118,26 @@ describe(@"EKObjectMapping", ^{
         });
         
         specify(^{
-            [[fieldMapping.field should] equal:@"createdAt"];
+            [[fieldMapping.property should] equal:@"createdAt"];
         });
         
     });
     
     describe(@"#mapKeyFieldsFromArray", ^{
         
-        __block EKObjectMapping *mapping;
+        __block EMKObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [[EKObjectMapping alloc] initWithObjectClass:[Car class]];
-            [mapping mapFieldsFromArray:@[@"name", @"email"]];
+            mapping = [[EMKObjectMapping alloc] initWithObjectClass:[CarNative class]];
+	        [mapping addAttributeMappingFromArray:@[@"name", @"email"]];
         });
         
         describe(@"name field", ^{
             
-            __block EKFieldMapping *fieldMapping;
+            __block EMKAttributeMapping *fieldMapping;
             
             beforeEach(^{
-                fieldMapping = [mapping.fieldMappings objectForKey:@"name"];
+                fieldMapping = [mapping attributeMappingForProperty:@"name"];
             });
             
             specify(^{
@@ -265,16 +145,16 @@ describe(@"EKObjectMapping", ^{
             });
             
             specify(^{
-                [[fieldMapping.field should] equal:@"name"];
+                [[fieldMapping.property should] equal:@"name"];
             });
         });
         
         describe(@"email field", ^{
             
-            __block EKFieldMapping *fieldMapping;
+            __block EMKAttributeMapping *fieldMapping;
             
             beforeEach(^{
-                fieldMapping = [mapping.fieldMappings objectForKey:@"email"];
+                fieldMapping = [mapping attributeMappingForProperty:@"email"];
             });
             
             specify(^{
@@ -282,7 +162,7 @@ describe(@"EKObjectMapping", ^{
             });
             
             specify(^{
-                [[fieldMapping.field should] equal:@"email"];
+                [[fieldMapping.property should] equal:@"email"];
             });
             
         });
@@ -291,22 +171,22 @@ describe(@"EKObjectMapping", ^{
     
     describe(@"#mapKeyFieldsFromDictionary", ^{
         
-        __block EKObjectMapping *mapping;
+        __block EMKObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [[EKObjectMapping alloc] initWithObjectClass:[Car class]];
-            [mapping mapFieldsFromDictionary:@{
-                @"id" : @"identifier",
-                @"contact.email" : @"email"
+            mapping = [[EMKObjectMapping alloc] initWithObjectClass:[CarNative class]];
+	        [mapping addAttributeMappingDictionary:@{
+                @"identifier": @"id",
+                @"email": @"contact.email"
             }];
         });
         
         describe(@"identifier field", ^{
             
-            __block EKFieldMapping *fieldMapping;
+            __block EMKAttributeMapping *fieldMapping;
             
             beforeEach(^{
-                fieldMapping = [mapping.fieldMappings objectForKey:@"identifier"];
+                fieldMapping = [mapping attributeMappingForProperty:@"identifier"];
             });
             
             specify(^{
@@ -314,16 +194,16 @@ describe(@"EKObjectMapping", ^{
             });
             
             specify(^{
-                [[fieldMapping.field should] equal:@"identifier"];
+                [[fieldMapping.property should] equal:@"identifier"];
             });
         });
         
         describe(@"email field", ^{
             
-            __block EKFieldMapping *fieldMapping;
+            __block EMKAttributeMapping *fieldMapping;
             
             beforeEach(^{
-                fieldMapping = [mapping.fieldMappings objectForKey:@"email"];
+                fieldMapping = [mapping attributeMappingForProperty:@"email"];
             });
             
             specify(^{
@@ -331,7 +211,7 @@ describe(@"EKObjectMapping", ^{
             });
             
             specify(^{
-                [[fieldMapping.field should] equal:@"email"];
+                [[fieldMapping.property should] equal:@"email"];
             });
             
         });
@@ -340,33 +220,34 @@ describe(@"EKObjectMapping", ^{
     
     describe(@"#mapKey:toField:withDateFormat", ^{
         
-        __block EKObjectMapping *mapping;
+        __block EMKObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [[EKObjectMapping alloc] initWithObjectClass:[Car class]];
-            [mapping mapKey:@"birthdate" toField:@"birthdate" withDateFormat:@"yyyy-MM-dd"];
-            
+            mapping = [[EMKObjectMapping alloc] initWithObjectClass:[CarNative class]];
+	        [mapping addAttributeMapping:[EMKAttributeMapping mappingOfProperty:@"birthday"
+	                                                                    keyPath:@"birthday"
+		                                                             dateFormat:@"yyyy-MM-dd"]];
         });
         
         specify(^{
-            [[mapping.fieldMappings objectForKey:@"birthdate"] shouldNotBeNil];
+            [[mapping attributeMappingForProperty:@"birthday"] shouldNotBeNil];
         });
         
         specify(^{
-            [[[mapping.fieldMappings objectForKey:@"birthdate"] should] beKindOfClass:[EKFieldMapping class]];
+            [[[mapping attributeMappingForProperty:@"birthday"] should] beKindOfClass:[EMKAttributeMapping class]];
         });
         
-        specify(^{
-            EKFieldMapping *fieldMapping = [mapping.fieldMappings objectForKey:@"birthdate"];
-            [[fieldMapping.dateFormat should] equal:@"yyyy-MM-dd"];
-        });
+//        specify(^{
+//            EMKAttributeMapping *fieldMapping = [mapping attributeMappingForProperty:@"birthdate"];
+//            [[fieldMapping.dateFormat should] equal:@"yyyy-MM-dd"];
+//        });
         
     });
     
     describe(@"#mapKey:toField:withValueBlock:", ^{
         
-        __block EKObjectMapping *mapping;
-        __block EKFieldMapping *fieldMapping;
+        __block EMKObjectMapping *mapping;
+        __block EMKAttributeMapping *fieldMapping;
         
         beforeEach(^{
             
@@ -375,30 +256,25 @@ describe(@"EKObjectMapping", ^{
                                      @"female": @(GenderFemale)
                                      };
             
-            mapping = [[EKObjectMapping alloc] initWithObjectClass:[Person class]];
-            [mapping mapKey:@"gender" toField:@"gender" withValueBlock:^id(NSString *key, id value) {
-                return genders[key];
-            }];
-            
-            fieldMapping = [mapping.fieldMappings objectForKey:@"gender"];
+            mapping = [[EMKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+	        [mapping addAttributeMapping:[EMKAttributeMapping mappingOfProperty:@"gender" keyPath:@"gender" map:^id(id value) {
+		        return genders[value];
+	        }]];
+
+            fieldMapping = [mapping attributeMappingForProperty:@"gender"];
             
         });
         
         specify(^{
             [fieldMapping shouldNotBeNil];
         });
-        
-        specify(^{
-            [fieldMapping.valueBlock shouldNotBeNil];
-        });
-        
     });
 
     
     describe(@"#mapKey:toField:withValueBlock:withReverseBlock:", ^{
        
-        __block EKObjectMapping *mapping;
-        __block EKFieldMapping *fieldMapping;
+        __block EMKObjectMapping *mapping;
+        __block EMKAttributeMapping *fieldMapping;
         
         beforeEach(^{
             
@@ -407,106 +283,92 @@ describe(@"EKObjectMapping", ^{
                                       @"female": @(GenderFemale)
                                       };
             
-            mapping = [[EKObjectMapping alloc] initWithObjectClass:[Person class]];
-            [mapping mapKey:@"gender" toField:@"gender" withValueBlock:^id(NSString *key, id value) {
-                return genders[key];
-            } withReverseBlock:^id(id value) {
+            mapping = [[EMKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+	        [mapping addAttributeMapping:[EMKAttributeMapping mappingOfProperty:@"gender" keyPath:@"gender" map:^id(id value) {
+                return genders[value];
+	        } reverseMap:^id(id value) {
                 return [genders allKeysForObject:value].lastObject;
-            }];
-            
-            fieldMapping = [mapping.fieldMappings objectForKey:@"gender"];
-            
+	        }]];
+	        
+            fieldMapping = [mapping attributeMappingForProperty:@"gender"];
         });
         
         specify(^{
             [fieldMapping shouldNotBeNil];
         });
-        
-        specify(^{
-            [fieldMapping.valueBlock shouldNotBeNil];
-        });
-        
-        specify(^{
-            [fieldMapping.valueBlock shouldNotBeNil];
-        });
-        
     });
     
     describe(@"#hasOneMapping:forKey:", ^{
         
-        __block EKObjectMapping *mapping;
+        __block EMKObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [MappingProvider personMapping];
+            mapping = [MappingProviderNative personMapping];
         });
         
         specify(^{
-            [[mapping hasOneMappings] shouldNotBeNil];
+	        [[mapping relationshipMappings] shouldNotBeNil];
         });
         
         specify(^{
-            [[mapping.hasOneMappings objectForKey:@"car"] shouldNotBeNil];
+            [[mapping relationshipMappingForProperty:@"car"] shouldNotBeNil];
         });
         
         specify(^{
-            [[[[mapping.hasOneMappings objectForKey:@"car"] field] should] equal:@"car"];
+            [[[[mapping relationshipMappingForProperty:@"car"] property] should] equal:@"car"];
         });
         
         specify(^{
-            [mapping.hasManyMappings shouldNotBeNil];
+            [[mapping relationshipMappingForProperty:@"phones"] shouldNotBeNil];
         });
         
         specify(^{
-            [[mapping.hasManyMappings objectForKey:@"phones"] shouldNotBeNil];
-        });
-        
-        specify(^{
-            [[[[mapping.hasManyMappings objectForKey:@"phones"] field] should] equal:@"phones"];
+            [[[[mapping relationshipMappingForProperty:@"phones"] property] should] equal:@"phones"];
         });
         
     });
     
     describe(@"#hasOneMapping:forKey:forField:", ^{
-        __block EKObjectMapping * mapping;
+        __block EMKObjectMapping * mapping;
        
         beforeEach(^{
-            mapping = [[EKObjectMapping alloc] initWithObjectClass:[Person class]];
-            [mapping hasOneMapping:[MappingProvider carMapping] forKey:@"car" forField:@"personCar"];
-        
-            [mapping hasManyMapping:[MappingProvider phoneMapping] forKey:@"phones" forField:@"personPhones"];
+            mapping = [[EMKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+	        [mapping addRelationshipMapping:[MappingProviderNative carMapping] forProperty:@"personCar" keyPath:@"car"];
+
+	        [mapping addToManyRelationshipMapping:[MappingProviderNative phoneMapping] forProperty:@"personPhones" keyPath:@"phones"];
+        });
+
+        specify(^{
+            [[[[mapping relationshipMappingForProperty:@"personCar"] property] should] equal:@"personCar"];
         });
         
         specify(^{
-            [[[[mapping.hasOneMappings objectForKey:@"car"] field] should] equal:@"personCar"];
+            [[[[mapping relationshipMappingForProperty:@"personCar"] keyPath] should] equal:@"car"];
         });
         
         specify(^{
-            [[[[mapping.hasOneMappings objectForKey:@"car"] keyPath] should] equal:@"car"];
+            [[[[mapping relationshipMappingForProperty:@"personPhones"] property] should] equal:@"personPhones"];
         });
         
         specify(^{
-            [[[[mapping.hasManyMappings objectForKey:@"phones"] field] should] equal:@"personPhones"];
-        });
-        
-        specify(^{
-            [[[[mapping.hasManyMappings objectForKey:@"phones"] keyPath] should] equal:@"phones"];
+            [[[[mapping relationshipMappingForProperty:@"personPhones"] keyPath] should] equal:@"phones"];
         });
     });
     
     describe(@"#hasManyMapping:forKey:", ^{
         
-        __block EKObjectMapping *mapping;
+        __block EMKObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [MappingProvider personMapping];
+            mapping = [MappingProviderNative personMapping];
         });
         
         specify(^{
-            [mapping.hasManyMappings shouldNotBeNil];
+	        [[mapping relationshipMappings] shouldNotBeNil];
         });
         
         specify(^{
-            [[mapping.hasManyMappings objectForKey:@"phones"] shouldNotBeNil];
+            [[mapping relationshipMappingForProperty:@"phones"] shouldNotBeNil];
         });
         
     });

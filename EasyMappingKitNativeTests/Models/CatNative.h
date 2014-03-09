@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Cat : NSObject
+@interface CatNative : NSObject
 
 @property (nonatomic, assign) NSInteger age;
 

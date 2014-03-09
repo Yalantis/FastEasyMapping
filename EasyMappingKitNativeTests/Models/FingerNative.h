@@ -1,13 +1,15 @@
 //
-//  Alien.m
+//  FingerNative.h
 //  EasyMappingExample
 //
 //  Created by Lucas Medeiros Leite on 12/7/13.
 //  Copyright (c) 2013 EasyKit. All rights reserved.
 //
 
-#import "Alien.h"
+#import <Foundation/Foundation.h>
 
-@implementation Alien
+@interface FingerNative : NSObject
+
+@property (nonatomic, copy) NSString *name;
 
 @end

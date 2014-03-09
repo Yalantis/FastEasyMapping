@@ -1,5 +1,5 @@
 //
-//  Seaplane.h
+//  SeaplaneNative.h
 //  EasyMappingExample
 //
 //  Created by Dany L'Hebreux on 2013-10-31.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Seaplane : NSObject
+@interface SeaplaneNative : NSObject
 
 @property (nonatomic, strong) NSNumber *flightNumber;
 @property (nonatomic, strong) NSSet *passengers;

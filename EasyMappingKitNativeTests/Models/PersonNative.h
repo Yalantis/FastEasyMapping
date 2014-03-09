@@ -1,5 +1,5 @@
 //
-//  Person.h
+//  PersonNative.h
 //  EasyMappingExample
 //
 //  Created by Lucas Medeiros on 21/02/13.
@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@class Car;
+@class CarNative;
 
 typedef enum {
     GenderMale,
     GenderFemale
 } Gender;
 
-@interface Person : NSObject
+@interface PersonNative : NSObject
 
 @property (nonatomic, copy)   NSString *name;
 @property (nonatomic, copy)   NSString *email;
 @property (nonatomic, assign) Gender gender;
-@property (nonatomic, strong) Car *car;
+@property (nonatomic, strong) CarNative *car;
 @property (nonatomic, strong) NSArray *phones;
 
 @end

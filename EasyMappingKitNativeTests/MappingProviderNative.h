@@ -1,5 +1,5 @@
 //
-//  MappingProvider.h
+//  MappingProviderNative.h
 //  EasyMappingExample
 //
 //  Created by Lucas Medeiros on 23/02/13.
@@ -10,7 +10,7 @@
 
 @class EMKObjectMapping;
 
-@interface MappingProvider : NSObject
+@interface MappingProviderNative : NSObject
 
 + (EMKObjectMapping *)carMapping;
 + (EMKObjectMapping *)carWithRootKeyMapping;

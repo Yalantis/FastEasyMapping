@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Car : NSObject
+@interface CarNative : NSObject
 
 @property (nonatomic, copy)   NSString *model;
 @property (nonatomic, copy)   NSString *year;

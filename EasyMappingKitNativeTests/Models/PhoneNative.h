@@ -1,5 +1,5 @@
 //
-//  Phone.h
+//  PhoneNative.h
 //  EasyMappingExample
 //
 //  Created by Lucas Medeiros on 21/02/13.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Phone : NSObject
+@interface PhoneNative : NSObject
 
 @property (nonatomic, copy) NSString *DDI;
 @property (nonatomic, copy) NSString *DDD;

@@ -9,45 +9,35 @@
 #import "Kiwi.h"
 #import "CMFixture.h"
 #import "CMFactory.h"
-#import "EasyMapping.h"
-#import "MappingProvider.h"
-#import "Person.h"
-#import "Car.h"
-#import "Phone.h"
-#import "Address.h"
+#import "MappingProviderNative.h"
+#import "PersonNative.h"
+#import "CarNative.h"
+#import "PhoneNative.h"
+#import "AddressNative.h"
 #import "Native.h"
-#import "Plane.h"
-#import "Seaplane.h"
-#import "Alien.h"
-#import "Finger.h"
-#import "Cat.h"
+#import "PlaneNative.h"
+#import "SeaplaneNative.h"
+#import "AlienNative.h"
+#import "FingerNative.h"
+#import "CatNative.h"
+#import "EMKObjectDeserializer.h"
+#import "EMKObjectMapping.h"
 
 SPEC_BEGIN(EKMapperSpec)
 
 describe(@"EKMapper", ^{
     
-    describe(@"class methods", ^{
-       
-        specify(^{
-            [[EKMapper should] respondToSelector:@selector(objectFromExternalRepresentation:withMapping:)];
-        });
-        
-        specify(^{
-            [[EKMapper should] respondToSelector:@selector(arrayOfObjectsFromExternalRepresentation:withMapping:)];
-        });
-        
-    });
-    
     describe(@".objectFromExternalRepresentation:withMapping:", ^{
        
         context(@"a simple object", ^{
         
-            __block Car *car;
+            __block CarNative *car;
             __block NSDictionary *externalRepresentation;
             
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"Car"];
-                car = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider carMapping]];
+	            car = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                    usingMapping:[MappingProviderNative carMapping]];
             });
             
             specify(^{
@@ -66,12 +56,13 @@ describe(@"EKMapper", ^{
         
         context(@"with root key", ^{
             
-            __block Car *car;
+            __block CarNative *car;
             __block NSDictionary *externalRepresentation;
             
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"CarWithRoot"];
-                car = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider carWithRootKeyMapping]];
+	            car = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                    usingMapping:[MappingProviderNative carWithRootKeyMapping]];
                 externalRepresentation = [externalRepresentation objectForKey:@"car"];
             });
             
@@ -91,12 +82,13 @@ describe(@"EKMapper", ^{
         
         context(@"with nested information", ^{
             
-            __block Car *car;
+            __block CarNative *car;
             __block NSDictionary *externalRepresentation;
             
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"CarWithNestedAttributes"];
-                car = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider carNestedAttributesMapping]];
+	            car = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                    usingMapping:[MappingProviderNative carNestedAttributesMapping]];
             });
             
             specify(^{
@@ -115,12 +107,13 @@ describe(@"EKMapper", ^{
         
         context(@"with dateformat", ^{
             
-            __block Car *car;
+            __block CarNative *car;
             __block NSDictionary *externalRepresentation;
             
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"CarWithDate"];
-                car = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider carWithDateMapping]];
+	            car = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                    usingMapping:[MappingProviderNative carWithDateMapping]];
             });
             
             specify(^{
@@ -152,12 +145,13 @@ describe(@"EKMapper", ^{
             
             context(@"when male", ^{
             
-                __block Person *person;
+                __block PersonNative *person;
                 __block NSDictionary *externalRepresentation;
                 
                 beforeEach(^{
                     externalRepresentation = [CMFixture buildUsingFixture:@"Male"];
-                    person = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider personWithOnlyValueBlockMapping]];
+	                person = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                           usingMapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
                 });
                 
                 specify(^{
@@ -168,12 +162,13 @@ describe(@"EKMapper", ^{
             
             context(@"when female", ^{
                 
-                __block Person *person;
+                __block PersonNative *person;
                 __block NSDictionary *externalRepresentation;
                 
                 beforeEach(^{
                     externalRepresentation = [CMFixture buildUsingFixture:@"Female"];
-                    person = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider personWithOnlyValueBlockMapping]];
+	                person = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                           usingMapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
                 });
                 
                 specify(^{
@@ -184,12 +179,13 @@ describe(@"EKMapper", ^{
             
             context(@"with custom object returned", ^{
                 
-                __block Address *address;
+                __block AddressNative *address;
                 __block NSDictionary *externalRepresentation;
                 
                 beforeEach(^{
                     externalRepresentation = [CMFixture buildUsingFixture:@"Address"];
-                    address = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider addressMapping]];
+	                address = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                            usingMapping:[MappingProviderNative addressMapping]];
                 });
                 
                 specify(^{
@@ -206,12 +202,12 @@ describe(@"EKMapper", ^{
         
         context(@"with hasOne mapping", ^{
             
-            __block Person *person;
-            __block Car *expectedCar;
+            __block PersonNative *person;
+            __block CarNative *expectedCar;
             
             beforeEach(^{
                
-                CMFactory *carFactory = [CMFactory forClass:[Car class]];
+                CMFactory *carFactory = [CMFactory forClass:[CarNative class]];
                 [carFactory addToField:@"model" value:^{
                     return @"i30";
                 }];
@@ -221,8 +217,8 @@ describe(@"EKMapper", ^{
                 expectedCar = [carFactory build];
                 
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Person"];
-                person = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider personMapping]];
-                
+	            person = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                       usingMapping:[MappingProviderNative personMapping]];
             });
             
             specify(^{
@@ -240,16 +236,18 @@ describe(@"EKMapper", ^{
         });
         
         context(@"with hasOne mapping with different names", ^{
-            __block Car * expectedCar;
-            __block Person * person;
+            __block CarNative * expectedCar;
+            __block PersonNative * person;
             beforeEach(^{
-                expectedCar = [[Car alloc] init];
+                expectedCar = [[CarNative alloc] init];
                 expectedCar.model = @"i30";
                 expectedCar.year = @"2013";
-                EKObjectMapping * mapping = [[EKObjectMapping alloc] initWithObjectClass:[Person class]];
-                [mapping hasOneMapping:[MappingProvider carMapping] forKey:@"vehicle" forField:@"car"];
-                NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
-                person = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:mapping];
+                EMKObjectMapping *mapping = [[EMKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+	            [mapping addRelationshipMapping:[MappingProviderNative carMapping] forProperty:@"car" keyPath:@"vehicle"];
+
+	            NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
+	            person = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                       usingMapping:mapping];
             });
             
             specify(^{
@@ -257,7 +255,7 @@ describe(@"EKMapper", ^{
             });
 
             specify(^{
-                [[person.car should] beMemberOfClass:[Car class]];
+                [[person.car should] beMemberOfClass:[CarNative class]];
             });
             
             specify(^{
@@ -272,11 +270,12 @@ describe(@"EKMapper", ^{
         
         context(@"with hasMany mapping", ^{
             
-            __block Person *person;
+            __block PersonNative *person;
             
             beforeEach(^{
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Person"];
-                person = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider personMapping]];
+	            person = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                       usingMapping:[MappingProviderNative personMapping]];
             });
             
             specify(^{
@@ -291,13 +290,16 @@ describe(@"EKMapper", ^{
         
         context(@"with hasMany mapping with different names", ^{
             
-            __block Person * person;
+            __block PersonNative * person;
             
             beforeEach(^{
-                EKObjectMapping * mapping = [[EKObjectMapping alloc] initWithObjectClass:[Person class]];
-                [mapping hasManyMapping:[MappingProvider phoneMapping] forKey:@"cellphones" forField:@"phones"];
+                EMKObjectMapping * mapping = [[EMKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+	            [mapping addToManyRelationshipMapping:[MappingProviderNative phoneMapping]
+	                                      forProperty:@"phones"
+			                                  keyPath:@"cellphones"];
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
-                person = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:mapping];
+	            person = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                       usingMapping:mapping];
             });
             
             specify(^{
@@ -309,11 +311,11 @@ describe(@"EKMapper", ^{
             });
             
             specify(^{
-                [[person.phones.lastObject should] beMemberOfClass:[Phone class]];
+                [[person.phones.lastObject should] beMemberOfClass:[PhoneNative class]];
             });
             
             specify(^{
-                Phone * lastPhone = person.phones.lastObject;
+                PhoneNative * lastPhone = person.phones.lastObject;
                 
                 [[lastPhone.number should] equal:@"2222-222"];
             });
@@ -324,9 +326,10 @@ describe(@"EKMapper", ^{
             __block Native *native;
             
             beforeEach(^{
-                EKObjectMapping * mapping = [MappingProvider nativeMapping];
+                EMKObjectMapping * mapping = [MappingProviderNative nativeMapping];
                 NSDictionary * externalRepresentation = [CMFixture buildUsingFixture:@"Native"];
-                native = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:mapping];
+	            native = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                       usingMapping:mapping];
             });
             
             specify(^{
@@ -395,12 +398,13 @@ describe(@"EKMapper", ^{
             
             context(@"with a native propertie that is null", ^{
                 
-                __block Cat *cat;
+                __block CatNative *cat;
                 
                 beforeEach(^{
-                    EKObjectMapping *catMapping = [MappingProvider nativeMappingWithNullPropertie];
+                    EMKObjectMapping *catMapping = [MappingProviderNative nativeMappingWithNullPropertie];
                     NSDictionary *values = @{ @"age": [NSNull null] };
-                    cat = [EKMapper objectFromExternalRepresentation:values withMapping:catMapping];
+	                cat = [EMKObjectDeserializer deserializeObjectExternalRepresentation:values
+	                                                                        usingMapping:catMapping];
                 });
                 
                 specify(^{
@@ -424,7 +428,8 @@ describe(@"EKMapper", ^{
         
         beforeEach(^{
             externalRepresentation = [CMFixture buildUsingFixture:@"Cars"];
-            carsArray = [EKMapper arrayOfObjectsFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider carMapping]];
+	        carsArray = [EMKObjectDeserializer deserializeCollectionExternalRepresentation:externalRepresentation
+	                                                                          usingMapping:[MappingProviderNative carMapping]];
         });
         
         specify(^{
@@ -439,16 +444,18 @@ describe(@"EKMapper", ^{
     
     context(@"with hasMany mapping with set", ^{
         
-        __block Plane * plane;
+        __block PlaneNative * plane;
         
         beforeEach(^{
             NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Plane"];
-            EKObjectMapping * mapping = [[EKObjectMapping alloc] initWithObjectClass:[Plane class]];
-            [mapping hasManyMapping:[MappingProvider personMapping] forKey:@"persons" forField:@"persons"];
-            [mapping hasManyMapping:[MappingProvider personMapping] forKey:@"pilots" forField:@"pilots"];
-            [mapping hasManyMapping:[MappingProvider personMapping] forKey:@"stewardess" forField:@"stewardess"];
-            [mapping hasManyMapping:[MappingProvider personMapping] forKey:@"stars" forField:@"stars"];
-            plane = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:mapping];
+            EMKObjectMapping * mapping = [[EMKObjectMapping alloc] initWithObjectClass:[PlaneNative class]];
+	        [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"persons" keyPath:@"persons"];
+	        [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"pilots" keyPath:@"pilots"];
+	        [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"stewardess" keyPath:@"stewardess"];
+	        [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"stars" keyPath:@"stars"];
+
+	        plane = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                  usingMapping:mapping];
         });
         
         specify(^{
@@ -475,13 +482,15 @@ describe(@"EKMapper", ^{
     
     context(@"with hasMany mapping with set and different key name", ^{
         
-        __block Seaplane * seaplane;
+        __block SeaplaneNative * seaplane;
         
         beforeEach(^{
             NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Plane"];
-            EKObjectMapping * mapping = [[EKObjectMapping alloc] initWithObjectClass:[Seaplane class]];
-            [mapping hasManyMapping:[MappingProvider personMapping] forKey:@"persons" forField:@"passengers"];
-            seaplane = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:mapping];
+            EMKObjectMapping * mapping = [[EMKObjectMapping alloc] initWithObjectClass:[SeaplaneNative class]];
+	        [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"passengers" keyPath:@"persons"];
+
+	        seaplane = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                     usingMapping:mapping];
         });
         
         specify(^{
@@ -496,11 +505,12 @@ describe(@"EKMapper", ^{
     
     context(@"with hasMany mapping with NSMutableArray", ^{
         
-        __block Alien *alien;
+        __block AlienNative *alien;
         
         beforeEach(^{
             NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Alien"];
-            alien = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProvider alienMapping]];
+	        alien = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+	                                                                  usingMapping:[MappingProviderNative alienMapping]];
         });
         
         specify(^{

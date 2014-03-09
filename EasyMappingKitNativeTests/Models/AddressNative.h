@@ -1,5 +1,5 @@
 //
-//  Address.h
+//  AddressNative.h
 //  EasyMappingExample
 //
 //  Created by Lucas Medeiros on 26/02/13.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface Address : NSObject
+@interface AddressNative : NSObject
 
 @property (nonatomic, copy) NSString *street;
 @property (nonatomic, copy) CLLocation *location;

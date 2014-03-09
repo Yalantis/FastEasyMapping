@@ -58,10 +58,18 @@
 	[self addPropertyMapping:attributeMapping toMap:_attributesMap];
 }
 
+- (EMKAttributeMapping *)attributeMappingForProperty:(NSString *)property {
+	return _attributesMap[property];
+}
+
 #pragma mark - Relationship Mapping
 
 - (void)addRelationshipMapping:(EMKRelationshipMapping *)relationshipMapping {
 	[self addPropertyMapping:relationshipMapping toMap:_relationshipsMap];
+}
+
+- (EMKRelationshipMapping *)relationshipMappingForProperty:(NSString *)property {
+	return _relationshipsMap[property];
 }
 
 #pragma mark - Properties
@@ -88,6 +96,10 @@
 	for (NSString *attribute in attributes) {
 		[self addAttributeMapping:[EMKAttributeMapping mappingOfProperty:attribute keyPath:attribute]];
 	}
+}
+
+- (void)addAttributeMappingOfProperty:(NSString *)property atKeypath:(NSString *)keypath {
+	[self addAttributeMapping:[EMKAttributeMapping mappingOfProperty:property keyPath:keypath]];
 }
 
 - (void)addRelationshipMapping:(EMKMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {

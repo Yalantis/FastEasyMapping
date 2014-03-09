@@ -21,6 +21,7 @@
 	self = [super init];
 	if (self) {
 		_property = [property copy];
+        _keyPath = [keyPath copy];
 		[self setObjectMapping:objectMapping];
 	}
 
@@ -49,7 +50,7 @@
 - (void)setObjectMapping:(EMKMapping *)objectMapping {
 	_objectMapping = objectMapping;
 
-	[_objectMapping setRootPath:self.keyPath];
+	[_objectMapping setRootPath:_keyPath];
 }
 
 - (void)setObjectMapping:(EMKMapping *)objectMapping forKeyPath:(NSString *)keyPath {

@@ -1,5 +1,5 @@
 //
-//  Finger.h
+//  AlienNative.h
 //  EasyMappingExample
 //
 //  Created by Lucas Medeiros Leite on 12/7/13.
@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Finger : NSObject
+@interface AlienNative : NSObject
 
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSMutableArray *fingers;
 
 @end
