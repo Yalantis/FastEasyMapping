@@ -5,9 +5,3 @@ target :EasyMappingKitTests, :exclusive => true do
   pod 'CMFactory', '1.3.1'
   pod 'MagicalRecord'  
 end
-
-target :EasyMappingKitNativeTests, :exclusive => true do
-  pod 'Kiwi', '2.0.5'
-  pod 'CMFactory', '1.3.1'
-  pod 'MagicalRecord'
-end
