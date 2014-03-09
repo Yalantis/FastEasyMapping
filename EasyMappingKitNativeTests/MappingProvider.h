@@ -7,25 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EasyMapping.h"
+
+@class EMKObjectMapping;
 
 @interface MappingProvider : NSObject
 
-+ (EKObjectMapping *)carMapping;
-+ (EKObjectMapping *)carWithRootKeyMapping;
-+ (EKObjectMapping *)carNestedAttributesMapping;
-+ (EKObjectMapping *)carWithDateMapping;
-+ (EKObjectMapping *)phoneMapping;
-+ (EKObjectMapping *)personMapping;
-+ (EKObjectMapping *)personWithCarMapping;
-+ (EKObjectMapping *)personWithPhonesMapping;
-+ (EKObjectMapping *)personWithOnlyValueBlockMapping;
-+ (EKObjectMapping *)addressMapping;
-+ (EKObjectMapping *)fingerMapping;
-+ (EKObjectMapping *)nativeMapping;
-+ (EKObjectMapping *)nativeMappingWithNullPropertie;
-+ (EKObjectMapping *)planeMapping;
-+ (EKObjectMapping *)alienMapping;
-+ (EKObjectMapping *)nativeChildMapping;
++ (EMKObjectMapping *)carMapping;
++ (EMKObjectMapping *)carWithRootKeyMapping;
++ (EMKObjectMapping *)carNestedAttributesMapping;
++ (EMKObjectMapping *)carWithDateMapping;
++ (EMKObjectMapping *)phoneMapping;
++ (EMKObjectMapping *)personMapping;
++ (EMKObjectMapping *)personWithCarMapping;
++ (EMKObjectMapping *)personWithPhonesMapping;
++ (EMKObjectMapping *)personWithOnlyValueBlockMapping;
++ (EMKObjectMapping *)addressMapping;
++ (EMKObjectMapping *)fingerMapping;
++ (EMKObjectMapping *)nativeMapping;
++ (EMKObjectMapping *)nativeMappingWithNullPropertie;
++ (EMKObjectMapping *)planeMapping;
++ (EMKObjectMapping *)alienMapping;
++ (EMKObjectMapping *)nativeChildMapping;
 
 @end

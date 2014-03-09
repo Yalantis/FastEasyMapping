@@ -22,16 +22,18 @@
 @property (nonatomic, strong, readonly) NSArray *attributeMappings;
 - (void)addAttributeMapping:(EMKAttributeMapping *)attributeMapping;
 
-- (void)addAttributeMappingFromArray:(NSArray *)attributes;
-- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath;
-
-
 @property (nonatomic, strong, readonly) NSArray *relationshipMappings;
 - (void)addRelationshipMapping:(EMKRelationshipMapping *)relationshipMapping;
 
 @end
 
 @interface EMKMapping (Shortcut)
+
+- (void)addAttributeMappingFromArray:(NSArray *)attributes;
+- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath;
+
+- (void)addRelationshipMapping:(EMKMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
+- (void)addToManyRelationshipMapping:(EMKMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
 
 - (id)mappedExternalRepresentation:(id)externalRepresentation;
 

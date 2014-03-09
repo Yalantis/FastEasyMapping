@@ -58,18 +58,6 @@
 	[self addPropertyMapping:attributeMapping toMap:_attributesMap];
 }
 
-- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath {
-	[attributesToKeyPath enumerateKeysAndObjectsUsingBlock:^(id attribute, id keyPath, BOOL *stop) {
-		[self addAttributeMapping:[EMKAttributeMapping mappingOfProperty:attribute keyPath:keyPath]];
-	}];
-}
-
-- (void)addAttributeMappingFromArray:(NSArray *)attributes {
-	for (NSString *attribute in attributes) {
-		[self addAttributeMapping:[EMKAttributeMapping mappingOfProperty:attribute keyPath:attribute]];
-	}
-}
-
 #pragma mark - Relationship Mapping
 
 - (void)addRelationshipMapping:(EMKRelationshipMapping *)relationshipMapping {
@@ -89,6 +77,33 @@
 @end
 
 @implementation EMKMapping (Shortcut)
+
+- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath {
+	[attributesToKeyPath enumerateKeysAndObjectsUsingBlock:^(id attribute, id keyPath, BOOL *stop) {
+		[self addAttributeMapping:[EMKAttributeMapping mappingOfProperty:attribute keyPath:keyPath]];
+	}];
+}
+
+- (void)addAttributeMappingFromArray:(NSArray *)attributes {
+	for (NSString *attribute in attributes) {
+		[self addAttributeMapping:[EMKAttributeMapping mappingOfProperty:attribute keyPath:attribute]];
+	}
+}
+
+- (void)addRelationshipMapping:(EMKMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {
+	EMKRelationshipMapping *relationshipMapping = [EMKRelationshipMapping mappingOfProperty:property
+	                                                                                keyPath:keyPath
+		                                                                      objectMapping:mapping];
+	[self addRelationshipMapping:relationshipMapping];
+}
+
+- (void)addToManyRelationshipMapping:(EMKMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {
+	EMKRelationshipMapping *relationshipMapping = [EMKRelationshipMapping mappingOfProperty:property
+	                                                                                keyPath:keyPath
+		                                                                      objectMapping:mapping];
+	[relationshipMapping setToMany:YES];
+	[self addRelationshipMapping:relationshipMapping];
+}
 
 - (id)mappedExternalRepresentation:(id)externalRepresentation {
 	return self.rootPath ? [externalRepresentation valueForKeyPath:self.rootPath] : externalRepresentation;

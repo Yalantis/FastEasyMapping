@@ -10,6 +10,7 @@
 #import "Car.h"
 #import "Phone.h"
 #import "Person.h"
+#import "EMKObjectMapping.h"
 #import "EMKManagedObjectMapping.h"
 #import "EMKAttributeMapping.h"
 #import "EMKRelationshipMapping.h"
