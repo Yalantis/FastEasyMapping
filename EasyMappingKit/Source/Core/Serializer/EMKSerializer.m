@@ -13,7 +13,7 @@
 
 @implementation EMKSerializer
 
-+ (NSDictionary *)serializeObject:(id)object usingMapping:(EMKMapping *)mapping {
++ (NSDictionary *)_serializeObject:(id)object usingMapping:(EMKMapping *)mapping {
 	NSMutableDictionary *representation = [NSMutableDictionary dictionary];
 
 	for (EMKAttributeMapping *fieldMapping in mapping.attributeMappings) {
@@ -24,22 +24,30 @@
 		[self setRelationshipObjectOn:representation usingMapping:relationshipMapping fromObject:object];
 	}
 
-	if (mapping.rootPath.length > 0) {
-		return @{mapping.rootPath : representation};
+	return representation;
+}
+
++ (NSDictionary *)serializeObject:(id)object usingMapping:(EMKMapping *)mapping {
+	NSDictionary *representation = [self _serializeObject:object usingMapping:mapping];
+
+	return mapping.rootPath.length > 0 ? @{mapping.rootPath : representation} : representation;
+}
+
++ (id)_serializeCollection:(NSArray *)collection usingMapping:(EMKMapping *)mapping {
+	NSMutableArray *representation = [NSMutableArray new];
+
+	for (id object in collection) {
+		NSDictionary *objectRepresentation = [self _serializeObject:object usingMapping:mapping];
+		[representation addObject:objectRepresentation];
 	}
 
 	return representation;
 }
 
-+ (NSArray *)serializeCollection:(NSArray *)collection usingMapping:(EMKMapping *)mapping {
-	NSMutableArray *array = [NSMutableArray array];
++ (id)serializeCollection:(NSArray *)collection usingMapping:(EMKMapping *)mapping {
+	NSArray *representation = [self _serializeCollection:collection usingMapping:mapping];
 
-	for (id object in collection) {
-		NSDictionary *objectRepresentation = [self serializeObject:object usingMapping:mapping];
-		[array addObject:objectRepresentation];
-	}
-
-	return [NSArray arrayWithArray:array];
+	return mapping.rootPath.length > 0 ? @{mapping.rootPath: representation} : representation;
 }
 
 + (void)setValueOnRepresentation:(NSMutableDictionary *)representation fromObject:(id)object withFieldMapping:(EMKAttributeMapping *)fieldMapping {
@@ -82,13 +90,17 @@
 	if (value) {
 		id relationshipRepresentation = nil;
 		if (relationshipMapping.isToMany) {
-			relationshipRepresentation = [self serializeCollection:value usingMapping:relationshipMapping.objectMapping];
+			relationshipRepresentation = [self _serializeCollection:value usingMapping:relationshipMapping.objectMapping];
 		} else {
-			relationshipRepresentation = [self serializeObject:value usingMapping:relationshipMapping.objectMapping];
+			relationshipRepresentation = [self _serializeObject:value usingMapping:relationshipMapping.objectMapping];
 		}
 
-		// todo: if there are no keypath - just add all fields
-		[representation setObject:relationshipRepresentation forKey:relationshipMapping.objectMapping.rootPath];
+		if (relationshipMapping.keyPath.length > 0) {
+			[representation setObject:relationshipRepresentation forKey:relationshipMapping.keyPath];
+		} else {
+			NSParameterAssert([relationshipRepresentation isKindOfClass:NSDictionary.class]);
+			[representation addEntriesFromDictionary:relationshipRepresentation];
+		}
 	}
 }
 

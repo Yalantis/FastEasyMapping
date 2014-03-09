@@ -10,6 +10,7 @@
 		02DDB94B5CA940288F1969F8 /* libPods-EasyMappingKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFF304ED83840FB9FA7E2BD /* libPods-EasyMappingKitTests.a */; };
 		2C375F0F18CCBBB600FCB8EA /* libEasyMappingKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097818C3AD5700C07899 /* libEasyMappingKit.a */; };
 		2C375F1118CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
+		2C375F1218CCCE9C00FCB8EA /* EKSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7725F2B5D821200AC2CD /* EKSerializerSpec.m */; };
 		2C80F19E18CCAAF20083BB2B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8098918C3AD5700C07899 /* XCTest.framework */; };
 		2C80F19F18CCAAF20083BB2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097B18C3AD5700C07899 /* Foundation.framework */; };
 		2C80F1A018CCAAF20083BB2B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8098C18C3AD5700C07899 /* UIKit.framework */; };
@@ -845,6 +846,7 @@
 				69ED7C64A518A7C155E139A6 /* FingerNative.m in Sources */,
 				69ED708FC59743D9BCF06855 /* Native.m in Sources */,
 				69ED796A1D50AEC76E18A3EC /* PersonNative.m in Sources */,
+				2C375F1218CCCE9C00FCB8EA /* EKSerializerSpec.m in Sources */,
 				69ED7A4D08C6BA162E6069D8 /* AddressNative.m in Sources */,
 				69ED7953305ED92AEBC6BFFE /* SeaplaneNative.m in Sources */,
 				69ED74B11494414027BE20E2 /* NativeChild.m in Sources */,

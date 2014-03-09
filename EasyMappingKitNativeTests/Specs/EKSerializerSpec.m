@@ -1,5 +1,5 @@
 //
-//  EKSerializerSpec.m
+//  EMKSerializerSpec.m
 //  EasyMappingExample
 //
 //  Created by Lucas Medeiros on 25/02/13.
@@ -16,24 +16,15 @@
 #import "AddressNative.h"
 #import "Native.h"
 #import "NativeChild.h"
+#import "EMKSerializer.h"
+#import "EMKObjectMapping.h"
+#import "EMKObjectDeserializer.h"
 #import <CoreLocation/CoreLocation.h>
 
-SPEC_BEGIN(EKSerializerSpec)
+SPEC_BEGIN(EMKSerializerSpec)
 
-describe(@"EKSerializer", ^{
+describe(@"EMKSerializer", ^{
     
-    describe(@"class methods", ^{
-        
-        specify(^{
-            [[EKSerializer should] respondToSelector:@selector(serializeObject:withMapping:)];
-        });
-        
-        specify(^{
-            [[EKSerializer should] respondToSelector:@selector(serializeCollection:withMapping:)];
-        });
-        
-    });
-   
     describe(@".serializeObject:withMapping:", ^{
        
         context(@"a simple object", ^{
@@ -51,7 +42,8 @@ describe(@"EKSerializer", ^{
                    return @"2013";
                 }];
                 car = [factory build];
-                representation = [EKSerializer serializeObject:car withMapping:[MappingProviderNative carMapping]];
+	            
+                representation = [EMKSerializer serializeObject:car usingMapping:[MappingProviderNative carMapping]];
             });
             
             specify(^{
@@ -83,7 +75,7 @@ describe(@"EKSerializer", ^{
                     return @"2013";
                 }];
                 car = [factory build];
-                representation = [EKSerializer serializeObject:car withMapping:[MappingProviderNative carWithRootKeyMapping]];
+                representation = [EMKSerializer serializeObject:car usingMapping:[MappingProviderNative carWithRootKeyMapping]];
             });
             
             specify(^{
@@ -119,7 +111,7 @@ describe(@"EKSerializer", ^{
                     return @"2013";
                 }];
                 car = [factory build];
-                representation = [EKSerializer serializeObject:car withMapping:[MappingProviderNative carNestedAttributesMapping]];
+                representation = [EMKSerializer serializeObject:car usingMapping:[MappingProviderNative carNestedAttributesMapping]];
             });
 
             specify(^{
@@ -155,7 +147,7 @@ describe(@"EKSerializer", ^{
                     return date;
                 }];
                 car = [factory build];
-                representation = [EKSerializer serializeObject:car withMapping:[MappingProviderNative carWithDateMapping]];
+                representation = [EMKSerializer serializeObject:car usingMapping:[MappingProviderNative carWithDateMapping]];
             });
 
             specify(^{
@@ -191,7 +183,7 @@ describe(@"EKSerializer", ^{
                         return @(GenderMale);
                     }];
                     person = [factory build];
-                    representation = [EKSerializer serializeObject:person withMapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
+                    representation = [EMKSerializer serializeObject:person usingMapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
                     
                 });
                 
@@ -223,7 +215,7 @@ describe(@"EKSerializer", ^{
                         return @(GenderFemale);
                     }];
                     person = [factory build];
-                    representation = [EKSerializer serializeObject:person withMapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
+                    representation = [EMKSerializer serializeObject:person usingMapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
                     
                 });
                 
@@ -248,7 +240,7 @@ describe(@"EKSerializer", ^{
                         return [[CLLocation alloc] initWithLatitude:-30.12345 longitude:-3.12345];
                     }];
                     address = [factory build];
-                    representation = [EKSerializer serializeObject:address withMapping:[MappingProviderNative addressMapping]];
+                    representation = [EMKSerializer serializeObject:address usingMapping:[MappingProviderNative addressMapping]];
                     
                 });
                 
@@ -287,7 +279,7 @@ describe(@"EKSerializer", ^{
                         return car;
                     }];
                     person = [factory build];
-                    representation = [EKSerializer serializeObject:person withMapping:[MappingProviderNative personWithCarMapping]];
+                    representation = [EMKSerializer serializeObject:person usingMapping:[MappingProviderNative personWithCarMapping]];
                     
                 });
                 
@@ -307,14 +299,16 @@ describe(@"EKSerializer", ^{
                 
                 beforeEach(^{
                     
-                    EKObjectMapping * mapping = [[EKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
-                    [mapping hasOneMapping:[
+                    EMKObjectMapping * mapping = [[EMKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+	                [mapping addRelationshipMapping:[MappingProviderNative carMapping]
+	                                    forProperty:@"car"
+			                                keyPath:@"vehicle"];
 
-MappingProviderNative carMapping] forKey:@"vehicle" forField:@"car"];
                     NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
-                    person = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:mapping];
+
+                    person = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation usingMapping:mapping];
                     
-                    representation = [EKSerializer serializeObject:person withMapping:mapping];
+                    representation = [EMKSerializer serializeObject:person usingMapping:mapping];
                 });
                 
                 specify(^{
@@ -356,7 +350,7 @@ MappingProviderNative carMapping] forKey:@"vehicle" forField:@"car"];
                         return @[phone1, phone2];
                     }];
                     person = [factory build];
-                    representation = [EKSerializer serializeObject:person withMapping:[MappingProviderNative personWithPhonesMapping]];
+                    representation = [EMKSerializer serializeObject:person usingMapping:[MappingProviderNative personWithPhonesMapping]];
                     
                 });
                 
@@ -376,15 +370,15 @@ MappingProviderNative carMapping] forKey:@"vehicle" forField:@"car"];
                 __block NSDictionary * representation;
                 
                 beforeEach(^{
-                    EKObjectMapping * mapping = [[EKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
-                    [mapping hasManyMapping:[
+                    EMKObjectMapping * mapping = [[EMKObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+	                [mapping addToManyRelationshipMapping:[MappingProviderNative phoneMapping]
+	                                          forProperty:@"phones"
+			                                      keyPath:@"cellphones"];
 
-MappingProviderNative phoneMapping] forKey:@"cellphones" forField:@"phones"];
                     NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
-                    person = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:mapping];
+                    person = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation usingMapping:mapping];
                     
-                    representation = [EKSerializer serializeObject:person
-                                                       withMapping:mapping];
+                    representation = [EMKSerializer serializeObject:person usingMapping:mapping];
                 });
                 
                 specify(^{
@@ -415,8 +409,8 @@ MappingProviderNative phoneMapping] forKey:@"cellphones" forField:@"phones"];
             
             beforeEach(^{
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Native"];
-                native = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProviderNative nativeMapping]];
-                representation = [EKSerializer serializeObject:native withMapping:[MappingProviderNative nativeMapping]];
+                native = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation usingMapping:[MappingProviderNative nativeMapping]];
+                representation = [EMKSerializer serializeObject:native usingMapping:[MappingProviderNative nativeMapping]];
             });
             
             specify(^{
@@ -492,8 +486,8 @@ MappingProviderNative phoneMapping] forKey:@"cellphones" forField:@"phones"];
             
             beforeEach(^{
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"NativeChild"];
-                nativeChild = [EKMapper objectFromExternalRepresentation:externalRepresentation withMapping:[MappingProviderNative nativeChildMapping]];
-                representation = [EKSerializer serializeObject:nativeChild withMapping:[MappingProviderNative nativeChildMapping]];
+                nativeChild = [EMKObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation usingMapping:[MappingProviderNative nativeChildMapping]];
+                representation = [EMKSerializer serializeObject:nativeChild usingMapping:[MappingProviderNative nativeChildMapping]];
             });
             
             specify(^{

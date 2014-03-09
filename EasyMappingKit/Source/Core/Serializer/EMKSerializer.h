@@ -13,6 +13,6 @@
 @interface EMKSerializer : NSObject
 
 + (NSDictionary *)serializeObject:(id)object usingMapping:(EMKMapping *)mapping;
-+ (NSArray *)serializeCollection:(NSArray *)collection usingMapping:(EMKMapping *)mapping;
++ (id)serializeCollection:(NSArray *)collection usingMapping:(EMKMapping *)mapping;
 
 @end
