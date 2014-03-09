@@ -7,14 +7,23 @@
 //
 
 #import "MTLModel.h"
-#import "EXTKeyPathCoding.h"
 #import "EXTRuntimeExtensions.h"
 #import "EXTScope.h"
-#import "NSDictionary+MTLHigherOrderAdditions.h"
 #import <objc/runtime.h>
 
-// Used in archives to store the modelVersion of the archived instance.
-static NSString * const MTLModelVersionKey = @"MTLModelVersion";
+// This coupling is needed for backwards compatibility in MTLModel's deprecated
+// methods.
+#import "MTLJSONAdapter.h"
+#import "MTLModel+NSCoding.h"
+
+// The domain for errors originating from MTLModel.
+static NSString * const MTLModelErrorDomain = @"MTLModelErrorDomain";
+
+// An exception was thrown and caught.
+static const NSInteger MTLModelErrorExceptionThrown = 1;
+
+// Associated with the NSException that was caught.
+static NSString * const MTLModelThrownExceptionErrorKey = @"MTLModelThrownException";
 
 // Used to cache the reflection performed in +propertyKeys.
 static void *MTLModelCachedPropertyKeysKey = &MTLModelCachedPropertyKeysKey;
@@ -34,12 +43,8 @@ static void *MTLModelCachedPropertyKeysKey = &MTLModelCachedPropertyKeysKey;
 
 #pragma mark Lifecycle
 
-+ (instancetype)modelWithDictionary:(NSDictionary *)dictionary {
-	return [[self alloc] initWithDictionary:dictionary];
-}
-
-+ (instancetype)modelWithExternalRepresentation:(NSDictionary *)externalRepresentation {
-	return [[self alloc] initWithExternalRepresentation:externalRepresentation];
++ (instancetype)modelWithDictionary:(NSDictionary *)dictionary error:(NSError **)error {
+	return [[self alloc] initWithDictionary:dictionary error:error];
 }
 
 - (instancetype)init {
@@ -47,7 +52,7 @@ static void *MTLModelCachedPropertyKeysKey = &MTLModelCachedPropertyKeysKey;
 	return [super init];
 }
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary error:(NSError **)error {
 	self = [self init];
 	if (self == nil) return nil;
 
@@ -60,53 +65,32 @@ static void *MTLModelCachedPropertyKeysKey = &MTLModelCachedPropertyKeysKey;
 		if ([value isEqual:NSNull.null]) value = nil;
 
 		@try {
-			if (![self validateValue:&value forKey:key error:NULL]) return nil;
+			if (![self validateValue:&value forKey:key error:error]) return nil;
 
 			[self setValue:value forKey:key];
 		} @catch (NSException *ex) {
 			NSLog(@"*** Caught exception setting key \"%@\" from %@: %@", key, dictionary, ex);
 
+			// Fail fast in Debug builds.
 			#if DEBUG
 			@throw ex;
+			#else
+			if (error != NULL) {
+				NSDictionary *userInfo = @{
+					NSLocalizedDescriptionKey: ex.description,
+					NSLocalizedFailureReasonErrorKey: ex.reason,
+					MTLModelThrownExceptionErrorKey: ex
+				};
+
+				*error = [NSError errorWithDomain:MTLModelErrorDomain code:MTLModelErrorExceptionThrown userInfo:userInfo];
+			}
+
+			return nil;
 			#endif
 		}
 	}
 
 	return self;
-}
-
-- (instancetype)initWithExternalRepresentation:(NSDictionary *)externalRepresentation {
-	if (externalRepresentation == nil) return nil;
-
-	NSDictionary *externalKeyPathsByPropertyKey = self.class.externalRepresentationKeyPathsByPropertyKey;
-	NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:externalRepresentation.count];
-
-	for (NSString *propertyKey in self.class.propertyKeys) {
-		NSString *externalKeyPath = externalKeyPathsByPropertyKey[propertyKey] ?: propertyKey;
-
-		id value = [externalRepresentation valueForKeyPath:externalKeyPath];
-		if (value == nil) continue;
-
-		NSValueTransformer *transformer = [self.class transformerForKey:propertyKey];
-		@try {
-			if (transformer != nil) {
-				// Map NSNull -> nil for the transformer, and then back for the
-				// dictionary we're going to insert into.
-				if ([value isEqual:NSNull.null]) value = nil;
-				value = [transformer transformedValue:value] ?: NSNull.null;
-			}
-
-			[properties setObject:value forKey:propertyKey];
-		} @catch (NSException *ex) {
-			NSLog(@"*** Caught exception transforming external key path \"%@\" from %@ using transformer %@: %@", externalKeyPath, externalRepresentation, transformer, ex);
-
-			#if DEBUG
-			@throw ex;
-			#endif
-		}
-	}
-
-	return [self initWithDictionary:properties];
 }
 
 #pragma mark Reflection
@@ -158,81 +142,8 @@ static void *MTLModelCachedPropertyKeysKey = &MTLModelCachedPropertyKeysKey;
 	return keys;
 }
 
-#pragma mark Dictionary Representation
-
-+ (NSDictionary *)externalRepresentationKeyPathsByPropertyKey {
-	return @{};
-}
-
-+ (NSValueTransformer *)transformerForKey:(NSString *)key {
-	SEL selector = NSSelectorFromString([key stringByAppendingString:@"Transformer"]);
-	if (![self respondsToSelector:selector]) return nil;
-
-	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:selector]];
-	invocation.target = self;
-	invocation.selector = selector;
-	[invocation invoke];
-
-	__unsafe_unretained id transformer = nil;
-	[invocation getReturnValue:&transformer];
-
-	return transformer;
-}
-
 - (NSDictionary *)dictionaryValue {
 	return [self dictionaryWithValuesForKeys:self.class.propertyKeys.allObjects];
-}
-
-- (NSDictionary *)externalRepresentation {
-	NSDictionary *dictionary = self.dictionaryValue;
-
-	NSDictionary *externalKeyPathsByPropertyKey = self.class.externalRepresentationKeyPathsByPropertyKey;
-	NSMutableDictionary *mappedDictionary = [NSMutableDictionary dictionaryWithCapacity:dictionary.count];
-
-	[dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *propertyKey, id value, BOOL *stop) {
-		NSValueTransformer *transformer = [self.class transformerForKey:propertyKey];
-		if ([transformer.class allowsReverseTransformation]) {
-			// Map NSNull -> nil for the transformer, and then back for the
-			// dictionary we're going to insert into.
-			if ([value isEqual:NSNull.null]) value = nil;
-			value = [transformer reverseTransformedValue:value] ?: NSNull.null;
-		}
-
-		NSString *externalKeyPath = externalKeyPathsByPropertyKey[propertyKey] ?: propertyKey;
-		NSArray *keyPathComponents = [externalKeyPath componentsSeparatedByString:@"."];
-
-		if (![value isEqual:NSNull.null]) {
-			// Set up intermediate key paths if the value we'd be setting isn't
-			// nil.
-			id obj = mappedDictionary;
-			for (NSString *component in keyPathComponents) {
-				if ([obj valueForKey:component] == nil) {
-					// Insert an empty mutable dictionary at this spot so that we
-					// can set the whole key path afterward.
-					[obj setValue:[NSMutableDictionary dictionary] forKey:component];
-				}
-
-				obj = [obj valueForKey:component];
-			}
-		}
-
-		[mappedDictionary setValue:value forKeyPath:externalKeyPath];
-	}];
-
-	return [mappedDictionary copy];
-}
-
-#pragma mark Versioning and Migration
-
-+ (NSUInteger)modelVersion {
-	return 0;
-}
-
-+ (NSDictionary *)migrateExternalRepresentation:(NSDictionary *)dictionary fromVersion:(NSUInteger)fromVersion {
-	NSParameterAssert(dictionary != nil);
-	NSParameterAssert(fromVersion < self.modelVersion);
-
-	return dictionary;
 }
 
 #pragma mark Merging
@@ -267,32 +178,7 @@ static void *MTLModelCachedPropertyKeysKey = &MTLModelCachedPropertyKeysKey;
 #pragma mark NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-	return [[self.class allocWithZone:zone] initWithDictionary:self.dictionaryValue];
-}
-
-#pragma mark NSCoding
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-	NSDictionary *externalRepresentation = [coder decodeObjectForKey:@keypath(self.externalRepresentation)];
-	if (externalRepresentation == nil) return nil;
-
-	NSNumber *version = [coder decodeObjectForKey:MTLModelVersionKey];
-	if (version == nil) {
-		NSLog(@"Warning: decoding an external representation without a version: %@", externalRepresentation);
-	} else if (version.unsignedIntegerValue > self.class.modelVersion) {
-		// Don't try to decode newer versions.
-		return nil;
-	} else if (version.unsignedIntegerValue < self.class.modelVersion) {
-		externalRepresentation = [self.class migrateExternalRepresentation:externalRepresentation fromVersion:version.unsignedIntegerValue];
-		if (externalRepresentation == nil) return nil;
-	}
-
-	return [self initWithExternalRepresentation:externalRepresentation];
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeObject:self.externalRepresentation forKey:@keypath(self.externalRepresentation)];
-	[coder encodeObject:@(self.class.modelVersion) forKey:MTLModelVersionKey];
+	return [[self.class allocWithZone:zone] initWithDictionary:self.dictionaryValue error:NULL];
 }
 
 #pragma mark NSObject

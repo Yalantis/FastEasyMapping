@@ -1,0 +1,18 @@
+{
+    "charProperty" : 99,
+    "unsignedCharProperty" : 117,
+    "shortProperty" : 1,
+    "unsignedShortProperty" : 2,
+    "intProperty" : 3,
+    "unsignedIntProperty" : 4,
+    "integerProperty" : 5,
+    "unsignedIntegerProperty" : 6,
+    "longProperty" : 7,
+    "unsignedLongProperty" : 8,
+    "longLongProperty" : 9,
+    "unsignedLongLongProperty" : 10,
+    "floatProperty" : 11.1,
+    "cgFloatProperty" : 12.2,
+    "doubleProperty" : 13.3,
+    "boolProperty" : true
+}

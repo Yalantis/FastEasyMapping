@@ -7,7 +7,7 @@
 //
 
 #import "CMFixture.h"
-#import "MTLModel.h"
+#import "Mantle.h"
 #import "SBJSON.h"
 
 @implementation CMFixture
@@ -36,7 +36,7 @@
 
 + (void)checkIfClassIsSubclassOfMTlModel:(Class) objectClass
 {
-    if (![objectClass instancesRespondToSelector:@selector(initWithExternalRepresentation:)]) {
+    if (![objectClass instancesRespondToSelector:@selector(mergeValuesForKeysFromModel:)]) {
         @throw ([NSException exceptionWithName:@"NoMantleClassException"
                                         reason:@"This class is not a subclass of MTLModel"
                                       userInfo:nil]);
@@ -57,7 +57,7 @@
 {
     id content = [self contentObjectFromPlistFileNamed:fileName];
     if ([content isKindOfClass:[NSDictionary class]]) {
-        return [[objectClass alloc] initWithExternalRepresentation:content];
+        return [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:content error:nil];
     }
     return [self initArrayFromPlistContent:content withClass:objectClass];
 }
@@ -68,7 +68,7 @@
     if ([jsonValue isKindOfClass:[NSArray class]]) {
         return [self initArrayFromContent:jsonValue withClass:objectClass];
     }
-    return [[objectClass alloc] initWithExternalRepresentation:jsonValue];
+    return [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:jsonValue error:nil];
 }
 
 + (id)contentObjectFromFileNamed:(NSString *)fileName
@@ -100,7 +100,7 @@
 {
     NSMutableArray *array = [NSMutableArray array];
     for (id json in jsonArray) {
-        id convertedObject = [[objectClass alloc] initWithExternalRepresentation:json];
+        id convertedObject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:json error:nil];
         [array addObject:convertedObject];
     }
     return array;
@@ -110,7 +110,7 @@
 {
     NSMutableArray *array = [NSMutableArray array];
     for (NSDictionary *dictionary in plistContentArray) {
-        id convertedObject = [[objectClass alloc] initWithExternalRepresentation:dictionary];
+        id convertedObject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:dictionary error:nil];
         [array addObject:convertedObject];
     }
     return array;

@@ -5,13 +5,8 @@ application.
 
 ## Getting Started
 
-Mantle is still new and moving fast, so we may make breaking changes from
-time-to-time, but it has excellent unit test coverage and is already being used
-in GitHub for Mac's production code.
-
-To start building the framework, clone this repository and then run `git
-submodule update --init --recursive`. This will automatically pull down any
-dependencies.
+To start building the framework, clone this repository and then run `script/bootstrap`.
+This will automatically pull down any dependencies.
 
 ## The Typical Model Object
 
@@ -35,8 +30,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy, readonly) NSNumber *number;
 @property (nonatomic, assign, readonly) GHIssueState state;
 @property (nonatomic, copy, readonly) NSString *reporterLogin;
-@property (nonatomic, copy, readonly) NSString *assigneeLogin;
 @property (nonatomic, copy, readonly) NSDate *updatedAt;
+@property (nonatomic, strong, readonly) GHUser *assignee;
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *body;
@@ -73,7 +68,7 @@ typedef enum : NSUInteger {
     _title = [dictionary[@"title"] copy];
     _body = [dictionary[@"body"] copy];
     _reporterLogin = [dictionary[@"user"][@"login"] copy];
-    _assigneeLogin = [dictionary[@"assignee"][@"login"] copy];
+    _assignee = [[GHUser alloc] initWithDictionary:dictionary[@"assignee"]];
 
     _updatedAt = [self.class.dateFormatter dateFromString:dictionary[@"updated_at"]];
 
@@ -91,7 +86,7 @@ typedef enum : NSUInteger {
     _title = [coder decodeObjectForKey:@"title"];
     _body = [coder decodeObjectForKey:@"body"];
     _reporterLogin = [coder decodeObjectForKey:@"reporterLogin"];
-    _assigneeLogin = [coder decodeObjectForKey:@"assigneeLogin"];
+    _assignee = [coder decodeObjectForKey:@"assignee"];
     _updatedAt = [coder decodeObjectForKey:@"updatedAt"];
 
     return self;
@@ -104,7 +99,7 @@ typedef enum : NSUInteger {
     if (self.title != nil) [coder encodeObject:self.title forKey:@"title"];
     if (self.body != nil) [coder encodeObject:self.body forKey:@"body"];
     if (self.reporterLogin != nil) [coder encodeObject:self.reporterLogin forKey:@"reporterLogin"];
-    if (self.assigneeLogin != nil) [coder encodeObject:self.assigneeLogin forKey:@"assigneeLogin"];
+    if (self.assignee != nil) [coder encodeObject:self.assignee forKey:@"assignee"];
     if (self.updatedAt != nil) [coder encodeObject:self.updatedAt forKey:@"updatedAt"];
 
     [coder encodeUnsignedInteger:self.state forKey:@"state"];
@@ -117,7 +112,7 @@ typedef enum : NSUInteger {
     issue->_number = self.number;
     issue->_state = self.state;
     issue->_reporterLogin = self.reporterLogin;
-    issue->_assigneeLogin = self.assigneeLogin;
+    issue->_assignee = self.assignee;
     issue->_updatedAt = self.updatedAt;
 
     issue.title = self.title;
@@ -180,14 +175,14 @@ typedef enum : NSUInteger {
     GHIssueStateClosed
 } GHIssueState;
 
-@interface GHIssue : MTLModel
+@interface GHIssue : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, copy, readonly) NSURL *URL;
 @property (nonatomic, copy, readonly) NSURL *HTMLURL;
 @property (nonatomic, copy, readonly) NSNumber *number;
 @property (nonatomic, assign, readonly) GHIssueState state;
 @property (nonatomic, copy, readonly) NSString *reporterLogin;
-@property (nonatomic, copy, readonly) NSString *assigneeLogin;
+@property (nonatomic, strong, readonly) GHUser *assignee;
 @property (nonatomic, copy, readonly) NSDate *updatedAt;
 
 @property (nonatomic, copy) NSString *title;
@@ -206,25 +201,25 @@ typedef enum : NSUInteger {
     return dateFormatter;
 }
 
-+ (NSDictionary *)externalRepresentationKeyPathsByPropertyKey {
-    return [super.externalRepresentationKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
         @"URL": @"url",
         @"HTMLURL": @"html_url",
         @"reporterLogin": @"user.login",
-        @"assigneeLogin": @"assignee.login",
+        @"assignee": @"assignee",
         @"updatedAt": @"updated_at"
-    }];
+    };
 }
 
-+ (NSValueTransformer *)URLTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
++ (NSValueTransformer *)URLJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)HTMLURLTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
++ (NSValueTransformer *)HTMLURLJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)stateTransformer {
++ (NSValueTransformer *)stateJSONTransformer {
     NSDictionary *states = @{
         @"open": @(GHIssueStateOpen),
         @"closed": @(GHIssueStateClosed)
@@ -237,7 +232,11 @@ typedef enum : NSUInteger {
     }];
 }
 
-+ (NSValueTransformer *)updatedAtTransformer {
++ (NSValueTransformer *)assigneeJSONTransformer {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:GHUser.class];
+}
+
++ (NSValueTransformer *)updatedAtJSONTransformer {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
         return [self.dateFormatter dateFromString:str];
     } reverseBlock:^(NSDate *date) {
@@ -255,29 +254,27 @@ implementations for all these methods.
 
 The problems with the original example all happen to be fixed as well:
 
-> * If the `url` or `html_url` field is missing, `+[NSURL URLWithString:]` will throw an exception.
+> If the `url` or `html_url` field is missing, `+[NSURL URLWithString:]` will throw an exception.
 
 The URL transformer we used (included in Mantle) returns `nil` if given a `nil`
 string.
 
-> * There's no way to update a `GHIssue` with new data from the server.
+> There's no way to update a `GHIssue` with new data from the server.
 
 `MTLModel` has an extensible `-mergeValuesForKeysFromModel:` method, which makes
 it easy to specify how new model data should be integrated.
 
-> * There's no way to turn a `GHIssue` _back_ into JSON.
-> * `GHIssueState` shouldn't be encoded as-is. If the enum changes in the future, existing archives might break.
+> There's no way to turn a `GHIssue` _back_ into JSON.
 
-_Both_ of these issues are solved by using reversible transformers.
-`-[GHIssue externalRepresentation]` will return a JSON dictionary, which is also
-what gets encoded in `-encodeWithCoder:`. No saving fragile enum values!
+This is where reversible transformers really come in handy. `+[MTLJSONAdapter
+JSONDictionaryFromModel:]` can transform any model object conforming to
+`<MTLJSONSerializing>` back into a JSON dictionary.
 
-> * If the interface of `GHIssue` changes down the road, existing archives might break.
+> If the interface of `GHIssue` changes down the road, existing archives might break.
 
 `MTLModel` automatically saves the version of the model object that was used for
-archival. When unarchiving, `+migrateExternalRepresentation:fromVersion:` will
-be invoked if migration is needed, giving you a convenient hook to upgrade old
-data.
+archival. When unarchiving, `-decodeValueForKey:withCoder:modelVersion:` will
+be invoked if overridden, giving you a convenient hook to upgrade old data.
 
 ## Persistence
 
@@ -287,20 +284,6 @@ does conform to `<NSCoding>`, so model objects can be archived to disk using
 
 If you need something more powerful, or want to avoid keeping your whole model
 in memory at once, Core Data may be a better choice.
-
-## Other Extensions
-
-Mantle also comes with miscellaneous cross-platform extensions meant to
-make your life easier, including:
-
- * **Higher-order functions** (`map`, `filter`, `fold`) for
-   [NSArray](https://github.com/github/Mantle/blob/master/Mantle/NSArray%2BMTLHigherOrderAdditions.h),
-   [NSDictionary](https://github.com/github/Mantle/blob/master/Mantle/NSDictionary%2BMTLHigherOrderAdditions.h),
-   [NSOrderedSet](https://github.com/github/Mantle/blob/master/Mantle/NSOrderedSet%2BMTLHigherOrderAdditions.h),
-   and [NSSet](https://github.com/github/Mantle/blob/master/Mantle/NSSet%2BMTLHigherOrderAdditions.h).
- * **[Weak notification center observers](https://github.com/github/Mantle/blob/master/Mantle/NSNotificationCenter%2BMTLWeakReferenceAdditions.h)**
-
-There will assuredly be more, as we run into other common pain points!
 
 ## License
 

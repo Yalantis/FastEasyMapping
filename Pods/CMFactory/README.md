@@ -52,16 +52,16 @@ SPEC_BEGIN(YourSpec)
 	
 	//If you use github's Mantle library                    
 	beforeEach(^{
-	     YourClass *yourInstance = [CMFactory buildUsingMantleClass:[YourClass class] fromFactory:@"YourClass"];
+	     YourClass *yourInstance = [CMFactory buildUsingMantleClass:[YourClass class] fromFixture:@"YourClass"];
 		 //Or
-		 NSArray *aColletion = [CMFactory buildUsingMantleClass:[YourClass class] fromFactory:@"People"];
+		 NSArray *aColletion = [CMFactory buildUsingMantleClass:[YourClass class] fromFixture:@"People"];
 	});
 	
 	//If you don't use github's Mantle library
 	beforeEach(^{
-	     NSDictionary *dictionary = [CMFactory buildUsingFactory:@"YourClass"];
+	     NSDictionary *dictionary = [CMFactory buildUsingFixture:@"YourClass"];
 		 //Or
-		 NSArray *aColletion = [CMFactory buildUsingFactory:@"People"];
+		 NSArray *aColletion = [CMFactory buildUsingFixture:@"People"];
 	});
 
 SPEC_END

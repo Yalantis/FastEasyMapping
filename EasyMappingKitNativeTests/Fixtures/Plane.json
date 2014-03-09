@@ -1,0 +1,46 @@
+{
+    "flight_number": 302,
+    "persons": [
+        {
+            "name": "Dany",
+            "email": "dlh@gmail.com",
+            "gender" : "male"
+        },
+        {
+            "name": "Lucas",
+            "email": "lucastoc@gmail.com",
+            "gender" : "male"
+        },
+        {
+            "name": "Vero",
+            "email": "vero@gmail.com",
+            "gender" : "female"
+        }
+    ],
+    "pilots": [
+        {
+            "name": "Bonneville",
+            "email": "bonneville@gmail.com",
+            "gender" : "male"
+        },
+        {
+            "name": "JPCouture",
+            "email": "jp@gmail.com",
+            "gender" : "male"
+        }
+    ],
+    "stewardess": [
+        {
+            "name": "Bassuro",
+            "email": "bassuro@gmail.com",
+            "gender" : "female"
+        }
+    ],
+    "stars": [
+        {
+            "name": "Johnny",
+            "email": "johnny@gmail.com",
+            "gender" : "male"
+        }
+    ]
+}
