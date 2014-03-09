@@ -1,5 +1,5 @@
 //
-//  EKMapperSpec.m
+//  EMKObjectDeserializerSpec.m
 //  EasyMappingExample
 //
 //  Created by Lucas Medeiros on 23/02/13.
@@ -23,9 +23,9 @@
 #import "EMKObjectDeserializer.h"
 #import "EMKObjectMapping.h"
 
-SPEC_BEGIN(EKMapperSpec)
+SPEC_BEGIN(EMKObjectDeserializerSpec)
 
-describe(@"EKMapper", ^{
+describe(@"EMKObjectDeserializer", ^{
     
     describe(@".objectFromExternalRepresentation:withMapping:", ^{
        
