@@ -21,7 +21,7 @@
 	id value = [self mappedValueFromRepresentation:representation];
 	if (value == NSNull.null && ![EMKPropertyHelper propertyNameIsNative:self.property fromObject:object]) {
 		[object setValue:nil forKey:self.property];
-	} else {
+	} else if (value) {
 		[object emk_setValueIfDifferent:value forKey:self.property];
 	}
 }

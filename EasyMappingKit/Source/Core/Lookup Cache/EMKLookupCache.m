@@ -71,12 +71,14 @@ void EMKLookupCacheRemoveCurrent() {
 #pragma mark - Inspection
 
 - (void)inspectObjectRepresentation:(id)objectRepresentation usingMapping:(EMKManagedObjectMapping *)mapping {
-	EMKAttributeMapping *primaryKeyMapping = mapping.primaryKeyMapping;
-	NSParameterAssert(primaryKeyMapping);
-
-	id primaryKeyValue = [primaryKeyMapping mappedValueFromRepresentation:objectRepresentation];
-    if (primaryKeyValue) {
-        [_lookupKeysMap[mapping.entityName] addObject:primaryKeyValue];
+    if (mapping.primaryKey) {
+        EMKAttributeMapping *primaryKeyMapping = mapping.primaryKeyMapping;
+        NSParameterAssert(primaryKeyMapping);
+        
+        id primaryKeyValue = [primaryKeyMapping mappedValueFromRepresentation:objectRepresentation];
+        if (primaryKeyValue) {
+            [_lookupKeysMap[mapping.entityName] addObject:primaryKeyValue];
+        }
     }
 
 	for (EMKRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
@@ -158,9 +160,12 @@ void EMKLookupCacheRemoveCurrent() {
 }
 
 - (void)addExistingObject:(id)object usingMapping:(EMKManagedObjectMapping *)mapping {
-	id primaryKeyValue = [object valueForKeyPath:mapping.primaryKey];
+    NSParameterAssert(mapping.primaryKey);
 	NSParameterAssert(object);
-
+    
+	id primaryKeyValue = [object valueForKey:mapping.primaryKey];
+	NSAssert(primaryKeyValue, @"No value for key (%@) on object (%@) found", mapping.primaryKey, object);
+    
 	[_lookupObjectsMap[mapping.entityName] setObject:object forKey:primaryKeyValue];
 }
 

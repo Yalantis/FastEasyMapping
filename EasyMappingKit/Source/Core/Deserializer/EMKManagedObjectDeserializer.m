@@ -30,7 +30,7 @@
 
 	[self _fillObject:object fromRepresentation:representation usingMapping:mapping];
 
-	if ([object isInserted]) {
+	if ([object isInserted] && mapping.primaryKey) {
 		[EMKLookupCacheGetCurrent() addExistingObject:object usingMapping:mapping];
 	}
 

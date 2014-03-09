@@ -12,6 +12,7 @@
 
 @interface MappingProvider : NSObject
 
++ (EMKManagedObjectMapping *)carMappingWithPrimaryKey;
 + (EMKManagedObjectMapping *)carMapping;
 + (EMKManagedObjectMapping *)carWithRootKeyMapping;
 + (EMKManagedObjectMapping *)carNestedAttributesMapping;

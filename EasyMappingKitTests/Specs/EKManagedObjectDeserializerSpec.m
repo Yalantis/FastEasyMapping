@@ -29,7 +29,7 @@ describe(@"EKManagedObjectDeserializer", ^{
     
     beforeEach(^{
         [MagicalRecord setDefaultModelFromClass:[self class]];
-        [MagicalRecord setupAutoMigratingCoreDataStack];
+        [MagicalRecord setupCoreDataStackWithInMemoryStore];
     });
     
     afterEach(^{
@@ -89,7 +89,7 @@ describe(@"EKManagedObjectDeserializer", ^{
                 };
 
 	            car = [EMKManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-                                                                               usingMapping:[MappingProvider carMapping]
+                                                                               usingMapping:[MappingProvider carMappingWithPrimaryKey]
                                                                                     context:moc];
             });
             
@@ -135,7 +135,7 @@ describe(@"EKManagedObjectDeserializer", ^{
                 
                 externalRepresentation = @{ @"id": @(1), @"model": @"i30", };
 	            car = [EMKManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-                                                                               usingMapping:[MappingProvider carMapping]
+                                                                               usingMapping:[MappingProvider carMappingWithPrimaryKey]
                                                                                     context:moc];
             });
             

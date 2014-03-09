@@ -16,17 +16,23 @@
 
 @implementation MappingProvider
 
++ (EMKManagedObjectMapping *)carMappingWithPrimaryKey {
+	EMKManagedObjectMapping *mapping = [self carMapping];
+	[mapping setPrimaryKey:@"carID"];
+	[mapping addAttributeMappingDictionary:@{@"carID" : @"id"}];
+
+	return mapping;
+}
+
 + (EMKManagedObjectMapping *)carMapping {
 	return [EMKManagedObjectMapping mappingForEntityName:@"Car" configuration:^(EMKManagedObjectMapping *mapping) {
-		[mapping setPrimaryKey:@"carID"];
-		[mapping addAttributeMappingDictionary:@{@"carID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
 	}];
 }
 
 + (EMKManagedObjectMapping *)carWithRootKeyMapping {
 	return [EMKManagedObjectMapping mappingForEntityName:@"Car" rootPath:@"car" configuration:^(EMKManagedObjectMapping *mapping) {
-       [mapping setPrimaryKey:@"carID"];
+//       [mapping setPrimaryKey:@"carID"];
        [mapping addAttributeMappingDictionary:@{@"carID" : @"id"}];
        [mapping addAttributeMappingFromArray:@[@"model", @"year"]];
    }];
@@ -34,7 +40,7 @@
 
 + (EMKManagedObjectMapping *)carNestedAttributesMapping {
 	return [EMKManagedObjectMapping mappingForEntityName:@"Car" configuration:^(EMKManagedObjectMapping *mapping) {
-		[mapping setPrimaryKey:@"carID"];
+//		[mapping setPrimaryKey:@"carID"];
 		[mapping addAttributeMappingDictionary:@{@"carID" : @"id", @"year" : @"information.year"}];
 		[mapping addAttributeMappingFromArray:@[@"model"]];
 	}];
@@ -42,7 +48,7 @@
 
 + (EMKManagedObjectMapping *)carWithDateMapping {
 	return [EMKManagedObjectMapping mappingForEntityName:@"Car" configuration:^(EMKManagedObjectMapping *mapping) {
-		[mapping setPrimaryKey:@"carID"];
+//		[mapping setPrimaryKey:@"carID"];
 		[mapping addAttributeMappingDictionary:@{@"carID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
 		[mapping addAttributeMapping:[EMKAttributeMapping mappingOfProperty:@"createdAt"
@@ -53,7 +59,7 @@
 
 + (EMKManagedObjectMapping *)phoneMapping {
 	return [EMKManagedObjectMapping mappingForEntityName:@"Phone" configuration:^(EMKManagedObjectMapping *mapping) {
-		[mapping setPrimaryKey:@"phoneID"];
+//		[mapping setPrimaryKey:@"phoneID"];
 		[mapping addAttributeMappingDictionary:@{@"phoneID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"number", @"ddd", @"ddi"]];
 	}];
@@ -61,7 +67,7 @@
 
 + (EMKManagedObjectMapping *)personMapping {
 	return [EMKManagedObjectMapping mappingForEntityName:@"Person" configuration:^(EMKManagedObjectMapping *mapping) {
-		[mapping setPrimaryKey:@"personID"];
+//		[mapping setPrimaryKey:@"personID"];
 		[mapping addAttributeMappingDictionary:@{@"personID": @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"name", @"email", @"gender"]];
 		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"car"
@@ -79,7 +85,7 @@
 
 + (EMKManagedObjectMapping *)personWithCarMapping {
 	return [EMKManagedObjectMapping mappingForEntityName:@"Person" configuration:^(EMKManagedObjectMapping *mapping) {
-		[mapping setPrimaryKey:@"personID"];
+//		[mapping setPrimaryKey:@"personID"];
 		[mapping addAttributeMappingDictionary:@{@"personID": @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
 		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"car"
@@ -91,7 +97,7 @@
 
 + (EMKManagedObjectMapping *)personWithPhonesMapping {
 	return [EMKManagedObjectMapping mappingForEntityName:@"Person" configuration:^(EMKManagedObjectMapping *mapping) {
-		[mapping setPrimaryKey:@"personID"];
+//		[mapping setPrimaryKey:@"personID"];
 		[mapping addAttributeMappingDictionary:@{@"personID": @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
 		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"phones"
@@ -104,7 +110,7 @@
 
 + (EMKManagedObjectMapping *)personWithOnlyValueBlockMapping {
 	return [EMKManagedObjectMapping mappingForEntityName:@"Person" configuration:^(EMKManagedObjectMapping *mapping) {
-		[mapping setPrimaryKey:@"personID"];
+//		[mapping setPrimaryKey:@"personID"];
 		[mapping addAttributeMappingDictionary:@{@"personID": @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"name", @"email", @"gender"]];
 	}];
