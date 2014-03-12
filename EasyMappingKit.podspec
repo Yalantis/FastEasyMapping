@@ -17,6 +17,6 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.7'
   s.frameworks = 'CoreData'
 
-  s.source_files = 'EasyMappingKit/Source/*.{h,m}'
+  s.source_files = 'EasyMappingKit/Source/**/*.{h,m}'
 
 end

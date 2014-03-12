@@ -1,10 +1,13 @@
-#import "EMKSerializer.h"
-#import "EMKManagedObjectDeserializer.h"
-#import "EMKObjectDeserializer.h"
+#import "EMKPropertyMapping.h"
+
 #import "EMKMapping.h"
 #import "EMKObjectMapping.h"
 #import "EMKManagedObjectMapping.h"
+
 #import "EMKAttributeMapping.h"
-#import "EMKDeserializer.h"
+#import "EMKRelationshipMapping.h"
+
+#import "EMKSerializer.h"
+#import "EMKManagedObjectDeserializer.h"
+#import "EMKObjectDeserializer.h"
 #import "EMKTypes.h"
-#import "EMKTransformer.h"
