@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "EMKAttributeMapping.h"
 
-extern NSString * const EKRailsDefaultDatetimeFormat;
-extern NSString * const EKBrazilianDefaultDateFormat;
+extern NSString * const EMKRailsDefaultDatetimeFormat;
+extern NSString * const EMKBrazilianDefaultDateFormat;
 
 @interface EMKTransformer : NSObject
 

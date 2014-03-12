@@ -8,8 +8,8 @@
 
 #import "EMKTransformer.h"
 
-NSString * const EKRailsDefaultDatetimeFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-NSString * const EKBrazilianDefaultDateFormat = @"dd/MM/yyyy";
+NSString * const EMKRailsDefaultDatetimeFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+NSString * const EMKBrazilianDefaultDateFormat = @"dd/MM/yyyy";
 
 NSString * const EMKDateFormatterKey = @"EMKDateFormatter";
 

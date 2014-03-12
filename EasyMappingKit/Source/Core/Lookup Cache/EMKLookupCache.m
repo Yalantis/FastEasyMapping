@@ -58,7 +58,7 @@ void EMKLookupCacheRemoveCurrent() {
 	if (self) {
 		_mapping = mapping;
 		_context = context;
-		
+
 		_lookupKeysMap = [NSMutableDictionary new];
 		_lookupObjectsMap = [NSMutableDictionary new];
 
@@ -71,15 +71,15 @@ void EMKLookupCacheRemoveCurrent() {
 #pragma mark - Inspection
 
 - (void)inspectObjectRepresentation:(id)objectRepresentation usingMapping:(EMKManagedObjectMapping *)mapping {
-    if (mapping.primaryKey) {
-        EMKAttributeMapping *primaryKeyMapping = mapping.primaryKeyMapping;
-        NSParameterAssert(primaryKeyMapping);
-        
-        id primaryKeyValue = [primaryKeyMapping mappedValueFromRepresentation:objectRepresentation];
-        if (primaryKeyValue) {
-            [_lookupKeysMap[mapping.entityName] addObject:primaryKeyValue];
-        }
-    }
+	if (mapping.primaryKey) {
+		EMKAttributeMapping *primaryKeyMapping = mapping.primaryKeyMapping;
+		NSParameterAssert(primaryKeyMapping);
+
+		id primaryKeyValue = [primaryKeyMapping mappedValueFromRepresentation:objectRepresentation];
+		if (primaryKeyValue) {
+			[_lookupKeysMap[mapping.entityName] addObject:primaryKeyValue];
+		}
+	}
 
 	for (EMKRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
 		[self inspectExternalRepresentation:objectRepresentation usingMapping:relationshipMapping.objectMapping];
@@ -146,12 +146,18 @@ void EMKLookupCacheRemoveCurrent() {
 	return output;
 }
 
-- (id)existingObjectForRepresentation:(id)representation mapping:(EMKManagedObjectMapping *)mapping {
-	NSDictionary *entityObjectsMap = _lookupObjectsMap[mapping.entityName];
+- (NSMutableDictionary *)cachedObjectsForMapping:(EMKManagedObjectMapping *)mapping {
+	NSMutableDictionary *entityObjectsMap = _lookupObjectsMap[mapping.entityName];
 	if (!entityObjectsMap) {
 		entityObjectsMap = [self fetchExistingObjectsForMapping:mapping];
 		_lookupObjectsMap[mapping.entityName] = entityObjectsMap;
 	}
+
+	return entityObjectsMap;
+}
+
+- (id)existingObjectForRepresentation:(id)representation mapping:(EMKManagedObjectMapping *)mapping {
+	NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
 
 	id primaryKeyValue = [mapping.primaryKeyMapping mappedValueFromRepresentation:representation];
 	if (primaryKeyValue == nil || primaryKeyValue == NSNull.null) return nil;
@@ -160,13 +166,14 @@ void EMKLookupCacheRemoveCurrent() {
 }
 
 - (void)addExistingObject:(id)object usingMapping:(EMKManagedObjectMapping *)mapping {
-    NSParameterAssert(mapping.primaryKey);
+	NSParameterAssert(mapping.primaryKey);
 	NSParameterAssert(object);
-    
+
 	id primaryKeyValue = [object valueForKey:mapping.primaryKey];
 	NSAssert(primaryKeyValue, @"No value for key (%@) on object (%@) found", mapping.primaryKey, object);
-    
-	[_lookupObjectsMap[mapping.entityName] setObject:object forKey:primaryKeyValue];
+
+	NSMutableDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
+	[entityObjectsMap setObject:object forKey:primaryKeyValue];
 }
 
 @end
