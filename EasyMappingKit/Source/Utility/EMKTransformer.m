@@ -11,7 +11,7 @@
 NSString * const EKRailsDefaultDatetimeFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
 NSString * const EKBrazilianDefaultDateFormat = @"dd/MM/yyyy";
 
-NSString * const kDateFormatterKey = @"SCDateFormatter";
+NSString * const EMKDateFormatterKey = @"EMKDateFormatter";
 
 @implementation EMKTransformer
 
@@ -31,13 +31,13 @@ NSString * const kDateFormatterKey = @"SCDateFormatter";
 + (NSDateFormatter *)dateFormatter
 {
     NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
-    NSDateFormatter *dateFormatter = [dictionary objectForKey:kDateFormatterKey];
+    NSDateFormatter *dateFormatter = [dictionary objectForKey:EMKDateFormatterKey];
     if (!dateFormatter)
     {
         dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
         dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-        [dictionary setObject:dateFormatter forKey:kDateFormatterKey];
+	    [dictionary setObject:dateFormatter forKey:EMKDateFormatterKey];
     }
     return dateFormatter;
 }
