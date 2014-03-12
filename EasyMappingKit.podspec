@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
 
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
 
-  s.author       = { "Dmitriy Shemet" => «dmitriy.shemet@yalantis.com" }
+  s.author       = { "Dmitriy Shemet" => "dmitriy.shemet@yalantis.com" }
 
   s.source       = { :git => "https://github.com/Yalantis/EasyMappingKit.git", :tag => "0.1" }
 
