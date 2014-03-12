@@ -2,14 +2,14 @@ Pod::Spec.new do |s|
 
   s.name         = "EasyMappingKit"
   s.version      = "0.1"
-  s.summary      = "FAST EasyMapping"
+  s.summary      = "FAST EasyMapping fork"
   s.homepage     = "https://github.com/poteryaysya/EasyMapping"
 
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
 
-  s.author       = { "Dmitriy Shemet" => "shemet.dmitriy@gmail.com" }
+  s.author       = { "Dmitriy Shemet" => «dmitriy.shemet@yalantis.com" }
 
-  s.source       = { :git => "https://github.com/poteryaysya/EasyMappingKit.git", :tag => "0.1" }
+  s.source       = { :git => "https://github.com/Yalantis/EasyMappingKit.git", :tag => "0.1" }
 
   s.requires_arc = true
 
