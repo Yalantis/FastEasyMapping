@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 static const unichar nativeTypes[] = {
-//    _C_BOOL, _C_BFLD,          // BOOL
+    _C_BOOL, _C_BFLD,          // BOOL
     _C_CHR, _C_UCHR,           // char, unsigned char
     _C_SHT, _C_USHT,           // short, unsigned short
     _C_INT, _C_UINT,           // int, unsigned int, NSInteger, NSUInteger
@@ -117,11 +117,7 @@ static id getPrimitiveReturnValueFromInvocation(NSInvocation * invocation) {
     const char *returnType = [[invocation methodSignature] methodReturnType];
     id resultValue = nil;
 
-//    if (!strcmp(returnType, @encode(BOOL))) {
-//        BOOL result;
-//        [invocation getReturnValue:&result];
-//        resultValue = [NSNumber numberWithBool:result];
-/*    } else */if ( !strcmp(returnType, @encode(char)) ) { // And this is a BOOL also
+    if ( !strcmp(returnType, @encode(char)) ) { // And this is a BOOL also
         char result;
         [invocation getReturnValue:&result];
         resultValue = [NSNumber numberWithChar:result];
@@ -129,6 +125,10 @@ static id getPrimitiveReturnValueFromInvocation(NSInvocation * invocation) {
         unsigned char result;
         [invocation getReturnValue:&result];
         resultValue = [NSNumber numberWithUnsignedChar:result];
+    } else if ( !strcmp(returnType, @encode(BOOL))) {
+        BOOL result;
+        [invocation getReturnValue:&result];
+        resultValue = @(result);
     } else if ( !strcmp(returnType, @encode(short)) ) {
         short result;
         [invocation getReturnValue:&result];

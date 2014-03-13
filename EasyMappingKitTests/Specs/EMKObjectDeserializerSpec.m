@@ -333,63 +333,78 @@ describe(@"EMKObjectDeserializer", ^{
             });
             
             specify(^{
-                [[@(native.charProperty) should] equal:@('c')];
+                char expected = 'c';
+                [[@(native.charProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.unsignedCharProperty) should] equal:@('u')];
+                unsigned char expected = 'u';
+                [[@(native.unsignedCharProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.shortProperty) should] equal:@(1)];
+	            short expexted = 1;
+                [[@(native.shortProperty) should] equal:@(expexted)];
             });
             
             specify(^{
-                [[@(native.unsignedShortProperty) should] equal:@(2)];
+	            unsigned short expected = 2;
+                [[@(native.unsignedShortProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.intProperty) should] equal:@(3)];
+	            int expected = 3;
+                [[@(native.intProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.unsignedIntProperty) should] equal:@(4)];
+	            unsigned int expected = 4;
+                [[@(native.unsignedIntProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.integerProperty) should] equal:@(5)];
+	            NSInteger expected = 5;
+                [[@(native.integerProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.unsignedIntegerProperty) should] equal:@(6)];
+	            NSUInteger expected = 6;
+                [[@(native.unsignedIntegerProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.longProperty) should] equal:@(7)];
+	            long expected = 7;
+                [[@(native.longProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.unsignedLongProperty) should] equal:@(8)];
+	            unsigned long expected = 8;
+                [[@(native.unsignedLongProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.longLongProperty) should] equal:@(9)];
+	            long long expected = 9;
+                [[@(native.longLongProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.unsignedLongLongProperty) should] equal:@(10)];
+	            unsigned long long expected = 10;
+                [[@(native.unsignedLongLongProperty) should] equal:@(expected)];
             });
             
             specify(^{
-                [[@(native.floatProperty) should] equal:@(11.1f)];
+	            float expected = 11.1f;
+                [[@(native.floatProperty) should] equal:expected withDelta:0.001];
             });
             
             specify(^{
-                [[@(native.cgFloatProperty) should] equal:@(12.2f)];
+	            CGFloat expected = 12.2f;
+                [[@(native.cgFloatProperty) should] equal:expected withDelta:0.001];
             });
             
             specify(^{
-                [[@(native.doubleProperty) should] equal:@(13.3)];
+	            double expected = 13.3;
+                [[@(native.doubleProperty) should] equal:expected withDelta:0.001];
             });
             
             specify(^{

@@ -414,63 +414,78 @@ SPEC_BEGIN(EMKSerializerSpec)
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"charProperty"] should] equal:@('c')];
+					char expected = 'c';
+					[[[representation objectForKey:@"charProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"unsignedCharProperty"] should] equal:@('u')];
+					unsigned char expected = 'u';
+					[[[representation objectForKey:@"unsignedCharProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"shortProperty"] should] equal:@(1)];
+					short expected = 1;
+					[[[representation objectForKey:@"shortProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"unsignedShortProperty"] should] equal:@(2)];
+					unsigned short expected = 2;
+					[[[representation objectForKey:@"unsignedShortProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"intProperty"] should] equal:@(3)];
+					int expected = 3;
+					[[[representation objectForKey:@"intProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"unsignedIntProperty"] should] equal:@(4)];
+					unsigned int expected = 4;
+					[[[representation objectForKey:@"unsignedIntProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"integerProperty"] should] equal:@(5)];
+					NSInteger expected = 5;
+					[[[representation objectForKey:@"integerProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"unsignedIntegerProperty"] should] equal:@(6)];
+					NSUInteger expected = 6;
+					[[[representation objectForKey:@"unsignedIntegerProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"longProperty"] should] equal:@(7)];
+					long expected = 7;
+					[[[representation objectForKey:@"longProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"unsignedLongProperty"] should] equal:@(8)];
+					unsigned long expected = 8;
+					[[[representation objectForKey:@"unsignedLongProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"longLongProperty"] should] equal:@(9)];
+					long long expected = 9;
+					[[[representation objectForKey:@"longLongProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"unsignedLongLongProperty"] should] equal:@(10)];
+					unsigned long long expected = 10;
+					[[[representation objectForKey:@"unsignedLongLongProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"floatProperty"] should] equal:@(11.1f)];
+					float expected = 11.1f;
+                    [[[representation objectForKey:@"floatProperty"] should] equal:expected withDelta:0.001];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"cgFloatProperty"] should] equal:@(12.2f)];
+                    CGFloat expected = 12.2f;
+                    [[[representation objectForKey:@"cgFloatProperty"] should] equal:expected withDelta:0.001];
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"doubleProperty"] should] equal:@(13.3)];
+					double expected = 13.3;
+                    [[[representation objectForKey:@"doubleProperty"] should] equal:expected withDelta:0.001];
 				});
 
 				specify(^{
@@ -491,7 +506,8 @@ SPEC_BEGIN(EMKSerializerSpec)
 				});
 
 				specify(^{
-					[[[representation objectForKey:@"intProperty"] should] equal:@(777)];
+                    int expected = 777;
+					[[[representation objectForKey:@"intProperty"] should] equal:@(expected)];
 				});
 
 				specify(^{
