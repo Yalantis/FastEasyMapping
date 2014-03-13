@@ -1,6 +1,6 @@
 # EasyMappingKit
 
-[![Build Status](https://travis-ci.org/Yalantis/EasyMappingKit.png?branch=feature/test_feature)](https://travis-ci.org/Yalantis/EasyMappingKit)
+[![Build Status](https://travis-ci.org/Yalantis/EasyMappingKit.png)](https://travis-ci.org/Yalantis/EasyMappingKit)
 
 This is fork of https://github.com/lucasmedeirosleite/EasyMapping
 Dramatically improved Mapping performance & fixed several code-style & dependencies issues
