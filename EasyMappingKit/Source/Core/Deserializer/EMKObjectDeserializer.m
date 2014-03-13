@@ -7,9 +7,9 @@
 //
 
 #import "EMKObjectDeserializer.h"
+
 #import "EMKPropertyHelper.h"
 #import "EMKAttributeMapping.h"
-#import "EMKTransformer.h"
 #import <objc/runtime.h>
 #import "EMKManagedObjectDeserializer.h"
 #import "NSArray+EMKExtension.h"

@@ -63,7 +63,6 @@
 		2CF809AC18C3AEC800C07899 /* EMKAttributeMapping+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7539B5509DF9599396EA /* EMKAttributeMapping+Extension.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		2CF809AD18C3AEC800C07899 /* NSArray+EMKExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7645386941DA79C1E53A /* NSArray+EMKExtension.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		2CF809AF18C3AEC800C07899 /* EMKPropertyHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7E6CB1B484C7F335B55F /* EMKPropertyHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		2CF809B018C3AEC800C07899 /* EMKTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED76FF15989E4B2D1938D8 /* EMKTransformer.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		69ED70D8C859F4A0BDE4DCF8 /* EMKAttributeMapping+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED718D4E6F950EE17E08C6 /* EMKAttributeMapping+Extension.m */; };
 		69ED7118E43D74A843AA1E54 /* EMKMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7A4A3BD1A49CCC1AB9A4 /* EMKMapping.m */; };
 		69ED7144E37E067666813AF9 /* NSArray+EMKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757059F6C7A26468D880 /* NSArray+EMKExtension.m */; };
@@ -74,7 +73,6 @@
 		69ED7687C035FA51A536AB56 /* EMKPropertyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7F5DB5E0C3FF6672226E /* EMKPropertyHelper.m */; };
 		69ED7687DEAC011EE09F5D1A /* EMKManagedObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED790F30E4E551B1416E60 /* EMKManagedObjectMapping.m */; };
 		69ED776944D5FF7D7166F975 /* EMKObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED79ACE44B6BFB58B0B3F5 /* EMKObjectDeserializer.m */; };
-		69ED7907DC5AB1674B8CF3F5 /* EMKTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED74270CBA655E787B8FCA /* EMKTransformer.m */; };
 		69ED797C93C27C8E3BBC1BDB /* EMKSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED73028D190C49BF2E0F8D /* EMKSerializer.m */; };
 		69ED7A9D4C100F6C8EEEDC03 /* EMKRelationshipMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757758DA67B4E8247495 /* EMKRelationshipMapping.m */; };
 		69ED7C04B0D06A2E75D9CDDD /* EMKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7972B98B6046006A3F97 /* EMKObjectMapping.m */; };
@@ -129,7 +127,6 @@
 		69ED73028D190C49BF2E0F8D /* EMKSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKSerializer.m; sourceTree = "<group>"; };
 		69ED734D9AF0D834B3D9D190 /* CarNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarNative.m; sourceTree = "<group>"; };
 		69ED741033C38A5C3BAA7B08 /* FingerNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerNative.h; sourceTree = "<group>"; };
-		69ED74270CBA655E787B8FCA /* EMKTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKTransformer.m; sourceTree = "<group>"; };
 		69ED747DF1709A9ABAC81F68 /* NativeChild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeChild.m; sourceTree = "<group>"; };
 		69ED749AC1C7BE9BBB361F2B /* Native.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Native.m; sourceTree = "<group>"; };
 		69ED74EA8FEC3EC66EF72AA7 /* PlaneNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaneNative.m; sourceTree = "<group>"; };
@@ -152,7 +149,6 @@
 		69ED76A31CE5167D72298490 /* AlienNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlienNative.m; sourceTree = "<group>"; };
 		69ED76DB4A492924FFE33FAF /* AlienNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlienNative.h; sourceTree = "<group>"; };
 		69ED76E0E8184C9BDF3CE713 /* CatNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatNative.m; sourceTree = "<group>"; };
-		69ED76FF15989E4B2D1938D8 /* EMKTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKTransformer.h; sourceTree = "<group>"; };
 		69ED770C14BAB15CA7926116 /* NSObject+EMKKVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EMKKVC.m"; sourceTree = "<group>"; };
 		69ED771F4A0CC2BB6D9583BC /* EMKManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKManagedObjectDeserializer.h; sourceTree = "<group>"; };
 		69ED772E50A1A831B78D48B3 /* EMKManagedObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKManagedObjectDeserializer.m; sourceTree = "<group>"; };
@@ -282,8 +278,6 @@
 			children = (
 				69ED7F5DB5E0C3FF6672226E /* EMKPropertyHelper.m */,
 				69ED7E6CB1B484C7F335B55F /* EMKPropertyHelper.h */,
-				69ED76FF15989E4B2D1938D8 /* EMKTransformer.h */,
-				69ED74270CBA655E787B8FCA /* EMKTransformer.m */,
 				69ED7A8B2E60F728B99A0CB9 /* EMKTypes.h */,
 			);
 			path = Utility;
@@ -535,7 +529,6 @@
 				2CF809AF18C3AEC800C07899 /* EMKPropertyHelper.h in Headers */,
 				69ED7E8934131F087C5492A3 /* EMKLookupCache.h in Headers */,
 				69ED72338B6419101B1C8CDB /* NSObject+EMKKVC.h in Headers */,
-				2CF809B018C3AEC800C07899 /* EMKTransformer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,7 +679,6 @@
 				69ED7DADB8044F2B42C1CD94 /* EMKManagedObjectDeserializer.m in Sources */,
 				69ED7144E37E067666813AF9 /* NSArray+EMKExtension.m in Sources */,
 				69ED7687C035FA51A536AB56 /* EMKPropertyHelper.m in Sources */,
-				69ED7907DC5AB1674B8CF3F5 /* EMKTransformer.m in Sources */,
 				69ED756EBF9D955A7B6A580A /* EMKLookupCache.m in Sources */,
 				69ED74D218BD6B3888549434 /* NSObject+EMKKVC.m in Sources */,
 			);

@@ -8,8 +8,6 @@
 
 #import "EMKAttributeMapping.h"
 
-#import "EMKTransformer.h"
-
 @implementation EMKAttributeMapping {
 	EMKMapBlock _map;
 	EMKMapBlock _reverseMap;
@@ -48,22 +46,19 @@
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath {
-	return [self mappingOfProperty:property keyPath:keyPath map:NULL         reverseMap:NULL];
+	return [self mappingOfProperty:property keyPath:keyPath map:NULL reverseMap:NULL];
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {
+	NSDateFormatter *formatter = [NSDateFormatter new];
+	[formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+	[formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/London"]];
+	[formatter setDateFormat:dateFormat];
+
 	return [self mappingOfProperty:property keyPath:keyPath map:^id(id value) {
-		if ([value isKindOfClass:[NSString class]]) {
-			return [EMKTransformer transformString:value withDateFormat:dateFormat];
-		} else {
-			return nil;
-		}
+		return [value isKindOfClass:[NSString class]] ? [formatter dateFromString:value] : nil;
 	} reverseMap:^id(id value) {
-		if ([value isKindOfClass:[NSDate class]]) {
-			return [EMKTransformer transformDate:value withDateFormat:dateFormat];
-		} else {
-			return nil;
-		}
+		return [value isKindOfClass:[NSDate class]] ? [formatter stringFromDate:value] : nil;
 	}];
 }
 
