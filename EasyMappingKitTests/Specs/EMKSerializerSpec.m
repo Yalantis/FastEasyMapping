@@ -508,6 +508,6 @@ SPEC_BEGIN(EMKSerializerSpec)
 
 	});
 
-	SPEC_END
+SPEC_END
 
 
