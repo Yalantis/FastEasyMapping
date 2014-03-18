@@ -36,8 +36,6 @@ void EMKLookupCacheRemoveCurrent() {
 }
 
 @implementation EMKLookupCache {
-	id _externalRepresentation;
-
 	NSManagedObjectContext *_context;
 
 	NSMutableDictionary *_lookupKeysMap;
@@ -56,13 +54,13 @@ void EMKLookupCacheRemoveCurrent() {
 
 	self = [self init];
 	if (self) {
-		_mapping = mapping;
 		_context = context;
 
 		_lookupKeysMap = [NSMutableDictionary new];
 		_lookupObjectsMap = [NSMutableDictionary new];
 
-		[self fillUsingExternalRepresentation:externalRepresentation];
+		[self prepareMappingLookupStructure:nil ];
+		[self inspectExternalRepresentation:externalRepresentation usingMapping:mapping];
 	}
 
 	return self;
@@ -108,24 +106,13 @@ void EMKLookupCacheRemoveCurrent() {
 	}
 }
 
-- (void)prepareLookupMapsStructure {
+- (void)prepareMappingLookupStructure:(EMKManagedObjectMapping *)mapping {
 	NSMutableSet *entityNames = [NSMutableSet new];
-	[self collectEntityNames:entityNames usingMapping:self.mapping];
+	[self collectEntityNames:entityNames usingMapping:mapping];
 
 	for (NSString *entityName in entityNames) {
 		_lookupKeysMap[entityName] = [NSMutableSet new];
 	}
-}
-
-- (void)fillUsingExternalRepresentation:(id)externalRepresentation {
-	// ie. drop previous results
-	_externalRepresentation = externalRepresentation;
-
-	[_lookupKeysMap removeAllObjects];
-	[_lookupObjectsMap removeAllObjects];
-
-	[self prepareLookupMapsStructure];
-	[self inspectExternalRepresentation:_externalRepresentation usingMapping:self.mapping];
 }
 
 - (NSMutableDictionary *)fetchExistingObjectsForMapping:(EMKManagedObjectMapping *)mapping {

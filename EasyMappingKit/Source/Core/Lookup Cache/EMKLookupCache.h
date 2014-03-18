@@ -15,7 +15,6 @@ OBJC_EXTERN void EMKLookupCacheRemoveCurrent();
 
 @interface EMKLookupCache : NSObject
 
-@property (nonatomic, strong, readonly) EMKManagedObjectMapping *mapping;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *context;
 
 - (instancetype)initWithMapping:(EMKManagedObjectMapping *)mapping
