@@ -129,7 +129,6 @@ NSArray *collectionRepresentation = [EMKSerializer serializeCollection:cars usin
 ```
 
 # Roadmap
-* Move to Specta / Expecta
 * Add relationship mapping policy (ie. assign, merge, replace).
 
 # Thanks
