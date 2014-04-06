@@ -128,5 +128,12 @@ NSArray *collectionRepresentation = [EMKSerializer serializeCollection:cars usin
 
 ```
 
+# Roadmap
+* Move to Specta / Expecta
+* Add relationship mapping policy (ie. assign, merge, replace).
+
 # Thanks
 * Special thanks to [lucasmedeirosleite](https://github.com/lucasmedeirosleite) for amazing framework.
+
+# Extra
+Read out [blogpost](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) about EasyMappingKit.
