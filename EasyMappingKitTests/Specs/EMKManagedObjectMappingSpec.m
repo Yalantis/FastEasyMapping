@@ -67,7 +67,7 @@ describe(@"EMKManagedObjectMapping", ^{
         });
         
         specify(^{
-	        [[mapping should] respondsToSelector:@selector(relationshipMappings)];
+            [[mapping should] respondToSelector:@selector(relationshipMappings)];
         });
     });
     
