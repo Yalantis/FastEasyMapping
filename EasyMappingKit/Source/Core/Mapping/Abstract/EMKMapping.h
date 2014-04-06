@@ -40,6 +40,6 @@
 - (void)addRelationshipMapping:(EMKMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
 - (void)addToManyRelationshipMapping:(EMKMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
 
-- (id)mappedExternalRepresentation:(id)externalRepresentation;
+- (id)extractRootFromExternalRepresentation:(id)externalRepresentation;
 
 @end

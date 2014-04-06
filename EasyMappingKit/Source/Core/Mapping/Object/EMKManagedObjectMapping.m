@@ -25,7 +25,7 @@
 	return [self initWithEntityName:entityName rootPath:nil];
 }
 
-+ (EMKManagedObjectMapping *)mappingForEntityName:(NSString *)entityName configuration:(void (^)(EMKManagedObjectMapping *mapping))configuration {
++ (EMKManagedObjectMapping *)mappingForEntityName:(NSString *)entityName configuration:(void (^)(EMKManagedObjectMapping *sender))configuration {
 	EMKManagedObjectMapping *mapping = [[EMKManagedObjectMapping alloc] initWithEntityName:entityName];
 	configuration(mapping);
 	return mapping;
@@ -33,11 +33,15 @@
 
 + (EMKManagedObjectMapping *)mappingForEntityName:(NSString *)entityName
                                          rootPath:(NSString *)rootPath
-		                            configuration:(void (^)(EMKManagedObjectMapping *mapping))configuration {
+		                            configuration:(void (^)(EMKManagedObjectMapping *sender))configuration {
 	EMKManagedObjectMapping *mapping = [[EMKManagedObjectMapping alloc] initWithEntityName:entityName
 	                                                                              rootPath:rootPath];
 	configuration(mapping);
 	return mapping;
+}
+
++ (EMKManagedObjectMapping *)mappingForEntityName:(NSString *)entityName {
+	return [[self alloc] initWithEntityName:entityName rootPath:nil];
 }
 
 #pragma mark - Properties

@@ -25,3 +25,9 @@
 + (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath objectMapping:(EMKMapping *)objectMapping;
 
 @end
+
+@interface EMKRelationshipMapping (Extension)
+
+- (id)extractRootFromExternalRepresentation:(id)externalRepresentation;
+
+@end

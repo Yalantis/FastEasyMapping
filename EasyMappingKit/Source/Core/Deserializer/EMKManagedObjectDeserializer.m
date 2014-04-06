@@ -40,7 +40,7 @@
 + (id)_deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
                                   usingMapping:(EMKManagedObjectMapping *)mapping
 			                           context:(NSManagedObjectContext *)context {
-	id objectRepresentation = [mapping mappedExternalRepresentation:externalRepresentation];
+	id objectRepresentation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
 	return [self _deserializeObjectRepresentation:objectRepresentation usingMapping:mapping context:context];
 }
 
@@ -66,18 +66,19 @@
 	NSManagedObjectContext *context = object.managedObjectContext;
 	for (EMKRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
 		id deserializedRelationship = nil;
+		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
 
 		if (relationshipMapping.isToMany) {
-			deserializedRelationship = [self _deserializeCollectionExternalRepresentation:representation
-			                                                                 usingMapping:relationshipMapping.objectMapping
-						                                                          context:context];
+			deserializedRelationship = [self _deserializeCollectionRepresentation:relationshipRepresentation
+			                                                         usingMapping:relationshipMapping.objectMapping
+						                                                  context:context];
 
 			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
 			deserializedRelationship = [deserializedRelationship ek_propertyRepresentation:property];
 		} else {
-			deserializedRelationship = [self _deserializeObjectExternalRepresentation:representation
-			                                                             usingMapping:relationshipMapping.objectMapping
-						                                                      context:context];
+			deserializedRelationship = [self _deserializeObjectRepresentation:relationshipRepresentation
+			                                                     usingMapping:relationshipMapping.objectMapping
+						                                              context:context];
 		}
 
 		if (deserializedRelationship) {
@@ -89,26 +90,28 @@
 }
 
 + (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKManagedObjectMapping *)mapping {
-	id objectRepresentation = [mapping mappedExternalRepresentation:externalRepresentation];
+	id objectRepresentation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
 	return [self _fillObject:object fromRepresentation:objectRepresentation usingMapping:mapping];
 }
 
 + (NSArray *)_deserializeCollectionRepresentation:(NSArray *)representation
                                      usingMapping:(EMKManagedObjectMapping *)mapping
 			                              context:(NSManagedObjectContext *)context {
-	NSMutableArray *array = [NSMutableArray array];
+	NSMutableArray *output = [NSMutableArray array];
 	for (id objectRepresentation in representation) {
-		[array addObject:[self _deserializeObjectRepresentation:objectRepresentation
-		                                           usingMapping:mapping
-					                                    context:context]];
+		@autoreleasepool {
+			[output addObject:[self _deserializeObjectRepresentation:objectRepresentation
+			                                            usingMapping:mapping
+						                                     context:context]];
+		}
 	}
-	return [NSArray arrayWithArray:array];
+	return [output copy];
 }
 
 + (NSArray *)_deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation
                                              usingMapping:(EMKManagedObjectMapping *)mapping
 			                                      context:(NSManagedObjectContext *)context {
-	id representation = [mapping mappedExternalRepresentation:externalRepresentation];
+	id representation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
 	return [self _deserializeCollectionRepresentation:representation usingMapping:mapping context:context];
 }
 
@@ -127,6 +130,7 @@
 	return output;
 }
 
+// unused
 + (NSArray *)syncArrayOfObjectsFromExternalRepresentation:(NSArray *)externalRepresentation
                                               withMapping:(EMKManagedObjectMapping *)mapping
 		                                     fetchRequest:(NSFetchRequest *)fetchRequest

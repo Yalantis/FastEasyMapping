@@ -19,11 +19,12 @@
 
 @property (nonatomic, strong, readonly) EMKAttributeMapping *primaryKeyMapping;
 
++ (EMKManagedObjectMapping *)mappingForEntityName:(NSString *)entityName;
 + (EMKManagedObjectMapping *)mappingForEntityName:(NSString *)entityName
-                                    configuration:(void (^)(EMKManagedObjectMapping *mapping))configuration;
+                                    configuration:(void (^)(EMKManagedObjectMapping *sender))configuration;
 + (EMKManagedObjectMapping *)mappingForEntityName:(NSString *)entityName
                                          rootPath:(NSString *)rootPath
-		                            configuration:(void (^)(EMKManagedObjectMapping *mapping))configuration;
+		                            configuration:(void (^)(EMKManagedObjectMapping *sender))configuration;
 
 - (id)initWithEntityName:(NSString *)entityName;
 - (id)initWithEntityName:(NSString *)entityName rootPath:(NSString *)rootPath;

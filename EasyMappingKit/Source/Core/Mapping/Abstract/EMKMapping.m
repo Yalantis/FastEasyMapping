@@ -117,7 +117,7 @@
 	[self addRelationshipMapping:relationshipMapping];
 }
 
-- (id)mappedExternalRepresentation:(id)externalRepresentation {
+- (id)extractRootFromExternalRepresentation:(id)externalRepresentation {
 	return self.rootPath ? [externalRepresentation valueForKeyPath:self.rootPath] : externalRepresentation;
 }
 

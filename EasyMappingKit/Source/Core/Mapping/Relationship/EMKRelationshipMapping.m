@@ -47,29 +47,19 @@
 
 #pragma mark - Property objectMapping
 
-- (void)setObjectMapping:(EMKMapping *)objectMapping {
-	_objectMapping = objectMapping;
-
-	[_objectMapping setRootPath:_keyPath];
-}
-
 - (void)setObjectMapping:(EMKMapping *)objectMapping forKeyPath:(NSString *)keyPath {
 	[self setObjectMapping:objectMapping];
 	[self setKeyPath:keyPath];
 }
 
-#pragma mark - Property keyPath
+@end
 
-- (void)setKeyPath:(NSString *)keyPath {
-	_keyPath = [keyPath copy];
+@implementation EMKRelationshipMapping (Extension)
 
-	[self.objectMapping setRootPath:_keyPath];
-}
+- (id)extractRootFromExternalRepresentation:(id)externalRepresentation {
+	if (self.keyPath) return [externalRepresentation valueForKeyPath:self.keyPath];
 
-- (NSString *)keyPath {
-	NSParameterAssert(_keyPath == self.objectMapping.rootPath);
-
-	return _keyPath;
+	return externalRepresentation;
 }
 
 @end

@@ -59,7 +59,7 @@ void EMKLookupCacheRemoveCurrent() {
 		_lookupKeysMap = [NSMutableDictionary new];
 		_lookupObjectsMap = [NSMutableDictionary new];
 
-		[self prepareMappingLookupStructure:nil ];
+		[self prepareMappingLookupStructure:mapping];
 		[self inspectExternalRepresentation:externalRepresentation usingMapping:mapping];
 	}
 
@@ -80,13 +80,12 @@ void EMKLookupCacheRemoveCurrent() {
 	}
 
 	for (EMKRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
-		[self inspectExternalRepresentation:objectRepresentation usingMapping:relationshipMapping.objectMapping];
+		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:objectRepresentation];
+		[self inspectRepresentation:relationshipRepresentation usingMapping:relationshipMapping.objectMapping];
 	}
 }
 
-- (void)inspectExternalRepresentation:(id)externalRepresentation usingMapping:(EMKManagedObjectMapping *)mapping {
-	id representation = [mapping mappedExternalRepresentation:externalRepresentation];
-
+- (void)inspectRepresentation:(id)representation usingMapping:(EMKManagedObjectMapping *)mapping {
 	if ([representation isKindOfClass:NSArray.class]) {
 		for (id objectRepresentation in representation) {
 			[self inspectObjectRepresentation:objectRepresentation usingMapping:mapping];
@@ -94,8 +93,18 @@ void EMKLookupCacheRemoveCurrent() {
 	} else if ([representation isKindOfClass:NSDictionary.class]) {
 		[self inspectObjectRepresentation:representation usingMapping:mapping];
 	} else {
-		assert(false);
+		NSAssert(
+			NO,
+			@"Expected container classes: NSArray, NSDictionary. Got:%@",
+			NSStringFromClass([representation class])
+		);
 	}
+}
+
+- (void)inspectExternalRepresentation:(id)externalRepresentation usingMapping:(EMKManagedObjectMapping *)mapping {
+	id representation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
+
+	[self inspectRepresentation:representation usingMapping:mapping];
 }
 
 - (void)collectEntityNames:(NSMutableSet *)namesCollection usingMapping:(EMKManagedObjectMapping *)mapping {

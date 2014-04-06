@@ -28,15 +28,4 @@
                                             usingMapping:(EMKManagedObjectMapping *)mapping
 			                                     context:(NSManagedObjectContext *)context;
 
-/** Synchronize the objects in the managed obejct context with the objets from an external
-    representation. Any new objects will be created, any existing objects will be updated
-    and any object not present in the external representation will be deleted from the
-    managed object context. The fetch request is used to pre-fetch all existing objects.
-    This speeds up managed object lookup by a very significant amount.
- */
-+ (NSArray *)syncArrayOfObjectsFromExternalRepresentation:(NSArray *)externalRepresentation
-                                              withMapping:(EMKManagedObjectMapping *)mapping
-		                                     fetchRequest:(NSFetchRequest *)fetchRequest
-					               inManagedObjectContext:(NSManagedObjectContext *)moc;
-
 @end
