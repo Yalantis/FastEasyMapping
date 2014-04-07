@@ -6,7 +6,7 @@
 This is fork of [EasyMapping](https://github.com/lucasmedeirosleite/EasyMapping) - flexible and easy way of JSON mapping.
 
 ## Reason to be
-It turns out, that almost all popular libraries for JSON mapping SLOW. The main reason is often trips to database during lookup of existing objects. So we decided to take already existing [flexible solution](https://github.com/lucasmedeirosleite/EasyMapping) and improve overall performance. 
+It turns out, that almost all popular libraries for JSON mapping SLOW. The main reason is often trips to database during lookup of existing objects. So we [decided](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) to take already existing [flexible solution](https://github.com/lucasmedeirosleite/EasyMapping) and improve overall performance. 
 <p align="center" >
   <img src="https://raw.githubusercontent.com/Yalantis/EasyMappingKit/master/Assets/com.yalantis.easymappingkit.performance.png" alt="EasyMappingKit" title="EasyMappingKit">
 </p>
@@ -17,7 +17,6 @@ It turns out, that almost all popular libraries for JSON mapping SLOW. The main 
 Supose you have these classes:
 
 ```objective-c
-
 @interface Person : NSManagedObject
 
 @property (nonatomic, retain) NSNumber *personID;
@@ -47,13 +46,11 @@ Supose you have these classes:
 @property (nonatomic, retain) Person *person;
 
 @end
-
 ```
 
 Mapping can be described in next way:
 
 ```objective-c
-
 @implementation MappingProvider
 
 + (EMKManagedObjectMapping *)personMapping {
@@ -83,12 +80,13 @@ Mapping can be described in next way:
 	}];
 }
 
+@end
 ```
 
-* Converting a NSDictionary or NSArray to a object class or collection now becomes easy:
+
+Converting a NSDictionary or NSArray to a object class or collection now becomes easy:
 
 ```objective-c
-
 Person *person = [EMKManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
                                                                           usingMapping:[MappingProvider personMapping]
                                                                                context:context];
@@ -96,22 +94,18 @@ Person *person = [EMKManagedObjectDeserializer deserializeObjectExternalRepresen
 NSArray *cars = [EMKManagedObjectDeserializer deserializeCollectionExternalRepresentation:externalRepresentation
                                                                              usingMapping:[MappingProvider carMapping]
                                                                                   context:moc];
-
 ```
 
-* Filling an existent object:
 
-Supose you have something like this:
+Filling an existent object:
 
 ```objective-c
-	
 Person *person = // fetch somehow;
 
 EMKManagedObjectMapping *mapping = [MappingProvider personMapping];
 [EMKManagedObjectDeserializer fillObject:person fromExternalRepresentation:externalRepresentation usingMapping:mapping];
-
-	
 ```
+
 
 ## Deserialization. NSObject
 
@@ -122,10 +116,8 @@ If you are using NSObject use `EKObjectMapping` instead of `EMKManagedObjectMapp
 For both NSManagedObject and NSObject serialization to JSON looks the same:
 
 ```objective-c
-
 NSDictionary *representation = [EMKSerializer serializeObject:car usingMapping:[MappingProvider carMapping]];
 NSArray *collectionRepresentation = [EMKSerializer serializeCollection:cars usingMapping:[MappingProvider carMapping]];
-
 ```
 
 # Roadmap
