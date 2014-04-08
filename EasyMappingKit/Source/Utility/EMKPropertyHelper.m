@@ -145,14 +145,6 @@ static id getPrimitiveReturnValueFromInvocation(NSInvocation * invocation) {
         unsigned int result;
         [invocation getReturnValue:&result];
         resultValue = [NSNumber numberWithUnsignedInt:result];
-    } else if ( !strcmp(returnType, @encode(NSInteger)) ) {
-        NSInteger result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithInteger:result];
-    } else if ( !strcmp(returnType, @encode(NSUInteger)) ) {
-        NSUInteger result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithUnsignedInteger:result];
     } else if ( !strcmp(returnType, @encode(long)) ) {
         long result;
         [invocation getReturnValue:&result];
