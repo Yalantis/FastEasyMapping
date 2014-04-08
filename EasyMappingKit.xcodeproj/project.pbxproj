@@ -108,7 +108,6 @@
 		2C533D19170E45D087B38DD0 /* Pods-EasyMappingKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyMappingKitTests.xcconfig"; path = "Pods/Pods-EasyMappingKitTests.xcconfig"; sourceTree = "<group>"; };
 		2CF8097818C3AD5700C07899 /* libEasyMappingKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEasyMappingKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF8097B18C3AD5700C07899 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		2CF8097F18C3AD5700C07899 /* EasyMappingKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EasyMappingKit-Prefix.pch"; sourceTree = "<group>"; };
 		2CF8098818C3AD5700C07899 /* EasyMappingKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyMappingKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF8098918C3AD5700C07899 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2CF8098C18C3AD5700C07899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -119,6 +118,7 @@
 		69ED70FD89800BB41C8894FE /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
 		69ED7141C706CAC006EADE5A /* EMKAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKAttributeMapping.m; sourceTree = "<group>"; };
 		69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressNative.m; sourceTree = "<group>"; };
+		69ED7153320369C3FEB8A8F4 /* EasyMappingKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EasyMappingKit-Prefix.pch"; sourceTree = "<group>"; };
 		69ED71666439C5B0BC0A6650 /* CatNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatNative.h; sourceTree = "<group>"; };
 		69ED718D4E6F950EE17E08C6 /* EMKAttributeMapping+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMKAttributeMapping+Extension.m"; sourceTree = "<group>"; };
 		69ED71A71F750AEBC8BA6FF0 /* MappingProviderNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProviderNative.h; sourceTree = "<group>"; };
@@ -196,7 +196,6 @@
 		69ED7FF7736562A674D3696D /* PlaneNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneNative.h; sourceTree = "<group>"; };
 		7AEACCE5C88A456CB10752EF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FFF304ED83840FB9FA7E2BD /* libPods-EasyMappingKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyMappingKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C755AE789ADE47C1B6DA165D /* libPods-EasyMappingKitNativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyMappingKitNativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,7 +250,6 @@
 				2CF8098C18C3AD5700C07899 /* UIKit.framework */,
 				7AEACCE5C88A456CB10752EF /* libPods.a */,
 				8FFF304ED83840FB9FA7E2BD /* libPods-EasyMappingKitTests.a */,
-				C755AE789ADE47C1B6DA165D /* libPods-EasyMappingKitNativeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -259,18 +257,9 @@
 		2CF8097D18C3AD5700C07899 /* EasyMappingKit */ = {
 			isa = PBXGroup;
 			children = (
-				2CF8097E18C3AD5700C07899 /* Supporting Files */,
 				69ED7BED4BE92D2D4F4716FF /* Source */,
 			);
 			path = EasyMappingKit;
-			sourceTree = "<group>";
-		};
-		2CF8097E18C3AD5700C07899 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2CF8097F18C3AD5700C07899 /* EasyMappingKit-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		69ED7057C5D3DBE4072F331B /* Utility */ = {
@@ -368,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				69ED730BF972DF74DC2BA5B3 /* InfoPlist.strings */,
+				69ED79C6C00F61AE646C591E /* Supporting Files */,
 			);
 			path = en.lproj;
 			sourceTree = "<group>";
@@ -378,7 +368,7 @@
 				69ED7574EDCD21D0E501C8A1 /* Mapping */,
 				69ED7210BACE9471FFD6A15D /* Serializer */,
 				69ED7C8732A1C26BF1CF78CD /* Deserializer */,
-				69ED7CB4B4B9CD8DDF958D64 /* Lookup Cache */,
+				69ED7CB4B4B9CD8DDF958D64 /* Cache */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -435,6 +425,15 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
+		69ED79C6C00F61AE646C591E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				69ED7153320369C3FEB8A8F4 /* EasyMappingKit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = EasyMappingKit;
+			sourceTree = SOURCE_ROOT;
+		};
 		69ED7A4034F64A92A077C593 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,13 +488,13 @@
 			path = Deserializer;
 			sourceTree = "<group>";
 		};
-		69ED7CB4B4B9CD8DDF958D64 /* Lookup Cache */ = {
+		69ED7CB4B4B9CD8DDF958D64 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
 				69ED7D24C1EE78C03CAB9C9B /* EMKLookupCache.m */,
 				69ED7DE30D50997F9408F36E /* EMKLookupCache.h */,
 			);
-			path = "Lookup Cache";
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		69ED7D6D5B95704EF3E879DA /* Extensions */ = {

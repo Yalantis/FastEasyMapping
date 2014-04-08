@@ -20,8 +20,23 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FingerNative : NSObject
+@class EMKLookupCache, EMKManagedObjectMapping, NSManagedObjectContext;
 
-@property (nonatomic, copy) NSString *name;
+OBJC_EXTERN EMKLookupCache *EMKLookupCacheGetCurrent();
+OBJC_EXTERN void EMKLookupCacheSetCurrent(EMKLookupCache *cache);
+OBJC_EXTERN void EMKLookupCacheRemoveCurrent();
+
+@interface EMKLookupCache : NSObject
+
+@property (nonatomic, strong, readonly) NSManagedObjectContext *context;
+
+- (instancetype)initWithMapping:(EMKManagedObjectMapping *)mapping
+         externalRepresentation:(id)externalRepresentation
+					    context:(NSManagedObjectContext *)context;
+
+#pragma mark -
+
+- (id)existingObjectForRepresentation:(id)representation mapping:(EMKManagedObjectMapping *)mapping;
+- (void)addExistingObject:(id)object usingMapping:(EMKManagedObjectMapping *)mapping;
 
 @end
