@@ -95,31 +95,17 @@ static id getPrimitiveReturnValueFromInvocation(NSInvocation * invocation);
 }
 
 static NSString * getPropertyType(objc_property_t property) {
-    const char *attributes = property_getAttributes(property);
-    char buffer[1 + strlen(attributes)];
-    strcpy(buffer, attributes);
-    char *state = buffer, *attribute;
-	const char TypeAttribute = 'T';
-    while ((attribute = strsep(&state, ",")) != NULL) {
-	    if (attribute[0] == TypeAttribute) {
-			if (attribute[1] == _C_ID) {
-				if (strlen(attribute) == 2) {
-					return @"id";
-				}
-				else {
-					return [[NSString alloc] initWithBytes:(attribute + 3)
-					                                length:strlen(attribute) - 4
-						                          encoding:NSUTF8StringEncoding];
-				}
-			}
-			else {
-				return [[NSString alloc] initWithBytes:(attribute + 1)
-				                                length:strlen(attribute) - 1
-					                          encoding:NSUTF8StringEncoding];
-			}
-	    }
-    }
-    return @"";
+	const char * TypeAttribute = "T";
+	char *type = property_copyAttributeValue(property, TypeAttribute);
+	NSString *propertyType = (type[0] != _C_ID) ? @(type) : ({
+		(type[1] == 0) ? @"id" : ({
+			// Modern format of a type attribute (e.g. @"NSSet")
+			type[strlen(type) - 1] = 0;
+			@(type + 2);
+		});
+	});
+	free(type);
+	return propertyType;
 }
 
 #define EMKInvocationReturnValueOfType(invocation, type) ({         \
