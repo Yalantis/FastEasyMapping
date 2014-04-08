@@ -1,10 +1,23 @@
+// Copyright (c) 2014 Yalantis.
 //
-// EMKRelationshipMapping.m
-// EasyMappingKit
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-// Created by dmitriy on 3/2/14
-// Copyright (c) 2014 Yalantis. All rights reserved. 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
 //
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
 #import "EMKRelationshipMapping.h"
 #import "EMKMapping.h"
 
@@ -47,29 +60,19 @@
 
 #pragma mark - Property objectMapping
 
-- (void)setObjectMapping:(EMKMapping *)objectMapping {
-	_objectMapping = objectMapping;
-
-	[_objectMapping setRootPath:_keyPath];
-}
-
 - (void)setObjectMapping:(EMKMapping *)objectMapping forKeyPath:(NSString *)keyPath {
 	[self setObjectMapping:objectMapping];
 	[self setKeyPath:keyPath];
 }
 
-#pragma mark - Property keyPath
+@end
 
-- (void)setKeyPath:(NSString *)keyPath {
-	_keyPath = [keyPath copy];
+@implementation EMKRelationshipMapping (Extension)
 
-	[self.objectMapping setRootPath:_keyPath];
-}
+- (id)extractRootFromExternalRepresentation:(id)externalRepresentation {
+	if (self.keyPath) return [externalRepresentation valueForKeyPath:self.keyPath];
 
-- (NSString *)keyPath {
-	NSParameterAssert(_keyPath == self.objectMapping.rootPath);
-
-	return _keyPath;
+	return externalRepresentation;
 }
 
 @end

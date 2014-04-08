@@ -1,10 +1,22 @@
+// Copyright (c) 2014 Yalantis.
 //
-//  EMKObjectDeserializer.m
-//  EasyMappingExample
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-//  Created by Lucas Medeiros on 21/02/13.
-//  Copyright (c) 2013 EasyKit. All rights reserved.
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
 //
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 #import "EMKObjectDeserializer.h"
 
@@ -25,7 +37,7 @@
 }
 
 + (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping {
-	NSDictionary *representation = [mapping mappedExternalRepresentation:externalRepresentation];
+	NSDictionary *representation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
 	return [self deserializeObjectRepresentation:representation usingMapping:mapping];
 }
 
@@ -36,15 +48,17 @@
 
 	for (EMKRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
 		id deserializedRelationship = nil;
+		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
+
 		if (relationshipMapping.isToMany) {
-			deserializedRelationship = [self deserializeCollectionExternalRepresentation:representation
-			                                                                usingMapping:relationshipMapping.objectMapping];
+			deserializedRelationship = [self deserializeCollectionRepresentation:relationshipRepresentation
+			                                                        usingMapping:relationshipMapping.objectMapping];
 
 			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
 			deserializedRelationship = [deserializedRelationship ek_propertyRepresentation:property];
 		} else {
-			deserializedRelationship = [self deserializeObjectExternalRepresentation:representation
-			                                                            usingMapping:relationshipMapping.objectMapping];
+			deserializedRelationship = [self deserializeObjectRepresentation:relationshipRepresentation
+			                                                    usingMapping:relationshipMapping.objectMapping];
 		}
 
 		if (deserializedRelationship) {
@@ -56,21 +70,22 @@
 }
 
 + (id)fillObject:(id)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping {
-	NSDictionary *representation = [mapping mappedExternalRepresentation:externalRepresentation];
+	NSDictionary *representation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
 	return [self fillObject:object fromRepresentation:representation usingMapping:mapping];
 }
 
 + (NSArray *)deserializeCollectionRepresentation:(NSArray *)representation usingMapping:(EMKObjectMapping *)mapping {
-	NSMutableArray *output = [NSMutableArray new];
+	NSMutableArray *output = [NSMutableArray array];
 	for (NSDictionary *objectRepresentation in representation) {
-		id parsedObject = [self deserializeObjectRepresentation:objectRepresentation usingMapping:mapping];
-		[output addObject:parsedObject];
+		@autoreleasepool {
+			[output addObject:[self deserializeObjectRepresentation:objectRepresentation usingMapping:mapping]];
+		}
 	}
 	return [output copy];
 }
 
 + (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(EMKObjectMapping *)mapping {
-	NSArray *representation = [mapping mappedExternalRepresentation:externalRepresentation];
+	NSArray *representation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
 	return [self deserializeCollectionRepresentation:representation usingMapping:mapping];
 }
 

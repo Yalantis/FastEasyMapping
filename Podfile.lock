@@ -2,7 +2,13 @@ PODS:
   - CMFactory (1.3.1):
     - Mantle (= 1.0)
     - SBJson (= 3.2)
-  - Kiwi (2.0.5)
+  - Kiwi (2.2.4):
+    - Kiwi/SenTestingKit
+  - Kiwi/ARC (2.2.4)
+  - Kiwi/NonARC (2.2.4)
+  - Kiwi/SenTestingKit (2.2.4):
+    - Kiwi/ARC
+    - Kiwi/NonARC
   - libextobjc/EXTKeyPathCoding (0.4):
     - libextobjc/RuntimeExtensions
   - libextobjc/EXTScope (0.4):
@@ -18,15 +24,15 @@ PODS:
 
 DEPENDENCIES:
   - CMFactory (= 1.3.1)
-  - Kiwi (= 2.0.5)
+  - Kiwi (~> 2.2.4)
   - MagicalRecord
 
 SPEC CHECKSUMS:
   CMFactory: 508b53d3028b9d1b79202f6002943e6a90709973
-  Kiwi: 89ade77eb49c889178cb2779e02514a7b9b9449e
+  Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
   libextobjc: 2c9fc8226f0f38e562587f65172f93f0c9b4a47a
   MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
   Mantle: aa9860e40cc365a094ef60fec46848fee7b03ca7
   SBJson: abc2bf2baef456d5dae213f9826fe2b6fdf19861
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.31.1
