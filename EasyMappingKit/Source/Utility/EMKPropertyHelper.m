@@ -113,65 +113,44 @@ static const char * getPropertyType(objc_property_t property) {
     return "";
 }
 
+#define EMKInvocationReturnValueOfType(invocation, type) ({         \
+	type result;                                                    \
+	[invocation getReturnValue:&result];                            \
+	@(result);                                                      \
+})
+
 static id getPrimitiveReturnValueFromInvocation(NSInvocation * invocation) {
-    const char *returnType = [[invocation methodSignature] methodReturnType];
-    id resultValue = nil;
-
-    if ( !strcmp(returnType, @encode(char)) ) { // And this is a BOOL also
-        char result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithChar:result];
-    } else if ( !strcmp(returnType, @encode(unsigned char)) ) {
-        unsigned char result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithUnsignedChar:result];
-    } else if ( !strcmp(returnType, @encode(BOOL))) {
-        BOOL result;
-        [invocation getReturnValue:&result];
-        resultValue = @(result);
-    } else if ( !strcmp(returnType, @encode(short)) ) {
-        short result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithShort:result];
-    } else if ( !strcmp(returnType, @encode(unsigned short)) ) {
-        unsigned short result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithUnsignedShort:result];
-    } else if ( !strcmp(returnType, @encode(int)) ) {
-        int result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithInt:result];
-    } else if ( !strcmp(returnType, @encode(unsigned int)) ) {
-        unsigned int result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithUnsignedInt:result];
-    } else if ( !strcmp(returnType, @encode(long)) ) {
-        long result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithLong:result];
-    } else if ( !strcmp(returnType, @encode(unsigned long)) ) {
-        unsigned long result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithUnsignedLong:result];
-    } else if ( !strcmp(returnType, @encode(long long)) ) {
-        long long result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithLongLong:result];
-    } else if ( !strcmp(returnType, @encode(unsigned long long)) ) {
-        unsigned long long result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithUnsignedLongLong:result];
-    } else if ( !strcmp(returnType, @encode(float)) ) {
-        float result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithFloat:result];
-    } else if ( !strcmp(returnType, @encode(double)) ) {
-        double result;
-        [invocation getReturnValue:&result];
-        resultValue = [NSNumber numberWithDouble:result];
-    }
-
-    return resultValue;
+	const char *type = [[invocation methodSignature] methodReturnType];
+	switch (type[0]) {
+		case _C_CHR:
+			return EMKInvocationReturnValueOfType(invocation, char);
+		case _C_UCHR:
+			return EMKInvocationReturnValueOfType(invocation, unsigned char);
+		case _C_BOOL:
+			return EMKInvocationReturnValueOfType(invocation, BOOL);
+		case _C_SHT:
+			return EMKInvocationReturnValueOfType(invocation, short);
+		case _C_USHT:
+			return EMKInvocationReturnValueOfType(invocation, unsigned short);
+		case _C_INT:
+			return EMKInvocationReturnValueOfType(invocation, int);
+		case _C_UINT:
+			return EMKInvocationReturnValueOfType(invocation, unsigned int);
+		case _C_LNG:
+			return EMKInvocationReturnValueOfType(invocation, long);
+		case _C_ULNG:
+			return EMKInvocationReturnValueOfType(invocation, unsigned long);
+		case _C_LNG_LNG:
+			return EMKInvocationReturnValueOfType(invocation, long long);
+		case _C_ULNG_LNG:
+			return EMKInvocationReturnValueOfType(invocation, unsigned long long);
+		case _C_FLT:
+			return EMKInvocationReturnValueOfType(invocation, float);
+		case _C_DBL:
+			return EMKInvocationReturnValueOfType(invocation, double);
+		default:
+			return nil;
+	}
 }
 
 @end
