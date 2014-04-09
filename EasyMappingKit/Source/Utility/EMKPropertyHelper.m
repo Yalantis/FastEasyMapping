@@ -41,32 +41,8 @@ NSString * getPropertyType(objc_property_t property);
 
 + (NSString *)getPropertyTypeFromObject:(id)object withPropertyName:(NSString *)propertyString
 {
-    NSString *propertyType = nil;
-    Class baseClass = [NSObject class];
-    Class currentClass = [object class];
-    
-    while (currentClass && currentClass != baseClass && !propertyType) {
-        unsigned int outCount;
-        objc_property_t *properties = class_copyPropertyList(currentClass, &outCount);
-        
-        for (unsigned int i = 0; i < outCount; i++) {
-            objc_property_t property = properties[i];
-            const char *propName = property_getName(property);
-            
-            if (propName) {
-                NSString *propertyName = [[NSString alloc] initWithCString:propName encoding:NSUTF8StringEncoding];
-                if ([propertyName isEqualToString:propertyString]) {
-                    propertyType = getPropertyType(property);
-                    break;
-                }
-            }
-        }
-        
-        free(properties);
-        currentClass = class_getSuperclass(currentClass);
-    }
-    
-    return propertyType;
+	objc_property_t property = class_getProperty(object_getClass(object), [propertyString UTF8String]);
+	return property ? getPropertyType(property) : nil;
 }
 
 NSString * getPropertyType(objc_property_t property) {
