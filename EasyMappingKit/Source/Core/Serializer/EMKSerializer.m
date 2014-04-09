@@ -51,8 +51,7 @@
 }
 
 + (void)setValueOnRepresentation:(NSMutableDictionary *)representation fromObject:(id)object withFieldMapping:(EMKAttributeMapping *)fieldMapping {
-	SEL selector = NSSelectorFromString(fieldMapping.property);
-	id returnedValue = [EMKPropertyHelper performSelector:selector onObject:object];
+	id returnedValue = [object valueForKey:fieldMapping.property];
 
 	if (returnedValue) {
 		returnedValue = [fieldMapping reverseMapValue:returnedValue];
@@ -86,7 +85,7 @@
 + (void)setRelationshipObjectOn:(NSMutableDictionary *)representation
                    usingMapping:(EMKRelationshipMapping *)relationshipMapping
 			         fromObject:(id)object {
-	id value = [EMKPropertyHelper performSelector:NSSelectorFromString(relationshipMapping.property) onObject:object];
+	id value = [object valueForKey:relationshipMapping.property];
 	if (value) {
 		id relationshipRepresentation = nil;
 		if (relationshipMapping.isToMany) {

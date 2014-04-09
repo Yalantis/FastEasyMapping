@@ -20,33 +20,8 @@ static const unichar nativeTypes[] = {
 };
 
 NSString * getPropertyType(objc_property_t property);
-static id getPrimitiveReturnValueFromInvocation(NSInvocation * invocation);
-
 
 @implementation EMKPropertyHelper
-
-
-+ (id)performSelector:(SEL)selector onObject:(id)object
-{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    NSString *propertyName = NSStringFromSelector(selector);
-    if ([self propertyNameIsNative:propertyName fromObject:object]) {
-        return [self performNativeSelector:selector onObject:object];
-    } else {
-        return [object performSelector:selector];
-    }
-#pragma clang diagnostic pop
-}
-
-+ (id)performNativeSelector:(SEL)selector onObject:(id)object
-{
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[object methodSignatureForSelector:selector]];
-    [invocation setSelector:selector];
-    [invocation setTarget:object];
-    [invocation invoke];
-    return getPrimitiveReturnValueFromInvocation(invocation);
-}
 
 + (BOOL)propertyNameIsNative:(NSString *)propertyName fromObject:(id)object
 {
@@ -106,46 +81,6 @@ NSString * getPropertyType(objc_property_t property) {
 	});
 	free(type);
 	return propertyType;
-}
-
-#define EMKInvocationReturnValueOfType(invocation, type) ({         \
-	type result;                                                    \
-	[invocation getReturnValue:&result];                            \
-	@(result);                                                      \
-})
-
-static id getPrimitiveReturnValueFromInvocation(NSInvocation * invocation) {
-	const char *type = [[invocation methodSignature] methodReturnType];
-	switch (type[0]) {
-		case _C_CHR:
-			return EMKInvocationReturnValueOfType(invocation, char);
-		case _C_UCHR:
-			return EMKInvocationReturnValueOfType(invocation, unsigned char);
-		case _C_BOOL:
-			return EMKInvocationReturnValueOfType(invocation, BOOL);
-		case _C_SHT:
-			return EMKInvocationReturnValueOfType(invocation, short);
-		case _C_USHT:
-			return EMKInvocationReturnValueOfType(invocation, unsigned short);
-		case _C_INT:
-			return EMKInvocationReturnValueOfType(invocation, int);
-		case _C_UINT:
-			return EMKInvocationReturnValueOfType(invocation, unsigned int);
-		case _C_LNG:
-			return EMKInvocationReturnValueOfType(invocation, long);
-		case _C_ULNG:
-			return EMKInvocationReturnValueOfType(invocation, unsigned long);
-		case _C_LNG_LNG:
-			return EMKInvocationReturnValueOfType(invocation, long long);
-		case _C_ULNG_LNG:
-			return EMKInvocationReturnValueOfType(invocation, unsigned long long);
-		case _C_FLT:
-			return EMKInvocationReturnValueOfType(invocation, float);
-		case _C_DBL:
-			return EMKInvocationReturnValueOfType(invocation, double);
-		default:
-			return nil;
-	}
 }
 
 @end
