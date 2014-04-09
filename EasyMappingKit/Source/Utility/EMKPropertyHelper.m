@@ -9,14 +9,15 @@
 #import "EMKPropertyHelper.h"
 #import <objc/runtime.h>
 
-static const unichar nativeTypes[] = {
+static const char ScalarTypeEncodings[] = {
     _C_BOOL, _C_BFLD,          // BOOL
     _C_CHR, _C_UCHR,           // char, unsigned char
     _C_SHT, _C_USHT,           // short, unsigned short
     _C_INT, _C_UINT,           // int, unsigned int, NSInteger, NSUInteger
     _C_LNG, _C_ULNG,           // long, unsigned long
     _C_LNG_LNG, _C_ULNG_LNG,   // long long, unsigned long long
-    _C_FLT, _C_DBL             // float, CGFloat, double
+    _C_FLT, _C_DBL,            // float, CGFloat, double
+	0
 };
 
 NSString * getPropertyType(objc_property_t property);
@@ -25,18 +26,8 @@ NSString * getPropertyType(objc_property_t property);
 
 + (BOOL)propertyNameIsNative:(NSString *)propertyName fromObject:(id)object
 {
-    NSString *typeDescription = [self getPropertyTypeFromObject:object withPropertyName:propertyName];
-    
-    if (typeDescription.length == 1) {
-        unichar propertyType = [typeDescription characterAtIndex:0];
-        for (int i = 0; i < sizeof(nativeTypes); i++) {
-            if (nativeTypes[i] == propertyType) {
-                return YES;
-            }
-        }
-    }
-    
-    return NO;
+    NSString *type = [self getPropertyTypeFromObject:object withPropertyName:propertyName];
+	return (type.length == 1) && (NSNotFound != [@(ScalarTypeEncodings) rangeOfString:type].location);
 }
 
 + (NSString *)getPropertyTypeFromObject:(id)object withPropertyName:(NSString *)propertyString
