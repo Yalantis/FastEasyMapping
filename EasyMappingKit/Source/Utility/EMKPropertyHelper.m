@@ -19,7 +19,7 @@ static const unichar nativeTypes[] = {
     _C_FLT, _C_DBL             // float, CGFloat, double
 };
 
-static NSString * getPropertyType(objc_property_t property);
+NSString * getPropertyType(objc_property_t property);
 static id getPrimitiveReturnValueFromInvocation(NSInvocation * invocation);
 
 
@@ -94,7 +94,7 @@ static id getPrimitiveReturnValueFromInvocation(NSInvocation * invocation);
     return propertyType;
 }
 
-static NSString * getPropertyType(objc_property_t property) {
+NSString * getPropertyType(objc_property_t property) {
 	const char * TypeAttribute = "T";
 	char *type = property_copyAttributeValue(property, TypeAttribute);
 	NSString *propertyType = (type[0] != _C_ID) ? @(type) : ({

@@ -8,28 +8,28 @@
 
 #import "NSArray+EMKExtension.h"
 
+extern NSString * getPropertyType(objc_property_t property);
+
 @implementation NSArray (EMKExtension)
 
 - (id)ek_propertyRepresentation:(objc_property_t)property {
 	id convertedObject = self;
 	if (property) {
-		NSString *propertyAttributes = [NSString stringWithUTF8String:property_getAttributes(property)];
-		if ([propertyAttributes length] > 0) {
-			if (!NSEqualRanges([propertyAttributes rangeOfString:@"NSSet"], NSMakeRange(NSNotFound, 0))) {
-				convertedObject = [NSSet setWithArray:self];
-			}
-			else if (!NSEqualRanges([propertyAttributes rangeOfString:@"NSMutableSet"], NSMakeRange(NSNotFound, 0))) {
-				convertedObject = [[NSSet setWithArray:self] mutableCopy];
-			}
-			else if (!NSEqualRanges([propertyAttributes rangeOfString:@"NSOrderedSet"], NSMakeRange(NSNotFound, 0))) {
-				convertedObject = [NSOrderedSet orderedSetWithArray:self];
-			}
-			else if (!NSEqualRanges([propertyAttributes rangeOfString:@"NSMutableOrderedSet"], NSMakeRange(NSNotFound, 0))) {
-				convertedObject = [[NSOrderedSet orderedSetWithArray:self] mutableCopy];
-			}
-			else if (!NSEqualRanges([propertyAttributes rangeOfString:@"NSMutableArray"], NSMakeRange(NSNotFound, 0))) {
-				convertedObject = [NSMutableArray arrayWithArray:self];
-			}
+		NSString *type = getPropertyType(property);
+		if ([type isEqualToString:@"NSSet"]) {
+			convertedObject = [NSSet setWithArray:self];
+		}
+		else if ([type isEqualToString:@"NSMutableSet"]) {
+			convertedObject = [NSMutableSet setWithArray:self];
+		}
+		else if ([type isEqualToString:@"NSOrderedSet"]) {
+			convertedObject = [NSOrderedSet orderedSetWithArray:self];
+		}
+		else if ([type isEqualToString:@"NSMutableOrderedSet"]) {
+			convertedObject = [NSMutableOrderedSet orderedSetWithArray:self];
+		}
+		else if ([type isEqualToString:@"NSMutableArray"]) {
+			convertedObject = [NSMutableArray arrayWithArray:self];
 		}
 	}
 	return convertedObject;
