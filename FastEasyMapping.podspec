@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
-  s.name         = "EasyMappingKit"
-  s.version      = "0.1.3"
+  s.name         = "FastEasyMapping"
+  s.version      = "0.1.4"
   s.summary      = "Fast mapping from JSON to NSObject / NSManagedObject and back"
   s.homepage     = "https://github.com/Yalantis/EasyMappingKit"
 
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.author       = { "Dmitriy Shemet" => "dmitriy.shemet@yalantis.com" }
 
-  s.source       = { :git => "https://github.com/Yalantis/EasyMappingKit.git", :tag => "0.1.3" }
+  s.source       = { :git => "https://github.com/Yalantis/EasyMappingKit.git", :tag => "0.1.4" }
 
   s.requires_arc = true
 
@@ -17,6 +17,6 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.7'
   s.frameworks = 'CoreData'
 
-  s.source_files = 'EasyMappingKit/Source/**/*.{h,m}'
+  s.source_files = 'FastEasyMapping/Source/**/*.{h,m}'
 
 end
