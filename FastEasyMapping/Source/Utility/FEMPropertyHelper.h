@@ -20,25 +20,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class FEMObjectMapping;
+@interface FEMPropertyHelper : NSObject
 
-@interface MappingProviderNative : NSObject
-
-+ (FEMObjectMapping *)carMapping;
-+ (FEMObjectMapping *)carWithRootKeyMapping;
-+ (FEMObjectMapping *)carNestedAttributesMapping;
-+ (FEMObjectMapping *)carWithDateMapping;
-+ (FEMObjectMapping *)phoneMapping;
-+ (FEMObjectMapping *)personMapping;
-+ (FEMObjectMapping *)personWithCarMapping;
-+ (FEMObjectMapping *)personWithPhonesMapping;
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping;
-+ (FEMObjectMapping *)addressMapping;
-+ (FEMObjectMapping *)fingerMapping;
-+ (FEMObjectMapping *)nativeMapping;
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie;
-+ (FEMObjectMapping *)planeMapping;
-+ (FEMObjectMapping *)alienMapping;
-+ (FEMObjectMapping *)nativeChildMapping;
++ (id)performSelector:(SEL)selector onObject:(id)object;
++ (id)performNativeSelector:(SEL)selector onObject:(id)object;
++ (BOOL)propertyNameIsNative:(NSString *)propertyName fromObject:(id)object;
 
 @end

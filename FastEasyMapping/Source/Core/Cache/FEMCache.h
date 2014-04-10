@@ -20,25 +20,23 @@
 
 #import <Foundation/Foundation.h>
 
-@class FEMObjectMapping;
+@class FEMCache, FEMManagedObjectMapping, NSManagedObjectContext;
 
-@interface MappingProviderNative : NSObject
+OBJC_EXTERN FEMCache *EMKLookupCacheGetCurrent();
+OBJC_EXTERN void EMKLookupCacheSetCurrent(FEMCache *cache);
+OBJC_EXTERN void EMKLookupCacheRemoveCurrent();
 
-+ (FEMObjectMapping *)carMapping;
-+ (FEMObjectMapping *)carWithRootKeyMapping;
-+ (FEMObjectMapping *)carNestedAttributesMapping;
-+ (FEMObjectMapping *)carWithDateMapping;
-+ (FEMObjectMapping *)phoneMapping;
-+ (FEMObjectMapping *)personMapping;
-+ (FEMObjectMapping *)personWithCarMapping;
-+ (FEMObjectMapping *)personWithPhonesMapping;
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping;
-+ (FEMObjectMapping *)addressMapping;
-+ (FEMObjectMapping *)fingerMapping;
-+ (FEMObjectMapping *)nativeMapping;
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie;
-+ (FEMObjectMapping *)planeMapping;
-+ (FEMObjectMapping *)alienMapping;
-+ (FEMObjectMapping *)nativeChildMapping;
+@interface FEMCache : NSObject
+
+@property (nonatomic, strong, readonly) NSManagedObjectContext *context;
+
+- (instancetype)initWithMapping:(FEMManagedObjectMapping *)mapping
+         externalRepresentation:(id)externalRepresentation
+					    context:(NSManagedObjectContext *)context;
+
+#pragma mark -
+
+- (id)existingObjectForRepresentation:(id)representation mapping:(FEMManagedObjectMapping *)mapping;
+- (void)addExistingObject:(id)object usingMapping:(FEMManagedObjectMapping *)mapping;
 
 @end

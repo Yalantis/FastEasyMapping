@@ -18,27 +18,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "FEMObjectMapping.h"
 
-@class FEMObjectMapping;
+@implementation FEMObjectMapping
 
-@interface MappingProviderNative : NSObject
+#pragma mark - Init
 
-+ (FEMObjectMapping *)carMapping;
-+ (FEMObjectMapping *)carWithRootKeyMapping;
-+ (FEMObjectMapping *)carNestedAttributesMapping;
-+ (FEMObjectMapping *)carWithDateMapping;
-+ (FEMObjectMapping *)phoneMapping;
-+ (FEMObjectMapping *)personMapping;
-+ (FEMObjectMapping *)personWithCarMapping;
-+ (FEMObjectMapping *)personWithPhonesMapping;
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping;
-+ (FEMObjectMapping *)addressMapping;
-+ (FEMObjectMapping *)fingerMapping;
-+ (FEMObjectMapping *)nativeMapping;
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie;
-+ (FEMObjectMapping *)planeMapping;
-+ (FEMObjectMapping *)alienMapping;
-+ (FEMObjectMapping *)nativeChildMapping;
+- (id)initWithObjectClass:(Class)objectClass rootPath:(NSString *)rootPath {
+	self = [self initWithRootPath:rootPath];
+	if (self) {
+		_objectClass = objectClass;
+	}
+	return self;
+}
+
+- (id)initWithObjectClass:(Class)objectClass {
+	return [self initWithObjectClass:objectClass rootPath:nil];
+}
+
++ (instancetype)mappingForClass:(Class)objectClass configuration:(void (^)(FEMObjectMapping *mapping))configuration {
+	FEMObjectMapping *mapping = [[self alloc] initWithObjectClass:objectClass];
+	configuration(mapping);
+	return mapping;
+}
+
++ (instancetype)mappingForClass:(Class)objectClass
+                       rootPath:(NSString *)rootPath
+		          configuration:(void (^)(FEMObjectMapping *mapping))configuration {
+	FEMObjectMapping *mapping = [[self alloc] initWithObjectClass:objectClass rootPath:rootPath];
+	configuration(mapping);
+	return mapping;
+}
 
 @end

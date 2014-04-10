@@ -18,27 +18,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "FEMAttributeMapping+Extension.h"
+#import "FEMPropertyHelper.h"
+#import "NSObject+FEMKVC.h"
 
-@class FEMObjectMapping;
+@implementation FEMAttributeMapping (Extension)
 
-@interface MappingProviderNative : NSObject
+- (id)mappedValueFromRepresentation:(id)representation {
+	id value = self.keyPath ? [representation valueForKeyPath:self.keyPath] : representation;
+    
+	return [self mapValue:value];
+}
 
-+ (FEMObjectMapping *)carMapping;
-+ (FEMObjectMapping *)carWithRootKeyMapping;
-+ (FEMObjectMapping *)carNestedAttributesMapping;
-+ (FEMObjectMapping *)carWithDateMapping;
-+ (FEMObjectMapping *)phoneMapping;
-+ (FEMObjectMapping *)personMapping;
-+ (FEMObjectMapping *)personWithCarMapping;
-+ (FEMObjectMapping *)personWithPhonesMapping;
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping;
-+ (FEMObjectMapping *)addressMapping;
-+ (FEMObjectMapping *)fingerMapping;
-+ (FEMObjectMapping *)nativeMapping;
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie;
-+ (FEMObjectMapping *)planeMapping;
-+ (FEMObjectMapping *)alienMapping;
-+ (FEMObjectMapping *)nativeChildMapping;
+- (void)mapValueToObject:(id)object fromRepresentation:(id)representation {
+	id value = [self mappedValueFromRepresentation:representation];
+	if (value == NSNull.null) {
+		if (![FEMPropertyHelper propertyNameIsNative:self.property fromObject:object]) {
+			[object setValue:nil forKey:self.property];
+		}
+	} else if (value) {
+		[object emk_setValueIfDifferent:value forKey:self.property];
+	}
+}
 
 @end

@@ -30,56 +30,58 @@
 #import "NativeChild.h"
 #import "CatNative.h"
 
-#import "EMKObjectMapping.h"
-#import "EMKAttributeMapping.h"
+#import "FEMObjectMapping.h"
+#import "FEMAttributeMapping.h"
 
 @implementation MappingProviderNative
 
-+ (EMKObjectMapping *)carMapping {
-	return [EMKObjectMapping mappingForClass:[CarNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)carMapping {
+	return [FEMObjectMapping mappingForClass:[CarNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
 	}];
 }
 
-+ (EMKObjectMapping *)carWithRootKeyMapping {
-	return [EMKObjectMapping mappingForClass:[CarNative class] rootPath:@"car" configuration:^(EMKObjectMapping *mapping) {
-		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
-	}];
++ (FEMObjectMapping *)carWithRootKeyMapping {
+	return [FEMObjectMapping mappingForClass:[CarNative class]
+	                                rootPath:@"car"
+			                   configuration:^(FEMObjectMapping *mapping) {
+				                   [mapping addAttributeMappingFromArray:@[@"model", @"year"]];
+			                   }];
 }
 
-+ (EMKObjectMapping *)carNestedAttributesMapping {
-	return [EMKObjectMapping mappingForClass:[CarNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)carNestedAttributesMapping {
+	return [FEMObjectMapping mappingForClass:[CarNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"model"]];
 		[mapping addAttributeMappingDictionary:@{
-			@"year": @"information.year"
+			@"year" : @"information.year"
 		}];
 	}];
 }
 
-+ (EMKObjectMapping *)carWithDateMapping {
-	return [EMKObjectMapping mappingForClass:[CarNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)carWithDateMapping {
+	return [FEMObjectMapping mappingForClass:[CarNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
-		[mapping addAttributeMapping:[EMKAttributeMapping mappingOfProperty:@"createdAt"
+		[mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"createdAt"
 		                                                            keyPath:@"created_at"
 			                                                     dateFormat:@"yyyy-MM-dd"]];
 	}];
 }
 
-+ (EMKObjectMapping *)phoneMapping {
-	return [EMKObjectMapping mappingForClass:[PhoneNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)phoneMapping {
+	return [FEMObjectMapping mappingForClass:[PhoneNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"number"]];
 		[mapping addAttributeMappingDictionary:@{
-			@"DDI": @"ddi",
-			@"DDD": @"ddd",
+			@"DDI" : @"ddi",
+			@"DDD" : @"ddd",
 		}];
 	}];
 }
 
-+ (EMKObjectMapping *)personMapping {
-	return [EMKObjectMapping mappingForClass:[PersonNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)personMapping {
+	return [FEMObjectMapping mappingForClass:[PersonNative class] configuration:^(FEMObjectMapping *mapping) {
 		NSDictionary *genders = @{@"male" : @(GenderMale), @"female" : @(GenderFemale)};
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
-		[mapping addAttributeMapping:[EMKAttributeMapping mappingOfProperty:@"gender"
+		[mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"gender"
 		                                                            keyPath:@"gender"
 			                                                            map:^id(id value) {
 				                                                            return genders[value];
@@ -93,25 +95,25 @@
 	}];
 }
 
-+ (EMKObjectMapping *)personWithCarMapping {
-	return [EMKObjectMapping mappingForClass:[PersonNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)personWithCarMapping {
+	return [FEMObjectMapping mappingForClass:[PersonNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
 		[mapping addRelationshipMapping:[self carMapping] forProperty:@"car" keyPath:@"car"];
 	}];
 }
 
-+ (EMKObjectMapping *)personWithPhonesMapping {
-	return [EMKObjectMapping mappingForClass:[PersonNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)personWithPhonesMapping {
+	return [FEMObjectMapping mappingForClass:[PersonNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
 		[mapping addToManyRelationshipMapping:[self phoneMapping] forProperty:@"phones" keyPath:@"phones"];
 	}];
 }
 
-+ (EMKObjectMapping *)personWithOnlyValueBlockMapping {
-	return [EMKObjectMapping mappingForClass:[PersonNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)personWithOnlyValueBlockMapping {
+	return [FEMObjectMapping mappingForClass:[PersonNative class] configuration:^(FEMObjectMapping *mapping) {
 		NSDictionary *genders = @{@"male" : @(GenderMale), @"female" : @(GenderFemale)};
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
-		[mapping addAttributeMapping:[EMKAttributeMapping mappingOfProperty:@"gender"
+		[mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"gender"
 		                                                            keyPath:@"gender"
 			                                                            map:^id(id value) {
 				                                                            return genders[value];
@@ -122,10 +124,10 @@
 	}];
 }
 
-+ (EMKObjectMapping *)addressMapping {
-	return [EMKObjectMapping mappingForClass:[AddressNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)addressMapping {
+	return [FEMObjectMapping mappingForClass:[AddressNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"street"]];
-		[mapping addAttributeMapping:[EMKAttributeMapping mappingOfProperty:@"location"
+		[mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"location"
 		                                                            keyPath:@"location"
 			                                                            map:^id(id value) {
 				                                                            CLLocationDegrees latitudeValue = [[value objectAtIndex:0] doubleValue];
@@ -142,8 +144,8 @@
 	}];
 }
 
-+ (EMKObjectMapping *)nativeMapping {
-	return [EMKObjectMapping mappingForClass:[Native class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)nativeMapping {
+	return [FEMObjectMapping mappingForClass:[Native class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[
 			@"charProperty",
 			@"unsignedCharProperty",
@@ -165,34 +167,34 @@
 	}];
 }
 
-+ (EMKObjectMapping *)nativeMappingWithNullPropertie {
-	return [EMKObjectMapping mappingForClass:[CatNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)nativeMappingWithNullPropertie {
+	return [FEMObjectMapping mappingForClass:[CatNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"age"]];
 	}];
 }
 
-+ (EMKObjectMapping *)planeMapping {
-	return [EMKObjectMapping mappingForClass:[PlaneNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)planeMapping {
+	return [FEMObjectMapping mappingForClass:[PlaneNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingDictionary:@{@"flightNumber" : @"flight_number"}];
 		[mapping addToManyRelationshipMapping:[self personMapping] forProperty:@"persons" keyPath:@"persons"];
 	}];
 }
 
-+ (EMKObjectMapping *)alienMapping {
-	return [EMKObjectMapping mappingForClass:[AlienNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)alienMapping {
+	return [FEMObjectMapping mappingForClass:[AlienNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"name"]];
 		[mapping addToManyRelationshipMapping:[self fingerMapping] forProperty:@"fingers" keyPath:@"fingers"];
 	}];
 }
 
-+ (EMKObjectMapping *)fingerMapping {
-	return [EMKObjectMapping mappingForClass:[FingerNative class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)fingerMapping {
+	return [FEMObjectMapping mappingForClass:[FingerNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"name"]];
 	}];
 }
 
-+ (EMKObjectMapping *)nativeChildMapping {
-	return [EMKObjectMapping mappingForClass:[NativeChild class] configuration:^(EMKObjectMapping *mapping) {
++ (FEMObjectMapping *)nativeChildMapping {
+	return [FEMObjectMapping mappingForClass:[NativeChild class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"intProperty", @"boolProperty", @"childProperty"]];
 	}];
 }

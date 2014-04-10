@@ -19,26 +19,18 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "FEMMapping.h"
 
-@class FEMObjectMapping;
+@interface FEMObjectMapping : FEMMapping
 
-@interface MappingProviderNative : NSObject
+@property (nonatomic, readonly) Class objectClass;
 
-+ (FEMObjectMapping *)carMapping;
-+ (FEMObjectMapping *)carWithRootKeyMapping;
-+ (FEMObjectMapping *)carNestedAttributesMapping;
-+ (FEMObjectMapping *)carWithDateMapping;
-+ (FEMObjectMapping *)phoneMapping;
-+ (FEMObjectMapping *)personMapping;
-+ (FEMObjectMapping *)personWithCarMapping;
-+ (FEMObjectMapping *)personWithPhonesMapping;
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping;
-+ (FEMObjectMapping *)addressMapping;
-+ (FEMObjectMapping *)fingerMapping;
-+ (FEMObjectMapping *)nativeMapping;
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie;
-+ (FEMObjectMapping *)planeMapping;
-+ (FEMObjectMapping *)alienMapping;
-+ (FEMObjectMapping *)nativeChildMapping;
+- (id)initWithObjectClass:(Class)objectClass;
+- (id)initWithObjectClass:(Class)objectClass rootPath:(NSString *)rootPath;
+
++ (instancetype)mappingForClass:(Class)objectClass configuration:(void (^)(FEMObjectMapping *mapping))configuration;
++ (instancetype)mappingForClass:(Class)objectClass
+                       rootPath:(NSString *)rootPath
+		          configuration:(void (^)(FEMObjectMapping *mapping))configuration;
 
 @end

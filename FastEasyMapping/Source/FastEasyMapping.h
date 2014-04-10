@@ -18,27 +18,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#ifndef _FASTEASYMAPPING_
+#define _FASTEASYMAPPING_
 
-@class FEMObjectMapping;
+#import "FEMPropertyMapping.h"
+#import "FEMAttributeMapping.h"
+#import "FEMRelationshipMapping.h"
 
-@interface MappingProviderNative : NSObject
+#import "FEMMapping.h"
+#import "FEMObjectMapping.h"
+#import "FEMManagedObjectMapping.h"
 
-+ (FEMObjectMapping *)carMapping;
-+ (FEMObjectMapping *)carWithRootKeyMapping;
-+ (FEMObjectMapping *)carNestedAttributesMapping;
-+ (FEMObjectMapping *)carWithDateMapping;
-+ (FEMObjectMapping *)phoneMapping;
-+ (FEMObjectMapping *)personMapping;
-+ (FEMObjectMapping *)personWithCarMapping;
-+ (FEMObjectMapping *)personWithPhonesMapping;
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping;
-+ (FEMObjectMapping *)addressMapping;
-+ (FEMObjectMapping *)fingerMapping;
-+ (FEMObjectMapping *)nativeMapping;
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie;
-+ (FEMObjectMapping *)planeMapping;
-+ (FEMObjectMapping *)alienMapping;
-+ (FEMObjectMapping *)nativeChildMapping;
+#import "FEMManagedObjectDeserializer.h"
+#import "FEMObjectDeserializer.h"
+#import "FEMSerializer.h"
 
-@end
+#import "FEMTypes.h"
+
+#endif /* _FASTEASYMAPPING_ */

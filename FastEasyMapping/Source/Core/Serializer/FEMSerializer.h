@@ -19,26 +19,12 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "FEMMapping.h"
+#import "FEMSerializer.h"
 
-@class FEMObjectMapping;
+@interface FEMSerializer : NSObject
 
-@interface MappingProviderNative : NSObject
-
-+ (FEMObjectMapping *)carMapping;
-+ (FEMObjectMapping *)carWithRootKeyMapping;
-+ (FEMObjectMapping *)carNestedAttributesMapping;
-+ (FEMObjectMapping *)carWithDateMapping;
-+ (FEMObjectMapping *)phoneMapping;
-+ (FEMObjectMapping *)personMapping;
-+ (FEMObjectMapping *)personWithCarMapping;
-+ (FEMObjectMapping *)personWithPhonesMapping;
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping;
-+ (FEMObjectMapping *)addressMapping;
-+ (FEMObjectMapping *)fingerMapping;
-+ (FEMObjectMapping *)nativeMapping;
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie;
-+ (FEMObjectMapping *)planeMapping;
-+ (FEMObjectMapping *)alienMapping;
-+ (FEMObjectMapping *)nativeChildMapping;
++ (NSDictionary *)serializeObject:(id)object usingMapping:(FEMMapping *)mapping;
++ (id)serializeCollection:(NSArray *)collection usingMapping:(FEMMapping *)mapping;
 
 @end

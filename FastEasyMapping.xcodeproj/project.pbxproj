@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02DDB94B5CA940288F1969F8 /* libPods-EasyMappingKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFF304ED83840FB9FA7E2BD /* libPods-EasyMappingKitTests.a */; };
-		2C11898D18D07356005D8D91 /* EMKPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED708A80E35F7B61D6929B /* EMKPropertyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2C11898E18D07356005D8D91 /* EMKManagedObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7EA48925307F4DB06848 /* EMKManagedObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C11898E18D07356005D8D91 /* FEMManagedObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7EA48925307F4DB06848 /* FEMManagedObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
 		2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED767EE6E89A487714CDF8 /* Car.m */; };
 		2C375F1518CCD3FB00FCB8EA /* Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75A1803E4FA721E79895 /* Phone.m */; };
@@ -39,11 +37,11 @@
 		2C375F3B18CCD40200FCB8EA /* Person.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED79AD80703DC44EFCC7EE /* Person.json */; };
 		2C375F3C18CCD40200FCB8EA /* Car.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED74F0986B6C6DD2614CB7 /* Car.json */; };
 		2C375F3D18CCD40200FCB8EA /* NativeChild.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7CF6DFFBDF7A0BF32AFC /* NativeChild.json */; };
-		2C375F3E18CCD40A00FCB8EA /* EMKObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* EMKObjectMappingSpec.m */; };
-		2C375F3F18CCD40A00FCB8EA /* EMKObjectDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7A9AEF651DACBF9BBC8F /* EMKObjectDeserializerSpec.m */; };
-		2C375F4018CCD40A00FCB8EA /* EMKSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* EMKSerializerSpec.m */; };
-		2C375F4118CCD49B00FCB8EA /* EMKManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* EMKManagedObjectMappingSpec.m */; };
-		2C375F4218CCD49B00FCB8EA /* EMKManagedObjectDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C1B06B95B6C90EBB53A /* EMKManagedObjectDeserializerSpec.m */; };
+		2C375F3E18CCD40A00FCB8EA /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
+		2C375F3F18CCD40A00FCB8EA /* FEMObjectDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7A9AEF651DACBF9BBC8F /* FEMObjectDeserializerSpec.m */; };
+		2C375F4018CCD40A00FCB8EA /* FEMSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* FEMSerializerSpec.m */; };
+		2C375F4118CCD49B00FCB8EA /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
+		2C375F4218CCD49B00FCB8EA /* FEMManagedObjectDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C1B06B95B6C90EBB53A /* FEMManagedObjectDeserializerSpec.m */; };
 		2C375F4318CCD49B00FCB8EA /* MappingProviderNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED799D533AED10DCFB4106 /* MappingProviderNative.m */; };
 		2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7532E1E5E3196BC27932 /* MappingProvider.m */; };
 		2CF8097C18C3AD5700C07899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097B18C3AD5700C07899 /* Foundation.framework */; };
@@ -51,34 +49,35 @@
 		2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097B18C3AD5700C07899 /* Foundation.framework */; };
 		2CF8098D18C3AD5700C07899 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8098C18C3AD5700C07899 /* UIKit.framework */; };
 		2CF8099018C3AD5700C07899 /* libFastEasyMapping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097818C3AD5700C07899 /* libFastEasyMapping.a */; };
-		2CF809A218C3AE9A00C07899 /* EMKMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED75CC8C4DEB31139E38B6 /* EMKMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809A318C3AE9A00C07899 /* EMKObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED70753A27735A60785078 /* EMKObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809A418C3AE9A00C07899 /* EMKAttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED724125F45703B27BFC0C /* EMKAttributeMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809A518C3AE9A00C07899 /* EMKRelationshipMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7C1A1592194E312212F9 /* EMKRelationshipMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809A618C3AE9A00C07899 /* EMKSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7C1B2AB96554F9FDF10B /* EMKSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809A818C3AE9A00C07899 /* EMKObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7039B8922439BE9D1B8C /* EMKObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809A918C3AE9A00C07899 /* EMKManagedObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED771F4A0CC2BB6D9583BC /* EMKManagedObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809AA18C3AE9A00C07899 /* EasyMappingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED77A829DD1436A5A2CA1B /* EasyMappingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809AB18C3AE9A00C07899 /* EMKTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7A8B2E60F728B99A0CB9 /* EMKTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809AC18C3AEC800C07899 /* EMKAttributeMapping+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7539B5509DF9599396EA /* EMKAttributeMapping+Extension.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		2CF809AD18C3AEC800C07899 /* NSArray+EMKExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7645386941DA79C1E53A /* NSArray+EMKExtension.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		2CF809AF18C3AEC800C07899 /* EMKPropertyHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7E6CB1B484C7F335B55F /* EMKPropertyHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		69ED70D8C859F4A0BDE4DCF8 /* EMKAttributeMapping+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED718D4E6F950EE17E08C6 /* EMKAttributeMapping+Extension.m */; };
-		69ED7118E43D74A843AA1E54 /* EMKMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7A4A3BD1A49CCC1AB9A4 /* EMKMapping.m */; };
-		69ED7144E37E067666813AF9 /* NSArray+EMKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757059F6C7A26468D880 /* NSArray+EMKExtension.m */; };
-		69ED72338B6419101B1C8CDB /* NSObject+EMKKVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED769040647781DD8B196D /* NSObject+EMKKVC.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		69ED7299E71FA1B0B34E9764 /* EMKAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7141C706CAC006EADE5A /* EMKAttributeMapping.m */; };
-		69ED74D218BD6B3888549434 /* NSObject+EMKKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED770C14BAB15CA7926116 /* NSObject+EMKKVC.m */; };
-		69ED756EBF9D955A7B6A580A /* EMKLookupCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7D24C1EE78C03CAB9C9B /* EMKLookupCache.m */; };
-		69ED7687C035FA51A536AB56 /* EMKPropertyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7F5DB5E0C3FF6672226E /* EMKPropertyHelper.m */; };
-		69ED7687DEAC011EE09F5D1A /* EMKManagedObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED790F30E4E551B1416E60 /* EMKManagedObjectMapping.m */; };
-		69ED776944D5FF7D7166F975 /* EMKObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED79ACE44B6BFB58B0B3F5 /* EMKObjectDeserializer.m */; };
-		69ED797C93C27C8E3BBC1BDB /* EMKSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED73028D190C49BF2E0F8D /* EMKSerializer.m */; };
-		69ED7A9D4C100F6C8EEEDC03 /* EMKRelationshipMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757758DA67B4E8247495 /* EMKRelationshipMapping.m */; };
-		69ED7C04B0D06A2E75D9CDDD /* EMKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7972B98B6046006A3F97 /* EMKObjectMapping.m */; };
+		2CF809A318C3AE9A00C07899 /* FEMObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED70753A27735A60785078 /* FEMObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CF809A418C3AE9A00C07899 /* FEMAttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED724125F45703B27BFC0C /* FEMAttributeMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CF809A518C3AE9A00C07899 /* FEMRelationshipMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7C1A1592194E312212F9 /* FEMRelationshipMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CF809A618C3AE9A00C07899 /* FEMSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7C1B2AB96554F9FDF10B /* FEMSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CF809A818C3AE9A00C07899 /* FEMObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7039B8922439BE9D1B8C /* FEMObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CF809A918C3AE9A00C07899 /* FEMManagedObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED771F4A0CC2BB6D9583BC /* FEMManagedObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CF809AA18C3AE9A00C07899 /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED77A829DD1436A5A2CA1B /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CF809AB18C3AE9A00C07899 /* FEMTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7A8B2E60F728B99A0CB9 /* FEMTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CF809AC18C3AEC800C07899 /* FEMAttributeMapping+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7539B5509DF9599396EA /* FEMAttributeMapping+Extension.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		2CF809AD18C3AEC800C07899 /* NSArray+FEMExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7645386941DA79C1E53A /* NSArray+FEMExtension.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		2CF809AF18C3AEC800C07899 /* FEMPropertyHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7E6CB1B484C7F335B55F /* FEMPropertyHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		69ED702FCEC21C111D4518AC /* FEMPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7E9FFEE19DA64FCD4858 /* FEMPropertyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		69ED70D8C859F4A0BDE4DCF8 /* FEMAttributeMapping+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED718D4E6F950EE17E08C6 /* FEMAttributeMapping+Extension.m */; };
+		69ED7144E37E067666813AF9 /* NSArray+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757059F6C7A26468D880 /* NSArray+FEMExtension.m */; };
+		69ED7191763B8C717620B63E /* FEMMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED779509541DFE7A36679D /* FEMMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		69ED72338B6419101B1C8CDB /* NSObject+FEMKVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED769040647781DD8B196D /* NSObject+FEMKVC.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		69ED7299E71FA1B0B34E9764 /* FEMAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7141C706CAC006EADE5A /* FEMAttributeMapping.m */; };
+		69ED74D218BD6B3888549434 /* NSObject+FEMKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED770C14BAB15CA7926116 /* NSObject+FEMKVC.m */; };
+		69ED756EBF9D955A7B6A580A /* FEMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7D24C1EE78C03CAB9C9B /* FEMCache.m */; };
+		69ED7687C035FA51A536AB56 /* FEMPropertyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7F5DB5E0C3FF6672226E /* FEMPropertyHelper.m */; };
+		69ED7687DEAC011EE09F5D1A /* FEMManagedObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED790F30E4E551B1416E60 /* FEMManagedObjectMapping.m */; };
+		69ED775D5D598E6ECAA40BA2 /* FEMMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED78C2DFBB1D8408F0D515 /* FEMMapping.m */; };
+		69ED776944D5FF7D7166F975 /* FEMObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED79ACE44B6BFB58B0B3F5 /* FEMObjectDeserializer.m */; };
+		69ED797C93C27C8E3BBC1BDB /* FEMSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED73028D190C49BF2E0F8D /* FEMSerializer.m */; };
+		69ED7A9D4C100F6C8EEEDC03 /* FEMRelationshipMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757758DA67B4E8247495 /* FEMRelationshipMapping.m */; };
+		69ED7C04B0D06A2E75D9CDDD /* FEMObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7972B98B6046006A3F97 /* FEMObjectMapping.m */; };
 		69ED7D115200A0D4F52DBBCA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69ED730BF972DF74DC2BA5B3 /* InfoPlist.strings */; };
-		69ED7DADB8044F2B42C1CD94 /* EMKManagedObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED772E50A1A831B78D48B3 /* EMKManagedObjectDeserializer.m */; };
-		69ED7E8934131F087C5492A3 /* EMKLookupCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7DE30D50997F9408F36E /* EMKLookupCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		69ED7DADB8044F2B42C1CD94 /* FEMManagedObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED772E50A1A831B78D48B3 /* FEMManagedObjectDeserializer.m */; };
+		69ED7E8934131F087C5492A3 /* FEMCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7DE30D50997F9408F36E /* FEMCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		9983A129111A4AB8A30520BE /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */; };
 /* End PBXBuildFile section */
 
@@ -112,20 +111,19 @@
 		2CF8098818C3AD5700C07899 /* FastEasyMappingTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastEasyMappingTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF8098918C3AD5700C07899 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2CF8098C18C3AD5700C07899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		69ED7039B8922439BE9D1B8C /* EMKObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKObjectDeserializer.h; sourceTree = "<group>"; };
-		69ED70753A27735A60785078 /* EMKObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKObjectMapping.h; sourceTree = "<group>"; };
-		69ED708A80E35F7B61D6929B /* EMKPropertyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKPropertyMapping.h; sourceTree = "<group>"; };
+		69ED7039B8922439BE9D1B8C /* FEMObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectDeserializer.h; sourceTree = "<group>"; };
+		69ED70753A27735A60785078 /* FEMObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectMapping.h; sourceTree = "<group>"; };
 		69ED70F7239A59402E626302 /* Cars.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Cars.json; sourceTree = "<group>"; };
 		69ED70FD89800BB41C8894FE /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
-		69ED7141C706CAC006EADE5A /* EMKAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKAttributeMapping.m; sourceTree = "<group>"; };
+		69ED7141C706CAC006EADE5A /* FEMAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAttributeMapping.m; sourceTree = "<group>"; };
 		69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressNative.m; sourceTree = "<group>"; };
 		69ED7153320369C3FEB8A8F4 /* FastEasyMapping-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FastEasyMapping-Prefix.pch"; sourceTree = "<group>"; };
 		69ED71666439C5B0BC0A6650 /* CatNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatNative.h; sourceTree = "<group>"; };
-		69ED718D4E6F950EE17E08C6 /* EMKAttributeMapping+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMKAttributeMapping+Extension.m"; sourceTree = "<group>"; };
+		69ED718D4E6F950EE17E08C6 /* FEMAttributeMapping+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FEMAttributeMapping+Extension.m"; sourceTree = "<group>"; };
 		69ED71A71F750AEBC8BA6FF0 /* MappingProviderNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProviderNative.h; sourceTree = "<group>"; };
 		69ED7209D50C3640D4456C8D /* Plane.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Plane.json; sourceTree = "<group>"; };
-		69ED724125F45703B27BFC0C /* EMKAttributeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKAttributeMapping.h; sourceTree = "<group>"; };
-		69ED73028D190C49BF2E0F8D /* EMKSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKSerializer.m; sourceTree = "<group>"; };
+		69ED724125F45703B27BFC0C /* FEMAttributeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMAttributeMapping.h; sourceTree = "<group>"; };
+		69ED73028D190C49BF2E0F8D /* FEMSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMSerializer.m; sourceTree = "<group>"; };
 		69ED734D9AF0D834B3D9D190 /* CarNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarNative.m; sourceTree = "<group>"; };
 		69ED741033C38A5C3BAA7B08 /* FingerNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerNative.h; sourceTree = "<group>"; };
 		69ED747DF1709A9ABAC81F68 /* NativeChild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeChild.m; sourceTree = "<group>"; };
@@ -133,70 +131,69 @@
 		69ED74EA8FEC3EC66EF72AA7 /* PlaneNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaneNative.m; sourceTree = "<group>"; };
 		69ED74F0986B6C6DD2614CB7 /* Car.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Car.json; sourceTree = "<group>"; };
 		69ED7532E1E5E3196BC27932 /* MappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MappingProvider.m; sourceTree = "<group>"; };
-		69ED7539B5509DF9599396EA /* EMKAttributeMapping+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMKAttributeMapping+Extension.h"; sourceTree = "<group>"; };
+		69ED7539B5509DF9599396EA /* FEMAttributeMapping+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FEMAttributeMapping+Extension.h"; sourceTree = "<group>"; };
 		69ED75443C8F85492C4D3907 /* SeaplaneNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeaplaneNative.h; sourceTree = "<group>"; };
-		69ED757059F6C7A26468D880 /* NSArray+EMKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+EMKExtension.m"; sourceTree = "<group>"; };
-		69ED757758DA67B4E8247495 /* EMKRelationshipMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKRelationshipMapping.m; sourceTree = "<group>"; };
+		69ED757059F6C7A26468D880 /* NSArray+FEMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FEMExtension.m"; sourceTree = "<group>"; };
+		69ED757758DA67B4E8247495 /* FEMRelationshipMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRelationshipMapping.m; sourceTree = "<group>"; };
 		69ED758473F42E39AE484636 /* CarWithDate.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CarWithDate.json; sourceTree = "<group>"; };
 		69ED75A1803E4FA721E79895 /* Phone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phone.m; sourceTree = "<group>"; };
-		69ED75B675560A0A804494CB /* EMKSerializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKSerializerSpec.m; sourceTree = "<group>"; };
-		69ED75CC8C4DEB31139E38B6 /* EMKMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKMapping.h; sourceTree = "<group>"; };
+		69ED75B675560A0A804494CB /* FEMSerializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMSerializerSpec.m; sourceTree = "<group>"; };
 		69ED75DAD53214AD94FAB868 /* NativeChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeChild.h; sourceTree = "<group>"; };
-		69ED7645386941DA79C1E53A /* NSArray+EMKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+EMKExtension.h"; sourceTree = "<group>"; };
+		69ED7645386941DA79C1E53A /* NSArray+FEMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FEMExtension.h"; sourceTree = "<group>"; };
 		69ED764EB359C8472262F3FB /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		69ED767EE6E89A487714CDF8 /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
-		69ED769040647781DD8B196D /* NSObject+EMKKVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EMKKVC.h"; sourceTree = "<group>"; };
+		69ED769040647781DD8B196D /* NSObject+FEMKVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FEMKVC.h"; sourceTree = "<group>"; };
 		69ED76A25E3A25F0BDFF4BCF /* PersonNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonNative.h; sourceTree = "<group>"; };
 		69ED76A31CE5167D72298490 /* AlienNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlienNative.m; sourceTree = "<group>"; };
 		69ED76DB4A492924FFE33FAF /* AlienNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlienNative.h; sourceTree = "<group>"; };
 		69ED76E0E8184C9BDF3CE713 /* CatNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatNative.m; sourceTree = "<group>"; };
-		69ED770C14BAB15CA7926116 /* NSObject+EMKKVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EMKKVC.m"; sourceTree = "<group>"; };
-		69ED771F4A0CC2BB6D9583BC /* EMKManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKManagedObjectDeserializer.h; sourceTree = "<group>"; };
-		69ED772E50A1A831B78D48B3 /* EMKManagedObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKManagedObjectDeserializer.m; sourceTree = "<group>"; };
+		69ED770C14BAB15CA7926116 /* NSObject+FEMKVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FEMKVC.m"; sourceTree = "<group>"; };
+		69ED771F4A0CC2BB6D9583BC /* FEMManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectDeserializer.h; sourceTree = "<group>"; };
+		69ED772E50A1A831B78D48B3 /* FEMManagedObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMManagedObjectDeserializer.m; sourceTree = "<group>"; };
 		69ED7745B6C0CD6C179EE0A8 /* CarNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarNative.h; sourceTree = "<group>"; };
 		69ED775F5613FEA881051644 /* PhoneNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNative.h; sourceTree = "<group>"; };
-		69ED77A829DD1436A5A2CA1B /* EasyMappingKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyMappingKit.h; sourceTree = "<group>"; };
+		69ED779509541DFE7A36679D /* FEMMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMMapping.h; sourceTree = "<group>"; };
+		69ED77A829DD1436A5A2CA1B /* FastEasyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastEasyMapping.h; sourceTree = "<group>"; };
 		69ED7810DD72B240882E07DF /* Address.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Address.json; sourceTree = "<group>"; };
 		69ED782333EB910A1F420719 /* SeaplaneNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeaplaneNative.m; sourceTree = "<group>"; };
 		69ED78A3F1B154B04AA09ABB /* Male.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Male.json; sourceTree = "<group>"; };
+		69ED78C2DFBB1D8408F0D515 /* FEMMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMapping.m; sourceTree = "<group>"; };
 		69ED78FBF03886650959C5AE /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		69ED790F30E4E551B1416E60 /* EMKManagedObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKManagedObjectMapping.m; sourceTree = "<group>"; };
+		69ED790F30E4E551B1416E60 /* FEMManagedObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMManagedObjectMapping.m; sourceTree = "<group>"; };
 		69ED793ABFE3F8A13E1E3D30 /* PersonWithDifferentNaming.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithDifferentNaming.json; sourceTree = "<group>"; };
 		69ED794EEC7B9F51E50AC8FA /* AddressNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressNative.h; sourceTree = "<group>"; };
 		69ED796AD9048CFCF07439D0 /* Native.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Native.json; sourceTree = "<group>"; };
-		69ED7972B98B6046006A3F97 /* EMKObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKObjectMapping.m; sourceTree = "<group>"; };
+		69ED7972B98B6046006A3F97 /* FEMObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectMapping.m; sourceTree = "<group>"; };
 		69ED799D533AED10DCFB4106 /* MappingProviderNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MappingProviderNative.m; sourceTree = "<group>"; };
-		69ED79ACE44B6BFB58B0B3F5 /* EMKObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKObjectDeserializer.m; sourceTree = "<group>"; };
+		69ED79ACE44B6BFB58B0B3F5 /* FEMObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectDeserializer.m; sourceTree = "<group>"; };
 		69ED79AD80703DC44EFCC7EE /* Person.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Person.json; sourceTree = "<group>"; };
 		69ED79F44DC116BCA2287E90 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
-		69ED7A4A3BD1A49CCC1AB9A4 /* EMKMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKMapping.m; sourceTree = "<group>"; };
-		69ED7A8B2E60F728B99A0CB9 /* EMKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKTypes.h; sourceTree = "<group>"; };
-		69ED7A9AEF651DACBF9BBC8F /* EMKObjectDeserializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKObjectDeserializerSpec.m; sourceTree = "<group>"; };
+		69ED7A8B2E60F728B99A0CB9 /* FEMTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMTypes.h; sourceTree = "<group>"; };
+		69ED7A9AEF651DACBF9BBC8F /* FEMObjectDeserializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectDeserializerSpec.m; sourceTree = "<group>"; };
 		69ED7AF90069A8C5CBFF2B75 /* Native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Native.h; sourceTree = "<group>"; };
 		69ED7BBE657BC5F333DD5560 /* CarWithNestedAttributes.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CarWithNestedAttributes.json; sourceTree = "<group>"; };
-		69ED7C04E2BE02B24CFA1D7C /* EMKManagedObjectMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKManagedObjectMappingSpec.m; sourceTree = "<group>"; };
+		69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMManagedObjectMappingSpec.m; sourceTree = "<group>"; };
 		69ED7C0B46A2C9AC90B37710 /* PersonNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonNative.m; sourceTree = "<group>"; };
-		69ED7C1A1592194E312212F9 /* EMKRelationshipMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKRelationshipMapping.h; sourceTree = "<group>"; };
-		69ED7C1B06B95B6C90EBB53A /* EMKManagedObjectDeserializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKManagedObjectDeserializerSpec.m; sourceTree = "<group>"; };
-		69ED7C1B2AB96554F9FDF10B /* EMKSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKSerializer.h; sourceTree = "<group>"; };
+		69ED7C1A1592194E312212F9 /* FEMRelationshipMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRelationshipMapping.h; sourceTree = "<group>"; };
+		69ED7C1B06B95B6C90EBB53A /* FEMManagedObjectDeserializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMManagedObjectDeserializerSpec.m; sourceTree = "<group>"; };
+		69ED7C1B2AB96554F9FDF10B /* FEMSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMSerializer.h; sourceTree = "<group>"; };
 		69ED7CB8A80C99BF8D7413F6 /* FastEasyMappingTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = "FastEasyMappingTests-Info.plist"; sourceTree = "<group>"; };
 		69ED7CF6DFFBDF7A0BF32AFC /* NativeChild.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = NativeChild.json; sourceTree = "<group>"; };
-		69ED7D24C1EE78C03CAB9C9B /* EMKLookupCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKLookupCache.m; sourceTree = "<group>"; };
+		69ED7D24C1EE78C03CAB9C9B /* FEMCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMCache.m; sourceTree = "<group>"; };
 		69ED7D96C7E8C393B9DEB695 /* Female.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Female.json; sourceTree = "<group>"; };
-		69ED7DE30D50997F9408F36E /* EMKLookupCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKLookupCache.h; sourceTree = "<group>"; };
+		69ED7DE30D50997F9408F36E /* FEMCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMCache.h; sourceTree = "<group>"; };
 		69ED7DE7AE4C126B96E6BD93 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		69ED7E3F8292CA5FAB383E45 /* PhoneNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNative.m; sourceTree = "<group>"; };
-		69ED7E6CB1B484C7F335B55F /* EMKPropertyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKPropertyHelper.h; sourceTree = "<group>"; };
+		69ED7E6CB1B484C7F335B55F /* FEMPropertyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMPropertyHelper.h; sourceTree = "<group>"; };
 		69ED7E718033F733C45E7416 /* Phone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phone.h; sourceTree = "<group>"; };
 		69ED7E9D5D47846FEFCA62F5 /* FingerNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerNative.m; sourceTree = "<group>"; };
-		69ED7EA48925307F4DB06848 /* EMKManagedObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKManagedObjectMapping.h; sourceTree = "<group>"; };
-		69ED7EC086EF5CE3263C6D8D /* EMKObjectMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKObjectMappingSpec.m; sourceTree = "<group>"; };
+		69ED7E9FFEE19DA64FCD4858 /* FEMPropertyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMPropertyMapping.h; sourceTree = "<group>"; };
+		69ED7EA48925307F4DB06848 /* FEMManagedObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectMapping.h; sourceTree = "<group>"; };
+		69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectMappingSpec.m; sourceTree = "<group>"; };
 		69ED7EC1199D47734B9812E7 /* Alien.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Alien.json; sourceTree = "<group>"; };
-		69ED7F5DB5E0C3FF6672226E /* EMKPropertyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKPropertyHelper.m; sourceTree = "<group>"; };
+		69ED7F5DB5E0C3FF6672226E /* FEMPropertyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMPropertyHelper.m; sourceTree = "<group>"; };
 		69ED7FE4AD3F8C3BD25B5825 /* CarWithRoot.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CarWithRoot.json; sourceTree = "<group>"; };
 		69ED7FF7736562A674D3696D /* PlaneNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneNative.h; sourceTree = "<group>"; };
-		7AEACCE5C88A456CB10752EF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		8FFF304ED83840FB9FA7E2BD /* libPods-EasyMappingKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyMappingKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9138F3E1B7040028335C057 /* Pods-FastEasyMappingTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMappingTests.xcconfig"; path = "Pods/Pods-FastEasyMappingTests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,7 +214,6 @@
 				2CF8098D18C3AD5700C07899 /* UIKit.framework in Frameworks */,
 				2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */,
 				2CF8099018C3AD5700C07899 /* libFastEasyMapping.a in Frameworks */,
-				02DDB94B5CA940288F1969F8 /* libPods-EasyMappingKitTests.a in Frameworks */,
 				9983A129111A4AB8A30520BE /* libPods-FastEasyMappingTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,9 +225,9 @@
 			isa = PBXGroup;
 			children = (
 				2CF8097D18C3AD5700C07899 /* FastEasyMapping */,
+				69ED720C98F96CE291122AD4 /* FastEasyMappingTests */,
 				2CF8097A18C3AD5700C07899 /* Frameworks */,
 				2CF8097918C3AD5700C07899 /* Products */,
-				69ED720C98F96CE291122AD4 /* FastEasyMappingTests */,
 				D9138F3E1B7040028335C057 /* Pods-FastEasyMappingTests.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -251,8 +247,6 @@
 				2CF8097B18C3AD5700C07899 /* Foundation.framework */,
 				2CF8098918C3AD5700C07899 /* XCTest.framework */,
 				2CF8098C18C3AD5700C07899 /* UIKit.framework */,
-				7AEACCE5C88A456CB10752EF /* libPods.a */,
-				8FFF304ED83840FB9FA7E2BD /* libPods-EasyMappingKitTests.a */,
 				2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */,
 			);
 			name = Frameworks;
@@ -269,9 +263,9 @@
 		69ED7057C5D3DBE4072F331B /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7F5DB5E0C3FF6672226E /* EMKPropertyHelper.m */,
-				69ED7E6CB1B484C7F335B55F /* EMKPropertyHelper.h */,
-				69ED7A8B2E60F728B99A0CB9 /* EMKTypes.h */,
+				69ED7F5DB5E0C3FF6672226E /* FEMPropertyHelper.m */,
+				69ED7E6CB1B484C7F335B55F /* FEMPropertyHelper.h */,
+				69ED7A8B2E60F728B99A0CB9 /* FEMTypes.h */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -279,11 +273,11 @@
 		69ED70EFE263881EF2703FEE /* Specs */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7C04E2BE02B24CFA1D7C /* EMKManagedObjectMappingSpec.m */,
-				69ED7C1B06B95B6C90EBB53A /* EMKManagedObjectDeserializerSpec.m */,
-				69ED7EC086EF5CE3263C6D8D /* EMKObjectMappingSpec.m */,
-				69ED7A9AEF651DACBF9BBC8F /* EMKObjectDeserializerSpec.m */,
-				69ED75B675560A0A804494CB /* EMKSerializerSpec.m */,
+				69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */,
+				69ED7C1B06B95B6C90EBB53A /* FEMManagedObjectDeserializerSpec.m */,
+				69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */,
+				69ED7A9AEF651DACBF9BBC8F /* FEMObjectDeserializerSpec.m */,
+				69ED75B675560A0A804494CB /* FEMSerializerSpec.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -315,8 +309,8 @@
 		69ED7210BACE9471FFD6A15D /* Serializer */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7C1B2AB96554F9FDF10B /* EMKSerializer.h */,
-				69ED73028D190C49BF2E0F8D /* EMKSerializer.m */,
+				69ED7C1B2AB96554F9FDF10B /* FEMSerializer.h */,
+				69ED73028D190C49BF2E0F8D /* FEMSerializer.m */,
 			);
 			path = Serializer;
 			sourceTree = "<group>";
@@ -380,8 +374,8 @@
 		69ED74A3F93755AF6DBD3662 /* Relationship */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7C1A1592194E312212F9 /* EMKRelationshipMapping.h */,
-				69ED757758DA67B4E8247495 /* EMKRelationshipMapping.m */,
+				69ED7C1A1592194E312212F9 /* FEMRelationshipMapping.h */,
+				69ED757758DA67B4E8247495 /* FEMRelationshipMapping.m */,
 			);
 			path = Relationship;
 			sourceTree = "<group>";
@@ -389,10 +383,10 @@
 		69ED752D2981B7C6882366D2 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7645386941DA79C1E53A /* NSArray+EMKExtension.h */,
-				69ED757059F6C7A26468D880 /* NSArray+EMKExtension.m */,
-				69ED770C14BAB15CA7926116 /* NSObject+EMKKVC.m */,
-				69ED769040647781DD8B196D /* NSObject+EMKKVC.h */,
+				69ED7645386941DA79C1E53A /* NSArray+FEMExtension.h */,
+				69ED757059F6C7A26468D880 /* NSArray+FEMExtension.m */,
+				69ED770C14BAB15CA7926116 /* NSObject+FEMKVC.m */,
+				69ED769040647781DD8B196D /* NSObject+FEMKVC.h */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -400,10 +394,12 @@
 		69ED7574EDCD21D0E501C8A1 /* Mapping */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7A4034F64A92A077C593 /* Abstract */,
 				69ED7C716C176C89DA2C9636 /* Object */,
 				69ED7C6CCD04878CED1E5BAE /* Attribute */,
 				69ED74A3F93755AF6DBD3662 /* Relationship */,
+				69ED7E9FFEE19DA64FCD4858 /* FEMPropertyMapping.h */,
+				69ED78C2DFBB1D8408F0D515 /* FEMMapping.m */,
+				69ED779509541DFE7A36679D /* FEMMapping.h */,
 			);
 			path = Mapping;
 			sourceTree = "<group>";
@@ -438,22 +434,12 @@
 			path = FastEasyMapping;
 			sourceTree = SOURCE_ROOT;
 		};
-		69ED7A4034F64A92A077C593 /* Abstract */ = {
-			isa = PBXGroup;
-			children = (
-				69ED75CC8C4DEB31139E38B6 /* EMKMapping.h */,
-				69ED7A4A3BD1A49CCC1AB9A4 /* EMKMapping.m */,
-				69ED708A80E35F7B61D6929B /* EMKPropertyMapping.h */,
-			);
-			path = Abstract;
-			sourceTree = "<group>";
-		};
 		69ED7BED4BE92D2D4F4716FF /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				69ED74995A8A1B14DCDA8FB3 /* Core */,
 				69ED7D6D5B95704EF3E879DA /* Extensions */,
-				69ED77A829DD1436A5A2CA1B /* EasyMappingKit.h */,
+				69ED77A829DD1436A5A2CA1B /* FastEasyMapping.h */,
 				69ED7057C5D3DBE4072F331B /* Utility */,
 			);
 			path = Source;
@@ -462,10 +448,10 @@
 		69ED7C6CCD04878CED1E5BAE /* Attribute */ = {
 			isa = PBXGroup;
 			children = (
-				69ED724125F45703B27BFC0C /* EMKAttributeMapping.h */,
-				69ED7141C706CAC006EADE5A /* EMKAttributeMapping.m */,
-				69ED7539B5509DF9599396EA /* EMKAttributeMapping+Extension.h */,
-				69ED718D4E6F950EE17E08C6 /* EMKAttributeMapping+Extension.m */,
+				69ED724125F45703B27BFC0C /* FEMAttributeMapping.h */,
+				69ED7141C706CAC006EADE5A /* FEMAttributeMapping.m */,
+				69ED7539B5509DF9599396EA /* FEMAttributeMapping+Extension.h */,
+				69ED718D4E6F950EE17E08C6 /* FEMAttributeMapping+Extension.m */,
 			);
 			path = Attribute;
 			sourceTree = "<group>";
@@ -473,10 +459,10 @@
 		69ED7C716C176C89DA2C9636 /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				69ED70753A27735A60785078 /* EMKObjectMapping.h */,
-				69ED7972B98B6046006A3F97 /* EMKObjectMapping.m */,
-				69ED7EA48925307F4DB06848 /* EMKManagedObjectMapping.h */,
-				69ED790F30E4E551B1416E60 /* EMKManagedObjectMapping.m */,
+				69ED70753A27735A60785078 /* FEMObjectMapping.h */,
+				69ED7972B98B6046006A3F97 /* FEMObjectMapping.m */,
+				69ED7EA48925307F4DB06848 /* FEMManagedObjectMapping.h */,
+				69ED790F30E4E551B1416E60 /* FEMManagedObjectMapping.m */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -484,10 +470,10 @@
 		69ED7C8732A1C26BF1CF78CD /* Deserializer */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7039B8922439BE9D1B8C /* EMKObjectDeserializer.h */,
-				69ED79ACE44B6BFB58B0B3F5 /* EMKObjectDeserializer.m */,
-				69ED771F4A0CC2BB6D9583BC /* EMKManagedObjectDeserializer.h */,
-				69ED772E50A1A831B78D48B3 /* EMKManagedObjectDeserializer.m */,
+				69ED7039B8922439BE9D1B8C /* FEMObjectDeserializer.h */,
+				69ED79ACE44B6BFB58B0B3F5 /* FEMObjectDeserializer.m */,
+				69ED771F4A0CC2BB6D9583BC /* FEMManagedObjectDeserializer.h */,
+				69ED772E50A1A831B78D48B3 /* FEMManagedObjectDeserializer.m */,
 			);
 			path = Deserializer;
 			sourceTree = "<group>";
@@ -495,8 +481,8 @@
 		69ED7CB4B4B9CD8DDF958D64 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7D24C1EE78C03CAB9C9B /* EMKLookupCache.m */,
-				69ED7DE30D50997F9408F36E /* EMKLookupCache.h */,
+				69ED7D24C1EE78C03CAB9C9B /* FEMCache.m */,
+				69ED7DE30D50997F9408F36E /* FEMCache.h */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -516,22 +502,22 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C11898E18D07356005D8D91 /* EMKManagedObjectMapping.h in Headers */,
-				2CF809AA18C3AE9A00C07899 /* EasyMappingKit.h in Headers */,
-				2C11898D18D07356005D8D91 /* EMKPropertyMapping.h in Headers */,
-				2CF809A218C3AE9A00C07899 /* EMKMapping.h in Headers */,
-				2CF809A318C3AE9A00C07899 /* EMKObjectMapping.h in Headers */,
-				2CF809A418C3AE9A00C07899 /* EMKAttributeMapping.h in Headers */,
-				2CF809A518C3AE9A00C07899 /* EMKRelationshipMapping.h in Headers */,
-				2CF809A618C3AE9A00C07899 /* EMKSerializer.h in Headers */,
-				2CF809A818C3AE9A00C07899 /* EMKObjectDeserializer.h in Headers */,
-				2CF809A918C3AE9A00C07899 /* EMKManagedObjectDeserializer.h in Headers */,
-				2CF809AB18C3AE9A00C07899 /* EMKTypes.h in Headers */,
-				2CF809AC18C3AEC800C07899 /* EMKAttributeMapping+Extension.h in Headers */,
-				2CF809AD18C3AEC800C07899 /* NSArray+EMKExtension.h in Headers */,
-				2CF809AF18C3AEC800C07899 /* EMKPropertyHelper.h in Headers */,
-				69ED7E8934131F087C5492A3 /* EMKLookupCache.h in Headers */,
-				69ED72338B6419101B1C8CDB /* NSObject+EMKKVC.h in Headers */,
+				2C11898E18D07356005D8D91 /* FEMManagedObjectMapping.h in Headers */,
+				2CF809AA18C3AE9A00C07899 /* FastEasyMapping.h in Headers */,
+				2CF809A318C3AE9A00C07899 /* FEMObjectMapping.h in Headers */,
+				2CF809A418C3AE9A00C07899 /* FEMAttributeMapping.h in Headers */,
+				2CF809A518C3AE9A00C07899 /* FEMRelationshipMapping.h in Headers */,
+				2CF809A618C3AE9A00C07899 /* FEMSerializer.h in Headers */,
+				2CF809A818C3AE9A00C07899 /* FEMObjectDeserializer.h in Headers */,
+				2CF809A918C3AE9A00C07899 /* FEMManagedObjectDeserializer.h in Headers */,
+				2CF809AB18C3AE9A00C07899 /* FEMTypes.h in Headers */,
+				2CF809AC18C3AEC800C07899 /* FEMAttributeMapping+Extension.h in Headers */,
+				2CF809AD18C3AEC800C07899 /* NSArray+FEMExtension.h in Headers */,
+				2CF809AF18C3AEC800C07899 /* FEMPropertyHelper.h in Headers */,
+				69ED7E8934131F087C5492A3 /* FEMCache.h in Headers */,
+				69ED72338B6419101B1C8CDB /* NSObject+FEMKVC.h in Headers */,
+				69ED702FCEC21C111D4518AC /* FEMPropertyMapping.h in Headers */,
+				69ED7191763B8C717620B63E /* FEMMapping.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,19 +657,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69ED7118E43D74A843AA1E54 /* EMKMapping.m in Sources */,
-				69ED7C04B0D06A2E75D9CDDD /* EMKObjectMapping.m in Sources */,
-				69ED7687DEAC011EE09F5D1A /* EMKManagedObjectMapping.m in Sources */,
-				69ED7299E71FA1B0B34E9764 /* EMKAttributeMapping.m in Sources */,
-				69ED70D8C859F4A0BDE4DCF8 /* EMKAttributeMapping+Extension.m in Sources */,
-				69ED7A9D4C100F6C8EEEDC03 /* EMKRelationshipMapping.m in Sources */,
-				69ED797C93C27C8E3BBC1BDB /* EMKSerializer.m in Sources */,
-				69ED776944D5FF7D7166F975 /* EMKObjectDeserializer.m in Sources */,
-				69ED7DADB8044F2B42C1CD94 /* EMKManagedObjectDeserializer.m in Sources */,
-				69ED7144E37E067666813AF9 /* NSArray+EMKExtension.m in Sources */,
-				69ED7687C035FA51A536AB56 /* EMKPropertyHelper.m in Sources */,
-				69ED756EBF9D955A7B6A580A /* EMKLookupCache.m in Sources */,
-				69ED74D218BD6B3888549434 /* NSObject+EMKKVC.m in Sources */,
+				69ED7C04B0D06A2E75D9CDDD /* FEMObjectMapping.m in Sources */,
+				69ED7687DEAC011EE09F5D1A /* FEMManagedObjectMapping.m in Sources */,
+				69ED7299E71FA1B0B34E9764 /* FEMAttributeMapping.m in Sources */,
+				69ED70D8C859F4A0BDE4DCF8 /* FEMAttributeMapping+Extension.m in Sources */,
+				69ED7A9D4C100F6C8EEEDC03 /* FEMRelationshipMapping.m in Sources */,
+				69ED797C93C27C8E3BBC1BDB /* FEMSerializer.m in Sources */,
+				69ED776944D5FF7D7166F975 /* FEMObjectDeserializer.m in Sources */,
+				69ED7DADB8044F2B42C1CD94 /* FEMManagedObjectDeserializer.m in Sources */,
+				69ED7144E37E067666813AF9 /* NSArray+FEMExtension.m in Sources */,
+				69ED7687C035FA51A536AB56 /* FEMPropertyHelper.m in Sources */,
+				69ED756EBF9D955A7B6A580A /* FEMCache.m in Sources */,
+				69ED74D218BD6B3888549434 /* NSObject+FEMKVC.m in Sources */,
+				69ED775D5D598E6ECAA40BA2 /* FEMMapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,12 +677,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C375F4118CCD49B00FCB8EA /* EMKManagedObjectMappingSpec.m in Sources */,
-				2C375F4218CCD49B00FCB8EA /* EMKManagedObjectDeserializerSpec.m in Sources */,
+				2C375F4118CCD49B00FCB8EA /* FEMManagedObjectMappingSpec.m in Sources */,
+				2C375F4218CCD49B00FCB8EA /* FEMManagedObjectDeserializerSpec.m in Sources */,
 				2C375F4318CCD49B00FCB8EA /* MappingProviderNative.m in Sources */,
 				2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */,
 				2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */,
-				2C375F3F18CCD40A00FCB8EA /* EMKObjectDeserializerSpec.m in Sources */,
+				2C375F3F18CCD40A00FCB8EA /* FEMObjectDeserializerSpec.m in Sources */,
 				2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */,
 				2C375F1518CCD3FB00FCB8EA /* Phone.m in Sources */,
 				2C375F1618CCD3FB00FCB8EA /* Person.m in Sources */,
@@ -710,8 +696,8 @@
 				2C375F1E18CCD3FB00FCB8EA /* SeaplaneNative.m in Sources */,
 				2C375F1F18CCD3FB00FCB8EA /* AlienNative.m in Sources */,
 				2C375F2018CCD3FB00FCB8EA /* PersonNative.m in Sources */,
-				2C375F3E18CCD40A00FCB8EA /* EMKObjectMappingSpec.m in Sources */,
-				2C375F4018CCD40A00FCB8EA /* EMKSerializerSpec.m in Sources */,
+				2C375F3E18CCD40A00FCB8EA /* FEMObjectMappingSpec.m in Sources */,
+				2C375F4018CCD40A00FCB8EA /* FEMSerializerSpec.m in Sources */,
 				2C375F2118CCD3FB00FCB8EA /* CarNative.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -809,9 +795,9 @@
 		2CF8099C18C3AD5700C07899 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/EasyMappingKit.dst;
+				DSTROOT = /tmp/FastEasyMapping.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EasyMappingKit/FastEasyMapping-Prefix.pch";
+				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -824,9 +810,9 @@
 		2CF8099D18C3AD5700C07899 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/EasyMappingKit.dst;
+				DSTROOT = /tmp/FastEasyMapping.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EasyMappingKit/FastEasyMapping-Prefix.pch";
+				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -846,12 +832,12 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EasyMappingKit/EasyMappingKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "EasyMappingKitTests/FastEasyMappingTests-Info.plist";
+				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
 				PRODUCT_NAME = FastEasyMappingTests;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -867,8 +853,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EasyMappingKit/EasyMappingKit-Prefix.pch";
-				INFOPLIST_FILE = "EasyMappingKitTests/FastEasyMappingTests-Info.plist";
+				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
+				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
 				PRODUCT_NAME = FastEasyMappingTests;
 				WRAPPER_EXTENSION = octest;
 			};

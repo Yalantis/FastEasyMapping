@@ -20,25 +20,24 @@
 
 #import <Foundation/Foundation.h>
 
-@class FEMObjectMapping;
+@class FEMManagedObjectMapping, NSManagedObject, NSFetchRequest, NSManagedObjectContext;
 
-@interface MappingProviderNative : NSObject
+@interface FEMManagedObjectDeserializer : NSObject
 
-+ (FEMObjectMapping *)carMapping;
-+ (FEMObjectMapping *)carWithRootKeyMapping;
-+ (FEMObjectMapping *)carNestedAttributesMapping;
-+ (FEMObjectMapping *)carWithDateMapping;
-+ (FEMObjectMapping *)phoneMapping;
-+ (FEMObjectMapping *)personMapping;
-+ (FEMObjectMapping *)personWithCarMapping;
-+ (FEMObjectMapping *)personWithPhonesMapping;
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping;
-+ (FEMObjectMapping *)addressMapping;
-+ (FEMObjectMapping *)fingerMapping;
-+ (FEMObjectMapping *)nativeMapping;
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie;
-+ (FEMObjectMapping *)planeMapping;
-+ (FEMObjectMapping *)alienMapping;
-+ (FEMObjectMapping *)nativeChildMapping;
++ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
+                                 usingMapping:(FEMManagedObjectMapping *)mapping
+			                          context:(NSManagedObjectContext *)context;
+
++ (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping;
+
+/** Get an array of managed objects from an external representation. If the objectMapping has
+    a primary key existing objects will be updated. This method is slow and it doesn't
+    delete obsolete objects, use
+    syncArrayOfObjectsFromExternalRepresentation:withMapping:fetchRequest:inManagedObjectContext:
+    instead.
+ */
++ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation
+                                            usingMapping:(FEMManagedObjectMapping *)mapping
+			                                     context:(NSManagedObjectContext *)context;
 
 @end

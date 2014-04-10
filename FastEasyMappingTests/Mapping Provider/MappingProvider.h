@@ -20,19 +20,19 @@
 
 #import <Foundation/Foundation.h>
 
-@class EMKManagedObjectMapping;
+@class FEMManagedObjectMapping;
 
 @interface MappingProvider : NSObject
 
-+ (EMKManagedObjectMapping *)carMappingWithPrimaryKey;
-+ (EMKManagedObjectMapping *)carMapping;
-+ (EMKManagedObjectMapping *)carWithRootKeyMapping;
-+ (EMKManagedObjectMapping *)carNestedAttributesMapping;
-+ (EMKManagedObjectMapping *)carWithDateMapping;
-+ (EMKManagedObjectMapping *)phoneMapping;
-+ (EMKManagedObjectMapping *)personMapping;
-+ (EMKManagedObjectMapping *)personWithCarMapping;
-+ (EMKManagedObjectMapping *)personWithPhonesMapping;
-+ (EMKManagedObjectMapping *)personWithOnlyValueBlockMapping;
++ (FEMManagedObjectMapping *)carMappingWithPrimaryKey;
++ (FEMManagedObjectMapping *)carMapping;
++ (FEMManagedObjectMapping *)carWithRootKeyMapping;
++ (FEMManagedObjectMapping *)carNestedAttributesMapping;
++ (FEMManagedObjectMapping *)carWithDateMapping;
++ (FEMManagedObjectMapping *)phoneMapping;
++ (FEMManagedObjectMapping *)personMapping;
++ (FEMManagedObjectMapping *)personWithCarMapping;
++ (FEMManagedObjectMapping *)personWithPhonesMapping;
++ (FEMManagedObjectMapping *)personWithOnlyValueBlockMapping;
 
 @end

@@ -18,27 +18,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "NSObject+FEMKVC.h"
 
-@class FEMObjectMapping;
+@implementation NSObject (FEMKVC)
 
-@interface MappingProviderNative : NSObject
+- (void)emk_setValueIfDifferent:(id)value forKey:(NSString *)key {
+	id _value = [self valueForKey:key];
+	if (_value == value) return;
 
-+ (FEMObjectMapping *)carMapping;
-+ (FEMObjectMapping *)carWithRootKeyMapping;
-+ (FEMObjectMapping *)carNestedAttributesMapping;
-+ (FEMObjectMapping *)carWithDateMapping;
-+ (FEMObjectMapping *)phoneMapping;
-+ (FEMObjectMapping *)personMapping;
-+ (FEMObjectMapping *)personWithCarMapping;
-+ (FEMObjectMapping *)personWithPhonesMapping;
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping;
-+ (FEMObjectMapping *)addressMapping;
-+ (FEMObjectMapping *)fingerMapping;
-+ (FEMObjectMapping *)nativeMapping;
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie;
-+ (FEMObjectMapping *)planeMapping;
-+ (FEMObjectMapping *)alienMapping;
-+ (FEMObjectMapping *)nativeChildMapping;
+	if (_value != nil && value == nil) {
+		[self setValue:nil forKey:key];
+	} else if (![value isEqual:_value]) {
+		[self setValue:value forKey:key];
+	}
+}
 
 @end

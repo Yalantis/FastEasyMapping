@@ -22,109 +22,115 @@
 #import "Car.h"
 #import "Phone.h"
 #import "Person.h"
-#import "EMKObjectMapping.h"
-#import "EMKManagedObjectMapping.h"
-#import "EMKAttributeMapping.h"
-#import "EMKRelationshipMapping.h"
+#import "FEMObjectMapping.h"
+#import "FEMManagedObjectMapping.h"
+#import "FEMAttributeMapping.h"
+#import "FEMRelationshipMapping.h"
 
 @implementation MappingProvider
 
-+ (EMKManagedObjectMapping *)carMappingWithPrimaryKey {
-	EMKManagedObjectMapping *mapping = [self carMapping];
++ (FEMManagedObjectMapping *)carMappingWithPrimaryKey {
+	FEMManagedObjectMapping *mapping = [self carMapping];
 	[mapping setPrimaryKey:@"carID"];
 	[mapping addAttributeMappingDictionary:@{@"carID" : @"id"}];
 
 	return mapping;
 }
 
-+ (EMKManagedObjectMapping *)carMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Car" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)carMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Car" configuration:^(FEMManagedObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
 	}];
 }
 
-+ (EMKManagedObjectMapping *)carWithRootKeyMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Car" rootPath:@"car" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)carWithRootKeyMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Car"
+	                                            rootPath:@"car"
+			                               configuration:^(FEMManagedObjectMapping *mapping) {
 //       [mapping setPrimaryKey:@"carID"];
-       [mapping addAttributeMappingDictionary:@{@"carID" : @"id"}];
-       [mapping addAttributeMappingFromArray:@[@"model", @"year"]];
-   }];
+				                               [mapping addAttributeMappingDictionary:@{@"carID" : @"id"}];
+				                               [mapping addAttributeMappingFromArray:@[@"model", @"year"]];
+			                               }];
 }
 
-+ (EMKManagedObjectMapping *)carNestedAttributesMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Car" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)carNestedAttributesMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Car" configuration:^(FEMManagedObjectMapping *mapping) {
 //		[mapping setPrimaryKey:@"carID"];
 		[mapping addAttributeMappingDictionary:@{@"carID" : @"id", @"year" : @"information.year"}];
 		[mapping addAttributeMappingFromArray:@[@"model"]];
 	}];
 }
 
-+ (EMKManagedObjectMapping *)carWithDateMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Car" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)carWithDateMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Car" configuration:^(FEMManagedObjectMapping *mapping) {
 //		[mapping setPrimaryKey:@"carID"];
 		[mapping addAttributeMappingDictionary:@{@"carID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
-		[mapping addAttributeMapping:[EMKAttributeMapping mappingOfProperty:@"createdAt"
+		[mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"createdAt"
 		                                                            keyPath:@"created_at"
 			                                                     dateFormat:@"yyyy-MM-dd"]];
 	}];
 }
 
-+ (EMKManagedObjectMapping *)phoneMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Phone" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)phoneMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Phone" configuration:^(FEMManagedObjectMapping *mapping) {
 //		[mapping setPrimaryKey:@"phoneID"];
 		[mapping addAttributeMappingDictionary:@{@"phoneID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"number", @"ddd", @"ddi"]];
 	}];
 }
 
-+ (EMKManagedObjectMapping *)personMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Person" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)personMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Person" configuration:^(FEMManagedObjectMapping *mapping) {
 //		[mapping setPrimaryKey:@"personID"];
-		[mapping addAttributeMappingDictionary:@{@"personID": @"id"}];
+		[mapping addAttributeMappingDictionary:@{@"personID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"name", @"email", @"gender"]];
-		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"car"
-		                                                            configuration:^(EMKRelationshipMapping *relationshipMapping) {
-            [relationshipMapping setObjectMapping:[self carMapping] forKeyPath:@"car"];
-		}]];
+		[mapping addRelationshipMapping:[FEMRelationshipMapping mappingOfProperty:@"car"
+		                                                            configuration:^(FEMRelationshipMapping *relationshipMapping) {
+			                                                            [relationshipMapping setObjectMapping:[self carMapping]
+			                                                                                       forKeyPath:@"car"];
+		                                                            }]];
 
-		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"phones"
-		                                                            configuration:^(EMKRelationshipMapping *relationshipMapping) {
-            [relationshipMapping setToMany:YES];
-            [relationshipMapping setObjectMapping:[self phoneMapping] forKeyPath:@"phones"];
-        }]];
+		[mapping addRelationshipMapping:[FEMRelationshipMapping mappingOfProperty:@"phones"
+		                                                            configuration:^(FEMRelationshipMapping *relationshipMapping) {
+			                                                            [relationshipMapping setToMany:YES];
+			                                                            [relationshipMapping setObjectMapping:[self phoneMapping]
+			                                                                                       forKeyPath:@"phones"];
+		                                                            }]];
 	}];
 }
 
-+ (EMKManagedObjectMapping *)personWithCarMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Person" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)personWithCarMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Person" configuration:^(FEMManagedObjectMapping *mapping) {
 //		[mapping setPrimaryKey:@"personID"];
-		[mapping addAttributeMappingDictionary:@{@"personID": @"id"}];
+		[mapping addAttributeMappingDictionary:@{@"personID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
-		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"car"
-		                                                            configuration:^(EMKRelationshipMapping *relationshipMapping) {
-            [relationshipMapping setObjectMapping:[self carMapping] forKeyPath:@"car"];
-        }]];
+		[mapping addRelationshipMapping:[FEMRelationshipMapping mappingOfProperty:@"car"
+		                                                            configuration:^(FEMRelationshipMapping *relationshipMapping) {
+			                                                            [relationshipMapping setObjectMapping:[self carMapping]
+			                                                                                       forKeyPath:@"car"];
+		                                                            }]];
 	}];
 }
 
-+ (EMKManagedObjectMapping *)personWithPhonesMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Person" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)personWithPhonesMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Person" configuration:^(FEMManagedObjectMapping *mapping) {
 //		[mapping setPrimaryKey:@"personID"];
-		[mapping addAttributeMappingDictionary:@{@"personID": @"id"}];
+		[mapping addAttributeMappingDictionary:@{@"personID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
-		[mapping addRelationshipMapping:[EMKRelationshipMapping mappingOfProperty:@"phones"
-		                                                            configuration:^(EMKRelationshipMapping *relationshipMapping) {
-            [relationshipMapping setToMany:YES];
-            [relationshipMapping setObjectMapping:[self phoneMapping] forKeyPath:@"phones"];
-        }]];
+		[mapping addRelationshipMapping:[FEMRelationshipMapping mappingOfProperty:@"phones"
+		                                                            configuration:^(FEMRelationshipMapping *relationshipMapping) {
+			                                                            [relationshipMapping setToMany:YES];
+			                                                            [relationshipMapping setObjectMapping:[self phoneMapping]
+			                                                                                       forKeyPath:@"phones"];
+		                                                            }]];
 	}];
 }
 
-+ (EMKManagedObjectMapping *)personWithOnlyValueBlockMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Person" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)personWithOnlyValueBlockMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Person" configuration:^(FEMManagedObjectMapping *mapping) {
 //		[mapping setPrimaryKey:@"personID"];
-		[mapping addAttributeMappingDictionary:@{@"personID": @"id"}];
+		[mapping addAttributeMappingDictionary:@{@"personID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"name", @"email", @"gender"]];
 	}];
 }
