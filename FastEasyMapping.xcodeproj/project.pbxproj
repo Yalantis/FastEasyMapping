@@ -50,7 +50,7 @@
 		2CF8098A18C3AD5700C07899 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8098918C3AD5700C07899 /* XCTest.framework */; };
 		2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097B18C3AD5700C07899 /* Foundation.framework */; };
 		2CF8098D18C3AD5700C07899 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8098C18C3AD5700C07899 /* UIKit.framework */; };
-		2CF8099018C3AD5700C07899 /* libEasyMappingKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097818C3AD5700C07899 /* libEasyMappingKit.a */; };
+		2CF8099018C3AD5700C07899 /* libFastEasyMapping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097818C3AD5700C07899 /* libFastEasyMapping.a */; };
 		2CF809A218C3AE9A00C07899 /* EMKMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED75CC8C4DEB31139E38B6 /* EMKMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809A318C3AE9A00C07899 /* EMKObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED70753A27735A60785078 /* EMKObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809A418C3AE9A00C07899 /* EMKAttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED724125F45703B27BFC0C /* EMKAttributeMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -79,6 +79,7 @@
 		69ED7D115200A0D4F52DBBCA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69ED730BF972DF74DC2BA5B3 /* InfoPlist.strings */; };
 		69ED7DADB8044F2B42C1CD94 /* EMKManagedObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED772E50A1A831B78D48B3 /* EMKManagedObjectDeserializer.m */; };
 		69ED7E8934131F087C5492A3 /* EMKLookupCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7DE30D50997F9408F36E /* EMKLookupCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		9983A129111A4AB8A30520BE /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,10 +106,10 @@
 
 /* Begin PBXFileReference section */
 		2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyMappingCoreDataExample.xcdatamodel; sourceTree = "<group>"; };
-		2C533D19170E45D087B38DD0 /* Pods-EasyMappingKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyMappingKitTests.xcconfig"; path = "Pods/Pods-EasyMappingKitTests.xcconfig"; sourceTree = "<group>"; };
-		2CF8097818C3AD5700C07899 /* libEasyMappingKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEasyMappingKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FastEasyMappingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CF8097818C3AD5700C07899 /* libFastEasyMapping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFastEasyMapping.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF8097B18C3AD5700C07899 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		2CF8098818C3AD5700C07899 /* EasyMappingKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyMappingKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CF8098818C3AD5700C07899 /* FastEasyMappingTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastEasyMappingTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF8098918C3AD5700C07899 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2CF8098C18C3AD5700C07899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		69ED7039B8922439BE9D1B8C /* EMKObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKObjectDeserializer.h; sourceTree = "<group>"; };
@@ -118,7 +119,7 @@
 		69ED70FD89800BB41C8894FE /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
 		69ED7141C706CAC006EADE5A /* EMKAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKAttributeMapping.m; sourceTree = "<group>"; };
 		69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressNative.m; sourceTree = "<group>"; };
-		69ED7153320369C3FEB8A8F4 /* EasyMappingKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EasyMappingKit-Prefix.pch"; sourceTree = "<group>"; };
+		69ED7153320369C3FEB8A8F4 /* FastEasyMapping-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FastEasyMapping-Prefix.pch"; sourceTree = "<group>"; };
 		69ED71666439C5B0BC0A6650 /* CatNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatNative.h; sourceTree = "<group>"; };
 		69ED718D4E6F950EE17E08C6 /* EMKAttributeMapping+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMKAttributeMapping+Extension.m"; sourceTree = "<group>"; };
 		69ED71A71F750AEBC8BA6FF0 /* MappingProviderNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProviderNative.h; sourceTree = "<group>"; };
@@ -178,7 +179,7 @@
 		69ED7C1A1592194E312212F9 /* EMKRelationshipMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKRelationshipMapping.h; sourceTree = "<group>"; };
 		69ED7C1B06B95B6C90EBB53A /* EMKManagedObjectDeserializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKManagedObjectDeserializerSpec.m; sourceTree = "<group>"; };
 		69ED7C1B2AB96554F9FDF10B /* EMKSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKSerializer.h; sourceTree = "<group>"; };
-		69ED7CB8A80C99BF8D7413F6 /* EasyMappingKitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = "EasyMappingKitTests-Info.plist"; sourceTree = "<group>"; };
+		69ED7CB8A80C99BF8D7413F6 /* FastEasyMappingTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = "FastEasyMappingTests-Info.plist"; sourceTree = "<group>"; };
 		69ED7CF6DFFBDF7A0BF32AFC /* NativeChild.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = NativeChild.json; sourceTree = "<group>"; };
 		69ED7D24C1EE78C03CAB9C9B /* EMKLookupCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKLookupCache.m; sourceTree = "<group>"; };
 		69ED7D96C7E8C393B9DEB695 /* Female.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Female.json; sourceTree = "<group>"; };
@@ -196,6 +197,7 @@
 		69ED7FF7736562A674D3696D /* PlaneNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneNative.h; sourceTree = "<group>"; };
 		7AEACCE5C88A456CB10752EF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FFF304ED83840FB9FA7E2BD /* libPods-EasyMappingKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyMappingKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9138F3E1B7040028335C057 /* Pods-FastEasyMappingTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMappingTests.xcconfig"; path = "Pods/Pods-FastEasyMappingTests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,8 +216,9 @@
 				2CF8098A18C3AD5700C07899 /* XCTest.framework in Frameworks */,
 				2CF8098D18C3AD5700C07899 /* UIKit.framework in Frameworks */,
 				2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */,
-				2CF8099018C3AD5700C07899 /* libEasyMappingKit.a in Frameworks */,
+				2CF8099018C3AD5700C07899 /* libFastEasyMapping.a in Frameworks */,
 				02DDB94B5CA940288F1969F8 /* libPods-EasyMappingKitTests.a in Frameworks */,
+				9983A129111A4AB8A30520BE /* libPods-FastEasyMappingTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,19 +228,19 @@
 		2CF8096F18C3AD5700C07899 = {
 			isa = PBXGroup;
 			children = (
-				2C533D19170E45D087B38DD0 /* Pods-EasyMappingKitTests.xcconfig */,
-				2CF8097D18C3AD5700C07899 /* EasyMappingKit */,
+				2CF8097D18C3AD5700C07899 /* FastEasyMapping */,
 				2CF8097A18C3AD5700C07899 /* Frameworks */,
 				2CF8097918C3AD5700C07899 /* Products */,
-				69ED720C98F96CE291122AD4 /* EasyMappingKitTests */,
+				69ED720C98F96CE291122AD4 /* FastEasyMappingTests */,
+				D9138F3E1B7040028335C057 /* Pods-FastEasyMappingTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
 		2CF8097918C3AD5700C07899 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2CF8097818C3AD5700C07899 /* libEasyMappingKit.a */,
-				2CF8098818C3AD5700C07899 /* EasyMappingKitTests.octest */,
+				2CF8097818C3AD5700C07899 /* libFastEasyMapping.a */,
+				2CF8098818C3AD5700C07899 /* FastEasyMappingTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,16 +253,17 @@
 				2CF8098C18C3AD5700C07899 /* UIKit.framework */,
 				7AEACCE5C88A456CB10752EF /* libPods.a */,
 				8FFF304ED83840FB9FA7E2BD /* libPods-EasyMappingKitTests.a */,
+				2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2CF8097D18C3AD5700C07899 /* EasyMappingKit */ = {
+		2CF8097D18C3AD5700C07899 /* FastEasyMapping */ = {
 			isa = PBXGroup;
 			children = (
 				69ED7BED4BE92D2D4F4716FF /* Source */,
 			);
-			path = EasyMappingKit;
+			path = FastEasyMapping;
 			sourceTree = "<group>";
 		};
 		69ED7057C5D3DBE4072F331B /* Utility */ = {
@@ -295,17 +299,17 @@
 			path = "Mapping Provider";
 			sourceTree = "<group>";
 		};
-		69ED720C98F96CE291122AD4 /* EasyMappingKitTests */ = {
+		69ED720C98F96CE291122AD4 /* FastEasyMappingTests */ = {
 			isa = PBXGroup;
 			children = (
 				69ED70EFE263881EF2703FEE /* Specs */,
 				69ED72A18D441F9A3397D384 /* Models */,
 				69ED744E18215206BCE42591 /* en.lproj */,
 				69ED77FF1B7BCBBE52569877 /* Fixtures */,
-				69ED7CB8A80C99BF8D7413F6 /* EasyMappingKitTests-Info.plist */,
+				69ED7CB8A80C99BF8D7413F6 /* FastEasyMappingTests-Info.plist */,
 				69ED713D0205449C289F72C9 /* Mapping Provider */,
 			);
-			path = EasyMappingKitTests;
+			path = FastEasyMappingTests;
 			sourceTree = "<group>";
 		};
 		69ED7210BACE9471FFD6A15D /* Serializer */ = {
@@ -428,10 +432,10 @@
 		69ED79C6C00F61AE646C591E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7153320369C3FEB8A8F4 /* EasyMappingKit-Prefix.pch */,
+				69ED7153320369C3FEB8A8F4 /* FastEasyMapping-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			path = EasyMappingKit;
+			path = FastEasyMapping;
 			sourceTree = SOURCE_ROOT;
 		};
 		69ED7A4034F64A92A077C593 /* Abstract */ = {
@@ -534,9 +538,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2CF8097718C3AD5700C07899 /* EasyMappingKit */ = {
+		2CF8097718C3AD5700C07899 /* FastEasyMapping */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2CF8099B18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "EasyMappingKit" */;
+			buildConfigurationList = 2CF8099B18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "FastEasyMapping" */;
 			buildPhases = (
 				2CF8097418C3AD5700C07899 /* Sources */,
 				2CF8097518C3AD5700C07899 /* Frameworks */,
@@ -547,14 +551,14 @@
 			);
 			dependencies = (
 			);
-			name = EasyMappingKit;
+			name = FastEasyMapping;
 			productName = EasyMappingKit;
-			productReference = 2CF8097818C3AD5700C07899 /* libEasyMappingKit.a */;
+			productReference = 2CF8097818C3AD5700C07899 /* libFastEasyMapping.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		2CF8098718C3AD5700C07899 /* EasyMappingKitTests */ = {
+		2CF8098718C3AD5700C07899 /* FastEasyMappingTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2CF8099E18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "EasyMappingKitTests" */;
+			buildConfigurationList = 2CF8099E18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "FastEasyMappingTests" */;
 			buildPhases = (
 				9AD89FD89C554CF99FC3CF3C /* Check Pods Manifest.lock */,
 				2CF8098418C3AD5700C07899 /* Sources */,
@@ -567,9 +571,9 @@
 			dependencies = (
 				2CF8098F18C3AD5700C07899 /* PBXTargetDependency */,
 			);
-			name = EasyMappingKitTests;
+			name = FastEasyMappingTests;
 			productName = EasyMappingKitTests;
-			productReference = 2CF8098818C3AD5700C07899 /* EasyMappingKitTests.octest */;
+			productReference = 2CF8098818C3AD5700C07899 /* FastEasyMappingTests.octest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -586,7 +590,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2CF8097318C3AD5700C07899 /* Build configuration list for PBXProject "EasyMappingKit" */;
+			buildConfigurationList = 2CF8097318C3AD5700C07899 /* Build configuration list for PBXProject "FastEasyMapping" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -598,8 +602,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2CF8097718C3AD5700C07899 /* EasyMappingKit */,
-				2CF8098718C3AD5700C07899 /* EasyMappingKitTests */,
+				2CF8097718C3AD5700C07899 /* FastEasyMapping */,
+				2CF8098718C3AD5700C07899 /* FastEasyMappingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -657,7 +661,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-EasyMappingKitTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-FastEasyMappingTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -717,7 +721,7 @@
 /* Begin PBXTargetDependency section */
 		2CF8098F18C3AD5700C07899 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2CF8097718C3AD5700C07899 /* EasyMappingKit */;
+			target = 2CF8097718C3AD5700C07899 /* FastEasyMapping */;
 			targetProxy = 2CF8098E18C3AD5700C07899 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -807,12 +811,12 @@
 			buildSettings = {
 				DSTROOT = /tmp/EasyMappingKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EasyMappingKit/EasyMappingKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "EasyMappingKit/FastEasyMapping-Prefix.pch";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FastEasyMapping;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -822,19 +826,19 @@
 			buildSettings = {
 				DSTROOT = /tmp/EasyMappingKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EasyMappingKit/EasyMappingKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "EasyMappingKit/FastEasyMapping-Prefix.pch";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FastEasyMapping;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
 		2CF8099F18C3AD5700C07899 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C533D19170E45D087B38DD0 /* Pods-EasyMappingKitTests.xcconfig */;
+			baseConfigurationReference = D9138F3E1B7040028335C057 /* Pods-FastEasyMappingTests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -847,15 +851,15 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "EasyMappingKitTests/EasyMappingKitTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "EasyMappingKitTests/FastEasyMappingTests-Info.plist";
+				PRODUCT_NAME = FastEasyMappingTests;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
 		2CF809A018C3AD5700C07899 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C533D19170E45D087B38DD0 /* Pods-EasyMappingKitTests.xcconfig */;
+			baseConfigurationReference = D9138F3E1B7040028335C057 /* Pods-FastEasyMappingTests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -864,8 +868,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EasyMappingKit/EasyMappingKit-Prefix.pch";
-				INFOPLIST_FILE = "EasyMappingKitTests/EasyMappingKitTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "EasyMappingKitTests/FastEasyMappingTests-Info.plist";
+				PRODUCT_NAME = FastEasyMappingTests;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -873,7 +877,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2CF8097318C3AD5700C07899 /* Build configuration list for PBXProject "EasyMappingKit" */ = {
+		2CF8097318C3AD5700C07899 /* Build configuration list for PBXProject "FastEasyMapping" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CF8099918C3AD5700C07899 /* Debug */,
@@ -882,7 +886,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2CF8099B18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "EasyMappingKit" */ = {
+		2CF8099B18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "FastEasyMapping" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CF8099C18C3AD5700C07899 /* Debug */,
@@ -891,7 +895,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2CF8099E18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "EasyMappingKitTests" */ = {
+		2CF8099E18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "FastEasyMappingTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CF8099F18C3AD5700C07899 /* Debug */,
