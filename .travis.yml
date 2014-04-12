@@ -2,4 +2,4 @@ language: objective-c
 before_install:
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
 script:
-    - xcodebuild test -workspace EasyMappingKit.xcworkspace -scheme EasyMappingKit -sdk iphonesimulator
+    - xcodebuild test -workspace FastEasyMapping.xcworkspace -scheme FastEasyMapping -sdk iphonesimulator
