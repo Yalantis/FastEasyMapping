@@ -1,6 +1,6 @@
-# EasyMappingKit
+# FastMappingKit
 
-[![Build Status](https://travis-ci.org/Yalantis/EasyMappingKit.png)](https://travis-ci.org/Yalantis/EasyMappingKit)
+[![Build Status](https://travis-ci.org/Yalantis/FastMappingKit.png)](https://travis-ci.org/Yalantis/FastMappingKit)
 
 ### Note
 This is fork of [EasyMapping](https://github.com/lucasmedeirosleite/EasyMapping) - flexible and easy way of JSON mapping.
@@ -8,7 +8,7 @@ This is fork of [EasyMapping](https://github.com/lucasmedeirosleite/EasyMapping)
 ## Reason to be
 It turns out, that almost all popular libraries for JSON mapping SLOW. The main reason is often trips to database during lookup of existing objects. So we [decided](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) to take already existing [flexible solution](https://github.com/lucasmedeirosleite/EasyMapping) and improve overall performance. 
 <p align="center" >
-  <img src="https://raw.githubusercontent.com/Yalantis/EasyMappingKit/master/Assets/com.yalantis.easymappingkit.performance.png" alt="EasyMappingKit" title="EasyMappingKit">
+  <img src="https://raw.githubusercontent.com/Yalantis/FastMappingKit/master/Assets/com.yalantis.FastMappingKit.performance.png" alt="FastMappingKit" title="FastMappingKit">
 </p>
 
 # Usage
@@ -53,8 +53,8 @@ Mapping can be described in next way:
 ```objective-c
 @implementation MappingProvider
 
-+ (EMKManagedObjectMapping *)personMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Person" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)personMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Person" configuration:^(FEMManagedObjectMapping *mapping) {
 		[mapping setPrimaryKey:@"personID"];  // object uniquing
 
 		[mapping addAttributeMappingDictionary:@{@"personID": @"id"}];
@@ -65,16 +65,16 @@ Mapping can be described in next way:
 	}];
 }
 
-+ (EMKManagedObjectMapping *)carMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Car" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)carMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Car" configuration:^(FEMManagedObjectMapping *mapping) {
     [mapping setPrimaryKey:@"carID"];
 
 		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
 	}];
 }
 
-+ (EMKManagedObjectMapping *)phoneMapping {
-	return [EMKManagedObjectMapping mappingForEntityName:@"Phone" configuration:^(EMKManagedObjectMapping *mapping) {
++ (FEMManagedObjectMapping *)phoneMapping {
+	return [FEMManagedObjectMapping mappingForEntityName:@"Phone" configuration:^(FEMManagedObjectMapping *mapping) {
 		[mapping addAttributeMappingDictionary:@{@"phoneID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"number", @"ddd", @"ddi"]];
 	}];
@@ -87,11 +87,11 @@ Mapping can be described in next way:
 Converting a NSDictionary or NSArray to a object class or collection now becomes easy:
 
 ```objective-c
-Person *person = [EMKManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+Person *person = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
                                                                           usingMapping:[MappingProvider personMapping]
                                                                                context:context];
                                                                                
-NSArray *cars = [EMKManagedObjectDeserializer deserializeCollectionExternalRepresentation:externalRepresentation
+NSArray *cars = [FEMManagedObjectDeserializer deserializeCollectionExternalRepresentation:externalRepresentation
                                                                              usingMapping:[MappingProvider carMapping]
                                                                                   context:moc];
 ```
@@ -102,22 +102,22 @@ Filling an existent object:
 ```objective-c
 Person *person = // fetch somehow;
 
-EMKManagedObjectMapping *mapping = [MappingProvider personMapping];
-[EMKManagedObjectDeserializer fillObject:person fromExternalRepresentation:externalRepresentation usingMapping:mapping];
+FEMManagedObjectMapping *mapping = [MappingProvider personMapping];
+[FEMManagedObjectDeserializer fillObject:person fromExternalRepresentation:externalRepresentation usingMapping:mapping];
 ```
 
 
 ## Deserialization. NSObject
 
-If you are using NSObject use `EKObjectMapping` instead of `EMKManagedObjectMapping` and  `EMKObjectDeserializer` instead of `EMKManagedObjectDeserializer`.
+If you are using NSObject use `FEMObjectMapping` instead of `FEMManagedObjectMapping` and  `FEMObjectDeserializer` instead of `FEMManagedObjectDeserializer`.
 
 ## Serialization
 
 For both NSManagedObject and NSObject serialization to JSON looks the same:
 
 ```objective-c
-NSDictionary *representation = [EMKSerializer serializeObject:car usingMapping:[MappingProvider carMapping]];
-NSArray *collectionRepresentation = [EMKSerializer serializeCollection:cars usingMapping:[MappingProvider carMapping]];
+NSDictionary *representation = [FEMSerializer serializeObject:car usingMapping:[MappingProvider carMapping]];
+NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usingMapping:[MappingProvider carMapping]];
 ```
 
 # Roadmap
@@ -127,4 +127,4 @@ NSArray *collectionRepresentation = [EMKSerializer serializeCollection:cars usin
 * Special thanks to [lucasmedeirosleite](https://github.com/lucasmedeirosleite) for amazing framework.
 
 # Extra
-Read out [blogpost](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) about EasyMappingKit.
+Read out [blogpost](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) about FastMappingKit.
