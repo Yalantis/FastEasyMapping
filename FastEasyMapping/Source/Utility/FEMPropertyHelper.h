@@ -22,8 +22,6 @@
 
 @interface FEMPropertyHelper : NSObject
 
-+ (id)performSelector:(SEL)selector onObject:(id)object;
-+ (id)performNativeSelector:(SEL)selector onObject:(id)object;
-+ (BOOL)propertyNameIsNative:(NSString *)propertyName fromObject:(id)object;
++ (BOOL)propertyIsScalar:(NSString *)propertyName fromObject:(id)object;
 
 @end
