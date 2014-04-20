@@ -20,7 +20,7 @@
 
 #import "FEMSerializer.h"
 #import "FEMAttributeMapping.h"
-#import "FEMPropertyHelper.h"
+#import "FEMTypeIntrospection.h"
 #import "FEMRelationshipMapping.h"
 
 @implementation FEMSerializer
@@ -63,9 +63,7 @@
 }
 
 + (void)setValueOnRepresentation:(NSMutableDictionary *)representation fromObject:(id)object withFieldMapping:(FEMAttributeMapping *)fieldMapping {
-	SEL selector = NSSelectorFromString(fieldMapping.property);
-	id returnedValue = [FEMPropertyHelper performSelector:selector onObject:object];
-
+	id returnedValue = [object valueForKey:fieldMapping.property];
 	if (returnedValue) {
 		returnedValue = [fieldMapping reverseMapValue:returnedValue];
 
@@ -98,7 +96,7 @@
 + (void)setRelationshipObjectOn:(NSMutableDictionary *)representation
                    usingMapping:(FEMRelationshipMapping *)relationshipMapping
 			         fromObject:(id)object {
-	id value = [FEMPropertyHelper performSelector:NSSelectorFromString(relationshipMapping.property) onObject:object];
+	id value = [object valueForKey:relationshipMapping.property];
 	if (value) {
 		id relationshipRepresentation = nil;
 		if (relationshipMapping.isToMany) {

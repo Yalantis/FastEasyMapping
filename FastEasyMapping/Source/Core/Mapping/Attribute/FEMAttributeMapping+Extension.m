@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 
 #import "FEMAttributeMapping+Extension.h"
-#import "FEMPropertyHelper.h"
+#import "FEMTypeIntrospection.h"
 #import "NSObject+FEMKVC.h"
 
 @implementation FEMAttributeMapping (Extension)
@@ -33,7 +33,7 @@
 - (void)mapValueToObject:(id)object fromRepresentation:(id)representation {
 	id value = [self mappedValueFromRepresentation:representation];
 	if (value == NSNull.null) {
-		if (![FEMPropertyHelper propertyNameIsNative:self.property fromObject:object]) {
+		if (!FEMObjectPropertyTypeIsScalar(object, self.property)) {
 			[object setValue:nil forKey:self.property];
 		}
 	} else if (value) {

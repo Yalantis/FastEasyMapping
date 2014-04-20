@@ -20,7 +20,7 @@
 
 #import "FEMObjectDeserializer.h"
 
-#import "FEMPropertyHelper.h"
+#import "FEMTypeIntrospection.h"
 #import "FEMAttributeMapping.h"
 #import <objc/runtime.h>
 #import "FEMManagedObjectDeserializer.h"
