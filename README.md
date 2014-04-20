@@ -1,6 +1,6 @@
 # FastEasyMapping
 
-[![Build Status](https://travis-ci.org/Yalantis/EasyMappingKit.png)](https://travis-ci.org/Yalantis/EasyMappingKit)
+[![Build Status](https://travis-ci.org/Yalantis/FastEasyMapping.png)](https://travis-ci.org/Yalantis/FastEasyMapping)
 
 ### Note
 This is fork of [EasyMapping](https://github.com/lucasmedeirosleite/EasyMapping) - flexible and easy way of JSON mapping.
