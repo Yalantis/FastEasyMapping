@@ -20,14 +20,14 @@
 
 #import "NSArray+FEMExtension.h"
 
-@implementation NSArray (FEMExtension)
+#import "FEMTypeIntrospection.h"
 
-extern NSString * getPropertyType(objc_property_t property);
+@implementation NSArray (FEMExtension)
 
 - (id)ek_propertyRepresentation:(objc_property_t)property {
 	id convertedObject = self;
 	if (property) {
-		NSString *type = getPropertyType(property);
+		NSString *type = FEMPropertyTypeStringRepresentation(property);
 		if ([type isEqualToString:@"NSSet"]) {
 			convertedObject = [NSSet setWithArray:self];
 		}

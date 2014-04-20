@@ -20,7 +20,7 @@
 
 #import "FEMSerializer.h"
 #import "FEMAttributeMapping.h"
-#import "FEMPropertyHelper.h"
+#import "FEMTypeIntrospection.h"
 #import "FEMRelationshipMapping.h"
 
 @implementation FEMSerializer

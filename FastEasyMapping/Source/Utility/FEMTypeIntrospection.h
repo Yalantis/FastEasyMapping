@@ -19,9 +19,8 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 
-@interface FEMPropertyHelper : NSObject
+extern BOOL FEMObjectPropertyTypeIsScalar(id object, NSString *propertyName);
 
-+ (BOOL)propertyIsScalar:(NSString *)propertyName fromObject:(id)object;
-
-@end
+extern NSString * FEMPropertyTypeStringRepresentation(objc_property_t property);

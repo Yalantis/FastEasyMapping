@@ -18,7 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "FEMPropertyHelper.h"
+#import "FEMTypeIntrospection.h"
 #import <objc/runtime.h>
 
 static const char ScalarTypeEncodings[] = {
@@ -32,21 +32,14 @@ static const char ScalarTypeEncodings[] = {
 	0
 };
 
-NSString *getPropertyType(objc_property_t property);
+BOOL FEMObjectPropertyTypeIsScalar(id object, NSString *propertyName) {
+	objc_property_t property = class_getProperty(object_getClass(object), [propertyName UTF8String]);
+	NSString *type = property ? FEMPropertyTypeStringRepresentation(property) : nil;
 
-@implementation FEMPropertyHelper
-
-+ (BOOL)propertyIsScalar:(NSString *)propertyName fromObject:(id)object {
-	NSString *type = [self getPropertyTypeFromObject:object withPropertyName:propertyName];
 	return (type.length == 1) && (NSNotFound != [@(ScalarTypeEncodings) rangeOfString:type].location);
 }
 
-+ (NSString *)getPropertyTypeFromObject:(id)object withPropertyName:(NSString *)propertyString {
-	objc_property_t property = class_getProperty(object_getClass(object), [propertyString UTF8String]);
-	return property ? getPropertyType(property) : nil;
-}
-
-NSString *getPropertyType(objc_property_t property) {
+NSString * FEMPropertyTypeStringRepresentation(objc_property_t property) {
 	const char *TypeAttribute = "T";
 	char *type = property_copyAttributeValue(property, TypeAttribute);
 	NSString *propertyType = (type[0] != _C_ID) ? @(type) : ({
@@ -59,5 +52,3 @@ NSString *getPropertyType(objc_property_t property) {
 	free(type);
 	return propertyType;
 }
-
-@end
