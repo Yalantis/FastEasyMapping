@@ -327,92 +327,93 @@ describe(@"FEMManagedObjectDeserializer", ^{
         __block NSDictionary *externalRepresentation_v2 = nil;
         __block FEMManagedObjectMapping *mapping = nil;
         __block FEMRelationshipMapping *relationshipMapping = nil;
-
-        beforeEach(^{
-            externalRepresentation_v1 = [CMFixture buildUsingFixture:@"PersonWithCar_1"];
-            externalRepresentation_v2 = [CMFixture buildUsingFixture:@"PersonWithCar_2"];
-            mapping = [MappingProvider personWithCarMapping];
-            relationshipMapping = [mapping relationshipMappingForProperty:@"car"];
-        });
-
-        afterEach(^{
-            externalRepresentation_v1 = nil;
-            externalRepresentation_v2 = nil;
-            mapping = nil;
-            relationshipMapping = nil;
-        });
-
-        context(@"assign", ^{
-            it(@"should assign new value", ^{
-                relationshipMapping.assignmentPolicy = FEMAssignmentPolicyAssign;
-                
-                [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
-                Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
-                                                                                             usingMapping:mapping
-                                                                                                  context:moc];
-                [moc MR_saveToPersistentStoreAndWait];
-                
-                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
-                
-                Car *car_v1 = person_v1.car;
-                [[car_v1 should] equal:[Car MR_findFirstInContext:moc]];
-                
-                Person *person_v2 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v2
-                                                                                             usingMapping:mapping
-                                                                                                  context:moc];
-                
-                [[person_v1 should] equal:person_v2];
-                Car *car_v2 = person_v1.car;
-                
-                [[car_v1 shouldNot] equal:car_v2];
-                [[car_v1.person should] beNil];
+        
+        context(@"to-one", ^{
+            beforeEach(^{
+                externalRepresentation_v1 = [CMFixture buildUsingFixture:@"PersonWithCar_1"];
+                externalRepresentation_v2 = [CMFixture buildUsingFixture:@"PersonWithCar_2"];
+                mapping = [MappingProvider personWithCarMapping];
+                relationshipMapping = [mapping relationshipMappingForProperty:@"car"];
             });
-        });
-
-        context(@"merge", ^{
-            context(@"to-one", ^{
-                it(@"should act as assign", ^{
-                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
-
+            
+            afterEach(^{
+                externalRepresentation_v1 = nil;
+                externalRepresentation_v2 = nil;
+                mapping = nil;
+                relationshipMapping = nil;
+            });
+            
+            context(@"assign", ^{
+                it(@"should assign new value", ^{
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyAssign;
+                    
                     [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
                     Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
                                                                                                  usingMapping:mapping
                                                                                                       context:moc];
                     [moc MR_saveToPersistentStoreAndWait];
-
+                    
                     [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
-
+                    
                     Car *car_v1 = person_v1.car;
                     [[car_v1 should] equal:[Car MR_findFirstInContext:moc]];
-
+                    
                     Person *person_v2 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v2
                                                                                                  usingMapping:mapping
                                                                                                       context:moc];
-                    [moc MR_saveToPersistentStoreAndWait];
-
+                    
                     [[person_v1 should] equal:person_v2];
                     Car *car_v2 = person_v1.car;
-
+                    
                     [[car_v1 shouldNot] equal:car_v2];
                     [[car_v1.person should] beNil];
                 });
             });
-
-            context(@"to-many", ^{
-                beforeEach(^{
-                    externalRepresentation_v1 = [CMFixture buildUsingFixture:@"Person_1"];
-                    externalRepresentation_v2 = [CMFixture buildUsingFixture:@"Person_2"];
-                    mapping = [MappingProvider personWithPhoneMapping];
-                    relationshipMapping = [mapping relationshipMappingForProperty:@"phones"];
+            
+            context(@"merge", ^{
+                it(@"should act as assign", ^{
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
+                    
+                    [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
+                    Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                                 usingMapping:mapping
+                                                                                                      context:moc];
+                    [moc MR_saveToPersistentStoreAndWait];
+                    
+                    [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+                    
+                    Car *car_v1 = person_v1.car;
+                    [[car_v1 should] equal:[Car MR_findFirstInContext:moc]];
+                    
+                    Person *person_v2 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v2
+                                                                                                 usingMapping:mapping
+                                                                                                      context:moc];
+                    [moc MR_saveToPersistentStoreAndWait];
+                    
+                    [[person_v1 should] equal:person_v2];
+                    Car *car_v2 = person_v1.car;
+                    
+                    [[car_v1 shouldNot] equal:car_v2];
+                    [[car_v1.person should] beNil];
                 });
-
-                afterEach(^{
-                    externalRepresentation_v1 = nil;
-                    externalRepresentation_v2 = nil;
-                    mapping = nil;
-                    relationshipMapping = nil;
-                });
-
+            });
+        });
+        context(@"to-many", ^{
+            beforeEach(^{
+                externalRepresentation_v1 = [CMFixture buildUsingFixture:@"Person_1"];
+                externalRepresentation_v2 = [CMFixture buildUsingFixture:@"Person_2"];
+                mapping = [MappingProvider personWithPhoneMapping];
+                relationshipMapping = [mapping relationshipMappingForProperty:@"phones"];
+            });
+            
+            afterEach(^{
+                externalRepresentation_v1 = nil;
+                externalRepresentation_v2 = nil;
+                mapping = nil;
+                relationshipMapping = nil;
+            });
+            
+            context(@"merge", ^{
                 it(@"should merge existing and new objects", ^{
                     relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
                     
