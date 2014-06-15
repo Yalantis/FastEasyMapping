@@ -129,7 +129,7 @@ SPEC_BEGIN(FEMCacheSpec)
         __block FEMManagedObjectMapping *carMapping = nil;
 
         beforeEach(^{
-            representation = [CMFixture buildUsingFixture:@"PersonWithCar"];
+            representation = [CMFixture buildUsingFixture:@"PersonWithCar_1"];
             mapping = [MappingProvider personWithCarMapping];
 
             cache = [[FEMCache alloc] initWithMapping:mapping externalRepresentation:representation context:context];
