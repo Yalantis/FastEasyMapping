@@ -23,21 +23,39 @@
 
 @class FEMMapping;
 
+typedef NS_ENUM(NSInteger, FEMRelationshipAssignmentPolicy) {
+    FEMRelationshipAssignmentPolicyAssign /*default*/,
+    FEMRelationshipAssignmentPolicyMerge,
+    FEMRelationshipAssignmentPolicyReplace
+};
+
 @interface FEMRelationshipMapping : NSObject <FEMPropertyMapping>
+
+@property (nonatomic) FEMRelationshipAssignmentPolicy assignmentPolicy;
 
 @property (nonatomic, strong) FEMMapping *objectMapping;
 @property (nonatomic, getter=isToMany) BOOL toMany;
 
 - (void)setObjectMapping:(FEMMapping *)objectMapping forKeyPath:(NSString *)keyPath;
 
-+ (instancetype)mappingOfProperty:(NSString *)property configuration:(void (^)(FEMRelationshipMapping *mapping))configuration;
-+ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationshipMapping *mapping))configuration;
+- (instancetype)initWithProperty:(NSString *)property
+                         keyPath:(NSString *)keyPath
+                assignmentPolicy:(FEMRelationshipAssignmentPolicy)policy
+                   objectMapping:(FEMMapping *)objectMapping;
+
++ (instancetype)mappingOfProperty:(NSString *)property
+                    configuration:(void (^)(FEMRelationshipMapping *mapping))configuration;
++ (instancetype)mappingOfProperty:(NSString *)property
+                        toKeyPath:(NSString *)keyPath
+                    configuration:(void (^)(FEMRelationshipMapping *mapping))configuration;
 
 /**
 * same as + [FEMRelationshipMapping mappingOfProperty:property toKeyPath:nil objectMapping:objectMapping];
 */
 + (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping;
-+ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping;
++ (instancetype)mappingOfProperty:(NSString *)property
+                        toKeyPath:(NSString *)keyPath
+                    objectMapping:(FEMMapping *)objectMapping;
 
 @end
 
