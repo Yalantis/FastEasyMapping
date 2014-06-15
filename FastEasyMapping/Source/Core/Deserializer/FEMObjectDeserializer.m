@@ -55,7 +55,7 @@
 			                                                        usingMapping:relationshipMapping.objectMapping];
 
 			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
-			deserializedRelationship = [deserializedRelationship ek_propertyRepresentation:property];
+			deserializedRelationship = [deserializedRelationship fem_propertyRepresentation:property];
 		} else {
 			deserializedRelationship = [self deserializeObjectRepresentation:relationshipRepresentation
 			                                                    usingMapping:relationshipMapping.objectMapping];

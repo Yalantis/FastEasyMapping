@@ -343,7 +343,7 @@ describe(@"FEMManagedObjectDeserializer", ^{
 
         context(@"assign", ^{
             it(@"should assign new value", ^{
-                relationshipMapping.assignmentPolicy = FEMRelationshipAssignmentPolicyAssign;
+                relationshipMapping.assignmentPolicy = FEMAssignmentPolicyAssign;
                 
                 [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
                 Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
@@ -363,6 +363,33 @@ describe(@"FEMManagedObjectDeserializer", ^{
                 [[person_v1 should] equal:person_v2];
                 Car *car_v2 = person_v1.car;
                 
+                [[car_v1 shouldNot] equal:car_v2];
+                [[car_v1.person should] beNil];
+            });
+        });
+
+        context(@"merge", ^{
+            it(@"should merge new values with existing", ^{
+                relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
+
+                [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
+                Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                             usingMapping:mapping
+                                                                                                  context:moc];
+                [moc MR_saveToPersistentStoreAndWait];
+
+                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+
+                Car *car_v1 = person_v1.car;
+                [[car_v1 should] equal:[Car MR_findFirstInContext:moc]];
+
+                Person *person_v2 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v2
+                                                                                             usingMapping:mapping
+                                                                                                  context:moc];
+
+                [[person_v1 should] equal:person_v2];
+                Car *car_v2 = person_v1.car;
+
                 [[car_v1 shouldNot] equal:car_v2];
                 [[car_v1.person should] beNil];
             });

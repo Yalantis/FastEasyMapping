@@ -5,11 +5,12 @@
 
 @import Foundation;
 
+@class NSManagedObjectContext;
+
 @interface FEMAssignmentPolicyMetadata : NSObject
 
-@property (nonatomic) Class outputClass;
 @property (nonatomic, strong) id existingValue;
-@property (nonatomic, strong) id newValue;
+@property (nonatomic, strong) id targetValue;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 
 @end

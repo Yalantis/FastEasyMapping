@@ -24,11 +24,12 @@
 
 #import "FEMManagedObjectMapping.h"
 #import "FEMAttributeMapping.h"
-
+#import "FEMTypeIntrospection.h"
 #import "NSArray+FEMExtension.h"
 #import "FEMAttributeMapping+Extension.h"
 #import "FEMRelationshipMapping.h"
 #import "FEMCache.h"
+#import "FEMAssignmentPolicyMetadata.h"
 
 @implementation FEMManagedObjectDeserializer
 
@@ -77,25 +78,26 @@
 
 	NSManagedObjectContext *context = object.managedObjectContext;
 	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
-		id deserializedRelationship = nil;
-		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
+        FEMAssignmentPolicyMetadata *metadata = [FEMAssignmentPolicyMetadata new];
+        [metadata setContext:context];
+        [metadata setExistingValue:[object valueForKey:relationshipMapping.property]];
 
+        id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
 		if (relationshipMapping.isToMany) {
-			deserializedRelationship = [self _deserializeCollectionRepresentation:relationshipRepresentation
-			                                                         usingMapping:relationshipMapping.objectMapping
-						                                                  context:context];
+			NSArray *newValue = [self _deserializeCollectionRepresentation:relationshipRepresentation
+                                                                              usingMapping:relationshipMapping.objectMapping
+                                                                                   context:context];
 
-			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
-			deserializedRelationship = [deserializedRelationship ek_propertyRepresentation:property];
+            objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
+            [metadata setTargetValue:[newValue fem_propertyRepresentation:property]];
 		} else {
-			deserializedRelationship = [self _deserializeObjectRepresentation:relationshipRepresentation
-			                                                     usingMapping:relationshipMapping.objectMapping
-						                                              context:context];
+            id newValue = [self _deserializeObjectRepresentation:relationshipRepresentation
+                                                    usingMapping:relationshipMapping.objectMapping
+                                                         context:context];
+            [metadata setTargetValue:newValue];
 		}
 
-		if (deserializedRelationship) {
-			[object setValue:deserializedRelationship forKey:relationshipMapping.property];
-		}
+        [object setValue:relationshipMapping.assignmentPolicy(metadata) forKey:relationshipMapping.property];
 	}
 
 	return object;

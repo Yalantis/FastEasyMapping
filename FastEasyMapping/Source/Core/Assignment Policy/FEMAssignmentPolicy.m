@@ -9,17 +9,16 @@
 @import CoreData;
 
 FEMAssignmentPolicy FEMAssignmentPolicyAssign = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    return metadata.newValue;
+
+    return metadata.targetValue;
 };
 
 FEMAssignmentPolicy FEMAssignmentPolicyMerge = ^id (FEMAssignmentPolicyMetadata *metadata) {
-
-
 
     return nil;
 };
 
 FEMAssignmentPolicy FEMAssignmentPolicyReplace = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    NSCParameterAssert([context isKindOfClass:NSManagedObjectContext.class]);
 
+    return metadata.targetValue;
 };

@@ -23,6 +23,6 @@
 
 @interface NSArray (FEMExtension)
 
-- (id)ek_propertyRepresentation:(objc_property_t)property;
+- (id)fem_propertyRepresentation:(objc_property_t)property;
 
 @end
