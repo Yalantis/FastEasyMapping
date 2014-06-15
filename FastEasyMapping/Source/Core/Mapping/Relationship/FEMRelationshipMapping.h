@@ -19,19 +19,15 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+
 #import "FEMPropertyMapping.h"
+#import "FEMAssignmentPolicy.h"
 
 @class FEMMapping;
 
-typedef NS_ENUM(NSInteger, FEMRelationshipAssignmentPolicy) {
-    FEMRelationshipAssignmentPolicyAssign /*default*/,
-    FEMRelationshipAssignmentPolicyMerge,
-    FEMRelationshipAssignmentPolicyReplace
-};
-
 @interface FEMRelationshipMapping : NSObject <FEMPropertyMapping>
 
-@property (nonatomic) FEMRelationshipAssignmentPolicy assignmentPolicy;
+@property (nonatomic, copy) FEMAssignmentPolicy assignmentPolicy;
 
 @property (nonatomic, strong) FEMMapping *objectMapping;
 @property (nonatomic, getter=isToMany) BOOL toMany;
@@ -40,7 +36,7 @@ typedef NS_ENUM(NSInteger, FEMRelationshipAssignmentPolicy) {
 
 - (instancetype)initWithProperty:(NSString *)property
                          keyPath:(NSString *)keyPath
-                assignmentPolicy:(FEMRelationshipAssignmentPolicy)policy
+                assignmentPolicy:(FEMAssignmentPolicy)policy
                    objectMapping:(FEMMapping *)objectMapping;
 
 + (instancetype)mappingOfProperty:(NSString *)property

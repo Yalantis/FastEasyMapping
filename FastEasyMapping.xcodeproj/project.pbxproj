@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D6A35C9B1453B3A98D0E460 /* FEMAssignmentPolicyMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3CA591E94D2729ED3DA0 /* FEMAssignmentPolicyMetadata.m */; };
+		1D6A3680E6624E45EC81A5DF /* FEMAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */; };
 		1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
+		1D6A37B8F8E7CC593AE2CCE8 /* NSArray+FEMAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A37AAC71EDDD1EB301CC4 /* NSArray+FEMAssignmentPolicy.m */; };
 		1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */; };
+		1D6A3CF14646F5E030325E4C /* FEMCollectionConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A350FB0742DA72361B852 /* FEMCollectionConvertor.m */; };
 		1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
 		2C11898E18D07356005D8D91 /* FEMManagedObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7EA48925307F4DB06848 /* FEMManagedObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
@@ -107,9 +111,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D6A314FB3E569E4613F74EA /* FEMCollectionConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMCollectionConvertor.h; sourceTree = "<group>"; };
 		1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar_2.json; sourceTree = "<group>"; };
+		1D6A350FB0742DA72361B852 /* FEMCollectionConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMCollectionConvertor.m; sourceTree = "<group>"; };
+		1D6A37AAC71EDDD1EB301CC4 /* NSArray+FEMAssignmentPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FEMAssignmentPolicy.m"; sourceTree = "<group>"; };
+		1D6A38DB57088F2B0B55CF55 /* NSArray+FEMAssignmentPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FEMAssignmentPolicy.h"; sourceTree = "<group>"; };
 		1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMCacheSpec.m; sourceTree = "<group>"; };
+		1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAssignmentPolicy.m; sourceTree = "<group>"; };
+		1D6A3CA591E94D2729ED3DA0 /* FEMAssignmentPolicyMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAssignmentPolicyMetadata.m; sourceTree = "<group>"; };
+		1D6A3DEA59A87E175360FBFC /* FEMAssignmentPolicyMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMAssignmentPolicyMetadata.h; sourceTree = "<group>"; };
 		1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar_1.json; sourceTree = "<group>"; };
+		1D6A3E68C0FB99F7A73DE0C5 /* FEMAssignmentPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMAssignmentPolicy.h; sourceTree = "<group>"; };
 		2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyMappingCoreDataExample.xcdatamodel; sourceTree = "<group>"; };
 		2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FastEasyMappingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF8097818C3AD5700C07899 /* libFastEasyMapping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFastEasyMapping.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +239,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D6A3A11394959655882C6B7 /* Assignment Policy */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */,
+				1D6A3E68C0FB99F7A73DE0C5 /* FEMAssignmentPolicy.h */,
+				1D6A37AAC71EDDD1EB301CC4 /* NSArray+FEMAssignmentPolicy.m */,
+				1D6A38DB57088F2B0B55CF55 /* NSArray+FEMAssignmentPolicy.h */,
+				1D6A350FB0742DA72361B852 /* FEMCollectionConvertor.m */,
+				1D6A314FB3E569E4613F74EA /* FEMCollectionConvertor.h */,
+				1D6A3CA591E94D2729ED3DA0 /* FEMAssignmentPolicyMetadata.m */,
+				1D6A3DEA59A87E175360FBFC /* FEMAssignmentPolicyMetadata.h */,
+			);
+			path = "Assignment Policy";
+			sourceTree = "<group>";
+		};
 		2CF8096F18C3AD5700C07899 = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +401,7 @@
 				69ED7210BACE9471FFD6A15D /* Serializer */,
 				69ED7C8732A1C26BF1CF78CD /* Deserializer */,
 				69ED7CB4B4B9CD8DDF958D64 /* Cache */,
+				1D6A3A11394959655882C6B7 /* Assignment Policy */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -711,6 +739,10 @@
 				2C375F4018CCD40A00FCB8EA /* FEMSerializerSpec.m in Sources */,
 				2C375F2118CCD3FB00FCB8EA /* CarNative.m in Sources */,
 				1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */,
+				1D6A3680E6624E45EC81A5DF /* FEMAssignmentPolicy.m in Sources */,
+				1D6A37B8F8E7CC593AE2CCE8 /* NSArray+FEMAssignmentPolicy.m in Sources */,
+				1D6A3CF14646F5E030325E4C /* FEMCollectionConvertor.m in Sources */,
+				1D6A35C9B1453B3A98D0E460 /* FEMAssignmentPolicyMetadata.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,6 +848,7 @@
 				);
 				PRODUCT_NAME = FastEasyMapping;
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Debug;
 		};
@@ -831,6 +864,7 @@
 				);
 				PRODUCT_NAME = FastEasyMapping;
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Release;
 		};

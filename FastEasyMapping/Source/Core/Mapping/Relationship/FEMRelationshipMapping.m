@@ -28,14 +28,17 @@
 
 #pragma mark - Init
 
-- (instancetype)initWithProperty:(NSString *)property keyPath:(NSString *)keyPath assignmentPolicy:(FEMRelationshipAssignmentPolicy)policy objectMapping:(FEMMapping *)objectMapping {
+- (instancetype)initWithProperty:(NSString *)property
+                         keyPath:(NSString *)keyPath
+                assignmentPolicy:(FEMAssignmentPolicy)policy
+                   objectMapping:(FEMMapping *)objectMapping {
 	NSParameterAssert(property.length > 0);
 
 	self = [super init];
 	if (self) {
 		_property = [property copy];
         _keyPath = [keyPath copy];
-        _assignmentPolicy = policy;
+        _assignmentPolicy = (FEMAssignmentPolicy)[policy copy] ?: FEMAssignmentPolicyAssign;
         _objectMapping = objectMapping;
 	}
 
@@ -45,7 +48,10 @@
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationshipMapping *mapping))configuration {
 	NSParameterAssert(configuration);
 
-	FEMRelationshipMapping *mapping = [[self alloc] initWithProperty:property keyPath:keyPath assignmentPolicy:(FEMRelationshipAssignmentPolicyReplace) objectMapping:nil];
+	FEMRelationshipMapping *mapping = [[self alloc] initWithProperty:property
+                                                             keyPath:keyPath
+                                                    assignmentPolicy:NULL
+                                                       objectMapping:nil];
 	configuration(mapping);
 	return mapping;
 }
@@ -55,10 +61,7 @@
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping {
-	return [[self alloc] initWithProperty:property
-                                  keyPath:keyPath
-                         assignmentPolicy:FEMRelationshipAssignmentPolicyAssign
-                            objectMapping:objectMapping];
+	return [[self alloc] initWithProperty:property keyPath:keyPath assignmentPolicy:NULL objectMapping:objectMapping];
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping {
