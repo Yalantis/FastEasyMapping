@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */; };
 		2C11898E18D07356005D8D91 /* FEMManagedObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7EA48925307F4DB06848 /* FEMManagedObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
 		2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED767EE6E89A487714CDF8 /* Car.m */; };
@@ -104,6 +105,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMCacheSpec.m; sourceTree = "<group>"; };
 		2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyMappingCoreDataExample.xcdatamodel; sourceTree = "<group>"; };
 		2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FastEasyMappingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF8097818C3AD5700C07899 /* libFastEasyMapping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFastEasyMapping.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +280,7 @@
 				69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */,
 				69ED7A9AEF651DACBF9BBC8F /* FEMObjectDeserializerSpec.m */,
 				69ED75B675560A0A804494CB /* FEMSerializerSpec.m */,
+				1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -699,6 +702,7 @@
 				2C375F3E18CCD40A00FCB8EA /* FEMObjectMappingSpec.m in Sources */,
 				2C375F4018CCD40A00FCB8EA /* FEMSerializerSpec.m in Sources */,
 				2C375F2118CCD3FB00FCB8EA /* CarNative.m in Sources */,
+				1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,16 +830,21 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9138F3E1B7040028335C057 /* Pods-FastEasyMappingTests.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/CMFactory\"",
+					"\"${PODS_ROOT}/Headers/Kiwi\"",
+					"\"${PODS_ROOT}/Headers/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/Mantle\"",
+					"\"${PODS_ROOT}/Headers/libextobjc\"",
+					"\"$(inherited)\"",
 				);
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
 				PRODUCT_NAME = FastEasyMappingTests;
@@ -847,13 +856,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9138F3E1B7040028335C057 /* Pods-FastEasyMappingTests.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/CMFactory\"",
+					"\"${PODS_ROOT}/Headers/Kiwi\"",
+					"\"${PODS_ROOT}/Headers/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/Mantle\"",
+					"\"${PODS_ROOT}/Headers/libextobjc\"",
+					"\"$(inherited)\"",
+				);
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
 				PRODUCT_NAME = FastEasyMappingTests;
 				WRAPPER_EXTENSION = octest;

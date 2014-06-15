@@ -20,8 +20,6 @@
 
 #import "Kiwi.h"
 #import "Person.h"
-#import "Car.h"
-#import "MappingProvider.h"
 #import "FEMManagedObjectMapping.h"
 
 SPEC_BEGIN(FEMManagedObjectMappingSpec)
