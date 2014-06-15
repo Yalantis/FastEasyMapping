@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */; };
+		1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar.json */; };
 		2C11898E18D07356005D8D91 /* FEMManagedObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7EA48925307F4DB06848 /* FEMManagedObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
 		2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED767EE6E89A487714CDF8 /* Car.m */; };
@@ -106,6 +107,7 @@
 
 /* Begin PBXFileReference section */
 		1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMCacheSpec.m; sourceTree = "<group>"; };
+		1D6A3E2CCF90DF3444D0707E /* PersonWithCar.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar.json; sourceTree = "<group>"; };
 		2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyMappingCoreDataExample.xcdatamodel; sourceTree = "<group>"; };
 		2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FastEasyMappingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF8097818C3AD5700C07899 /* libFastEasyMapping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFastEasyMapping.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -424,6 +426,7 @@
 				69ED79AD80703DC44EFCC7EE /* Person.json */,
 				69ED74F0986B6C6DD2614CB7 /* Car.json */,
 				69ED7CF6DFFBDF7A0BF32AFC /* NativeChild.json */,
+				1D6A3E2CCF90DF3444D0707E /* PersonWithCar.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				2C375F3418CCD40200FCB8EA /* Alien.json in Resources */,
 				2C375F3A18CCD40200FCB8EA /* Address.json in Resources */,
 				2C375F3718CCD40200FCB8EA /* CarWithDate.json in Resources */,
+				1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
