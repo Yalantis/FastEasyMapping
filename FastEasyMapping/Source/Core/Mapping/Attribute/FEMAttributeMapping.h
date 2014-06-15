@@ -29,10 +29,36 @@
 - (id)reverseMapValue:(id)value;
 
 - (id)initWithProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap;
-+ (instancetype)mappingOfProperty:(NSString *)field keyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap;
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap;
 
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map;
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath;
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat;
+/**
+* same as +[FEMAttributeMapping mappingOfProperty:property toKeyPath:nil];
+*/
++ (instancetype)mappingOfProperty:(NSString *)property;
+
+/**
+* same as +[FEMAttributeMapping mappingOfProperty:property toKeyPath:nil map:NULL];
+*/
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath;
+
+/**
+* same as +[FEMAttributeMapping mappingOfProperty:property toKeyPath:nil map:NULL reverseMap:NULL];
+*/
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath map:(FEMMapBlock)map;
+
+/**
+* create mapping object, based on NSDateFormatter.
+* NSDateFormatter instance uses en_US_POSIX locale and Timezone with name "Europe/London"
+*/
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat;
+
+@end
+
+@interface FEMAttributeMapping (Deprecated)
+
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath __attribute__((deprecated("use +[FEMAttributeMapping mappingOfProperty:toKeyPath: instead")));
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map __attribute__((deprecated("use +[FEMAttributeMapping mappingOfProperty:toKeyPath:map: instead")));
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat __attribute__((deprecated("use +[FEMAttributeMapping mappingOfProperty:toKeyPath:dateFormat: instead")));
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap __attribute__((deprecated("use +[FEMAttributeMapping mappingOfProperty:toKeyPath:reverseMap: instead")));
 
 @end

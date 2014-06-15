@@ -49,29 +49,33 @@
 	return self;
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)field keyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap {
-	return [[self alloc] initWithProperty:field keyPath:keyPath map:map reverseMap:reverseMap];
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap {
+	return [[self alloc] initWithProperty:property keyPath:keyPath map:map reverseMap:reverseMap];
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map {
-	return [self mappingOfProperty:property keyPath:keyPath map:map reverseMap:NULL];
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath map:(FEMMapBlock)map {
+	return [self mappingOfProperty:property toKeyPath:keyPath map:map reverseMap:NULL];
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath {
-	return [self mappingOfProperty:property keyPath:keyPath map:NULL reverseMap:NULL];
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath {
+	return [self mappingOfProperty:property toKeyPath:keyPath map:NULL];
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {
++ (instancetype)mappingOfProperty:(NSString *)property {
+    return [self mappingOfProperty:property toKeyPath:nil];
+}
+
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {
 	NSDateFormatter *formatter = [NSDateFormatter new];
 	[formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
 	[formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/London"]];
 	[formatter setDateFormat:dateFormat];
 
-	return [self mappingOfProperty:property keyPath:keyPath map:^id(id value) {
-		return [value isKindOfClass:[NSString class]] ? [formatter dateFromString:value] : nil;
-	} reverseMap:^id(id value) {
-		return [value isKindOfClass:[NSDate class]] ? [formatter stringFromDate:value] : nil;
-	}];
+	return [self mappingOfProperty:property toKeyPath:keyPath map:^id(id value) {
+        return [value isKindOfClass:[NSString class]] ? [formatter dateFromString:value] : nil;
+    }                   reverseMap:^id(id value) {
+        return [value isKindOfClass:[NSDate class]] ? [formatter stringFromDate:value] : nil;
+    }];
 }
 
 #pragma mark - Description
@@ -94,6 +98,26 @@
 
 - (id)reverseMapValue:(id)value {
 	return _reverseMap(value);
+}
+
+@end
+
+@implementation FEMAttributeMapping (Deprecated)
+
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath {
+    return [self mappingOfProperty:property toKeyPath:keyPath];
+}
+
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map {
+    return [self mappingOfProperty:property toKeyPath:keyPath map:map];
+}
+
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {
+    return [self mappingOfProperty:property toKeyPath:keyPath dateFormat:dateFormat];
+}
+
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap {
+    return [self mappingOfProperty:property toKeyPath:keyPath map:map reverseMap:reverseMap];
 }
 
 @end

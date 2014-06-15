@@ -100,18 +100,18 @@
 
 - (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath {
 	[attributesToKeyPath enumerateKeysAndObjectsUsingBlock:^(id attribute, id keyPath, BOOL *stop) {
-		[self addAttributeMapping:[FEMAttributeMapping mappingOfProperty:attribute keyPath:keyPath]];
+		[self addAttributeMapping:[FEMAttributeMapping mappingOfProperty:attribute toKeyPath:keyPath]];
 	}];
 }
 
 - (void)addAttributeMappingFromArray:(NSArray *)attributes {
 	for (NSString *attribute in attributes) {
-		[self addAttributeMapping:[FEMAttributeMapping mappingOfProperty:attribute keyPath:attribute]];
+		[self addAttributeMapping:[FEMAttributeMapping mappingOfProperty:attribute toKeyPath:attribute]];
 	}
 }
 
 - (void)addAttributeMappingOfProperty:(NSString *)property atKeypath:(NSString *)keypath {
-	[self addAttributeMapping:[FEMAttributeMapping mappingOfProperty:property keyPath:keypath]];
+	[self addAttributeMapping:[FEMAttributeMapping mappingOfProperty:property toKeyPath:keypath]];
 }
 
 - (void)addRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {

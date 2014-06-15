@@ -67,8 +67,8 @@
 		[mapping addAttributeMappingDictionary:@{@"carID" : @"id"}];
 		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
 		[mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"createdAt"
-		                                                            keyPath:@"created_at"
-			                                                     dateFormat:@"yyyy-MM-dd"]];
+                                                                  toKeyPath:@"created_at"
+                                                                 dateFormat:@"yyyy-MM-dd"]];
 	}];
 }
 
