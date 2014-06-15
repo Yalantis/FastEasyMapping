@@ -116,15 +116,15 @@
 
 - (void)addRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {
 	FEMRelationshipMapping *relationshipMapping = [FEMRelationshipMapping mappingOfProperty:property
-	                                                                                keyPath:keyPath
-		                                                                      objectMapping:mapping];
+                                                                                  toKeyPath:keyPath
+                                                                              objectMapping:mapping];
 	[self addRelationshipMapping:relationshipMapping];
 }
 
 - (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {
 	FEMRelationshipMapping *relationshipMapping = [FEMRelationshipMapping mappingOfProperty:property
-	                                                                                keyPath:keyPath
-		                                                                      objectMapping:mapping];
+                                                                                  toKeyPath:keyPath
+                                                                              objectMapping:mapping];
 	[relationshipMapping setToMany:YES];
 	[self addRelationshipMapping:relationshipMapping];
 }

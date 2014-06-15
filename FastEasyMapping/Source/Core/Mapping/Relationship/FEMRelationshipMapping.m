@@ -35,14 +35,14 @@
 	if (self) {
 		_property = [property copy];
         _keyPath = [keyPath copy];
+
 		[self setObjectMapping:objectMapping];
 	}
 
 	return self;
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath configuration:(void (^)(
-	FEMRelationshipMapping *mapping))configuration {
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationshipMapping *mapping))configuration {
 	NSParameterAssert(configuration);
 
 	FEMRelationshipMapping *mapping = [[self alloc] initWithProperty:property keyPath:keyPath objectMapping:nil];
@@ -51,18 +51,41 @@
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property configuration:(void (^)(FEMRelationshipMapping *mapping))configuration {
-	return [self mappingOfProperty:property keyPath:nil configuration:configuration];
+	return [self mappingOfProperty:property toKeyPath:nil configuration:configuration];
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping {
+
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping {
 	return [[self alloc] initWithProperty:property keyPath:keyPath objectMapping:objectMapping];
+}
+
++ (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping {
+    return [self mappingOfProperty:property toKeyPath:nil objectMapping:objectMapping];
 }
 
 #pragma mark - Property objectMapping
 
+- (void)setObjectMapping:(FEMMapping *)objectMapping {
+    _objectMapping = objectMapping;
+
+    [self setKeyPath:nil];
+}
+
 - (void)setObjectMapping:(FEMMapping *)objectMapping forKeyPath:(NSString *)keyPath {
 	[self setObjectMapping:objectMapping];
 	[self setKeyPath:keyPath];
+}
+
+@end
+
+@implementation FEMRelationshipMapping (Deprecated)
+
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationshipMapping *mapping))configuration {
+    return [self mappingOfProperty:property toKeyPath:keyPath configuration:configuration];
+}
+
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping {
+    return [self mappingOfProperty:property toKeyPath:keyPath objectMapping:objectMapping];
 }
 
 @end
