@@ -24,7 +24,7 @@
 #import "FEMAttributeMapping.h"
 #import <objc/runtime.h>
 #import "FEMManagedObjectDeserializer.h"
-#import "NSArray+FEMExtension.h"
+#import "NSArray+FEMPropertyRepresentation.h"
 #import "FEMAttributeMapping+Extension.h"
 #import "FEMObjectMapping.h"
 #import "FEMRelationshipMapping.h"
@@ -55,7 +55,7 @@
 			                                                        usingMapping:relationshipMapping.objectMapping];
 
 			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
-			deserializedRelationship = [deserializedRelationship ek_propertyRepresentation:property];
+			deserializedRelationship = [deserializedRelationship fem_propertyRepresentation:property];
 		} else {
 			deserializedRelationship = [self deserializeObjectRepresentation:relationshipRepresentation
 			                                                    usingMapping:relationshipMapping.objectMapping];

@@ -18,11 +18,33 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <objc/runtime.h>
+#import "NSArray+FEMPropertyRepresentation.h"
 
-@interface NSArray (FEMExtension)
+#import "FEMTypeIntrospection.h"
 
-- (id)ek_propertyRepresentation:(objc_property_t)property;
+@implementation NSArray (FEMPropertyRepresentation)
+
+- (id)fem_propertyRepresentation:(objc_property_t)property {
+	id convertedObject = self;
+	if (property) {
+		NSString *type = FEMPropertyTypeStringRepresentation(property);
+		if ([type isEqualToString:@"NSSet"]) {
+			convertedObject = [NSSet setWithArray:self];
+		}
+		else if ([type isEqualToString:@"NSMutableSet"]) {
+			convertedObject = [NSMutableSet setWithArray:self];
+		}
+		else if ([type isEqualToString:@"NSOrderedSet"]) {
+			convertedObject = [NSOrderedSet orderedSetWithArray:self];
+		}
+		else if ([type isEqualToString:@"NSMutableOrderedSet"]) {
+			convertedObject = [NSMutableOrderedSet orderedSetWithArray:self];
+		}
+		else if ([type isEqualToString:@"NSMutableArray"]) {
+			convertedObject = [NSMutableArray arrayWithArray:self];
+		}
+	}
+	return convertedObject;
+}
 
 @end

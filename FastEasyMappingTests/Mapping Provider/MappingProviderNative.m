@@ -62,8 +62,8 @@
 	return [FEMObjectMapping mappingForClass:[CarNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
 		[mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"createdAt"
-		                                                            keyPath:@"created_at"
-			                                                     dateFormat:@"yyyy-MM-dd"]];
+                                                                  toKeyPath:@"created_at"
+                                                                 dateFormat:@"yyyy-MM-dd"]];
 	}];
 }
 
@@ -82,13 +82,13 @@
 		NSDictionary *genders = @{@"male" : @(GenderMale), @"female" : @(GenderFemale)};
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
 		[mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"gender"
-		                                                            keyPath:@"gender"
-			                                                            map:^id(id value) {
-				                                                            return genders[value];
-			                                                            }
-				                                                 reverseMap:^id(id value) {
-					                                                 return [genders allKeysForObject:value].lastObject;
-				                                                 }]];
+                                                                  toKeyPath:@"gender"
+                                                                        map:^id(id value) {
+                    return genders[value];
+                }
+                                                                 reverseMap:^id(id value) {
+                    return [genders allKeysForObject:value].lastObject;
+                }]];
 
 		[mapping addRelationshipMapping:[self carMapping] forProperty:@"car" keyPath:@"car"];
 		[mapping addToManyRelationshipMapping:[self phoneMapping] forProperty:@"phones" keyPath:@"phones"];
@@ -114,13 +114,13 @@
 		NSDictionary *genders = @{@"male" : @(GenderMale), @"female" : @(GenderFemale)};
 		[mapping addAttributeMappingFromArray:@[@"name", @"email"]];
 		[mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"gender"
-		                                                            keyPath:@"gender"
-			                                                            map:^id(id value) {
-				                                                            return genders[value];
-			                                                            }
-				                                                 reverseMap:^id(id value) {
-					                                                 return [genders allKeysForObject:value].lastObject;
-				                                                 }]];
+                                                                  toKeyPath:@"gender"
+                                                                        map:^id(id value) {
+                    return genders[value];
+                }
+                                                                 reverseMap:^id(id value) {
+                    return [genders allKeysForObject:value].lastObject;
+                }]];
 	}];
 }
 
@@ -128,19 +128,19 @@
 	return [FEMObjectMapping mappingForClass:[AddressNative class] configuration:^(FEMObjectMapping *mapping) {
 		[mapping addAttributeMappingFromArray:@[@"street"]];
 		[mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"location"
-		                                                            keyPath:@"location"
-			                                                            map:^id(id value) {
-				                                                            CLLocationDegrees latitudeValue = [[value objectAtIndex:0] doubleValue];
-				                                                            CLLocationDegrees longitudeValue = [[value objectAtIndex:1] doubleValue];
-				                                                            return [[CLLocation alloc] initWithLatitude:latitudeValue
-				                                                                                              longitude:longitudeValue];
-			                                                            }
-				                                                 reverseMap:^id(CLLocation *value) {
-					                                                 return @[
-						                                                 @(value.coordinate.latitude),
-						                                                 @(value.coordinate.longitude)
-					                                                 ];
-				                                                 }]];
+                                                                  toKeyPath:@"location"
+                                                                        map:^id(id value) {
+                    CLLocationDegrees latitudeValue = [[value objectAtIndex:0] doubleValue];
+                    CLLocationDegrees longitudeValue = [[value objectAtIndex:1] doubleValue];
+                    return [[CLLocation alloc] initWithLatitude:latitudeValue
+                                                      longitude:longitudeValue];
+                }
+                                                                 reverseMap:^id(CLLocation *value) {
+                    return @[
+                            @(value.coordinate.latitude),
+                            @(value.coordinate.longitude)
+                    ];
+                }]];
 	}];
 }
 

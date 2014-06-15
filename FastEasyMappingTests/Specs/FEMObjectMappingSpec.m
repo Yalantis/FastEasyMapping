@@ -239,8 +239,8 @@ describe(@"FEMObjectMapping", ^{
         beforeEach(^{
             mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
 	        [mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"birthday"
-	                                                                    keyPath:@"birthday"
-		                                                             dateFormat:@"yyyy-MM-dd"]];
+                                                                      toKeyPath:@"birthday"
+                                                                     dateFormat:@"yyyy-MM-dd"]];
         });
         
         specify(^{
@@ -272,10 +272,10 @@ describe(@"FEMObjectMapping", ^{
             
             mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
 	        [mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"gender"
-	                                                                    keyPath:@"gender"
-		                                                                    map:^id(id value) {
-			                                                                    return genders[value];
-		                                                                    }]];
+                                                                      toKeyPath:@"gender"
+                                                                            map:^id(id value) {
+                        return genders[value];
+                    }]];
 
             fieldMapping = [mapping attributeMappingForProperty:@"gender"];
             
@@ -301,13 +301,13 @@ describe(@"FEMObjectMapping", ^{
             
             mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
 	        [mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"gender"
-	                                                                    keyPath:@"gender"
-		                                                                    map:^id(id value) {
-			                                                                    return genders[value];
-		                                                                    }
-			                                                         reverseMap:^id(id value) {
-				                                                         return [genders allKeysForObject:value].lastObject;
-			                                                         }]];
+                                                                      toKeyPath:@"gender"
+                                                                            map:^id(id value) {
+                        return genders[value];
+                    }
+                                                                     reverseMap:^id(id value) {
+                        return [genders allKeysForObject:value].lastObject;
+                    }]];
 	        
             fieldMapping = [mapping attributeMappingForProperty:@"gender"];
         });

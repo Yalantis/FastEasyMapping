@@ -31,8 +31,8 @@
 + (FEMManagedObjectMapping *)carWithDateMapping;
 + (FEMManagedObjectMapping *)phoneMapping;
 + (FEMManagedObjectMapping *)personMapping;
+
++ (FEMManagedObjectMapping *)personWithPhoneMapping;
 + (FEMManagedObjectMapping *)personWithCarMapping;
-+ (FEMManagedObjectMapping *)personWithPhonesMapping;
-+ (FEMManagedObjectMapping *)personWithOnlyValueBlockMapping;
 
 @end
