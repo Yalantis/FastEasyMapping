@@ -36,8 +36,7 @@
 		_property = [property copy];
         _keyPath = [keyPath copy];
         _assignmentPolicy = policy;
-
-		[self setObjectMapping:objectMapping];
+        _objectMapping = objectMapping;
 	}
 
 	return self;
@@ -56,7 +55,10 @@
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping {
-	return [[self alloc] initWithProperty:property keyPath:keyPath assignmentPolicy:(FEMRelationshipAssignmentPolicyReplace) objectMapping:objectMapping];
+	return [[self alloc] initWithProperty:property
+                                  keyPath:keyPath
+                         assignmentPolicy:FEMRelationshipAssignmentPolicyAssign
+                            objectMapping:objectMapping];
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping {
@@ -65,15 +67,14 @@
 
 #pragma mark - Property objectMapping
 
-- (void)setObjectMapping:(FEMMapping *)objectMapping {
+- (void)setObjectMapping:(FEMMapping *)objectMapping forKeyPath:(NSString *)keyPath {
     _objectMapping = objectMapping;
 
-    [self setKeyPath:nil];
+	[self setKeyPath:keyPath];
 }
 
-- (void)setObjectMapping:(FEMMapping *)objectMapping forKeyPath:(NSString *)keyPath {
-	[self setObjectMapping:objectMapping];
-	[self setKeyPath:keyPath];
+- (void)setObjectMapping:(FEMMapping *)objectMapping {
+    [self setObjectMapping:objectMapping forKeyPath:nil];
 }
 
 @end

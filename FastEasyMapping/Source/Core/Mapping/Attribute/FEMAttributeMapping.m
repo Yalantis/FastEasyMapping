@@ -62,7 +62,7 @@
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property {
-    return [self mappingOfProperty:property toKeyPath:nil];
+    return [self mappingOfProperty:property toKeyPath:property];
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {

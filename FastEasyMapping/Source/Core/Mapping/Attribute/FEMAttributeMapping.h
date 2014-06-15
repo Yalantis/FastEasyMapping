@@ -32,7 +32,7 @@
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap;
 
 /**
-* same as +[FEMAttributeMapping mappingOfProperty:property toKeyPath:nil];
+* same as +[FEMAttributeMapping mappingOfProperty:property toKeyPath:property];
 */
 + (instancetype)mappingOfProperty:(NSString *)property;
 
