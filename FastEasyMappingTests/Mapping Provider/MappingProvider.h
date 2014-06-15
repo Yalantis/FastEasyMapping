@@ -32,6 +32,7 @@
 + (FEMManagedObjectMapping *)phoneMapping;
 + (FEMManagedObjectMapping *)personMapping;
 
++ (FEMManagedObjectMapping *)personWithPhoneMapping;
 + (FEMManagedObjectMapping *)personWithCarMapping;
 
 @end

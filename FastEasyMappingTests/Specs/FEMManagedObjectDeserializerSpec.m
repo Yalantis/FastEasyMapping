@@ -29,6 +29,7 @@
 #import "FEMRelationshipMapping.h"
 #import "FEMMapping.h"
 #import "FEMManagedObjectMapping.h"
+#import "Phone.h"
 
 SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
@@ -369,29 +370,73 @@ describe(@"FEMManagedObjectDeserializer", ^{
         });
 
         context(@"merge", ^{
-            it(@"should merge new values with existing", ^{
-                relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
+            context(@"to-one", ^{
+                it(@"should act as assign", ^{
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
 
-                [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
-                Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
-                                                                                             usingMapping:mapping
-                                                                                                  context:moc];
-                [moc MR_saveToPersistentStoreAndWait];
+                    [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
+                    Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                                 usingMapping:mapping
+                                                                                                      context:moc];
+                    [moc MR_saveToPersistentStoreAndWait];
 
-                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+                    [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
 
-                Car *car_v1 = person_v1.car;
-                [[car_v1 should] equal:[Car MR_findFirstInContext:moc]];
+                    Car *car_v1 = person_v1.car;
+                    [[car_v1 should] equal:[Car MR_findFirstInContext:moc]];
 
-                Person *person_v2 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v2
-                                                                                             usingMapping:mapping
-                                                                                                  context:moc];
+                    Person *person_v2 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v2
+                                                                                                 usingMapping:mapping
+                                                                                                      context:moc];
+                    [moc MR_saveToPersistentStoreAndWait];
 
-                [[person_v1 should] equal:person_v2];
-                Car *car_v2 = person_v1.car;
+                    [[person_v1 should] equal:person_v2];
+                    Car *car_v2 = person_v1.car;
 
-                [[car_v1 shouldNot] equal:car_v2];
-                [[car_v1.person should] beNil];
+                    [[car_v1 shouldNot] equal:car_v2];
+                    [[car_v1.person should] beNil];
+                });
+            });
+
+            context(@"to-many", ^{
+                beforeEach(^{
+                    externalRepresentation_v1 = [CMFixture buildUsingFixture:@"Person_1"];
+                    externalRepresentation_v2 = [CMFixture buildUsingFixture:@"Person_2"];
+                    mapping = [MappingProvider personWithPhoneMapping];
+                    relationshipMapping = [mapping relationshipMappingForProperty:@"phones"];
+                });
+
+                afterEach(^{
+                    externalRepresentation_v1 = nil;
+                    externalRepresentation_v2 = nil;
+                    mapping = nil;
+                    relationshipMapping = nil;
+                });
+
+                it(@"should merge existing and new objects", ^{
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
+                    
+                    [[@([Phone MR_countOfEntitiesWithContext:moc]) should] beZero];
+                    Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                                 usingMapping:mapping
+                                                                                                      context:moc];
+                    [moc MR_saveToPersistentStoreAndWait];
+                    
+                    [[@([Phone MR_countOfEntitiesWithContext:moc]) should] equal:@2];
+                    
+                    NSSet *phones_1 = person_v1.phones;
+                    [[@([phones_1 isEqualToSet:[NSSet setWithArray:[Phone MR_findAllInContext:moc]]]) should] beTrue];
+                    
+                    Person *person_v2 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v2
+                                                                                                 usingMapping:mapping
+                                                                                                      context:moc];
+                    [moc MR_saveToPersistentStoreAndWait];
+                    
+                    [[person_v1 should] equal:person_v2];
+                    [[@([Phone MR_countOfEntitiesWithContext:moc]) should] equal:@3];
+                    
+                    [[@([phones_1 isSubsetOfSet:person_v2.phones]) should] beTrue];
+                });
             });
         });
     });

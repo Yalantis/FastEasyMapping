@@ -1,0 +1,20 @@
+{
+    "id": 1,
+    "name": "Lucas",
+    "email": "lucastoc@gmail.com",
+    "gender" : "male",
+    "phones": [
+        {
+            "id": 3,
+            "ddi": "55",
+            "ddd": "85",
+            "number": "1111-1111"
+        },
+        {
+            "id": 2,
+            "ddi": "55",
+            "ddd": "11",
+            "number": "2222-222"
+        }
+    ]
+}
