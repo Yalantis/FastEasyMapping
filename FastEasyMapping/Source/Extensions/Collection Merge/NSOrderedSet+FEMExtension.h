@@ -3,9 +3,9 @@
 // Copyright (c) 2014 Yalantis. All rights reserved.
 //
 
-#import "NSObject+FEMMerge.h"
+#import "NSObject+FEMExtension.h"
 
-@interface NSOrderedSet (FEMMerge)
+@interface NSOrderedSet (FEMExtension)
 
 - (instancetype)fem_merge:(NSOrderedSet *)orderedSet;
 

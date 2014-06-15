@@ -3,12 +3,16 @@
 // Copyright (c) 2014 Yalantis. All rights reserved.
 //
 
-#import "NSArray+FEMMerge.h"
+#import "NSArray+FEMExtension.h"
 
-@implementation NSArray (FEMMerge)
+@implementation NSArray (FEMExtension)
 
 - (instancetype)fem_merge:(NSArray *)array {
     return [[self mutableCopy] fem_merge:array];
+}
+
+- (instancetype)fem_except:(NSArray *)array {
+    return [[self mutableCopy] fem_except:array];
 }
 
 @end
@@ -22,6 +26,12 @@
     [appendingObjectsSet minusSet:[NSSet setWithArray:self]];
 
     [self addObjectsFromArray:[appendingObjectsSet allObjects]];
+
+    return self;
+}
+
+- (id)fem_except:(NSArray *)array {
+    [self removeObjectsInArray:array];
 
     return self;
 }

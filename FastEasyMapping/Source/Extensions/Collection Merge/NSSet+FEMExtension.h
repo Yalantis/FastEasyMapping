@@ -3,9 +3,9 @@
 // Copyright (c) 2014 Yalantis. All rights reserved.
 //
 
-#import "NSObject+FEMMerge.h"
+#import "NSObject+FEMExtension.h"
 
-@interface NSSet (FEMMerge)
+@interface NSSet (FEMExtension)
 
 - (instancetype)fem_merge:(NSSet *)set;
 

@@ -439,6 +439,31 @@ describe(@"FEMManagedObjectDeserializer", ^{
                     [[@([phones_1 isSubsetOfSet:person_v2.phones]) should] beTrue];
                 });
             });
+            
+            context(@"replace", ^{
+                it(@"should delete existing and assign new objects", ^{
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyReplace;
+                    
+                    [[@([Phone MR_countOfEntitiesWithContext:moc]) should] beZero];
+                    Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                                 usingMapping:mapping
+                                                                                                      context:moc];
+                    [moc MR_saveToPersistentStoreAndWait];
+                    
+                    [[@([Phone MR_countOfEntitiesWithContext:moc]) should] equal:@2];
+                    
+                    NSSet *phones_1 = person_v1.phones;
+                    [[@([phones_1 isEqualToSet:[NSSet setWithArray:[Phone MR_findAllInContext:moc]]]) should] beTrue];
+                    
+                    Person *person_v2 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v2
+                                                                                                 usingMapping:mapping
+                                                                                                      context:moc];
+                    [moc MR_saveToPersistentStoreAndWait];
+                    
+                    [[person_v1 should] equal:person_v2];
+                    [[@([Phone MR_countOfEntitiesWithContext:moc]) should] equal:@2];
+                });
+            });
         });
     });
 });

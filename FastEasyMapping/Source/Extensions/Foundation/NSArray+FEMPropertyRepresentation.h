@@ -21,7 +21,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-@interface NSArray (FEMExtension)
+@interface NSArray (FEMPropertyRepresentation)
 
 - (id)fem_propertyRepresentation:(objc_property_t)property;
 

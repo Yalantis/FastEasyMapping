@@ -3,10 +3,8 @@
 // Copyright (c) 2014 Yalantis. All rights reserved.
 //
 
-@import Foundation;
+#import "NSObject+FEMExtension.h"
 
-@interface NSObject (FEMMerge)
-
-- (instancetype)fem_merge:(id)object;
+@interface NSArray (FEMExtension)
 
 @end

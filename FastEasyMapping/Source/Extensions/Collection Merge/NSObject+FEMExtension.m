@@ -3,11 +3,15 @@
 // Copyright (c) 2014 Yalantis. All rights reserved.
 //
 
-#import "NSObject+FEMMerge.h"
+#import "NSObject+FEMExtension.h"
 
-@implementation NSObject (FEMMerge)
+@implementation NSObject (FEMExtension)
 
 - (instancetype)fem_merge:(id)object {
+    return self;
+}
+
+- (instancetype)fem_except:(id)object {
     return self;
 }
 

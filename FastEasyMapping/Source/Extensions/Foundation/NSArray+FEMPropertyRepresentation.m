@@ -18,11 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "NSArray+FEMExtension.h"
+#import "NSArray+FEMPropertyRepresentation.h"
 
 #import "FEMTypeIntrospection.h"
 
-@implementation NSArray (FEMExtension)
+@implementation NSArray (FEMPropertyRepresentation)
 
 - (id)fem_propertyRepresentation:(objc_property_t)property {
 	id convertedObject = self;

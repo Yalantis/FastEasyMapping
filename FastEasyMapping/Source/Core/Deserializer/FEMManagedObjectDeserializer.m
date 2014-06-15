@@ -25,7 +25,7 @@
 #import "FEMManagedObjectMapping.h"
 #import "FEMAttributeMapping.h"
 #import "FEMTypeIntrospection.h"
-#import "NSArray+FEMExtension.h"
+#import "NSArray+FEMPropertyRepresentation.h"
 #import "FEMAttributeMapping+Extension.h"
 #import "FEMRelationshipMapping.h"
 #import "FEMCache.h"

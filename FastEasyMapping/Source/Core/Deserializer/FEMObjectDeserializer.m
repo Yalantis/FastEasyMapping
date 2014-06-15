@@ -24,7 +24,7 @@
 #import "FEMAttributeMapping.h"
 #import <objc/runtime.h>
 #import "FEMManagedObjectDeserializer.h"
-#import "NSArray+FEMExtension.h"
+#import "NSArray+FEMPropertyRepresentation.h"
 #import "FEMAttributeMapping+Extension.h"
 #import "FEMObjectMapping.h"
 #import "FEMRelationshipMapping.h"
