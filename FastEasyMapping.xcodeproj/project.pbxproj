@@ -8,15 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
-		1D6A356AFF8179ABA5905A98 /* NSSet+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3EBE4C86B072ED9C2B64 /* NSSet+FEMExtension.m */; };
-		1D6A35C9B1453B3A98D0E460 /* FEMAssignmentPolicyMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3CA591E94D2729ED3DA0 /* FEMAssignmentPolicyMetadata.m */; };
-		1D6A3680E6624E45EC81A5DF /* FEMAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */; };
 		1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
-		1D6A39573267D54B8466C019 /* NSArray+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3371D04D4C06AE1CA6BA /* NSArray+FEMExtension.m */; };
 		1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */; };
-		1D6A3BED6ADEBA83025DC399 /* NSOrderedSet+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35C23D52ACA3A0632EE9 /* NSOrderedSet+FEMExtension.m */; };
 		1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3ACBBC8E66609F169E94 /* Person_2.json */; };
-		1D6A3DC0E9D18F91FB792243 /* NSObject+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3343710D63D5FC45E348 /* NSObject+FEMExtension.m */; };
 		1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
 		2C11898E18D07356005D8D91 /* FEMManagedObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7EA48925307F4DB06848 /* FEMManagedObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
@@ -90,6 +84,18 @@
 		69ED7DADB8044F2B42C1CD94 /* FEMManagedObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED772E50A1A831B78D48B3 /* FEMManagedObjectDeserializer.m */; };
 		69ED7E8934131F087C5492A3 /* FEMCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7DE30D50997F9408F36E /* FEMCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		9983A129111A4AB8A30520BE /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */; };
+		ADC5B819194E0F7600F07712 /* NSArray+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3371D04D4C06AE1CA6BA /* NSArray+FEMExtension.m */; };
+		ADC5B81A194E0F7600F07712 /* NSSet+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3EBE4C86B072ED9C2B64 /* NSSet+FEMExtension.m */; };
+		ADC5B81B194E0F7600F07712 /* NSOrderedSet+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35C23D52ACA3A0632EE9 /* NSOrderedSet+FEMExtension.m */; };
+		ADC5B81C194E0F7600F07712 /* NSObject+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3343710D63D5FC45E348 /* NSObject+FEMExtension.m */; };
+		ADC5B81D194E0F8600F07712 /* FEMAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */; };
+		ADC5B81E194E0F8900F07712 /* FEMAssignmentPolicyMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3CA591E94D2729ED3DA0 /* FEMAssignmentPolicyMetadata.m */; };
+		ADC5B81F194E0FB700F07712 /* FEMAssignmentPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3E68C0FB99F7A73DE0C5 /* FEMAssignmentPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADC5B820194E0FB700F07712 /* FEMAssignmentPolicyMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3DEA59A87E175360FBFC /* FEMAssignmentPolicyMetadata.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADC5B821194E0FB700F07712 /* NSArray+FEMExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A32AB56C08FC72DF83644 /* NSArray+FEMExtension.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		ADC5B822194E0FB700F07712 /* NSSet+FEMExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3BEA10F56EBBA102C5D0 /* NSSet+FEMExtension.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		ADC5B823194E0FB700F07712 /* NSOrderedSet+FEMExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A340842351C5046770887 /* NSOrderedSet+FEMExtension.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		ADC5B824194E0FB700F07712 /* NSObject+FEMExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A32F2E866DBCDC94D2D97 /* NSObject+FEMExtension.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -573,10 +579,16 @@
 				2CF809A918C3AE9A00C07899 /* FEMManagedObjectDeserializer.h in Headers */,
 				2CF809AB18C3AE9A00C07899 /* FEMTypes.h in Headers */,
 				2CF809AC18C3AEC800C07899 /* FEMAttributeMapping+Extension.h in Headers */,
+				ADC5B81F194E0FB700F07712 /* FEMAssignmentPolicy.h in Headers */,
+				ADC5B820194E0FB700F07712 /* FEMAssignmentPolicyMetadata.h in Headers */,
 				2CF809AD18C3AEC800C07899 /* NSArray+FEMPropertyRepresentation.h in Headers */,
 				2CF809AF18C3AEC800C07899 /* FEMTypeIntrospection.h in Headers */,
 				69ED7E8934131F087C5492A3 /* FEMCache.h in Headers */,
 				69ED72338B6419101B1C8CDB /* NSObject+FEMKVC.h in Headers */,
+				ADC5B821194E0FB700F07712 /* NSArray+FEMExtension.h in Headers */,
+				ADC5B822194E0FB700F07712 /* NSSet+FEMExtension.h in Headers */,
+				ADC5B823194E0FB700F07712 /* NSOrderedSet+FEMExtension.h in Headers */,
+				ADC5B824194E0FB700F07712 /* NSObject+FEMExtension.h in Headers */,
 				69ED702FCEC21C111D4518AC /* FEMPropertyMapping.h in Headers */,
 				69ED7191763B8C717620B63E /* FEMMapping.h in Headers */,
 			);
@@ -725,16 +737,22 @@
 				69ED7C04B0D06A2E75D9CDDD /* FEMObjectMapping.m in Sources */,
 				69ED7687DEAC011EE09F5D1A /* FEMManagedObjectMapping.m in Sources */,
 				69ED7299E71FA1B0B34E9764 /* FEMAttributeMapping.m in Sources */,
+				ADC5B819194E0F7600F07712 /* NSArray+FEMExtension.m in Sources */,
+				ADC5B81E194E0F8900F07712 /* FEMAssignmentPolicyMetadata.m in Sources */,
 				69ED70D8C859F4A0BDE4DCF8 /* FEMAttributeMapping+Extension.m in Sources */,
 				69ED7A9D4C100F6C8EEEDC03 /* FEMRelationshipMapping.m in Sources */,
 				69ED797C93C27C8E3BBC1BDB /* FEMSerializer.m in Sources */,
 				69ED776944D5FF7D7166F975 /* FEMObjectDeserializer.m in Sources */,
+				ADC5B81B194E0F7600F07712 /* NSOrderedSet+FEMExtension.m in Sources */,
 				69ED7DADB8044F2B42C1CD94 /* FEMManagedObjectDeserializer.m in Sources */,
+				ADC5B81C194E0F7600F07712 /* NSObject+FEMExtension.m in Sources */,
 				69ED7144E37E067666813AF9 /* NSArray+FEMPropertyRepresentation.m in Sources */,
 				69ED7687C035FA51A536AB56 /* FEMTypeIntrospection.m in Sources */,
 				69ED756EBF9D955A7B6A580A /* FEMCache.m in Sources */,
+				ADC5B81A194E0F7600F07712 /* NSSet+FEMExtension.m in Sources */,
 				69ED74D218BD6B3888549434 /* NSObject+FEMKVC.m in Sources */,
 				69ED775D5D598E6ECAA40BA2 /* FEMMapping.m in Sources */,
+				ADC5B81D194E0F8600F07712 /* FEMAssignmentPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,12 +783,6 @@
 				2C375F4018CCD40A00FCB8EA /* FEMSerializerSpec.m in Sources */,
 				2C375F2118CCD3FB00FCB8EA /* CarNative.m in Sources */,
 				1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */,
-				1D6A3680E6624E45EC81A5DF /* FEMAssignmentPolicy.m in Sources */,
-				1D6A35C9B1453B3A98D0E460 /* FEMAssignmentPolicyMetadata.m in Sources */,
-				1D6A39573267D54B8466C019 /* NSArray+FEMExtension.m in Sources */,
-				1D6A356AFF8179ABA5905A98 /* NSSet+FEMExtension.m in Sources */,
-				1D6A3BED6ADEBA83025DC399 /* NSOrderedSet+FEMExtension.m in Sources */,
-				1D6A3DC0E9D18F91FB792243 /* NSObject+FEMExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
