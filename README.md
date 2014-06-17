@@ -8,7 +8,7 @@ This is fork of [EasyMapping](https://github.com/lucasmedeirosleite/EasyMapping)
 ## Reason to be
 It turns out, that almost all popular libraries for JSON mapping SLOW. The main reason is often trips to database during lookup of existing objects. So we [decided](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) to take already existing [flexible solution](https://github.com/lucasmedeirosleite/EasyMapping) and improve overall performance. 
 <p align="center" >
-  <img src="https://raw.githubusercontent.com/Yalantis/FastEasyMapping/master/Assets/com.yalantis.fasteasymapping.performance.png" alt="FastEasyMapping" title="FastEasyMapping">
+  <img src="https://raw.githubusercontent.com/Yalantis/FastEasyMapping/efabb88b0831c7ece88e728b9665edc4d3af5b1f/Assets/performance.png" alt="FastEasyMapping" title="FastEasyMapping">
 </p>
 
 # Setup
