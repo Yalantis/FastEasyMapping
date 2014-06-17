@@ -131,8 +131,26 @@ NSDictionary *representation = [FEMSerializer serializeObject:car usingMapping:[
 NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usingMapping:[MappingProvider carMapping]];
 ```
 
-# Roadmap
-* Add relationship mapping policy (ie. assign, merge, replace).
+# Changelog
+
+### 0.3.0
+- Add assignment policy support for FEMManagedObjectDeserializer: Assign, Merge, Replace
+- Cover FEMCache by tests
+
+### 0.2.1 
+- Improved types introspection by @advantis
+
+### 0.2.0
+- Renamed to FastEasyMapping
+
+### 0.1.2
+- Fixed serialization of BOOL properties on 64 bits
+
+### 0.1.1
+- Fixed caching behaviour for new objects
+
+### 0.1
+- Added managed objects cache for deserialization 
 
 # Thanks
 * Special thanks to [lucasmedeirosleite](https://github.com/lucasmedeirosleite) for amazing framework.
