@@ -8,6 +8,5 @@
 @interface NSObject (FEMExtension)
 
 - (instancetype)fem_merge:(id)object;
-- (instancetype)fem_except:(id)object;
 
 @end

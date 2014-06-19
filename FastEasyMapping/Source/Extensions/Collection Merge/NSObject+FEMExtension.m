@@ -11,8 +11,4 @@
     return self;
 }
 
-- (instancetype)fem_except:(id)object {
-    return self;
-}
-
 @end

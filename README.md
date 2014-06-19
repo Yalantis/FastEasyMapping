@@ -11,6 +11,16 @@ It turns out, that almost all popular libraries for JSON mapping SLOW. The main 
   <img src="https://raw.githubusercontent.com/Yalantis/FastEasyMapping/efabb88b0831c7ece88e728b9665edc4d3af5b1f/Assets/performance.png" alt="FastEasyMapping" title="FastEasyMapping">
 </p>
 
+# Setup
+
+#### Cocoapods:
+```ruby
+#Podfile
+
+pod 'FastEasyMapping'
+```
+or add as a static library.
+
 # Usage
 ## Deserialization. NSManagedObject
 
@@ -106,6 +116,9 @@ FEMManagedObjectMapping *mapping = [MappingProvider personMapping];
 [FEMManagedObjectDeserializer fillObject:person fromExternalRepresentation:externalRepresentation usingMapping:mapping];
 ```
 
+### Assignment Policy
+
+Now relationship can use one of three predefined assignment policies: `FEMAssignmentPolicyAssign`, `FEMAssignmentPolicyMerge` and `FEMAssignmentPolicyReplace`. 
 
 ## Deserialization. NSObject
 
@@ -121,6 +134,11 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 ```
 
 # Changelog
+
+### 0.3.1
+- Set deployment target to 6.0
+- Fix missing cache for + [FEMManagedObjectDeserializer fillObject:fromExternalRepresentation:usingMapping:]
+- Update hanlding of nil relationships in assignment policies
 
 ### 0.3.0
 - Add assignment policy support for FEMManagedObjectDeserializer: Assign, Merge, Replace

@@ -11,10 +11,6 @@
     return [[self mutableCopy] fem_merge:array];
 }
 
-- (instancetype)fem_except:(NSArray *)array {
-    return [[self mutableCopy] fem_except:array];
-}
-
 @end
 
 @implementation NSMutableArray (FEMMerge)
@@ -26,12 +22,6 @@
     [appendingObjectsSet minusSet:[NSSet setWithArray:self]];
 
     [self addObjectsFromArray:[appendingObjectsSet allObjects]];
-
-    return self;
-}
-
-- (id)fem_except:(NSArray *)array {
-    [self removeObjectsInArray:array];
 
     return self;
 }

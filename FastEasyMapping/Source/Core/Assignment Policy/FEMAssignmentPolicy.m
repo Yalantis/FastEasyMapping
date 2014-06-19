@@ -7,6 +7,7 @@
 
 #import "FEMAssignmentPolicyMetadata.h"
 #import "NSObject+FEMExtension.h"
+#import "FEMExcludable.h"
 
 @import CoreData;
 
@@ -15,19 +16,27 @@ FEMAssignmentPolicy FEMAssignmentPolicyAssign = ^id (FEMAssignmentPolicyMetadata
 };
 
 FEMAssignmentPolicy FEMAssignmentPolicyMerge = ^id (FEMAssignmentPolicyMetadata *metadata) {
+    if (!metadata.targetValue) return metadata.existingValue;
+
     return [metadata.targetValue fem_merge:metadata.existingValue];
 };
 
 FEMAssignmentPolicy FEMAssignmentPolicyReplace = ^id (FEMAssignmentPolicyMetadata *metadata) {
     if (!metadata.existingValue) return metadata.targetValue;
 
-    if ([metadata.existingValue conformsToProtocol:@protocol(NSFastEnumeration)]) {
-        id<NSFastEnumeration> collection = (id<NSFastEnumeration>)[metadata.existingValue fem_except:metadata.targetValue];
-        for (id object in collection) {
+    if ([metadata.existingValue isKindOfClass:NSManagedObject.class]) {
+        [metadata.context deleteObject:metadata.existingValue];
+    } else if (metadata.targetValue) {
+        NSCAssert(
+            [metadata.targetValue conformsToProtocol:@protocol(FEMExcludable)],
+            @"Collection %@ should support protocol %@",
+            NSStringFromClass([metadata.targetValue class]),
+            NSStringFromProtocol(@protocol(FEMExcludable))
+        );
+
+        for (id object in [(id<FEMExcludable>)metadata.existingValue collectionByExcludingObjects:metadata.targetValue]) {
             [metadata.context deleteObject:object];
         }
-    } else {
-        [metadata.context deleteObject:metadata.existingValue];
     }
 
     return metadata.targetValue;
