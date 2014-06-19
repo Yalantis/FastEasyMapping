@@ -22,9 +22,9 @@
 
 @class FEMCache, FEMManagedObjectMapping, NSManagedObjectContext;
 
-OBJC_EXTERN FEMCache *EMKLookupCacheGetCurrent();
-OBJC_EXTERN void EMKLookupCacheSetCurrent(FEMCache *cache);
-OBJC_EXTERN void EMKLookupCacheRemoveCurrent();
+OBJC_EXTERN FEMCache *FEMCacheGetCurrent();
+OBJC_EXTERN void FEMCacheSetCurrent(FEMCache *cache);
+OBJC_EXTERN void FEMCacheRemoveCurrent();
 
 @interface FEMCache : NSObject
 

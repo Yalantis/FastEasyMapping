@@ -30,11 +30,11 @@
 
 NSString *const EMKLookupCacheCurrentKey = @"com.yalantis.FastEasyMapping.cache";
 
-FEMCache *EMKLookupCacheGetCurrent() {
+FEMCache *FEMCacheGetCurrent() {
 	return [[[NSThread currentThread] threadDictionary] objectForKey:EMKLookupCacheCurrentKey];
 }
 
-void EMKLookupCacheSetCurrent(FEMCache *cache) {
+void FEMCacheSetCurrent(FEMCache *cache) {
 	NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
 	NSCParameterAssert(cache);
 	NSCParameterAssert(![threadDictionary objectForKey:EMKLookupCacheCurrentKey]);
@@ -42,7 +42,7 @@ void EMKLookupCacheSetCurrent(FEMCache *cache) {
 	[threadDictionary setObject:cache forKey:EMKLookupCacheCurrentKey];
 }
 
-void EMKLookupCacheRemoveCurrent() {
+void FEMCacheRemoveCurrent() {
 	NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
 	NSCParameterAssert([threadDictionary objectForKey:EMKLookupCacheCurrentKey]);
 	[threadDictionary removeObjectForKey:EMKLookupCacheCurrentKey];

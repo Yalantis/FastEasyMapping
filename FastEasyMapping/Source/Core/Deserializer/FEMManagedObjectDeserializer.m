@@ -36,7 +36,7 @@
 #pragma mark - Deserialization
 
 + (id)_deserializeObjectRepresentation:(NSDictionary *)representation usingMapping:(FEMManagedObjectMapping *)mapping context:(NSManagedObjectContext *)context {
-	id object = [EMKLookupCacheGetCurrent() existingObjectForRepresentation:representation mapping:mapping];
+	id object = [FEMCacheGetCurrent() existingObjectForRepresentation:representation mapping:mapping];
 	if (!object) {
 		object = [NSEntityDescription insertNewObjectForEntityForName:mapping.entityName inManagedObjectContext:context];
 	}
@@ -44,7 +44,7 @@
 	[self _fillObject:object fromRepresentation:representation usingMapping:mapping];
 
 	if ([object isInserted] && mapping.primaryKey) {
-		[EMKLookupCacheGetCurrent() addExistingObject:object usingMapping:mapping];
+		[FEMCacheGetCurrent() addExistingObject:object usingMapping:mapping];
 	}
 
 	return object;
@@ -64,9 +64,9 @@
 	FEMCache *cache = [[FEMCache alloc] initWithMapping:mapping
 	                                         externalRepresentation:externalRepresentation
 						                                    context:context];
-	EMKLookupCacheSetCurrent(cache);
+    FEMCacheSetCurrent(cache);
 	id object = [self _deserializeObjectExternalRepresentation:externalRepresentation usingMapping:mapping context:context];
-	EMKLookupCacheRemoveCurrent();
+    FEMCacheRemoveCurrent();
 
 	return object;
 }
@@ -104,8 +104,16 @@
 }
 
 + (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping {
+    FEMCache *cache = [[FEMCache alloc] initWithMapping:mapping
+                                 externalRepresentation:externalRepresentation
+                                                context:object.managedObjectContext];
+    FEMCacheSetCurrent(cache);
+
 	id objectRepresentation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
-	return [self _fillObject:object fromRepresentation:objectRepresentation usingMapping:mapping];
+	id output = [self _fillObject:object fromRepresentation:objectRepresentation usingMapping:mapping];
+    FEMCacheRemoveCurrent();
+
+    return output;
 }
 
 + (NSArray *)_deserializeCollectionRepresentation:(NSArray *)representation
@@ -135,11 +143,11 @@
 	FEMCache *cache = [[FEMCache alloc] initWithMapping:mapping
 	                                         externalRepresentation:externalRepresentation
 						                                    context:context];
-	EMKLookupCacheSetCurrent(cache);
+    FEMCacheSetCurrent(cache);
 	NSArray *output = [self _deserializeCollectionExternalRepresentation:externalRepresentation
 	                                                        usingMapping:mapping
 				                                                 context:context];
-	EMKLookupCacheRemoveCurrent();
+    FEMCacheRemoveCurrent();
 
 	return output;
 }
