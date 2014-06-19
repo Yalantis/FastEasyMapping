@@ -11,22 +11,12 @@
     return [[self mutableCopy] fem_merge:orderedSet];
 }
 
-- (instancetype)fem_except:(NSOrderedSet *)orderedSet {
-    return [[self mutableCopy] fem_except:orderedSet];
-}
-
 @end
 
 @implementation NSMutableOrderedSet (FEMMerge)
 
 - (instancetype)fem_merge:(NSOrderedSet *)orderedSet {
     [self unionOrderedSet:orderedSet];
-
-    return self;
-}
-
-- (id)fem_except:(NSOrderedSet *)orderedSet {
-    [self minusOrderedSet:orderedSet];
 
     return self;
 }

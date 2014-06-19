@@ -10,6 +10,7 @@
 		1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
 		1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
 		1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */; };
+		1D6A3BE38C286BBE0A0B0FEA /* FEMExceptable.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BDA3CA0DDFF256CDB49 /* FEMExceptable.m */; };
 		1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3ACBBC8E66609F169E94 /* Person_2.json */; };
 		1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
 		2C11898E18D07356005D8D91 /* FEMManagedObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7EA48925307F4DB06848 /* FEMManagedObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -131,6 +132,8 @@
 		1D6A35C23D52ACA3A0632EE9 /* NSOrderedSet+FEMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOrderedSet+FEMExtension.m"; sourceTree = "<group>"; };
 		1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMCacheSpec.m; sourceTree = "<group>"; };
 		1D6A3ACBBC8E66609F169E94 /* Person_2.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Person_2.json; sourceTree = "<group>"; };
+		1D6A3AF6BD6EABAAACD8D4B8 /* FEMExcludable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMExcludable.h; sourceTree = "<group>"; };
+		1D6A3BDA3CA0DDFF256CDB49 /* FEMExceptable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMExceptable.m; sourceTree = "<group>"; };
 		1D6A3BEA10F56EBBA102C5D0 /* NSSet+FEMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+FEMExtension.h"; sourceTree = "<group>"; };
 		1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAssignmentPolicy.m; sourceTree = "<group>"; };
 		1D6A3CA591E94D2729ED3DA0 /* FEMAssignmentPolicyMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAssignmentPolicyMetadata.m; sourceTree = "<group>"; };
@@ -266,6 +269,8 @@
 				1D6A340842351C5046770887 /* NSOrderedSet+FEMExtension.h */,
 				1D6A3343710D63D5FC45E348 /* NSObject+FEMExtension.m */,
 				1D6A32F2E866DBCDC94D2D97 /* NSObject+FEMExtension.h */,
+				1D6A3BDA3CA0DDFF256CDB49 /* FEMExceptable.m */,
+				1D6A3AF6BD6EABAAACD8D4B8 /* FEMExcludable.h */,
 			);
 			path = "Collection Merge";
 			sourceTree = "<group>";
@@ -783,6 +788,7 @@
 				2C375F4018CCD40A00FCB8EA /* FEMSerializerSpec.m in Sources */,
 				2C375F2118CCD3FB00FCB8EA /* CarNative.m in Sources */,
 				1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */,
+				1D6A3BE38C286BBE0A0B0FEA /* FEMExceptable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
