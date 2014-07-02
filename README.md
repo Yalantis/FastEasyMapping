@@ -163,4 +163,4 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 * Special thanks to [lucasmedeirosleite](https://github.com/lucasmedeirosleite) for amazing framework.
 
 # Extra
-Read out [blogpost](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) about FastEasyMapping.
+Read out [blogpost](http://yalantis.com/blog/from-json-to-core-data-fast-and-effectively/) about FastEasyMapping.
