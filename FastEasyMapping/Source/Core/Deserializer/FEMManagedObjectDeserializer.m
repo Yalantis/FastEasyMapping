@@ -82,17 +82,26 @@
         [metadata setContext:context];
         [metadata setExistingValue:[object valueForKey:relationshipMapping.property]];
 
+        FEMManagedObjectMapping *objectMapping = (FEMManagedObjectMapping *)relationshipMapping.objectMapping;
+        NSAssert(
+            [objectMapping isKindOfClass:FEMManagedObjectMapping.class],
+            @"%@ expect %@ for %@.objectMapping",
+            NSStringFromClass(self),
+            NSStringFromClass(FEMManagedObjectMapping.class),
+            NSStringFromClass(FEMRelationshipMapping.class)
+        );
+
         id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
 		if (relationshipMapping.isToMany) {
 			NSArray *newValue = [self _deserializeCollectionRepresentation:relationshipRepresentation
-                                                                              usingMapping:relationshipMapping.objectMapping
+                                                                              usingMapping:objectMapping
                                                                                    context:context];
 
             objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
             [metadata setTargetValue:[newValue fem_propertyRepresentation:property]];
 		} else {
             id newValue = [self _deserializeObjectRepresentation:relationshipRepresentation
-                                                    usingMapping:relationshipMapping.objectMapping
+                                                    usingMapping:objectMapping
                                                          context:context];
             [metadata setTargetValue:newValue];
 		}
