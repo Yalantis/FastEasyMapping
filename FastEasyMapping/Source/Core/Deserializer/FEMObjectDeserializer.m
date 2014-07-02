@@ -49,16 +49,24 @@
 	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
 		id deserializedRelationship = nil;
 		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
-
+        FEMObjectMapping *objectMapping = (FEMObjectMapping *)relationshipMapping.objectMapping;
+        NSAssert(
+            [objectMapping isKindOfClass:FEMObjectMapping.class],
+            @"%@ expect %@ for %@.objectMapping",
+            NSStringFromClass(self),
+            NSStringFromClass(FEMObjectMapping.class),
+            NSStringFromClass(FEMRelationshipMapping.class)
+         );
+        
 		if (relationshipMapping.isToMany) {
 			deserializedRelationship = [self deserializeCollectionRepresentation:relationshipRepresentation
-			                                                        usingMapping:relationshipMapping.objectMapping];
+			                                                        usingMapping:objectMapping];
 
 			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
 			deserializedRelationship = [deserializedRelationship fem_propertyRepresentation:property];
 		} else {
 			deserializedRelationship = [self deserializeObjectRepresentation:relationshipRepresentation
-			                                                    usingMapping:relationshipMapping.objectMapping];
+			                                                    usingMapping:objectMapping];
 		}
 
 		if (deserializedRelationship) {
