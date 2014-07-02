@@ -94,7 +94,10 @@ void FEMCacheRemoveCurrent() {
 
 	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
 		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:objectRepresentation];
-		[self inspectRepresentation:relationshipRepresentation usingMapping:relationshipMapping.objectMapping];
+        if (relationshipRepresentation) {
+            [self inspectRepresentation:relationshipRepresentation
+                           usingMapping:(FEMManagedObjectMapping *)relationshipMapping.objectMapping];
+        }
 	}
 }
 
