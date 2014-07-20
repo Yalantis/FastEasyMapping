@@ -92,19 +92,21 @@
         );
 
         id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
-		if (relationshipMapping.isToMany) {
-			NSArray *newValue = [self _deserializeCollectionRepresentation:relationshipRepresentation
-                                                                              usingMapping:objectMapping
-                                                                                   context:context];
+        if (relationshipRepresentation != NSNull.null) {
+            if (relationshipMapping.isToMany) {
+                NSArray *newValue = [self _deserializeCollectionRepresentation:relationshipRepresentation
+                                                                  usingMapping:objectMapping
+                                                                       context:context];
 
-            objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
-            [metadata setTargetValue:[newValue fem_propertyRepresentation:property]];
-		} else {
-            id newValue = [self _deserializeObjectRepresentation:relationshipRepresentation
-                                                    usingMapping:objectMapping
-                                                         context:context];
-            [metadata setTargetValue:newValue];
-		}
+                objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
+                [metadata setTargetValue:[newValue fem_propertyRepresentation:property]];
+            } else {
+                id newValue = [self _deserializeObjectRepresentation:relationshipRepresentation
+                                                        usingMapping:objectMapping
+                                                             context:context];
+                [metadata setTargetValue:newValue];
+            }
+        }
 
         [object setValue:relationshipMapping.assignmentPolicy(metadata) forKey:relationshipMapping.property];
 	}
