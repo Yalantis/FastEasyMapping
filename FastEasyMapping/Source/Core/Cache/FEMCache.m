@@ -87,14 +87,14 @@ void FEMCacheRemoveCurrent() {
 		NSParameterAssert(primaryKeyMapping);
 
 		id primaryKeyValue = [primaryKeyMapping mappedValueFromRepresentation:objectRepresentation];
-		if (primaryKeyValue) {
+		if (primaryKeyValue && primaryKeyValue != NSNull.null) {
 			[_lookupKeysMap[mapping.entityName] addObject:primaryKeyValue];
 		}
 	}
 
 	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
 		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:objectRepresentation];
-        if (relationshipRepresentation) {
+        if (relationshipRepresentation && relationshipRepresentation != NSNull.null) {
             [self inspectRepresentation:relationshipRepresentation
                            usingMapping:(FEMManagedObjectMapping *)relationshipMapping.objectMapping];
         }
