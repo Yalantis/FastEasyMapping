@@ -135,6 +135,9 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 
 # Changelog
 
+### 0.3.3
+- Update null-relationship handling in Managed Object Deserializer & Cache [handling of nil-relationship](https://github.com/Yalantis/FastEasyMapping/issues/7)
+
 ### 0.3.2
 - Fix [handling of nil-relationship](https://github.com/Yalantis/FastEasyMapping/issues/7) data during deserialization
 - Remove compiler warnings 
