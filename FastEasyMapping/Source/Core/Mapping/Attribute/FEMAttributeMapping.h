@@ -31,6 +31,10 @@
 - (id)initWithProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap;
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap;
 
+@end
+
+@interface FEMAttributeMapping (Shortcut)
+
 /**
 * same as +[FEMAttributeMapping mappingOfProperty:property toKeyPath:property];
 */
@@ -42,6 +46,11 @@
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath;
 
 /**
+* same as +[FEMAttributeMapping mappingOfProperty:property toKeyPath:nil map:map];
+*/
++ (instancetype)mappingOfProperty:(NSString *)property map:(FEMMapBlock)map;
+
+/**
 * same as +[FEMAttributeMapping mappingOfProperty:property toKeyPath:nil map:NULL reverseMap:NULL];
 */
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath map:(FEMMapBlock)map;
@@ -51,6 +60,11 @@
 * NSDateFormatter instance uses en_US_POSIX locale and Timezone with name "Europe/London"
 */
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat;
+
+/**
+* property represented by NSURL, value at keyPath - NSString
+*/
++ (instancetype)mappingOfURLProperty:(NSString *)property toKeyPath:(NSString *)keyPath;
 
 @end
 
