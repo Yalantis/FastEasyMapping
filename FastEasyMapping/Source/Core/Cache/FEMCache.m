@@ -188,4 +188,8 @@ void FEMCacheRemoveCurrent() {
 	[entityObjectsMap setObject:object forKey:primaryKeyValue];
 }
 
+- (NSDictionary *)existingObjectsForMapping:(FEMManagedObjectMapping *)mapping {
+    return [[self cachedObjectsForMapping:mapping] copy];
+}
+
 @end
