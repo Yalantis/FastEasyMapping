@@ -372,7 +372,7 @@ describe(@"FEMManagedObjectDeserializer", ^{
             
             context(@"merge", ^{
                 it(@"should act as assign", ^{
-                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyObjectMerge;
                     
                     [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
                     Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
@@ -415,7 +415,7 @@ describe(@"FEMManagedObjectDeserializer", ^{
             
             context(@"merge", ^{
                 it(@"should merge existing and new objects", ^{
-                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyCollectionMerge;
                     
                     [[@([Phone MR_countOfEntitiesWithContext:moc]) should] beZero];
                     Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1

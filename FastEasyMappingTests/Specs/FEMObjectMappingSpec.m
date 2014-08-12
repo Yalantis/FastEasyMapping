@@ -393,18 +393,18 @@ describe(@"FEMObjectMapping", ^{
         
     });
 
-    describe(@"description", ^{
-        __block FEMObjectMapping *mapping = nil;
-
-        beforeEach(^{
-            mapping = [MappingProviderNative personWithPhonesMapping];
-        });
-
-        specify(^{
-            NSString *description = [mapping description];
-            NSLog(@"%@", description);
-        });
-    });
+//    describe(@"description", ^{
+//        __block FEMObjectMapping *mapping = nil;
+//
+//        beforeEach(^{
+//            mapping = [MappingProviderNative personWithPhonesMapping];
+//        });
+//
+//        specify(^{
+//            NSString *description = [mapping description];
+//            NSLog(@"%@", description);
+//        });
+//    });
     
 });
 
