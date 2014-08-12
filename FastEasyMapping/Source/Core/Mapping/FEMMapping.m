@@ -94,6 +94,31 @@
 	return [_relationshipsMap allValues];
 }
 
+#pragma mark - Description
+
+- (NSString *)description {
+    NSMutableString *description = [NSMutableString stringWithFormat:
+        @"<%@ %p>\n<%%@> {\nrootPath:%@\n",
+        NSStringFromClass(self.class),
+        (__bridge void *) self,
+        self.rootPath
+    ];
+
+    [description appendString:@"attributes {\n"];
+    for (FEMAttributeMapping *mapping in self.attributeMappings) {
+        [description appendFormat:@"\t(%@),\n", [mapping description]];
+    }
+    [description appendString:@"}\n"];
+
+    [description appendString:@"relationships {\n"];
+    for (FEMRelationshipMapping *relationshipMapping in self.relationshipMappings) {
+        [description appendFormat:@"\t(%@),", [relationshipMapping description]];
+    }
+    [description appendFormat:@"}\n"];
+
+    return description;
+}
+
 @end
 
 @implementation FEMMapping (Shortcut)

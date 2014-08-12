@@ -6,16 +6,16 @@
 @import Foundation;
 
 @protocol FEMExcludable <NSObject>
-
+@required 
 - (id<NSFastEnumeration>)collectionByExcludingObjects:(id)objects;
 
 @end
 
-@interface NSArray (FEMExceptable) <FEMExcludable>
+@interface NSArray (FEMExcludable) <FEMExcludable>
 @end
 
-@interface NSSet (FEMExceptable) <FEMExcludable>
+@interface NSSet (FEMExcludable) <FEMExcludable>
 @end
 
-@interface NSOrderedSet (FEMExceptable) <FEMExcludable>
+@interface NSOrderedSet (FEMExcludable) <FEMExcludable>
 @end

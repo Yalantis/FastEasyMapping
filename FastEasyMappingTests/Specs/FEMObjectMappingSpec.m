@@ -25,6 +25,7 @@
 #import "FEMObjectMapping.h"
 #import "FEMAttributeMapping.h"
 #import "FEMRelationshipMapping.h"
+#import "PhoneNative.h"
 
 SPEC_BEGIN(FEMObjectMappingSpec)
 
@@ -390,6 +391,19 @@ describe(@"FEMObjectMapping", ^{
             [[mapping relationshipMappingForProperty:@"phones"] shouldNotBeNil];
         });
         
+    });
+
+    describe(@"description", ^{
+        __block FEMObjectMapping *mapping = nil;
+
+        beforeEach(^{
+            mapping = [MappingProviderNative personWithPhonesMapping];
+        });
+
+        specify(^{
+            NSString *description = [mapping description];
+            NSLog(@"%@", description);
+        });
     });
     
 });

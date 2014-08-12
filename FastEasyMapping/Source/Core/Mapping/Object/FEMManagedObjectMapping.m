@@ -62,4 +62,11 @@
 	return [_attributesMap objectForKey:self.primaryKey];
 }
 
+#pragma mark - Description
+
+- (NSString *)description {
+    NSString *descriptionFormat = [super description];
+    return [NSString stringWithFormat:descriptionFormat, @"Entity:%@", self.entityName];
+}
+
 @end

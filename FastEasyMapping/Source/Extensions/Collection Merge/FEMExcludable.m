@@ -6,7 +6,7 @@
 #import "FEMExcludable.h"
 
 
-@implementation NSArray (FEMExceptable)
+@implementation NSArray (FEMExcludable)
 
 - (id<NSFastEnumeration>)collectionByExcludingObjects:(id)array {
     return [[self mutableCopy] collectionByExcludingObjects:array];
@@ -14,7 +14,7 @@
 
 @end
 
-@implementation NSMutableArray (FEMExceptable)
+@implementation NSMutableArray (FEMExcludable)
 
 - (instancetype)collectionByExcludingObjects:(NSArray *)objects {
     [self removeObjectsInArray:objects];
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation NSSet (FEMExceptable)
+@implementation NSSet (FEMExcludable)
 
 - (id<NSFastEnumeration>)collectionByExcludingObjects:(id)set {
     return [[self mutableCopy] collectionByExcludingObjects:set];
@@ -32,7 +32,7 @@
 
 @end
 
-@implementation NSMutableSet (FEMExceptable)
+@implementation NSMutableSet (FEMExcludable)
 
 - (id<NSFastEnumeration>)collectionByExcludingObjects:(NSSet *)set {
     [self minusSet:set];
@@ -42,7 +42,7 @@
 
 @end
 
-@implementation NSOrderedSet (FEMExceptable)
+@implementation NSOrderedSet (FEMExcludable)
 
 - (id<NSFastEnumeration>)collectionByExcludingObjects:(id)orderedSet {
     return [[self mutableCopy] collectionByExcludingObjects:orderedSet];
@@ -50,7 +50,7 @@
 
 @end
 
-@implementation NSMutableOrderedSet (FEMExceptable)
+@implementation NSMutableOrderedSet (FEMExcludable)
 
 - (id<NSFastEnumeration>)collectionByExcludingObjects:(NSOrderedSet *)orderedSet {
     [self minusOrderedSet:orderedSet];
