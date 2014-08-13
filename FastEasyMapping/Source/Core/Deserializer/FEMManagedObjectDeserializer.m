@@ -30,7 +30,6 @@
 #import "FEMRelationshipMapping.h"
 #import "FEMCache.h"
 #import "FEMAssignmentPolicyMetadata.h"
-#import "KWExample.h"
 
 @implementation FEMManagedObjectDeserializer
 
@@ -180,7 +179,7 @@
     NSMutableDictionary *initialObjectsMap = [[NSMutableDictionary alloc] initWithObjects:initialObjects
                                                                                   forKeys:initialObjectsKeys];
 
-    FEMCache *cache = [[FEMCache alloc] initWithMapping:mapping externalRepresentation:initialObjects context:context];
+    FEMCache *cache = [[FEMCache alloc] initWithMapping:mapping externalRepresentation:externalRepresentation context:context];
     FEMCacheSetCurrent(cache);
     NSArray *output = [self _deserializeCollectionExternalRepresentation:externalRepresentation
                                                             usingMapping:mapping

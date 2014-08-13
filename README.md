@@ -135,6 +135,18 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 
 # Changelog
 
+### 0.3.7
+- Add synchronization to [FEMManagedObjectDeserializer](https://github.com/Yalantis/FastEasyMapping/blob/release/0.3.7/FastEasyMapping/Source/Core/Deserializer/FEMManagedObjectDeserializer.h#L43)
+- Minor refactoring
+- Fixed minor naming issues
+
+### 0.3.3
+- Update null-relationship handling in Managed Object Deserializer & Cache [handling of nil-relationship](https://github.com/Yalantis/FastEasyMapping/issues/7)
+
+### 0.3.2
+- Fix [handling of nil-relationship](https://github.com/Yalantis/FastEasyMapping/issues/7) data during deserialization
+- Remove compiler warnings 
+
 ### 0.3.1
 - Set deployment target to 6.0
 - Fix missing cache for + [FEMManagedObjectDeserializer fillObject:fromExternalRepresentation:usingMapping:]
@@ -163,4 +175,4 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 * Special thanks to [lucasmedeirosleite](https://github.com/lucasmedeirosleite) for amazing framework.
 
 # Extra
-Read out [blogpost](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) about FastEasyMapping.
+Read out [blogpost](http://yalantis.com/blog/from-json-to-core-data-fast-and-effectively/) about FastEasyMapping.
