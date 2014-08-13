@@ -1,20 +1,16 @@
-Pod::Spec.new do |s|
-  s.name         = "FastEasyMapping"
-  s.version      = "0.3.3"
-  s.summary      = "Fast mapping from JSON to NSObject / NSManagedObject and back"
-  s.homepage     = "https://github.com/Yalantis/FastEasyMapping"
+Pod::Spec.new do |spec|
+  spec.name         = 'FastEasyMapping'
+  spec.version      = '0.3.7'
+  spec.summary      = 'Fast mapping from JSON to NSObject / NSManagedObject and back'
+  spec.homepage     = 'https://github.com/Yalantis/FastEasyMapping'
+  spec.license      = { :type => 'MIT', :file => 'LICENSE' }
+  spec.author       = { 'Dmitriy Zen' => 'dmitriy.shemet@yalantis.com' }
+  spec.source       = { :git => "https://github.com/Yalantis/FastEasyMapping.git", :tag => '0.3.7' }
 
-  s.license      = { :type => 'MIT', :file => 'LICENSE' }
-
-  s.author       = { "Dmitriy Shemet" => "dmitriy.shemet@yalantis.com" }
-
-  s.source       = { :git => "https://github.com/Yalantis/FastEasyMapping.git", :tag => "0.3.3" }
-
-  s.requires_arc = true
-
-  s.ios.deployment_target = '6.0'
-  s.osx.deployment_target = '10.8'
-  s.frameworks = 'CoreData'
+  spec.requires_arc = true
+  spec.ios.deployment_target = '6.0'
+  spec.osx.deployment_target = '10.8'
+  spec.frameworks = 'CoreData'
 
   s.source_files = 'FastEasyMapping/Source/**/*.{h,m}'
 
