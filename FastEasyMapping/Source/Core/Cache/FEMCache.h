@@ -39,4 +39,6 @@ OBJC_EXTERN void FEMCacheRemoveCurrent();
 - (id)existingObjectForRepresentation:(id)representation mapping:(FEMManagedObjectMapping *)mapping;
 - (void)addExistingObject:(id)object usingMapping:(FEMManagedObjectMapping *)mapping;
 
+- (NSDictionary *)existingObjectsForMapping:(FEMManagedObjectMapping *)mapping;
+
 @end

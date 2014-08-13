@@ -18,16 +18,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "NSObject+FEMKVC.h"
+#import <Foundation/Foundation.h>
 
-@implementation NSObject (FEMKVC)
+@interface NSObject (FEMKVCExtension)
 
-- (void)emk_setValueIfDifferent:(id)value forKey:(NSString *)key {
-	id _value = [self valueForKey:key];
-
-	if (_value != value && ![_value isEqual:value]) {
-		[self setValue:value forKey:key];
-	}
-}
+- (void)fem_setValueIfDifferent:(id)value forKey:(NSString *)key;
 
 @end

@@ -20,7 +20,7 @@
 
 #import "FEMAttributeMapping+Extension.h"
 #import "FEMTypeIntrospection.h"
-#import "NSObject+FEMKVC.h"
+#import "NSObject+FEMKVCExtension.h"
 
 @implementation FEMAttributeMapping (Extension)
 
@@ -37,7 +37,7 @@
 			[object setValue:nil forKey:self.property];
 		}
 	} else if (value) {
-		[object emk_setValueIfDifferent:value forKey:self.property];
+        [object fem_setValueIfDifferent:value forKey:self.property];
 	}
 }
 

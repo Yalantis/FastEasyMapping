@@ -80,6 +80,20 @@
     [self setObjectMapping:objectMapping forKeyPath:nil];
 }
 
+#pragma mark - Description
+
+- (NSString *)description {
+    return [NSString stringWithFormat:
+        @"<%@ %p>\n {\nproperty:%@ keyPath:%@ toMany:%@\nobjectMapping:(%@)}\n",
+        NSStringFromClass(self.class),
+        (__bridge void *) self,
+        self.property,
+        self.keyPath,
+        @(self.toMany),
+        [self.objectMapping description]
+    ];
+}
+
 @end
 
 @implementation FEMRelationshipMapping (Deprecated)

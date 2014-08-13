@@ -40,4 +40,9 @@
                                             usingMapping:(FEMManagedObjectMapping *)mapping
 			                                     context:(NSManagedObjectContext *)context;
 
++ (NSArray *)synchronizeCollectionExternalRepresentation:(NSArray *)externalRepresentation
+                                            usingMapping:(FEMManagedObjectMapping *)mapping
+                                               predicate:(NSPredicate *)predicate
+                                                 context:(NSManagedObjectContext *)context;
+
 @end

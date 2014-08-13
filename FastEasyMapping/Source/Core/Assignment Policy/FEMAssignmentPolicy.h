@@ -11,6 +11,10 @@ typedef id (^FEMAssignmentPolicy)(FEMAssignmentPolicyMetadata *metadata);
 
 OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyAssign;
 
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyMerge;
+OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyMerge __attribute__((deprecated("use FEMAssignmentPolicyObjectMerge or FEMAssignmentPolicyCollectionMerge instead")));
+OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyObjectMerge;
+OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge;
 
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyReplace;
+OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyReplace __attribute__((deprecated("use FEMAssignmentPolicyObjectReplace or FEMAssignmentPolicyCollectionReplace instead")));
+OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace;
+OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace;

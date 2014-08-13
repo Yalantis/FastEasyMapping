@@ -135,6 +135,11 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 
 # Changelog
 
+### 0.3.7
+- Add synchronization to [FEMManagedObjectDeserializer](https://github.com/Yalantis/FastEasyMapping/blob/release/0.3.7/FastEasyMapping/Source/Core/Deserializer/FEMManagedObjectDeserializer.h#L43)
+- Minor refactoring
+- Fixed minor naming issues
+
 ### 0.3.3
 - Update null-relationship handling in Managed Object Deserializer & Cache [handling of nil-relationship](https://github.com/Yalantis/FastEasyMapping/issues/7)
 

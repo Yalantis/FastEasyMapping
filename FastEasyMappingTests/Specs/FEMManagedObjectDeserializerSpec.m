@@ -372,7 +372,7 @@ describe(@"FEMManagedObjectDeserializer", ^{
             
             context(@"merge", ^{
                 it(@"should act as assign", ^{
-                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyObjectMerge;
                     
                     [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
                     Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
@@ -415,7 +415,7 @@ describe(@"FEMManagedObjectDeserializer", ^{
             
             context(@"merge", ^{
                 it(@"should merge existing and new objects", ^{
-                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyMerge;
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyCollectionMerge;
                     
                     [[@([Phone MR_countOfEntitiesWithContext:moc]) should] beZero];
                     Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
@@ -461,6 +461,65 @@ describe(@"FEMManagedObjectDeserializer", ^{
 
                     [[@([Phone MR_countOfEntitiesWithContext:moc]) should] equal:@2];
                 });
+            });
+        });
+    });
+
+    describe(@"synchronization", ^{
+        __block Car *car;
+        __block NSDictionary *externalRepresentation;
+        __block FEMManagedObjectMapping *mapping;
+
+        beforeEach(^{
+            externalRepresentation = @{
+                @"id": @2,
+                @"model": @"i30",
+                @"year": @"2014"
+            };
+
+            car = [Car MR_createInContext:moc];
+            [car setCarID:@1];
+
+            mapping = [MappingProvider carMappingWithPrimaryKey];
+        });
+
+        context(@"without predicate", ^{
+            it(@"should replace all existing objects", ^{
+                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+
+                [FEMManagedObjectDeserializer synchronizeCollectionExternalRepresentation:@[externalRepresentation]
+                                                                             usingMapping:mapping
+                                                                                predicate:nil
+                                                                                  context:moc];
+                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+                Car *existingCar = [Car MR_findFirstInContext:moc];
+                [[existingCar.carID should] equal:@2];
+            });
+        });
+
+        context(@"with predicate", ^{
+            it(@"should replace objects specified by predicate", ^{
+                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"carID == 1"];
+                [FEMManagedObjectDeserializer synchronizeCollectionExternalRepresentation:@[externalRepresentation]
+                                                                             usingMapping:mapping
+                                                                                predicate:predicate
+                                                                                  context:moc];
+                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+                Car *existingCar = [Car MR_findFirstInContext:moc];
+                [[existingCar.carID should] equal:@2];
+            });
+
+            it(@"should not replace objects not specified by predicate", ^{
+                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"carID != 1"];
+                [FEMManagedObjectDeserializer synchronizeCollectionExternalRepresentation:@[externalRepresentation]
+                                                                             usingMapping:mapping
+                                                                                predicate:predicate
+                                                                                  context:moc];
+                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@2];
             });
         });
     });

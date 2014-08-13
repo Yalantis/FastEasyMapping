@@ -50,4 +50,11 @@
 	return mapping;
 }
 
+#pragma mark - Description
+
+- (NSString *)description {
+    NSString *descriptionFormat = [super description];
+    return [NSString stringWithFormat:descriptionFormat, @"Object Class:%@", NSStringFromClass(self.objectClass)];
+}
+
 @end
