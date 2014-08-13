@@ -30,7 +30,6 @@
 #import "FEMRelationshipMapping.h"
 #import "FEMCache.h"
 #import "FEMAssignmentPolicyMetadata.h"
-#import "KWExample.h"
 
 @implementation FEMManagedObjectDeserializer
 
