@@ -33,7 +33,7 @@ FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge = ^id (FEMAssignmentPolic
 };
 
 FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (metadata.existingValue) {
+    if (metadata.existingValue && ![metadata.existingValue isEqual:metadata.targetValue]) {
         [metadata.context deleteObject:metadata.existingValue];
     }
 

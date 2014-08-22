@@ -31,20 +31,20 @@
 NSString *const EMKLookupCacheCurrentKey = @"com.yalantis.FastEasyMapping.cache";
 
 FEMCache *FEMCacheGetCurrent() {
-	return [[[NSThread currentThread] threadDictionary] objectForKey:EMKLookupCacheCurrentKey];
+	return [[NSThread currentThread] threadDictionary][EMKLookupCacheCurrentKey];
 }
 
 void FEMCacheSetCurrent(FEMCache *cache) {
 	NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
 	NSCParameterAssert(cache);
-	NSCParameterAssert(![threadDictionary objectForKey:EMKLookupCacheCurrentKey]);
+	NSCParameterAssert(!threadDictionary[EMKLookupCacheCurrentKey]);
 
-	[threadDictionary setObject:cache forKey:EMKLookupCacheCurrentKey];
+    threadDictionary[EMKLookupCacheCurrentKey] = cache;
 }
 
 void FEMCacheRemoveCurrent() {
 	NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
-	NSCParameterAssert([threadDictionary objectForKey:EMKLookupCacheCurrentKey]);
+	NSCParameterAssert(threadDictionary[EMKLookupCacheCurrentKey]);
 	[threadDictionary removeObjectForKey:EMKLookupCacheCurrentKey];
 }
 
@@ -185,7 +185,7 @@ void FEMCacheRemoveCurrent() {
 	NSAssert(primaryKeyValue, @"No value for key (%@) on object (%@) found", mapping.primaryKey, object);
 
 	NSMutableDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
-	[entityObjectsMap setObject:object forKey:primaryKeyValue];
+    entityObjectsMap[primaryKeyValue] = object;
 }
 
 - (NSDictionary *)existingObjectsForMapping:(FEMManagedObjectMapping *)mapping {

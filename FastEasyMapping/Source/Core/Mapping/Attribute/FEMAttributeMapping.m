@@ -84,15 +84,15 @@
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath {
-    return [self mappingOfProperty:property toKeyPath:keyPath map:NULL];
+    return [self mappingOfProperty:property toKeyPath:keyPath map:NULL reverseMap:NULL];
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property {
-    return [self mappingOfProperty:property toKeyPath:nil];
+    return [self mappingOfProperty:property toKeyPath:nil map:NULL reverseMap:NULL];
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property map:(FEMMapBlock)map {
-    return [self mappingOfProperty:property toKeyPath:nil map:NULL reverseMap:NULL];
+    return [self mappingOfProperty:property toKeyPath:nil map:map reverseMap:NULL];
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {
@@ -104,13 +104,13 @@
     return [self mappingOfProperty:property toKeyPath:keyPath map:^id(id value) {
         return [value isKindOfClass:[NSString class]] ? [formatter dateFromString:value] : nil;
     } reverseMap:^id(id value) {
-        return [value isKindOfClass:[NSDate class]] ? [formatter stringFromDate:value] : nil;
+        return [formatter stringFromDate:value];
     }];
 }
 
 + (instancetype)mappingOfURLProperty:(NSString *)property toKeyPath:(NSString *)keyPath {
-    return [FEMAttributeMapping mappingOfProperty:property toKeyPath:keyPath map:^id (NSString *value) {
-        return value != nil ? [NSURL URLWithString:value] : nil;
+    return [FEMAttributeMapping mappingOfProperty:property toKeyPath:keyPath map:^id (id value) {
+        return [value isKindOfClass:NSString.class] ? [NSURL URLWithString:value] : nil;
     } reverseMap:^id (NSURL *value) {
         return [value absoluteString];
     }];
