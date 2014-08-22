@@ -397,6 +397,30 @@ describe(@"FEMManagedObjectDeserializer", ^{
                     [[car_v1.person should] beNil];
                 });
             });
+
+            context(@"replace", ^{
+                it(@"should not replace equal object", ^{
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyObjectReplace;
+
+                    [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
+                    Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                                 usingMapping:mapping
+                                                                                                      context:moc];
+                    Car *car_v1 = person_v1.car;
+
+                    [moc MR_saveToPersistentStoreAndWait];
+
+                    [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+
+                    [FEMManagedObjectDeserializer fillObject:person_v1
+                                  fromExternalRepresentation:externalRepresentation_v1
+                                                usingMapping:mapping];
+                    [moc MR_saveToPersistentStoreAndWait];
+                    [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+
+                    [[person_v1.car should] equal:car_v1];
+                });
+            });
         });
         context(@"to-many", ^{
             beforeEach(^{
@@ -441,7 +465,7 @@ describe(@"FEMManagedObjectDeserializer", ^{
             
             context(@"replace", ^{
                 it(@"should delete existing and assign new objects", ^{
-                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyReplace;
+                    relationshipMapping.assignmentPolicy = FEMAssignmentPolicyCollectionReplace;
                     
                     [[@([Phone MR_countOfEntitiesWithContext:moc]) should] beZero];
                     Person *person_v1 = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1

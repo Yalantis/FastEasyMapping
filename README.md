@@ -136,6 +136,11 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 # Changelog
 
 ### 0.3.7
+- Added equality check before objects removal in FEMAssignmentPolicyObjectReplace
+- Fixed minor issues
+
+
+### 0.3.7
 - Add synchronization to [FEMManagedObjectDeserializer](https://github.com/Yalantis/FastEasyMapping/blob/release/0.3.7/FastEasyMapping/Source/Core/Deserializer/FEMManagedObjectDeserializer.h#L43)
 - Minor refactoring
 - Fixed minor naming issues
