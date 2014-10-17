@@ -10,7 +10,6 @@
 SPEC_BEGIN(FEMAttributeMappingSpec)
 
 describe(@"FEMAttributeMapping", ^{
-    __block FEMAttributeMapping *mapping = nil;
     FEMMapBlock map = ^id (id value) {
         return @10;
     };
@@ -19,6 +18,8 @@ describe(@"FEMAttributeMapping", ^{
     };
 
     context(@"init", ^{
+        __block FEMAttributeMapping *mapping = nil;
+
         afterEach(^{
             mapping = nil;
         });
@@ -28,7 +29,7 @@ describe(@"FEMAttributeMapping", ^{
                 mapping = [[FEMAttributeMapping alloc] initWithProperty:nil keyPath:nil map:NULL reverseMap:NULL];
             }) should] raise];
         });
-
+ 
         describe(@"keyPath can be nil", ^{
             [[theBlock(^{
                 mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
@@ -63,26 +64,28 @@ describe(@"FEMAttributeMapping", ^{
             specify(^{
                 mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:@"keyPath" map:NULL reverseMap:reverseMap];
 
-                [[[mapping reverseMapValue:@"value"] should] equal:map(@"value")];
+                [[[mapping reverseMapValue:@"value"] should] equal:reverseMap(@"value")];
             });
         });
 
         describe(@"default map", ^{
-            beforeEach(^{
+            it(@"NULL map should behave as passthrough map", ^{
                 mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
-            });
 
-            describe(@"NULL map should behave as passthrough map", ^{
                 [[[mapping mapValue:@1] should] equal:@1];
             });
 
-            describe(@"NULL reverseMap should behave as passthrough map", ^{
+            it(@"NULL reverseMap should behave as passthrough map", ^{
+                mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
+                
                 [[[mapping reverseMapValue:@2] should] equal:@2];
             });
         });
     });
 
     context(@"shortcuts", ^{
+        __block FEMAttributeMapping *mapping = nil;
+        
         afterEach(^{
             mapping = nil;
         });
@@ -155,8 +158,8 @@ describe(@"FEMAttributeMapping", ^{
                 NSString *urlString = @"http://google.com";
                 NSURL *url = [NSURL URLWithString:urlString];
 
-                [[mapping mapValue:urlString] equal:url];
-                [[mapping reverseMapValue:url] equal:urlString];
+                [[[mapping mapValue:urlString] should] equal:url];
+                [[[mapping reverseMapValue:url] should] equal:urlString];
             });
         });
     });
