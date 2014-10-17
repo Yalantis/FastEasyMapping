@@ -135,31 +135,48 @@ describe(@"FEMAttributeMapping", ^{
         });
 
         describe(@"+mappingOfProperty:toKeyPath:dateFormat: should use UTC timezone", ^{
-            specify(^{
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            __block NSDateFormatter *formatter = nil;
+            beforeEach(^{
+                formatter = [[NSDateFormatter alloc] init];
                 formatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
                 formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
                 formatter.dateFormat = @"yyyy-MM-dd";
 
                 mapping = [FEMAttributeMapping mappingOfProperty:@"property" toKeyPath:@"keyPath" dateFormat:formatter.dateFormat];
+            });
 
+            afterEach(^{
+                formatter = nil;
+            });
+
+            specify(^{
                 NSString *dateString = @"2014-10-10";
                 NSDate *date = [formatter dateFromString:dateString];
 
                 [[[mapping mapValue:dateString] should] equal:date];
                 [[[mapping reverseMapValue:date] should] equal:dateString];
             });
+
+            it(@"should return NSNull for map if value not an NSString", ^{
+                [[[mapping mapValue:@10] should] equal:NSNull.null];
+            });
         });
 
         describe(@"+mappingOfURLProperty:toKeyPath:", ^{
-            specify(^{
+            beforeEach(^{
                 mapping = [FEMAttributeMapping mappingOfURLProperty:@"property" toKeyPath:@"keyPath"];
+            });
 
+            specify(^{
                 NSString *urlString = @"http://google.com";
                 NSURL *url = [NSURL URLWithString:urlString];
 
                 [[[mapping mapValue:urlString] should] equal:url];
                 [[[mapping reverseMapValue:url] should] equal:urlString];
+            });
+
+            it(@"should return NSNull for map if value not an NSString", ^{
+                [[[mapping mapValue:@10] should] equal:NSNull.null];
             });
         });
     });
