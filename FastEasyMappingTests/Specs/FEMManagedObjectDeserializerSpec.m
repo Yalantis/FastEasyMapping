@@ -239,7 +239,7 @@ describe(@"FEMManagedObjectDeserializer", ^{
             it(@"should populate createdAt property with a NSDate", ^{
 
                 NSDateFormatter *format = [[NSDateFormatter alloc] init];
-                format.timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
+                format.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
                 format.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
                 format.dateFormat = @"yyyy-MM-dd";
                 NSDate *expectedDate = [format dateFromString:[externalRepresentation objectForKey:@"created_at"]];
