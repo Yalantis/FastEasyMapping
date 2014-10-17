@@ -30,7 +30,7 @@
 	return [self mapValue:value];
 }
 
-- (void)mapValueToObject:(id)object fromRepresentation:(id)representation {
+- (void)setMappedValueToObject:(id)object fromRepresentation:(id)representation {
 	id value = [self mappedValueFromRepresentation:representation];
 	if (value == NSNull.null) {
 		if (!FEMObjectPropertyTypeIsScalar(object, self.property)) {

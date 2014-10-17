@@ -24,6 +24,6 @@
 @interface FEMAttributeMapping (Extension)
 
 - (id)mappedValueFromRepresentation:(id)representation;
-- (void)mapValueToObject:(id)object fromRepresentation:(id)representation;
+- (void)setMappedValueToObject:(id)object fromRepresentation:(id)representation;
 
 @end

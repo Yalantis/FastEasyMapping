@@ -73,7 +73,7 @@
 
 + (id)_fillObject:(NSManagedObject *)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMManagedObjectMapping *)mapping {
     for (FEMAttributeMapping *attributeMapping in mapping.attributeMappings) {
-        [attributeMapping mapValueToObject:object fromRepresentation:representation];
+        [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
     }
 
     NSManagedObjectContext *context = object.managedObjectContext;
