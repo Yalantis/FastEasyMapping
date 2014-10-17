@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
 		1D6A33C795E9CA3D388DC1CE /* FEMMergeableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */; };
+		1D6A34C84E523B5F58F87C5E /* PersonWithMissingRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */; };
 		1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
 		1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */; };
+		1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */; };
 		1D6A3BE38C286BBE0A0B0FEA /* FEMExcludableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BDA3CA0DDFF256CDB49 /* FEMExcludableCollection.m */; };
 		1D6A3C550D3AE60BEF5051D7 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
 		1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3ACBBC8E66609F169E94 /* Person_2.json */; };
@@ -120,8 +122,10 @@
 		1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAttributeMappingSpec.m; sourceTree = "<group>"; };
 		1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMergeableCollection.m; sourceTree = "<group>"; };
 		1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar_2.json; sourceTree = "<group>"; };
+		1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithMissingRelationships.json; sourceTree = "<group>"; };
 		1D6A368ADA05F6A09F22A3AC /* FEMMergeableCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMMergeableCollection.h; sourceTree = "<group>"; };
 		1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMCacheSpec.m; sourceTree = "<group>"; };
+		1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithNullRelationships.json; sourceTree = "<group>"; };
 		1D6A3ACBBC8E66609F169E94 /* Person_2.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Person_2.json; sourceTree = "<group>"; };
 		1D6A3AF6BD6EABAAACD8D4B8 /* FEMExcludableCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMExcludableCollection.h; sourceTree = "<group>"; };
 		1D6A3BDA3CA0DDFF256CDB49 /* FEMExcludableCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMExcludableCollection.m; sourceTree = "<group>"; };
@@ -486,6 +490,8 @@
 				1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */,
 				1D6A31C3D577329518B3E664 /* Person_1.json */,
 				1D6A3ACBBC8E66609F169E94 /* Person_2.json */,
+				1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */,
+				1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -684,6 +690,8 @@
 				1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */,
 				1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */,
 				1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */,
+				1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */,
+				1D6A34C84E523B5F58F87C5E /* PersonWithMissingRelationships.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
