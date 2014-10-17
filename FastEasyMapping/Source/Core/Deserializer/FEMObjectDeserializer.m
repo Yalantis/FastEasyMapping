@@ -43,7 +43,7 @@
 
 + (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMObjectMapping *)mapping {
 	for (FEMAttributeMapping *attributeMapping in mapping.attributeMappings) {
-		[attributeMapping mapValueToObject:object fromRepresentation:representation];
+        [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
 	}
 
 	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
