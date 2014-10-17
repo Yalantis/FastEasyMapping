@@ -47,8 +47,9 @@
 	}
 
 	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
-		id deserializedRelationship = nil;
 		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
+        if (relationshipRepresentation == nil) continue;
+
         FEMObjectMapping *objectMapping = (FEMObjectMapping *)relationshipMapping.objectMapping;
         NSAssert(
             [objectMapping isKindOfClass:FEMObjectMapping.class],
@@ -57,22 +58,24 @@
             NSStringFromClass(FEMObjectMapping.class),
             NSStringFromClass(FEMRelationshipMapping.class)
          );
-        
-		if (relationshipMapping.isToMany) {
-			deserializedRelationship = [self deserializeCollectionRepresentation:relationshipRepresentation
-			                                                        usingMapping:objectMapping];
 
-			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
-			deserializedRelationship = [deserializedRelationship fem_propertyRepresentation:property];
-		} else {
-			deserializedRelationship = [self deserializeObjectRepresentation:relationshipRepresentation
-			                                                    usingMapping:objectMapping];
-		}
+        id targetValue = nil;
+        if (relationshipRepresentation != NSNull.null) {
+            if (relationshipMapping.isToMany) {
+                targetValue = [self deserializeCollectionRepresentation:relationshipRepresentation
+                                                                        usingMapping:objectMapping];
 
-		if (deserializedRelationship) {
-			[object setValue:deserializedRelationship forKeyPath:relationshipMapping.property];
-		}
-	}
+                objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
+                targetValue = [targetValue fem_propertyRepresentation:property];
+            } else {
+                targetValue = [self deserializeObjectRepresentation:relationshipRepresentation
+                                                                    usingMapping:objectMapping];
+            }
+
+        }
+
+        [object setValue:targetValue forKeyPath:relationshipMapping.property];
+    }
 
 	return object;
 }
