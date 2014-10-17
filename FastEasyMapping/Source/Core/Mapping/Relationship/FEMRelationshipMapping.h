@@ -57,8 +57,8 @@
 
 @interface FEMRelationshipMapping (Deprecated)
 
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationshipMapping *mapping))configuration __attribute__((deprecated("use + [FEMRelationshipMapping mappingOfProperty:toKeyPath:configuration:] instead")));
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping __attribute__((deprecated("use + [FEMRelationshipMapping mappingOfProperty:toKeyPath:objectMapping:] instead")));
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationshipMapping *mapping))configuration __attribute__((deprecated("will become obsolete in 0.5.0; use + [FEMRelationshipMapping mappingOfProperty:toKeyPath:configuration:] instead")));
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping __attribute__((deprecated("will become obsolete in 0.5.0; use + [FEMRelationshipMapping mappingOfProperty:toKeyPath:objectMapping:] instead")));
 
 @end
 

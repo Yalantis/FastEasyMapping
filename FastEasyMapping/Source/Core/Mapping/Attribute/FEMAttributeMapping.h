@@ -70,9 +70,9 @@
 
 @interface FEMAttributeMapping (Deprecated)
 
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath __attribute__((deprecated("use +[FEMAttributeMapping mappingOfProperty:toKeyPath: instead")));
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map __attribute__((deprecated("use +[FEMAttributeMapping mappingOfProperty:toKeyPath:map: instead")));
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat __attribute__((deprecated("use +[FEMAttributeMapping mappingOfProperty:toKeyPath:dateFormat: instead")));
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap __attribute__((deprecated("use +[FEMAttributeMapping mappingOfProperty:toKeyPath:reverseMap: instead")));
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath __attribute__((deprecated("will become obsolete in 0.5.0; use +[FEMAttributeMapping mappingOfProperty:toKeyPath: instead")));
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map __attribute__((deprecated("will become obsolete in 0.5.0;use +[FEMAttributeMapping mappingOfProperty:toKeyPath:map: instead")));
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat __attribute__((deprecated("will become obsolete in 0.5.0; use +[FEMAttributeMapping mappingOfProperty:toKeyPath:dateFormat: instead")));
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap __attribute__((deprecated("will become obsolete in 0.5.0; use +[FEMAttributeMapping mappingOfProperty:toKeyPath:reverseMap: instead")));
 
 @end
