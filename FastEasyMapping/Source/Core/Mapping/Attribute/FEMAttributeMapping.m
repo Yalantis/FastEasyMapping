@@ -102,7 +102,7 @@
     [formatter setDateFormat:dateFormat];
 
     return [self mappingOfProperty:property toKeyPath:keyPath map:^id(id value) {
-        return [value isKindOfClass:[NSString class]] ? [formatter dateFromString:value] : nil;
+        return [value isKindOfClass:[NSString class]] ? [formatter dateFromString:value] : NSNull.null;
     } reverseMap:^id(id value) {
         return [formatter stringFromDate:value];
     }];
@@ -110,7 +110,7 @@
 
 + (instancetype)mappingOfURLProperty:(NSString *)property toKeyPath:(NSString *)keyPath {
     return [FEMAttributeMapping mappingOfProperty:property toKeyPath:keyPath map:^id (id value) {
-        return [value isKindOfClass:NSString.class] ? [NSURL URLWithString:value] : nil;
+        return [value isKindOfClass:NSString.class] ? [NSURL URLWithString:value] : NSNull.null;
     } reverseMap:^id (NSURL *value) {
         return [value absoluteString];
     }];
