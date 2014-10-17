@@ -98,7 +98,7 @@
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {
     NSDateFormatter *formatter = [NSDateFormatter new];
     [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/London"]];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     [formatter setDateFormat:dateFormat];
 
     return [self mappingOfProperty:property toKeyPath:keyPath map:^id(id value) {
