@@ -33,6 +33,9 @@
 #import "FEMObjectDeserializer.h"
 #import "FEMSerializer.h"
 
+#import "FEMAssignmentPolicy.h"
+#import "FEMAssignmentPolicyMetadata.h"
+
 #import "FEMTypes.h"
 
 #endif /* _FASTEASYMAPPING_ */
