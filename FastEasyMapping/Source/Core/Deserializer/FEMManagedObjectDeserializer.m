@@ -110,15 +110,7 @@
                 metadata.targetValue = targetValue;
             }
         } else {
-            if (relationshipMapping.isToMany) {
-                objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
-                NSString *type = FEMPropertyTypeStringRepresentation(property);
-
-                id emptyValue = [[NSClassFromString(type) alloc] init];
-                metadata.targetValue = emptyValue;
-            } else {
-                metadata.targetValue = nil;
-            }
+            metadata.targetValue = nil;
         }
 
         [object setValue:relationshipMapping.assignmentPolicy(metadata) forKey:relationshipMapping.property];
