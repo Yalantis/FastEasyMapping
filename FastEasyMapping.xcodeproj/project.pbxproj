@@ -12,6 +12,7 @@
 		1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
 		1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */; };
 		1D6A3BE38C286BBE0A0B0FEA /* FEMExcludableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BDA3CA0DDFF256CDB49 /* FEMExcludableCollection.m */; };
+		1D6A3C550D3AE60BEF5051D7 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
 		1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3ACBBC8E66609F169E94 /* Person_2.json */; };
 		1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
 		2C11898E18D07356005D8D91 /* FEMManagedObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7EA48925307F4DB06848 /* FEMManagedObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -116,6 +117,7 @@
 
 /* Begin PBXFileReference section */
 		1D6A31C3D577329518B3E664 /* Person_1.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Person_1.json; sourceTree = "<group>"; };
+		1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAttributeMappingSpec.m; sourceTree = "<group>"; };
 		1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMergeableCollection.m; sourceTree = "<group>"; };
 		1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar_2.json; sourceTree = "<group>"; };
 		1D6A368ADA05F6A09F22A3AC /* FEMMergeableCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMMergeableCollection.h; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				69ED7A9AEF651DACBF9BBC8F /* FEMObjectDeserializerSpec.m */,
 				69ED75B675560A0A804494CB /* FEMSerializerSpec.m */,
 				1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */,
+				1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */,
 				1D6A3BE38C286BBE0A0B0FEA /* FEMExcludableCollection.m in Sources */,
 				1D6A33C795E9CA3D388DC1CE /* FEMMergeableCollection.m in Sources */,
+				1D6A3C550D3AE60BEF5051D7 /* FEMAttributeMappingSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
