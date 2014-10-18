@@ -136,7 +136,7 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 # Changelog
 
 ### 0.4.0
-- Resolves: #19, #18, #16, #12
+- Resolves: [#19](https://github.com/Yalantis/FastEasyMapping/issues/19), [#18](https://github.com/Yalantis/FastEasyMapping/issues/18), [#16](https://github.com/Yalantis/FastEasyMapping/issues/16), [#12](https://github.com/Yalantis/FastEasyMapping/issues/12)
 - Add Specs for AttributeMapping
 
 ### 0.3.7
