@@ -34,7 +34,6 @@
 SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
 describe(@"FEMManagedObjectDeserializer", ^{
-
     __block NSManagedObjectContext *moc;
 
     beforeEach(^{
@@ -320,6 +319,28 @@ describe(@"FEMManagedObjectDeserializer", ^{
             [[carsArray should] haveCountOf:[externalRepresentation count]];
         });
 
+    });
+
+    describe(@"null relationship", ^{
+        __block Person *person = nil;
+
+        beforeAll(^{
+            NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithMissingRelationships"];
+            FEMManagedObjectMapping *mapping = [MappingProvider personMapping];
+            person = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation usingMapping:mapping context:moc];
+        });
+        
+        context(@"to-one", ^{
+            it(@"it should be nil", ^{
+                [[person.car should] beNil];
+            });
+        });
+
+        context(@"to-many", ^{
+            it(@"it should be empty", ^{
+                [[person.phones should] beNil];
+            });
+        });
     });
 
     describe(@"relationship assignment policy", ^{
