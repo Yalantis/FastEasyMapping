@@ -1,22 +1,4 @@
-// Copyright (c) 2014 Lucas Medeiros.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import "FEMObjectDeserializer.h"
 
@@ -43,12 +25,13 @@
 
 + (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMObjectMapping *)mapping {
 	for (FEMAttributeMapping *attributeMapping in mapping.attributeMappings) {
-		[attributeMapping mapValueToObject:object fromRepresentation:representation];
+        [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
 	}
 
 	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
-		id deserializedRelationship = nil;
 		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
+        if (relationshipRepresentation == nil) continue;
+
         FEMObjectMapping *objectMapping = (FEMObjectMapping *)relationshipMapping.objectMapping;
         NSAssert(
             [objectMapping isKindOfClass:FEMObjectMapping.class],
@@ -57,22 +40,24 @@
             NSStringFromClass(FEMObjectMapping.class),
             NSStringFromClass(FEMRelationshipMapping.class)
          );
-        
-		if (relationshipMapping.isToMany) {
-			deserializedRelationship = [self deserializeCollectionRepresentation:relationshipRepresentation
-			                                                        usingMapping:objectMapping];
 
-			objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
-			deserializedRelationship = [deserializedRelationship fem_propertyRepresentation:property];
-		} else {
-			deserializedRelationship = [self deserializeObjectRepresentation:relationshipRepresentation
-			                                                    usingMapping:objectMapping];
-		}
+        id targetValue = nil;
+        if (relationshipRepresentation != NSNull.null) {
+            if (relationshipMapping.isToMany) {
+                targetValue = [self deserializeCollectionRepresentation:relationshipRepresentation
+                                                                        usingMapping:objectMapping];
 
-		if (deserializedRelationship) {
-			[object setValue:deserializedRelationship forKeyPath:relationshipMapping.property];
-		}
-	}
+                objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
+                targetValue = [targetValue fem_propertyRepresentation:property];
+            } else {
+                targetValue = [self deserializeObjectRepresentation:relationshipRepresentation
+                                                                    usingMapping:objectMapping];
+            }
+
+        }
+
+        [object setValue:targetValue forKeyPath:relationshipMapping.property];
+    }
 
 	return object;
 }

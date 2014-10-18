@@ -1,22 +1,4 @@
-// Copyright (c) 2014 Lucas Medeiros.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import "FEMAttributeMapping.h"
 
@@ -98,11 +80,11 @@
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {
     NSDateFormatter *formatter = [NSDateFormatter new];
     [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/London"]];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     [formatter setDateFormat:dateFormat];
 
     return [self mappingOfProperty:property toKeyPath:keyPath map:^id(id value) {
-        return [value isKindOfClass:[NSString class]] ? [formatter dateFromString:value] : nil;
+        return [value isKindOfClass:[NSString class]] ? [formatter dateFromString:value] : NSNull.null;
     } reverseMap:^id(id value) {
         return [formatter stringFromDate:value];
     }];
@@ -110,7 +92,7 @@
 
 + (instancetype)mappingOfURLProperty:(NSString *)property toKeyPath:(NSString *)keyPath {
     return [FEMAttributeMapping mappingOfProperty:property toKeyPath:keyPath map:^id (id value) {
-        return [value isKindOfClass:NSString.class] ? [NSURL URLWithString:value] : nil;
+        return [value isKindOfClass:NSString.class] ? [NSURL URLWithString:value] : NSNull.null;
     } reverseMap:^id (NSURL *value) {
         return [value absoluteString];
     }];

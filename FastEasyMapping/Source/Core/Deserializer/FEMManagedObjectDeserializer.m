@@ -1,22 +1,4 @@
-// Copyright (c) 2014 Lucas Medeiros.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import "FEMManagedObjectDeserializer.h"
 
@@ -73,16 +55,16 @@
 
 + (id)_fillObject:(NSManagedObject *)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMManagedObjectMapping *)mapping {
     for (FEMAttributeMapping *attributeMapping in mapping.attributeMappings) {
-        [attributeMapping mapValueToObject:object fromRepresentation:representation];
+        [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
     }
 
     NSManagedObjectContext *context = object.managedObjectContext;
     for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
-        FEMAssignmentPolicyMetadata *metadata = [FEMAssignmentPolicyMetadata new];
-        [metadata setContext:context];
-        [metadata setExistingValue:[object valueForKey:relationshipMapping.property]];
+        id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
+        // skip missing key
+        if (relationshipRepresentation == nil) continue;
 
-        FEMManagedObjectMapping *objectMapping = (FEMManagedObjectMapping *) relationshipMapping.objectMapping;
+        FEMManagedObjectMapping *objectMapping = (FEMManagedObjectMapping *)relationshipMapping.objectMapping;
         NSAssert(
             [objectMapping isKindOfClass:FEMManagedObjectMapping.class],
             @"%@ expect %@ for %@.objectMapping",
@@ -91,21 +73,26 @@
             NSStringFromClass(FEMRelationshipMapping.class)
         );
 
-        id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
+        FEMAssignmentPolicyMetadata *metadata = [FEMAssignmentPolicyMetadata new];
+        [metadata setContext:context];
+        [metadata setExistingValue:[object valueForKey:relationshipMapping.property]];
+
         if (relationshipRepresentation != NSNull.null) {
             if (relationshipMapping.isToMany) {
-                NSArray *newValue = [self _deserializeCollectionRepresentation:relationshipRepresentation
-                                                                  usingMapping:objectMapping
-                                                                       context:context];
+                NSArray *targetValue = [self _deserializeCollectionRepresentation:relationshipRepresentation
+                                                                     usingMapping:objectMapping
+                                                                          context:context];
 
                 objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
-                [metadata setTargetValue:[newValue fem_propertyRepresentation:property]];
+                [metadata setTargetValue:[targetValue fem_propertyRepresentation:property]];
             } else {
-                id newValue = [self _deserializeObjectRepresentation:relationshipRepresentation
-                                                        usingMapping:objectMapping
-                                                             context:context];
-                [metadata setTargetValue:newValue];
+                id targetValue = [self _deserializeObjectRepresentation:relationshipRepresentation
+                                                           usingMapping:objectMapping
+                                                                context:context];
+                metadata.targetValue = targetValue;
             }
+        } else {
+            metadata.targetValue = nil;
         }
 
         [object setValue:relationshipMapping.assignmentPolicy(metadata) forKey:relationshipMapping.property];

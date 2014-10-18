@@ -1,22 +1,4 @@
-// Copyright (c) 2014 Lucas Medeiros.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import <Kiwi/Kiwi.h>
 #import <CMFactory/CMFixture.h>
@@ -34,7 +16,6 @@
 SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
 describe(@"FEMManagedObjectDeserializer", ^{
-
     __block NSManagedObjectContext *moc;
 
     beforeEach(^{
@@ -239,7 +220,7 @@ describe(@"FEMManagedObjectDeserializer", ^{
             it(@"should populate createdAt property with a NSDate", ^{
 
                 NSDateFormatter *format = [[NSDateFormatter alloc] init];
-                format.timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
+                format.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
                 format.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
                 format.dateFormat = @"yyyy-MM-dd";
                 NSDate *expectedDate = [format dateFromString:[externalRepresentation objectForKey:@"created_at"]];
@@ -320,6 +301,28 @@ describe(@"FEMManagedObjectDeserializer", ^{
             [[carsArray should] haveCountOf:[externalRepresentation count]];
         });
 
+    });
+
+    describe(@"null relationship", ^{
+        __block Person *person = nil;
+
+        beforeAll(^{
+            NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithMissingRelationships"];
+            FEMManagedObjectMapping *mapping = [MappingProvider personMapping];
+            person = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation usingMapping:mapping context:moc];
+        });
+        
+        context(@"to-one", ^{
+            it(@"it should be nil", ^{
+                [[person.car should] beNil];
+            });
+        });
+
+        context(@"to-many", ^{
+            it(@"it should be empty", ^{
+                [[person.phones should] beNil];
+            });
+        });
     });
 
     describe(@"relationship assignment policy", ^{
