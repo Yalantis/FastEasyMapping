@@ -135,6 +135,10 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 
 # Changelog
 
+### 0.4.0
+- Resolves: #19, #18, #16, #12
+- Add Specs for AttributeMapping
+
 ### 0.3.7
 - Added equality check before objects removal in FEMAssignmentPolicyObjectReplace
 - Fixed minor issues
