@@ -9,6 +9,7 @@
 
 #import "FEMManagedObjectMapping.h"
 #import "FEMCache.h"
+#import "FEMDefaultAssignmentContext.h"
 
 @implementation FEMManagedObjectDeserializerSource {
     FEMCache *_cache;
@@ -56,6 +57,10 @@
 
 - (BOOL)shouldRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
     return mapping.primaryKey != nil && [object isInserted];
+}
+
+- (id<FEMAssignmentContextPrivate>)newAssignmentContext {
+    return [[FEMDefaultAssignmentContext alloc] initWithManagedObjectContext:_managedObjectContext];
 }
 
 @end

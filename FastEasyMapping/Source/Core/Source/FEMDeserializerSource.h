@@ -5,6 +5,8 @@
 
 @import Foundation;
 
+@protocol FEMAssignmentContextPrivate;
+
 @class FEMMapping, FEMDeserializer;
 
 @protocol FEMDeserializerSource <NSObject>
@@ -20,7 +22,8 @@
 - (void)registerObject:(id)object forMapping:(FEMMapping *)mapping;
 - (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping;
 
-- (BOOL)isObjectRegistered:(id)object forMapping:(FEMMapping *)mapping;
 - (BOOL)shouldRegisterObject:(id)object forMapping:(FEMMapping *)mapping;
+
+- (id<FEMAssignmentContextPrivate>)newAssignmentContext;
 
 @end

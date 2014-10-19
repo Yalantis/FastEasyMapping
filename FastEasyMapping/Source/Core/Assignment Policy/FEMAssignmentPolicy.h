@@ -5,9 +5,9 @@
 
 @import Foundation;
 
-@class FEMAssignmentPolicyMetadata;
+@class FEMDefaultAssignmentContext;
 
-typedef id (^FEMAssignmentPolicy)(FEMAssignmentPolicyMetadata *metadata);
+typedef id (^FEMAssignmentPolicy)(FEMDefaultAssignmentContext *metadata);
 
 OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyAssign;
 

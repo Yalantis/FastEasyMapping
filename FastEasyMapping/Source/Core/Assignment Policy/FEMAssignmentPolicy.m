@@ -5,53 +5,53 @@
 
 #import "FEMAssignmentPolicy.h"
 
-#import "FEMAssignmentPolicyMetadata.h"
+#import "FEMDefaultAssignmentContext.h"
 #import "FEMExcludableCollection.h"
 #import "FEMMergeableCollection.h"
 
 @import CoreData;
 
-FEMAssignmentPolicy FEMAssignmentPolicyAssign = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    return metadata.targetValue;
+FEMAssignmentPolicy FEMAssignmentPolicyAssign = ^id (FEMDefaultAssignmentContext *metadata) {
+    return metadata.targetRelationshipValue;
 };
 
-FEMAssignmentPolicy FEMAssignmentPolicyObjectMerge = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    return metadata.targetValue ?: metadata.sourceValue;
+FEMAssignmentPolicy FEMAssignmentPolicyObjectMerge = ^id (FEMDefaultAssignmentContext *metadata) {
+    return metadata.targetRelationshipValue ?: metadata.sourceValue;
 };
 
-FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (!metadata.targetValue) return metadata.sourceValue;
+FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge = ^id (FEMDefaultAssignmentContext *metadata) {
+    if (!metadata.targetRelationshipValue) return metadata.sourceValue;
 
     NSCAssert(
-        [metadata.targetValue conformsToProtocol:@protocol(FEMMergeableCollection)],
+        [metadata.targetRelationshipValue conformsToProtocol:@ protocol(FEMMergeableCollection)],
         @"Collection %@ should support protocol %@",
-        NSStringFromClass([metadata.targetValue class]),
+        NSStringFromClass([metadata.targetRelationshipValue class]),
         NSStringFromProtocol(@protocol(FEMMergeableCollection))
     );
 
-    return [metadata.targetValue collectionByMergingObjects:metadata.sourceValue];
+    return [metadata.targetRelationshipValue collectionByMergingObjects:metadata.sourceValue];
 };
 
-FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (metadata.sourceValue && ![metadata.sourceValue isEqual:metadata.targetValue]) {
+FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace = ^id (FEMDefaultAssignmentContext *metadata) {
+    if (metadata.sourceValue && ![metadata.sourceValue isEqual:metadata.targetRelationshipValue]) {
         [metadata.context deleteObject:metadata.sourceValue];
     }
 
-    return metadata.targetValue;
+    return metadata.targetRelationshipValue;
 };
 
-FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (!metadata.sourceValue) return metadata.targetValue;
+FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace = ^id (FEMDefaultAssignmentContext *metadata) {
+    if (!metadata.sourceValue) return metadata.targetRelationshipValue;
 
-    if (metadata.targetValue) {
+    if (metadata.targetRelationshipValue) {
         NSCAssert(
             [metadata.sourceValue conformsToProtocol:@ protocol(FEMExcludableCollection)],
             @"Collection %@ should support protocol %@",
-            NSStringFromClass([metadata.targetValue class]),
+            NSStringFromClass([metadata.targetRelationshipValue class]),
             NSStringFromProtocol(@protocol(FEMExcludableCollection))
         );
 
-        for (id object in [(id<FEMExcludableCollection>)metadata.sourceValue collectionByExcludingObjects:metadata.targetValue]) {
+        for (id object in [(id <FEMExcludableCollection>) metadata.sourceValue collectionByExcludingObjects:metadata.targetRelationshipValue]) {
             [metadata.context deleteObject:object];
         }
     } else {
@@ -60,43 +60,43 @@ FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace = ^id (FEMAssignmentPol
         }
     }
 
-    return metadata.targetValue;
+    return metadata.targetRelationshipValue;
 };
 
 #pragma mark - Deprecated
 
-FEMAssignmentPolicy FEMAssignmentPolicyMerge = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (!metadata.targetValue) return metadata.sourceValue;
+FEMAssignmentPolicy FEMAssignmentPolicyMerge = ^id (FEMDefaultAssignmentContext *metadata) {
+    if (!metadata.targetRelationshipValue) return metadata.sourceValue;
 
-    if ([metadata.targetValue isKindOfClass:NSManagedObject.class]) return metadata.targetValue;
+    if ([metadata.targetRelationshipValue isKindOfClass:NSManagedObject.class]) return metadata.targetRelationshipValue;
 
     NSCAssert(
-        [metadata.targetValue conformsToProtocol:@protocol(FEMMergeableCollection)],
+        [metadata.targetRelationshipValue conformsToProtocol:@ protocol(FEMMergeableCollection)],
         @"Collection %@ should support protocol %@",
-        NSStringFromClass([metadata.targetValue class]),
+        NSStringFromClass([metadata.targetRelationshipValue class]),
         NSStringFromProtocol(@protocol(FEMMergeableCollection))
     );
 
-    return [metadata.targetValue collectionByMergingObjects:metadata.sourceValue];
+    return [metadata.targetRelationshipValue collectionByMergingObjects:metadata.sourceValue];
 };
 
-FEMAssignmentPolicy FEMAssignmentPolicyReplace = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (!metadata.sourceValue) return metadata.targetValue;
+FEMAssignmentPolicy FEMAssignmentPolicyReplace = ^id (FEMDefaultAssignmentContext *metadata) {
+    if (!metadata.sourceValue) return metadata.targetRelationshipValue;
 
     if ([metadata.sourceValue isKindOfClass:NSManagedObject.class]) {
         [metadata.context deleteObject:metadata.sourceValue];
-    } else if (metadata.targetValue) {
+    } else if (metadata.targetRelationshipValue) {
         NSCAssert(
-            [metadata.targetValue conformsToProtocol:@protocol(FEMExcludableCollection)],
+            [metadata.targetRelationshipValue conformsToProtocol:@ protocol(FEMExcludableCollection)],
             @"Collection %@ should support protocol %@",
-            NSStringFromClass([metadata.targetValue class]),
+            NSStringFromClass([metadata.targetRelationshipValue class]),
             NSStringFromProtocol(@protocol(FEMExcludableCollection))
         );
 
-        for (id object in [(id<FEMExcludableCollection>)metadata.sourceValue collectionByExcludingObjects:metadata.targetValue]) {
+        for (id object in [(id <FEMExcludableCollection>) metadata.sourceValue collectionByExcludingObjects:metadata.targetRelationshipValue]) {
             [metadata.context deleteObject:object];
         }
     }
 
-    return metadata.targetValue;
+    return metadata.targetRelationshipValue;
 };

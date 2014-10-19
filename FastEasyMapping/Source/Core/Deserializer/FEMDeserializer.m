@@ -12,7 +12,7 @@
 #import "FEMAttributeMapping+Extension.h"
 #import "FEMRelationshipMapping.h"
 #import "FEMCache.h"
-#import "FEMAssignmentPolicyMetadata.h"
+#import "FEMDefaultAssignmentContext.h"
 #import "FEMManagedObjectDeserializerSource.h"
 #import "KWExample.h"
 
@@ -50,7 +50,7 @@
             // skip missing key
             if (relationshipRepresentation == nil) continue;
 
-            FEMAssignmentPolicyMetadata *metadata = [FEMAssignmentPolicyMetadata new];
+            FEMDefaultAssignmentContext *metadata = [FEMDefaultAssignmentContext new];
             NSManagedObjectContext *context = object.managedObjectContext;
             [metadata setContext:context];
             [metadata setSourceValue:[object valueForKey:relationshipMapping.property]];
@@ -180,7 +180,7 @@
             NSStringFromClass(FEMRelationshipMapping.class)
         );
 
-        FEMAssignmentPolicyMetadata *metadata = [FEMAssignmentPolicyMetadata new];
+        FEMDefaultAssignmentContext *metadata = [FEMDefaultAssignmentContext new];
         [metadata setContext:context];
         [metadata setSourceValue:[object valueForKey:relationshipMapping.property]];
 

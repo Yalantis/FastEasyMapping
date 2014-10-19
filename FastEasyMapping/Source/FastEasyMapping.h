@@ -16,7 +16,7 @@
 #import "FEMSerializer.h"
 
 #import "FEMAssignmentPolicy.h"
-#import "FEMAssignmentPolicyMetadata.h"
+#import "FEMDefaultAssignmentContext.h"
 
 #import "FEMTypes.h"
 

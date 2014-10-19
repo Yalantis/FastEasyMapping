@@ -6,6 +6,7 @@
 #import "FEMRelationshipMapping.h"
 #import "FEMDeserializer.h"
 #import "FEMManagedObjectDeserializerSource.h"
+#import "FEMAssignmentContextPrivate.h"
 
 @implementation FEMMapping
 
