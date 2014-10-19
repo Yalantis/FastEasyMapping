@@ -9,6 +9,8 @@
 
 @interface FEMManagedObjectDeserializerSource : NSObject <FEMDeserializerSource>
 
-- (instancetype)initWithMapping:(FEMManagedObjectMapping *)mapping managedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (instancetype)initWithMapping:(FEMManagedObjectMapping *)mapping
+         externalRepresentation:(id)externalRepresentation
+           managedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

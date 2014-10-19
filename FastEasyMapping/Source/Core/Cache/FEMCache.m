@@ -159,6 +159,12 @@ void FEMCacheRemoveCurrent() {
 	return entityObjectsMap[primaryKeyValue];
 }
 
+- (id)existingObjectForPrimaryKey:(id)primaryKey mapping:(FEMManagedObjectMapping *)mapping {
+    NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
+
+    return entityObjectsMap[primaryKey];
+}
+
 - (void)addExistingObject:(id)object usingMapping:(FEMManagedObjectMapping *)mapping {
 	NSParameterAssert(mapping.primaryKey);
 	NSParameterAssert(object);

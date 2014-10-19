@@ -5,6 +5,8 @@
 
 #import "FEMManagedObjectDeserializerSource.h"
 
+@import CoreData;
+
 #import "FEMManagedObjectMapping.h"
 #import "FEMCache.h"
 
@@ -15,13 +17,19 @@
     FEMManagedObjectMapping *_mapping;
 }
 
+@synthesize mapping = _mapping;
+@synthesize externalRepresentation = _externalRepresentation;
+
 #pragma mark - Init
 
-- (instancetype)initWithMapping:(FEMManagedObjectMapping *)mapping managedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+- (instancetype)initWithMapping:(FEMManagedObjectMapping *)mapping externalRepresentation:(id)externalRepresentation managedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     self = [super init];
     if (self) {
-        _managedObjectContext = managedObjectContext;
         _mapping = mapping;
+        _externalRepresentation = externalRepresentation;
+        _managedObjectContext = managedObjectContext;
+
+        _cache = [[FEMCache alloc] initWithMapping:_mapping externalRepresentation:externalRepresentation context:_managedObjectContext];
     }
 
     return self;
@@ -29,8 +37,9 @@
 
 #pragma mark - FEMDeserializerSource
 
-- (void)prepareForDeserializationOfExternalRepresentation:(id)externalRepresentation deserializer:(FEMDeserializer *)deserializer {
-    _cache = [[FEMCache alloc] initWithMapping:_mapping externalRepresentation:externalRepresentation context:_managedObjectContext];
+- (id)newObjectForMapping:(FEMMapping *)mapping {
+    NSString *entityName = [(FEMManagedObjectMapping *)mapping entityName];
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:_managedObjectContext];
 }
 
 - (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
@@ -43,6 +52,10 @@
 
 - (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
     return [_cache existingObjectsForMapping:mapping];
+}
+
+- (BOOL)shouldRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
+    return mapping.primaryKey != nil && [object isInserted];
 }
 
 @end

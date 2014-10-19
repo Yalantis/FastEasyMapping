@@ -2,9 +2,18 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol FEMDeserializerSource;
+
 @class FEMManagedObjectMapping, NSManagedObject, NSFetchRequest, NSManagedObjectContext;
 
 @interface FEMDeserializer : NSObject
+
+@property (nonatomic, strong, readonly) id<FEMDeserializerSource> source;
+- (id)initWithDeserializerSource:(id<FEMDeserializerSource>)deserializerSource;
+
+- (id)deserializeObject;
+
+- (NSArray *)deserializeCollection;
 
 + (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
                                  usingMapping:(FEMManagedObjectMapping *)mapping
