@@ -50,12 +50,7 @@
             // skip missing key
             if (relationshipRepresentation == nil) continue;
 
-            FEMDefaultAssignmentContext *metadata = [FEMDefaultAssignmentContext new];
-            NSManagedObjectContext *context = object.managedObjectContext;
-            [metadata setContext:context];
-            [metadata setSourceValue:[object valueForKey:relationshipMapping.property]];
 
-            FEMMapping *objectMapping = relationshipMapping.objectMapping;
             id targetValue = nil;
             if (relationshipRepresentation != NSNull.null) {
                 if (relationshipMapping.isToMany) {
@@ -70,9 +65,13 @@
                 }
             }
 
-            metadata.targetValue = targetValue;
+            id<FEMAssignmentContextPrivate> context = [self.source newAssignmentContext];
+            context.destinationObject = object;
+            context.relationshipMapping = relationshipMapping;
+            context.sourceRelationshipValue = [object valueForKey:relationshipMapping.property];
+            context.targetRelationshipValue = targetValue;
 
-            [object setValue:relationshipMapping.assignmentPolicy(metadata) forKey:relationshipMapping.property];
+            [object setValue:relationshipMapping.assignmentPolicy(context) forKey:relationshipMapping.property];
         }
     }
 

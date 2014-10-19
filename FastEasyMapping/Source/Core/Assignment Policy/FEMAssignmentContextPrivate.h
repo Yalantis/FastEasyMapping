@@ -9,9 +9,9 @@
 
 @required
 @property (nonatomic, strong, readwrite) id destinationObject;
-@property (nonatomic, readwrite) objc_property_t destinationProperty;
+@property (nonatomic, readwrite) FEMRelationshipMapping *relationshipMapping;
 
-@property (nonatomic, strong, readwrite) id existingRelationshipValue;
+@property (nonatomic, strong, readwrite) id sourceRelationshipValue;
 @property (nonatomic, strong, readwrite) id targetRelationshipValue;
 
 @end

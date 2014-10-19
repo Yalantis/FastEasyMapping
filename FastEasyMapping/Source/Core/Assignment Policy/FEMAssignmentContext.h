@@ -5,15 +5,15 @@
 
 @import Foundation;
 
-#import <objc/runtime.h>
+@class FEMRelationshipMapping;
 
 @protocol FEMAssignmentContext <NSObject>
 
 @required
 @property (nonatomic, readonly) id destinationObject;
-@property (nonatomic, readonly) objc_property_t destinationProperty;
+@property (nonatomic, readonly) FEMRelationshipMapping *relationshipMapping;
 
-@property (nonatomic, readonly) id existingRelationshipValue;
+@property (nonatomic, readonly) id sourceRelationshipValue;
 @property (nonatomic, readonly) id targetRelationshipValue;
 
 - (void)deleteRelationshipObject:(id)object;

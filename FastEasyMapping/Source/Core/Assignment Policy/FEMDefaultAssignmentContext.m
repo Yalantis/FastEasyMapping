@@ -4,6 +4,7 @@
 //
 
 #import "FEMDefaultAssignmentContext.h"
+#import "FEMAssignmentContext.h"
 
 @import CoreData;
 
@@ -13,7 +14,7 @@
 
 @synthesize destinationObject = _destinationObject;
 @synthesize destinationProperty = _destinationProperty;
-@synthesize existingRelationshipValue = _existingRelationshipValue;
+@synthesize sourceRelationshipValue = _existingRelationshipValue;
 @synthesize targetRelationshipValue = _targetRelationshipValue;
 
 #pragma mark - Init
