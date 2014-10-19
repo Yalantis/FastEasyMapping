@@ -5,13 +5,16 @@
 
 @import Foundation;
 
+@class FEMMapping, FEMDeserializer;
+
 @protocol FEMDeserializerSource <NSObject>
 
+@required
+- (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;
+- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping;
+- (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping;
 
-
-//- (id)existingObjectForRepresentation:(id)representation mapping:(FEMManagedObjectMapping *)mapping;
-//- (void)addExistingObject:(id)object usingMapping:(FEMManagedObjectMapping *)mapping;
-//
-//- (NSDictionary *)existingObjectsForMapping:(FEMManagedObjectMapping *)mapping;
+@optional
+- (void)prepareForDeserializationOfExternalRepresentation:(id)externalRepresentation deserializer:(FEMDeserializer *)deserializer;
 
 @end
