@@ -92,7 +92,7 @@
 
 @implementation FEMRelationshipMapping (Extension)
 
-- (id)extractRootFromExternalRepresentation:(id)externalRepresentation {
+- (id)representationFromExternalRepresentation:(id)externalRepresentation {
 	if (self.keyPath) return [externalRepresentation valueForKeyPath:self.keyPath];
 
 	return externalRepresentation;

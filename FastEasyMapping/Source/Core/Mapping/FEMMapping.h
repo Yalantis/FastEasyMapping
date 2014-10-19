@@ -37,6 +37,6 @@
 - (void)addRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
 - (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
 
-- (id)extractRootFromExternalRepresentation:(id)externalRepresentation;
+- (id)representationFromExternalRepresentation:(id)externalRepresentation;
 
 @end

@@ -19,7 +19,7 @@
 }
 
 + (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMObjectMapping *)mapping {
-	NSDictionary *representation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
+	NSDictionary *representation = [mapping representationFromExternalRepresentation:externalRepresentation];
 	return [self deserializeObjectRepresentation:representation usingMapping:mapping];
 }
 
@@ -29,7 +29,7 @@
 	}
 
 	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
-		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
+		id relationshipRepresentation = [relationshipMapping representationFromExternalRepresentation:representation];
         if (relationshipRepresentation == nil) continue;
 
         FEMObjectMapping *objectMapping = (FEMObjectMapping *)relationshipMapping.objectMapping;
@@ -63,7 +63,7 @@
 }
 
 + (id)fillObject:(id)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMObjectMapping *)mapping {
-	NSDictionary *representation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
+	NSDictionary *representation = [mapping representationFromExternalRepresentation:externalRepresentation];
 	return [self fillObject:object fromRepresentation:representation usingMapping:mapping];
 }
 
@@ -78,7 +78,7 @@
 }
 
 + (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(FEMObjectMapping *)mapping {
-	NSArray *representation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
+	NSArray *representation = [mapping representationFromExternalRepresentation:externalRepresentation];
 	return [self deserializeCollectionRepresentation:representation usingMapping:mapping];
 }
 

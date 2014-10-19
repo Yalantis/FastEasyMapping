@@ -75,7 +75,7 @@ void FEMCacheRemoveCurrent() {
 	}
 
 	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
-		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:objectRepresentation];
+		id relationshipRepresentation = [relationshipMapping representationFromExternalRepresentation:objectRepresentation];
         if (relationshipRepresentation && relationshipRepresentation != NSNull.null) {
             [self inspectRepresentation:relationshipRepresentation
                            usingMapping:(FEMManagedObjectMapping *)relationshipMapping.objectMapping];
@@ -100,7 +100,7 @@ void FEMCacheRemoveCurrent() {
 }
 
 - (void)inspectExternalRepresentation:(id)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping {
-	id representation = [mapping extractRootFromExternalRepresentation:externalRepresentation];
+	id representation = [mapping representationFromExternalRepresentation:externalRepresentation];
 
 	[self inspectRepresentation:representation usingMapping:mapping];
 }

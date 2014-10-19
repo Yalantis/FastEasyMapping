@@ -46,6 +46,6 @@
 
 @interface FEMRelationshipMapping (Extension)
 
-- (id)extractRootFromExternalRepresentation:(id)externalRepresentation;
+- (id)representationFromExternalRepresentation:(id)externalRepresentation;
 
 @end
