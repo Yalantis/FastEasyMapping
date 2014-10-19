@@ -13,7 +13,7 @@
 }
 
 @synthesize destinationObject = _destinationObject;
-@synthesize destinationProperty = _destinationProperty;
+@synthesize relationshipMapping = _relationshipMapping;
 @synthesize sourceRelationshipValue = _existingRelationshipValue;
 @synthesize targetRelationshipValue = _targetRelationshipValue;
 

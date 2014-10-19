@@ -11,14 +11,10 @@
 #import "FEMDeserializerSource.h"
 #import "FEMAttributeMapping+Extension.h"
 #import "FEMRelationshipMapping.h"
-#import "FEMCache.h"
 #import "FEMDefaultAssignmentContext.h"
 #import "FEMManagedObjectDeserializerSource.h"
-#import "KWExample.h"
 
-@implementation FEMDeserializer {
-    id<FEMDeserializerSource> _source;
-}
+@implementation FEMDeserializer
 
 - (id)initWithDeserializerSource:(id<FEMDeserializerSource>)deserializerSource {
     NSParameterAssert(deserializerSource != nil);
@@ -32,11 +28,7 @@
 
 #pragma mark - IMP
 
-- (id)fulfillObject:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMMapping *)mapping {
-    for (FEMAttributeMapping *attributeMapping in mapping.attributeMappings) {
-        [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
-    }
-
+- (void)fulfillObjectRelationships:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMMapping *)mapping {
     for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
         @autoreleasepool {
             id relationshipRepresentation = [relationshipMapping representationFromExternalRepresentation:representation];
@@ -62,9 +54,18 @@
             context.sourceRelationshipValue = [object valueForKey:relationshipMapping.property];
             context.targetRelationshipValue = targetValue;
 
-            [object setValue:relationshipMapping.assignmentPolicy(context) forKey:relationshipMapping.property];
+            id assignmentValue = relationshipMapping.assignmentPolicy(context);
+            [object setValue:assignmentValue forKey:relationshipMapping.property];
         }
     }
+}
+
+- (id)fulfillObject:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMMapping *)mapping {
+    for (FEMAttributeMapping *attributeMapping in mapping.attributeMappings) {
+        [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
+    }
+
+    [self fulfillObjectRelationships:object fromRepresentation:representation usingMapping:mapping];
 
     return object;
 }
@@ -88,7 +89,7 @@
     NSMutableArray *output = [NSMutableArray array];
     for (id objectRepresentation in representation) {
         @autoreleasepool {
-            id object = [self objectFromRepresentation:objectRepresentation usingMapping:self.source.mapping];
+            id object = [self objectFromRepresentation:objectRepresentation usingMapping:mapping];
             [output addObject:object];
         }
     }
