@@ -11,7 +11,7 @@
 #import "FEMObjectMapping.h"
 #import "FEMManagedObjectMapping.h"
 
-#import "FEMManagedObjectDeserializer.h"
+#import "FEMDeserializer.h"
 #import "FEMObjectDeserializer.h"
 #import "FEMSerializer.h"
 

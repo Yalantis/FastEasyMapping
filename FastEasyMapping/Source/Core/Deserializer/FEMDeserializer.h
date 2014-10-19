@@ -4,7 +4,7 @@
 
 @class FEMManagedObjectMapping, NSManagedObject, NSFetchRequest, NSManagedObjectContext;
 
-@interface FEMManagedObjectDeserializer : NSObject
+@interface FEMDeserializer : NSObject
 
 + (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
                                  usingMapping:(FEMManagedObjectMapping *)mapping

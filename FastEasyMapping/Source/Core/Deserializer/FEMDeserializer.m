@@ -1,6 +1,6 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
-#import "FEMManagedObjectDeserializer.h"
+#import "FEMDeserializer.h"
 
 #import <CoreData/CoreData.h>
 
@@ -13,7 +13,7 @@
 #import "FEMCache.h"
 #import "FEMAssignmentPolicyMetadata.h"
 
-@implementation FEMManagedObjectDeserializer
+@implementation FEMDeserializer
 
 #pragma mark - Deserialization
 

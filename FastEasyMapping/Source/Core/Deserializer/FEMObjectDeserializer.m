@@ -5,7 +5,7 @@
 #import "FEMTypeIntrospection.h"
 #import "FEMAttributeMapping.h"
 #import <objc/runtime.h>
-#import "FEMManagedObjectDeserializer.h"
+#import "FEMDeserializer.h"
 #import "NSArray+FEMPropertyRepresentation.h"
 #import "FEMAttributeMapping+Extension.h"
 #import "FEMObjectMapping.h"
