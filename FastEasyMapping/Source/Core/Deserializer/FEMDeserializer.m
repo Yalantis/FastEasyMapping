@@ -53,7 +53,7 @@
             FEMAssignmentPolicyMetadata *metadata = [FEMAssignmentPolicyMetadata new];
             NSManagedObjectContext *context = object.managedObjectContext;
             [metadata setContext:context];
-            [metadata setExistingValue:[object valueForKey:relationshipMapping.property]];
+            [metadata setSourceValue:[object valueForKey:relationshipMapping.property]];
 
             FEMMapping *objectMapping = relationshipMapping.objectMapping;
             id targetValue = nil;
@@ -182,7 +182,7 @@
 
         FEMAssignmentPolicyMetadata *metadata = [FEMAssignmentPolicyMetadata new];
         [metadata setContext:context];
-        [metadata setExistingValue:[object valueForKey:relationshipMapping.property]];
+        [metadata setSourceValue:[object valueForKey:relationshipMapping.property]];
 
         if (relationshipRepresentation != NSNull.null) {
             if (relationshipMapping.isToMany) {

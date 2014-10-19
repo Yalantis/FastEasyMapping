@@ -9,7 +9,7 @@
 
 @interface FEMAssignmentPolicyMetadata : NSObject
 
-@property (nonatomic, strong) id existingValue;
+@property (nonatomic, strong) id sourceValue;
 @property (nonatomic, strong) id targetValue;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 

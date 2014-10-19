@@ -16,11 +16,11 @@ FEMAssignmentPolicy FEMAssignmentPolicyAssign = ^id (FEMAssignmentPolicyMetadata
 };
 
 FEMAssignmentPolicy FEMAssignmentPolicyObjectMerge = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    return metadata.targetValue ?: metadata.existingValue;
+    return metadata.targetValue ?: metadata.sourceValue;
 };
 
 FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (!metadata.targetValue) return metadata.existingValue;
+    if (!metadata.targetValue) return metadata.sourceValue;
 
     NSCAssert(
         [metadata.targetValue conformsToProtocol:@protocol(FEMMergeableCollection)],
@@ -29,33 +29,33 @@ FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge = ^id (FEMAssignmentPolic
         NSStringFromProtocol(@protocol(FEMMergeableCollection))
     );
 
-    return [metadata.targetValue collectionByMergingObjects:metadata.existingValue];
+    return [metadata.targetValue collectionByMergingObjects:metadata.sourceValue];
 };
 
 FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (metadata.existingValue && ![metadata.existingValue isEqual:metadata.targetValue]) {
-        [metadata.context deleteObject:metadata.existingValue];
+    if (metadata.sourceValue && ![metadata.sourceValue isEqual:metadata.targetValue]) {
+        [metadata.context deleteObject:metadata.sourceValue];
     }
 
     return metadata.targetValue;
 };
 
 FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (!metadata.existingValue) return metadata.targetValue;
+    if (!metadata.sourceValue) return metadata.targetValue;
 
     if (metadata.targetValue) {
         NSCAssert(
-            [metadata.existingValue conformsToProtocol:@protocol(FEMExcludableCollection)],
+            [metadata.sourceValue conformsToProtocol:@ protocol(FEMExcludableCollection)],
             @"Collection %@ should support protocol %@",
             NSStringFromClass([metadata.targetValue class]),
             NSStringFromProtocol(@protocol(FEMExcludableCollection))
         );
 
-        for (id object in [(id<FEMExcludableCollection>)metadata.existingValue collectionByExcludingObjects:metadata.targetValue]) {
+        for (id object in [(id<FEMExcludableCollection>)metadata.sourceValue collectionByExcludingObjects:metadata.targetValue]) {
             [metadata.context deleteObject:object];
         }
     } else {
-        for (id object in metadata.existingValue) {
+        for (id object in metadata.sourceValue) {
             [metadata.context deleteObject:object];
         }
     }
@@ -66,7 +66,7 @@ FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace = ^id (FEMAssignmentPol
 #pragma mark - Deprecated
 
 FEMAssignmentPolicy FEMAssignmentPolicyMerge = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (!metadata.targetValue) return metadata.existingValue;
+    if (!metadata.targetValue) return metadata.sourceValue;
 
     if ([metadata.targetValue isKindOfClass:NSManagedObject.class]) return metadata.targetValue;
 
@@ -77,14 +77,14 @@ FEMAssignmentPolicy FEMAssignmentPolicyMerge = ^id (FEMAssignmentPolicyMetadata 
         NSStringFromProtocol(@protocol(FEMMergeableCollection))
     );
 
-    return [metadata.targetValue collectionByMergingObjects:metadata.existingValue];
+    return [metadata.targetValue collectionByMergingObjects:metadata.sourceValue];
 };
 
 FEMAssignmentPolicy FEMAssignmentPolicyReplace = ^id (FEMAssignmentPolicyMetadata *metadata) {
-    if (!metadata.existingValue) return metadata.targetValue;
+    if (!metadata.sourceValue) return metadata.targetValue;
 
-    if ([metadata.existingValue isKindOfClass:NSManagedObject.class]) {
-        [metadata.context deleteObject:metadata.existingValue];
+    if ([metadata.sourceValue isKindOfClass:NSManagedObject.class]) {
+        [metadata.context deleteObject:metadata.sourceValue];
     } else if (metadata.targetValue) {
         NSCAssert(
             [metadata.targetValue conformsToProtocol:@protocol(FEMExcludableCollection)],
@@ -93,7 +93,7 @@ FEMAssignmentPolicy FEMAssignmentPolicyReplace = ^id (FEMAssignmentPolicyMetadat
             NSStringFromProtocol(@protocol(FEMExcludableCollection))
         );
 
-        for (id object in [(id<FEMExcludableCollection>)metadata.existingValue collectionByExcludingObjects:metadata.targetValue]) {
+        for (id object in [(id<FEMExcludableCollection>)metadata.sourceValue collectionByExcludingObjects:metadata.targetValue]) {
             [metadata.context deleteObject:object];
         }
     }
