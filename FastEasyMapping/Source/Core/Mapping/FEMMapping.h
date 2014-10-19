@@ -13,6 +13,9 @@
 @property (nonatomic, copy) NSString *rootPath;
 - (id)initWithRootPath:(NSString *)rootPath;
 
+@property (nonatomic, copy) NSString *primaryKey;
+@property (nonatomic, strong, readonly) FEMAttributeMapping *primaryKeyMapping;
+
 @property (nonatomic, strong, readonly) NSArray *attributeMappings;
 - (void)addAttributeMapping:(FEMAttributeMapping *)attributeMapping;
 

@@ -15,9 +15,6 @@
 @interface FEMManagedObjectMapping : FEMMapping
 
 @property (nonatomic, copy, readonly) NSString *entityName;
-@property (nonatomic, copy) NSString *primaryKey;
-
-@property (nonatomic, strong, readonly) FEMAttributeMapping *primaryKeyMapping;
 
 + (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName;
 + (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName
