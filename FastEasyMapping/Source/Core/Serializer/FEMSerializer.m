@@ -1,20 +1,20 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import "FEMSerializer.h"
-#import "FEMAttributeMapping.h"
+#import "FEMAttribute.h"
 #import "FEMTypeIntrospection.h"
-#import "FEMRelationshipMapping.h"
+#import "FEMRelationship.h"
 
 @implementation FEMSerializer
 
 + (NSDictionary *)_serializeObject:(id)object usingMapping:(FEMMapping *)mapping {
 	NSMutableDictionary *representation = [NSMutableDictionary dictionary];
 
-	for (FEMAttributeMapping *fieldMapping in mapping.attributeMappings) {
+	for (FEMAttribute *fieldMapping in mapping.attributes) {
 		[self setValueOnRepresentation:representation fromObject:object withFieldMapping:fieldMapping];
 	}
 
-	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
+	for (FEMRelationship *relationshipMapping in mapping.relationships) {
 		[self setRelationshipObjectOn:representation usingMapping:relationshipMapping fromObject:object];
 	}
 
@@ -44,7 +44,7 @@
 	return mapping.rootPath.length > 0 ? @{mapping.rootPath: representation} : representation;
 }
 
-+ (void)setValueOnRepresentation:(NSMutableDictionary *)representation fromObject:(id)object withFieldMapping:(FEMAttributeMapping *)fieldMapping {
++ (void)setValueOnRepresentation:(NSMutableDictionary *)representation fromObject:(id)object withFieldMapping:(FEMAttribute *)fieldMapping {
 	id returnedValue = [object valueForKey:fieldMapping.property];
 	if (returnedValue) {
 		returnedValue = [fieldMapping reverseMapValue:returnedValue];
@@ -76,7 +76,7 @@
 }
 
 + (void)setRelationshipObjectOn:(NSMutableDictionary *)representation
-                   usingMapping:(FEMRelationshipMapping *)relationshipMapping
+                   usingMapping:(FEMRelationship *)relationshipMapping
 			         fromObject:(id)object {
 	id value = [object valueForKey:relationshipMapping.property];
 	if (value) {

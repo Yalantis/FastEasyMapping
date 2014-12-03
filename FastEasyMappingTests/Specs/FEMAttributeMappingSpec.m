@@ -5,11 +5,11 @@
 
 #import <Kiwi/Kiwi.h>
 
-#import "FEMAttributeMapping.h"
+#import "FEMAttribute.h"
 
 SPEC_BEGIN(FEMAttributeMappingSpec)
 
-describe(@"FEMAttributeMapping", ^{
+describe(@"FEMAttribute", ^{
     FEMMapBlock map = ^id (id value) {
         return @10;
     };
@@ -18,7 +18,7 @@ describe(@"FEMAttributeMapping", ^{
     };
 
     context(@"init", ^{
-        __block FEMAttributeMapping *mapping = nil;
+        __block FEMAttribute *mapping = nil;
 
         afterEach(^{
             mapping = nil;
@@ -26,19 +26,19 @@ describe(@"FEMAttributeMapping", ^{
 
         describe(@"property can't be nil", ^{
             [[theBlock(^{
-                mapping = [[FEMAttributeMapping alloc] initWithProperty:nil keyPath:nil map:NULL reverseMap:NULL];
+                mapping = [[FEMAttribute alloc] initWithProperty:nil keyPath:nil map:NULL reverseMap:NULL];
             }) should] raise];
         });
  
         describe(@"keyPath can be nil", ^{
             [[theBlock(^{
-                mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
+                mapping = [[FEMAttribute alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
             }) shouldNot] raise];
         });
 
         describe(@"property should be equal to initial", ^{
             specify(^{
-                mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
+                mapping = [[FEMAttribute alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
 
                 [[mapping.property should] equal:@"property"];
             });
@@ -46,7 +46,7 @@ describe(@"FEMAttributeMapping", ^{
 
         describe(@"keyPath should be equal to initial", ^{
             specify(^{
-                mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:@"keyPath" map:NULL reverseMap:NULL];
+                mapping = [[FEMAttribute alloc] initWithProperty:@"property" keyPath:@"keyPath" map:NULL reverseMap:NULL];
 
                 [[mapping.keyPath should] equal:@"keyPath"];
             });
@@ -54,7 +54,7 @@ describe(@"FEMAttributeMapping", ^{
 
         describe(@"map should behave equal to initial", ^{
             specify(^{
-                mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:@"keyPath" map:map reverseMap:NULL];
+                mapping = [[FEMAttribute alloc] initWithProperty:@"property" keyPath:@"keyPath" map:map reverseMap:NULL];
 
                 [[[mapping mapValue:@"value"] should] equal:map(@"value")];
             });
@@ -62,7 +62,7 @@ describe(@"FEMAttributeMapping", ^{
 
         describe(@"reverse map should behave equal to initial", ^{
             specify(^{
-                mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:@"keyPath" map:NULL reverseMap:reverseMap];
+                mapping = [[FEMAttribute alloc] initWithProperty:@"property" keyPath:@"keyPath" map:NULL reverseMap:reverseMap];
 
                 [[[mapping reverseMapValue:@"value"] should] equal:reverseMap(@"value")];
             });
@@ -70,13 +70,13 @@ describe(@"FEMAttributeMapping", ^{
 
         describe(@"default map", ^{
             it(@"NULL map should behave as passthrough map", ^{
-                mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
+                mapping = [[FEMAttribute alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
 
                 [[[mapping mapValue:@1] should] equal:@1];
             });
 
             it(@"NULL reverseMap should behave as passthrough map", ^{
-                mapping = [[FEMAttributeMapping alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
+                mapping = [[FEMAttribute alloc] initWithProperty:@"property" keyPath:nil map:NULL reverseMap:NULL];
                 
                 [[[mapping reverseMapValue:@2] should] equal:@2];
             });
@@ -84,7 +84,7 @@ describe(@"FEMAttributeMapping", ^{
     });
 
     context(@"shortcuts", ^{
-        __block FEMAttributeMapping *mapping = nil;
+        __block FEMAttribute *mapping = nil;
         
         afterEach(^{
             mapping = nil;
@@ -92,7 +92,7 @@ describe(@"FEMAttributeMapping", ^{
 
         describe(@"+mappingOfProperty:", ^{
             specify(^{
-                mapping = [FEMAttributeMapping mappingOfProperty:@"property"];
+                mapping = [FEMAttribute mappingOfProperty:@"property"];
 
                 [[mapping.property should] equal:@"property"];
                 [[mapping.keyPath should] beNil];
@@ -103,7 +103,7 @@ describe(@"FEMAttributeMapping", ^{
 
         describe(@"+mappingOfProperty:toKeyPath:", ^{
             specify(^{
-                mapping = [FEMAttributeMapping mappingOfProperty:@"property" toKeyPath:@"keyPath"];
+                mapping = [FEMAttribute mappingOfProperty:@"property" toKeyPath:@"keyPath"];
 
                 [[mapping.property should] equal:@"property"];
                 [[mapping.keyPath should] equal:@"keyPath"];
@@ -114,7 +114,7 @@ describe(@"FEMAttributeMapping", ^{
 
         describe(@"+mappingOfProperty:toKeyPath:map:", ^{
             specify(^{
-                mapping = [FEMAttributeMapping mappingOfProperty:@"property" toKeyPath:@"keyPath" map:map];
+                mapping = [FEMAttribute mappingOfProperty:@"property" toKeyPath:@"keyPath" map:map];
 
                 [[mapping.property should] equal:@"property"];
                 [[mapping.keyPath should] equal:@"keyPath"];
@@ -125,7 +125,7 @@ describe(@"FEMAttributeMapping", ^{
 
         describe(@"+mappingOfProperty:toKeyPath:map:reverseMap:", ^{
             specify(^{
-                mapping = [FEMAttributeMapping mappingOfProperty:@"property" toKeyPath:@"keyPath" map:map reverseMap:reverseMap];
+                mapping = [FEMAttribute mappingOfProperty:@"property" toKeyPath:@"keyPath" map:map reverseMap:reverseMap];
 
                 [[mapping.property should] equal:@"property"];
                 [[mapping.keyPath should] equal:@"keyPath"];
@@ -142,7 +142,7 @@ describe(@"FEMAttributeMapping", ^{
                 formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
                 formatter.dateFormat = @"yyyy-MM-dd";
 
-                mapping = [FEMAttributeMapping mappingOfProperty:@"property" toKeyPath:@"keyPath" dateFormat:formatter.dateFormat];
+                mapping = [FEMAttribute mappingOfProperty:@"property" toKeyPath:@"keyPath" dateFormat:formatter.dateFormat];
             });
 
             afterEach(^{
@@ -164,7 +164,7 @@ describe(@"FEMAttributeMapping", ^{
 
         describe(@"+mappingOfURLProperty:toKeyPath:", ^{
             beforeEach(^{
-                mapping = [FEMAttributeMapping mappingOfURLProperty:@"property" toKeyPath:@"keyPath"];
+                mapping = [FEMAttribute mappingOfURLProperty:@"property" toKeyPath:@"keyPath"];
             });
 
             specify(^{

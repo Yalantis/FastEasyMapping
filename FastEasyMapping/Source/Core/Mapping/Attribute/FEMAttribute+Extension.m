@@ -1,10 +1,10 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
-#import "FEMAttributeMapping+Extension.h"
+#import "FEMAttribute+Extension.h"
 #import "FEMTypeIntrospection.h"
 #import "NSObject+FEMKVCExtension.h"
 
-@implementation FEMAttributeMapping (Extension)
+@implementation FEMAttribute (Extension)
 
 - (id)mappedValueFromRepresentation:(id)representation {
 	id value = self.keyPath ? [representation valueForKeyPath:self.keyPath] : representation;

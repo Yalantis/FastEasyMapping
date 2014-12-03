@@ -2,8 +2,9 @@
 
 #import "FEMMapping.h"
 
-#import "FEMAttributeMapping.h"
-#import "FEMRelationshipMapping.h"
+#import "FEMAttribute.h"
+#import "FEMRelationship.h"
+#import "EXTKeyPathCoding.h"
 
 @implementation FEMMapping
 
@@ -12,8 +13,8 @@
 - (id)init {
 	self = [super init];
 	if (self) {
-		_attributesMap = [NSMutableDictionary new];
-		_relationshipsMap = [NSMutableDictionary new];
+		_attributeMap = [NSMutableDictionary new];
+		_relationshipMap = [NSMutableDictionary new];
 	}
 
 	return self;
@@ -30,7 +31,7 @@
 
 #pragma mark - Attribute Mapping
 
-- (void)addPropertyMapping:(id<FEMPropertyMapping>)propertyMapping toMap:(NSMutableDictionary *)map {
+- (void)addPropertyMapping:(id<FEMProperty>)propertyMapping toMap:(NSMutableDictionary *)map {
 	NSParameterAssert(propertyMapping);
 	NSAssert(
 		propertyMapping.property.length > 0,
@@ -39,7 +40,7 @@
 	);
 
 #ifdef DEBUG
-	FEMAttributeMapping *existingMapping = map[propertyMapping.property];
+	FEMAttribute *existingMapping = map[propertyMapping.property];
 	if (existingMapping) {
 		NSLog(@"%@ replacing %@ with %@", NSStringFromClass(self.class), existingMapping, propertyMapping);
 	}
@@ -48,32 +49,32 @@
 	map[propertyMapping.property] = propertyMapping;
 }
 
-- (void)addAttributeMapping:(FEMAttributeMapping *)attributeMapping {
-	[self addPropertyMapping:attributeMapping toMap:_attributesMap];
+- (void)addAttribute:(FEMAttribute *)attribute {
+    [self addPropertyMapping:attribute toMap:_attributeMap];
 }
 
-- (FEMAttributeMapping *)attributeMappingForProperty:(NSString *)property {
-	return _attributesMap[property];
+- (FEMAttribute *)attributeForProperty:(NSString *)property {
+	return _attributeMap[property];
 }
 
 #pragma mark - Relationship Mapping
 
-- (void)addRelationshipMapping:(FEMRelationshipMapping *)relationshipMapping {
-	[self addPropertyMapping:relationshipMapping toMap:_relationshipsMap];
+- (void)addRelationship:(FEMRelationship *)relationship {
+    [self addPropertyMapping:relationship toMap:_relationshipMap];
 }
 
-- (FEMRelationshipMapping *)relationshipMappingForProperty:(NSString *)property {
-	return _relationshipsMap[property];
+- (FEMRelationship *)relationshipForProperty:(NSString *)property {
+	return _relationshipMap[property];
 }
 
 #pragma mark - Properties
 
-- (NSArray *)attributeMappings {
-	return [_attributesMap allValues];
+- (NSArray *)attributes {
+	return [_attributeMap allValues];
 }
 
-- (NSArray *)relationshipMappings {
-	return [_relationshipsMap allValues];
+- (NSArray *)relationships {
+	return [_relationshipMap allValues];
 }
 
 #pragma mark - Description
@@ -87,13 +88,13 @@
     ];
 
     [description appendString:@"attributes {\n"];
-    for (FEMAttributeMapping *mapping in self.attributeMappings) {
+    for (FEMAttribute *mapping in self.attributes) {
         [description appendFormat:@"\t(%@),\n", [mapping description]];
     }
     [description appendString:@"}\n"];
 
     [description appendString:@"relationships {\n"];
-    for (FEMRelationshipMapping *relationshipMapping in self.relationshipMappings) {
+    for (FEMRelationship *relationshipMapping in self.relationships) {
         [description appendFormat:@"\t(%@),", [relationshipMapping description]];
     }
     [description appendFormat:@"}\n"];
@@ -105,39 +106,79 @@
 
 @implementation FEMMapping (Shortcut)
 
-- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath {
+- (void)addAttributesDictionary:(NSDictionary *)attributesToKeyPath {
 	[attributesToKeyPath enumerateKeysAndObjectsUsingBlock:^(id attribute, id keyPath, BOOL *stop) {
-		[self addAttributeMapping:[FEMAttributeMapping mappingOfProperty:attribute toKeyPath:keyPath]];
+        [self addAttribute:[FEMAttribute mappingOfProperty:attribute toKeyPath:keyPath]];
 	}];
 }
 
-- (void)addAttributeMappingFromArray:(NSArray *)attributes {
+- (void)addAttributesFromArray:(NSArray *)attributes {
 	for (NSString *attribute in attributes) {
-		[self addAttributeMapping:[FEMAttributeMapping mappingOfProperty:attribute toKeyPath:attribute]];
+        [self addAttribute:[FEMAttribute mappingOfProperty:attribute toKeyPath:attribute]];
 	}
 }
 
-- (void)addAttributeMappingOfProperty:(NSString *)property atKeypath:(NSString *)keypath {
-	[self addAttributeMapping:[FEMAttributeMapping mappingOfProperty:property toKeyPath:keypath]];
+- (void)addAttributeWithProperty:(NSString *)property keyPath:(NSString *)keyPath {
+    [self addAttribute:[FEMAttribute mappingOfProperty:property toKeyPath:keyPath]];
 }
 
 - (void)addRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {
-	FEMRelationshipMapping *relationshipMapping = [FEMRelationshipMapping mappingOfProperty:property
-                                                                                  toKeyPath:keyPath
-                                                                              objectMapping:mapping];
-	[self addRelationshipMapping:relationshipMapping];
+	FEMRelationship *relationshipMapping = [FEMRelationship mappingOfProperty:property
+                                                                    toKeyPath:keyPath
+                                                                objectMapping:mapping];
+    [self addRelationship:relationshipMapping];
 }
 
 - (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {
-	FEMRelationshipMapping *relationshipMapping = [FEMRelationshipMapping mappingOfProperty:property
-                                                                                  toKeyPath:keyPath
-                                                                              objectMapping:mapping];
+	FEMRelationship *relationshipMapping = [FEMRelationship mappingOfProperty:property
+                                                                    toKeyPath:keyPath
+                                                                objectMapping:mapping];
 	[relationshipMapping setToMany:YES];
-	[self addRelationshipMapping:relationshipMapping];
+    [self addRelationship:relationshipMapping];
 }
 
 - (id)extractRootFromExternalRepresentation:(id)externalRepresentation {
 	return self.rootPath ? [externalRepresentation valueForKeyPath:self.rootPath] : externalRepresentation;
+}
+
+@end
+
+@implementation FEMMapping (Deprecated)
+
+- (void)addAttributeMappingFromArray:(NSArray *)attributes {
+    [self addAttributesFromArray:attributes];
+}
+
+- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath {
+    [self addAttributesDictionary:attributesToKeyPath];
+}
+
+- (void)addAttributeMappingOfProperty:(NSString *)property atKeypath:(NSString *)keypath {
+    [self addAttributeWithProperty:property keyPath:keypath];
+}
+
+- (NSArray *)attributeMappings {
+    return self.attributes;
+}
+
+- (void)addAttributeMapping:(FEMAttributeMapping *)attributeMapping {
+    [self addAttribute:attributeMapping];
+}
+
+- (FEMAttributeMapping *)attributeMappingForProperty:(NSString *)property {
+    return [self attributeForProperty:property];
+}
+
+- (NSArray *)relationshipMappings {
+    return self.relationships;
+}
+
+- (void)addRelationshipMapping:(FEMRelationshipMapping *)relationshipMapping {
+    [self addRelationship:relationshipMapping];
+}
+
+- (FEMRelationshipMapping *)relationshipMappingForProperty:(NSString *)property {
+    return [self relationshipForProperty:property];
 }
 
 @end
