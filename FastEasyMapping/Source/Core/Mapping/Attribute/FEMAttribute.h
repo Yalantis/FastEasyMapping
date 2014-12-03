@@ -5,10 +5,6 @@
 #import "FEMProperty.h"
 #import "FEMTypes.h"
 
-@class FEMAttribute;
-
-@compatibility_alias FEMAttributeMapping FEMAttribute;
-
 @interface FEMAttribute : NSObject <FEMProperty>
 
 - (id)mapValue:(id)value;

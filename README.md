@@ -6,7 +6,7 @@
 This is fork of [EasyMapping](https://github.com/lucasmedeirosleite/EasyMapping) - flexible and easy way of JSON mapping.
 
 ## Reason to be
-It turns out, that almost all popular libraries for JSON mapping SLOW. The main reason is often trips to database during lookup of existing objects. So we [decided](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) to take already existing [flexible solution](https://github.com/lucasmedeirosleite/EasyMapping) and improve overall performance. 
+It turns out, that almost all popular libraries for JSON mapping SLOW. The main reason is often trips to database during lookup of existing objects. So we [decided](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) to take already existing [flexible solution](https://github.com/lucasmedeirosleite/EasyMapping) and improve overall performance.
 <p align="center" >
   <img src="https://raw.githubusercontent.com/Yalantis/FastEasyMapping/efabb88b0831c7ece88e728b9665edc4d3af5b1f/Assets/performance.png" alt="FastEasyMapping" title="FastEasyMapping">
 </p>
@@ -67,8 +67,8 @@ Mapping can be described in next way:
 	return [FEMManagedObjectMapping mappingForEntityName:@"Person" configuration:^(FEMManagedObjectMapping *mapping) {
 		[mapping setPrimaryKey:@"personID"];  // object uniquing
 
-		[mapping addAttributeMappingDictionary:@{@"personID": @"id"}];
-		[mapping addAttributeMappingFromArray:@[@"name", @"email", @"gender"]];
+		[mapping addAttributesFromDictionary:@{@"personID": @"id"}];
+		[mapping addAttributesFromArray:@[@"name", @"email", @"gender"]];
 
 		[mapping addRelationshipMapping:[self carMapping] forProperty:@"car" keyPath:@"car"];
 		[mapping addToManyRelationshipMapping:[self phoneMapping] forProperty:@"phones" keyPath:@"phones"];
@@ -79,14 +79,14 @@ Mapping can be described in next way:
 	return [FEMManagedObjectMapping mappingForEntityName:@"Car" configuration:^(FEMManagedObjectMapping *mapping) {
     [mapping setPrimaryKey:@"carID"];
 
-		[mapping addAttributeMappingFromArray:@[@"model", @"year"]];
+		[mapping addAttributesFromArray:@[@"model", @"year"]];
 	}];
 }
 
 + (FEMManagedObjectMapping *)phoneMapping {
 	return [FEMManagedObjectMapping mappingForEntityName:@"Phone" configuration:^(FEMManagedObjectMapping *mapping) {
-		[mapping addAttributeMappingDictionary:@{@"phoneID" : @"id"}];
-		[mapping addAttributeMappingFromArray:@[@"number", @"ddd", @"ddi"]];
+		[mapping addAttributesFromDictionary:@{@"phoneID" : @"id"}];
+		[mapping addAttributesFromArray:@[@"number", @"ddd", @"ddi"]];
 	}];
 }
 
@@ -100,7 +100,7 @@ Converting a NSDictionary or NSArray to a object class or collection now becomes
 Person *person = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
                                                                           usingMapping:[MappingProvider personMapping]
                                                                                context:context];
-                                                                               
+
 NSArray *cars = [FEMManagedObjectDeserializer deserializeCollectionExternalRepresentation:externalRepresentation
                                                                              usingMapping:[MappingProvider carMapping]
                                                                                   context:moc];
@@ -118,7 +118,7 @@ FEMManagedObjectMapping *mapping = [MappingProvider personMapping];
 
 ### Assignment Policy
 
-Now relationship can use one of three predefined assignment policies: `FEMAssignmentPolicyAssign`, `FEMAssignmentPolicyMerge` and `FEMAssignmentPolicyReplace`. 
+Now relationship can use one of three predefined assignment policies: `FEMAssignmentPolicyAssign`, `FEMAssignmentPolicyMerge` and `FEMAssignmentPolicyReplace`.
 
 ## Deserialization. NSObject
 
@@ -134,6 +134,10 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 ```
 
 # Changelog
+
+### 0.5.1
+- Rename [FEMAttributeMapping](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttributeMapping.h) to [FEMAttribute](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttribute.h), [FEMRelationshipMapping](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationshipMapping.h) to [FEMRelationship](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationship.h)
+- [Shorten FEMMapping mutation methods](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/FEMMapping.h#42)
 
 ### 0.4.1
 - Resolves: [#19](https://github.com/Yalantis/FastEasyMapping/issues/19), [#18](https://github.com/Yalantis/FastEasyMapping/issues/18), [#16](https://github.com/Yalantis/FastEasyMapping/issues/16), [#12](https://github.com/Yalantis/FastEasyMapping/issues/12)
@@ -154,7 +158,7 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 
 ### 0.3.2
 - Fix [handling of nil-relationship](https://github.com/Yalantis/FastEasyMapping/issues/7) data during deserialization
-- Remove compiler warnings 
+- Remove compiler warnings
 
 ### 0.3.1
 - Set deployment target to 6.0
@@ -165,7 +169,7 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 - Add assignment policy support for FEMManagedObjectDeserializer: Assign, Merge, Replace
 - Cover FEMCache by tests
 
-### 0.2.1 
+### 0.2.1
 - Improved types introspection by @advantis
 
 ### 0.2.0
@@ -178,7 +182,7 @@ NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usin
 - Fixed caching behaviour for new objects
 
 ### 0.1
-- Added managed objects cache for deserialization 
+- Added managed objects cache for deserialization
 
 # Thanks
 * Special thanks to [lucasmedeirosleite](https://github.com/lucasmedeirosleite) for amazing framework.

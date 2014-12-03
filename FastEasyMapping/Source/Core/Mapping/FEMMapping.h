@@ -3,7 +3,9 @@
 #import <Foundation/Foundation.h>
 
 #import "FEMAttribute.h"
+#import "FEMAttributeMapping.h"
 #import "FEMRelationship.h"
+#import "FEMRelationshipMapping.h"
 
 @interface FEMMapping : NSObject {
     @protected

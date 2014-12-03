@@ -5,9 +5,7 @@
 #import "FEMProperty.h"
 #import "FEMAssignmentPolicy.h"
 
-@class FEMMapping, FEMRelationship;
-
-@compatibility_alias FEMRelationshipMapping FEMRelationship;
+@class FEMMapping;
 
 @interface FEMRelationship : NSObject <FEMProperty>
 
