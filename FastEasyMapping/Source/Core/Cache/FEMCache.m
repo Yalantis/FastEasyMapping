@@ -2,9 +2,9 @@
 
 #import "FEMCache.h"
 #import "FEMManagedObjectMapping.h"
-#import "FEMRelationshipMapping.h"
-#import "FEMAttributeMapping.h"
-#import "FEMAttributeMapping+Extension.h"
+#import "FEMRelationship.h"
+#import "FEMAttribute.h"
+#import "FEMAttribute+Extension.h"
 
 #import <CoreData/CoreData.h>
 
@@ -65,7 +65,7 @@ void FEMCacheRemoveCurrent() {
 
 - (void)inspectObjectRepresentation:(id)objectRepresentation usingMapping:(FEMManagedObjectMapping *)mapping {
 	if (mapping.primaryKey) {
-		FEMAttributeMapping *primaryKeyMapping = mapping.primaryKeyMapping;
+		FEMAttribute *primaryKeyMapping = mapping.primaryKeyAttribute;
 		NSParameterAssert(primaryKeyMapping);
 
 		id primaryKeyValue = [primaryKeyMapping mappedValueFromRepresentation:objectRepresentation];
@@ -74,7 +74,7 @@ void FEMCacheRemoveCurrent() {
 		}
 	}
 
-	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
+	for (FEMRelationship *relationshipMapping in mapping.relationships) {
 		id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:objectRepresentation];
         if (relationshipRepresentation && relationshipRepresentation != NSNull.null) {
             [self inspectRepresentation:relationshipRepresentation
@@ -108,7 +108,7 @@ void FEMCacheRemoveCurrent() {
 - (void)collectEntityNames:(NSMutableSet *)namesCollection usingMapping:(FEMManagedObjectMapping *)mapping {
 	[namesCollection addObject:mapping.entityName];
 
-	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
+	for (FEMRelationship *relationshipMapping in mapping.relationships) {
 		[self collectEntityNames:namesCollection usingMapping:(FEMManagedObjectMapping *)relationshipMapping.objectMapping];
 	}
 }
@@ -153,7 +153,7 @@ void FEMCacheRemoveCurrent() {
 - (id)existingObjectForRepresentation:(id)representation mapping:(FEMManagedObjectMapping *)mapping {
 	NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
 
-	id primaryKeyValue = [mapping.primaryKeyMapping mappedValueFromRepresentation:representation];
+	id primaryKeyValue = [mapping.primaryKeyAttribute mappedValueFromRepresentation:representation];
 	if (primaryKeyValue == nil || primaryKeyValue == NSNull.null) return nil;
 
 	return entityObjectsMap[primaryKeyValue];

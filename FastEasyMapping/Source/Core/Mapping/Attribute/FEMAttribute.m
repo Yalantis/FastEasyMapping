@@ -1,8 +1,8 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
-#import "FEMAttributeMapping.h"
+#import "FEMAttribute.h"
 
-@implementation FEMAttributeMapping {
+@implementation FEMAttribute {
     FEMMapBlock _map;
     FEMMapBlock _reverseMap;
 }
@@ -59,7 +59,7 @@
 
 @end
 
-@implementation FEMAttributeMapping (Shortcut)
+@implementation FEMAttribute (Shortcut)
 
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath map:(FEMMapBlock)map {
     return [self mappingOfProperty:property toKeyPath:keyPath map:map reverseMap:NULL];
@@ -91,31 +91,11 @@
 }
 
 + (instancetype)mappingOfURLProperty:(NSString *)property toKeyPath:(NSString *)keyPath {
-    return [FEMAttributeMapping mappingOfProperty:property toKeyPath:keyPath map:^id (id value) {
+    return [FEMAttribute mappingOfProperty:property toKeyPath:keyPath map:^id(id value) {
         return [value isKindOfClass:NSString.class] ? [NSURL URLWithString:value] : NSNull.null;
-    } reverseMap:^id (NSURL *value) {
+    }                           reverseMap:^id(NSURL *value) {
         return [value absoluteString];
     }];
-}
-
-@end
-
-@implementation FEMAttributeMapping (Deprecated)
-
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath {
-    return [self mappingOfProperty:property toKeyPath:keyPath];
-}
-
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map {
-    return [self mappingOfProperty:property toKeyPath:keyPath map:map];
-}
-
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {
-    return [self mappingOfProperty:property toKeyPath:keyPath dateFormat:dateFormat];
-}
-
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap {
-    return [self mappingOfProperty:property toKeyPath:keyPath map:map reverseMap:reverseMap];
 }
 
 @end

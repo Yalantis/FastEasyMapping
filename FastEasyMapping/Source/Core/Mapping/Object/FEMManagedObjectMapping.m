@@ -1,7 +1,7 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import "FEMManagedObjectMapping.h"
-#import "FEMAttributeMapping.h"
+#import "FEMAttribute.h"
 
 @implementation FEMManagedObjectMapping
 
@@ -40,8 +40,8 @@
 
 #pragma mark - Properties
 
-- (FEMAttributeMapping *)primaryKeyMapping {
-	return [_attributesMap objectForKey:self.primaryKey];
+- (FEMAttribute *)primaryKeyAttribute {
+	return _attributeMap[self.primaryKey];
 }
 
 #pragma mark - Description
@@ -49,6 +49,14 @@
 - (NSString *)description {
     NSString *descriptionFormat = [super description];
     return [NSString stringWithFormat:descriptionFormat, @"Entity:%@", self.entityName];
+}
+
+@end
+
+@implementation FEMManagedObjectMapping (Deprecated)
+
+- (FEMAttributeMapping *)primaryKeyMapping {
+    return self.primaryKeyAttribute;
 }
 
 @end

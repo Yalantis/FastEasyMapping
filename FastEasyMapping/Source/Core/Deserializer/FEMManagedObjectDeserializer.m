@@ -5,11 +5,11 @@
 #import <CoreData/CoreData.h>
 
 #import "FEMManagedObjectMapping.h"
-#import "FEMAttributeMapping.h"
+#import "FEMAttribute.h"
 #import "FEMTypeIntrospection.h"
 #import "NSArray+FEMPropertyRepresentation.h"
-#import "FEMAttributeMapping+Extension.h"
-#import "FEMRelationshipMapping.h"
+#import "FEMAttribute+Extension.h"
+#import "FEMRelationship.h"
 #import "FEMCache.h"
 #import "FEMAssignmentPolicyMetadata.h"
 
@@ -54,12 +54,12 @@
 }
 
 + (id)_fillObject:(NSManagedObject *)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMManagedObjectMapping *)mapping {
-    for (FEMAttributeMapping *attributeMapping in mapping.attributeMappings) {
+    for (FEMAttribute *attributeMapping in mapping.attributes) {
         [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
     }
 
     NSManagedObjectContext *context = object.managedObjectContext;
-    for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
+    for (FEMRelationship *relationshipMapping in mapping.relationships) {
         id relationshipRepresentation = [relationshipMapping extractRootFromExternalRepresentation:representation];
         // skip missing key
         if (relationshipRepresentation == nil) continue;
@@ -70,7 +70,7 @@
             @"%@ expect %@ for %@.objectMapping",
             NSStringFromClass(self),
             NSStringFromClass(FEMManagedObjectMapping.class),
-            NSStringFromClass(FEMRelationshipMapping.class)
+            NSStringFromClass(FEMRelationship.class)
         );
 
         FEMAssignmentPolicyMetadata *metadata = [FEMAssignmentPolicyMetadata new];
@@ -156,7 +156,7 @@
                                                  context:(NSManagedObjectContext *)context {
     NSParameterAssert(mapping.primaryKey != nil);
 
-    FEMAttributeMapping *primaryKeyMapping = [mapping primaryKeyMapping];
+    FEMAttribute *primaryKeyMapping = [mapping primaryKeyAttribute];
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:mapping.entityName];
     [request setPredicate:predicate];

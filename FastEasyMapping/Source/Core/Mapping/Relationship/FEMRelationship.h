@@ -2,12 +2,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FEMPropertyMapping.h"
+#import "FEMProperty.h"
 #import "FEMAssignmentPolicy.h"
 
-@class FEMMapping;
+@class FEMMapping, FEMRelationship;
 
-@interface FEMRelationshipMapping : NSObject <FEMPropertyMapping>
+@compatibility_alias FEMRelationshipMapping FEMRelationship;
+
+@interface FEMRelationship : NSObject <FEMProperty>
 
 @property (nonatomic, copy) FEMAssignmentPolicy assignmentPolicy;
 
@@ -22,13 +24,13 @@
                    objectMapping:(FEMMapping *)objectMapping;
 
 + (instancetype)mappingOfProperty:(NSString *)property
-                    configuration:(void (^)(FEMRelationshipMapping *mapping))configuration;
+                    configuration:(void (^)(FEMRelationship *mapping))configuration;
 + (instancetype)mappingOfProperty:(NSString *)property
                         toKeyPath:(NSString *)keyPath
-                    configuration:(void (^)(FEMRelationshipMapping *mapping))configuration;
+                    configuration:(void (^)(FEMRelationship *mapping))configuration;
 
 /**
-* same as + [FEMRelationshipMapping mappingOfProperty:property toKeyPath:nil objectMapping:objectMapping];
+* same as + [FEMRelationship mappingOfProperty:property toKeyPath:nil objectMapping:objectMapping];
 */
 + (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping;
 + (instancetype)mappingOfProperty:(NSString *)property
@@ -37,14 +39,7 @@
 
 @end
 
-@interface FEMRelationshipMapping (Deprecated)
-
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationshipMapping *mapping))configuration __attribute__((deprecated("will become obsolete in 0.5.0; use + [FEMRelationshipMapping mappingOfProperty:toKeyPath:configuration:] instead")));
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping __attribute__((deprecated("will become obsolete in 0.5.0; use + [FEMRelationshipMapping mappingOfProperty:toKeyPath:objectMapping:] instead")));
-
-@end
-
-@interface FEMRelationshipMapping (Extension)
+@interface FEMRelationship (Extension)
 
 - (id)extractRootFromExternalRepresentation:(id)externalRepresentation;
 
