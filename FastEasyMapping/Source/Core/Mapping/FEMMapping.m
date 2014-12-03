@@ -2,10 +2,6 @@
 
 #import "FEMMapping.h"
 
-#import "FEMAttribute.h"
-#import "FEMRelationship.h"
-#import "EXTKeyPathCoding.h"
-
 @implementation FEMMapping
 
 #pragma mark - Init
