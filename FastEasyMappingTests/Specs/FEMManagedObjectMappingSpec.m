@@ -55,11 +55,11 @@ describe(@"FEMManagedObjectMapping", ^{
         });
         
         specify(^{
-            [[mapping should] respondToSelector:@selector(attributeMappings)];
+            [[mapping should] respondToSelector:@selector(attributes)];
         });
         
         specify(^{
-            [[mapping should] respondToSelector:@selector(relationshipMappings)];
+            [[mapping should] respondToSelector:@selector(relationships)];
         });
     });
     
