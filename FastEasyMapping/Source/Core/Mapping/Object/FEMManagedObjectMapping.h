@@ -32,6 +32,6 @@
 
 @interface FEMManagedObjectMapping (Deprecated)
 
-@property (nonatomic, strong, readonly) FEMAttributeMapping *primaryKeyMapping;
+@property (nonatomic, strong, readonly) FEMAttributeMapping *primaryKeyMapping __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMManagedObjectMapping primaryKeyAttribute] instead")));
 
 @end
