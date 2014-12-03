@@ -172,7 +172,7 @@ describe(@"FEMObjectMapping", ^{
         
         beforeEach(^{
             mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
-            [mapping addAttributesDictionary:@{
+            [mapping addAttributesFromDictionary:@{
                 @"identifier" : @"id",
                 @"email" : @"contact.email"
             }];

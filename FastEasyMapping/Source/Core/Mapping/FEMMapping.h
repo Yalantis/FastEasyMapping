@@ -29,7 +29,7 @@
 @interface FEMMapping (Shortcut)
 
 - (void)addAttributesFromArray:(NSArray *)attributes;
-- (void)addAttributesDictionary:(NSDictionary *)attributesToKeyPath;
+- (void)addAttributesFromDictionary:(NSDictionary *)attributesToKeyPath;
 - (void)addAttributeWithProperty:(NSString *)property keyPath:(NSString *)keyPath;
 
 - (void)addRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
@@ -42,7 +42,7 @@
 @interface FEMMapping (Deprecated)
 
 - (void)addAttributeMappingFromArray:(NSArray *)attributes __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping addAttributesFromArray:] instead")));
-- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping addAttributesDictionary:] instead")));
+- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping addAttributesFromDictionary:] instead")));
 - (void)addAttributeMappingOfProperty:(NSString *)property atKeypath:(NSString *)keypath __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping addAttributeWithProperty:keyPath:] instead")));
 
 @property (nonatomic, strong, readonly) NSArray *attributeMappings __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping attributes] instead")));

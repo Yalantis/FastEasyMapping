@@ -34,7 +34,7 @@
 + (FEMObjectMapping *)carNestedAttributesMapping {
 	return [FEMObjectMapping mappingForClass:[CarNative class] configuration:^(FEMObjectMapping *mapping) {
         [mapping addAttributesFromArray:@[@"model"]];
-        [mapping addAttributesDictionary:@{
+        [mapping addAttributesFromDictionary:@{
             @"year" : @"information.year"
         }];
 	}];
@@ -52,7 +52,7 @@
 + (FEMObjectMapping *)phoneMapping {
 	return [FEMObjectMapping mappingForClass:[PhoneNative class] configuration:^(FEMObjectMapping *mapping) {
         [mapping addAttributesFromArray:@[@"number"]];
-        [mapping addAttributesDictionary:@{
+        [mapping addAttributesFromDictionary:@{
             @"DDI" : @"ddi",
             @"DDD" : @"ddd",
         }];
@@ -157,7 +157,7 @@
 
 + (FEMObjectMapping *)planeMapping {
 	return [FEMObjectMapping mappingForClass:[PlaneNative class] configuration:^(FEMObjectMapping *mapping) {
-        [mapping addAttributesDictionary:@{@"flightNumber" : @"flight_number"}];
+        [mapping addAttributesFromDictionary:@{@"flightNumber" : @"flight_number"}];
 		[mapping addToManyRelationshipMapping:[self personMapping] forProperty:@"persons" keyPath:@"persons"];
 	}];
 }
