@@ -5,7 +5,10 @@
 
 #import "FEMProperty.h"
 #import "FEMAttribute.h"
+#import "FEMAttributeMapping.h"
+
 #import "FEMRelationship.h"
+#import "FEMRelationshipMapping.h"
 
 #import "FEMMapping.h"
 #import "FEMObjectMapping.h"
