@@ -98,4 +98,12 @@
     }];
 }
 
++ (instancetype)mappingOfNumberProperty:(NSString *)property toKeyPath:(NSString *)keyPath {
+    return [FEMAttribute mappingOfProperty:property toKeyPath:keyPath map:^id(id value) {
+        return [value isKindOfClass:NSString.class] ? @([value doubleValue]) : NSNull.null;
+    }                           reverseMap:^id(NSNumber *value) {
+        return [value stringValue];
+    }];
+}
+
 @end

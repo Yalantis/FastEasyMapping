@@ -48,4 +48,9 @@
 */
 + (instancetype)mappingOfURLProperty:(NSString *)property toKeyPath:(NSString *)keyPath;
 
+/**
+ * property represented by NSNumber, value at keyPath - NSString
+ */
++ (instancetype)mappingOfNumberProperty:(NSString *)property toKeyPath:(NSString *)keyPath;
+
 @end
