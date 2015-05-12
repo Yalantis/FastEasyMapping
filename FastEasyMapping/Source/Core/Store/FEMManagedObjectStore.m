@@ -8,11 +8,11 @@
 @import CoreData;
 
 #import "FEMManagedObjectMapping.h"
-#import "FEMCache.h"
+#import "FEMManagedObjectCache.h"
 #import "FEMDefaultAssignmentContext.h"
 
 @implementation FEMManagedObjectStore {
-    FEMCache *_cache;
+    FEMManagedObjectCache *_cache;
 
     NSManagedObjectContext *_managedObjectContext;
     FEMManagedObjectMapping *_mapping;
@@ -28,7 +28,7 @@
     if (self) {
         _managedObjectContext = context;
 
-        _cache = [[FEMCache alloc] initWithMapping:_mapping externalRepresentation:externalRepresentation context:_managedObjectContext];
+        _cache = [[FEMManagedObjectCache alloc] initWithMapping:_mapping externalRepresentation:externalRepresentation context:_managedObjectContext];
     }
 
     return self;

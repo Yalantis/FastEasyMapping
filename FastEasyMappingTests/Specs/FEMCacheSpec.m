@@ -9,7 +9,7 @@
 
 #import "Person.h"
 #import "FEMManagedObjectMapping.h"
-#import "FEMCache.h"
+#import "FEMManagedObjectCache.h"
 #import "MappingProvider.h"
 #import "Car.h"
 
@@ -41,7 +41,7 @@ SPEC_BEGIN(FEMCacheSpec)
             id representation = [CMFixture buildUsingFixture:@"Car"];
             id mapping = [MappingProvider carMapping];
 
-            FEMCache *cache = [[FEMCache alloc] initWithMapping:mapping
+            FEMManagedObjectCache *cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping
                                          externalRepresentation:representation
                                                         context:context];
 
@@ -52,7 +52,7 @@ SPEC_BEGIN(FEMCacheSpec)
     describe(@"object retrieval", ^{
         __block NSDictionary *representation = nil;
         __block FEMManagedObjectMapping *mapping = nil;
-        __block FEMCache *cache = nil;
+        __block FEMManagedObjectCache *cache = nil;
         beforeEach(^{
             representation = @{
                 @"id": @1,
@@ -61,7 +61,7 @@ SPEC_BEGIN(FEMCacheSpec)
             };
             mapping = [MappingProvider carMappingWithPrimaryKey];
 
-            cache = [[FEMCache alloc] initWithMapping:mapping externalRepresentation:representation context:context];
+            cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping externalRepresentation:representation context:context];
         });
         afterEach(^{
             mapping = nil;
@@ -127,7 +127,7 @@ SPEC_BEGIN(FEMCacheSpec)
     });
 
     describe(@"nested object retrieval", ^{
-        __block FEMCache *cache = nil;
+        __block FEMManagedObjectCache *cache = nil;
         __block NSDictionary *representation = nil;
         __block FEMManagedObjectMapping *mapping = nil;
         __block FEMManagedObjectMapping *carMapping = nil;
@@ -136,7 +136,7 @@ SPEC_BEGIN(FEMCacheSpec)
             representation = [CMFixture buildUsingFixture:@"PersonWithCar_1"];
             mapping = [MappingProvider personWithCarMapping];
 
-            cache = [[FEMCache alloc] initWithMapping:mapping externalRepresentation:representation context:context];
+            cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping externalRepresentation:representation context:context];
             carMapping = (id) [mapping relationshipForProperty:@"car"].objectMapping;
         });
 

@@ -2,9 +2,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class FEMCache, FEMManagedObjectMapping, NSManagedObjectContext;
+@class FEMManagedObjectCache, FEMManagedObjectMapping, NSManagedObjectContext;
 
-@interface FEMCache : NSObject
+@interface FEMManagedObjectCache : NSObject
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *context;
 

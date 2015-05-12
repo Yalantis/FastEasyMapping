@@ -1,16 +1,18 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
-#import "FEMCache.h"
+#import "FEMManagedObjectCache.h"
 #import "FEMManagedObjectMapping.h"
 #import "FEMRelationship.h"
 #import "FEMAttribute.h"
 #import "FEMAttribute+Extension.h"
+#import "FEMRepresentationUtility.h"
+#import "FEMObjectMapping.h"
 
 #import <CoreData/CoreData.h>
 
-@class FEMCache;
+@class FEMManagedObjectCache;
 
-@implementation FEMCache {
+@implementation FEMManagedObjectCache {
 	NSManagedObjectContext *_context;
 
 	NSMutableDictionary *_lookupKeysMap;
@@ -35,7 +37,7 @@
 		_lookupObjectsMap = [NSMutableDictionary new];
 
 		[self prepareMappingLookupStructure:mapping];
-		[self inspectExternalRepresentation:externalRepresentation usingMapping:mapping];
+        [self inspectExternalRepresentation:externalRepresentation mapping:mapping];
 	}
 
 	return self;
@@ -43,7 +45,7 @@
 
 #pragma mark - Inspection
 
-- (void)inspectObjectRepresentation:(id)objectRepresentation usingMapping:(FEMManagedObjectMapping *)mapping {
+- (void)inspectObjectRepresentation:(id)objectRepresentation mapping:(FEMManagedObjectMapping *)mapping {
 	if (mapping.primaryKey) {
 		FEMAttribute *primaryKeyMapping = mapping.primaryKeyAttribute;
 		NSParameterAssert(primaryKeyMapping);
@@ -55,21 +57,20 @@
 	}
 
 	for (FEMRelationship *relationshipMapping in mapping.relationships) {
-		id relationshipRepresentation = [relationshipMapping representationFromExternalRepresentation:objectRepresentation];
+		id relationshipRepresentation = FEMRepresentationRootForKeyPath(objectRepresentation, relationshipMapping.keyPath);
         if (relationshipRepresentation && relationshipRepresentation != NSNull.null) {
-            [self inspectRepresentation:relationshipRepresentation
-                           usingMapping:(FEMManagedObjectMapping *)relationshipMapping.objectMapping];
+            [self inspectRepresentation:relationshipRepresentation mapping:relationshipMapping.objectMapping];
         }
 	}
 }
 
-- (void)inspectRepresentation:(id)representation usingMapping:(FEMManagedObjectMapping *)mapping {
+- (void)inspectRepresentation:(id)representation mapping:(FEMObjectMapping *)mapping {
 	if ([representation isKindOfClass:NSArray.class]) {
 		for (id objectRepresentation in representation) {
-			[self inspectObjectRepresentation:objectRepresentation usingMapping:mapping];
+            [self inspectObjectRepresentation:objectRepresentation mapping:mapping];
 		}
 	} else if ([representation isKindOfClass:NSDictionary.class]) {
-		[self inspectObjectRepresentation:representation usingMapping:mapping];
+        [self inspectObjectRepresentation:representation mapping:mapping];
 	} else {
 		NSAssert(
 			NO,
@@ -79,23 +80,23 @@
 	}
 }
 
-- (void)inspectExternalRepresentation:(id)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping {
+- (void)inspectExternalRepresentation:(id)externalRepresentation mapping:(FEMManagedObjectMapping *)mapping {
 	id representation = [mapping representationFromExternalRepresentation:externalRepresentation];
 
-	[self inspectRepresentation:representation usingMapping:mapping];
+    [self inspectRepresentation:representation mapping:mapping];
 }
 
-- (void)collectEntityNames:(NSMutableSet *)namesCollection usingMapping:(FEMManagedObjectMapping *)mapping {
+- (void)collectEntityNames:(NSMutableSet *)namesCollection mapping:(FEMManagedObjectMapping *)mapping {
 	[namesCollection addObject:mapping.entityName];
 
 	for (FEMRelationship *relationshipMapping in mapping.relationships) {
-		[self collectEntityNames:namesCollection usingMapping:(FEMManagedObjectMapping *)relationshipMapping.objectMapping];
+        [self collectEntityNames:namesCollection mapping:relationshipMapping.objectMapping];
 	}
 }
 
 - (void)prepareMappingLookupStructure:(FEMManagedObjectMapping *)mapping {
 	NSMutableSet *entityNames = [NSMutableSet new];
-	[self collectEntityNames:entityNames usingMapping:mapping];
+    [self collectEntityNames:entityNames mapping:mapping];
 
 	for (NSString *entityName in entityNames) {
 		_lookupKeysMap[entityName] = [NSMutableSet new];
