@@ -17,6 +17,9 @@
 
     self = [super init];
     if (self) {
+        self.property = property;
+        self.keyPath = keyPath;
+
         _property = [property copy];
         [self setKeyPath:keyPath];
 

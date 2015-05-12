@@ -3,7 +3,6 @@
 #ifndef _FASTEASYMAPPING_
 #define _FASTEASYMAPPING_
 
-#import "FEMProperty.h"
 #import "FEMAttribute.h"
 #import "FEMAttributeMapping.h"
 
