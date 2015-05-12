@@ -3,7 +3,6 @@
 #import <Foundation/Foundation.h>
 #import "FEMMapping.h"
 
-@class FEMObjectMapping;
 //
 //@interface FEMObjectMapping : FEMMapping
 //

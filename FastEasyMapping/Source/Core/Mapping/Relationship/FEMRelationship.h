@@ -3,13 +3,11 @@
 #import <Foundation/Foundation.h>
 
 #import "FEMAssignmentPolicy.h"
+#import "FEMProperty.h"
 
 @class FEMMapping;
 
-@interface FEMRelationship : NSObject
-
-@property (nonatomic, copy) NSString *property;
-@property (nonatomic, copy) NSString *keyPath;
+@interface FEMRelationship : NSObject <FEMProperty>
 
 @property (nonatomic, copy) FEMAssignmentPolicy assignmentPolicy;
 

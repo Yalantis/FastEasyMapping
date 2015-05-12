@@ -5,13 +5,11 @@
 
 @import Foundation;
 
-@class FEMRelationshipMapping;
-
 @protocol FEMAssignmentContext <NSObject>
 
 @required
 @property (nonatomic, readonly) id destinationObject;
-@property (nonatomic, readonly) FEMRelationshipMapping *relationshipMapping;
+@property (nonatomic, readonly) FEMRelationship *relationship;
 
 @property (nonatomic, readonly) id sourceRelationshipValue;
 @property (nonatomic, readonly) id targetRelationshipValue;

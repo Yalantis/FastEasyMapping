@@ -8,10 +8,10 @@
 @protocol FEMAssignmentContextPrivate <FEMAssignmentContext>
 
 @required
-@property (nonatomic, strong, readwrite) id destinationObject;
-@property (nonatomic, readwrite) FEMRelationshipMapping *relationshipMapping;
+@property (nonatomic, strong) id destinationObject;
+@property (nonatomic) FEMRelationship *relationship;
 
-@property (nonatomic, strong, readwrite) id sourceRelationshipValue;
-@property (nonatomic, strong, readwrite) id targetRelationshipValue;
+@property (nonatomic, strong) id sourceRelationshipValue;
+@property (nonatomic, strong) id targetRelationshipValue;
 
 @end

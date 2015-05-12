@@ -9,8 +9,8 @@
 #import "FEMTypeIntrospection.h"
 #import "NSArray+FEMPropertyRepresentation.h"
 #import "FEMDeserializerSource.h"
-#import "FEMAttributeMapping+Extension.h"
-#import "FEMRelationshipMapping.h"
+#import "FEMAttribute+Extension.h"
+#import "FEMRelationship.h"
 #import "FEMDefaultAssignmentContext.h"
 #import "FEMManagedObjectDeserializerSource.h"
 
@@ -26,36 +26,44 @@
     return self;
 }
 
+#pragma mark - Utility
+
+- (id)extractRelationshipRepresentation:(FEMRelationship *)relationship fromExternalRepresentation:(id)externalRepresentation {
+    if (relationship.keyPath) return [externalRepresentation valueForKeyPath:relationship.keyPath];
+    
+    return externalRepresentation;
+}
+
 #pragma mark - IMP
 
 - (void)fulfillObjectRelationships:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMMapping *)mapping {
-    for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
+    for (FEMRelationship *relationship in mapping.relationships) {
         @autoreleasepool {
-            id relationshipRepresentation = [relationshipMapping representationFromExternalRepresentation:representation];
+            id relationshipRepresentation = [self extractRelationshipRepresentation:relationship fromExternalRepresentation:representation];
             if (relationshipRepresentation == nil) continue;
 
             id targetValue = nil;
             if (relationshipRepresentation != NSNull.null) {
-                if (relationshipMapping.isToMany) {
+                if (relationship.isToMany) {
                     targetValue = [self collectionFromRepresentation:relationshipRepresentation
-                                                        usingMapping:relationshipMapping.objectMapping];
+                                                        usingMapping:relationship.objectMapping];
 
-                    objc_property_t property = class_getProperty([object class], [relationshipMapping.property UTF8String]);
+                    objc_property_t property = class_getProperty([object class], [relationship.property UTF8String]);
                     targetValue = [targetValue fem_propertyRepresentation:property];
                 } else {
                     targetValue = [self objectFromRepresentation:relationshipRepresentation
-                                                    usingMapping:relationshipMapping.objectMapping];
+                                                    usingMapping:relationship.objectMapping];
                 }
             }
 
             id<FEMAssignmentContextPrivate> context = [self.source newAssignmentContext];
             context.destinationObject = object;
-            context.relationshipMapping = relationshipMapping;
-            context.sourceRelationshipValue = [object valueForKey:relationshipMapping.property];
+            context.relationshipMapping = relationship;
+            context.sourceRelationshipValue = [object valueForKey:relationship.property];
             context.targetRelationshipValue = targetValue;
 
-            id assignmentValue = relationshipMapping.assignmentPolicy(context);
-            [object setValue:assignmentValue forKey:relationshipMapping.property];
+            id assignmentValue = relationship.assignmentPolicy(context);
+            [object setValue:assignmentValue forKey:relationship.property];
         }
     }
 }

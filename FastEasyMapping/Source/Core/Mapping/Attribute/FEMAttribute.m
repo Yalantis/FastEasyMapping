@@ -20,9 +20,6 @@
         self.property = property;
         self.keyPath = keyPath;
 
-        _property = [property copy];
-        [self setKeyPath:keyPath];
-
         FEMMapBlock passthroughMap = ^(id value) {
             return value;
         };

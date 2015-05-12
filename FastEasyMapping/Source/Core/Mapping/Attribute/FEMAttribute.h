@@ -3,14 +3,12 @@
 #import <Foundation/Foundation.h>
 
 #import "FEMTypes.h"
+#import "FEMProperty.h"
 
-@interface FEMAttribute : NSObject
+@interface FEMAttribute : NSObject <FEMProperty>
 
 - (id)mapValue:(id)value;
 - (id)reverseMapValue:(id)value;
-
-@property (nonatomic, copy) NSString *property;
-@property (nonatomic, copy) NSString *keyPath;
 
 - (id)initWithProperty:(NSString *)property keyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap;
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath map:(FEMMapBlock)map reverseMap:(FEMMapBlock)reverseMap;
