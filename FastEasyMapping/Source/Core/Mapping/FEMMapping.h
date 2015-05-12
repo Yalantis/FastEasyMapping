@@ -5,7 +5,6 @@
 #import "FEMAttribute.h"
 #import "FEMAttributeMapping.h"
 #import "FEMRelationship.h"
-#import "FEMRelationshipMapping.h"
 
 @interface FEMMapping : NSObject {
     @protected
@@ -13,11 +12,19 @@
 	NSMutableDictionary *_relationshipMap;
 }
 
+- (instancetype)init __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
++ (instancetype)new __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
+
+- (instancetype)initWithObjectClass:(Class)objectClass NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithEntityName:(NSString *)entityName NS_DESIGNATED_INITIALIZER;
+
+@property (nonatomic, readonly) Class objectClass;
+@property (nonatomic, copy, readonly) NSString *entityName;
+
 @property (nonatomic, copy) NSString *rootPath;
-- (id)initWithRootPath:(NSString *)rootPath;
 
 @property (nonatomic, copy) NSString *primaryKey;
-@property (nonatomic, strong, readonly) FEMAttributeMapping *primaryKeyMapping;
+@property (nonatomic, strong, readonly) FEMAttributeMapping *primaryKeyAttribute;
 
 @property (nonatomic, strong, readonly) NSArray *attributes;
 - (void)addAttribute:(FEMAttribute *)attribute;
@@ -42,18 +49,8 @@
 
 @end
 
-@interface FEMMapping (Deprecated)
+@interface FEMMapping (Obsolete)
 
-- (void)addAttributeMappingFromArray:(NSArray *)attributes __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping addAttributesFromArray:] instead")));
-- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping addAttributesDictionary:] instead")));
-- (void)addAttributeMappingOfProperty:(NSString *)property atKeypath:(NSString *)keypath __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping addAttributeWithProperty:keyPath:] instead")));
-
-@property (nonatomic, strong, readonly) NSArray *attributeMappings __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping attributes] instead")));
-- (void)addAttributeMapping:(FEMAttributeMapping *)attributeMapping __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping addAttribute:] instead")));
-- (FEMAttributeMapping *)attributeMappingForProperty:(NSString *)property __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping attributeForProperty:] instead")));
-
-@property (nonatomic, strong, readonly) NSArray *relationshipMappings __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping relationships] instead")));
-- (void)addRelationshipMapping:(FEMRelationshipMapping *)relationshipMapping __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping addRelationship:] instead")));
-- (FEMRelationshipMapping *)relationshipMappingForProperty:(NSString *)property __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMMapping relationshipForProperty:] instead")));
+- (id)initWithRootPath:(NSString *)rootPath __attribute__((obsoleted));
 
 @end

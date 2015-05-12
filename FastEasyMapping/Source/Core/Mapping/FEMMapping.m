@@ -22,13 +22,22 @@
 	return self;
 }
 
-- (id)initWithRootPath:(NSString *)rootPath {
-	self = [self init];
-	if (self) {
-		_rootPath = [rootPath copy];
-	}
+- (instancetype)initWithObjectClass:(Class)objectClass {
+    self = [self init];
+    if (self) {
+        _objectClass = objectClass;
+    }
 
-	return self;
+    return self;
+}
+
+- (instancetype)initWithEntityName:(NSString *)entityName {
+    self = [self init];
+    if (self) {
+        _entityName = [entityName copy];
+    }
+
+    return self;
 }
 
 #pragma mark - Attribute Mapping
@@ -52,6 +61,9 @@
 }
 
 - (void)addAttribute:(FEMAttribute *)attribute {
+
+
+
     [self addPropertyMapping:attribute toMap:_attributeMap];
 }
 
@@ -77,6 +89,12 @@
 
 - (NSArray *)relationships {
 	return [_relationshipMap allValues];
+}
+
+#pragma mark -
+
+- (FEMAttribute *)primaryKeyAttribute {
+    return _attributeMap[self.primaryKey];
 }
 
 #pragma mark - Description
@@ -145,42 +163,11 @@
 
 @end
 
-@implementation FEMMapping (Deprecated)
+@implementation FEMMapping (Obsolete)
 
-- (void)addAttributeMappingFromArray:(NSArray *)attributes {
-    [self addAttributesFromArray:attributes];
-}
-
-- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath {
-    [self addAttributesDictionary:attributesToKeyPath];
-}
-
-- (void)addAttributeMappingOfProperty:(NSString *)property atKeypath:(NSString *)keypath {
-    [self addAttributeWithProperty:property keyPath:keypath];
-}
-
-- (NSArray *)attributeMappings {
-    return self.attributes;
-}
-
-- (void)addAttributeMapping:(FEMAttributeMapping *)attributeMapping {
-    [self addAttribute:attributeMapping];
-}
-
-- (FEMAttributeMapping *)attributeMappingForProperty:(NSString *)property {
-    return [self attributeForProperty:property];
-}
-
-- (NSArray *)relationshipMappings {
-    return self.relationships;
-}
-
-- (void)addRelationshipMapping:(FEMRelationshipMapping *)relationshipMapping {
-    [self addRelationship:relationshipMapping];
-}
-
-- (FEMRelationshipMapping *)relationshipMappingForProperty:(NSString *)property {
-    return [self relationshipForProperty:property];
+- (id)initWithRootPath:(NSString *)rootPath __attribute__((obsoleted)) {
+    @throw @"Obsolete";
+    return nil;
 }
 
 @end

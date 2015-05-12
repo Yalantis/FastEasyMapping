@@ -3,16 +3,18 @@
 #import <Foundation/Foundation.h>
 #import "FEMMapping.h"
 
-@interface FEMObjectMapping : FEMMapping
+@class FEMObjectMapping;
+//
+//@interface FEMObjectMapping : FEMMapping
+//
+//@property (nonatomic, readonly) Class objectClass;
+//
+//- (id)initWithObjectClass:(Class)objectClass;
+//- (id)initWithObjectClass:(Class)objectClass rootPath:(NSString *)rootPath;
+//
+//+ (instancetype)mappingForClass:(Class)objectClass configuration:(void (^)(FEMObjectMapping *mapping))configuration;
+//+ (instancetype)mappingForClass:(Class)objectClass rootPath:(NSString *)rootPath configuration:(void (^)(FEMObjectMapping *mapping))configuration;
+//
+//@end
 
-@property (nonatomic, readonly) Class objectClass;
-
-- (id)initWithObjectClass:(Class)objectClass;
-- (id)initWithObjectClass:(Class)objectClass rootPath:(NSString *)rootPath;
-
-+ (instancetype)mappingForClass:(Class)objectClass configuration:(void (^)(FEMObjectMapping *mapping))configuration;
-+ (instancetype)mappingForClass:(Class)objectClass
-                       rootPath:(NSString *)rootPath
-		          configuration:(void (^)(FEMObjectMapping *mapping))configuration;
-
-@end
+@compatibility_alias FEMObjectMapping FEMMapping;

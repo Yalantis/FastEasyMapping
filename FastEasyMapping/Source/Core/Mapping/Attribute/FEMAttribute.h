@@ -2,7 +2,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FEMProperty.h"
 #import "FEMTypes.h"
 
 @interface FEMAttribute : NSObject
