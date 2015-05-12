@@ -11,6 +11,8 @@
 #import "FEMObjectStore.h"
 #import "FEMDefaultAssignmentContext.h"
 #import "FEMManagedObjectStore.h"
+#import "FEMRepresentationUtility.h"
+#import "KWExample.h"
 
 @implementation FEMDeserializer
 
@@ -24,22 +26,12 @@
     return self;
 }
 
-#pragma mark - Utility
-
-- (id)extractRootFromRepresentation:(id)representation keyPath:(NSString *)keyPath {
-    if (keyPath.length > 0) {
-        return [representation valueForKeyPath:keyPath];
-    }
-
-    return representation;
-}
-
 #pragma mark - Deserialization IMP
 
 - (void)fulfillObjectRelationships:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMMapping *)mapping {
     for (FEMRelationship *relationship in mapping.relationships) {
         @autoreleasepool {
-            id relationshipRepresentation = [self extractRootFromRepresentation:representation keyPath:relationship.keyPath];
+            id relationshipRepresentation = FEMRepresentationRootForKeyPath(representation, relationship.keyPath);
             if (relationshipRepresentation == nil) continue;
 
             id targetValue = nil;
@@ -106,17 +98,17 @@
 
 
 - (id)deserializeObjectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-    id root = [self extractRootFromRepresentation:representation keyPath:mapping.rootPath];
+    id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
     return [self objectFromRepresentation:root mapping:mapping];
 }
 
 - (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-    id root = [self extractRootFromRepresentation:representation keyPath:mapping.rootPath];
+    id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
     return [self fulfillObject:object fromRepresentation:root mapping:mapping];
 }
 
 - (NSArray *)deserializeCollectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
-    id root = [self extractRootFromRepresentation:representation keyPath:mapping.rootPath];
+    id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
     return [self collectionFromRepresentation:root mapping:mapping];
 }
 
