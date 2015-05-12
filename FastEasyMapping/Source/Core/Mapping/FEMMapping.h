@@ -14,6 +14,7 @@
 
 - (instancetype)init __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
 + (instancetype)new __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
+- (id)initWithRootPath:(NSString *)rootPath __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
 
 - (instancetype)initWithObjectClass:(Class)objectClass NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithEntityName:(NSString *)entityName NS_DESIGNATED_INITIALIZER;
@@ -46,11 +47,5 @@
 - (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
 
 - (id)representationFromExternalRepresentation:(id)externalRepresentation;
-
-@end
-
-@interface FEMMapping (Obsolete)
-
-- (id)initWithRootPath:(NSString *)rootPath __attribute__((obsoleted));
 
 @end

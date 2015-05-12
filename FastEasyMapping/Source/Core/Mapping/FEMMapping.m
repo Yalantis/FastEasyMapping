@@ -2,29 +2,16 @@
 
 #import "FEMMapping.h"
 
-#import "FEMAttributeMapping.h"
-#import "FEMRelationshipMapping.h"
-#import "FEMDeserializer.h"
-#import "FEMManagedObjectStore.h"
-#import "FEMAssignmentContextPrivate.h"
-
 @implementation FEMMapping
 
 #pragma mark - Init
 
-- (id)init {
-	self = [super init];
-	if (self) {
-		_attributeMap = [NSMutableDictionary new];
-		_relationshipMap = [NSMutableDictionary new];
-	}
-
-	return self;
-}
-
 - (instancetype)initWithObjectClass:(Class)objectClass {
-    self = [self init];
+    self = [super init];
     if (self) {
+        _attributeMap = [NSMutableDictionary new];
+        _relationshipMap = [NSMutableDictionary new];
+
         _objectClass = objectClass;
     }
 
@@ -32,8 +19,11 @@
 }
 
 - (instancetype)initWithEntityName:(NSString *)entityName {
-    self = [self init];
+    self = [super init];
     if (self) {
+        _attributeMap = [NSMutableDictionary new];
+        _relationshipMap = [NSMutableDictionary new];
+
         _entityName = [entityName copy];
     }
 
@@ -159,15 +149,6 @@
 
 - (id)representationFromExternalRepresentation:(id)externalRepresentation {
 	return self.rootPath ? [externalRepresentation valueForKeyPath:self.rootPath] : externalRepresentation;
-}
-
-@end
-
-@implementation FEMMapping (Obsolete)
-
-- (id)initWithRootPath:(NSString *)rootPath __attribute__((obsoleted)) {
-    @throw @"Obsolete";
-    return nil;
 }
 
 @end
