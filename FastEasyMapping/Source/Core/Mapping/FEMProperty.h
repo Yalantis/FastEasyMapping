@@ -2,7 +2,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol FEMPropertyMapping <NSObject>
+@protocol FEMProperty <NSObject>
 
 @property (nonatomic, copy, readonly) NSString *property;
 @property (nonatomic, copy) NSString *keyPath;

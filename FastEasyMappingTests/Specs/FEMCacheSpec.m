@@ -12,8 +12,12 @@
 #import "FEMCache.h"
 #import "MappingProvider.h"
 #import "Car.h"
+
 #import "FEMDeserializer.h"
 #import "FEMRelationshipMapping.h"
+
+#import "FEMManagedObjectDeserializer.h"
+#import "FEMRelationship.h"
 
 
 SPEC_BEGIN(FEMCacheSpec)
@@ -133,7 +137,7 @@ SPEC_BEGIN(FEMCacheSpec)
             mapping = [MappingProvider personWithCarMapping];
 
             cache = [[FEMCache alloc] initWithMapping:mapping externalRepresentation:representation context:context];
-            carMapping = (id)[mapping relationshipMappingForProperty:@"car"].objectMapping;
+            carMapping = (id) [mapping relationshipForProperty:@"car"].objectMapping;
         });
 
         afterEach(^{

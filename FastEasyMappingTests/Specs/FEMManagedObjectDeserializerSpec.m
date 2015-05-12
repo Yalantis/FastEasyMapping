@@ -7,8 +7,13 @@
 #import "MappingProvider.h"
 #import "Person.h"
 #import "Car.h"
+
 #import "FEMDeserializer.h"
 #import "FEMRelationshipMapping.h"
+
+#import "FEMManagedObjectDeserializer.h"
+#import "FEMRelationship.h"
+
 #import "FEMMapping.h"
 #import "FEMManagedObjectMapping.h"
 #import "Phone.h"
@@ -329,14 +334,14 @@ describe(@"FEMDeserializer", ^{
         __block NSDictionary *externalRepresentation_v1 = nil;
         __block NSDictionary *externalRepresentation_v2 = nil;
         __block FEMManagedObjectMapping *mapping = nil;
-        __block FEMRelationshipMapping *relationshipMapping = nil;
+        __block FEMRelationship *relationshipMapping = nil;
         
         context(@"to-one", ^{
             beforeEach(^{
                 externalRepresentation_v1 = [CMFixture buildUsingFixture:@"PersonWithCar_1"];
                 externalRepresentation_v2 = [CMFixture buildUsingFixture:@"PersonWithCar_2"];
                 mapping = [MappingProvider personWithCarMapping];
-                relationshipMapping = [mapping relationshipMappingForProperty:@"car"];
+                relationshipMapping = [mapping relationshipForProperty:@"car"];
             });
             
             afterEach(^{
@@ -430,7 +435,7 @@ describe(@"FEMDeserializer", ^{
                 externalRepresentation_v1 = [CMFixture buildUsingFixture:@"Person_1"];
                 externalRepresentation_v2 = [CMFixture buildUsingFixture:@"Person_2"];
                 mapping = [MappingProvider personWithPhoneMapping];
-                relationshipMapping = [mapping relationshipMappingForProperty:@"phones"];
+                relationshipMapping = [mapping relationshipForProperty:@"phones"];
             });
             
             afterEach(^{

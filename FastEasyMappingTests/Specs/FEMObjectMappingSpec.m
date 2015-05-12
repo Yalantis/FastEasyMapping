@@ -5,8 +5,8 @@
 #import "CarNative.h"
 #import "MappingProviderNative.h"
 #import "FEMObjectMapping.h"
-#import "FEMAttributeMapping.h"
-#import "FEMRelationshipMapping.h"
+#import "FEMAttribute.h"
+#import "FEMRelationship.h"
 #import "PhoneNative.h"
 
 SPEC_BEGIN(FEMObjectMappingSpec)
@@ -102,12 +102,12 @@ describe(@"FEMObjectMapping", ^{
     describe(@"#mapKey:toField:", ^{
        
         __block FEMObjectMapping *mapping;
-        __block FEMAttributeMapping *fieldMapping;
+        __block FEMAttribute *fieldMapping;
         
         beforeEach(^{
             mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
-	        [mapping addAttributeMappingOfProperty:@"createdAt" atKeypath:@"created_at"];
-	        fieldMapping = [mapping attributeMappingForProperty:@"createdAt"];
+            [mapping addAttributeWithProperty:@"createdAt" keyPath:@"created_at"];
+	        fieldMapping = [mapping attributeForProperty:@"createdAt"];
         });
         
         specify(^{
@@ -126,15 +126,15 @@ describe(@"FEMObjectMapping", ^{
         
         beforeEach(^{
             mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
-	        [mapping addAttributeMappingFromArray:@[@"name", @"email"]];
+            [mapping addAttributesFromArray:@[@"name", @"email"]];
         });
         
         describe(@"name field", ^{
             
-            __block FEMAttributeMapping *fieldMapping;
+            __block FEMAttribute *fieldMapping;
             
             beforeEach(^{
-                fieldMapping = [mapping attributeMappingForProperty:@"name"];
+                fieldMapping = [mapping attributeForProperty:@"name"];
             });
             
             specify(^{
@@ -148,10 +148,10 @@ describe(@"FEMObjectMapping", ^{
         
         describe(@"email field", ^{
             
-            __block FEMAttributeMapping *fieldMapping;
+            __block FEMAttribute *fieldMapping;
             
             beforeEach(^{
-                fieldMapping = [mapping attributeMappingForProperty:@"email"];
+                fieldMapping = [mapping attributeForProperty:@"email"];
             });
             
             specify(^{
@@ -172,18 +172,18 @@ describe(@"FEMObjectMapping", ^{
         
         beforeEach(^{
             mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
-	        [mapping addAttributeMappingDictionary:@{
-                @"identifier": @"id",
-                @"email": @"contact.email"
+            [mapping addAttributesDictionary:@{
+                @"identifier" : @"id",
+                @"email" : @"contact.email"
             }];
         });
         
         describe(@"identifier field", ^{
             
-            __block FEMAttributeMapping *fieldMapping;
+            __block FEMAttribute *fieldMapping;
             
             beforeEach(^{
-                fieldMapping = [mapping attributeMappingForProperty:@"identifier"];
+                fieldMapping = [mapping attributeForProperty:@"identifier"];
             });
             
             specify(^{
@@ -197,10 +197,10 @@ describe(@"FEMObjectMapping", ^{
         
         describe(@"email field", ^{
             
-            __block FEMAttributeMapping *fieldMapping;
+            __block FEMAttribute *fieldMapping;
             
             beforeEach(^{
-                fieldMapping = [mapping attributeMappingForProperty:@"email"];
+                fieldMapping = [mapping attributeForProperty:@"email"];
             });
             
             specify(^{
@@ -221,21 +221,21 @@ describe(@"FEMObjectMapping", ^{
         
         beforeEach(^{
             mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
-	        [mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"birthday"
-                                                                      toKeyPath:@"birthday"
-                                                                     dateFormat:@"yyyy-MM-dd"]];
+            [mapping addAttribute:[FEMAttribute mappingOfProperty:@"birthday"
+                                                        toKeyPath:@"birthday"
+                                                       dateFormat:@"yyyy-MM-dd"]];
         });
         
         specify(^{
-            [[mapping attributeMappingForProperty:@"birthday"] shouldNotBeNil];
+            [[mapping attributeForProperty:@"birthday"] shouldNotBeNil];
         });
         
         specify(^{
-            [[[mapping attributeMappingForProperty:@"birthday"] should] beKindOfClass:[FEMAttributeMapping class]];
+            [[[mapping attributeForProperty:@"birthday"] should] beKindOfClass:[FEMAttribute class]];
         });
         
 //        specify(^{
-//            FEMAttributeMapping *fieldMapping = [mapping attributeMappingForProperty:@"birthdate"];
+//            FEMAttribute *fieldMapping = [mapping attributeMappingForProperty:@"birthdate"];
 //            [[fieldMapping.dateFormat should] equal:@"yyyy-MM-dd"];
 //        });
         
@@ -244,7 +244,7 @@ describe(@"FEMObjectMapping", ^{
     describe(@"#mapKey:toField:withValueBlock:", ^{
         
         __block FEMObjectMapping *mapping;
-        __block FEMAttributeMapping *fieldMapping;
+        __block FEMAttribute *fieldMapping;
         
         beforeEach(^{
             
@@ -254,13 +254,13 @@ describe(@"FEMObjectMapping", ^{
                                      };
             
             mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
-	        [mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"gender"
-                                                                      toKeyPath:@"gender"
-                                                                            map:^id(id value) {
-                        return genders[value];
-                    }]];
+            [mapping addAttribute:[FEMAttribute mappingOfProperty:@"gender"
+                                                        toKeyPath:@"gender"
+                                                              map:^id(id value) {
+                                                                  return genders[value];
+                                                              }]];
 
-            fieldMapping = [mapping attributeMappingForProperty:@"gender"];
+            fieldMapping = [mapping attributeForProperty:@"gender"];
             
         });
         
@@ -273,7 +273,7 @@ describe(@"FEMObjectMapping", ^{
     describe(@"#mapKey:toField:withValueBlock:withReverseBlock:", ^{
        
         __block FEMObjectMapping *mapping;
-        __block FEMAttributeMapping *fieldMapping;
+        __block FEMAttribute *fieldMapping;
         
         beforeEach(^{
             
@@ -283,16 +283,16 @@ describe(@"FEMObjectMapping", ^{
                                       };
             
             mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
-	        [mapping addAttributeMapping:[FEMAttributeMapping mappingOfProperty:@"gender"
-                                                                      toKeyPath:@"gender"
-                                                                            map:^id(id value) {
-                        return genders[value];
-                    }
-                                                                     reverseMap:^id(id value) {
-                        return [genders allKeysForObject:value].lastObject;
-                    }]];
+            [mapping addAttribute:[FEMAttribute mappingOfProperty:@"gender"
+                                                        toKeyPath:@"gender"
+                                                              map:^id(id value) {
+                                                                  return genders[value];
+                                                              }
+                                                       reverseMap:^id(id value) {
+                                                           return [genders allKeysForObject:value].lastObject;
+                                                       }]];
 	        
-            fieldMapping = [mapping attributeMappingForProperty:@"gender"];
+            fieldMapping = [mapping attributeForProperty:@"gender"];
         });
         
         specify(^{
@@ -309,23 +309,23 @@ describe(@"FEMObjectMapping", ^{
         });
         
         specify(^{
-	        [[mapping relationshipMappings] shouldNotBeNil];
+	        [[mapping relationships] shouldNotBeNil];
         });
         
         specify(^{
-            [[mapping relationshipMappingForProperty:@"car"] shouldNotBeNil];
+            [[mapping relationshipForProperty:@"car"] shouldNotBeNil];
         });
         
         specify(^{
-            [[[[mapping relationshipMappingForProperty:@"car"] property] should] equal:@"car"];
+            [[[[mapping relationshipForProperty:@"car"] property] should] equal:@"car"];
         });
         
         specify(^{
-            [[mapping relationshipMappingForProperty:@"phones"] shouldNotBeNil];
+            [[mapping relationshipForProperty:@"phones"] shouldNotBeNil];
         });
         
         specify(^{
-            [[[[mapping relationshipMappingForProperty:@"phones"] property] should] equal:@"phones"];
+            [[[[mapping relationshipForProperty:@"phones"] property] should] equal:@"phones"];
         });
         
     });
@@ -341,19 +341,19 @@ describe(@"FEMObjectMapping", ^{
         });
 
         specify(^{
-            [[[[mapping relationshipMappingForProperty:@"personCar"] property] should] equal:@"personCar"];
+            [[[[mapping relationshipForProperty:@"personCar"] property] should] equal:@"personCar"];
         });
         
         specify(^{
-            [[[[mapping relationshipMappingForProperty:@"personCar"] keyPath] should] equal:@"car"];
+            [[[[mapping relationshipForProperty:@"personCar"] keyPath] should] equal:@"car"];
         });
         
         specify(^{
-            [[[[mapping relationshipMappingForProperty:@"personPhones"] property] should] equal:@"personPhones"];
+            [[[[mapping relationshipForProperty:@"personPhones"] property] should] equal:@"personPhones"];
         });
         
         specify(^{
-            [[[[mapping relationshipMappingForProperty:@"personPhones"] keyPath] should] equal:@"phones"];
+            [[[[mapping relationshipForProperty:@"personPhones"] keyPath] should] equal:@"phones"];
         });
     });
     
@@ -366,11 +366,11 @@ describe(@"FEMObjectMapping", ^{
         });
         
         specify(^{
-	        [[mapping relationshipMappings] shouldNotBeNil];
+	        [[mapping relationships] shouldNotBeNil];
         });
         
         specify(^{
-            [[mapping relationshipMappingForProperty:@"phones"] shouldNotBeNil];
+            [[mapping relationshipForProperty:@"phones"] shouldNotBeNil];
         });
         
     });

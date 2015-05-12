@@ -1,9 +1,9 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
-#import "FEMRelationshipMapping.h"
+#import "FEMRelationship.h"
 #import "FEMMapping.h"
 
-@implementation FEMRelationshipMapping
+@implementation FEMRelationship
 
 @synthesize property = _property;
 @synthesize keyPath = _keyPath;
@@ -27,10 +27,10 @@
 	return self;
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationshipMapping *mapping))configuration {
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationship *mapping))configuration {
 	NSParameterAssert(configuration);
 
-	FEMRelationshipMapping *mapping = [[self alloc] initWithProperty:property
+	FEMRelationship *mapping = [[self alloc] initWithProperty:property
                                                              keyPath:keyPath
                                                     assignmentPolicy:NULL
                                                        objectMapping:nil];
@@ -38,7 +38,7 @@
 	return mapping;
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)property configuration:(void (^)(FEMRelationshipMapping *mapping))configuration {
++ (instancetype)mappingOfProperty:(NSString *)property configuration:(void (^)(FEMRelationship *mapping))configuration {
 	return [self mappingOfProperty:property toKeyPath:nil configuration:configuration];
 }
 
@@ -78,9 +78,9 @@
 
 @end
 
-@implementation FEMRelationshipMapping (Deprecated)
+@implementation FEMRelationship (Deprecated)
 
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationshipMapping *mapping))configuration {
++ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationship *mapping))configuration {
     return [self mappingOfProperty:property toKeyPath:keyPath configuration:configuration];
 }
 
@@ -90,7 +90,7 @@
 
 @end
 
-@implementation FEMRelationshipMapping (Extension)
+@implementation FEMRelationship (Extension)
 
 - (id)representationFromExternalRepresentation:(id)externalRepresentation {
 	if (self.keyPath) return [externalRepresentation valueForKeyPath:self.keyPath];

@@ -3,13 +3,13 @@
 #import "FEMObjectDeserializer.h"
 
 #import "FEMTypeIntrospection.h"
-#import "FEMAttributeMapping.h"
+#import "FEMAttribute.h"
 #import <objc/runtime.h>
 #import "FEMDeserializer.h"
 #import "NSArray+FEMPropertyRepresentation.h"
-#import "FEMAttributeMapping+Extension.h"
+#import "FEMAttribute+Extension.h"
 #import "FEMObjectMapping.h"
-#import "FEMRelationshipMapping.h"
+#import "FEMRelationship.h"
 
 @implementation FEMObjectDeserializer
 
@@ -24,7 +24,7 @@
 }
 
 + (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMObjectMapping *)mapping {
-	for (FEMAttributeMapping *attributeMapping in mapping.attributeMappings) {
+	for (FEMAttribute *attributeMapping in mapping.attributes) {
         [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
 	}
 
@@ -38,7 +38,7 @@
             @"%@ expect %@ for %@.objectMapping",
             NSStringFromClass(self),
             NSStringFromClass(FEMObjectMapping.class),
-            NSStringFromClass(FEMRelationshipMapping.class)
+            NSStringFromClass(FEMRelationship.class)
          );
 
         id targetValue = nil;

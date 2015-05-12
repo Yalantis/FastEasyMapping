@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "FEMTypes.h"
 #import "FEMMapping.h"
-
-@class FEMAttributeMapping;
 
 @interface FEMManagedObjectMapping : FEMMapping
 
 @property (nonatomic, copy, readonly) NSString *entityName;
+@property (nonatomic, copy) NSString *primaryKey;
+@property (nonatomic, strong, readonly) FEMAttribute *primaryKeyAttribute;
 
 + (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName;
 + (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName
@@ -25,5 +26,11 @@
 
 - (id)initWithEntityName:(NSString *)entityName;
 - (id)initWithEntityName:(NSString *)entityName rootPath:(NSString *)rootPath;
+
+@end
+
+@interface FEMManagedObjectMapping (Deprecated)
+
+@property (nonatomic, strong, readonly) FEMAttributeMapping *primaryKeyMapping __attribute__((deprecated("will become obsolete in 0.6.0; use -[FEMManagedObjectMapping primaryKeyAttribute] instead")));
 
 @end

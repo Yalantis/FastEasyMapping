@@ -1,35 +1,20 @@
-// For License please refer to LICENSE file in the root of FastEasyMapping project
+//
+//  FEMRelationshipMapping.h
+//  FastEasyMapping
+//
+//  Created by zen on 03/12/14.
+//  Copyright (c) 2014 Yalantis. All rights reserved.
+//
 
-#import <Foundation/Foundation.h>
-
-#import "FEMPropertyMapping.h"
-#import "FEMAssignmentPolicy.h"
-
-@class FEMMapping;
-
-@interface FEMRelationshipMapping : NSObject <FEMPropertyMapping>
-
-@property (nonatomic, copy) FEMAssignmentPolicy assignmentPolicy;
-
-@property (nonatomic, strong) FEMMapping *objectMapping;
-@property (nonatomic, getter=isToMany) BOOL toMany;
-
-- (void)setObjectMapping:(FEMMapping *)objectMapping forKeyPath:(NSString *)keyPath;
-
-- (instancetype)initWithProperty:(NSString *)property
-                         keyPath:(NSString *)keyPath
-                assignmentPolicy:(FEMAssignmentPolicy)policy
-                   objectMapping:(FEMMapping *)objectMapping;
-
-+ (instancetype)mappingOfProperty:(NSString *)property
-                    configuration:(void (^)(FEMRelationshipMapping *mapping))configuration;
-+ (instancetype)mappingOfProperty:(NSString *)property
-                        toKeyPath:(NSString *)keyPath
-                    configuration:(void (^)(FEMRelationshipMapping *mapping))configuration;
+#import "FEMRelationship.h"
 
 /**
-* same as + [FEMRelationshipMapping mappingOfProperty:property toKeyPath:nil objectMapping:objectMapping];
+* @discussion
+* FEMRelationshipMapping has been renamed to FEMRelationship
 */
+
+@interface FEMRelationshipMapping
+
 + (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping;
 + (instancetype)mappingOfProperty:(NSString *)property
                         toKeyPath:(NSString *)keyPath
@@ -49,3 +34,5 @@
 - (id)representationFromExternalRepresentation:(id)externalRepresentation;
 
 @end
+
+@compatibility_alias FEMRelationshipMapping FEMRelationship;
