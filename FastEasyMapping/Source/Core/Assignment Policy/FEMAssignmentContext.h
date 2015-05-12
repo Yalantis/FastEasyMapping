@@ -5,6 +5,8 @@
 
 @import Foundation;
 
+@class FEMRelationship;
+
 @protocol FEMAssignmentContext <NSObject>
 
 @required

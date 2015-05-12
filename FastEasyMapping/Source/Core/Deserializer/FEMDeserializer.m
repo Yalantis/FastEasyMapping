@@ -12,7 +12,7 @@
 #import "FEMAttribute+Extension.h"
 #import "FEMRelationship.h"
 #import "FEMDefaultAssignmentContext.h"
-#import "FEMManagedObjectDeserializerSource.h"
+#import "FEMManagedObjectStore.h"
 
 @implementation FEMDeserializer
 
@@ -58,7 +58,7 @@
 
             id<FEMAssignmentContextPrivate> context = [self.source newAssignmentContext];
             context.destinationObject = object;
-            context.relationshipMapping = relationship;
+            context.relationship = relationship;
             context.sourceRelationshipValue = [object valueForKey:relationship.property];
             context.targetRelationshipValue = targetValue;
 
@@ -69,7 +69,7 @@
 }
 
 - (id)fulfillObject:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMMapping *)mapping {
-    for (FEMAttributeMapping *attributeMapping in mapping.attributeMappings) {
+    for (FEMAttributeMapping *attributeMapping in mapping.attributes) {
         [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
     }
 
@@ -126,7 +126,7 @@
 + (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
                                  usingMapping:(FEMManagedObjectMapping *)mapping
                                       context:(NSManagedObjectContext *)context {
-    FEMManagedObjectDeserializerSource *source = [[FEMManagedObjectDeserializerSource alloc] initWithMapping:mapping
+    FEMManagedObjectStore *source = [[FEMManagedObjectStore alloc] initWithMapping:mapping
                                                                                       externalRepresentation:externalRepresentation
                                                                                         managedObjectContext:context];
     FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithDeserializerSource:source];
@@ -135,7 +135,7 @@
 }
 
 + (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping {
-    FEMManagedObjectDeserializerSource *source = [[FEMManagedObjectDeserializerSource alloc] initWithMapping:mapping
+    FEMManagedObjectStore *source = [[FEMManagedObjectStore alloc] initWithMapping:mapping
                                                                                       externalRepresentation:externalRepresentation
                                                                                         managedObjectContext:object.managedObjectContext];
     FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithDeserializerSource:source];
@@ -146,7 +146,7 @@
 + (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation
                                             usingMapping:(FEMManagedObjectMapping *)mapping
                                                  context:(NSManagedObjectContext *)context {
-    FEMManagedObjectDeserializerSource *source = [[FEMManagedObjectDeserializerSource alloc] initWithMapping:mapping
+    FEMManagedObjectStore *source = [[FEMManagedObjectStore alloc] initWithMapping:mapping
                                                                                       externalRepresentation:externalRepresentation
                                                                                         managedObjectContext:context];
     FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithDeserializerSource:source];

@@ -7,7 +7,7 @@
 
 @class FEMManagedObjectMapping, NSManagedObjectContext;
 
-@interface FEMManagedObjectDeserializerSource : NSObject <FEMDeserializerSource>
+@interface FEMManagedObjectStore : NSObject <FEMDeserializerSource>
 
 - (instancetype)initWithMapping:(FEMManagedObjectMapping *)mapping
          externalRepresentation:(id)externalRepresentation

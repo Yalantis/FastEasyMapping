@@ -3,15 +3,15 @@
 // Copyright (c) 2014 Yalantis. All rights reserved.
 //
 
-#import "FEMManagedObjectDeserializerSource.h"
+#import "FEMManagedObjectStore.h"
 
-@import CoreData;
+@import CoreData.h;
 
 #import "FEMManagedObjectMapping.h"
 #import "FEMCache.h"
 #import "FEMDefaultAssignmentContext.h"
 
-@implementation FEMManagedObjectDeserializerSource {
+@implementation FEMManagedObjectStore {
     FEMCache *_cache;
 
     NSManagedObjectContext *_managedObjectContext;

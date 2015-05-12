@@ -3,7 +3,7 @@
 // Copyright (c) 2014 Yalantis. All rights reserved.
 //
 
-@import Foundation;
+@import Foundation.h;
 
 @protocol FEMAssignmentContextPrivate;
 
