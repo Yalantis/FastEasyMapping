@@ -3,14 +3,12 @@
 // Copyright (c) 2014 Yalantis. All rights reserved.
 //
 
-#import "FEMDeserializerSource.h"
+#import "FEMObjectStore.h"
 
-@class FEMManagedObjectMapping, NSManagedObjectContext;
+@class NSManagedObjectContext;
 
-@interface FEMManagedObjectStore : NSObject <FEMDeserializerSource>
+@interface FEMManagedObjectStore : FEMObjectStore
 
-- (instancetype)initWithMapping:(FEMManagedObjectMapping *)mapping
-         externalRepresentation:(id)externalRepresentation
-           managedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (instancetype)initWithContext:(NSManagedObjectContext *)context;
 
 @end

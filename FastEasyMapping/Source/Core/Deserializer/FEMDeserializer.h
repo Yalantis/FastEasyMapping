@@ -2,38 +2,38 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol FEMDeserializerSource;
-
-@class FEMManagedObjectMapping, NSManagedObject, NSFetchRequest, NSManagedObjectContext;
+@class FEMObjectStore, FEMMapping, NSManagedObject, NSFetchRequest, NSManagedObjectContext;
 
 @interface FEMDeserializer : NSObject
 
-@property (nonatomic, strong, readonly) id<FEMDeserializerSource> source;
-- (id)initWithDeserializerSource:(id<FEMDeserializerSource>)deserializerSource;
+@property (nonatomic, strong, readonly) FEMObjectStore *store;
+- (id)initWithStore:(FEMObjectStore *)store;
 
-- (id)deserializeObject;
+- (id)deserializeObjectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
+- (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
+- (NSArray *)deserializeCollectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping;
 
-- (NSArray *)deserializeCollection;
+@end
 
-+ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
-                                 usingMapping:(FEMManagedObjectMapping *)mapping
-			                          context:(NSManagedObjectContext *)context;
+@interface FEMDeserializer (Shortcut)
 
-+ (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping;
++ (id)deserializeObjectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context;
++ (id)fillObject:(NSManagedObject *)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
 
 /** Get an array of managed objects from an external representation. If the objectMapping has
-    a primary key existing objects will be updated. This method is slow and it doesn't
-    delete obsolete objects, use
-    syncArrayOfObjectsFromExternalRepresentation:withMapping:fetchRequest:inManagedObjectContext:
-    instead.
- */
+a primary key existing objects will be updated. This method is slow and it doesn't
+delete obsolete objects, use
+syncArrayOfObjectsFromExternalRepresentation:withMapping:fetchRequest:inManagedObjectContext:
+instead.
+*/
 + (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation
-                                            usingMapping:(FEMManagedObjectMapping *)mapping
-			                                     context:(NSManagedObjectContext *)context;
+                                            usingMapping:(FEMMapping *)mapping
+                                                 context:(NSManagedObjectContext *)context;
 
 + (NSArray *)synchronizeCollectionExternalRepresentation:(NSArray *)externalRepresentation
-                                            usingMapping:(FEMManagedObjectMapping *)mapping
+                                            usingMapping:(FEMMapping *)mapping
                                                predicate:(NSPredicate *)predicate
                                                  context:(NSManagedObjectContext *)context;
+
 
 @end

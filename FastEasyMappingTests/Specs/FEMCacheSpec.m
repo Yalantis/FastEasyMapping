@@ -86,9 +86,9 @@ SPEC_BEGIN(FEMCacheSpec)
             [[@([Car MR_countOfEntitiesWithContext:context]) should] beZero];
             [[[cache existingObjectForRepresentation:representation mapping:mapping] should] beNil];
             
-            Car *car = [FEMDeserializer deserializeObjectExternalRepresentation:representation
-                                                                   usingMapping:mapping
-                                                                        context:context];
+            Car *car = [FEMDeserializer deserializeObjectFromRepresentation:representation
+                                                                    mapping:mapping
+                                                                    context:context];
 
             [cache addExistingObject:car usingMapping:mapping];
             [[[cache existingObjectForRepresentation:representation mapping:mapping] should] equal:car];
@@ -97,9 +97,9 @@ SPEC_BEGIN(FEMCacheSpec)
         it(@"should return registered object", ^{
             [[@([Car MR_countOfEntitiesWithContext:context]) should] beZero];
 
-            Car *car = [FEMDeserializer deserializeObjectExternalRepresentation:representation
-                                                                   usingMapping:mapping
-                                                                        context:context];
+            Car *car = [FEMDeserializer deserializeObjectFromRepresentation:representation
+                                                                    mapping:mapping
+                                                                    context:context];
 
             [[@(car.objectID.isTemporaryID) should] beTrue];
             [[[context objectRegisteredForID:car.objectID] should] equal:car];
@@ -110,9 +110,9 @@ SPEC_BEGIN(FEMCacheSpec)
         it(@"should return saved object", ^{
             [[@([Car MR_countOfEntitiesWithContext:context]) should] beZero];
 
-            Car *car = [FEMDeserializer deserializeObjectExternalRepresentation:representation
-                                                                   usingMapping:mapping
-                                                                        context:context];
+            Car *car = [FEMDeserializer deserializeObjectFromRepresentation:representation
+                                                                    mapping:mapping
+                                                                    context:context];
             [[@(car.objectID.isTemporaryID) should] beTrue];
             [context MR_saveToPersistentStoreAndWait];
             [[@([Car MR_countOfEntitiesWithContext:context]) should] equal:@1];
@@ -148,18 +148,18 @@ SPEC_BEGIN(FEMCacheSpec)
         });
 
         it(@"should return nil for missing nested object", ^{
-            [FEMDeserializer deserializeObjectExternalRepresentation:representation
-                                                        usingMapping:mapping
-                                                             context:context];
+            [FEMDeserializer deserializeObjectFromRepresentation:representation
+                                                         mapping:mapping
+                                                         context:context];
             id missingObjectRepresentation = @{@"id": @2};
 
             [[[cache existingObjectForRepresentation:missingObjectRepresentation mapping:carMapping] should] beNil];
         });
 
         it(@"should return existing nested object", ^{
-            Person *person = [FEMDeserializer deserializeObjectExternalRepresentation:representation
-                                                                         usingMapping:mapping
-                                                                              context:context];
+            Person *person = [FEMDeserializer deserializeObjectFromRepresentation:representation
+                                                                          mapping:mapping
+                                                                          context:context];
             [[[cache existingObjectForRepresentation:representation[@"car"] mapping:carMapping] should] equal:person.car];
         });
     });

@@ -5,7 +5,7 @@
 
 #import "FEMManagedObjectStore.h"
 
-@import CoreData.h;
+@import CoreData;
 
 #import "FEMManagedObjectMapping.h"
 #import "FEMCache.h"
@@ -23,12 +23,10 @@
 
 #pragma mark - Init
 
-- (instancetype)initWithMapping:(FEMManagedObjectMapping *)mapping externalRepresentation:(id)externalRepresentation managedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+- (instancetype)initWithContext:(NSManagedObjectContext *)context {
     self = [super init];
     if (self) {
-        _mapping = mapping;
-        _externalRepresentation = externalRepresentation;
-        _managedObjectContext = managedObjectContext;
+        _managedObjectContext = context;
 
         _cache = [[FEMCache alloc] initWithMapping:_mapping externalRepresentation:externalRepresentation context:_managedObjectContext];
     }
@@ -55,7 +53,7 @@
     return [_cache existingObjectsForMapping:mapping];
 }
 
-- (BOOL)shouldRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
+- (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
     return mapping.primaryKey != nil && [object isInserted];
 }
 
