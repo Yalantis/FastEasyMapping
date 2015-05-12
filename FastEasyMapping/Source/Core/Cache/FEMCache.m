@@ -10,26 +10,6 @@
 
 @class FEMCache;
 
-NSString *const EMKLookupCacheCurrentKey = @"com.yalantis.FastEasyMapping.cache";
-
-FEMCache *FEMCacheGetCurrent() {
-	return [[NSThread currentThread] threadDictionary][EMKLookupCacheCurrentKey];
-}
-
-void FEMCacheSetCurrent(FEMCache *cache) {
-	NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
-	NSCParameterAssert(cache);
-	NSCParameterAssert(!threadDictionary[EMKLookupCacheCurrentKey]);
-
-    threadDictionary[EMKLookupCacheCurrentKey] = cache;
-}
-
-void FEMCacheRemoveCurrent() {
-	NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
-	NSCParameterAssert(threadDictionary[EMKLookupCacheCurrentKey]);
-	[threadDictionary removeObjectForKey:EMKLookupCacheCurrentKey];
-}
-
 @implementation FEMCache {
 	NSManagedObjectContext *_context;
 
@@ -74,7 +54,7 @@ void FEMCacheRemoveCurrent() {
 		}
 	}
 
-	for (FEMRelationshipMapping *relationshipMapping in mapping.relationshipMappings) {
+	for (FEMRelationship *relationshipMapping in mapping.relationships) {
 		id relationshipRepresentation = [relationshipMapping representationFromExternalRepresentation:objectRepresentation];
         if (relationshipRepresentation && relationshipRepresentation != NSNull.null) {
             [self inspectRepresentation:relationshipRepresentation
