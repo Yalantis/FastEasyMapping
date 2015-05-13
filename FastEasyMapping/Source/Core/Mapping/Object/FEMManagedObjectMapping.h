@@ -15,11 +15,8 @@
 
 @interface FEMMapping (FEMManagedObjectMapping_Deprecated)
 
-+ (instancetype)mappingForEntityName:(NSString *)entityName __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (instancetype)mappingForEntityName:(NSString *)entityName
-                       configuration:(void (^)(FEMMapping *sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (instancetype)mappingForEntityName:(NSString *)entityName
-                            rootPath:(NSString *)rootPath
-                       configuration:(void (^)(FEMMapping *sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
++ (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
++ (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName configuration:(void (^)(FEMManagedObjectMapping *sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
++ (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName rootPath:(NSString *)rootPath configuration:(void (^)(FEMManagedObjectMapping *sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
 
 @end

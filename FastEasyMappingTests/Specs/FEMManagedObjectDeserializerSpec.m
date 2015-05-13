@@ -16,7 +16,7 @@
 #import "FEMRelationship.h"
 
 #import "FEMMapping.h"
-#import "FEMManagedObjectMapping.h"
+#import "FEMMapping.h"
 #import "Phone.h"
 
 SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
@@ -314,7 +314,7 @@ describe(@"FEMDeserializer", ^{
 
         beforeAll(^{
             NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithMissingRelationships"];
-            FEMManagedObjectMapping *mapping = [MappingProvider personMapping];
+            FEMMapping *mapping = [MappingProvider personMapping];
             person = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation mapping:mapping context:moc];
         });
         
@@ -334,7 +334,7 @@ describe(@"FEMDeserializer", ^{
     describe(@"relationship assignment policy", ^{
         __block NSDictionary *externalRepresentation_v1 = nil;
         __block NSDictionary *externalRepresentation_v2 = nil;
-        __block FEMManagedObjectMapping *mapping = nil;
+        __block FEMMapping *mapping = nil;
         __block FEMRelationship *relationshipMapping = nil;
         
         context(@"to-one", ^{
@@ -501,7 +501,7 @@ describe(@"FEMDeserializer", ^{
     describe(@"synchronization", ^{
         __block Car *car;
         __block NSDictionary *externalRepresentation;
-        __block FEMManagedObjectMapping *mapping;
+        __block FEMMapping *mapping;
 
         beforeEach(^{
             externalRepresentation = @{

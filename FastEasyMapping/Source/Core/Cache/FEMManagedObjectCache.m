@@ -1,18 +1,12 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import "FEMManagedObjectCache.h"
-#import "FEMManagedObjectMapping.h"
-#import "FEMRelationship.h"
-#import "FEMAttribute.h"
-#import "FEMAttribute+Extension.h"
-#import "FEMRepresentationUtility.h"
-#import "FEMObjectMapping.h"
-#import "FEMMapping.h"
-#import "FEMRepresentationUtility.h"
 
 #import <CoreData/CoreData.h>
 
-@class FEMManagedObjectCache;
+#import "FEMMapping.h"
+#import "FEMAttribute+Extension.h"
+#import "FEMRepresentationUtility.h"
 
 @implementation FEMManagedObjectCache {
 	NSManagedObjectContext *_context;
@@ -45,7 +39,7 @@
 
 #pragma mark - Inspection
 
-- (void)inspectObjectRepresentation:(id)objectRepresentation mapping:(FEMManagedObjectMapping *)mapping {
+- (void)inspectObjectRepresentation:(id)objectRepresentation mapping:(FEMMapping *)mapping {
 	if (mapping.primaryKey) {
 		FEMAttribute *primaryKeyMapping = mapping.primaryKeyAttribute;
 		NSParameterAssert(primaryKeyMapping);
@@ -64,7 +58,7 @@
 	}
 }
 
-- (void)inspectRepresentation:(id)representation mapping:(FEMObjectMapping *)mapping {
+- (void)inspectRepresentation:(id)representation mapping:(FEMMapping *)mapping {
 	if ([representation isKindOfClass:NSArray.class]) {
 		for (id objectRepresentation in representation) {
             [self inspectObjectRepresentation:objectRepresentation mapping:mapping];
@@ -80,12 +74,12 @@
 	}
 }
 
-- (void)inspectExternalRepresentation:(id)externalRepresentation mapping:(FEMManagedObjectMapping *)mapping {
+- (void)inspectExternalRepresentation:(id)externalRepresentation mapping:(FEMMapping *)mapping {
     id representation = FEMRepresentationRootForKeyPath(externalRepresentation, mapping.rootPath);
     [self inspectRepresentation:representation mapping:mapping];
 }
 
-- (void)collectEntityNames:(NSMutableSet *)namesCollection mapping:(FEMManagedObjectMapping *)mapping {
+- (void)collectEntityNames:(NSMutableSet *)namesCollection mapping:(FEMMapping *)mapping {
 	[namesCollection addObject:mapping.entityName];
 
 	for (FEMRelationship *relationshipMapping in mapping.relationships) {
@@ -93,7 +87,7 @@
 	}
 }
 
-- (void)prepareMappingLookupStructure:(FEMManagedObjectMapping *)mapping {
+- (void)prepareMappingLookupStructure:(FEMMapping *)mapping {
 	NSMutableSet *entityNames = [NSMutableSet new];
     [self collectEntityNames:entityNames mapping:mapping];
 
@@ -102,7 +96,7 @@
 	}
 }
 
-- (NSMutableDictionary *)fetchExistingObjectsForMapping:(FEMManagedObjectMapping *)mapping {
+- (NSMutableDictionary *)fetchExistingObjectsForMapping:(FEMMapping *)mapping {
 	NSSet *lookupValues = _lookupKeysMap[mapping.entityName];
 	if (lookupValues.count == 0) return [NSMutableDictionary dictionary];
 
@@ -120,7 +114,7 @@
 	return output;
 }
 
-- (NSMutableDictionary *)cachedObjectsForMapping:(FEMManagedObjectMapping *)mapping {
+- (NSMutableDictionary *)cachedObjectsForMapping:(FEMMapping *)mapping {
 	NSMutableDictionary *entityObjectsMap = _lookupObjectsMap[mapping.entityName];
 	if (!entityObjectsMap) {
 		entityObjectsMap = [self fetchExistingObjectsForMapping:mapping];

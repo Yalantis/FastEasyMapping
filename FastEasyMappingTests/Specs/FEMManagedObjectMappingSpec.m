@@ -2,30 +2,30 @@
 
 #import "Kiwi.h"
 #import "Person.h"
-#import "FEMManagedObjectMapping.h"
+#import "FEMMapping.h"
 
-SPEC_BEGIN(FEMManagedObjectMappingSpec)
+SPEC_BEGIN(FEMMappingSpec)
 
-describe(@"FEMManagedObjectMapping", ^{
+describe(@"FEMMapping", ^{
     
     describe(@"class methods", ^{
         
         specify(^{
-	        [[FEMManagedObjectMapping should] respondToSelector:@selector(mappingForEntityName:configuration:)];
+	        [[FEMMapping should] respondToSelector:@selector(mappingForEntityName:configuration:)];
         });
         
         specify(^{
-	        [[FEMManagedObjectMapping should] respondToSelector:@selector(mappingForEntityName:rootPath:configuration:)];
+	        [[FEMMapping should] respondToSelector:@selector(mappingForEntityName:rootPath:configuration:)];
         });
         
     });
     
     describe(@"constructors", ^{
         
-        __block FEMManagedObjectMapping *mapping;
+        __block FEMMapping *mapping;
         
         beforeEach(^{
-            mapping = [[FEMManagedObjectMapping alloc] initWithEntityName:@"Temp"];
+            mapping = [[FEMMapping alloc] initWithEntityName:@"Temp"];
         });
         
         specify(^{
@@ -40,10 +40,10 @@ describe(@"FEMManagedObjectMapping", ^{
 
     describe(@"properties", ^{
         
-        __block FEMManagedObjectMapping *mapping;
+        __block FEMMapping *mapping;
         
         beforeEach(^{
-            mapping = [[FEMManagedObjectMapping alloc] initWithEntityName:@"Temp"];
+            mapping = [[FEMMapping alloc] initWithEntityName:@"Temp"];
         });
         
         specify(^{
@@ -65,11 +65,11 @@ describe(@"FEMManagedObjectMapping", ^{
     
     describe(@".mappingForClass:configuration:", ^{
         
-        __block FEMManagedObjectMapping *mapping;
+        __block FEMMapping *mapping;
         
         beforeEach(^{
-            mapping = [FEMManagedObjectMapping mappingForEntityName:@"Car"
-                                                      configuration:^(FEMManagedObjectMapping *mapping) {
+            mapping = [FEMMapping mappingForEntityName:@"Car"
+                                                      configuration:^(FEMMapping *mapping) {
 
                                                       }];
         });
@@ -86,12 +86,12 @@ describe(@"FEMManagedObjectMapping", ^{
     
     describe(@".mappingForClass:rootPath:configuration:", ^{
         
-        __block FEMManagedObjectMapping *mapping;
+        __block FEMMapping *mapping;
         
         beforeEach(^{
-            mapping = [FEMManagedObjectMapping mappingForEntityName:@"Car"
+            mapping = [FEMMapping mappingForEntityName:@"Car"
                                                            rootPath:@"car"
-		                                              configuration:^(FEMManagedObjectMapping *mapping) {
+		                                              configuration:^(FEMMapping *mapping) {
 
 		                                              }];
         });
@@ -112,10 +112,10 @@ describe(@"FEMManagedObjectMapping", ^{
     
     describe(@"#initWithObjectClass:", ^{
         
-        __block FEMManagedObjectMapping *mapping;
+        __block FEMMapping *mapping;
         
         beforeEach(^{
-            mapping = [[FEMManagedObjectMapping alloc] initWithEntityName:@"Car"];
+            mapping = [[FEMMapping alloc] initWithEntityName:@"Car"];
         });
         
         specify(^{
@@ -129,10 +129,10 @@ describe(@"FEMManagedObjectMapping", ^{
     
     describe(@"#initWithObjectClass:rootPath:", ^{
         
-        __block FEMManagedObjectMapping *mapping;
+        __block FEMMapping *mapping;
         
         beforeEach(^{
-            mapping = [[FEMManagedObjectMapping alloc] initWithEntityName:@"Car" rootPath:@"car"];
+            mapping = [[FEMMapping alloc] initWithEntityName:@"Car" rootPath:@"car"];
         });
         
         specify(^{

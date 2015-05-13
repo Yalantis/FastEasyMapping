@@ -8,7 +8,7 @@
 #import <CMFactory/CMFixture.h>
 
 #import "Person.h"
-#import "FEMManagedObjectMapping.h"
+#import "FEMMapping.h"
 #import "FEMManagedObjectCache.h"
 #import "MappingProvider.h"
 #import "Car.h"
@@ -51,7 +51,7 @@ SPEC_BEGIN(FEMCacheSpec)
 
     describe(@"object retrieval", ^{
         __block NSDictionary *representation = nil;
-        __block FEMManagedObjectMapping *mapping = nil;
+        __block FEMMapping *mapping = nil;
         __block FEMManagedObjectCache *cache = nil;
         beforeEach(^{
             representation = @{
@@ -129,8 +129,8 @@ SPEC_BEGIN(FEMCacheSpec)
     describe(@"nested object retrieval", ^{
         __block FEMManagedObjectCache *cache = nil;
         __block NSDictionary *representation = nil;
-        __block FEMManagedObjectMapping *mapping = nil;
-        __block FEMManagedObjectMapping *carMapping = nil;
+        __block FEMMapping *mapping = nil;
+        __block FEMMapping *carMapping = nil;
 
         beforeEach(^{
             representation = [CMFixture buildUsingFixture:@"PersonWithCar_1"];
