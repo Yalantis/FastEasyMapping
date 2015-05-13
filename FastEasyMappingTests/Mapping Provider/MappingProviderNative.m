@@ -12,27 +12,28 @@
 #import "NativeChild.h"
 #import "CatNative.h"
 
-#import "FEMObjectMapping.h"
+#import "FEMMapping.h"
 #import "FEMAttribute.h"
+#import "FEMObjectMapping.h"
 
 @implementation MappingProviderNative
 
-+ (FEMObjectMapping *)carMapping {
-	return [FEMObjectMapping mappingForClass:[CarNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)carMapping {
+	return [FEMMapping mappingForClass:[CarNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"model", @"year"]];
 	}];
 }
 
-+ (FEMObjectMapping *)carWithRootKeyMapping {
-	return [FEMObjectMapping mappingForClass:[CarNative class]
++ (FEMMapping *)carWithRootKeyMapping {
+	return [FEMMapping mappingForClass:[CarNative class]
 	                                rootPath:@"car"
-			                   configuration:^(FEMObjectMapping *mapping) {
+			                   configuration:^(FEMMapping *mapping) {
                                    [mapping addAttributesFromArray:@[@"model", @"year"]];
 			                   }];
 }
 
-+ (FEMObjectMapping *)carNestedAttributesMapping {
-	return [FEMObjectMapping mappingForClass:[CarNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)carNestedAttributesMapping {
+	return [FEMMapping mappingForClass:[CarNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"model"]];
         [mapping addAttributesDictionary:@{
             @"year" : @"information.year"
@@ -40,8 +41,8 @@
 	}];
 }
 
-+ (FEMObjectMapping *)carWithDateMapping {
-	return [FEMObjectMapping mappingForClass:[CarNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)carWithDateMapping {
+	return [FEMMapping mappingForClass:[CarNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"model", @"year"]];
         [mapping addAttribute:[FEMAttribute mappingOfProperty:@"createdAt"
                                                     toKeyPath:@"created_at"
@@ -49,8 +50,8 @@
 	}];
 }
 
-+ (FEMObjectMapping *)phoneMapping {
-	return [FEMObjectMapping mappingForClass:[PhoneNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)phoneMapping {
+	return [FEMMapping mappingForClass:[PhoneNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"number"]];
         [mapping addAttributesDictionary:@{
             @"DDI" : @"ddi",
@@ -59,8 +60,8 @@
 	}];
 }
 
-+ (FEMObjectMapping *)personMapping {
-	return [FEMObjectMapping mappingForClass:[PersonNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)personMapping {
+	return [FEMMapping mappingForClass:[PersonNative class] configuration:^(FEMMapping *mapping) {
 		NSDictionary *genders = @{@"male" : @(GenderMale), @"female" : @(GenderFemale)};
         [mapping addAttributesFromArray:@[@"name", @"email"]];
         [mapping addAttribute:[FEMAttribute mappingOfProperty:@"gender"
@@ -77,22 +78,22 @@
 	}];
 }
 
-+ (FEMObjectMapping *)personWithCarMapping {
-	return [FEMObjectMapping mappingForClass:[PersonNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)personWithCarMapping {
+	return [FEMMapping mappingForClass:[PersonNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"name", @"email"]];
 		[mapping addRelationshipMapping:[self carMapping] forProperty:@"car" keyPath:@"car"];
 	}];
 }
 
-+ (FEMObjectMapping *)personWithPhonesMapping {
-	return [FEMObjectMapping mappingForClass:[PersonNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)personWithPhonesMapping {
+	return [FEMMapping mappingForClass:[PersonNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"name", @"email"]];
 		[mapping addToManyRelationshipMapping:[self phoneMapping] forProperty:@"phones" keyPath:@"phones"];
 	}];
 }
 
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping {
-	return [FEMObjectMapping mappingForClass:[PersonNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)personWithOnlyValueBlockMapping {
+	return [FEMMapping mappingForClass:[PersonNative class] configuration:^(FEMMapping *mapping) {
 		NSDictionary *genders = @{@"male" : @(GenderMale), @"female" : @(GenderFemale)};
         [mapping addAttributesFromArray:@[@"name", @"email"]];
         [mapping addAttribute:[FEMAttribute mappingOfProperty:@"gender"
@@ -106,8 +107,8 @@
 	}];
 }
 
-+ (FEMObjectMapping *)addressMapping {
-	return [FEMObjectMapping mappingForClass:[AddressNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)addressMapping {
+	return [FEMMapping mappingForClass:[AddressNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"street"]];
         [mapping addAttribute:[FEMAttribute mappingOfProperty:@"location"
                                                     toKeyPath:@"location"
@@ -126,8 +127,8 @@
 	}];
 }
 
-+ (FEMObjectMapping *)nativeMapping {
-	return [FEMObjectMapping mappingForClass:[Native class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)nativeMapping {
+	return [FEMMapping mappingForClass:[Native class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[
             @"charProperty",
             @"unsignedCharProperty",
@@ -149,34 +150,34 @@
 	}];
 }
 
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie {
-	return [FEMObjectMapping mappingForClass:[CatNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)nativeMappingWithNullPropertie {
+	return [FEMMapping mappingForClass:[CatNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"age"]];
 	}];
 }
 
-+ (FEMObjectMapping *)planeMapping {
-	return [FEMObjectMapping mappingForClass:[PlaneNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)planeMapping {
+	return [FEMMapping mappingForClass:[PlaneNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesDictionary:@{@"flightNumber" : @"flight_number"}];
 		[mapping addToManyRelationshipMapping:[self personMapping] forProperty:@"persons" keyPath:@"persons"];
 	}];
 }
 
-+ (FEMObjectMapping *)alienMapping {
-	return [FEMObjectMapping mappingForClass:[AlienNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)alienMapping {
+	return [FEMMapping mappingForClass:[AlienNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"name"]];
 		[mapping addToManyRelationshipMapping:[self fingerMapping] forProperty:@"fingers" keyPath:@"fingers"];
 	}];
 }
 
-+ (FEMObjectMapping *)fingerMapping {
-	return [FEMObjectMapping mappingForClass:[FingerNative class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)fingerMapping {
+	return [FEMMapping mappingForClass:[FingerNative class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"name"]];
 	}];
 }
 
-+ (FEMObjectMapping *)nativeChildMapping {
-	return [FEMObjectMapping mappingForClass:[NativeChild class] configuration:^(FEMObjectMapping *mapping) {
++ (FEMMapping *)nativeChildMapping {
+	return [FEMMapping mappingForClass:[NativeChild class] configuration:^(FEMMapping *mapping) {
         [mapping addAttributesFromArray:@[@"intProperty", @"boolProperty", @"childProperty"]];
 	}];
 }

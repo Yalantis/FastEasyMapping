@@ -2,25 +2,25 @@
 
 #import <Foundation/Foundation.h>
 
-@class FEMObjectMapping;
+@class FEMMapping;
 
 @interface MappingProviderNative : NSObject
 
-+ (FEMObjectMapping *)carMapping;
-+ (FEMObjectMapping *)carWithRootKeyMapping;
-+ (FEMObjectMapping *)carNestedAttributesMapping;
-+ (FEMObjectMapping *)carWithDateMapping;
-+ (FEMObjectMapping *)phoneMapping;
-+ (FEMObjectMapping *)personMapping;
-+ (FEMObjectMapping *)personWithCarMapping;
-+ (FEMObjectMapping *)personWithPhonesMapping;
-+ (FEMObjectMapping *)personWithOnlyValueBlockMapping;
-+ (FEMObjectMapping *)addressMapping;
-+ (FEMObjectMapping *)fingerMapping;
-+ (FEMObjectMapping *)nativeMapping;
-+ (FEMObjectMapping *)nativeMappingWithNullPropertie;
-+ (FEMObjectMapping *)planeMapping;
-+ (FEMObjectMapping *)alienMapping;
-+ (FEMObjectMapping *)nativeChildMapping;
++ (FEMMapping *)carMapping;
++ (FEMMapping *)carWithRootKeyMapping;
++ (FEMMapping *)carNestedAttributesMapping;
++ (FEMMapping *)carWithDateMapping;
++ (FEMMapping *)phoneMapping;
++ (FEMMapping *)personMapping;
++ (FEMMapping *)personWithCarMapping;
++ (FEMMapping *)personWithPhonesMapping;
++ (FEMMapping *)personWithOnlyValueBlockMapping;
++ (FEMMapping *)addressMapping;
++ (FEMMapping *)fingerMapping;
++ (FEMMapping *)nativeMapping;
++ (FEMMapping *)nativeMappingWithNullPropertie;
++ (FEMMapping *)planeMapping;
++ (FEMMapping *)alienMapping;
++ (FEMMapping *)nativeChildMapping;
 
 @end

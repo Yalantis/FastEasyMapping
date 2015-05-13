@@ -4,7 +4,7 @@
 #import "Car.h"
 #import "Phone.h"
 #import "Person.h"
-#import "FEMObjectMapping.h"
+#import "FEMMapping.h"
 #import "FEMManagedObjectMapping.h"
 #import "FEMAttribute.h"
 #import "FEMRelationship.h"
