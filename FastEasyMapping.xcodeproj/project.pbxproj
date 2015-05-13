@@ -16,10 +16,8 @@
 		1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
 		1D6A3821F8D06660ABDEE560 /* FEMRelationshipAssignmentContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31CC30FC2DC11994EBA8 /* FEMRelationshipAssignmentContext.m */; };
 		1D6A38BAA53A46E856AF5CC4 /* FEMRelationshipAssignmentContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A37E108D6B12FA8587FA6 /* FEMRelationshipAssignmentContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */; };
 		1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */; };
 		1D6A3BB7C54CCCC7720A793A /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A32B1909842797CD2E0D3 /* FEMObjectStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1D6A3C550D3AE60BEF5051D7 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
 		1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3ACBBC8E66609F169E94 /* Person_2.json */; };
 		1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
 		1D6A3FE5C05F54B80DCD6D93 /* FEMRepresentationUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A328FCE22411C60FBC7C4 /* FEMRepresentationUtility.m */; };
@@ -53,11 +51,6 @@
 		2C375F3B18CCD40200FCB8EA /* Person.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED79AD80703DC44EFCC7EE /* Person.json */; };
 		2C375F3C18CCD40200FCB8EA /* Car.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED74F0986B6C6DD2614CB7 /* Car.json */; };
 		2C375F3D18CCD40200FCB8EA /* NativeChild.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7CF6DFFBDF7A0BF32AFC /* NativeChild.json */; };
-		2C375F3E18CCD40A00FCB8EA /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
-		2C375F3F18CCD40A00FCB8EA /* FEMObjectDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7A9AEF651DACBF9BBC8F /* FEMObjectDeserializerSpec.m */; };
-		2C375F4018CCD40A00FCB8EA /* FEMSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* FEMSerializerSpec.m */; };
-		2C375F4118CCD49B00FCB8EA /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
-		2C375F4218CCD49B00FCB8EA /* FEMManagedObjectDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C1B06B95B6C90EBB53A /* FEMManagedObjectDeserializerSpec.m */; };
 		2C375F4318CCD49B00FCB8EA /* MappingProviderNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED799D533AED10DCFB4106 /* MappingProviderNative.m */; };
 		2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7532E1E5E3196BC27932 /* MappingProvider.m */; };
 		2CF8097C18C3AD5700C07899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097B18C3AD5700C07899 /* Foundation.framework */; };
@@ -87,13 +80,21 @@
 		69ED7DADB8044F2B42C1CD94 /* FEMDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED772E50A1A831B78D48B3 /* FEMDeserializer.m */; };
 		69ED7E8934131F087C5492A3 /* FEMManagedObjectCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7DE30D50997F9408F36E /* FEMManagedObjectCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		9983A129111A4AB8A30520BE /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */; };
+		AD11B5EC1B038E8700B53F5A /* FEMMergeableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */; };
+		AD11B5ED1B038E8900B53F5A /* FEMExcludableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BDA3CA0DDFF256CDB49 /* FEMExcludableCollection.m */; };
 		AD308A781B023E6C00B03F6A /* FEMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7141C706CAC006EADE5A /* FEMAttribute.m */; };
 		AD308A791B023E6C00B03F6A /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757758DA67B4E8247495 /* FEMRelationship.m */; };
 		AD308A7A1B023E6C00B03F6A /* FEMAttribute+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED718D4E6F950EE17E08C6 /* FEMAttribute+Extension.m */; };
 		AD52DF7D1B03657900E46915 /* FEMManagedObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = AD52DF791B03657900E46915 /* FEMManagedObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD52DF7F1B03657900E46915 /* FEMObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = AD52DF7B1B03657900E46915 /* FEMObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD52DF811B037B1400E46915 /* FEMMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED78C2DFBB1D8408F0D515 /* FEMMapping.m */; };
 		AD52DF821B03865000E46915 /* FEMManagedObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A32164D7EFFBC35F34F17 /* FEMManagedObjectStore.m */; };
+		AD52DF831B0387C000E46915 /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
+		AD52DF841B0387C000E46915 /* FEMManagedObjectDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C1B06B95B6C90EBB53A /* FEMManagedObjectDeserializerSpec.m */; };
+		AD52DF851B0387C000E46915 /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
+		AD52DF861B0387C000E46915 /* FEMObjectDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7A9AEF651DACBF9BBC8F /* FEMObjectDeserializerSpec.m */; };
+		AD52DF871B0387C000E46915 /* FEMSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* FEMSerializerSpec.m */; };
+		AD52DF881B0387C000E46915 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */; };
+		AD52DF891B0387C000E46915 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
 		ADC5B81D194E0F8600F07712 /* FEMAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */; };
 		ADC5B81F194E0FB700F07712 /* FEMAssignmentPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3E68C0FB99F7A73DE0C5 /* FEMAssignmentPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -736,8 +737,10 @@
 				69ED7144E37E067666813AF9 /* NSArray+FEMPropertyRepresentation.m in Sources */,
 				69ED7687C035FA51A536AB56 /* FEMTypeIntrospection.m in Sources */,
 				69ED756EBF9D955A7B6A580A /* FEMManagedObjectCache.m in Sources */,
+				AD11B5ED1B038E8900B53F5A /* FEMExcludableCollection.m in Sources */,
 				69ED74D218BD6B3888549434 /* NSObject+FEMKVCExtension.m in Sources */,
 				69ED775D5D598E6ECAA40BA2 /* FEMMapping.m in Sources */,
+				AD11B5EC1B038E8700B53F5A /* FEMMergeableCollection.m in Sources */,
 				ADC5B81D194E0F8600F07712 /* FEMAssignmentPolicy.m in Sources */,
 				1D6A30D09CC7C04D4C0E8FAC /* FEMObjectStore.m in Sources */,
 				1D6A3FE5C05F54B80DCD6D93 /* FEMRepresentationUtility.m in Sources */,
@@ -749,31 +752,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C375F4118CCD49B00FCB8EA /* FEMManagedObjectMappingSpec.m in Sources */,
-				2C375F4218CCD49B00FCB8EA /* FEMManagedObjectDeserializerSpec.m in Sources */,
 				2C375F4318CCD49B00FCB8EA /* MappingProviderNative.m in Sources */,
 				2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */,
 				2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */,
-				2C375F3F18CCD40A00FCB8EA /* FEMObjectDeserializerSpec.m in Sources */,
 				2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */,
-				AD52DF811B037B1400E46915 /* FEMMapping.m in Sources */,
 				2C375F1518CCD3FB00FCB8EA /* Phone.m in Sources */,
 				2C375F1618CCD3FB00FCB8EA /* Person.m in Sources */,
 				2C375F1718CCD3FB00FCB8EA /* NativeChild.m in Sources */,
 				2C375F1818CCD3FB00FCB8EA /* AddressNative.m in Sources */,
 				2C375F1918CCD3FB00FCB8EA /* CatNative.m in Sources */,
+				AD52DF831B0387C000E46915 /* FEMManagedObjectMappingSpec.m in Sources */,
+				AD52DF861B0387C000E46915 /* FEMObjectDeserializerSpec.m in Sources */,
 				2C375F1A18CCD3FB00FCB8EA /* PhoneNative.m in Sources */,
+				AD52DF851B0387C000E46915 /* FEMObjectMappingSpec.m in Sources */,
+				AD52DF841B0387C000E46915 /* FEMManagedObjectDeserializerSpec.m in Sources */,
 				2C375F1B18CCD3FB00FCB8EA /* PlaneNative.m in Sources */,
 				2C375F1C18CCD3FB00FCB8EA /* Native.m in Sources */,
 				2C375F1D18CCD3FB00FCB8EA /* FingerNative.m in Sources */,
+				AD52DF871B0387C000E46915 /* FEMSerializerSpec.m in Sources */,
 				2C375F1E18CCD3FB00FCB8EA /* SeaplaneNative.m in Sources */,
 				2C375F1F18CCD3FB00FCB8EA /* AlienNative.m in Sources */,
+				AD52DF881B0387C000E46915 /* FEMCacheSpec.m in Sources */,
 				2C375F2018CCD3FB00FCB8EA /* PersonNative.m in Sources */,
-				2C375F3E18CCD40A00FCB8EA /* FEMObjectMappingSpec.m in Sources */,
-				2C375F4018CCD40A00FCB8EA /* FEMSerializerSpec.m in Sources */,
 				2C375F2118CCD3FB00FCB8EA /* CarNative.m in Sources */,
-				1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */,
-				1D6A3C550D3AE60BEF5051D7 /* FEMAttributeMappingSpec.m in Sources */,
+				AD52DF891B0387C000E46915 /* FEMAttributeMappingSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

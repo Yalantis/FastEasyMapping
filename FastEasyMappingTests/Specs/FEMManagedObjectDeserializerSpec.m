@@ -15,7 +15,7 @@
 #import "Phone.h"
 #import "FEMManagedObjectDeserializer.h"
 
-SPEC_BEGIN(FEMDeserializerSpec)
+SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
 describe(@"FEMDeserializer", ^{
     __block NSManagedObjectContext *moc;

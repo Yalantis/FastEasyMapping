@@ -151,7 +151,7 @@
     }
 
     FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithStore:store];
-    return [deserializer _fillObject:object fromRepresentation:representation mapping:mapping];
+    return [deserializer fillObject:object fromRepresentation:representation mapping:mapping];
 };
 
 + (NSArray *)collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context {

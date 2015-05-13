@@ -26,7 +26,7 @@
         self.rootPath = rootPath;
     }
     
-    return nil;
+    return self;
 }
 
 - (instancetype)initWithEntityName:(NSString *)entityName {
@@ -47,7 +47,7 @@
         self.rootPath = rootPath;
     }
     
-    return nil;
+    return self;
 }
 
 #pragma mark - Attribute Mapping
@@ -71,9 +71,6 @@
 }
 
 - (void)addAttribute:(FEMAttribute *)attribute {
-
-
-
     [self addPropertyMapping:attribute toMap:_attributeMap];
 }
 
