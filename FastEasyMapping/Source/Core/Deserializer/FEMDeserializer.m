@@ -12,7 +12,6 @@
 #import "FEMRelationshipAssignmentContext+Internal.h"
 #import "FEMRepresentationUtility.h"
 #import "FEMManagedObjectStore.h"
-#import "KWExample.h"
 #import "FEMObjectMapping.h"
 
 @implementation FEMDeserializer

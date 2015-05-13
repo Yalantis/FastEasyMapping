@@ -3,11 +3,9 @@
 #ifndef _FASTEASYMAPPING_
 #define _FASTEASYMAPPING_
 
+#import "FEMProperty.h"
 #import "FEMAttribute.h"
-#import "FEMAttributeMapping.h"
-
 #import "FEMRelationship.h"
-#import "FEMRelationshipMapping.h"
 
 #import "FEMMapping.h"
 #import "FEMObjectMapping.h"
@@ -15,10 +13,11 @@
 
 #import "FEMDeserializer.h"
 #import "FEMObjectDeserializer.h"
+#import "FEMManagedObjectDeserializer.h"
 #import "FEMSerializer.h"
 
+#import "FEMRelationshipAssignmentContext.h"
 #import "FEMAssignmentPolicy.h"
-#import "FEMDefaultAssignmentContext.h"
 
 #import "FEMTypes.h"
 
