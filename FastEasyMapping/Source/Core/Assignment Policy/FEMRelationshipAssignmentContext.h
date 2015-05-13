@@ -3,7 +3,7 @@
 // Copyright (c) 2015 Yalantis. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 @class FEMRelationship, FEMObjectStore, FEMRelationshipAssignmentContext;
 

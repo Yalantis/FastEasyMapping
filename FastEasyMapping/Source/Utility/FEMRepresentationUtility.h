@@ -3,6 +3,6 @@
 // Copyright (c) 2015 Yalantis. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 FOUNDATION_EXTERN id FEMRepresentationRootForKeyPath(id representation, NSString *keyPath);

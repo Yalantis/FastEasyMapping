@@ -5,7 +5,7 @@
 
 #import "FEMManagedObjectStore.h"
 
-@import CoreData;
+#import <CoreData/CoreData.h>
 
 #import "FEMManagedObjectMapping.h"
 #import "FEMManagedObjectCache.h"

@@ -2,7 +2,7 @@
 
 #import "FEMDeserializer.h"
 
-@import CoreData;
+#import <CoreData/CoreData.h>
 
 #import "FEMManagedObjectMapping.h"
 #import "FEMTypeIntrospection.h"
