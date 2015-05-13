@@ -15,11 +15,11 @@
 
 @interface FEMMapping (FEMManagedObjectMapping_Deprecated)
 
-+ (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName;
-+ (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName
-                                    configuration:(void (^)(FEMManagedObjectMapping *sender))configuration;
-+ (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName
-                                         rootPath:(NSString *)rootPath
-                                    configuration:(void (^)(FEMManagedObjectMapping *sender))configuration;
++ (instancetype)mappingForEntityName:(NSString *)entityName __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
++ (instancetype)mappingForEntityName:(NSString *)entityName
+                       configuration:(void (^)(FEMManagedObjectMapping *sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
++ (instancetype)mappingForEntityName:(NSString *)entityName
+                            rootPath:(NSString *)rootPath
+                                    configuration:(void (^)(FEMManagedObjectMapping *sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
 
 @end

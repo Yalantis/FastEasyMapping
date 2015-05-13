@@ -1,6 +1,8 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import "FEMMapping.h"
+#import "FEMManagedObjectMapping.h"
+#import "FEMObjectMapping.h"
 
 @implementation FEMMapping
 
@@ -167,6 +169,49 @@
 
 - (id)representationFromExternalRepresentation:(id)externalRepresentation {
 	return self.rootPath ? [externalRepresentation valueForKeyPath:self.rootPath] : externalRepresentation;
+}
+
+@end
+
+@implementation FEMMapping (FEMManagedObjectMapping_Deprecated)
+
++ (instancetype)mappingForEntityName:(NSString *)entityName {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName];
+    return mapping;
+}
+
++ (instancetype)mappingForEntityName:(NSString *)entityName
+                       configuration:(void (^)(FEMManagedObjectMapping *sender))configuration {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName];
+    configuration(mapping);
+    return mapping;
+}
+
++ (instancetype)mappingForEntityName:(NSString *)entityName
+                            rootPath:(NSString *)rootPath
+                       configuration:(void (^)(FEMManagedObjectMapping *sender))configuration {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName rootPath:rootPath];
+    configuration(mapping);
+    return mapping;
+}
+
+@end
+
+@implementation FEMMapping (FEMObjectMapping_Deprecated)
+
++ (instancetype)mappingForClass:(Class)objectClass
+                  configuration:(void (^)(FEMObjectMapping *mapping))configuration {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:objectClass];
+    configuration(mapping);
+    return mapping;
+}
+
++ (instancetype)mappingForClass:(Class)objectClass
+                       rootPath:(NSString *)rootPath
+                  configuration:(void (^)(FEMObjectMapping *mapping))configuration {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:objectClass rootPath:rootPath];
+    configuration(mapping);
+    return mapping;
 }
 
 @end

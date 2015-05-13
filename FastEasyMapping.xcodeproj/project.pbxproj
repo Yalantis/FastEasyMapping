@@ -76,7 +76,6 @@
 		2CF809A418C3AE9A00C07899 /* FEMAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED724125F45703B27BFC0C /* FEMAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809A518C3AE9A00C07899 /* FEMRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7C1A1592194E312212F9 /* FEMRelationship.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809A618C3AE9A00C07899 /* FEMSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7C1B2AB96554F9FDF10B /* FEMSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CF809A818C3AE9A00C07899 /* FEMObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7039B8922439BE9D1B8C /* FEMObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809A918C3AE9A00C07899 /* FEMDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED771F4A0CC2BB6D9583BC /* FEMDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809AA18C3AE9A00C07899 /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED77A829DD1436A5A2CA1B /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF809AB18C3AE9A00C07899 /* FEMTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7A8B2E60F728B99A0CB9 /* FEMTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -98,6 +97,10 @@
 		AD308A781B023E6C00B03F6A /* FEMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7141C706CAC006EADE5A /* FEMAttribute.m */; };
 		AD308A791B023E6C00B03F6A /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757758DA67B4E8247495 /* FEMRelationship.m */; };
 		AD308A7A1B023E6C00B03F6A /* FEMAttribute+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED718D4E6F950EE17E08C6 /* FEMAttribute+Extension.m */; };
+		AD52DF7D1B03657900E46915 /* FEMManagedObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = AD52DF791B03657900E46915 /* FEMManagedObjectDeserializer.h */; };
+		AD52DF7E1B03657900E46915 /* FEMManagedObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD52DF7A1B03657900E46915 /* FEMManagedObjectDeserializer.m */; };
+		AD52DF7F1B03657900E46915 /* FEMObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = AD52DF7B1B03657900E46915 /* FEMObjectDeserializer.h */; };
+		AD52DF801B03657900E46915 /* FEMObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD52DF7C1B03657900E46915 /* FEMObjectDeserializer.m */; };
 		ADC5B81D194E0F8600F07712 /* FEMAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */; };
 		ADC5B81F194E0FB700F07712 /* FEMAssignmentPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3E68C0FB99F7A73DE0C5 /* FEMAssignmentPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -158,7 +161,6 @@
 		2CF8098818C3AD5700C07899 /* FastEasyMappingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastEasyMappingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF8098918C3AD5700C07899 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2CF8098C18C3AD5700C07899 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		69ED7039B8922439BE9D1B8C /* FEMObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectDeserializer.h; sourceTree = "<group>"; };
 		69ED70753A27735A60785078 /* FEMObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectMapping.h; sourceTree = "<group>"; };
 		69ED70F7239A59402E626302 /* Cars.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Cars.json; sourceTree = "<group>"; };
 		69ED70FD89800BB41C8894FE /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
@@ -238,6 +240,10 @@
 		69ED7FE4AD3F8C3BD25B5825 /* CarWithRoot.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CarWithRoot.json; sourceTree = "<group>"; };
 		69ED7FF7736562A674D3696D /* PlaneNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneNative.h; sourceTree = "<group>"; };
 		95A8DE2E9CC533DA840A0845 /* Pods-FastEasyMappingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMappingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FastEasyMappingTests/Pods-FastEasyMappingTests.release.xcconfig"; sourceTree = "<group>"; };
+		AD52DF791B03657900E46915 /* FEMManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectDeserializer.h; sourceTree = "<group>"; };
+		AD52DF7A1B03657900E46915 /* FEMManagedObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMManagedObjectDeserializer.m; sourceTree = "<group>"; };
+		AD52DF7B1B03657900E46915 /* FEMObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectDeserializer.h; sourceTree = "<group>"; };
+		AD52DF7C1B03657900E46915 /* FEMObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectDeserializer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -567,9 +573,12 @@
 		69ED7C8732A1C26BF1CF78CD /* Deserializer */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7039B8922439BE9D1B8C /* FEMObjectDeserializer.h */,
 				69ED771F4A0CC2BB6D9583BC /* FEMDeserializer.h */,
 				69ED772E50A1A831B78D48B3 /* FEMDeserializer.m */,
+				AD52DF791B03657900E46915 /* FEMManagedObjectDeserializer.h */,
+				AD52DF7A1B03657900E46915 /* FEMManagedObjectDeserializer.m */,
+				AD52DF7B1B03657900E46915 /* FEMObjectDeserializer.h */,
+				AD52DF7C1B03657900E46915 /* FEMObjectDeserializer.m */,
 			);
 			path = Deserializer;
 			sourceTree = "<group>";
@@ -605,12 +614,12 @@
 				2CF809A418C3AE9A00C07899 /* FEMAttribute.h in Headers */,
 				2CF809A518C3AE9A00C07899 /* FEMRelationship.h in Headers */,
 				2CF809A618C3AE9A00C07899 /* FEMSerializer.h in Headers */,
-				2CF809A818C3AE9A00C07899 /* FEMObjectDeserializer.h in Headers */,
 				2CF809A918C3AE9A00C07899 /* FEMDeserializer.h in Headers */,
 				2CF809AB18C3AE9A00C07899 /* FEMTypes.h in Headers */,
 				2CF809AC18C3AEC800C07899 /* FEMAttribute+Extension.h in Headers */,
 				ADC5B81F194E0FB700F07712 /* FEMAssignmentPolicy.h in Headers */,
 				2CF809AD18C3AEC800C07899 /* NSArray+FEMPropertyRepresentation.h in Headers */,
+				AD52DF7F1B03657900E46915 /* FEMObjectDeserializer.h in Headers */,
 				2CF809AF18C3AEC800C07899 /* FEMTypeIntrospection.h in Headers */,
 				69ED7E8934131F087C5492A3 /* FEMManagedObjectCache.h in Headers */,
 				69ED72338B6419101B1C8CDB /* NSObject+FEMKVCExtension.h in Headers */,
@@ -619,6 +628,7 @@
 				1D6A369BF512C6E71C26FBF0 /* FEMProperty.h in Headers */,
 				1D6A3BB7C54CCCC7720A793A /* FEMObjectStore.h in Headers */,
 				1D6A368456D992002FA3C6A9 /* FEMRepresentationUtility.h in Headers */,
+				AD52DF7D1B03657900E46915 /* FEMManagedObjectDeserializer.h in Headers */,
 				1D6A38BAA53A46E856AF5CC4 /* FEMRelationshipAssignmentContext.h in Headers */,
 				1D6A344F5FF5B8AD3E1FDC04 /* FEMRelationshipAssignmentContext+Internal.h in Headers */,
 			);
@@ -735,8 +745,10 @@
 				AD308A7A1B023E6C00B03F6A /* FEMAttribute+Extension.m in Sources */,
 				AD308A791B023E6C00B03F6A /* FEMRelationship.m in Sources */,
 				69ED797C93C27C8E3BBC1BDB /* FEMSerializer.m in Sources */,
+				AD52DF801B03657900E46915 /* FEMObjectDeserializer.m in Sources */,
 				69ED7DADB8044F2B42C1CD94 /* FEMDeserializer.m in Sources */,
 				69ED7144E37E067666813AF9 /* NSArray+FEMPropertyRepresentation.m in Sources */,
+				AD52DF7E1B03657900E46915 /* FEMManagedObjectDeserializer.m in Sources */,
 				69ED7687C035FA51A536AB56 /* FEMTypeIntrospection.m in Sources */,
 				69ED756EBF9D955A7B6A580A /* FEMManagedObjectCache.m in Sources */,
 				69ED74D218BD6B3888549434 /* NSObject+FEMKVCExtension.m in Sources */,
