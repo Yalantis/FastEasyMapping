@@ -78,7 +78,7 @@
 		69ED797C93C27C8E3BBC1BDB /* FEMSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED73028D190C49BF2E0F8D /* FEMSerializer.m */; };
 		69ED7D115200A0D4F52DBBCA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69ED730BF972DF74DC2BA5B3 /* InfoPlist.strings */; };
 		69ED7DADB8044F2B42C1CD94 /* FEMDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED772E50A1A831B78D48B3 /* FEMDeserializer.m */; };
-		69ED7E8934131F087C5492A3 /* FEMManagedObjectCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7DE30D50997F9408F36E /* FEMManagedObjectCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		69ED7E8934131F087C5492A3 /* FEMManagedObjectCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7DE30D50997F9408F36E /* FEMManagedObjectCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9983A129111A4AB8A30520BE /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */; };
 		AD11B5EC1B038E8700B53F5A /* FEMMergeableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */; };
 		AD11B5ED1B038E8900B53F5A /* FEMExcludableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BDA3CA0DDFF256CDB49 /* FEMExcludableCollection.m */; };
@@ -608,12 +608,12 @@
 				2CF809AC18C3AEC800C07899 /* FEMAttribute+Extension.h in Headers */,
 				AD52DF7F1B03657900E46915 /* FEMObjectDeserializer.h in Headers */,
 				1D6A369BF512C6E71C26FBF0 /* FEMProperty.h in Headers */,
+				69ED7E8934131F087C5492A3 /* FEMManagedObjectCache.h in Headers */,
 				1D6A38BAA53A46E856AF5CC4 /* FEMRelationshipAssignmentContext.h in Headers */,
 				1D6A3BB7C54CCCC7720A793A /* FEMObjectStore.h in Headers */,
 				ADC5B81F194E0FB700F07712 /* FEMAssignmentPolicy.h in Headers */,
 				2CF809AD18C3AEC800C07899 /* NSArray+FEMPropertyRepresentation.h in Headers */,
 				2CF809AF18C3AEC800C07899 /* FEMTypeIntrospection.h in Headers */,
-				69ED7E8934131F087C5492A3 /* FEMManagedObjectCache.h in Headers */,
 				69ED72338B6419101B1C8CDB /* NSObject+FEMKVCExtension.h in Headers */,
 				1D6A344F5FF5B8AD3E1FDC04 /* FEMRelationshipAssignmentContext+Internal.h in Headers */,
 				1D6A368456D992002FA3C6A9 /* FEMRepresentationUtility.h in Headers */,
