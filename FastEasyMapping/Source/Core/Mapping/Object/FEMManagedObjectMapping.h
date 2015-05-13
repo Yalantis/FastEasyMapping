@@ -1,10 +1,4 @@
-//
-//  FEMManagedObjectMapping.h
-//  EasyMappingExample
-//
-//  Created by Alejandro Isaza on 2013-03-13.
-//  Copyright (c) 2013 Alejandro Isaza. All rights reserved.
-//
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import <Foundation/Foundation.h>
 

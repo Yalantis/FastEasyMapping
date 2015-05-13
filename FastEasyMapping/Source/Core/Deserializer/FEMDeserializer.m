@@ -4,7 +4,6 @@
 
 #import <CoreData/CoreData.h>
 
-#import "FEMManagedObjectMapping.h"
 #import "FEMTypeIntrospection.h"
 #import "NSArray+FEMPropertyRepresentation.h"
 #import "FEMAttribute+Extension.h"
@@ -12,7 +11,6 @@
 #import "FEMRelationshipAssignmentContext+Internal.h"
 #import "FEMRepresentationUtility.h"
 #import "FEMManagedObjectStore.h"
-#import "FEMObjectMapping.h"
 
 @implementation FEMDeserializer {
     struct {
