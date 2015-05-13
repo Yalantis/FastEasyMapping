@@ -10,9 +10,7 @@
 #import "FEMAttribute+Extension.h"
 #import "FEMObjectStore.h"
 #import "FEMDefaultAssignmentContext.h"
-#import "FEMManagedObjectStore.h"
 #import "FEMRepresentationUtility.h"
-#import "KWExample.h"
 
 @implementation FEMDeserializer
 
@@ -98,18 +96,32 @@
 
 
 - (id)deserializeObjectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-    id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-    return [self objectFromRepresentation:root mapping:mapping];
+    __block id object = nil;
+    [self.store performMappingTransaction:@[representation] mapping:mapping transaction:^{
+        id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
+        object = [self objectFromRepresentation:root mapping:mapping];
+    }];
+
+    return object;
 }
 
 - (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-    id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-    return [self fulfillObject:object fromRepresentation:root mapping:mapping];
+    [self.store performMappingTransaction:@[representation] mapping:mapping transaction:^{
+        id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
+        [self fulfillObject:object fromRepresentation:root mapping:mapping];
+    }];
+
+    return object;
 }
 
 - (NSArray *)deserializeCollectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
-    id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-    return [self collectionFromRepresentation:root mapping:mapping];
+    __block NSArray *objects = nil;
+    [self.store performMappingTransaction:representation mapping:mapping transaction:^{
+        id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
+        objects = [self collectionFromRepresentation:root mapping:mapping];
+    }];
+
+    return objects;
 }
 
 @end

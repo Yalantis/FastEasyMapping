@@ -28,7 +28,7 @@
     if (self) {
         _managedObjectContext = context;
 
-        _cache = [[FEMManagedObjectCache alloc] initWithMapping:_mapping externalRepresentation:externalRepresentation context:_managedObjectContext];
+//        _cache = [[FEMManagedObjectCache alloc] initWithMapping:_mapping externalRepresentation:externalRepresentation context:_managedObjectContext];
     }
 
     return self;
@@ -45,8 +45,8 @@
     return [_cache existingObjectForRepresentation:representation mapping:mapping];
 }
 
-- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping {
-    return [_cache addExistingObject:object usingMapping:mapping];
+- (BOOL)registerObject:(id)object forMapping:(FEMMapping *)mapping {
+    return [_cache addExistingObject:object mapping:mapping];
 }
 
 - (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
