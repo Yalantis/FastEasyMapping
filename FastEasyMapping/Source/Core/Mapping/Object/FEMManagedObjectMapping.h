@@ -11,10 +11,9 @@
 #import "FEMTypes.h"
 #import "FEMMapping.h"
 
-@interface FEMManagedObjectMapping : FEMMapping
-@end
+@compatibility_alias FEMManagedObjectMapping FEMMapping;
 
-@interface FEMManagedObjectMapping (Deprecated)
+@interface FEMMapping (FEMManagedObjectMapping_Deprecated)
 
 + (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName;
 + (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName

@@ -9,7 +9,10 @@
 
 #import "FEMManagedObjectMapping.h"
 #import "FEMManagedObjectCache.h"
-#import "FEMDefaultAssignmentContext.h"
+
+__attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
+    NSCAssert(mapping.entityName != nil, @"Entity name can't be nil. Please, use -[FEMMapping initWithEntityName:]");
+}
 
 @implementation FEMManagedObjectStore {
     FEMManagedObjectCache *_cache;
@@ -24,11 +27,10 @@
 #pragma mark - Init
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)context {
+    NSParameterAssert(context != nil);
     self = [super init];
     if (self) {
-        _managedObjectContext = context;
-
-//        _cache = [[FEMManagedObjectCache alloc] initWithMapping:_mapping externalRepresentation:externalRepresentation context:_managedObjectContext];
+        _context = context;
     }
 
     return self;
@@ -37,28 +39,41 @@
 #pragma mark - FEMDeserializerSource
 
 - (id)newObjectForMapping:(FEMMapping *)mapping {
-    NSString *entityName = [(FEMManagedObjectMapping *)mapping entityName];
+    validateMapping(mapping);
+
+    NSString *entityName = [mapping entityName];
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:_managedObjectContext];
 }
 
 - (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
+    validateMapping(mapping);
+
     return [_cache existingObjectForRepresentation:representation mapping:mapping];
 }
 
-- (BOOL)registerObject:(id)object forMapping:(FEMMapping *)mapping {
-    return [_cache addExistingObject:object mapping:mapping];
+- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping {
+    validateMapping(mapping);
+
+    [_cache addExistingObject:object mapping:mapping];
 }
 
 - (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
+    validateMapping(mapping);
+
     return [_cache existingObjectsForMapping:mapping];
 }
 
 - (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
+    validateMapping(mapping);
+
     return mapping.primaryKey != nil && [object isInserted];
 }
 
-- (id<FEMAssignmentContextPrivate>)newAssignmentContext {
-    return [[FEMDefaultAssignmentContext alloc] initWithManagedObjectContext:_managedObjectContext];
+#pragma mark - FEMRelationshipAssignmentContextDelegate
+
+- (void)assignmentContext:(FEMRelationshipAssignmentContext *)context deletedObject:(id)object {
+    NSAssert([object isKindOfClass:NSManagedObject.class], @"Wrong class");
+    [self.context deleteObject:object];
 }
 
 @end

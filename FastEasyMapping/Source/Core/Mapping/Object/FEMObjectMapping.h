@@ -17,3 +17,7 @@
 //@end
 
 @compatibility_alias FEMObjectMapping FEMMapping;
+
+@interface FEMMapping (FEMObjectMapping_Deprecated)
+
+@end

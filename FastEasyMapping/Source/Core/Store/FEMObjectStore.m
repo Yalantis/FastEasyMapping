@@ -5,41 +5,44 @@
 
 #import "FEMObjectStore.h"
 #import "FEMMapping.h"
-#import "FEMAssignmentContextPrivate.h"
-#import "FEMRelationshipAssignmentContext.h"
 
 @implementation FEMObjectStore
 
-- (NSArray *)performMappingTransaction:(NSArray *)representation mapping:(FEMMapping *)mapping transaction:(void (^)(void))transaction {
+- (NSError *)performMappingTransaction:(NSArray *)representation mapping:(FEMMapping *)mapping transaction:(void (^)(void))transaction {
+    transaction();
     return nil;
 }
 
 - (id)newObjectForMapping:(FEMMapping *)mapping {
-    return [[mapping.objectClass alloc] init];
+    id object = [[mapping.objectClass alloc] init];
+    return object;
 }
 
-- (id<FEMAssignmentContextPrivate>)newAssignmentContext {
-    return
+- (FEMRelationshipAssignmentContext *)newAssignmentContext {
+    FEMRelationshipAssignmentContext *context = [[FEMRelationshipAssignmentContext alloc] initWithStore:self];
+    return context;
 }
 
-- (BOOL)registerObject:(id)object forMapping:(FEMMapping *)mapping {
-
+- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping {
+    // no-op
 }
 
 - (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
-
-}
-
-- (BOOL)deleteRegisteredObject:(id)object forMapping:(FEMMapping *)mapping {
-
+    return mapping.primaryKeyAttribute != nil;
 }
 
 - (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
-
+    return nil;
 }
 
 - (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
+    return nil;
+}
 
+#pragma mark - FEMRelationshipAssignmentContextDelegate
+
+- (void)assignmentContext:(FEMRelationshipAssignmentContext *)context deletedObject:(id)object {
+    // no-op
 }
 
 @end

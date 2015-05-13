@@ -11,14 +11,13 @@
 
 @interface FEMObjectStore : NSObject <FEMRelationshipAssignmentContextDelegate>
 
-- (NSArray *)performMappingTransaction:(NSArray *)representation mapping:(FEMMapping *)mapping transaction:(void (^)(void))transaction;
+- (NSError *)performMappingTransaction:(NSArray *)representation mapping:(FEMMapping *)mapping transaction:(void (^)(void))transaction;
 
 - (id)newObjectForMapping:(FEMMapping *)mapping;
 - (FEMRelationshipAssignmentContext *)newAssignmentContext;
 
-- (BOOL)registerObject:(id)object forMapping:(FEMMapping *)mapping;
+- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping;
 - (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping;
-- (BOOL)deleteRegisteredObject:(id)object forMapping:(FEMMapping *)mapping;
 
 - (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping;
 - (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;
