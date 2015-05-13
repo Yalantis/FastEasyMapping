@@ -5,9 +5,9 @@
 
 @import Foundation;
 
-@protocol FEMAssignmentContext;
+@class FEMRelationshipAssignmentContext;
 
-typedef id (^FEMAssignmentPolicy)(id<FEMAssignmentContext> context);
+typedef id (^FEMAssignmentPolicy)(FEMRelationshipAssignmentContext *context);
 
 OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyAssign;
 

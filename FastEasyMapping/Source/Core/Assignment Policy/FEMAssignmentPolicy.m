@@ -5,19 +5,19 @@
 
 #import "FEMAssignmentPolicy.h"
 
-#import "FEMAssignmentContext.h"
+#import "FEMRelationshipAssignmentContext.h"
 #import "FEMExcludableCollection.h"
 #import "FEMMergeableCollection.h"
 
-FEMAssignmentPolicy FEMAssignmentPolicyAssign = ^id (id<FEMAssignmentContext> context) {
+FEMAssignmentPolicy FEMAssignmentPolicyAssign = ^id(FEMRelationshipAssignmentContext *context) {
     return context.targetRelationshipValue;
 };
 
-FEMAssignmentPolicy FEMAssignmentPolicyObjectMerge = ^id (id<FEMAssignmentContext> context) {
+FEMAssignmentPolicy FEMAssignmentPolicyObjectMerge = ^id(FEMRelationshipAssignmentContext *context) {
     return context.targetRelationshipValue ?: context.sourceRelationshipValue;
 };
 
-FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge = ^id (id<FEMAssignmentContext> context) {
+FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge = ^id(FEMRelationshipAssignmentContext *context) {
     if (!context.targetRelationshipValue) return context.sourceRelationshipValue;
 
     NSCAssert(
@@ -30,7 +30,7 @@ FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge = ^id (id<FEMAssignmentCo
     return [context.targetRelationshipValue collectionByMergingObjects:context.sourceRelationshipValue];
 };
 
-FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace = ^id (id<FEMAssignmentContext> context) {
+FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace = ^id(FEMRelationshipAssignmentContext *context) {
     if (context.sourceRelationshipValue && ![context.sourceRelationshipValue isEqual:context.targetRelationshipValue]) {
         [context deleteRelationshipObject:context.sourceRelationshipValue];
     }
@@ -38,18 +38,18 @@ FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace = ^id (id<FEMAssignmentCont
     return context.targetRelationshipValue;
 };
 
-FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace = ^id (id<FEMAssignmentContext> context) {
+FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace = ^id(FEMRelationshipAssignmentContext *context) {
     if (!context.sourceRelationshipValue) return context.targetRelationshipValue;
 
     if (context.targetRelationshipValue) {
         NSCAssert(
-            [context.sourceRelationshipValue conformsToProtocol:@ protocol(FEMExcludableCollection)],
+            [context.sourceRelationshipValue conformsToProtocol:@protocol(FEMExcludableCollection)],
             @"Collection %@ should support protocol %@",
             NSStringFromClass([context.targetRelationshipValue class]),
             NSStringFromProtocol(@protocol(FEMExcludableCollection))
         );
 
-        id objectsToDelete = [(id<FEMExcludableCollection>)context.sourceRelationshipValue collectionByExcludingObjects:context.targetRelationshipValue];
+        id objectsToDelete = [(id <FEMExcludableCollection>) context.sourceRelationshipValue collectionByExcludingObjects:context.targetRelationshipValue];
         for (id object in objectsToDelete) {
             [context deleteRelationshipObject:object];
         }

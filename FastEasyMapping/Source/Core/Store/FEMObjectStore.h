@@ -5,20 +5,22 @@
 
 @import Foundation;
 
+#import "FEMRelationshipAssignmentContext.h"
+
 @class FEMMapping;
 
-@protocol FEMAssignmentContextPrivate;
+@interface FEMObjectStore : NSObject <FEMRelationshipAssignmentContextDelegate>
 
-@interface FEMObjectStore : NSObject
+- (NSArray *)performMappingTransaction:(NSArray *)representation mapping:(FEMMapping *)mapping transaction:(void (^)(void))transaction;
 
 - (id)newObjectForMapping:(FEMMapping *)mapping;
+- (FEMRelationshipAssignmentContext *)newAssignmentContext;
 
-- (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;
-- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping;
-- (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping;
-
+- (BOOL)registerObject:(id)object forMapping:(FEMMapping *)mapping;
 - (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping;
+- (BOOL)deleteRegisteredObject:(id)object forMapping:(FEMMapping *)mapping;
 
-- (id<FEMAssignmentContextPrivate>)newAssignmentContext;
+- (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping;
+- (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;
 
 @end
