@@ -60,8 +60,8 @@
 }
 
 - (id)_fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-    for (FEMAttributeMapping *attributeMapping in mapping.attributes) {
-        [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
+    for (FEMAttribute *attribute in mapping.attributes) {
+        [attribute setMappedValueToObject:object fromRepresentation:representation];
     }
 
     [self fulfillObjectRelationships:object fromRepresentation:representation usingMapping:mapping];

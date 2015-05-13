@@ -3,7 +3,6 @@
 #import <Foundation/Foundation.h>
 
 #import "FEMAttribute.h"
-#import "FEMAttributeMapping.h"
 #import "FEMRelationship.h"
 
 @interface FEMMapping : NSObject {
@@ -30,7 +29,7 @@
 @property (nonatomic, copy) NSString *rootPath;
 
 @property (nonatomic, copy) NSString *primaryKey;
-@property (nonatomic, strong, readonly) FEMAttributeMapping *primaryKeyAttribute;
+@property (nonatomic, strong, readonly) FEMAttribute *primaryKeyAttribute;
 
 @property (nonatomic, strong, readonly) NSArray *attributes;
 - (void)addAttribute:(FEMAttribute *)attribute;

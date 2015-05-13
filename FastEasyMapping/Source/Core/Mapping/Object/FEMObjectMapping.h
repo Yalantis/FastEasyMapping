@@ -7,10 +7,10 @@
 @interface FEMMapping (FEMObjectMapping_Deprecated)
 
 + (instancetype)mappingForClass:(Class)objectClass
-                  configuration:(void (^)(FEMObjectMapping *mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:] instead")));
+                  configuration:(void (^)(FEMMapping *mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:] instead")));
 
 + (instancetype)mappingForClass:(Class)objectClass
                        rootPath:(NSString *)rootPath
-                  configuration:(void (^)(FEMObjectMapping *mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:rootPath:] instead")));
+                  configuration:(void (^)(FEMMapping *mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:rootPath:] instead")));
 
 @end
