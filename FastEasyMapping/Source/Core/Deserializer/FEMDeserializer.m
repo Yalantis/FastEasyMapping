@@ -87,6 +87,10 @@
 }
 
 - (id)_objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
+    if (_delegateFlags.willMapObject) {
+        [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
+    }
+
     id object = [self.store registeredObjectForRepresentation:representation mapping:mapping];
     if (!object) {
         object = [self.store newObjectForMapping:mapping];
@@ -98,10 +102,18 @@
         [self.store registerObject:object forMapping:mapping];
     }
 
+    if (_delegateFlags.didMapObject) {
+        [self.delegate deserializer:self didMapObject:object fromRepresentation:representation mapping:mapping];
+    }
+
     return object;
 }
 
 - (NSArray *)_collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
+    if (_delegateFlags.willMapCollection) {
+        [self.delegate deserializer:self willMapCollectionFromRepresentation:representation mapping:mapping];
+    }
+
     NSMutableArray *output = [[NSMutableArray alloc] initWithCapacity:representation.count];
     for (id objectRepresentation in representation) {
         @autoreleasepool {
@@ -109,7 +121,12 @@
             [output addObject:object];
         }
     }
-    return [output copy];
+
+    if (_delegateFlags.didMapCollection) {
+        [self.delegate deserializer:self didMapCollection:output fromRepresentation:representation mapping:mapping];
+    }
+
+    return output;
 }
 
 #pragma mark - Public
@@ -126,10 +143,18 @@
 }
 
 - (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
+    if (_delegateFlags.willMapObject) {
+        [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
+    }
+
     [self.store performMappingTransaction:@[representation] mapping:mapping transaction:^{
         id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
         [self _fillObject:object fromRepresentation:root mapping:mapping];
     }];
+
+    if (_delegateFlags.didMapObject) {
+        [self.delegate deserializer:self didMapObject:object fromRepresentation:representation mapping:mapping];
+    }
 
     return object;
 }
