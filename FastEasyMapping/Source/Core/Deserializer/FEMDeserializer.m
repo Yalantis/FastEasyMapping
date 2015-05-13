@@ -9,7 +9,7 @@
 #import "NSArray+FEMPropertyRepresentation.h"
 #import "FEMAttribute+Extension.h"
 #import "FEMObjectStore.h"
-#import "FEMDefaultAssignmentContext.h"
+#import "FEMRelationshipAssignmentContext+Internal.h"
 #import "FEMRepresentationUtility.h"
 
 @implementation FEMDeserializer
@@ -44,7 +44,7 @@
                 }
             }
 
-            id<FEMAssignmentContextPrivate> context = [self.store newAssignmentContext];
+            FEMRelationshipAssignmentContext *context = [self.store newAssignmentContext];
             context.destinationObject = object;
             context.relationship = relationship;
             context.sourceRelationshipValue = [object valueForKey:relationship.property];
