@@ -16,6 +16,7 @@
 #import "CatNative.h"
 #import "FEMDeserializer.h"
 #import "FEMObjectMapping.h"
+#import "FEMObjectDeserializer.h"
 
 SPEC_BEGIN(FEMDeserializerSpec)
 

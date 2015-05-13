@@ -8,15 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FEMTypes.h"
 #import "FEMMapping.h"
 
 @compatibility_alias FEMManagedObjectMapping FEMMapping;
-
-@interface FEMMapping (FEMManagedObjectMapping_Deprecated)
-
-+ (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName configuration:(void (^)(FEMManagedObjectMapping *sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (FEMManagedObjectMapping *)mappingForEntityName:(NSString *)entityName rootPath:(NSString *)rootPath configuration:(void (^)(FEMManagedObjectMapping *sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
-
-@end

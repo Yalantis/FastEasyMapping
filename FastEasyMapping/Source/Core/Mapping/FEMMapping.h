@@ -51,3 +51,19 @@
 - (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
 
 @end
+
+@interface FEMMapping (FEMObjectMapping_Deprecated)
+
++ (FEMMapping *)mappingForClass:(Class)objectClass configuration:(void (^)(FEMMapping *mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:] instead")));
++ (FEMMapping *)mappingForClass:(Class)objectClass rootPath:(NSString *)rootPath configuration:(void (^)(FEMMapping *mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:rootPath:] instead")));
+
+@end
+
+
+@interface FEMMapping (FEMManagedObjectMapping_Deprecated)
+
++ (FEMMapping *)mappingForEntityName:(NSString *)entityName __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
++ (FEMMapping *)mappingForEntityName:(NSString *)entityName configuration:(void (^)(FEMMapping *sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
++ (FEMMapping *)mappingForEntityName:(NSString *)entityName rootPath:(NSString *)rootPath configuration:(void (^)(FEMMapping *sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
+
+@end

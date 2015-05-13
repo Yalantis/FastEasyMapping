@@ -3,6 +3,8 @@
 #import "Kiwi.h"
 #import "Person.h"
 #import "FEMMapping.h"
+#import "FEMObjectMapping.h"
+#import "FEMManagedObjectMapping.h"
 
 SPEC_BEGIN(FEMMappingSpec)
 

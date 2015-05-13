@@ -13,6 +13,7 @@
 #import "FEMSerializer.h"
 #import "FEMObjectMapping.h"
 #import "FEMDeserializer.h"
+#import "FEMObjectDeserializer.h"
 #import <CoreLocation/CoreLocation.h>
 
 SPEC_BEGIN(FEMSerializerSpec)

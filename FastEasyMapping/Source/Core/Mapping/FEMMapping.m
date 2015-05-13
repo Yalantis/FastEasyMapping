@@ -171,19 +171,19 @@
 
 @implementation FEMMapping (FEMManagedObjectMapping_Deprecated)
 
-+ (instancetype)mappingForEntityName:(NSString *)entityName {
++ (FEMMapping *)mappingForEntityName:(NSString *)entityName {
     FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName];
     return mapping;
 }
 
-+ (instancetype)mappingForEntityName:(NSString *)entityName
++ (FEMMapping *)mappingForEntityName:(NSString *)entityName
                        configuration:(void (^)(FEMManagedObjectMapping *sender))configuration {
     FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName];
     configuration(mapping);
     return mapping;
 }
 
-+ (instancetype)mappingForEntityName:(NSString *)entityName
++ (FEMMapping *)mappingForEntityName:(NSString *)entityName
                             rootPath:(NSString *)rootPath
                        configuration:(void (^)(FEMManagedObjectMapping *sender))configuration {
     FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName rootPath:rootPath];
@@ -195,16 +195,13 @@
 
 @implementation FEMMapping (FEMObjectMapping_Deprecated)
 
-+ (instancetype)mappingForClass:(Class)objectClass
-                  configuration:(void (^)(FEMObjectMapping *mapping))configuration {
++ (FEMMapping *)mappingForClass:(Class)objectClass configuration:(void (^)(FEMObjectMapping *mapping))configuration {
     FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:objectClass];
     configuration(mapping);
     return mapping;
 }
 
-+ (instancetype)mappingForClass:(Class)objectClass
-                       rootPath:(NSString *)rootPath
-                  configuration:(void (^)(FEMObjectMapping *mapping))configuration {
++ (FEMMapping *)mappingForClass:(Class)objectClass rootPath:(NSString *)rootPath configuration:(void (^)(FEMObjectMapping *mapping))configuration {
     FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:objectClass rootPath:rootPath];
     configuration(mapping);
     return mapping;

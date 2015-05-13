@@ -11,15 +11,11 @@
 #import "FEMDeserializer.h"
 #import "FEMRelationship.h"
 
-#import "FEMManagedObjectDeserializer.h"
-#import "FEMDeserializer.h"
-#import "FEMRelationship.h"
-
-#import "FEMMapping.h"
 #import "FEMMapping.h"
 #import "Phone.h"
+#import "FEMManagedObjectDeserializer.h"
 
-SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
+SPEC_BEGIN(FEMDeserializerSpec)
 
 describe(@"FEMDeserializer", ^{
     __block NSManagedObjectContext *moc;
@@ -46,8 +42,8 @@ describe(@"FEMDeserializer", ^{
 
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"Car"];
-                car = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation
-                                                                   mapping:[MappingProvider carMapping]
+                car = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+                                                                   usingMapping:[MappingProvider carMapping]
                                                                    context:moc];
             });
 
@@ -83,8 +79,8 @@ describe(@"FEMDeserializer", ^{
                         @"year" : @"2013"
                 };
 
-                car = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation
-                                                                   mapping:[MappingProvider carMappingWithPrimaryKey]
+                car = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+                                                                   usingMapping:[MappingProvider carMappingWithPrimaryKey]
                                                                    context:moc];
             });
 
@@ -125,8 +121,8 @@ describe(@"FEMDeserializer", ^{
                 oldCar.model = @"";
 
                 externalRepresentation = @{@"id" : @(1), @"model" : @"i30",};
-                car = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation
-                                                                   mapping:[MappingProvider carMappingWithPrimaryKey]
+                car = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+                                                                   usingMapping:[MappingProvider carMappingWithPrimaryKey]
                                                                    context:moc];
             });
 
@@ -154,8 +150,8 @@ describe(@"FEMDeserializer", ^{
 
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"CarWithRoot"];
-                car = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation
-                                                                   mapping:[MappingProvider carWithRootKeyMapping]
+                car = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+                                                                   usingMapping:[MappingProvider carWithRootKeyMapping]
                                                                    context:moc];
                 externalRepresentation = [externalRepresentation objectForKey:@"car"];
             });
@@ -180,8 +176,8 @@ describe(@"FEMDeserializer", ^{
 
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"CarWithNestedAttributes"];
-                car = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation
-                                                                   mapping:[MappingProvider carNestedAttributesMapping]
+                car = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+                                                                   usingMapping:[MappingProvider carNestedAttributesMapping]
                                                                    context:moc];
             });
 
@@ -206,8 +202,8 @@ describe(@"FEMDeserializer", ^{
             beforeEach(^{
                 moc = [NSManagedObjectContext MR_defaultContext];
                 externalRepresentation = [CMFixture buildUsingFixture:@"CarWithDate"];
-                car = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation
-                                                                   mapping:[MappingProvider carWithDateMapping]
+                car = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+                                                                   usingMapping:[MappingProvider carWithDateMapping]
                                                                    context:moc];
             });
 
@@ -246,8 +242,8 @@ describe(@"FEMDeserializer", ^{
                 expectedCar.year = @"2013";
 
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Person"];
-                person = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation
-                                                                      mapping:[MappingProvider personMapping]
+                person = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+                                                                      usingMapping:[MappingProvider personMapping]
                                                                       context:moc];
             });
 
@@ -271,8 +267,8 @@ describe(@"FEMDeserializer", ^{
             beforeEach(^{
                 moc = [NSManagedObjectContext MR_defaultContext];
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Person"];
-                person = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation
-                                                                      mapping:[MappingProvider personMapping]
+                person = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
+                                                                      usingMapping:[MappingProvider personMapping]
                                                                       context:moc];
             });
 
@@ -288,7 +284,7 @@ describe(@"FEMDeserializer", ^{
 
     });
 
-    describe(@".deserializeCollectionExternalRepresentation:usingMapping:", ^{
+    describe(@".deserializeCollectionExternalRepresentation:usingusingMapping:", ^{
         __block NSArray *carsArray;
         __block NSArray *externalRepresentation;
 
@@ -315,7 +311,7 @@ describe(@"FEMDeserializer", ^{
         beforeAll(^{
             NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithMissingRelationships"];
             FEMMapping *mapping = [MappingProvider personMapping];
-            person = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation mapping:mapping context:moc];
+            person = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation usingMapping:mapping context:moc];
         });
         
         context(@"to-one", ^{
@@ -357,8 +353,8 @@ describe(@"FEMDeserializer", ^{
                     relationshipMapping.assignmentPolicy = FEMAssignmentPolicyAssign;
                     
                     [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
-                    Person *person_v1 = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation_v1
-                                                                                     mapping:mapping
+                    Person *person_v1 = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                     usingMapping:mapping
                                                                                      context:moc];
                     [moc MR_saveToPersistentStoreAndWait];
                     
@@ -367,8 +363,8 @@ describe(@"FEMDeserializer", ^{
                     Car *car_v1 = person_v1.car;
                     [[car_v1 should] equal:[Car MR_findFirstInContext:moc]];
                     
-                    Person *person_v2 = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation_v2
-                                                                                     mapping:mapping
+                    Person *person_v2 = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v2
+                                                                                     usingMapping:mapping
                                                                                      context:moc];
                     
                     [[person_v1 should] equal:person_v2];
@@ -384,8 +380,8 @@ describe(@"FEMDeserializer", ^{
                     relationshipMapping.assignmentPolicy = FEMAssignmentPolicyObjectMerge;
                     
                     [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
-                    Person *person_v1 = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation_v1
-                                                                                     mapping:mapping
+                    Person *person_v1 = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                     usingMapping:mapping
                                                                                      context:moc];
                     [moc MR_saveToPersistentStoreAndWait];
                     
@@ -394,8 +390,8 @@ describe(@"FEMDeserializer", ^{
                     Car *car_v1 = person_v1.car;
                     [[car_v1 should] equal:[Car MR_findFirstInContext:moc]];
                     
-                    Person *person_v2 = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation_v2
-                                                                                     mapping:mapping
+                    Person *person_v2 = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v2
+                                                                                     usingMapping:mapping
                                                                                      context:moc];
                     [moc MR_saveToPersistentStoreAndWait];
                     
@@ -412,8 +408,8 @@ describe(@"FEMDeserializer", ^{
                     relationshipMapping.assignmentPolicy = FEMAssignmentPolicyObjectReplace;
 
                     [[@([Car MR_countOfEntitiesWithContext:moc]) should] beZero];
-                    Person *person_v1 = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation_v1
-                                                                                     mapping:mapping
+                    Person *person_v1 = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                     usingMapping:mapping
                                                                                      context:moc];
                     Car *car_v1 = person_v1.car;
 
@@ -451,8 +447,8 @@ describe(@"FEMDeserializer", ^{
                     relationshipMapping.assignmentPolicy = FEMAssignmentPolicyCollectionMerge;
                     
                     [[@([Phone MR_countOfEntitiesWithContext:moc]) should] beZero];
-                    Person *person_v1 = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation_v1
-                                                                                     mapping:mapping
+                    Person *person_v1 = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                     usingMapping:mapping
                                                                                      context:moc];
                     [moc MR_saveToPersistentStoreAndWait];
                     
@@ -477,8 +473,8 @@ describe(@"FEMDeserializer", ^{
                     relationshipMapping.assignmentPolicy = FEMAssignmentPolicyCollectionReplace;
                     
                     [[@([Phone MR_countOfEntitiesWithContext:moc]) should] beZero];
-                    Person *person_v1 = [FEMDeserializer deserializeObjectFromRepresentation:externalRepresentation_v1
-                                                                                     mapping:mapping
+                    Person *person_v1 = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation_v1
+                                                                                     usingMapping:mapping
                                                                                      context:moc];
                     [moc MR_saveToPersistentStoreAndWait];
                     
@@ -498,64 +494,64 @@ describe(@"FEMDeserializer", ^{
         });
     });
 
-    describe(@"synchronization", ^{
-        __block Car *car;
-        __block NSDictionary *externalRepresentation;
-        __block FEMMapping *mapping;
+//    describe(@"synchronization", ^{
+//        __block Car *car;
+//        __block NSDictionary *externalRepresentation;
+//        __block FEMMapping *mapping;
+//
+//        beforeEach(^{
+//            externalRepresentation = @{
+//                @"id": @2,
+//                @"model": @"i30",
+//                @"year": @"2014"
+//            };
+//
+//            car = [Car MR_createInContext:moc];
+//            [car setCarID:@1];
+//
+//            mapping = [MappingProvider carMappingWithPrimaryKey];
+//        });
 
-        beforeEach(^{
-            externalRepresentation = @{
-                @"id": @2,
-                @"model": @"i30",
-                @"year": @"2014"
-            };
-
-            car = [Car MR_createInContext:moc];
-            [car setCarID:@1];
-
-            mapping = [MappingProvider carMappingWithPrimaryKey];
-        });
-
-        context(@"without predicate", ^{
-            it(@"should replace all existing objects", ^{
-                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
-
-                [FEMDeserializer synchronizeCollectionExternalRepresentation:@[externalRepresentation]
-                                                                usingMapping:mapping
-                                                                   predicate:nil
-                                                                     context:moc];
-                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
-                Car *existingCar = [Car MR_findFirstInContext:moc];
-                [[existingCar.carID should] equal:@2];
-            });
-        });
-
-        context(@"with predicate", ^{
-            it(@"should replace objects specified by predicate", ^{
-                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
-
-                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"carID == 1"];
-                [FEMDeserializer synchronizeCollectionExternalRepresentation:@[externalRepresentation]
-                                                                usingMapping:mapping
-                                                                   predicate:predicate
-                                                                     context:moc];
-                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
-                Car *existingCar = [Car MR_findFirstInContext:moc];
-                [[existingCar.carID should] equal:@2];
-            });
-
-            it(@"should not replace objects not specified by predicate", ^{
-                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
-
-                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"carID != 1"];
-                [FEMDeserializer synchronizeCollectionExternalRepresentation:@[externalRepresentation]
-                                                                usingMapping:mapping
-                                                                   predicate:predicate
-                                                                     context:moc];
-                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@2];
-            });
-        });
-    });
+//        context(@"without predicate", ^{
+//            it(@"should replace all existing objects", ^{
+//                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+//
+//                [FEMDeserializer synchronizeCollectionExternalRepresentation:@[externalRepresentation]
+//                                                                usingMapping:mapping
+//                                                                   predicate:nil
+//                                                                     context:moc];
+//                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+//                Car *existingCar = [Car MR_findFirstInContext:moc];
+//                [[existingCar.carID should] equal:@2];
+//            });
+//        });
+//
+//        context(@"with predicate", ^{
+//            it(@"should replace objects specified by predicate", ^{
+//                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+//
+//                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"carID == 1"];
+//                [FEMDeserializer synchronizeCollectionExternalRepresentation:@[externalRepresentation]
+//                                                                usingMapping:mapping
+//                                                                   predicate:predicate
+//                                                                     context:moc];
+//                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+//                Car *existingCar = [Car MR_findFirstInContext:moc];
+//                [[existingCar.carID should] equal:@2];
+//            });
+//
+//            it(@"should not replace objects not specified by predicate", ^{
+//                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@1];
+//
+//                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"carID != 1"];
+//                [FEMDeserializer synchronizeCollectionExternalRepresentation:@[externalRepresentation]
+//                                                                usingMapping:mapping
+//                                                                   predicate:predicate
+//                                                                     context:moc];
+//                [[@([Car MR_countOfEntitiesWithContext:moc]) should] equal:@2];
+//            });
+//        });
+//    });
 });
 
 SPEC_END
