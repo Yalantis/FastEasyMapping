@@ -44,7 +44,7 @@
 @interface FEMMapping (Shortcut)
 
 - (void)addAttributesFromArray:(NSArray *)attributes;
-- (void)addAttributesDictionary:(NSDictionary *)attributesToKeyPath;
+- (void)addAttributesFromDictionary:(NSDictionary *)attributesToKeyPath;
 - (void)addAttributeWithProperty:(NSString *)property keyPath:(NSString *)keyPath;
 
 - (void)addRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;

@@ -136,7 +136,7 @@
 
 @implementation FEMMapping (Shortcut)
 
-- (void)addAttributesDictionary:(NSDictionary *)attributesToKeyPath {
+- (void)addAttributesFromDictionary:(NSDictionary *)attributesToKeyPath {
 	[attributesToKeyPath enumerateKeysAndObjectsUsingBlock:^(id attribute, id keyPath, BOOL *stop) {
         [self addAttribute:[FEMAttribute mappingOfProperty:attribute toKeyPath:keyPath]];
 	}];
