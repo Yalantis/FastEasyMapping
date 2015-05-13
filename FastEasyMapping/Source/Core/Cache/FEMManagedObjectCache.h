@@ -2,23 +2,18 @@
 
 #import <Foundation/Foundation.h>
 
-@class FEMManagedObjectCache, FEMManagedObjectMapping, NSManagedObjectContext;
+@class FEMMapping, NSManagedObjectContext;
 
 @interface FEMManagedObjectCache : NSObject
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *context;
 
-- (instancetype)initWithMapping:(FEMManagedObjectMapping *)mapping
-         externalRepresentation:(id)externalRepresentation
-					    context:(NSManagedObjectContext *)context;
+- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation  context:(NSManagedObjectContext *)context;
 
-#pragma mark -
+- (id)existingObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;
+- (id)existingObjectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping;
 
-- (id)existingObjectForRepresentation:(id)representation mapping:(FEMManagedObjectMapping *)mapping;
-- (id)existingObjectForPrimaryKey:(id)primaryKey mapping:(FEMManagedObjectMapping *)mapping;
-
-- (void)addExistingObject:(id)object usingMapping:(FEMManagedObjectMapping *)mapping;
-
-- (NSDictionary *)existingObjectsForMapping:(FEMManagedObjectMapping *)mapping;
+- (void)addExistingObject:(id)object mapping:(FEMMapping *)mapping;
+- (NSDictionary *)existingObjectsForMapping:(FEMMapping *)mapping;
 
 @end

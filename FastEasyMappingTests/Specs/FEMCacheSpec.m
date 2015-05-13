@@ -42,8 +42,8 @@ SPEC_BEGIN(FEMCacheSpec)
             id mapping = [MappingProvider carMapping];
 
             FEMManagedObjectCache *cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping
-                                         externalRepresentation:representation
-                                                        context:context];
+                                                                           representation:representation
+                                                                                  context:context];
 
             [[cache.context should] equal:context];
         });
@@ -61,7 +61,7 @@ SPEC_BEGIN(FEMCacheSpec)
             };
             mapping = [MappingProvider carMappingWithPrimaryKey];
 
-            cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping externalRepresentation:representation context:context];
+            cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping representation:representation context:context];
         });
         afterEach(^{
             mapping = nil;
@@ -90,7 +90,7 @@ SPEC_BEGIN(FEMCacheSpec)
                                                                     mapping:mapping
                                                                     context:context];
 
-            [cache addExistingObject:car usingMapping:mapping];
+            [cache addExistingObject:car mapping:mapping];
             [[[cache existingObjectForRepresentation:representation mapping:mapping] should] equal:car];
         });
 
@@ -136,7 +136,7 @@ SPEC_BEGIN(FEMCacheSpec)
             representation = [CMFixture buildUsingFixture:@"PersonWithCar_1"];
             mapping = [MappingProvider personWithCarMapping];
 
-            cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping externalRepresentation:representation context:context];
+            cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping representation:representation context:context];
             carMapping = (id) [mapping relationshipForProperty:@"car"].objectMapping;
         });
 

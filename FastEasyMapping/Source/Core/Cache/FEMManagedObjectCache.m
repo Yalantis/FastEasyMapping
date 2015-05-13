@@ -7,6 +7,7 @@
 #import "FEMAttribute+Extension.h"
 #import "FEMRepresentationUtility.h"
 #import "FEMObjectMapping.h"
+#import "FEMMapping.h"
 
 #import <CoreData/CoreData.h>
 
@@ -22,11 +23,9 @@
 #pragma mark - Init
 
 
-- (instancetype)initWithMapping:(FEMManagedObjectMapping *)mapping
-         externalRepresentation:(id)externalRepresentation
-					    context:(NSManagedObjectContext *)context {
+- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation context:(NSManagedObjectContext *)context {
 	NSParameterAssert(mapping);
-	NSParameterAssert(externalRepresentation);
+    NSParameterAssert(representation);
 	NSParameterAssert(context);
 
 	self = [self init];
@@ -37,7 +36,7 @@
 		_lookupObjectsMap = [NSMutableDictionary new];
 
 		[self prepareMappingLookupStructure:mapping];
-        [self inspectExternalRepresentation:externalRepresentation mapping:mapping];
+        [self inspectExternalRepresentation:representation mapping:mapping];
 	}
 
 	return self;
@@ -131,7 +130,7 @@
 	return entityObjectsMap;
 }
 
-- (id)existingObjectForRepresentation:(id)representation mapping:(FEMManagedObjectMapping *)mapping {
+- (id)existingObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
 	NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
 
 	id primaryKeyValue = [mapping.primaryKeyAttribute mappedValueFromRepresentation:representation];
@@ -140,13 +139,13 @@
 	return entityObjectsMap[primaryKeyValue];
 }
 
-- (id)existingObjectForPrimaryKey:(id)primaryKey mapping:(FEMManagedObjectMapping *)mapping {
+- (id)existingObjectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping {
     NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
 
     return entityObjectsMap[primaryKey];
 }
 
-- (void)addExistingObject:(id)object usingMapping:(FEMManagedObjectMapping *)mapping {
+- (void)addExistingObject:(id)object mapping:(FEMMapping *)mapping {
 	NSParameterAssert(mapping.primaryKey);
 	NSParameterAssert(object);
 
@@ -157,7 +156,7 @@
     entityObjectsMap[primaryKeyValue] = object;
 }
 
-- (NSDictionary *)existingObjectsForMapping:(FEMManagedObjectMapping *)mapping {
+- (NSDictionary *)existingObjectsForMapping:(FEMMapping *)mapping {
     return [[self cachedObjectsForMapping:mapping] copy];
 }
 
