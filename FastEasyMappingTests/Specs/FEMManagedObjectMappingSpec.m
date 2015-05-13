@@ -25,7 +25,7 @@ describe(@"FEMManagedObjectMapping", ^{
         __block FEMManagedObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [[FEMManagedObjectMapping alloc] init];
+            mapping = [[FEMManagedObjectMapping alloc] initWithEntityName:@"Temp"];
         });
         
         specify(^{
@@ -43,7 +43,7 @@ describe(@"FEMManagedObjectMapping", ^{
         __block FEMManagedObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [[FEMManagedObjectMapping alloc] init];
+            mapping = [[FEMManagedObjectMapping alloc] initWithEntityName:@"Temp"];
         });
         
         specify(^{
