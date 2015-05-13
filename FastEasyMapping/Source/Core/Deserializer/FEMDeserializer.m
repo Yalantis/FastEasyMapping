@@ -14,7 +14,16 @@
 #import "FEMManagedObjectStore.h"
 #import "FEMObjectMapping.h"
 
-@implementation FEMDeserializer
+@implementation FEMDeserializer {
+    struct {
+        BOOL willMapObject: 1;
+        BOOL didMapObject: 1;
+        BOOL willMapCollection: 1;
+        BOOL didMapCollection: 1;
+    } _delegateFlags;
+}
+
+#pragma mark - Init
 
 - (id)initWithStore:(FEMObjectStore *)store {
     NSParameterAssert(store != nil);
@@ -24,6 +33,17 @@
     }
 
     return self;
+}
+
+#pragma mark - Delegate
+
+- (void)setDelegate:(id <FEMDeserializerDelegate>)delegate {
+    _delegate = delegate;
+
+    _delegateFlags.willMapObject = [_delegate respondsToSelector:@selector(deserializer:willMapObjectFromRepresentation:mapping:)];
+    _delegateFlags.didMapObject = [_delegate respondsToSelector:@selector(deserializer:didMapObject:fromRepresentation:mapping:)];
+    _delegateFlags.willMapCollection = [_delegate respondsToSelector:@selector(deserializer:willMapCollectionFromRepresentation:mapping:)];
+    _delegateFlags.didMapCollection = [_delegate respondsToSelector:@selector(deserializer:didMapCollection:fromRepresentation:mapping:)];
 }
 
 #pragma mark - Deserialization

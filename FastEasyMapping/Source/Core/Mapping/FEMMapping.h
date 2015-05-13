@@ -22,7 +22,6 @@
 - (instancetype)initWithEntityName:(NSString *)entityName NS_DESIGNATED_INITIALIZER;
 - (id)initWithEntityName:(NSString *)entityName rootPath:(NSString *)rootPath;
 
-
 @property (nonatomic, readonly) Class objectClass;
 @property (nonatomic, copy, readonly) NSString *entityName;
 

@@ -4,11 +4,25 @@
 #import "FEMManagedObjectMapping.h"
 
 @class FEMObjectStore, FEMMapping, NSManagedObject, NSFetchRequest, NSManagedObjectContext;
+@class FEMDeserializer;
+
+@protocol FEMDeserializerDelegate <NSObject>
+
+@optional
+- (void)deserializer:(FEMDeserializer *)deserializer willMapObjectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
+- (void)deserializer:(FEMDeserializer *)deserializer didMapObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
+
+- (void)deserializer:(FEMDeserializer *)deserializer willMapCollectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping;
+- (void)deserializer:(FEMDeserializer *)deserializer didMapCollection:(NSArray *)collection fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
+
+@end
 
 @interface FEMDeserializer : NSObject
 
 @property (nonatomic, strong, readonly) FEMObjectStore *store;
 - (id)initWithStore:(FEMObjectStore *)store;
+
+@property (nonatomic, unsafe_unretained) id<FEMDeserializerDelegate> delegate;
 
 - (id)objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
 - (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
