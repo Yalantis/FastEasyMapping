@@ -22,7 +22,4 @@
                                          rootPath:(NSString *)rootPath
                                     configuration:(void (^)(FEMManagedObjectMapping *sender))configuration;
 
-- (id)initWithEntityName:(NSString *)entityName;
-- (id)initWithEntityName:(NSString *)entityName rootPath:(NSString *)rootPath;
-
 @end

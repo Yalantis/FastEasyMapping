@@ -16,8 +16,13 @@
 + (instancetype)new __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
 - (id)initWithRootPath:(NSString *)rootPath __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
 
+
 - (instancetype)initWithObjectClass:(Class)objectClass NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithObjectClass:(Class)objectClass rootPath:(NSString *)rootPath;
+
 - (instancetype)initWithEntityName:(NSString *)entityName NS_DESIGNATED_INITIALIZER;
+- (id)initWithEntityName:(NSString *)entityName rootPath:(NSString *)rootPath;
+
 
 @property (nonatomic, readonly) Class objectClass;
 @property (nonatomic, copy, readonly) NSString *entityName;

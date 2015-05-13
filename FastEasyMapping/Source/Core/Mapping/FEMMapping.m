@@ -18,6 +18,15 @@
     return self;
 }
 
+- (instancetype)initWithObjectClass:(Class)objectClass rootPath:(NSString *)rootPath {
+    self = [self initWithObjectClass:objectClass];
+    if (self) {
+        self.rootPath = rootPath;
+    }
+    
+    return nil;
+}
+
 - (instancetype)initWithEntityName:(NSString *)entityName {
     self = [super init];
     if (self) {
@@ -28,6 +37,15 @@
     }
 
     return self;
+}
+
+- (instancetype)initWithEntityName:(NSString *)entityName rootPath:(NSString *)rootPath {
+    self = [self initWithEntityName:entityName];
+    if (self) {
+        self.rootPath = rootPath;
+    }
+    
+    return nil;
 }
 
 #pragma mark - Attribute Mapping

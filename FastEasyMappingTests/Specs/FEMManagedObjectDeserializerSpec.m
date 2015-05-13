@@ -9,7 +9,7 @@
 #import "Car.h"
 
 #import "FEMDeserializer.h"
-#import "FEMRelationshipMapping.h"
+#import "FEMRelationship.h"
 
 #import "FEMManagedObjectDeserializer.h"
 #import "FEMRelationship.h"
