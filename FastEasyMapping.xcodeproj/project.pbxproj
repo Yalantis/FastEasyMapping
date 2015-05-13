@@ -9,22 +9,16 @@
 /* Begin PBXBuildFile section */
 		1D6A30D09CC7C04D4C0E8FAC /* FEMObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A30748FCFC86CFA72493D /* FEMObjectStore.m */; };
 		1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
-		1D6A33C795E9CA3D388DC1CE /* FEMMergeableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */; };
 		1D6A344F5FF5B8AD3E1FDC04 /* FEMRelationshipAssignmentContext+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3E939A8527DF07B8E6EB /* FEMRelationshipAssignmentContext+Internal.h */; };
 		1D6A34C84E523B5F58F87C5E /* PersonWithMissingRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */; };
-		1D6A361B9A77E73A962B0007 /* FEMObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A30748FCFC86CFA72493D /* FEMObjectStore.m */; };
-		1D6A3645DA65EDCB2A889774 /* FEMManagedObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A32164D7EFFBC35F34F17 /* FEMManagedObjectStore.m */; };
 		1D6A368456D992002FA3C6A9 /* FEMRepresentationUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3E942488A7A8C0C01C0C /* FEMRepresentationUtility.h */; };
 		1D6A369BF512C6E71C26FBF0 /* FEMProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3781CA28E31A3CDCE626 /* FEMProperty.h */; };
-		1D6A36A904C8D46C73BA8455 /* FEMRepresentationUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A328FCE22411C60FBC7C4 /* FEMRepresentationUtility.m */; };
 		1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
 		1D6A3821F8D06660ABDEE560 /* FEMRelationshipAssignmentContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31CC30FC2DC11994EBA8 /* FEMRelationshipAssignmentContext.m */; };
-		1D6A3846E3E87F496676A2A6 /* FEMRelationshipAssignmentContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31CC30FC2DC11994EBA8 /* FEMRelationshipAssignmentContext.m */; };
 		1D6A38BAA53A46E856AF5CC4 /* FEMRelationshipAssignmentContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A37E108D6B12FA8587FA6 /* FEMRelationshipAssignmentContext.h */; };
 		1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */; };
 		1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */; };
 		1D6A3BB7C54CCCC7720A793A /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A32B1909842797CD2E0D3 /* FEMObjectStore.h */; };
-		1D6A3BE38C286BBE0A0B0FEA /* FEMExcludableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BDA3CA0DDFF256CDB49 /* FEMExcludableCollection.m */; };
 		1D6A3C550D3AE60BEF5051D7 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
 		1D6A3CA9D3524975D1940D9F /* FEMAttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A37509AEB445D0EE5964D /* FEMAttributeMapping.h */; };
 		1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3ACBBC8E66609F169E94 /* Person_2.json */; };
@@ -779,13 +773,7 @@
 				2C375F4018CCD40A00FCB8EA /* FEMSerializerSpec.m in Sources */,
 				2C375F2118CCD3FB00FCB8EA /* CarNative.m in Sources */,
 				1D6A39844172720B32A975F4 /* FEMCacheSpec.m in Sources */,
-				1D6A3BE38C286BBE0A0B0FEA /* FEMExcludableCollection.m in Sources */,
-				1D6A33C795E9CA3D388DC1CE /* FEMMergeableCollection.m in Sources */,
 				1D6A3C550D3AE60BEF5051D7 /* FEMAttributeMappingSpec.m in Sources */,
-				1D6A361B9A77E73A962B0007 /* FEMObjectStore.m in Sources */,
-				1D6A3645DA65EDCB2A889774 /* FEMManagedObjectStore.m in Sources */,
-				1D6A36A904C8D46C73BA8455 /* FEMRepresentationUtility.m in Sources */,
-				1D6A3846E3E87F496676A2A6 /* FEMRelationshipAssignmentContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

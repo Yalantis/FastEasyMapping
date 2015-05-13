@@ -167,10 +167,6 @@
     [self addRelationship:relationshipMapping];
 }
 
-- (id)representationFromExternalRepresentation:(id)externalRepresentation {
-	return self.rootPath ? [externalRepresentation valueForKeyPath:self.rootPath] : externalRepresentation;
-}
-
 @end
 
 @implementation FEMMapping (FEMManagedObjectMapping_Deprecated)

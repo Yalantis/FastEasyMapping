@@ -89,13 +89,3 @@
 }
 
 @end
-
-@implementation FEMRelationship (Extension)
-
-- (id)representationFromExternalRepresentation:(id)externalRepresentation {
-	if (self.keyPath) return [externalRepresentation valueForKeyPath:self.keyPath];
-
-	return externalRepresentation;
-}
-
-@end

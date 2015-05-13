@@ -8,6 +8,7 @@
 #import "FEMRepresentationUtility.h"
 #import "FEMObjectMapping.h"
 #import "FEMMapping.h"
+#import "FEMRepresentationUtility.h"
 
 #import <CoreData/CoreData.h>
 
@@ -80,8 +81,7 @@
 }
 
 - (void)inspectExternalRepresentation:(id)externalRepresentation mapping:(FEMManagedObjectMapping *)mapping {
-	id representation = [mapping representationFromExternalRepresentation:externalRepresentation];
-
+    id representation = FEMRepresentationRootForKeyPath(externalRepresentation, mapping.rootPath);
     [self inspectRepresentation:representation mapping:mapping];
 }
 

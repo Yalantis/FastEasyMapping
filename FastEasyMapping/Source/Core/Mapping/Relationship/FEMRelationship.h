@@ -36,9 +36,3 @@
                     objectMapping:(FEMMapping *)objectMapping;
 
 @end
-
-@interface FEMRelationship (Extension)
-
-- (id)extractRootFromExternalRepresentation:(id)externalRepresentation;
-
-@end

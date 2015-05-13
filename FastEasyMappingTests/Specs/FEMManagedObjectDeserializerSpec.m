@@ -12,6 +12,7 @@
 #import "FEMRelationship.h"
 
 #import "FEMManagedObjectDeserializer.h"
+#import "FEMObjectDeserializer.h"
 #import "FEMRelationship.h"
 
 #import "FEMMapping.h"
