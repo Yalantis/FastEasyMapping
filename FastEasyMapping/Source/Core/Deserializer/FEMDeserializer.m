@@ -11,6 +11,9 @@
 #import "FEMObjectStore.h"
 #import "FEMRelationshipAssignmentContext+Internal.h"
 #import "FEMRepresentationUtility.h"
+#import "FEMManagedObjectStore.h"
+#import "KWExample.h"
+#import "FEMObjectMapping.h"
 
 @implementation FEMDeserializer
 
@@ -24,7 +27,7 @@
     return self;
 }
 
-#pragma mark - Deserialization IMP
+#pragma mark - Deserialization
 
 - (void)fulfillObjectRelationships:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMMapping *)mapping {
     for (FEMRelationship *relationship in mapping.relationships) {
@@ -35,12 +38,12 @@
             id targetValue = nil;
             if (relationshipRepresentation != NSNull.null) {
                 if (relationship.isToMany) {
-                    targetValue = [self collectionFromRepresentation:relationshipRepresentation mapping:relationship.objectMapping];
+                    targetValue = [self _collectionFromRepresentation:relationshipRepresentation mapping:relationship.objectMapping];
 
                     objc_property_t property = class_getProperty([object class], [relationship.property UTF8String]);
                     targetValue = [targetValue fem_propertyRepresentation:property];
                 } else {
-                    targetValue = [self objectFromRepresentation:relationshipRepresentation mapping:relationship.objectMapping];
+                    targetValue = [self _objectFromRepresentation:relationshipRepresentation mapping:relationship.objectMapping];
                 }
             }
 
@@ -56,7 +59,7 @@
     }
 }
 
-- (id)fulfillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
+- (id)_fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
     for (FEMAttributeMapping *attributeMapping in mapping.attributes) {
         [attributeMapping setMappedValueToObject:object fromRepresentation:representation];
     }
@@ -66,13 +69,13 @@
     return object;
 }
 
-- (id)objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
+- (id)_objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
     id object = [self.store registeredObjectForRepresentation:representation mapping:mapping];
     if (!object) {
         object = [self.store newObjectForMapping:mapping];
     }
 
-    [self fulfillObject:object fromRepresentation:representation mapping:mapping];
+    [self _fillObject:object fromRepresentation:representation mapping:mapping];
 
     if ([self.store canRegisterObject:object forMapping:mapping]) {
         [self.store registerObject:object forMapping:mapping];
@@ -81,11 +84,11 @@
     return object;
 }
 
-- (NSArray *)collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
+- (NSArray *)_collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
     NSMutableArray *output = [[NSMutableArray alloc] initWithCapacity:representation.count];
     for (id objectRepresentation in representation) {
         @autoreleasepool {
-            id object = [self objectFromRepresentation:objectRepresentation mapping:mapping];
+            id object = [self _objectFromRepresentation:objectRepresentation mapping:mapping];
             [output addObject:object];
         }
     }
@@ -95,11 +98,11 @@
 #pragma mark - Public
 
 
-- (id)deserializeObjectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
+- (id)objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
     __block id object = nil;
     [self.store performMappingTransaction:@[representation] mapping:mapping transaction:^{
         id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-        object = [self objectFromRepresentation:root mapping:mapping];
+        object = [self _objectFromRepresentation:root mapping:mapping];
     }];
 
     return object;
@@ -108,17 +111,17 @@
 - (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
     [self.store performMappingTransaction:@[representation] mapping:mapping transaction:^{
         id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-        [self fulfillObject:object fromRepresentation:root mapping:mapping];
+        [self _fillObject:object fromRepresentation:root mapping:mapping];
     }];
 
     return object;
 }
 
-- (NSArray *)deserializeCollectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
+- (NSArray *)collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
     __block NSArray *objects = nil;
     [self.store performMappingTransaction:representation mapping:mapping transaction:^{
         id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-        objects = [self collectionFromRepresentation:root mapping:mapping];
+        objects = [self _collectionFromRepresentation:root mapping:mapping];
     }];
 
     return objects;
@@ -126,65 +129,74 @@
 
 @end
 
-@implementation FEMDeserializer (Shortcut)
+@implementation FEMDeserializer (Extension)
 
-//+ (id)deserializeObjectFromRepresentation:(NSDictionary *)representation
-//                                  mapping:(FEMMapping *)mapping
-//                                  context:(NSManagedObjectContext *)context {
-//    FEMManagedObjectStore *source = [[FEMManagedObjectStore alloc] initWithContext:context];
-//    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithStore:source];
-//
-//    return [deserializer deserializeObject];
-//}
-//
-//+ (id)fillObject:(NSManagedObject *)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-//    FEMManagedObjectStore *source = [[FEMManagedObjectStore alloc] initWithContext:object.managedObjectContext];
-//    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithStore:source];
-//
-//    return [deserializer fulfillObject:object];
-//}
-//
-//+ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation
-//                                            usingMapping:(FEMManagedObjectMapping *)mapping
-//                                                 context:(NSManagedObjectContext *)context {
-//    FEMManagedObjectStore *source = [[FEMManagedObjectStore alloc] initWithContext:context];
-//    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithStore:source];
-//
-//    return [deserializer deserializeCollection];
-//}
-//
-//+ (NSArray *)synchronizeCollectionExternalRepresentation:(NSArray *)externalRepresentation
-//                                            usingMapping:(FEMManagedObjectMapping *)mapping
-//                                               predicate:(NSPredicate *)predicate
-//                                                 context:(NSManagedObjectContext *)context {
-////    NSParameterAssert(mapping.primaryKey != nil);
-////
-////    FEMAttributeMapping *primaryKeyMapping = [mapping primaryKeyMapping];
-////
-////    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:mapping.entityName];
-////    [request setPredicate:predicate];
-////
-////    NSArray *initialObjects = [context executeFetchRequest:request error:NULL];
-////    NSArray *initialObjectsKeys = [initialObjects valueForKey:primaryKeyMapping.property];
-////    NSMutableDictionary *initialObjectsMap = [[NSMutableDictionary alloc] initWithObjects:initialObjects
-////                                                                                  forKeys:initialObjectsKeys];
-////
-////    FEMManagedObjectCache *cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping externalRepresentation:externalRepresentation context:context];
-////    FEMCacheSetCurrent(cache);
-////    NSArray *output = [self _deserializeCollectionExternalRepresentation:externalRepresentation
-////                                                            usingMapping:mapping
-////                                                                 context:context];
-////    FEMCacheRemoveCurrent();
-////
-////    NSDictionary *existingObjectsMap = [cache existingObjectsForMapping:mapping];
-////    [initialObjectsMap removeObjectsForKeys:existingObjectsMap.allKeys];
-////
-////    for (NSManagedObject *object in initialObjectsMap.allValues) {
-////        [context deleteObject:object];
-////    }
-////
-////    return output;
-//    return nil;
-//}
++ (id)objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context {
+    FEMManagedObjectStore *store = [[FEMManagedObjectStore alloc] initWithContext:context];
+    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithStore:store];
+    return [deserializer objectFromRepresentation:representation mapping:mapping];
+}
+
++ (id)objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
+    FEMObjectStore *store = [[FEMObjectStore alloc] init];
+    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithStore:store];
+    return [deserializer objectFromRepresentation:representation mapping:mapping];
+}
+
++ (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
+    FEMObjectStore *store = nil;
+    if ([object isKindOfClass:NSManagedObject.class]) {
+        store = [[FEMManagedObjectStore alloc] initWithContext:[(NSManagedObject *)object managedObjectContext]];
+    } else {
+        store = [[FEMObjectStore alloc] init];
+    }
+
+    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithStore:store];
+    return [deserializer _fillObject:object fromRepresentation:representation mapping:mapping];
+};
+
++ (NSArray *)collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context {
+    FEMManagedObjectStore *store = [[FEMManagedObjectStore alloc] initWithContext:context];
+    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithStore:store];
+    return [deserializer collectionFromRepresentation:representation mapping:mapping];
+}
+
++ (NSArray *)collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
+    FEMObjectStore *store = [[FEMObjectStore alloc] init];
+    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithStore:store];
+    return [deserializer collectionFromRepresentation:representation mapping:mapping];
+}
+
+@end
+
+@implementation FEMDeserializer (FEMManagedObjectDeserializer_Deprecated)
+
++ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping context:(NSManagedObjectContext *)context {
+    return [self objectFromRepresentation:externalRepresentation mapping:mapping context:context];
+}
+
++ (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping {
+    return [self fillObject:object fromRepresentation:externalRepresentation mapping:mapping];
+}
+
++ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping context:(NSManagedObjectContext *)context {
+    return [self collectionFromRepresentation:externalRepresentation mapping:mapping context:context];
+}
+
+@end
+
+@implementation FEMDeserializer (FEMObjectDeserializer_Deprecated)
+
++ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMObjectMapping *)mapping {
+    return [self objectFromRepresentation:externalRepresentation mapping:mapping];
+}
+
++ (id)fillObject:(id)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMObjectMapping *)mapping {
+    return [self fillObject:object fromRepresentation:externalRepresentation mapping:mapping];
+}
+
++ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(FEMObjectMapping *)mapping {
+    return [self collectionFromRepresentation:externalRepresentation mapping:mapping];
+}
 
 @end

@@ -9,27 +9,15 @@
 
 @compatibility_alias FEMManagedObjectDeserializer FEMDeserializer;
 
-@interface FEMManagedObjectDeserializer (BackwardCompatibility)
+@interface FEMDeserializer (FEMManagedObjectDeserializer_Deprecated)
 
-+ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation
-                                 usingMapping:(FEMManagedObjectMapping *)mapping
-			                          context:(NSManagedObjectContext *)context;
-
-+ (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping;
-
-/** Get an array of managed objects from an external representation. If the objectMapping has
-    a primary key existing objects will be updated. This method is slow and it doesn't
-    delete obsolete objects, use
-    syncArrayOfObjectsFromExternalRepresentation:withMapping:fetchRequest:inManagedObjectContext:
-    instead.
- */
-+ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation
-                                            usingMapping:(FEMManagedObjectMapping *)mapping
-			                                     context:(NSManagedObjectContext *)context;
++ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping context:(NSManagedObjectContext *)context __attribute__((deprecated("Use +[FEMDeserializer objectFromRepresentation:mapping:context:] instead")));
++ (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping __attribute__((deprecated("Use +[FEMDeserializer fillObject:fromRepresentation:mapping:] instead")));
++ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(FEMManagedObjectMapping *)mapping context:(NSManagedObjectContext *)context __attribute__((deprecated("Use +[FEMDeserializer collectionFromRepresentation:mapping:context:] instead")));
 
 + (NSArray *)synchronizeCollectionExternalRepresentation:(NSArray *)externalRepresentation
                                             usingMapping:(FEMManagedObjectMapping *)mapping
                                                predicate:(NSPredicate *)predicate
-                                                 context:(NSManagedObjectContext *)context;
+                                                 context:(NSManagedObjectContext *)context __attribute__((unavailable));
 
 @end

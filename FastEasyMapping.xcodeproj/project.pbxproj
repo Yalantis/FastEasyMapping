@@ -98,9 +98,7 @@
 		AD308A791B023E6C00B03F6A /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757758DA67B4E8247495 /* FEMRelationship.m */; };
 		AD308A7A1B023E6C00B03F6A /* FEMAttribute+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED718D4E6F950EE17E08C6 /* FEMAttribute+Extension.m */; };
 		AD52DF7D1B03657900E46915 /* FEMManagedObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = AD52DF791B03657900E46915 /* FEMManagedObjectDeserializer.h */; };
-		AD52DF7E1B03657900E46915 /* FEMManagedObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD52DF7A1B03657900E46915 /* FEMManagedObjectDeserializer.m */; };
 		AD52DF7F1B03657900E46915 /* FEMObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = AD52DF7B1B03657900E46915 /* FEMObjectDeserializer.h */; };
-		AD52DF801B03657900E46915 /* FEMObjectDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD52DF7C1B03657900E46915 /* FEMObjectDeserializer.m */; };
 		ADC5B81D194E0F8600F07712 /* FEMAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */; };
 		ADC5B81F194E0FB700F07712 /* FEMAssignmentPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3E68C0FB99F7A73DE0C5 /* FEMAssignmentPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -241,9 +239,7 @@
 		69ED7FF7736562A674D3696D /* PlaneNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneNative.h; sourceTree = "<group>"; };
 		95A8DE2E9CC533DA840A0845 /* Pods-FastEasyMappingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMappingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FastEasyMappingTests/Pods-FastEasyMappingTests.release.xcconfig"; sourceTree = "<group>"; };
 		AD52DF791B03657900E46915 /* FEMManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectDeserializer.h; sourceTree = "<group>"; };
-		AD52DF7A1B03657900E46915 /* FEMManagedObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMManagedObjectDeserializer.m; sourceTree = "<group>"; };
 		AD52DF7B1B03657900E46915 /* FEMObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectDeserializer.h; sourceTree = "<group>"; };
-		AD52DF7C1B03657900E46915 /* FEMObjectDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectDeserializer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -576,9 +572,7 @@
 				69ED771F4A0CC2BB6D9583BC /* FEMDeserializer.h */,
 				69ED772E50A1A831B78D48B3 /* FEMDeserializer.m */,
 				AD52DF791B03657900E46915 /* FEMManagedObjectDeserializer.h */,
-				AD52DF7A1B03657900E46915 /* FEMManagedObjectDeserializer.m */,
 				AD52DF7B1B03657900E46915 /* FEMObjectDeserializer.h */,
-				AD52DF7C1B03657900E46915 /* FEMObjectDeserializer.m */,
 			);
 			path = Deserializer;
 			sourceTree = "<group>";
@@ -745,10 +739,8 @@
 				AD308A7A1B023E6C00B03F6A /* FEMAttribute+Extension.m in Sources */,
 				AD308A791B023E6C00B03F6A /* FEMRelationship.m in Sources */,
 				69ED797C93C27C8E3BBC1BDB /* FEMSerializer.m in Sources */,
-				AD52DF801B03657900E46915 /* FEMObjectDeserializer.m in Sources */,
 				69ED7DADB8044F2B42C1CD94 /* FEMDeserializer.m in Sources */,
 				69ED7144E37E067666813AF9 /* NSArray+FEMPropertyRepresentation.m in Sources */,
-				AD52DF7E1B03657900E46915 /* FEMManagedObjectDeserializer.m in Sources */,
 				69ED7687C035FA51A536AB56 /* FEMTypeIntrospection.m in Sources */,
 				69ED756EBF9D955A7B6A580A /* FEMManagedObjectCache.m in Sources */,
 				69ED74D218BD6B3888549434 /* NSObject+FEMKVCExtension.m in Sources */,
