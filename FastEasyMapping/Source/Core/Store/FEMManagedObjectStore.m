@@ -16,13 +16,7 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
 
 @implementation FEMManagedObjectStore {
     FEMManagedObjectCache *_cache;
-
-    NSManagedObjectContext *_managedObjectContext;
-    FEMManagedObjectMapping *_mapping;
 }
-
-@synthesize mapping = _mapping;
-@synthesize externalRepresentation = _externalRepresentation;
 
 #pragma mark - Init
 
@@ -36,13 +30,21 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     return self;
 }
 
-#pragma mark - FEMDeserializerSource
+#pragma mark -
+
+- (NSError *)performMappingTransaction:(NSArray *)representation mapping:(FEMMapping *)mapping transaction:(void (^)(void))transaction {
+    return [super performMappingTransaction:representation mapping:mapping transaction:^{
+        _cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping representation:representation context:self.context];
+        transaction();
+        _cache = nil;
+    }];
+}
 
 - (id)newObjectForMapping:(FEMMapping *)mapping {
     validateMapping(mapping);
 
     NSString *entityName = [mapping entityName];
-    return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:_managedObjectContext];
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
 }
 
 - (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
