@@ -9,7 +9,6 @@
 #import "FEMRepresentationUtility.h"
 #import "FEMRelationship.h"
 #import "FEMMappingUtility.h"
-#import "KWExample.h"
 
 @implementation FEMManagedObjectCache {
 	NSManagedObjectContext *_context;
