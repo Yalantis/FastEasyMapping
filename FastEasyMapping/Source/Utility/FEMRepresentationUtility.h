@@ -6,3 +6,7 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXTERN id FEMRepresentationRootForKeyPath(id representation, NSString *keyPath);
+
+@class FEMMapping;
+
+FOUNDATION_EXTERN NSDictionary *FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping);

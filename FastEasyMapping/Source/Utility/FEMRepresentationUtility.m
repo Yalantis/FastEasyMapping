@@ -4,6 +4,9 @@
 //
 
 #import "FEMRepresentationUtility.h"
+#import "FEMMapping.h"
+#import "FEMMappingUtility.h"
+#import "FEMAttribute+Extension.h"
 
 id FEMRepresentationRootForKeyPath(id representation, NSString *keyPath) {
     if (keyPath.length > 0) {
@@ -11,4 +14,56 @@ id FEMRepresentationRootForKeyPath(id representation, NSString *keyPath) {
     }
 
     return representation;
+}
+
+void _FEMRepresentationCollectPresentedPrimaryKeys(id, FEMMapping *, NSDictionary *);
+
+void _FEMRepresentationCollectObjectPrimaryKeys(NSDictionary *object, FEMMapping *mapping, NSDictionary *container) {
+    if (mapping.primaryKey) {
+        FEMAttribute *primaryKeyMapping = mapping.primaryKeyAttribute;
+        id primaryKeyValue = [primaryKeyMapping mappedValueFromRepresentation:object];
+        if (primaryKeyValue && primaryKeyValue != NSNull.null) {
+            NSMutableSet *set = container[mapping.entityName];
+            [set addObject:primaryKeyValue];
+        }
+    }
+
+    for (FEMRelationship *relationship in mapping.relationships) {
+        id relationshipRepresentation = FEMRepresentationRootForKeyPath(object, relationship.keyPath);
+        if (relationshipRepresentation && relationshipRepresentation != NSNull.null) {
+            _FEMRepresentationCollectPresentedPrimaryKeys(relationshipRepresentation, relationship.objectMapping, container);
+        }
+    }
+}
+
+void _FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping, NSDictionary *container) {
+    if ([representation isKindOfClass:NSArray.class]) {
+        for (id object in (id<NSFastEnumeration>)representation) {
+            _FEMRepresentationCollectObjectPrimaryKeys(object, mapping, container);
+        }
+    } else if ([representation isKindOfClass:NSDictionary.class]) {
+        _FEMRepresentationCollectObjectPrimaryKeys(representation, mapping, container);
+    } else {
+        NSCAssert(
+            NO,
+            @"Expected container classes: NSArray, NSDictionary. Got:%@",
+            NSStringFromClass([representation class])
+        );
+    }
+};
+
+NSDictionary *FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping) {
+    FEMMappingApply(mapping, ^(FEMMapping *object) {
+        NSCParameterAssert(object.entityName != nil);
+    });
+
+    NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
+    for (NSString *name in FEMMappingCollectUsedEntityNames(mapping)) {
+        output[name] = [[NSMutableSet alloc] init];
+    }
+
+    id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
+    _FEMRepresentationCollectPresentedPrimaryKeys(root, mapping, output);
+
+    return output;
 }

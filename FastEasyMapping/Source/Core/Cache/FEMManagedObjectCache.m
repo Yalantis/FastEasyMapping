@@ -14,7 +14,7 @@
 @implementation FEMManagedObjectCache {
 	NSManagedObjectContext *_context;
 
-	NSMutableDictionary *_lookupKeysMap;
+	NSDictionary *_lookupKeysMap;
 	NSMutableDictionary *_lookupObjectsMap;
 }
 
@@ -30,68 +30,14 @@
 	if (self) {
 		_context = context;
 
-		_lookupKeysMap = [NSMutableDictionary new];
+		_lookupKeysMap = FEMRepresentationCollectPresentedPrimaryKeys(representation, mapping);
 		_lookupObjectsMap = [NSMutableDictionary new];
-
-        for (NSString *name in FEMMappingCollectUsedEntityNames(mapping)) {
-            _lookupKeysMap[name] = [[NSMutableSet alloc] init];
-        }
-
-        [self inspectExternalRepresentation:representation mapping:mapping];
 	}
 
 	return self;
 }
 
 #pragma mark - Inspection
-
-- (void)inspectObjectRepresentation:(id)objectRepresentation mapping:(FEMMapping *)mapping {
-	if (mapping.primaryKey) {
-		FEMAttribute *primaryKeyMapping = mapping.primaryKeyAttribute;
-		NSParameterAssert(primaryKeyMapping);
-
-		id primaryKeyValue = [primaryKeyMapping mappedValueFromRepresentation:objectRepresentation];
-		if (primaryKeyValue && primaryKeyValue != NSNull.null) {
-			[_lookupKeysMap[mapping.entityName] addObject:primaryKeyValue];
-		}
-	}
-
-	for (FEMRelationship *relationshipMapping in mapping.relationships) {
-		id relationshipRepresentation = FEMRepresentationRootForKeyPath(objectRepresentation, relationshipMapping.keyPath);
-        if (relationshipRepresentation && relationshipRepresentation != NSNull.null) {
-            [self inspectRepresentation:relationshipRepresentation mapping:relationshipMapping.objectMapping];
-        }
-	}
-}
-
-- (void)inspectRepresentation:(id)representation mapping:(FEMMapping *)mapping {
-	if ([representation isKindOfClass:NSArray.class]) {
-		for (id objectRepresentation in representation) {
-            [self inspectObjectRepresentation:objectRepresentation mapping:mapping];
-		}
-	} else if ([representation isKindOfClass:NSDictionary.class]) {
-        [self inspectObjectRepresentation:representation mapping:mapping];
-	} else {
-		NSAssert(
-			NO,
-			@"Expected container classes: NSArray, NSDictionary. Got:%@",
-			NSStringFromClass([representation class])
-		);
-	}
-}
-
-- (void)inspectExternalRepresentation:(id)externalRepresentation mapping:(FEMMapping *)mapping {
-    id representation = FEMRepresentationRootForKeyPath(externalRepresentation, mapping.rootPath);
-    [self inspectRepresentation:representation mapping:mapping];
-}
-
-- (void)collectEntityNames:(NSMutableSet *)namesCollection mapping:(FEMMapping *)mapping {
-	[namesCollection addObject:mapping.entityName];
-
-	for (FEMRelationship *relationshipMapping in mapping.relationships) {
-        [self collectEntityNames:namesCollection mapping:relationshipMapping.objectMapping];
-	}
-}
 
 - (NSMutableDictionary *)fetchExistingObjectsForMapping:(FEMMapping *)mapping {
 	NSSet *lookupValues = _lookupKeysMap[mapping.entityName];
