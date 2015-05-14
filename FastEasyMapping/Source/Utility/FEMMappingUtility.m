@@ -17,9 +17,9 @@ void FEMMappingApply(FEMMapping *mapping, void (^apply)(FEMMapping *object)) {
 NSSet * FEMMappingCollectUsedEntityNames(FEMMapping *mapping) {
     NSMutableSet *output = [[NSMutableSet alloc] init];
     FEMMappingApply(mapping, ^(FEMMapping *object) {
-        NSCParameterAssert(mapping.entityName != nil);
+        NSCParameterAssert(object.entityName != nil);
 
-        [output addObject:mapping.entityName];
+        [output addObject:object.entityName];
     });
 
     return output;
