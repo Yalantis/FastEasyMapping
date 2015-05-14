@@ -7,6 +7,9 @@
 #import "FEMMapping.h"
 #import "FEMAttribute+Extension.h"
 #import "FEMRepresentationUtility.h"
+#import "FEMRelationship.h"
+#import "FEMMappingUtility.h"
+#import "KWExample.h"
 
 @implementation FEMManagedObjectCache {
 	NSManagedObjectContext *_context;
@@ -30,7 +33,10 @@
 		_lookupKeysMap = [NSMutableDictionary new];
 		_lookupObjectsMap = [NSMutableDictionary new];
 
-		[self prepareMappingLookupStructure:mapping];
+        for (NSString *name in FEMMappingCollectUsedEntityNames(mapping)) {
+            _lookupKeysMap[name] = [[NSMutableSet alloc] init];
+        }
+
         [self inspectExternalRepresentation:representation mapping:mapping];
 	}
 
@@ -84,15 +90,6 @@
 
 	for (FEMRelationship *relationshipMapping in mapping.relationships) {
         [self collectEntityNames:namesCollection mapping:relationshipMapping.objectMapping];
-	}
-}
-
-- (void)prepareMappingLookupStructure:(FEMMapping *)mapping {
-	NSMutableSet *entityNames = [NSMutableSet new];
-    [self collectEntityNames:entityNames mapping:mapping];
-
-	for (NSString *entityName in entityNames) {
-		_lookupKeysMap[entityName] = [NSMutableSet new];
 	}
 }
 
