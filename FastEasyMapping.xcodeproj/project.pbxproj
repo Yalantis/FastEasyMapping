@@ -11,9 +11,9 @@
 		1D6A316DBA47161814A2E1D8 /* FEMMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A348952AF3C9B329FC208 /* FEMMapping.m */; };
 		1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
 		1D6A344F5FF5B8AD3E1FDC04 /* FEMRelationshipAssignmentContext+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3E939A8527DF07B8E6EB /* FEMRelationshipAssignmentContext+Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1D6A348584F61C3260854CE2 /* FEMMappingUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A34B621512A2FE61ECE26 /* FEMMappingUtility.h */; };
+		1D6A348584F61C3260854CE2 /* FEMMappingUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A34B621512A2FE61ECE26 /* FEMMappingUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D6A34C84E523B5F58F87C5E /* PersonWithMissingRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */; };
-		1D6A368456D992002FA3C6A9 /* FEMRepresentationUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3E942488A7A8C0C01C0C /* FEMRepresentationUtility.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		1D6A368456D992002FA3C6A9 /* FEMRepresentationUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3E942488A7A8C0C01C0C /* FEMRepresentationUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D6A369BF512C6E71C26FBF0 /* FEMProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3781CA28E31A3CDCE626 /* FEMProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
 		1D6A3821F8D06660ABDEE560 /* FEMRelationshipAssignmentContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31CC30FC2DC11994EBA8 /* FEMRelationshipAssignmentContext.m */; };
@@ -618,13 +618,13 @@
 				1D6A38BAA53A46E856AF5CC4 /* FEMRelationshipAssignmentContext.h in Headers */,
 				1D6A3BB7C54CCCC7720A793A /* FEMObjectStore.h in Headers */,
 				ADC5B81F194E0FB700F07712 /* FEMAssignmentPolicy.h in Headers */,
+				1D6A368456D992002FA3C6A9 /* FEMRepresentationUtility.h in Headers */,
+				1D6A348584F61C3260854CE2 /* FEMMappingUtility.h in Headers */,
 				2CF809AD18C3AEC800C07899 /* NSArray+FEMPropertyRepresentation.h in Headers */,
 				2CF809AF18C3AEC800C07899 /* FEMTypeIntrospection.h in Headers */,
 				69ED72338B6419101B1C8CDB /* NSObject+FEMKVCExtension.h in Headers */,
 				1D6A344F5FF5B8AD3E1FDC04 /* FEMRelationshipAssignmentContext+Internal.h in Headers */,
-				1D6A368456D992002FA3C6A9 /* FEMRepresentationUtility.h in Headers */,
 				1D6A38364CB754F0BEE49D24 /* FEMMapping.h in Headers */,
-				1D6A348584F61C3260854CE2 /* FEMMappingUtility.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
