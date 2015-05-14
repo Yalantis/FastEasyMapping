@@ -7,6 +7,9 @@
 #import "FEMAttribute.h"
 #import "FEMRelationship.h"
 
+#import "FEMObjectStore.h"
+#import "FEMManagedObjectStore.h"
+
 #import "FEMMapping.h"
 #import "FEMObjectMapping.h"
 #import "FEMManagedObjectMapping.h"
