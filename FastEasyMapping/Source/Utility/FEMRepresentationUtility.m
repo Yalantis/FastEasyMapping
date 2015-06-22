@@ -41,17 +41,16 @@ void _FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping
         for (id object in (id<NSFastEnumeration>)representation) {
             _FEMRepresentationCollectObjectPrimaryKeys(object, mapping, container);
         }
-    } else if ([representation isKindOfClass:NSDictionary.class]) {
+    } else if ([representation isKindOfClass:NSDictionary.class] || [representation isKindOfClass:[NSNumber class]] || [representation isKindOfClass:[NSString class]]) {
         _FEMRepresentationCollectObjectPrimaryKeys(representation, mapping, container);
     } else {
         NSCAssert(
             NO,
-            @"Expected container classes: NSArray, NSDictionary. Got:%@",
+            @"Expected container classes: NSArray, NSDictionary, NSNumber or NSString. Got:%@",
             NSStringFromClass([representation class])
         );
     }
 };
-
 NSDictionary *FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping) {
     FEMMappingApply(mapping, ^(FEMMapping *object) {
         NSCParameterAssert(object.entityName != nil);
