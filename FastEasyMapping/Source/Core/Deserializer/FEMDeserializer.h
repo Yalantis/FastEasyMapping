@@ -9,8 +9,8 @@
 @protocol FEMDeserializerDelegate <NSObject>
 
 @optional
-- (void)deserializer:(FEMDeserializer *)deserializer willMapObjectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
-- (void)deserializer:(FEMDeserializer *)deserializer didMapObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
+- (void)deserializer:(FEMDeserializer *)deserializer willMapObjectFromRepresentation:(id)representation mapping:(FEMMapping *)mapping;
+- (void)deserializer:(FEMDeserializer *)deserializer didMapObject:(id)object fromRepresentation:(id)representation mapping:(FEMMapping *)mapping;
 
 - (void)deserializer:(FEMDeserializer *)deserializer willMapCollectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping;
 - (void)deserializer:(FEMDeserializer *)deserializer didMapCollection:(NSArray *)collection fromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping;
