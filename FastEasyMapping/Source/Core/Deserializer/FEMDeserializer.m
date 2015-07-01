@@ -55,12 +55,16 @@
             id targetValue = nil;
             if (relationshipRepresentation != NSNull.null) {
                 if (relationship.isToMany) {
-                    targetValue = [self _collectionFromRepresentation:relationshipRepresentation mapping:relationship.objectMapping];
+                    targetValue = [self _collectionFromRepresentation:relationshipRepresentation
+                                                              mapping:relationship.objectMapping
+                                                     allocateIfNeeded:!relationship.weak];
 
                     objc_property_t property = class_getProperty([object class], [relationship.property UTF8String]);
                     targetValue = [targetValue fem_propertyRepresentation:property];
                 } else {
-                    targetValue = [self _objectFromRepresentation:relationshipRepresentation mapping:relationship.objectMapping];
+                    targetValue = [self _objectFromRepresentation:relationshipRepresentation
+                                                          mapping:relationship.objectMapping
+                                                 allocateIfNeeded:!relationship.weak];
                 }
             }
 
@@ -86,14 +90,18 @@
     return object;
 }
 
-- (id)_objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-    if (_delegateFlags.willMapObject) {
-        [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
+- (id)_objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping allocateIfNeeded:(BOOL)allocate {
+    id object = [self.store registeredObjectForRepresentation:representation mapping:mapping];
+    if (!object && allocate) {
+        object = [self.store newObjectForMapping:mapping];
+    }
+    
+    if (!object) {
+        return nil;
     }
 
-    id object = [self.store registeredObjectForRepresentation:representation mapping:mapping];
-    if (!object) {
-        object = [self.store newObjectForMapping:mapping];
+    if (_delegateFlags.willMapObject) {
+        [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
     }
 
     [self _fillObject:object fromRepresentation:representation mapping:mapping];
@@ -109,7 +117,7 @@
     return object;
 }
 
-- (NSArray *)_collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
+- (NSArray *)_collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping allocateIfNeeded:(BOOL)allocate {
     if (_delegateFlags.willMapCollection) {
         [self.delegate deserializer:self willMapCollectionFromRepresentation:representation mapping:mapping];
     }
@@ -117,7 +125,7 @@
     NSMutableArray *output = [[NSMutableArray alloc] initWithCapacity:representation.count];
     for (id objectRepresentation in representation) {
         @autoreleasepool {
-            id object = [self _objectFromRepresentation:objectRepresentation mapping:mapping];
+            id object = [self _objectFromRepresentation:objectRepresentation mapping:mapping allocateIfNeeded:allocate];
             [output addObject:object];
         }
     }
@@ -136,7 +144,7 @@
     __block id object = nil;
     [self.store performMappingTransaction:@[representation] mapping:mapping transaction:^{
         id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-        object = [self _objectFromRepresentation:root mapping:mapping];
+        object = [self _objectFromRepresentation:root mapping:mapping allocateIfNeeded:YES];
     }];
 
     return object;
@@ -163,7 +171,7 @@
     __block NSArray *objects = nil;
     [self.store performMappingTransaction:representation mapping:mapping transaction:^{
         id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-        objects = [self _collectionFromRepresentation:root mapping:mapping];
+        objects = [self _collectionFromRepresentation:root mapping:mapping allocateIfNeeded:YES];
     }];
 
     return objects;
