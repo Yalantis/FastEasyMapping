@@ -11,58 +11,58 @@
 	NSMutableDictionary *_relationshipMap;
 }
 
-- (instancetype)init __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
-+ (instancetype)new __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
-- (id)initWithRootPath:(NSString *)rootPath __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
+- (nonnull instancetype)init __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
++ (nonnull instancetype)new __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
+- (nonnull instancetype)initWithRootPath:(nullable NSString *)rootPath __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
 
 
-- (instancetype)initWithObjectClass:(Class)objectClass NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithObjectClass:(Class)objectClass rootPath:(NSString *)rootPath;
+- (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass rootPath:(nullable NSString *)rootPath;
 
-- (instancetype)initWithEntityName:(NSString *)entityName NS_DESIGNATED_INITIALIZER;
-- (id)initWithEntityName:(NSString *)entityName rootPath:(NSString *)rootPath;
+- (nonnull instancetype)initWithEntityName:(nonnull NSString *)entityName NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithEntityName:(nonnull NSString *)entityName rootPath:(nullable NSString *)rootPath;
 
-@property (nonatomic, readonly) Class objectClass;
-@property (nonatomic, copy, readonly) NSString *entityName;
+@property (nonatomic, readonly, nullable) Class objectClass;
+@property (nonatomic, copy, readonly, nullable) NSString *entityName;
 
-@property (nonatomic, copy) NSString *rootPath;
+@property (nonatomic, copy, nullable) NSString *rootPath;
 
-@property (nonatomic, copy) NSString *primaryKey;
-@property (nonatomic, strong, readonly) FEMAttribute *primaryKeyAttribute;
+@property (nonatomic, copy, nullable) NSString *primaryKey;
+@property (nonatomic, strong, readonly, nullable) FEMAttribute *primaryKeyAttribute;
 
-@property (nonatomic, strong, readonly) NSArray *attributes;
-- (void)addAttribute:(FEMAttribute *)attribute;
-- (FEMAttribute *)attributeForProperty:(NSString *)property;
+@property (nonatomic, strong, readonly, nonnull) NSArray *attributes;
+- (void)addAttribute:(nonnull FEMAttribute *)attribute;
+- (nullable FEMAttribute *)attributeForProperty:(nonnull NSString *)property;
 
-@property (nonatomic, strong, readonly) NSArray *relationships;
-- (void)addRelationship:(FEMRelationship *)relationship;
-- (FEMRelationship *)relationshipForProperty:(NSString *)property;
+@property (nonatomic, strong, readonly, nonnull) NSArray *relationships;
+- (void)addRelationship:(nonnull FEMRelationship *)relationship;
+- (nullable FEMRelationship *)relationshipForProperty:(nonnull NSString *)property;
 
 @end
 
 @interface FEMMapping (Shortcut)
 
-- (void)addAttributesFromArray:(NSArray *)attributes;
-- (void)addAttributesFromDictionary:(NSDictionary *)attributesToKeyPath;
-- (void)addAttributeWithProperty:(NSString *)property keyPath:(NSString *)keyPath;
+- (void)addAttributesFromArray:(nonnull NSArray *)attributes;
+- (void)addAttributesFromDictionary:(nonnull NSDictionary *)attributesToKeyPath;
+- (void)addAttributeWithProperty:(nonnull NSString *)property keyPath:(nullable NSString *)keyPath;
 
-- (void)addRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
-- (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath;
+- (void)addRelationshipMapping:(nonnull FEMMapping *)mapping forProperty:(nonnull NSString *)property keyPath:(nullable NSString *)keyPath;
+- (void)addToManyRelationshipMapping:(nonnull FEMMapping *)mapping forProperty:(nonnull NSString *)property keyPath:(nullable NSString *)keyPath;
 
 @end
 
 @interface FEMMapping (FEMObjectMapping_Deprecated)
 
-+ (FEMMapping *)mappingForClass:(Class)objectClass configuration:(void (^)(FEMMapping *mapping))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:] instead")));
-+ (FEMMapping *)mappingForClass:(Class)objectClass rootPath:(NSString *)rootPath configuration:(void (^)(FEMMapping *mapping))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:rootPath:] instead")));
++ (nonnull FEMMapping *)mappingForClass:(nonnull Class)objectClass configuration:(nonnull void (^)(FEMMapping * __nonnull mapping))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:] instead")));
++ (nonnull FEMMapping *)mappingForClass:(nonnull Class)objectClass rootPath:(nullable NSString *)rootPath configuration:(nonnull void (^)(FEMMapping * __nonnull mapping))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:rootPath:] instead")));
 
 @end
 
 
 @interface FEMMapping (FEMManagedObjectMapping_Deprecated)
 
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName;// __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName configuration:(void (^)(FEMMapping *sender))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName rootPath:(NSString *)rootPath configuration:(void (^)(FEMMapping *sender))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
++ (nonnull FEMMapping *)mappingForEntityName:(nonnull NSString *)entityName;// __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
++ (nonnull FEMMapping *)mappingForEntityName:(nonnull NSString *)entityName configuration:(nullable void (^)(FEMMapping * __nonnull sender))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
++ (nonnull FEMMapping *)mappingForEntityName:(nonnull NSString *)entityName rootPath:(nullable NSString *)rootPath configuration:(nullable void (^)(FEMMapping * __nonnull sender))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
 
 @end

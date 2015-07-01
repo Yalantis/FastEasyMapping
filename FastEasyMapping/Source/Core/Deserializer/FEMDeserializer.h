@@ -9,57 +9,52 @@
 @protocol FEMDeserializerDelegate <NSObject>
 
 @optional
-- (void)deserializer:(FEMDeserializer *)deserializer willMapObjectFromRepresentation:(id)representation mapping:(FEMMapping *)mapping;
-- (void)deserializer:(FEMDeserializer *)deserializer didMapObject:(id)object fromRepresentation:(id)representation mapping:(FEMMapping *)mapping;
+- (void)deserializer:(nonnull FEMDeserializer *)deserializer willMapObjectFromRepresentation:(nonnull id)representation mapping:(nonnull FEMMapping *)mapping;
+- (void)deserializer:(nonnull FEMDeserializer *)deserializer didMapObject:(nonnull id)object fromRepresentation:(nonnull id)representation mapping:(nonnull FEMMapping *)mapping;
 
-- (void)deserializer:(FEMDeserializer *)deserializer willMapCollectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping;
-- (void)deserializer:(FEMDeserializer *)deserializer didMapCollection:(NSArray *)collection fromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping;
+- (void)deserializer:(nonnull FEMDeserializer *)deserializer willMapCollectionFromRepresentation:(nonnull NSArray *)representation mapping:(nonnull FEMMapping *)mapping;
+- (void)deserializer:(nonnull FEMDeserializer *)deserializer didMapCollection:(nonnull NSArray *)collection fromRepresentation:(nonnull NSArray *)representation mapping:(nonnull FEMMapping *)mapping;
 
 @end
 
 @interface FEMDeserializer : NSObject
 
-@property (nonatomic, strong, readonly) FEMObjectStore *store;
-- (id)initWithStore:(FEMObjectStore *)store;
+@property (nonatomic, strong, readonly, nonnull) FEMObjectStore *store;
+- (nonnull instancetype)initWithStore:(nonnull FEMObjectStore *)store;
 
-@property (nonatomic, unsafe_unretained) id<FEMDeserializerDelegate> delegate;
+@property (nonatomic, unsafe_unretained, nullable) id<FEMDeserializerDelegate> delegate;
 
-- (id)objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
-- (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
-- (NSArray *)collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping;
+- (nonnull id)objectFromRepresentation:(nonnull NSDictionary *)representation mapping:(nonnull FEMMapping *)mapping;
+- (nonnull id)fillObject:(nonnull id)object fromRepresentation:(nonnull NSDictionary *)representation mapping:(nonnull FEMMapping *)mapping;
+- (nonnull NSArray *)collectionFromRepresentation:(nonnull NSArray *)representation mapping:(nonnull FEMMapping *)mapping;
 
 @end
 
 @interface FEMDeserializer (Extension)
 
-+ (id)objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context;
-+ (id)objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
++ (nonnull id)objectFromRepresentation:(nonnull NSDictionary *)representation mapping:(nonnull FEMMapping *)mapping context:(nonnull NSManagedObjectContext *)context;
++ (nonnull id)objectFromRepresentation:(nonnull NSDictionary *)representation mapping:(nonnull FEMMapping *)mapping;
 
-+ (id)fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping;
-
-+ (NSArray *)collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context;
-+ (NSArray *)collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping;
++ (nonnull NSArray *)collectionFromRepresentation:(nonnull NSArray *)representation mapping:(nonnull FEMMapping *)mapping context:(nonnull NSManagedObjectContext *)context;
++ (nonnull NSArray *)collectionFromRepresentation:(nonnull NSArray *)representation mapping:(nonnull FEMMapping *)mapping;
 
 @end
 
 
 @interface FEMDeserializer (FEMObjectDeserializer_Deprecated)
 
-+ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMMapping *)mapping; // __attribute__((deprecated("Use +[FEMDeserializer objectFromRepresentation:mapping:] instead")));
-+ (id)fillObject:(id)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMMapping *)mapping; // __attribute__((deprecated("Use +[FEMDeserializer fillObject:fromRepresentation:mapping:] instead")));
-+ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(FEMMapping *)mapping; // __attribute__((deprecated("Use +[FEMDeserializer collectionFromRepresentation:mapping:] instead")));
++ (nonnull id)deserializeObjectExternalRepresentation:(nonnull NSDictionary *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping; // __attribute__((deprecated("Use +[FEMDeserializer objectFromRepresentation:mapping:] instead")));
++ (nonnull id)fillObject:(nonnull id)object fromExternalRepresentation:(nonnull NSDictionary *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping; // __attribute__((deprecated("Use +[FEMDeserializer fillObject:fromRepresentation:mapping:] instead")));
++ (nonnull NSArray *)deserializeCollectionExternalRepresentation:(nonnull NSArray *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping; // __attribute__((deprecated("Use +[FEMDeserializer collectionFromRepresentation:mapping:] instead")));
 
 @end
 
 @interface FEMDeserializer (FEMManagedObjectDeserializer_Deprecated)
 
-+ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context; // __attribute__((deprecated("Use +[FEMDeserializer objectFromRepresentation:mapping:context:] instead")));
++ (nonnull id)deserializeObjectExternalRepresentation:(nonnull NSDictionary *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping context:(nonnull NSManagedObjectContext *)context; // __attribute__((deprecated("Use +[FEMDeserializer objectFromRepresentation:mapping:context:] instead")));
 
-+ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context; // __attribute__((deprecated("Use +[FEMDeserializer collectionFromRepresentation:mapping:context:] instead")));
++ (nonnull NSArray *)deserializeCollectionExternalRepresentation:(nonnull NSArray *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping context:(nonnull NSManagedObjectContext *)context; // __attribute__((deprecated("Use +[FEMDeserializer collectionFromRepresentation:mapping:context:] instead")));
 
-+ (NSArray *)synchronizeCollectionExternalRepresentation:(NSArray *)externalRepresentation
-                                            usingMapping:(FEMMapping *)mapping
-                                               predicate:(NSPredicate *)predicate
-                                                 context:(NSManagedObjectContext *)context __attribute__((unavailable));
++ (nonnull NSArray *)synchronizeCollectionExternalRepresentation:(nonnull NSArray *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping predicate:(nonnull NSPredicate *)predicate context:(nonnull NSManagedObjectContext *)context __attribute__((unavailable));
 
 @end

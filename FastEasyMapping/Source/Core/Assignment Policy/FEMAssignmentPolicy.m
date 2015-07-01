@@ -6,7 +6,7 @@
 #import "FEMExcludableCollection.h"
 #import "FEMMergeableCollection.h"
 
-FEMAssignmentPolicy FEMAssignmentPolicyAssign = ^id(FEMRelationshipAssignmentContext *context) {
+FEMAssignmentPolicy FEMAssignmentPolicyAssign = ^id(FEMRelationshipAssignmentContext * context) {
     return context.targetRelationshipValue;
 };
 

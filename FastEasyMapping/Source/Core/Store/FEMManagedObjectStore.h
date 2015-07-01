@@ -6,8 +6,8 @@
 
 @interface FEMManagedObjectStore : FEMObjectStore
 
-- (instancetype)initWithContext:(NSManagedObjectContext *)context;
-@property (nonatomic, strong, readonly) NSManagedObjectContext *context;
+- (nonnull instancetype)initWithContext:(nonnull NSManagedObjectContext *)context NS_DESIGNATED_INITIALIZER;
+@property (nonatomic, strong, readonly, nonnull) NSManagedObjectContext *context;
 
 @property (nonatomic) BOOL saveContextOnCommit;
 

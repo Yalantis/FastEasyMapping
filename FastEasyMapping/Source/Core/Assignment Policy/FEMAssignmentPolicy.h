@@ -4,12 +4,12 @@
 
 @class FEMRelationshipAssignmentContext;
 
-typedef id (^FEMAssignmentPolicy)(FEMRelationshipAssignmentContext *context);
+typedef __nullable id (^FEMAssignmentPolicy)(FEMRelationshipAssignmentContext * __nonnull context);
 
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyAssign;
+OBJC_EXTERN __nonnull FEMAssignmentPolicy FEMAssignmentPolicyAssign;
 
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyObjectMerge;
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge;
+OBJC_EXTERN __nonnull FEMAssignmentPolicy FEMAssignmentPolicyObjectMerge;
+OBJC_EXTERN __nonnull FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge;
 
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace;
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace;
+OBJC_EXTERN __nonnull FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace;
+OBJC_EXTERN __nonnull FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace;

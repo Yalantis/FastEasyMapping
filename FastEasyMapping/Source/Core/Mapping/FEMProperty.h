@@ -4,7 +4,7 @@
 
 @protocol FEMProperty <NSObject>
 
-@property (nonatomic, copy) NSString *property;
-@property (nonatomic, copy) NSString *keyPath;
+@property (nonatomic, copy, nonnull) NSString *property;
+@property (nonatomic, copy, nullable) NSString *keyPath;
 
 @end

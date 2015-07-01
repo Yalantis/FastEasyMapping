@@ -8,15 +8,15 @@
 
 @interface FEMObjectStore : NSObject <FEMRelationshipAssignmentContextDelegate>
 
-- (NSError *)performMappingTransaction:(NSArray *)representation mapping:(FEMMapping *)mapping transaction:(void (^)(void))transaction;
+- (nullable NSError *)performMappingTransaction:(nonnull NSArray *)representation mapping:(nonnull FEMMapping *)mapping transaction:(nonnull void (^)(void))transaction;
 
-- (id)newObjectForMapping:(FEMMapping *)mapping;
-- (FEMRelationshipAssignmentContext *)newAssignmentContext;
+- (nonnull id)newObjectForMapping:(nonnull FEMMapping *)mapping;
+- (nonnull FEMRelationshipAssignmentContext *)newAssignmentContext;
 
-- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping;
-- (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping;
+- (void)registerObject:(nonnull id)object forMapping:(nonnull FEMMapping *)mapping;
+- (BOOL)canRegisterObject:(nonnull id)object forMapping:(nonnull FEMMapping *)mapping;
 
-- (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping;
-- (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;
+- (nonnull NSDictionary *)registeredObjectsForMapping:(nonnull FEMMapping *)mapping;
+- (nullable id)registeredObjectForRepresentation:(nonnull id)representation mapping:(nonnull FEMMapping *)mapping;
 
 @end

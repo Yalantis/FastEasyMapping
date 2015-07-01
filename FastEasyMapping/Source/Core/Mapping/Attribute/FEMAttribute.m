@@ -77,6 +77,10 @@
     return [self mappingOfProperty:property toKeyPath:nil map:map reverseMap:NULL];
 }
 
++ (nonnull instancetype)mappingOfProperty:(nonnull NSString *)property reverseMap:(nonnull FEMMapBlock)reverseMap {
+    return [self mappingOfProperty:property toKeyPath:nil map:NULL reverseMap:reverseMap];
+}
+
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {
     NSDateFormatter *formatter = [NSDateFormatter new];
     [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];

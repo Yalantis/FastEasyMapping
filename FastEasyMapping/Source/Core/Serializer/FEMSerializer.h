@@ -6,7 +6,7 @@
 
 @interface FEMSerializer : NSObject
 
-+ (NSDictionary *)serializeObject:(id)object usingMapping:(FEMMapping *)mapping;
-+ (id)serializeCollection:(NSArray *)collection usingMapping:(FEMMapping *)mapping;
++ (nonnull NSDictionary *)serializeObject:(nonnull id)object usingMapping:(nonnull FEMMapping *)mapping;
++ (nonnull id)serializeCollection:(nonnull NSArray *)collection usingMapping:(nonnull FEMMapping *)mapping;
 
 @end
