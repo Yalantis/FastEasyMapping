@@ -26,7 +26,7 @@ describe(@"FEMAttribute", ^{
 
         describe(@"property can't be nil", ^{
             [[theBlock(^{
-                mapping = [[FEMAttribute alloc] initWithProperty:nil keyPath:nil map:NULL reverseMap:NULL];
+                mapping = [[FEMAttribute alloc] initWithProperty:@"" keyPath:nil map:NULL reverseMap:NULL];
             }) should] raise];
         });
  

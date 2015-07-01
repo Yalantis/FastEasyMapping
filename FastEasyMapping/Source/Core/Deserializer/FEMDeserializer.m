@@ -225,10 +225,6 @@
     return [self objectFromRepresentation:externalRepresentation mapping:mapping context:context];
 }
 
-+ (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMMapping *)mapping {
-    return [self fillObject:object fromRepresentation:externalRepresentation mapping:mapping];
-}
-
 + (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context {
     return [self collectionFromRepresentation:externalRepresentation mapping:mapping context:context];
 }
@@ -241,7 +237,7 @@
     return [self objectFromRepresentation:externalRepresentation mapping:mapping];
 }
 
-+ (id)fillObject:(id)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMMapping *)mapping {
++ (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMMapping *)mapping {
     return [self fillObject:object fromRepresentation:externalRepresentation mapping:mapping];
 }
 

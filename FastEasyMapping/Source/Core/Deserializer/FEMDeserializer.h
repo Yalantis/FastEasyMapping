@@ -35,6 +35,8 @@
 + (nonnull id)objectFromRepresentation:(nonnull NSDictionary *)representation mapping:(nonnull FEMMapping *)mapping context:(nonnull NSManagedObjectContext *)context;
 + (nonnull id)objectFromRepresentation:(nonnull NSDictionary *)representation mapping:(nonnull FEMMapping *)mapping;
 
++ (nonnull id)fillObject:(nonnull id)object fromRepresentation:(nonnull NSDictionary *)representation mapping:(nonnull FEMMapping *)mapping;
+
 + (nonnull NSArray *)collectionFromRepresentation:(nonnull NSArray *)representation mapping:(nonnull FEMMapping *)mapping context:(nonnull NSManagedObjectContext *)context;
 + (nonnull NSArray *)collectionFromRepresentation:(nonnull NSArray *)representation mapping:(nonnull FEMMapping *)mapping;
 
