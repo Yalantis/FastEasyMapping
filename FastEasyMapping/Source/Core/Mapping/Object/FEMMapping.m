@@ -150,18 +150,14 @@
 }
 
 - (void)addRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {
-	FEMRelationship *relationshipMapping = [FEMRelationship mappingOfProperty:property
-                                                                    toKeyPath:keyPath
-                                                                objectMapping:mapping];
-    [self addRelationship:relationshipMapping];
+    FEMRelationship *relationship = [[FEMRelationship alloc] initWithProperty:property keyPath:keyPath mapping:mapping];
+    [self addRelationship:relationship];
 }
 
 - (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {
-	FEMRelationship *relationshipMapping = [FEMRelationship mappingOfProperty:property
-                                                                    toKeyPath:keyPath
-                                                                objectMapping:mapping];
-	[relationshipMapping setToMany:YES];
-    [self addRelationship:relationshipMapping];
+    FEMRelationship *relationship = [[FEMRelationship alloc] initWithProperty:property keyPath:keyPath mapping:mapping];
+    relationship.toMany = YES;
+    [self addRelationship:relationship];
 }
 
 @end
