@@ -16,25 +16,64 @@ It turns out, that almost all popular libraries for JSON mapping SLOW. The main 
 #### Cocoapods:
 ```ruby
 #Podfile
-
-pod 'FastEasyMapping', ~> '1.0'
+platform :ios, '7.0'
+pod 'FastEasyMapping', '~> 1.0'
 ```
 or add as a static library.
 
-# Architecture
+## Architecture
 
+### Mapping
 
+* `FEMMapping`
+* `<FEMProperty>`
+	- `FEMAttribute'
+	- `FEMRelationship`
 
+### Deserialization _(JSON to Object)_
+- `FEMDeserializer`
 
-# Usage
-## Deserialization. NSManagedObject
+### Serialization _(Object to JSON)_
+- `FEMSerializer`
 
-Supose you have these classes:
+### Advanced Deserialization
+- `FEMObjectStore`
+- `FEMManagedObjectStore`
+- `FEMManagedObjectCache`
+
+## Usage
+### Deserialization
+
+Nowadays `NSObject` and `NSManagedObject` mapping supported out of the box. Lets take a look on how basic mapping looks like:. For example, we have JSON:
+
+```json
+{
+    "name": "Lucas",
+    "user_email": "lucastoc@gmail.com",
+    "car": {
+        "model": "i30",
+        "year": "2013"
+    },
+    "phones": [
+        {
+            "ddi": "55",
+            "ddd": "85",
+            "number": "1111-1111"
+        },
+        {
+            "ddi": "55",
+            "ddd": "11",
+            "number": "2222-222"
+        }
+    ]
+}
+```
+
+and corresponding [CoreData](https://www.objc.io/issues/4-core-data/core-data-overview/)-generated classes: 
 
 ```objective-c
 @interface Person : NSManagedObject
 
-@property (nonatomic, retain) NSNumber *personID;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) Car *car;
@@ -44,17 +83,14 @@ Supose you have these classes:
 
 @interface Car : NSManagedObject
 
-@property (nonatomic, retain) NSNumber *carID;
 @property (nonatomic, retain) NSString *model;
 @property (nonatomic, retain) NSString *year;
-@property (nonatomic, retain) NSDate *createdAt;
 @property (nonatomic, retain) Person *person;
 
 @end
 
 @interface Phone : NSManagedObject
 
-@property (nonatomic, retain) NSNumber *phoneID;
 @property (nonatomic, retain) NSString *ddi;
 @property (nonatomic, retain) NSString *ddd;
 @property (nonatomic, retain) NSString *number;
@@ -63,40 +99,88 @@ Supose you have these classes:
 @end
 ```
 
-Mapping can be described in next way:
+In order to map _JSON to Object_ and vice versa we have to describe mapping rules:
 
 ```objective-c
-@implementation MappingProvider
+@implementation Person (Mapping)
 
-+ (FEMManagedObjectMapping *)personMapping {
-	return [FEMManagedObjectMapping mappingForEntityName:@"Person" configuration:^(FEMManagedObjectMapping *mapping) {
-		[mapping setPrimaryKey:@"personID"];  // object uniquing
++ (FEMMapping *)defaultMapping {
+	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    [mapping addAttributesFromArray:@[@"name"]];
+    [mapping addAttributesFromDictionary:@{@"email": @"user_email"}];
 
-		[mapping addAttributesFromDictionary:@{@"personID": @"id"}];
-		[mapping addAttributesFromArray:@[@"name", @"email", @"gender"]];
+    [mapping addRelationshipMapping:[Car defaultMapping] forProperty:@"car" keyPath:@"car"];
+    [mapping addToManyRelationshipMapping:[Person defaultMapping] forProperty:@"phones" keyPath:@"phones"];
 
-		[mapping addRelationshipMapping:[self carMapping] forProperty:@"car" keyPath:@"car"];
-		[mapping addToManyRelationshipMapping:[self phoneMapping] forProperty:@"phones" keyPath:@"phones"];
-	}];
+  	return mapping;
 }
 
-+ (FEMManagedObjectMapping *)carMapping {
-	return [FEMManagedObjectMapping mappingForEntityName:@"Car" configuration:^(FEMManagedObjectMapping *mapping) {
-    [mapping setPrimaryKey:@"carID"];
+@end
 
-		[mapping addAttributesFromArray:@[@"model", @"year"]];
-	}];
+@implementation Car (Mapping)
+
++ (FEMMapping *)defaultMapping {
+	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Car"];
+    [mapping addAttributesFromArray:@[@"model", @"year"]];
+
+  	return mapping;
 }
 
-+ (FEMManagedObjectMapping *)phoneMapping {
-	return [FEMManagedObjectMapping mappingForEntityName:@"Phone" configuration:^(FEMManagedObjectMapping *mapping) {
-		[mapping addAttributesFromDictionary:@{@"phoneID" : @"id"}];
-		[mapping addAttributesFromArray:@[@"number", @"ddd", @"ddi"]];
-	}];
+@end
+
+
+@implementation Phone (Mapping)
+
++ (FEMMapping *)defaultMapping {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Phone"];
+    [mapping addAttributesFromArray:@[@"number", @"ddd", @"ddi"]];
+
+    return mapping;
 }
 
 @end
 ```
+
+Now we can deserialize Object from JSON easily:
+
+```objective-c
+FEMMapping *mapping = [Person defaultMapping];
+Person *person = [FEMDeserializer objectFromRepresentation:json mapping:mapping context:managedObjectContext];
+```
+
+Or collection of objects:
+
+```objective-c
+NSArray *persons = [FEMDeserializer collectionFromRepresentation:json mapping:mapping context:managedObjectContext];
+```
+
+Or update object:
+```objective-c
+[FEMDeserializer fillObject:person fromRepresentation:json mapping:mapping];
+
+```
+
+### Serialization
+
+Now we want to convert an _Object to JSON_ having mapping defined above:
+```objective-c
+FEMMapping *mapping = [Person defaultMapping];
+Person *person = ...;
+NSDictionary *json = [FEMSerializer serializeObject:person usingMapping:mapping];
+```
+
+Or convert collection to a JSON: 
+```objective-c
+FEMMapping *mapping = [Person defaultMapping];
+NSArray *persons = ...;
+NSArray *json = [FEMSerializer serializeCollection:persons usingMapping:mapping];
+```
+
+## Mapping
+Mapping is a core of this project which consists of 3 classes:
+- `FEMMapping` - class that describes an Object. It encapsulates all Object's attributes and relationships.
+- `FEMAttribute` - description of relationship between an Object's `property` and a JSON's `keyPath`. Also it encapsulates rules of how the value needs to be mapped from Object to JSON and back.
+- `FEMRelationship` - class that describes relationship between two `FEMMapping` instances.
 
 
 Converting a NSDictionary or NSArray to a object class or collection now becomes easy:
