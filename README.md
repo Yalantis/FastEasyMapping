@@ -11,15 +11,20 @@ It turns out, that almost all popular libraries for JSON mapping SLOW. The main 
   <img src="https://raw.githubusercontent.com/Yalantis/FastEasyMapping/efabb88b0831c7ece88e728b9665edc4d3af5b1f/Assets/performance.png" alt="FastEasyMapping" title="FastEasyMapping">
 </p>
 
-# Setup
+# Installation
 
 #### Cocoapods:
 ```ruby
 #Podfile
 
-pod 'FastEasyMapping'
+pod 'FastEasyMapping', ~> '1.0'
 ```
 or add as a static library.
+
+# Architecture
+
+
+
 
 # Usage
 ## Deserialization. NSManagedObject
