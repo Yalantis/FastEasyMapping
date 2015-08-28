@@ -31,8 +31,7 @@ describe(@"FEMDeserializer", ^{
             
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"Car"];
-	            car = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                    usingMapping:[MappingProviderNative carMapping]];
+	            car = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative carMapping]];
             });
             
             specify(^{
@@ -56,8 +55,7 @@ describe(@"FEMDeserializer", ^{
             
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"CarWithRoot"];
-	            car = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                    usingMapping:[MappingProviderNative carWithRootKeyMapping]];
+	            car = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative carWithRootKeyMapping]];
                 externalRepresentation = [externalRepresentation objectForKey:@"car"];
             });
             
@@ -82,8 +80,7 @@ describe(@"FEMDeserializer", ^{
             
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"CarWithNestedAttributes"];
-	            car = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                    usingMapping:[MappingProviderNative carNestedAttributesMapping]];
+	            car = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative carNestedAttributesMapping]];
             });
             
             specify(^{
@@ -107,8 +104,7 @@ describe(@"FEMDeserializer", ^{
             
             beforeEach(^{
                 externalRepresentation = [CMFixture buildUsingFixture:@"CarWithDate"];
-	            car = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                    usingMapping:[MappingProviderNative carWithDateMapping]];
+	            car = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative carWithDateMapping]];
             });
             
             specify(^{
@@ -145,8 +141,8 @@ describe(@"FEMDeserializer", ^{
                 
                 beforeEach(^{
                     externalRepresentation = [CMFixture buildUsingFixture:@"Male"];
-	                person = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                           usingMapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
+	                person = [FEMDeserializer objectFromRepresentation:externalRepresentation
+                                                               mapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
                 });
                 
                 specify(^{
@@ -162,8 +158,8 @@ describe(@"FEMDeserializer", ^{
                 
                 beforeEach(^{
                     externalRepresentation = [CMFixture buildUsingFixture:@"Female"];
-	                person = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                           usingMapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
+	                person = [FEMDeserializer objectFromRepresentation:externalRepresentation
+                                                               mapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
                 });
                 
                 specify(^{
@@ -179,8 +175,8 @@ describe(@"FEMDeserializer", ^{
                 
                 beforeEach(^{
                     externalRepresentation = [CMFixture buildUsingFixture:@"Address"];
-	                address = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                            usingMapping:[MappingProviderNative addressMapping]];
+	                address = [FEMDeserializer objectFromRepresentation:externalRepresentation
+                                                                mapping:[MappingProviderNative addressMapping]];
                 });
                 
                 specify(^{
@@ -212,8 +208,8 @@ describe(@"FEMDeserializer", ^{
                 expectedCar = [carFactory build];
                 
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Person"];
-	            person = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                       usingMapping:[MappingProviderNative personMapping]];
+	            person = [FEMDeserializer objectFromRepresentation:externalRepresentation
+                                                           mapping:[MappingProviderNative personMapping]];
             });
             
             specify(^{
@@ -241,8 +237,8 @@ describe(@"FEMDeserializer", ^{
 	            [mapping addRelationshipMapping:[MappingProviderNative carMapping] forProperty:@"car" keyPath:@"vehicle"];
 
 	            NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
-	            person = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                       usingMapping:mapping];
+	            person = [FEMDeserializer objectFromRepresentation:externalRepresentation
+                                                           mapping:mapping];
             });
             
             specify(^{
@@ -269,8 +265,8 @@ describe(@"FEMDeserializer", ^{
             
             beforeEach(^{
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Person"];
-	            person = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                       usingMapping:[MappingProviderNative personMapping]];
+	            person = [FEMDeserializer objectFromRepresentation:externalRepresentation
+                                                           mapping:[MappingProviderNative personMapping]];
             });
             
             specify(^{
@@ -293,8 +289,7 @@ describe(@"FEMDeserializer", ^{
 	                                      forProperty:@"phones"
 			                                  keyPath:@"cellphones"];
                 NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
-	            person = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                       usingMapping:mapping];
+	            person = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:mapping];
             });
             
             specify(^{
@@ -323,8 +318,7 @@ describe(@"FEMDeserializer", ^{
             beforeEach(^{
                 FEMObjectMapping * mapping = [MappingProviderNative nativeMapping];
                 NSDictionary * externalRepresentation = [CMFixture buildUsingFixture:@"Native"];
-	            native = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                       usingMapping:mapping];
+	            native = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:mapping];
             });
             
             specify(^{
@@ -413,8 +407,7 @@ describe(@"FEMDeserializer", ^{
                 beforeEach(^{
                     FEMObjectMapping *catMapping = [MappingProviderNative nativeMappingWithNullPropertie];
                     NSDictionary *values = @{ @"age": [NSNull null] };
-	                cat = [FEMDeserializer deserializeObjectExternalRepresentation:values
-	                                                                        usingMapping:catMapping];
+	                cat = [FEMDeserializer objectFromRepresentation:values mapping:catMapping];
                 });
                 
                 specify(^{
@@ -438,8 +431,7 @@ describe(@"FEMDeserializer", ^{
         
         beforeEach(^{
             externalRepresentation = [CMFixture buildUsingFixture:@"Cars"];
-	        carsArray = [FEMDeserializer deserializeCollectionExternalRepresentation:externalRepresentation
-	                                                                          usingMapping:[MappingProviderNative carMapping]];
+	        carsArray = [FEMDeserializer collectionFromRepresentation:externalRepresentation mapping:[MappingProviderNative carMapping]];
         });
         
         specify(^{
@@ -464,8 +456,7 @@ describe(@"FEMDeserializer", ^{
 	        [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"stewardess" keyPath:@"stewardess"];
 	        [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"stars" keyPath:@"stars"];
 
-	        plane = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                  usingMapping:mapping];
+	        plane = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:mapping];
         });
         
         specify(^{
@@ -499,8 +490,7 @@ describe(@"FEMDeserializer", ^{
             FEMObjectMapping * mapping = [[FEMObjectMapping alloc] initWithObjectClass:[SeaplaneNative class]];
 	        [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"passengers" keyPath:@"persons"];
 
-	        seaplane = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                     usingMapping:mapping];
+	        seaplane = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:mapping];
         });
         
         specify(^{
@@ -519,8 +509,7 @@ describe(@"FEMDeserializer", ^{
         
         beforeEach(^{
             NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Alien"];
-	        alien = [FEMDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-	                                                                  usingMapping:[MappingProviderNative alienMapping]];
+	        alien = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative alienMapping]];
         });
         
         specify(^{
