@@ -70,10 +70,7 @@ describe(@"FEMMapping", ^{
         __block FEMMapping *mapping;
         
         beforeEach(^{
-            mapping = [FEMMapping mappingForEntityName:@"Car"
-                                                      configuration:^(FEMMapping *mapping) {
-
-                                                      }];
+            mapping = [[FEMMapping alloc] initWithEntityName:@"Car"];
         });
         
         specify(^{
@@ -91,11 +88,7 @@ describe(@"FEMMapping", ^{
         __block FEMMapping *mapping;
         
         beforeEach(^{
-            mapping = [FEMMapping mappingForEntityName:@"Car"
-                                                           rootPath:@"car"
-		                                              configuration:^(FEMMapping *mapping) {
-
-		                                              }];
+            mapping = [[FEMMapping alloc] initWithEntityName:@"Car" rootPath:@"car"];
         });
         
         specify(^{

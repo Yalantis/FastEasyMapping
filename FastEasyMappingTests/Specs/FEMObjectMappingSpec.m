@@ -18,9 +18,7 @@ describe(@"FEMObjectMapping", ^{
         __block FEMObjectMapping *mapping;
         
         beforeEach(^{
-           mapping = [FEMObjectMapping mappingForClass:[CarNative class] configuration:^(FEMObjectMapping *mapping) {
-
-           }];
+            mapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class]];
         });
         
         specify(^{
@@ -38,11 +36,7 @@ describe(@"FEMObjectMapping", ^{
         __block FEMObjectMapping *mapping;
         
         beforeEach(^{
-            mapping = [FEMObjectMapping mappingForClass:[CarNative class]
-                                               rootPath:@"car"
-		                                  configuration:^(FEMObjectMapping *mapping) {
-
-		                                  }];
+            mapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class] rootPath:@"car"];
         });
         
         specify(^{
