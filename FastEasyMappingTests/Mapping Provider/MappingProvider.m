@@ -67,17 +67,9 @@
 //		[mapping setPrimaryKey:@"personID"];
         [mapping addAttributesFromDictionary:@{@"personID" : @"id"}];
         [mapping addAttributesFromArray:@[@"name", @"email", @"gender"]];
-        [mapping addRelationship:[FEMRelationship mappingOfProperty:@"car"
-                                                      configuration:^(FEMRelationship *relationshipMapping) {
-                                                          [relationshipMapping setObjectMapping:[self carMapping]
-                                                                                     forKeyPath:@"car"];
-                                                      }]];
 
-        [mapping addRelationship:[FEMRelationship mappingOfProperty:@"phones"
-                                                      configuration:^(FEMRelationship *relationshipMapping) {
-                                                          [relationshipMapping setToMany:YES];
-                                                          [relationshipMapping setObjectMapping:[self phoneMapping] forKeyPath:@"phones"];
-                                                      }]];
+        [mapping addRelationshipMapping:[self carMapping] forProperty:@"car" keyPath:@"car"];
+        [mapping addToManyRelationshipMapping:[self phoneMapping] forProperty:@"phones" keyPath:@"phones"];
 	}];
 }
 
@@ -87,14 +79,9 @@
         [mapping addAttributesFromDictionary:@{@"personID" : @"id"}];
         [mapping addAttributesFromArray:@[@"name", @"email", @"gender"]];
 
-        [mapping addRelationship:[FEMRelationship mappingOfProperty:@"phones"
-                                                      configuration:^(FEMRelationship *relationshipMapping) {
-                                                          FEMMapping *phoneMapping = [self phoneMapping];
-                                                          [phoneMapping setPrimaryKey:@"phoneID"];
-
-                                                          [relationshipMapping setToMany:YES];
-                                                          [relationshipMapping setObjectMapping:phoneMapping forKeyPath:@"phones"];
-                                                      }]];
+        FEMMapping *phoneMapping = [self phoneMapping];
+        phoneMapping.primaryKey = @"phoneID";
+        [mapping addToManyRelationshipMapping:phoneMapping forProperty:@"phones" keyPath:@"phones"];
     }];
 }
 
@@ -103,10 +90,8 @@
 		[mapping setPrimaryKey:@"personID"];
         [mapping addAttributesFromDictionary:@{@"personID" : @"id"}];
         [mapping addAttributesFromArray:@[@"name", @"email"]];
-        [mapping addRelationship:[FEMRelationship mappingOfProperty:@"car"
-                                                      configuration:^(FEMRelationship *relationshipMapping) {
-                                                          [relationshipMapping setObjectMapping:[self carMappingWithPrimaryKey] forKeyPath:@"car"];
-                                                      }]];
+
+        [mapping addRelationshipMapping:[self carMappingWithPrimaryKey] forProperty:@"car" keyPath:@"car"];
 	}];
 }
 
