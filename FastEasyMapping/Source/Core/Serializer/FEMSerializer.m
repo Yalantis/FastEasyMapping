@@ -82,9 +82,9 @@
 	if (value) {
 		id relationshipRepresentation = nil;
 		if (relationshipMapping.isToMany) {
-			relationshipRepresentation = [self _serializeCollection:value usingMapping:relationshipMapping.objectMapping];
+			relationshipRepresentation = [self _serializeCollection:value usingMapping:relationshipMapping.mapping];
 		} else {
-			relationshipRepresentation = [self _serializeObject:value usingMapping:relationshipMapping.objectMapping];
+			relationshipRepresentation = [self _serializeObject:value usingMapping:relationshipMapping.mapping];
 		}
 
 		if (relationshipMapping.keyPath.length > 0) {

@@ -10,7 +10,7 @@ void FEMMappingApply(FEMMapping *mapping, void (^apply)(FEMMapping *object)) {
     apply(mapping);
 
     for (FEMRelationship *relationship in mapping.relationships) {
-        FEMMappingApply(relationship.objectMapping, apply);
+        FEMMappingApply(relationship.mapping, apply);
     }
 }
 

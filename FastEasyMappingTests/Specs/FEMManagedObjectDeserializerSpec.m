@@ -232,7 +232,7 @@ describe(@"FEMDeserializer", ^{
 
         });
 
-        context(@"with hasOne objectMapping", ^{
+        context(@"with hasOne mapping", ^{
             __block Person *person;
             __block Car *expectedCar;
 
@@ -261,7 +261,7 @@ describe(@"FEMDeserializer", ^{
 
         });
 
-        context(@"with hasMany objectMapping", ^{
+        context(@"with hasMany mapping", ^{
             __block Person *person;
 
             beforeEach(^{

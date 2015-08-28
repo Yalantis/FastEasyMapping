@@ -60,8 +60,8 @@
 
 @interface FEMMapping (FEMManagedObjectMapping_Deprecated)
 
-+ (nonnull FEMMapping *)mappingForEntityName:(nonnull NSString *)entityName;// __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (nonnull FEMMapping *)mappingForEntityName:(nonnull NSString *)entityName configuration:(nullable void (^)(FEMMapping * __nonnull sender))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (nonnull FEMMapping *)mappingForEntityName:(nonnull NSString *)entityName rootPath:(nullable NSString *)rootPath configuration:(nullable void (^)(FEMMapping * __nonnull sender))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
++ (nonnull FEMMapping *)mappingForEntityName:(nonnull NSString *)entityName __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
++ (nonnull FEMMapping *)mappingForEntityName:(nonnull NSString *)entityName configuration:(nullable void (^)(FEMMapping * __nonnull sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
++ (nonnull FEMMapping *)mappingForEntityName:(nonnull NSString *)entityName rootPath:(nullable NSString *)rootPath configuration:(nullable void (^)(FEMMapping * __nonnull sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
 
 @end

@@ -56,14 +56,14 @@
             if (relationshipRepresentation != NSNull.null) {
                 if (relationship.isToMany) {
                     targetValue = [self _collectionFromRepresentation:relationshipRepresentation
-                                                              mapping:relationship.objectMapping
+                                                              mapping:relationship.mapping
                                                      allocateIfNeeded:!relationship.weak];
 
                     objc_property_t property = class_getProperty([object class], [relationship.property UTF8String]);
                     targetValue = [targetValue fem_propertyRepresentation:property];
                 } else {
                     targetValue = [self _objectFromRepresentation:relationshipRepresentation
-                                                          mapping:relationship.objectMapping
+                                                          mapping:relationship.mapping
                                                  allocateIfNeeded:!relationship.weak];
                 }
             }

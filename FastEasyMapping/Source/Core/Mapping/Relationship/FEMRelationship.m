@@ -10,69 +10,48 @@
 
 #pragma mark - Init
 
-- (instancetype)initWithProperty:(NSString *)property
-                         keyPath:(NSString *)keyPath
-                assignmentPolicy:(FEMAssignmentPolicy)policy
-                   objectMapping:(FEMMapping *)objectMapping {
-	NSParameterAssert(property.length > 0);
-
-	self = [super init];
-	if (self) {
-		_property = [property copy];
-        _keyPath = [keyPath copy];
-        _assignmentPolicy = (FEMAssignmentPolicy)[policy copy] ?: FEMAssignmentPolicyAssign;
-        _objectMapping = objectMapping;
-	}
-
-	return self;
+- (instancetype)initWithProperty:(NSString *)property mapping:(FEMMapping *)mapping {
+    return [self initWithProperty:property keyPath:nil mapping:mapping];
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationship *mapping))configuration {
-	NSParameterAssert(configuration);
+- (instancetype)initWithProperty:(NSString *)property keyPath:(NSString *)keyPath mapping:(FEMMapping *)mapping {
+    self = [super init];
+    if (self) {
+        self.property = property;
+        self.keyPath = keyPath;
+        self.mapping = mapping;
+        self.assignmentPolicy = FEMAssignmentPolicyAssign;
+    }
 
-	FEMRelationship *mapping = [[self alloc] initWithProperty:property
-                                                             keyPath:keyPath
-                                                    assignmentPolicy:NULL
-                                                       objectMapping:nil];
-	configuration(mapping);
-	return mapping;
+    return self;
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)property configuration:(void (^)(FEMRelationship *mapping))configuration {
-	return [self mappingOfProperty:property toKeyPath:nil configuration:configuration];
+- (instancetype)initWithProperty:(NSString *)property keyPath:(NSString *)keyPath mapping:(FEMMapping *)mapping assignmentPolicy:(FEMAssignmentPolicy)assignmentPolicy {
+    self = [self initWithProperty:property keyPath:keyPath mapping:mapping];
+    if (self) {
+        self.assignmentPolicy = assignmentPolicy;
+    }
+    return self;
 }
 
-+ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping {
-	return [[self alloc] initWithProperty:property keyPath:keyPath assignmentPolicy:NULL objectMapping:objectMapping];
-}
+#pragma mark - Shortcut
 
-+ (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping {
-    return [self mappingOfProperty:property toKeyPath:nil objectMapping:objectMapping];
-}
-
-#pragma mark - Property objectMapping
-
-- (void)setObjectMapping:(FEMMapping *)objectMapping forKeyPath:(NSString *)keyPath {
-    _objectMapping = objectMapping;
-
-	[self setKeyPath:keyPath];
-}
-
-- (void)setObjectMapping:(FEMMapping *)objectMapping {
-    [self setObjectMapping:objectMapping forKeyPath:nil];
+- (void)setMapping:(nonnull FEMMapping *)mapping forKeyPath:(nullable NSString *)keyPath {
+    self.mapping = mapping;
+    self.keyPath = keyPath;
 }
 
 #pragma mark - Description
 
 - (NSString *)description {
     return [NSString stringWithFormat:
-        @"<%@ %p>\n {\nproperty:%@ keyPath:%@ toMany:%@\nobjectMapping:(%@)}\n",
+        @"<%@ %p>\n {\nproperty:%@ keyPath:%@ toMany:%@\nmapping:(%@)}\n",
         NSStringFromClass(self.class),
         (__bridge void *) self,
         self.property,
         self.keyPath,
         @(self.toMany),
-        [self.objectMapping description]
+        [self.mapping description]
     ];
 }
 
@@ -80,12 +59,41 @@
 
 @implementation FEMRelationship (Deprecated)
 
-+ (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath configuration:(void (^)(FEMRelationship *mapping))configuration {
-    return [self mappingOfProperty:property toKeyPath:keyPath configuration:configuration];
+@dynamic objectMapping;
+
+- (FEMMapping *)objectMapping {
+    return self.mapping;
+}
+
+- (void)setObjectMapping:(FEMMapping *)objectMapping {
+    self.mapping = objectMapping;
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property keyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping {
-    return [self mappingOfProperty:property toKeyPath:keyPath objectMapping:objectMapping];
+    return [[self alloc] initWithProperty:property keyPath:keyPath mapping:objectMapping];
+}
+
+#pragma mark - Init
+
+- (instancetype)initWithProperty:(NSString *)property
+                         keyPath:(NSString *)keyPath
+                assignmentPolicy:(FEMAssignmentPolicy)policy
+                   objectMapping:(FEMMapping *)objectMapping {
+    return [self initWithProperty:property keyPath:keyPath mapping:objectMapping assignmentPolicy:policy];
+}
+
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath objectMapping:(FEMMapping *)objectMapping {
+    return [[self alloc] initWithProperty:property keyPath:keyPath mapping:objectMapping];
+}
+
++ (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping {
+    return [[self alloc] initWithProperty:property mapping:objectMapping];
+}
+
+#pragma mark - Property objectMapping
+
+- (void)setObjectMapping:(FEMMapping *)objectMapping forKeyPath:(NSString *)keyPath {
+    [self setMapping:objectMapping forKeyPath:keyPath];
 }
 
 @end

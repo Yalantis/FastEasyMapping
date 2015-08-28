@@ -31,7 +31,7 @@ void _FEMRepresentationCollectObjectPrimaryKeys(NSDictionary *object, FEMMapping
     for (FEMRelationship *relationship in mapping.relationships) {
         id relationshipRepresentation = FEMRepresentationRootForKeyPath(object, relationship.keyPath);
         if (relationshipRepresentation && relationshipRepresentation != NSNull.null) {
-            _FEMRepresentationCollectPresentedPrimaryKeys(relationshipRepresentation, relationship.objectMapping, container);
+            _FEMRepresentationCollectPresentedPrimaryKeys(relationshipRepresentation, relationship.mapping, container);
         }
     }
 }

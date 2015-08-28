@@ -135,7 +135,7 @@ SPEC_BEGIN(FEMCacheSpec)
             mapping = [MappingProvider personWithCarMapping];
 
             cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping representation:representation context:context];
-            carMapping = (id) [mapping relationshipForProperty:@"car"].objectMapping;
+            carMapping = (id) [mapping relationshipForProperty:@"car"].mapping;
         });
 
         afterEach(^{

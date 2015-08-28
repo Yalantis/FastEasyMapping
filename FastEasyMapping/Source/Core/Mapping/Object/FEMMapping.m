@@ -56,7 +56,7 @@
 	NSParameterAssert(propertyMapping);
 	NSAssert(
 		propertyMapping.property.length > 0,
-		@"It's illegal to add objectMapping without specified property:%@",
+		@"It's illegal to add mapping without specified property:%@",
 		propertyMapping
 	);
 
