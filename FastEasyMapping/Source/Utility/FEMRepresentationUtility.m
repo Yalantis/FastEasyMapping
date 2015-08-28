@@ -6,6 +6,7 @@
 #import "FEMRepresentationUtility.h"
 #import "FEMMapping.h"
 #import "FEMMappingUtility.h"
+#import "FEMAttribute.h"
 
 id FEMRepresentationRootForKeyPath(id representation, NSString *keyPath) {
     if (keyPath.length > 0) {
@@ -20,7 +21,7 @@ void _FEMRepresentationCollectPresentedPrimaryKeys(id, FEMMapping *, NSDictionar
 void _FEMRepresentationCollectObjectPrimaryKeys(NSDictionary *object, FEMMapping *mapping, NSDictionary *container) {
     if (mapping.primaryKey) {
         FEMAttribute *primaryKeyMapping = mapping.primaryKeyAttribute;
-        id primaryKeyValue = FEMAttributeMappedValueFromRepresentation(primaryKeyMapping, object);
+        id primaryKeyValue = FEMRepresentationValueForAttribute(object, primaryKeyMapping);
         if (primaryKeyValue && primaryKeyValue != NSNull.null) {
             NSMutableSet *set = container[mapping.entityName];
             [set addObject:primaryKeyValue];
@@ -64,4 +65,9 @@ NSDictionary *FEMRepresentationCollectPresentedPrimaryKeys(id representation, FE
     _FEMRepresentationCollectPresentedPrimaryKeys(root, mapping, output);
 
     return output;
+}
+
+id FEMRepresentationValueForAttribute(id representation, FEMAttribute *attribute) {
+    id value = attribute.keyPath ? [representation valueForKeyPath:attribute.keyPath] : representation;
+    return [attribute mapValue:value];
 }

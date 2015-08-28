@@ -5,7 +5,6 @@
 
 #import "FEMMappingUtility.h"
 #import "FEMMapping.h"
-#import "FEMAttribute.h"
 
 void FEMMappingApply(FEMMapping *mapping, void (^apply)(FEMMapping *object)) {
     apply(mapping);
@@ -24,9 +23,4 @@ NSSet * FEMMappingCollectUsedEntityNames(FEMMapping *mapping) {
     });
 
     return output;
-}
-
-id FEMAttributeMappedValueFromRepresentation(FEMAttribute *attribute, id representation) {
-    id value = attribute.keyPath ? [representation valueForKeyPath:attribute.keyPath] : representation;
-    return [attribute mapValue:value];
 }

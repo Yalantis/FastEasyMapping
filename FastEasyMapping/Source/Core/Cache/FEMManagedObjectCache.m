@@ -5,10 +5,7 @@
 #import <CoreData/CoreData.h>
 
 #import "FEMMapping.h"
-#import "FEMAttribute+Extension.h"
 #import "FEMRepresentationUtility.h"
-#import "FEMRelationship.h"
-#import "FEMMappingUtility.h"
 
 @implementation FEMManagedObjectCache {
 	NSManagedObjectContext *_context;
@@ -69,7 +66,7 @@
 - (id)existingObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
 	NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
 
-	id primaryKeyValue = FEMAttributeMappedValueFromRepresentation(mapping.primaryKeyAttribute, representation);
+	id primaryKeyValue = FEMRepresentationValueForAttribute(representation, mapping.primaryKeyAttribute);
 	if (primaryKeyValue == nil || primaryKeyValue == NSNull.null) return nil;
 
 	return entityObjectsMap[primaryKeyValue];

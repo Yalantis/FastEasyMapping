@@ -5,8 +5,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class FEMMapping, FEMAttribute;
+
 FOUNDATION_EXTERN id FEMRepresentationRootForKeyPath(id representation, NSString *keyPath);
 
-@class FEMMapping;
-
 FOUNDATION_EXTERN NSDictionary *FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping);
+
+FOUNDATION_EXTERN id FEMRepresentationValueForAttribute(id representation, FEMAttribute *attribute);

@@ -82,7 +82,7 @@
 }
 
 - (void)setAttributeValue:(FEMAttribute *)attribute onObject:(id)object fromRepresentation:(id)representation {
-    id value = FEMAttributeMappedValueFromRepresentation(attribute, representation);
+    id value = FEMRepresentationValueForAttribute(representation, attribute);
     if (value == NSNull.null) {
         if (!FEMObjectPropertyTypeIsScalar(object, attribute.property)) {
             [object setValue:nil forKey:attribute.property];
