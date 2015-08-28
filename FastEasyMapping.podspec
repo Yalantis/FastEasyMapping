@@ -13,4 +13,5 @@ Pod::Spec.new do |spec|
   spec.frameworks = 'CoreData'
 
   spec.source_files = 'FastEasyMapping/Source/**/*.{h,m}'
+  spec.private_header_files = 'FastEasyMapping/Source/Extensions/**/*.h'
 end
