@@ -87,6 +87,9 @@
 		AD308A781B023E6C00B03F6A /* FEMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7141C706CAC006EADE5A /* FEMAttribute.m */; };
 		AD308A791B023E6C00B03F6A /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757758DA67B4E8247495 /* FEMRelationship.m */; };
 		AD308A7A1B023E6C00B03F6A /* FEMAttribute+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED718D4E6F950EE17E08C6 /* FEMAttribute+Extension.m */; };
+		AD4E3A5F1B909710007D5511 /* FEMManagedObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A311D0B99D619E11B0641 /* FEMManagedObjectStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD4E3A601B909710007D5511 /* FEMExcludableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3AF6BD6EABAAACD8D4B8 /* FEMExcludableCollection.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AD4E3A611B909710007D5511 /* FEMMergeableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A368ADA05F6A09F22A3AC /* FEMMergeableCollection.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		AD52DF7D1B03657900E46915 /* FEMManagedObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = AD52DF791B03657900E46915 /* FEMManagedObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD52DF7F1B03657900E46915 /* FEMObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = AD52DF7B1B03657900E46915 /* FEMObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD52DF821B03865000E46915 /* FEMManagedObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A32164D7EFFBC35F34F17 /* FEMManagedObjectStore.m */; };
@@ -614,6 +617,7 @@
 				2CF809AC18C3AEC800C07899 /* FEMAttribute+Extension.h in Headers */,
 				AD52DF7F1B03657900E46915 /* FEMObjectDeserializer.h in Headers */,
 				1D6A369BF512C6E71C26FBF0 /* FEMProperty.h in Headers */,
+				AD4E3A5F1B909710007D5511 /* FEMManagedObjectStore.h in Headers */,
 				69ED7E8934131F087C5492A3 /* FEMManagedObjectCache.h in Headers */,
 				1D6A38BAA53A46E856AF5CC4 /* FEMRelationshipAssignmentContext.h in Headers */,
 				1D6A3BB7C54CCCC7720A793A /* FEMObjectStore.h in Headers */,
@@ -623,6 +627,8 @@
 				2CF809AD18C3AEC800C07899 /* NSArray+FEMPropertyRepresentation.h in Headers */,
 				2CF809AF18C3AEC800C07899 /* FEMTypeIntrospection.h in Headers */,
 				69ED72338B6419101B1C8CDB /* NSObject+FEMKVCExtension.h in Headers */,
+				AD4E3A601B909710007D5511 /* FEMExcludableCollection.h in Headers */,
+				AD4E3A611B909710007D5511 /* FEMMergeableCollection.h in Headers */,
 				1D6A344F5FF5B8AD3E1FDC04 /* FEMRelationshipAssignmentContext+Internal.h in Headers */,
 				1D6A38364CB754F0BEE49D24 /* FEMMapping.h in Headers */,
 			);
