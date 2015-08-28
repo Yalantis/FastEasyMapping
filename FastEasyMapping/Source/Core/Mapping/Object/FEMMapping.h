@@ -11,10 +11,9 @@
 	NSMutableDictionary *_relationshipMap;
 }
 
-- (nonnull instancetype)init __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
-+ (nonnull instancetype)new __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
-- (nonnull instancetype)initWithRootPath:(nullable NSString *)rootPath __attribute__((unavailable("use -[FEMMapping initWithObjectClass] or -[FEMMapping initWithEntityName:] insted")));
-
+- (nonnull instancetype)init __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] insted")));
++ (nonnull instancetype)new __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] insted")));
+- (nonnull instancetype)initWithRootPath:(nullable NSString *)rootPath __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] insted")));
 
 - (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass NS_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass rootPath:(nullable NSString *)rootPath;
@@ -53,8 +52,8 @@
 
 @interface FEMMapping (FEMObjectMapping_Deprecated)
 
-+ (nonnull FEMMapping *)mappingForClass:(nonnull Class)objectClass configuration:(nonnull void (^)(FEMMapping * __nonnull mapping))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:] instead")));
-+ (nonnull FEMMapping *)mappingForClass:(nonnull Class)objectClass rootPath:(nullable NSString *)rootPath configuration:(nonnull void (^)(FEMMapping * __nonnull mapping))configuration; // __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:rootPath:] instead")));
++ (nonnull FEMMapping *)mappingForClass:(nonnull Class)objectClass configuration:(nonnull void (^)(FEMMapping * __nonnull mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:] instead")));
++ (nonnull FEMMapping *)mappingForClass:(nonnull Class)objectClass rootPath:(nullable NSString *)rootPath configuration:(nonnull void (^)(FEMMapping * __nonnull mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:rootPath:] instead")));
 
 @end
 

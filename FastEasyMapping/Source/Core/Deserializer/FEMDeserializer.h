@@ -45,18 +45,16 @@
 
 @interface FEMDeserializer (FEMObjectDeserializer_Deprecated)
 
-+ (nonnull id)deserializeObjectExternalRepresentation:(nonnull NSDictionary *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping; // __attribute__((deprecated("Use +[FEMDeserializer objectFromRepresentation:mapping:] instead")));
-+ (nonnull id)fillObject:(nonnull id)object fromExternalRepresentation:(nonnull NSDictionary *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping; // __attribute__((deprecated("Use +[FEMDeserializer fillObject:fromRepresentation:mapping:] instead")));
-+ (nonnull NSArray *)deserializeCollectionExternalRepresentation:(nonnull NSArray *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping; // __attribute__((deprecated("Use +[FEMDeserializer collectionFromRepresentation:mapping:] instead")));
++ (nonnull id)deserializeObjectExternalRepresentation:(nonnull NSDictionary *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping __attribute__((deprecated("Use +[FEMDeserializer objectFromRepresentation:mapping:] instead")));
++ (nonnull id)fillObject:(nonnull id)object fromExternalRepresentation:(nonnull NSDictionary *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping __attribute__((deprecated("Use +[FEMDeserializer fillObject:fromRepresentation:mapping:] instead")));
++ (nonnull NSArray *)deserializeCollectionExternalRepresentation:(nonnull NSArray *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping __attribute__((deprecated("Use +[FEMDeserializer collectionFromRepresentation:mapping:] instead")));
 
 @end
 
 @interface FEMDeserializer (FEMManagedObjectDeserializer_Deprecated)
 
-+ (nonnull id)deserializeObjectExternalRepresentation:(nonnull NSDictionary *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping context:(nonnull NSManagedObjectContext *)context; // __attribute__((deprecated("Use +[FEMDeserializer objectFromRepresentation:mapping:context:] instead")));
-
-+ (nonnull NSArray *)deserializeCollectionExternalRepresentation:(nonnull NSArray *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping context:(nonnull NSManagedObjectContext *)context; // __attribute__((deprecated("Use +[FEMDeserializer collectionFromRepresentation:mapping:context:] instead")));
-
++ (nonnull id)deserializeObjectExternalRepresentation:(nonnull NSDictionary *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping context:(nonnull NSManagedObjectContext *)context __attribute__((deprecated("Use +[FEMDeserializer objectFromRepresentation:mapping:context:] instead")));
++ (nonnull NSArray *)deserializeCollectionExternalRepresentation:(nonnull NSArray *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping context:(nonnull NSManagedObjectContext *)context __attribute__((deprecated("Use +[FEMDeserializer collectionFromRepresentation:mapping:context:] instead")));
 + (nonnull NSArray *)synchronizeCollectionExternalRepresentation:(nonnull NSArray *)externalRepresentation usingMapping:(nonnull FEMMapping *)mapping predicate:(nonnull NSPredicate *)predicate context:(nonnull NSManagedObjectContext *)context __attribute__((unavailable));
 
 @end
