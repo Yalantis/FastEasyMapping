@@ -6,11 +6,12 @@
 
 #import "FEMTypeIntrospection.h"
 #import "NSArray+FEMPropertyRepresentation.h"
-#import "FEMAttribute+Extension.h"
 #import "FEMObjectStore.h"
 #import "FEMRelationshipAssignmentContext+Internal.h"
 #import "FEMRepresentationUtility.h"
 #import "FEMManagedObjectStore.h"
+#import "FEMMappingUtility.h"
+#import "NSObject+FEMKVCExtension.h"
 
 @implementation FEMDeserializer {
     struct {
@@ -80,9 +81,20 @@
     }
 }
 
+- (void)setAttributeValue:(FEMAttribute *)attribute onObject:(id)object fromRepresentation:(id)representation {
+    id value = FEMAttributeMappedValueFromRepresentation(attribute, representation);
+    if (value == NSNull.null) {
+        if (!FEMObjectPropertyTypeIsScalar(object, attribute.property)) {
+            [object setValue:nil forKey:attribute.property];
+        }
+    } else if (value) {
+        [object fem_setValueIfDifferent:value forKey:attribute.property];
+    }
+}
+
 - (id)_fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
     for (FEMAttribute *attribute in mapping.attributes) {
-        [attribute setMappedValueToObject:object fromRepresentation:representation];
+        [self setAttributeValue:attribute onObject:object fromRepresentation:representation];
     }
 
     [self fulfillObjectRelationships:object fromRepresentation:representation usingMapping:mapping];

@@ -69,7 +69,7 @@
 - (id)existingObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
 	NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
 
-	id primaryKeyValue = [mapping.primaryKeyAttribute mappedValueFromRepresentation:representation];
+	id primaryKeyValue = FEMAttributeMappedValueFromRepresentation(mapping.primaryKeyAttribute, representation);
 	if (primaryKeyValue == nil || primaryKeyValue == NSNull.null) return nil;
 
 	return entityObjectsMap[primaryKeyValue];
