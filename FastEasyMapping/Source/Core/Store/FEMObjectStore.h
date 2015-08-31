@@ -8,7 +8,7 @@
 
 @interface FEMObjectStore : NSObject <FEMRelationshipAssignmentContextDelegate>
 
-- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping representation:(nonnull NSArray *)representation;
+- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping ofRepresentation:(nonnull NSArray *)representation;
 - (void)beginTransaction;
 - (nullable NSError *)commitTransaction;
 

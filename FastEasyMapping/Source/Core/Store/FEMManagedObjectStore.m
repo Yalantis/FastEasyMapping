@@ -29,7 +29,7 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
 
 #pragma mark - Transaction
 
-- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping representation:(nonnull NSArray *)representation {
+- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping ofRepresentation:(nonnull NSArray *)representation {
     _cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping representation:representation context:self.context];
 }
 

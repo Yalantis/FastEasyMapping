@@ -160,7 +160,7 @@
 
 
 - (id)objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-    [self.store prepareTransactionForMapping:mapping representation:@[representation]];
+    [self.store prepareTransactionForMapping:mapping ofRepresentation:@[representation]];
     [self.store beginTransaction];
 
     id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
@@ -176,7 +176,7 @@
         [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
     }
 
-    [self.store prepareTransactionForMapping:mapping representation:@[representation]];
+    [self.store prepareTransactionForMapping:mapping ofRepresentation:@[representation]];
     [self.store beginTransaction];
 
     id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
@@ -192,7 +192,7 @@
 }
 
 - (NSArray *)collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
-    [self.store prepareTransactionForMapping:mapping representation:representation];
+    [self.store prepareTransactionForMapping:mapping ofRepresentation:representation];
     [self.store beginTransaction];
 
     id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
