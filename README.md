@@ -553,6 +553,7 @@ Mapping:
 
 During deserialization of persons collection order will be next: 
 
+```
 1. deserializer:willMapCollectionFromRepresentation:`Persons Array` mapping:`Person mapping`
 2. deserializer:willMapObjectFromRepresentation:`Person Dictionary` mapping:`Person mapping`
 3. deserializer:willMapCollectionFromRepresentation:`Phones Array` mapping:`Phone mapping`
@@ -560,6 +561,7 @@ During deserialization of persons collection order will be next:
 5. deserializer:didMapObject:`Phone instance` fromRepresentation:`Phone Dictionary` mapping:`Phone mapping`
 6. deserializer:didMapObject:`Person instance` fromRepresentation:`Person Dictionary` mapping:`Person mapping`
 7. deserializer:didMapCollection:`Persons instances Array` fromRepresentation:`Persons Array` mapping:`Person mapping`
+```
 
 # Changelog
 
