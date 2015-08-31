@@ -561,11 +561,20 @@ During deserialization of persons collection order will be next:
 6. deserializer:didMapObject:`Person instance` fromRepresentation:`Person Dictionary` mapping:`Person mapping`
 7. deserializer:didMapCollection:`Persons instances Array` fromRepresentation:`Persons Array` mapping:`Person mapping`
 
-
 # Changelog
 
 ### 1.0
-- Refactoring of 
+- [Nullability](https://developer.apple.com/swift/blog/?id=25) support for easier Swift integration.
+- Replacing of `FEMObjectDeserializer` and `FEMManagedObjectDeserializer` by `FEMDeserializer`.
+- Replacing of `FEMObjectMapping` and `FEMManagedObjectMapping` by `FEMMapping`.
+- Added Delegation for `FEMDeserializer`.
+- `FEMDeserializer` supports weak relationships.
+- Fixed bug when `nil` value for custom `FEMAttribute` map is ignored during deserialization. 
+- Fixed bug when `nil` value for custom `FEMAttribute` reverse map is ignored during serialization.
+- Refactoring of internals.
+- Numerious renaming in favour of shorter method names.
+- Update tests and examples to latest syntax.
+- Add full description to README.
 
 ### 0.5.1
 - Rename [FEMAttributeMapping](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttributeMapping.h) to [FEMAttribute](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttribute.h), [FEMRelationshipMapping](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationshipMapping.h) to [FEMRelationship](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationship.h)
