@@ -47,7 +47,7 @@
 + (void)setValueOnRepresentation:(NSMutableDictionary *)representation fromObject:(id)object withFieldMapping:(FEMAttribute *)fieldMapping {
 	id returnedValue = [object valueForKey:fieldMapping.property];
 	if (returnedValue) {
-		returnedValue = [fieldMapping reverseMapValue:returnedValue];
+        returnedValue = [fieldMapping reverseMapValue:returnedValue] ?: [NSNull null];
 
 		[self setValue:returnedValue forKeyPath:fieldMapping.keyPath inRepresentation:representation];
 	}
