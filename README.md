@@ -215,7 +215,7 @@ FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"urlString" ke
 ``` 
 
 #### Mapping of different types:
-Quite often value type in JSON needs to be converted to more useful internal representation. For example HEX to `UIColor`, `String` to `NSURL`, `Integer` to `enum` and so on. For this purpose you can use `map` and `reverseMap` properties. For example lets describe attribute that maps String to `NSDate` using `NSDateFormatter`:
+Quite often value type in JSON needs to be converted to more useful internal representation. For example HEX to `UIColor`, `String` to `NSURL`, `Integer` to `enum` and so on. For this purpose you can use `map` and `reverseMap` properties. For example lets describe attribute that maps `String` to [NSDate](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDate_Class/) using [NSDateFormatter](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDateFormatter_Class/):
 ```objective-c
 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
@@ -241,14 +241,14 @@ First of all we've defined [NSDateFormatter](https://developer.apple.com/library
 
 #### Adding attribute to FEMMapping
 There are several shortcuts that allows you to add attributes easier to the mapping itself:
-##### Excplicit
+##### Excplicitly
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"url"];
 [mapping addAttribute:attribute];
 ```
 
-##### Implicit
+##### Implicitly
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 [mapping addAttributeWithProperty:@"property" keyPath:@"keyPath"];
@@ -261,6 +261,7 @@ FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 ```
 
 ##### As Array
+Useful when the `property` is equal to the `keyPath`:
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 [mapping addAttributesFromArray:@[@"propertyAndKeyPathAreTheSame"]];
@@ -305,7 +306,7 @@ Assignment policy describes how deserialized relationship value should be assign
 
 #### Adding relationship to FEMMapping
 
-##### Excplicit
+##### Excplicitly
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 FEMMapping *carMapping = [[FEMMapping alloc] initWithObjectClass:[Car class]];
@@ -314,7 +315,7 @@ FEMRelationship *carRelationship = [[FEMRelationship alloc] initWithProperty:@"c
 [mapping addRelationship:carRelationship];
 ```
 
-##### Implicit
+##### Implicitly
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 FEMMapping *phoneMapping = [[FEMMapping alloc] initWithObjectClass:[Phone class]];
