@@ -10,7 +10,6 @@
 #import "FEMRelationshipAssignmentContext+Internal.h"
 #import "FEMRepresentationUtility.h"
 #import "FEMManagedObjectStore.h"
-#import "FEMMappingUtility.h"
 #import "NSObject+FEMKVCExtension.h"
 
 @implementation FEMDeserializer {
