@@ -239,6 +239,32 @@ First of all we've defined [NSDateFormatter](https://developer.apple.com/library
 - `reverseMap` invoked only when `property` contains non-nil value.
 - you can return from `reverseMap` either `nil` or `NSNull`. Both will produce `{"keyPath": null}`
 
+#### Adding attribute to FEMMapping
+There are several shortcuts that allows you to add attributes easier to the mapping itself:
+##### Excplicit
+```objective-c
+FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
+FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"url"];
+[mapping addAttribute:attribute];
+```
+
+```objective-c
+FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
+[mapping addAttributeWithProperty:@"property" keyPath:@"keyPath"];
+```
+
+
+##### As Dictionary
+```objective-c
+FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
+[mapping addAttributesFromDictionary:@{@"property": @"keyPath"}];
+```
+
+##### As Array
+```objective-c
+FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
+[mapping addAttributesFromArray:@[@"propertyAndKeyPathAreTheSame"]];
+```
 
 ### FEMRelationship
 `FEMRelationship` is a class that describes relationship between two `FEMMapping` instances. 
