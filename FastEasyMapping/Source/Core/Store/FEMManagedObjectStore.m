@@ -27,15 +27,26 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     return self;
 }
 
-#pragma mark -
+#pragma mark - Transaction
 
-- (NSError *)performMappingTransaction:(NSArray *)representation mapping:(FEMMapping *)mapping transaction:(void (^)(void))transaction {
-    return [super performMappingTransaction:representation mapping:mapping transaction:^{
-        _cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping representation:representation context:self.context];
-        transaction();
-        _cache = nil;
-    }];
+- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping representation:(nonnull NSArray *)representation {
+    _cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping representation:representation context:self.context];
 }
+
+- (void)beginTransaction {}
+
+- (NSError *)commitTransaction {
+    _cache = nil;
+
+    NSError *error = nil;
+    if (self.saveContextOnCommit && self.context.hasChanges && ![self.context save:&error]) {
+        return error;
+    }
+
+    return nil;
+}
+
+
 
 - (id)newObjectForMapping:(FEMMapping *)mapping {
     validateMapping(mapping);
