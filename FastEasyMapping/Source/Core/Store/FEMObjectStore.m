@@ -5,8 +5,11 @@
 
 @implementation FEMObjectStore
 
-- (NSError *)performMappingTransaction:(NSArray *)representation mapping:(FEMMapping *)mapping transaction:(void (^)(void))transaction {
-    transaction();
+- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping representation:(nonnull NSArray *)representation {}
+
+- (void)beginTransaction {}
+
+- (NSError *)commitTransaction {
     return nil;
 }
 
