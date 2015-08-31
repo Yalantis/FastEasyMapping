@@ -298,8 +298,8 @@ childRelationship.toMany = YES;
 #### Assignment policy
 Assignment policy describes how deserialized relationship value should be assigned to a property. FEM supports 5 policies out of the box:
 
-- `FEMAssignmentPolicyAssign` - replace Old property's value by New. Designed for to-one and to-many relationship.
-- `FEMAssignmentPolicyObjectMerge` - assigns New relationship value unless it is nil. Designed for to-one relationship.
+- `FEMAssignmentPolicyAssign` - replace Old property's value by New. Designed for to-one and to-many relationship. Default policy.
+- `FEMAssignmentPolicyObjectMerge` - assigns New relationship value unless it is `nil`. Designed for to-one relationship.
 - `FEMAssignmentPolicyCollectionMerge` - merges a New and Old values of relationship. Supported collections are: [NSSet](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSSet_Class/), [NSArray](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/), [NSOrderedSet](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSOrderedSet_Class/) and their successors. Designed for to-many relationship.
 - `FEMAssignmentPolicyObjectReplace` - replaces Old value with New by deleting Old. Designed for to-one relationship.
 - `FEMAssignmentPolicyCollectionReplace` - deletes objects not presented in [union](https://en.wikipedia.org/wiki/Union_(set_theory)) of New and Old values sets. Union set is used as a New value. Supported collections are: [NSSet](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSSet_Class/), [NSArray](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/), [NSOrderedSet](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSOrderedSet_Class/) and their successors. Designed for to-many relationship.
@@ -324,6 +324,45 @@ FEMMapping *phoneMapping = [[FEMMapping alloc] initWithObjectClass:[Phone class]
 ```
 
 ### FEMMapping
+Generally `FEMMapping` is a class that describes mapping for `Class` or `Entity` by encapsulating set of attributes and relationships. In addition to this it defines possibilities for objects uniquing (supported by CoreData only).
+
+#### Root Path
+Sometimes desired JSON is nested by a keyPath. In this case you can use `rootPath` property. Lets modify Person JSON by nesting Person representation:
+```json
+{
+	result: {
+		"name": "Lucas",
+    	"user_email": "lucastoc@gmail.com",
+    	"car": {
+        	"model": "i30",
+        	"year": "2013"
+    	}
+	}
+}
+```
+
+Mapping will looks like:
+```objective-c
+@implementation Person (Mapping)
+
++ (FEMMapping *)defaultMapping {
+	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+	mapping.rootPath = @"result";
+
+    [mapping addAttributesFromArray:@[@"name"]];
+    [mapping addAttributesFromDictionary:@{@"email": @"user_email"}];
+    [mapping addRelationshipMapping:[Car defaultMapping] forProperty:@"car" keyPath:@"car"];
+  
+  	return mapping;
+}
+
+@end
+```
+
+> `FEMMapping.rootPath` is ignore during relationship mapping. Use `FEMRelationship.keyPath` instead!
+
+### Uniquing
+
 
 
 #### Nil Keypath
