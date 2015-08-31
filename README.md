@@ -373,7 +373,7 @@ Mapping will looks like:
 
 > IMPORTANT: `FEMMapping.rootPath` is ignore during relationship mapping. Use `FEMRelationship.keyPath` instead!
 
-### Uniquing
+## Uniquing
 It is a common case when you're deserializing JSON into CoreData and don't want to duplicate data in your database. This can be easily achieved by utilizing `FEMMapping.primaryKey`. It informs `FEMDeserializer` to track primary keys and avoid data copying. For example lets make Person's `email` a primary key attribute: 
 ```objective-c
 @implementation Person (Mapping)
@@ -454,7 +454,7 @@ Now it is time to define mapping for `Website`:
 
 By specifying `nil` as a `keyPath` for the category `Website`'s representation is treated as a `Category` at the same time. In this way it is easy to bind objects that are passed by PKs (which is quite common for network). 
 
-#### Weak relationship
+### Weak relationship
 In example above we have one issue: what if our database doesn't contain `Category` with `PK = 4`? By default `FEMDeserializer` creates new objects during deserialization lazily. In our case it leads to insertion of `Category` instance without any data except `identifier`. In order to prevent such inconsistencies we can set `FEMRelationship.weak` to YES:
 
 ```objective-c
@@ -481,8 +481,91 @@ In example above we have one issue: what if our database doesn't contain `Catego
 
 As the result it'll bind `Website` to corresponding `Category` only in case the latter exists.
 
+## Delegation
+You can customize deserialization process by implementing `FEMDeserializerDelegate` protocol:
+```objective-c
+@protocol FEMDeserializerDelegate <NSObject>
+
+@optional
+- (void)deserializer:(nonnull FEMDeserializer *)deserializer willMapObjectFromRepresentation:(nonnull id)representation mapping:(nonnull FEMMapping *)mapping;
+- (void)deserializer:(nonnull FEMDeserializer *)deserializer didMapObject:(nonnull id)object fromRepresentation:(nonnull id)representation mapping:(nonnull FEMMapping *)mapping;
+
+- (void)deserializer:(nonnull FEMDeserializer *)deserializer willMapCollectionFromRepresentation:(nonnull NSArray *)representation mapping:(nonnull FEMMapping *)mapping;
+- (void)deserializer:(nonnull FEMDeserializer *)deserializer didMapCollection:(nonnull NSArray *)collection fromRepresentation:(nonnull NSArray *)representation mapping:(nonnull FEMMapping *)mapping;
+
+@end
+```
+
+However, if you're using Delegate you also have to instantiate `FEMDeserializer` manually:
+##### NSObject 
+```objective-c
+FEMDeserializer *deserializer = [[FEMDeserializer alloc] init];
+deserializer.delegate = self;
+```
+
+##### NSManagedObject
+```objective-c
+FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithContext:managedObjectContext];
+deserializer.delegate = self;
+```
+
+Note, that delegate methods will be called on every object and collection during deserialization. Lets use `Person` example:
+```
+{
+    "name": "Lucas",
+    "user_email": "lucastoc@gmail.com",
+    "phones": [
+        {
+            "ddi": "55",
+            "ddd": "85",
+            "number": "1111-1111"
+        }
+    ]
+}
+```
+
+Mapping:
+```objective-c
+@implementation Person (Mapping)
+
++ (FEMMapping *)defaultMapping {
+	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    [mapping addAttributesFromArray:@[@"name"]];
+    [mapping addAttributesFromDictionary:@{@"email": @"user_email"}];
+    [mapping addToManyRelationshipMapping:[Person defaultMapping] forProperty:@"phones" keyPath:@"phones"];
+
+  	return mapping;
+}
+
+@end
+
+@implementation Phone (Mapping)
+
++ (FEMMapping *)defaultMapping {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Phone"];
+    [mapping addAttributesFromArray:@[@"number", @"ddd", @"ddi"]];
+
+    return mapping;
+}
+
+@end
+```
+
+During deserialization of persons collection order will be next: 
+
+1. deserializer:willMapCollectionFromRepresentation:`Persons Array` mapping:`Person mapping`
+2. deserializer:willMapObjectFromRepresentation:`Person Dictionary` mapping:`Person mapping`
+3. deserializer:willMapCollectionFromRepresentation:`Phones Array` mapping:`Phone mapping`
+4. deserializer:willMapObjectFromRepresentation:`Phone Dictionary` mapping:`Phone mapping`
+5. deserializer:didMapObject:`Phone instance` fromRepresentation:`Phone Dictionary` mapping:`Phone mapping`
+6. deserializer:didMapObject:`Person instance` fromRepresentation:`Person Dictionary` mapping:`Person mapping`
+7. deserializer:didMapCollection:`Persons instances Array` fromRepresentation:`Persons Array` mapping:`Person mapping`
+
 
 # Changelog
+
+### 1.0
+- Refactoring of 
 
 ### 0.5.1
 - Rename [FEMAttributeMapping](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttributeMapping.h) to [FEMAttribute](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttribute.h), [FEMRelationshipMapping](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationshipMapping.h) to [FEMRelationship](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationship.h)
