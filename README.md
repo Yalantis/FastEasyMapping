@@ -324,7 +324,19 @@ FEMMapping *phoneMapping = [[FEMMapping alloc] initWithObjectClass:[Phone class]
 ```
 
 ### FEMMapping
-Generally `FEMMapping` is a class that describes mapping for `Class` or `Entity` by encapsulating set of attributes and relationships. In addition to this it defines possibilities for objects uniquing (supported by CoreData only).
+Generally `FEMMapping` is a class that describes mapping for `NSObject` or `NSManagedObject` by encapsulating set of attributes and relationships. In addition to this it defines possibilities for objects uniquing (supported by CoreData only).
+
+The only difference between `NSObject` and `NSManagedObject` is in `init` methods:
+
+##### NSObject
+```objective-c
+FEMMapping *objectMapping = [[FEMMapping alloc] initWithObjectClass:[CustomNSObjectSuccessor class]];
+```
+
+##### NSManagedObject
+```objective-c
+FEMMapping *managedObjectMapping = [[FEMMapping alloc] initWithEntityName:@"EntityName"];
+```
 
 #### Root Path
 Sometimes desired JSON is nested by a keyPath. In this case you can use `rootPath` property. Lets modify Person JSON by nesting Person representation:
@@ -380,6 +392,8 @@ It is a common case when you're deserializing JSON into CoreData and don't want 
 @end
 ```
 
+> We recommend to index your primary key in datamodel to speedup keys lookup. Supported values for primary keys are Strings and Integers.
+
 Starting from second import `FEMDeserializer` will update existing `Person`. 
 
 ### Relationship bindings by PK
@@ -394,7 +408,7 @@ Sometimes object representation contains a relationship described by a PK of the
 }
 ```
 
-As you can see from JSON we have two objects: `Website` and `Category`. Whereas `Website` can be imported easily, there is an external reference to a `Category` represented by its primary key `id`. Can we bind website to the corresponding category? Yep! We just need to treat `category` keyPath as a full description of object:
+As you can see from JSON we have two objects: `Website` and `Category`. Whereas `Website` can be imported easily, there is an external reference to a `Category` represented by its primary key `id`. Can we bind website to the corresponding category? Yep! We just need to treat Website's representation as a Category:
 
 First of all lets declare our classes: 
 ```objective-c
@@ -418,7 +432,7 @@ First of all lets declare our classes:
 Now it is time to define mapping for `Website`:
 
 ```objective-c
-@interface Website (Mapping)
+@implementation Website (Mapping)
 
 + (FEMMapping *)defaultMapping {
 	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Website"];
@@ -441,9 +455,32 @@ Now it is time to define mapping for `Website`:
 By specifying `nil` as a `keyPath` for the category `Website`'s representation is treated as a `Category` at the same time. In this way it is easy to bind objects that are passed by PKs (which is quite common for network). 
 
 #### Weak relationship
+In example above we have one issue: what if our database doesn't contain `Category` with `PK = 4`? By default `FEMDeserializer` creates new objects during deserialization lazily. In our case it leads to insertion of `Category` instance without any data except `identifier`. In order to prevent such inconsistencies we can set `FEMRelationship.weak` to YES:
 
+```objective-c
+@implementation Website (Mapping)
 
-> We recommend to index your primary key in datamodel to speedup keys lookup. Supported values for primary keys are Strings and Integers.
++ (FEMMapping *)defaultMapping {
+	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Website"];
+	mapping.primaryKey = @"identifier";
+	[mapping addAttributesFromDictionary:@{@"identifier": @"id", @"title": @"title"}];
+
+	FEMMapping *categoryMapping = [[FEMMapping alloc] initWithEntityName:@"Category"];
+	categoryMapping.primaryKey = @"identifier";
+	categoryMapping.weak = YES;
+	[categoryMapping addAttributesFromDictionary:@{@"identifier": @"category"}];
+
+	[mapping addRelationshipMapping:categoryMapping property:@"category" keyPath:nil];
+
+	return mapping;
+}
+
+@end
+
+```
+
+As the result it'll bind `Website` to corresponding `Category` only in case the latter exists.
+
 
 # Changelog
 
