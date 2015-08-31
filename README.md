@@ -177,7 +177,7 @@ NSArray *json = [FEMSerializer serializeCollection:persons usingMapping:mapping]
 ```
 
 ## Mapping
-### Attribute Mapping
+### FEMAttribute
 `FEMAttribute` is a core class of FEM. Briefly it is a description of relationship between the Object's `property` and the JSON's `keyPath`. Also it encapsulates knowledge of how the value needs to be mapped from _Object to JSON_ and back via blocks. 
 
 ```objective-c
@@ -200,23 +200,76 @@ Alongside with `property` and `keyPath` value you can pass mapping blocks that a
 
 Examples:
 
-- Mapping of value with same keys and type:
+#### Mapping of value with same keys and type:
 ```objective-c
 FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"url"];
 // or 
 FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"url" keyPath:@"url" map:NULL, reverseMap:NULL];
 ``` 
 
-- Mapping of value with different keys and same type:
+#### Mapping of value with different keys and same type:
 ```objective-c
 FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"urlString" toKeyPath:@"URL"];
 // or 
 FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"urlString" keyPath:@"URL" map:NULL, reverseMap:NULL];
 ``` 
 
+#### Mapping of different types:
+Quite often value type in JSON needs to be converted to more useful internal representation. For example HEX to `UIColor`, `String` to `NSURL`, `Integer` to `enum` and so on. For this purpose you can use `map` and `reverseMap` properties. For example lets describe attribute that maps String to `NSDate` using `NSDateFormatter`:
+```objective-c
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+[formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+[formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+
+FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"updateDate" keyPath:@"timestamp" map:^id(id value) {
+	if ([value isKindOfClass:[NSString class]]) {
+		return [formatter dateFromString:value];
+	} 
+	return nil;
+} reverseMap:^id(id value) {
+	return [formatter stringFromDate:value];
+}];
+```
+First of all we've defined [NSDateFormatter](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDateFormatter_Class/) that fits our requirements. Next step is to define Attribute instance with correct mapping. Briefly `map` block is invoked during deserialization (_JSON to Object_) while `reverseMap` is used for serialization process. Both are quite stratforward with but with few gotchas: 
+
+- `map` can receive `NSNull` instance. This is a valid case for `null` value in JSON.
+- `map` won't be invoked for missing keys. Therefore if JSON doesn't contain `keyPath` specified by your attribute, reverse mapping not called.
+- you can return from `map` either `nil` or `NSNull` for empty values
+- `reverseMap` invoked only when `property` contains non-nil value.
+- you can return from `reverseMap` either `nil` or `NSNull`. Both will produce `{"keyPath": null}`
 
 
-#### Map and Reverse Map
+### FEMRelationship
+`FEMRelationship` is a class that describes relationship between two `FEMMapping` instances. 
+```objective-c
+@interface FEMRelationship
+
+@property (nonatomic, copy, nonnull) NSString *property;
+@property (nonatomic, copy, nullable) NSString *keyPath;
+
+@property (nonatomic, strong, nonnull) FEMMapping *mapping;
+@property (nonatomic, getter=isToMany) BOOL toMany;
+
+@property (nonatomic) BOOL weak;
+@property (nonatomic, copy, nonnull) FEMAssignmentPolicy assignmentPolicy;
+
+@end
+```
+
+Relationship also bound to a `property` and `keyPath`. Obviously it has a reference to Object's `FEMMapping` and flag that indicates whethere it is a to-many relationship. Moreover it allows you to specify assignment policy and "weakifying" behaviour of the relationship.
+
+Example: 
+
+```objective-c
+FEMMapping *childMapping = ...;
+
+FEMRelationship *childRelationship = [[FEMRelationship alloc] initWithProperty:@"parentProperty" keyPath:@"jsonKeyPath" mapping:childMapping];
+childRelationship.toMany = YES;
+```
+
+### FEMMapping
+
 
 #### Nil Keypath
 
@@ -224,7 +277,7 @@ FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"urlString" ke
 Mapping is a core of this project which consists of 3 classes:
 - `FEMMapping` - class that describes an Object. It encapsulates all Object's attributes and relationships.
 - `FEMAttribute` - description of relationship between an Object's `property` and a JSON's `keyPath`. Also it encapsulates rules of how the value needs to be mapped from _Object to JSON_ and back.
-- `FEMRelationship` - class that describes relationship between two `FEMMapping` instances.
+- `FEMRelationship` - 
 
 
 Converting a NSDictionary or NSArray to a object class or collection now becomes easy:
