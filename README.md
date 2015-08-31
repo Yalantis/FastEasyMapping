@@ -359,22 +359,91 @@ Mapping will looks like:
 @end
 ```
 
-> `FEMMapping.rootPath` is ignore during relationship mapping. Use `FEMRelationship.keyPath` instead!
+> IMPORTANT: `FEMMapping.rootPath` is ignore during relationship mapping. Use `FEMRelationship.keyPath` instead!
 
 ### Uniquing
+It is a common case when you're deserializing JSON into CoreData and don't want to duplicate data in your database. This can be easily achieved by utilizing `FEMMapping.primaryKey`. It informs `FEMDeserializer` to track primary keys and avoid data copying. For example lets make Person's `email` a primary key attribute: 
+```objective-c
+@implementation Person (Mapping)
+
++ (FEMMapping *)defaultMapping {
+	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    mapping.primaryKey = @"email";
+    [mapping addAttributesFromArray:@[@"name"]];
+    [mapping addAttributesFromDictionary:@{@"email": @"user_email"}];
+
+    [mapping addRelationshipMapping:[Car defaultMapping] forProperty:@"car" keyPath:@"car"];
+  
+  	return mapping;
+}
+
+@end
+```
+
+Starting from second import `FEMDeserializer` will update existing `Person`. 
+
+### Relationship bindings by PK
+Sometimes object representation contains a relationship described by a PK of the target entity:
+```
+{
+	"result": {
+		"id": 314
+		"title": "https://github.com"
+		"category": 4
+	}
+}
+```
+
+As you can see from JSON we have two objects: `Website` and `Category`. Whereas `Website` can be imported easily, there is an external reference to a `Category` represented by its primary key `id`. Can we bind website to the corresponding category? Yep! We just need to treat `category` keyPath as a full description of object:
+
+First of all lets declare our classes: 
+```objective-c
+@interface Website: NSManagedObject
+
+@property (nonatomic, strong) NSNumber *identifier;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) Category *category;
+
+@end
+
+@interface Category: NSManagedObject
+
+@property (nonatomic, strong) NSNumber *identifier;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSSet *websites
+
+@end
+```
+
+Now it is time to define mapping for `Website`:
+
+```objective-c
+@interface Website (Mapping)
+
++ (FEMMapping *)defaultMapping {
+	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Website"];
+	mapping.primaryKey = @"identifier";
+	[mapping addAttributesFromDictionary:@{@"identifier": @"id", @"title": @"title"}];
+
+	FEMMapping *categoryMapping = [[FEMMapping alloc] initWithEntityName:@"Category"];
+	categoryMapping.primaryKey = @"identifier";
+	[categoryMapping addAttributesFromDictionary:@{@"identifier": @"category"}];
+
+	[mapping addRelationshipMapping:categoryMapping property:@"category" keyPath:nil];
+
+	return mapping;
+}
+
+@end
+
+```
+
+By specifying `nil` as a `keyPath` for the category `Website`'s representation is treated as a `Category` at the same time. In this way it is easy to bind objects that are passed by PKs (which is quite common for network). 
+
+#### Weak relationship
 
 
-
-#### Nil Keypath
-
-
-Mapping is a core of this project which consists of 3 classes:
-- `FEMMapping` - class that describes an Object. It encapsulates all Object's attributes and relationships.
-- `FEMAttribute` - description of relationship between an Object's `property` and a JSON's `keyPath`. Also it encapsulates rules of how the value needs to be mapped from _Object to JSON_ and back.
-- `FEMRelationship` - 
-
-
-
+> We recommend to index your primary key in datamodel to speedup keys lookup. Supported values for primary keys are Strings and Integers.
 
 # Changelog
 
