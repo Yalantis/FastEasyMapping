@@ -248,11 +248,11 @@ FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"url"];
 [mapping addAttribute:attribute];
 ```
 
+##### Implicit
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 [mapping addAttributeWithProperty:@"property" keyPath:@"keyPath"];
 ```
-
 
 ##### As Dictionary
 ```objective-c
@@ -294,6 +294,34 @@ FEMRelationship *childRelationship = [[FEMRelationship alloc] initWithProperty:@
 childRelationship.toMany = YES;
 ```
 
+#### Assignment policy
+Assignment policy describes how deserialized relationship value should be assigned to a property. FEM supports 5 policies out of the box:
+
+- `FEMAssignmentPolicyAssign` - replace Old property's value by New. Designed for to-one and to-many relationship.
+- `FEMAssignmentPolicyObjectMerge` - assigns New relationship value unless it is nil. Designed for to-one relationship.
+- `FEMAssignmentPolicyCollectionMerge` - merges a New and Old values of relationship. Supported collections are: [NSSet](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSSet_Class/), [NSArray](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/), [NSOrderedSet](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSOrderedSet_Class/) and their successors. Designed for to-many relationship.
+- `FEMAssignmentPolicyObjectReplace` - replaces Old value with New by deleting Old. Designed for to-one relationship.
+- `FEMAssignmentPolicyCollectionReplace` - deletes objects not presented in [union](https://en.wikipedia.org/wiki/Union_(set_theory)) of New and Old values sets. Union set is used as a New value. Supported collections are: [NSSet](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSSet_Class/), [NSArray](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/), [NSOrderedSet](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSOrderedSet_Class/) and their successors. Designed for to-many relationship.
+
+#### Adding relationship to FEMMapping
+
+##### Excplicit
+```objective-c
+FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
+FEMMapping *carMapping = [[FEMMapping alloc] initWithObjectClass:[Car class]];
+
+FEMRelationship *carRelationship = [[FEMRelationship alloc] initWithProperty:@"car" keyPath:@"car" mapping:carMapping];
+[mapping addRelationship:carRelationship];
+```
+
+##### Implicit
+```objective-c
+FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
+FEMMapping *phoneMapping = [[FEMMapping alloc] initWithObjectClass:[Phone class]];
+
+[mapping addToManyRelationshipMapping:phoneMapping property:@"phones" keyPath:@"phones"];
+```
+
 ### FEMMapping
 
 
@@ -306,44 +334,7 @@ Mapping is a core of this project which consists of 3 classes:
 - `FEMRelationship` - 
 
 
-Converting a NSDictionary or NSArray to a object class or collection now becomes easy:
 
-```objective-c
-Person *person = [FEMManagedObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-                                                                          usingMapping:[MappingProvider personMapping]
-                                                                               context:context];
-
-NSArray *cars = [FEMManagedObjectDeserializer deserializeCollectionExternalRepresentation:externalRepresentation
-                                                                             usingMapping:[MappingProvider carMapping]
-                                                                                  context:moc];
-```
-
-
-Filling an existent object:
-
-```objective-c
-Person *person = // fetch somehow;
-
-FEMManagedObjectMapping *mapping = [MappingProvider personMapping];
-[FEMManagedObjectDeserializer fillObject:person fromExternalRepresentation:externalRepresentation usingMapping:mapping];
-```
-
-### Assignment Policy
-
-Now relationship can use one of three predefined assignment policies: `FEMAssignmentPolicyAssign`, `FEMAssignmentPolicyMerge` and `FEMAssignmentPolicyReplace`.
-
-## Deserialization. NSObject
-
-If you are using NSObject use `FEMObjectMapping` instead of `FEMManagedObjectMapping` and  `FEMObjectDeserializer` instead of `FEMManagedObjectDeserializer`.
-
-## Serialization
-
-For both NSManagedObject and NSObject serialization to JSON looks the same:
-
-```objective-c
-NSDictionary *representation = [FEMSerializer serializeObject:car usingMapping:[MappingProvider carMapping]];
-NSArray *collectionRepresentation = [FEMSerializer serializeCollection:cars usingMapping:[MappingProvider carMapping]];
-```
 
 # Changelog
 
