@@ -27,7 +27,7 @@ or add as a static library.
 
 * `FEMMapping`
 * `<FEMProperty>`
-	- `FEMAttribute'
+	- `FEMAttribute`
 	- `FEMRelationship`
 
 ### Deserialization _(JSON to Object)_
@@ -141,7 +141,7 @@ In order to map _JSON to Object_ and vice versa we have to describe mapping rule
 @end
 ```
 
-Now we can deserialize Object from JSON easily:
+Now we can deserialize _JSON to Object_ easily:
 
 ```objective-c
 FEMMapping *mapping = [Person defaultMapping];
@@ -154,7 +154,7 @@ Or collection of objects:
 NSArray *persons = [FEMDeserializer collectionFromRepresentation:json mapping:mapping context:managedObjectContext];
 ```
 
-Or update object:
+Or even update object:
 ```objective-c
 [FEMDeserializer fillObject:person fromRepresentation:json mapping:mapping];
 
@@ -162,14 +162,14 @@ Or update object:
 
 ### Serialization
 
-Now we want to convert an _Object to JSON_ having mapping defined above:
+Also we can serialize an _Object to JSON_ using mapping defined above:
 ```objective-c
 FEMMapping *mapping = [Person defaultMapping];
 Person *person = ...;
 NSDictionary *json = [FEMSerializer serializeObject:person usingMapping:mapping];
 ```
 
-Or convert collection to a JSON: 
+Or collection to JSON: 
 ```objective-c
 FEMMapping *mapping = [Person defaultMapping];
 NSArray *persons = ...;
@@ -177,9 +177,53 @@ NSArray *json = [FEMSerializer serializeCollection:persons usingMapping:mapping]
 ```
 
 ## Mapping
+### Attribute Mapping
+`FEMAttribute` is a core class of FEM. Briefly it is a description of relationship between the Object's `property` and the JSON's `keyPath`. Also it encapsulates knowledge of how the value needs to be mapped from _Object to JSON_ and back via blocks. 
+
+```objective-c
+typedef __nullable id (^FEMMapBlock)(id value __nonnull);
+
+@interface FEMAttribute : NSObject <FEMProperty>
+
+@property (nonatomic, copy, nonnull) NSString *property;
+@property (nonatomic, copy, nullable) NSString *keyPath;
+
+- (nonnull instancetype)initWithProperty:(nonnull NSString *)property keyPath:(nullable NSString *)keyPath map:(nullable FEMMapBlock)map reverseMap:(nullable FEMMapBlock)reverseMap;
+
+- (nullable id)mapValue:(nullable id)value;
+- (nullable id)reverseMapValue:(nullable id)value;
+
+@end
+```
+
+Alongside with `property` and `keyPath` value you can pass mapping blocks that allow to describe completely custom mappings.
+
+Examples:
+
+- Mapping of value with same keys and type:
+```objective-c
+FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"url"];
+// or 
+FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"url" keyPath:@"url" map:NULL, reverseMap:NULL];
+``` 
+
+- Mapping of value with different keys and same type:
+```objective-c
+FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"urlString" toKeyPath:@"URL"];
+// or 
+FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"urlString" keyPath:@"URL" map:NULL, reverseMap:NULL];
+``` 
+
+
+
+#### Map and Reverse Map
+
+#### Nil Keypath
+
+
 Mapping is a core of this project which consists of 3 classes:
 - `FEMMapping` - class that describes an Object. It encapsulates all Object's attributes and relationships.
-- `FEMAttribute` - description of relationship between an Object's `property` and a JSON's `keyPath`. Also it encapsulates rules of how the value needs to be mapped from Object to JSON and back.
+- `FEMAttribute` - description of relationship between an Object's `property` and a JSON's `keyPath`. Also it encapsulates rules of how the value needs to be mapped from _Object to JSON_ and back.
 - `FEMRelationship` - class that describes relationship between two `FEMMapping` instances.
 
 
