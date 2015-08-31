@@ -9,11 +9,11 @@
 
 @interface FEMRelationship : NSObject <FEMProperty>
 
-@property (nonatomic, copy, nonnull) FEMAssignmentPolicy assignmentPolicy;
-
-@property (nonatomic) BOOL weak;
 @property (nonatomic, strong, nonnull) FEMMapping *mapping;
 @property (nonatomic, getter=isToMany) BOOL toMany;
+
+@property (nonatomic) BOOL weak;
+@property (nonatomic, copy, nonnull) FEMAssignmentPolicy assignmentPolicy;
 
 - (nonnull instancetype)initWithProperty:(nonnull NSString *)property mapping:(nonnull FEMMapping *)mapping;
 
