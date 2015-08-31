@@ -34,6 +34,14 @@
     return self;
 }
 
+- (nonnull instancetype)init {
+    return [self initWithStore:[[FEMObjectStore alloc] init]];
+}
+
+- (nonnull instancetype)initWithContext:(NSManagedObjectContext *)context {
+    return [self initWithStore:[[FEMManagedObjectStore alloc] initWithContext:context]];
+}
+
 #pragma mark - Delegate
 
 - (void)setDelegate:(id <FEMDeserializerDelegate>)delegate {

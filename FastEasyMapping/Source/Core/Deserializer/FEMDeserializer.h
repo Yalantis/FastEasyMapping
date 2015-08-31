@@ -20,7 +20,10 @@
 @interface FEMDeserializer : NSObject
 
 @property (nonatomic, strong, readonly, nonnull) FEMObjectStore *store;
-- (nonnull instancetype)initWithStore:(nonnull FEMObjectStore *)store;
+- (nonnull instancetype)initWithStore:(nonnull FEMObjectStore *)store NS_DESIGNATED_INITIALIZER;
+
+- (nonnull instancetype)init;
+- (nonnull instancetype)initWithContext:(nonnull NSManagedObjectContext *)context;
 
 @property (nonatomic, unsafe_unretained, nullable) id<FEMDeserializerDelegate> delegate;
 
