@@ -69,5 +69,11 @@ NSDictionary *FEMRepresentationCollectPresentedPrimaryKeys(id representation, FE
 
 id FEMRepresentationValueForAttribute(id representation, FEMAttribute *attribute) {
     id value = attribute.keyPath ? [representation valueForKeyPath:attribute.keyPath] : representation;
-    return [attribute mapValue:value];
+    // nil is a valid value for missing keys. therefore attribute is discarded
+    if (value != nil) {
+        // if by mistake nil returned we still have to map it to the NSNull to indicate missing value
+        return [attribute mapValue:value] ?: [NSNull null];
+    }
+
+    return value;
 }
