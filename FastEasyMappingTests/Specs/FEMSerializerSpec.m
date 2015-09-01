@@ -12,6 +12,7 @@
 #import "NativeChild.h"
 #import "FEMSerializer.h"
 #import "FEMObjectMapping.h"
+#import "FEMDeserializer.h"
 #import "FEMObjectDeserializer.h"
 #import <CoreLocation/CoreLocation.h>
 
@@ -307,8 +308,8 @@ SPEC_BEGIN(FEMSerializerSpec)
 
 						NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
 
-						person = [FEMObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-						                                                           usingMapping:mapping];
+						person = [FEMDeserializer objectFromRepresentation:externalRepresentation
+						                                                           mapping:mapping];
 
 						representation = [FEMSerializer serializeObject:person usingMapping:mapping];
 					});
@@ -353,7 +354,7 @@ SPEC_BEGIN(FEMSerializerSpec)
 						}];
 						person = [factory build];
 						representation = [FEMSerializer serializeObject:person
-						                                   usingMapping:[MappingProviderNative personWithPhonesMapping]];
+                                                           usingMapping:[MappingProviderNative personWithPhonesMapping]];
 
 					});
 
@@ -379,8 +380,8 @@ SPEC_BEGIN(FEMSerializerSpec)
 								                      keyPath:@"cellphones"];
 
 						NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
-						person = [FEMObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-						                                                           usingMapping:mapping];
+						person = [FEMDeserializer objectFromRepresentation:externalRepresentation
+						                                                           mapping:mapping];
 
 						representation = [FEMSerializer serializeObject:person usingMapping:mapping];
 					});
@@ -413,10 +414,9 @@ SPEC_BEGIN(FEMSerializerSpec)
 
 				beforeEach(^{
 					NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Native"];
-					native = [FEMObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-					                                                           usingMapping:[MappingProviderNative nativeMapping]];
-					representation = [FEMSerializer serializeObject:native
-					                                   usingMapping:[MappingProviderNative nativeMapping]];
+					native = [FEMDeserializer objectFromRepresentation:externalRepresentation
+					                                                           mapping:[MappingProviderNative nativeMapping]];
+					representation = [FEMSerializer serializeObject:native usingMapping:[MappingProviderNative nativeMapping]];
 				});
 
 				specify(^{
@@ -507,8 +507,8 @@ SPEC_BEGIN(FEMSerializerSpec)
 
 				beforeEach(^{
 					NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"NativeChild"];
-					nativeChild = [FEMObjectDeserializer deserializeObjectExternalRepresentation:externalRepresentation
-					                                                                usingMapping:[MappingProviderNative nativeChildMapping]];
+					nativeChild = [FEMDeserializer objectFromRepresentation:externalRepresentation
+                                                                    mapping:[MappingProviderNative nativeChildMapping]];
 					representation = [FEMSerializer serializeObject:nativeChild
 					                                   usingMapping:[MappingProviderNative nativeChildMapping]];
 				});

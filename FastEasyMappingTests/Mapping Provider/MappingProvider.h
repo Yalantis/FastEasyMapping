@@ -2,19 +2,19 @@
 
 #import <Foundation/Foundation.h>
 
-@class FEMManagedObjectMapping;
+@class FEMMapping;
 
 @interface MappingProvider : NSObject
 
-+ (FEMManagedObjectMapping *)carMappingWithPrimaryKey;
-+ (FEMManagedObjectMapping *)carMapping;
-+ (FEMManagedObjectMapping *)carWithRootKeyMapping;
-+ (FEMManagedObjectMapping *)carNestedAttributesMapping;
-+ (FEMManagedObjectMapping *)carWithDateMapping;
-+ (FEMManagedObjectMapping *)phoneMapping;
-+ (FEMManagedObjectMapping *)personMapping;
++ (FEMMapping *)carMappingWithPrimaryKey;
++ (FEMMapping *)carMapping;
++ (FEMMapping *)carWithRootKeyMapping;
++ (FEMMapping *)carNestedAttributesMapping;
++ (FEMMapping *)carWithDateMapping;
++ (FEMMapping *)phoneMapping;
++ (FEMMapping *)personMapping;
 
-+ (FEMManagedObjectMapping *)personWithPhoneMapping;
-+ (FEMManagedObjectMapping *)personWithCarMapping;
++ (FEMMapping *)personWithPhoneMapping;
++ (FEMMapping *)personWithCarMapping;
 
 @end
