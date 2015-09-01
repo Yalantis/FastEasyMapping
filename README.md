@@ -563,8 +563,8 @@ During deserialization of persons collection order will be the following:
 
 ### 1.0
 - [Nullability](https://developer.apple.com/swift/blog/?id=25) support for easier Swift integration.
-- Replacing of `FEMObjectDeserializer` and `FEMManagedObjectDeserializer` by `FEMDeserializer`. Backward compatible with [@compatibility_alias](http://nshipster.com/at-compiler-directives/).
-- Replacing of `FEMObjectMapping` and `FEMManagedObjectMapping` by `FEMMapping`. [@compatibility_alias](http://nshipster.com/at-compiler-directives/).
+- Replacing of `FEMObjectDeserializer` and `FEMManagedObjectDeserializer` by `FEMDeserializer`. Backward compatible via [@compatibility_alias](http://nshipster.com/at-compiler-directives/).
+- Replacing of `FEMObjectMapping` and `FEMManagedObjectMapping` by `FEMMapping`. Backward compatible via [@compatibility_alias](http://nshipster.com/at-compiler-directives/).
 - Added Delegation for `FEMDeserializer`.
 - `FEMDeserializer` supports weak relationships.
 - Fixed bug when `nil` value for custom `FEMAttribute` map is ignored during deserialization. 
