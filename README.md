@@ -3,10 +3,11 @@
 [![Build Status](https://travis-ci.org/Yalantis/FastEasyMapping.png)](https://travis-ci.org/Yalantis/FastEasyMapping)
 
 ### Note
-This is fork of [EasyMapping](https://github.com/lucasmedeirosleite/EasyMapping) - flexible and easy way of JSON mapping.
+This is a fork of [EasyMapping](https://github.com/lucasmedeirosleite/EasyMapping), a flexible and easy framework for JSON mapping.
 
-## Reason to be
-It turns out, that almost all popular libraries for JSON mapping SLOW. The main reason is often trips to database during lookup of existing objects. So we [decided](http://yalantis.com/blog/2014/03/17/from-json-to-core-data-fast-and-effectively/) to take already existing [flexible solution](https://github.com/lucasmedeirosleite/EasyMapping) and improve overall performance.
+## Reason
+It turns out, that almost all popular libraries for JSON mapping are SLOW. The main reason for that is multiple trips to database during the lookup of existing objects. We [decided](https://yalantis.com/blog/from-json-to-core-data-fast-and-effectively/) to take an already existing [flexible solution](https://github.com/lucasmedeirosleite/EasyMapping) (i.e. EasyMapping) and improve its overall performance.
+
 <p align="center" >
   <img src="https://raw.githubusercontent.com/Yalantis/FastEasyMapping/efabb88b0831c7ece88e728b9665edc4d3af5b1f/Assets/performance.png" alt="FastEasyMapping" title="FastEasyMapping">
 </p>
@@ -44,7 +45,7 @@ or add as a static library.
 ## Usage
 ### Deserialization
 
-Nowadays `NSObject` and `NSManagedObject` mapping supported out of the box. Lets take a look on how basic mapping looks like:. For example, we have JSON:
+Today NSObject and NSManagedObject mapping are supported out of the box. Lets take a look at how a basic mapping looks like: For example, we have JSON:
 
 ```json
 {
@@ -99,7 +100,7 @@ and corresponding [CoreData](https://www.objc.io/issues/4-core-data/core-data-ov
 @end
 ```
 
-In order to map _JSON to Object_ and vice versa we have to describe mapping rules:
+In order to map _JSON to Object_ and vice versa we have to describe the mapping rules:
 
 ```objective-c
 @implementation Person (Mapping)
@@ -148,13 +149,13 @@ FEMMapping *mapping = [Person defaultMapping];
 Person *person = [FEMDeserializer objectFromRepresentation:json mapping:mapping context:managedObjectContext];
 ```
 
-Or collection of objects:
+Or collection of Objects:
 
 ```objective-c
 NSArray *persons = [FEMDeserializer collectionFromRepresentation:json mapping:mapping context:managedObjectContext];
 ```
 
-Or even update object:
+Or even update an Object:
 ```objective-c
 [FEMDeserializer fillObject:person fromRepresentation:json mapping:mapping];
 
@@ -162,7 +163,7 @@ Or even update object:
 
 ### Serialization
 
-Also we can serialize an _Object to JSON_ using mapping defined above:
+Also we can serialize an _Object to JSON_ using the mapping defined above:
 ```objective-c
 FEMMapping *mapping = [Person defaultMapping];
 Person *person = ...;
@@ -200,14 +201,14 @@ Alongside with `property` and `keyPath` value you can pass mapping blocks that a
 
 Examples:
 
-#### Mapping of value with same keys and type:
+#### Mapping of value with the same keys and type:
 ```objective-c
 FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"url"];
 // or 
 FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"url" keyPath:@"url" map:NULL, reverseMap:NULL];
 ``` 
 
-#### Mapping of value with different keys and same type:
+#### Mapping of value with different keys and the same type:
 ```objective-c
 FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"urlString" toKeyPath:@"URL"];
 // or 
@@ -234,13 +235,13 @@ FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"updateDate" k
 First of all we've defined [NSDateFormatter](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDateFormatter_Class/) that fits our requirements. Next step is to define Attribute instance with correct mapping. Briefly `map` block is invoked during deserialization (_JSON to Object_) while `reverseMap` is used for serialization process. Both are quite stratforward with but with few gotchas: 
 
 - `map` can receive `NSNull` instance. This is a valid case for `null` value in JSON.
-- `map` won't be invoked for missing keys. Therefore if JSON doesn't contain `keyPath` specified by your attribute, reverse mapping not called.
-- you can return from `map` either `nil` or `NSNull` for empty values
-- `reverseMap` invoked only when `property` contains non-nil value.
-- you can return from `reverseMap` either `nil` or `NSNull`. Both will produce `{"keyPath": null}`
+- map won't be invoked for missing keys. Therefore, if JSON doesn't contain keyPath specified by your attribute, reverse mapping not called.
+- from map you can return either `nil` or `NSNull` for empty values
+- `reverseMap` invoked only when `property` contains a non-nil value.	
+- from `reverseMap` you can return either `nil` or `NSNull`. Both will produce `{"keyPath": null}`
 
 #### Adding attribute to FEMMapping
-There are several shortcuts that allows you to add attributes easier to the mapping itself:
+There are several shortcuts that allow you to add attributes easier to the mapping itself:
 ##### Excplicitly
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
@@ -284,7 +285,7 @@ FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 @end
 ```
 
-Relationship also bound to a `property` and `keyPath`. Obviously it has a reference to Object's `FEMMapping` and flag that indicates whethere it is a to-many relationship. Moreover it allows you to specify assignment policy and "weakifying" behaviour of the relationship.
+Relationship is also bound to a `property` and `keyPath`. Obviously, it has a reference to Object's `FEMMapping` and a flag that indicates whether it’s a to-many relationship. Moreover, it allows you to specify assignment policy and "weakifying" behaviour of the relationship.
 
 Example: 
 
@@ -324,7 +325,7 @@ FEMMapping *phoneMapping = [[FEMMapping alloc] initWithObjectClass:[Phone class]
 ```
 
 ### FEMMapping
-Generally `FEMMapping` is a class that describes mapping for `NSObject` or `NSManagedObject` by encapsulating set of attributes and relationships. In addition to this it defines possibilities for objects uniquing (supported by CoreData only).
+Generally `FEMMapping` is a class that describes mapping for `NSObject` or `NSManagedObject` by encapsulating a set of attributes and relationships. In addition, it defines the possibilities for objects uniquing (supported by CoreData only).
 
 The only difference between `NSObject` and `NSManagedObject` is in `init` methods:
 
@@ -339,8 +340,8 @@ FEMMapping *managedObjectMapping = [[FEMMapping alloc] initWithEntityName:@"Enti
 ```
 
 #### Root Path
-Sometimes desired JSON is nested by a keyPath. In this case you can use `rootPath` property. Lets modify Person JSON by nesting Person representation:
-```json
+Sometimes a desired JSON is nested by a keyPath. In this case you can use `rootPath` property. Let’s modify Person JSON by nesting Person representation:
+```
 {
 	result: {
 		"name": "Lucas",
@@ -353,7 +354,7 @@ Sometimes desired JSON is nested by a keyPath. In this case you can use `rootPat
 }
 ```
 
-Mapping will looks like:
+Mapping will look like this:
 ```objective-c
 @implementation Person (Mapping)
 
@@ -407,10 +408,9 @@ Sometimes object representation contains a relationship described by a PK of the
 	}
 }
 ```
+As you can see, from JSON we have two objects: `Website` and `Category`. If `Website` can be imported easily, there is an external reference to a `Category` represented by its primary key `id`. Can we bind the `Website` to the corresponding category? Yep! We just need to treat Website's representation as a Category:
 
-As you can see from JSON we have two objects: `Website` and `Category`. Whereas `Website` can be imported easily, there is an external reference to a `Category` represented by its primary key `id`. Can we bind website to the corresponding category? Yep! We just need to treat Website's representation as a Category:
-
-First of all lets declare our classes: 
+First of all let’s declare our classes:
 ```objective-c
 @interface Website: NSManagedObject
 
@@ -455,7 +455,7 @@ Now it is time to define mapping for `Website`:
 By specifying `nil` as a `keyPath` for the category `Website`'s representation is treated as a `Category` at the same time. In this way it is easy to bind objects that are passed by PKs (which is quite common for network). 
 
 ### Weak relationship
-In example above we have one issue: what if our database doesn't contain `Category` with `PK = 4`? By default `FEMDeserializer` creates new objects during deserialization lazily. In our case it leads to insertion of `Category` instance without any data except `identifier`. In order to prevent such inconsistencies we can set `FEMRelationship.weak` to YES:
+In the example above there is an issue: what if our database doesn't contain `Category` with `PK = 4`? By default `FEMDeserializer` creates new objects during deserialization lazily. In our case this leads to insertion of `Category` instance without any data except `identifier`. In order to prevent such inconsistencies we can set `FEMRelationship.weak` to `YES`:
 
 ```objective-c
 @implementation Website (Mapping)
@@ -478,8 +478,7 @@ In example above we have one issue: what if our database doesn't contain `Catego
 @end
 
 ```
-
-As the result it'll bind `Website` to corresponding `Category` only in case the latter exists.
+As a result it'll bind the `Website` with the corresponding `Category` only if the latter exists.
 
 ## Delegation
 You can customize deserialization process by implementing `FEMDeserializerDelegate` protocol:
@@ -550,8 +549,7 @@ Mapping:
 
 @end
 ```
-
-During deserialization of persons collection order will be next: 
+During deserialization of persons collection order will be the following:
 
 1. willMapCollectionFromRepresentation:`Persons Array` mapping:`Person mapping`
 2. willMapObjectFromRepresentation:`Person Dictionary` mapping:`Person mapping`
