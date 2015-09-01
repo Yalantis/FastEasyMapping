@@ -5,22 +5,25 @@
 
 #import "FEMProperty.h"
 #import "FEMAttribute.h"
-#import "FEMAttributeMapping.h"
-
 #import "FEMRelationship.h"
-#import "FEMRelationshipMapping.h"
+
+#import "FEMObjectStore.h"
+#import "FEMManagedObjectStore.h"
 
 #import "FEMMapping.h"
 #import "FEMObjectMapping.h"
 #import "FEMManagedObjectMapping.h"
 
-#import "FEMManagedObjectDeserializer.h"
+#import "FEMDeserializer.h"
 #import "FEMObjectDeserializer.h"
+#import "FEMManagedObjectDeserializer.h"
 #import "FEMSerializer.h"
 
+#import "FEMRelationshipAssignmentContext.h"
 #import "FEMAssignmentPolicy.h"
-#import "FEMAssignmentPolicyMetadata.h"
 
 #import "FEMTypes.h"
+#import "FEMRepresentationUtility.h"
+#import "FEMMappingUtility.h"
 
 #endif /* _FASTEASYMAPPING_ */

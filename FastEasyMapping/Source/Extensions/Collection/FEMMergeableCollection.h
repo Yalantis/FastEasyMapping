@@ -3,7 +3,7 @@
 // Copyright (c) 2014 Yalantis. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 @protocol FEMMergeableCollection <NSObject>
 @required

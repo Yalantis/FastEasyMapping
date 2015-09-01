@@ -1,28 +1,53 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import "FEMMapping.h"
+#import "FEMManagedObjectMapping.h"
+#import "FEMObjectMapping.h"
 
 @implementation FEMMapping
 
 #pragma mark - Init
 
-- (id)init {
-	self = [super init];
-	if (self) {
-		_attributeMap = [NSMutableDictionary new];
-		_relationshipMap = [NSMutableDictionary new];
-	}
+- (instancetype)initWithObjectClass:(Class)objectClass {
+    self = [super init];
+    if (self) {
+        _attributeMap = [NSMutableDictionary new];
+        _relationshipMap = [NSMutableDictionary new];
 
-	return self;
+        _objectClass = objectClass;
+    }
+
+    return self;
 }
 
-- (id)initWithRootPath:(NSString *)rootPath {
-	self = [self init];
-	if (self) {
-		_rootPath = [rootPath copy];
-	}
+- (instancetype)initWithObjectClass:(Class)objectClass rootPath:(NSString *)rootPath {
+    self = [self initWithObjectClass:objectClass];
+    if (self) {
+        self.rootPath = rootPath;
+    }
+    
+    return self;
+}
 
-	return self;
+- (instancetype)initWithEntityName:(NSString *)entityName {
+    self = [super init];
+    if (self) {
+        _attributeMap = [NSMutableDictionary new];
+        _relationshipMap = [NSMutableDictionary new];
+
+        _entityName = [entityName copy];
+    }
+
+    return self;
+}
+
+- (instancetype)initWithEntityName:(NSString *)entityName rootPath:(NSString *)rootPath {
+    self = [self initWithEntityName:entityName];
+    if (self) {
+        self.rootPath = rootPath;
+    }
+    
+    return self;
 }
 
 #pragma mark - Attribute Mapping
@@ -31,7 +56,7 @@
 	NSParameterAssert(propertyMapping);
 	NSAssert(
 		propertyMapping.property.length > 0,
-		@"It's illegal to add objectMapping without specified property:%@",
+		@"It's illegal to add mapping without specified property:%@",
 		propertyMapping
 	);
 
@@ -71,6 +96,12 @@
 
 - (NSArray *)relationships {
 	return [_relationshipMap allValues];
+}
+
+#pragma mark -
+
+- (FEMAttribute *)primaryKeyAttribute {
+    return _attributeMap[self.primaryKey];
 }
 
 #pragma mark - Description
@@ -119,62 +150,54 @@
 }
 
 - (void)addRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {
-	FEMRelationship *relationshipMapping = [FEMRelationship mappingOfProperty:property
-                                                                    toKeyPath:keyPath
-                                                                objectMapping:mapping];
-    [self addRelationship:relationshipMapping];
+    FEMRelationship *relationship = [[FEMRelationship alloc] initWithProperty:property keyPath:keyPath mapping:mapping];
+    [self addRelationship:relationship];
 }
 
 - (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(NSString *)keyPath {
-	FEMRelationship *relationshipMapping = [FEMRelationship mappingOfProperty:property
-                                                                    toKeyPath:keyPath
-                                                                objectMapping:mapping];
-	[relationshipMapping setToMany:YES];
-    [self addRelationship:relationshipMapping];
-}
-
-- (id)extractRootFromExternalRepresentation:(id)externalRepresentation {
-	return self.rootPath ? [externalRepresentation valueForKeyPath:self.rootPath] : externalRepresentation;
+    FEMRelationship *relationship = [[FEMRelationship alloc] initWithProperty:property keyPath:keyPath mapping:mapping];
+    relationship.toMany = YES;
+    [self addRelationship:relationship];
 }
 
 @end
 
-@implementation FEMMapping (Deprecated)
+@implementation FEMMapping (FEMManagedObjectMapping_Deprecated)
 
-- (void)addAttributeMappingFromArray:(NSArray *)attributes {
-    [self addAttributesFromArray:attributes];
++ (FEMMapping *)mappingForEntityName:(NSString *)entityName {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName];
+    return mapping;
 }
 
-- (void)addAttributeMappingDictionary:(NSDictionary *)attributesToKeyPath {
-    [self addAttributesFromDictionary:attributesToKeyPath];
++ (FEMMapping *)mappingForEntityName:(NSString *)entityName
+                       configuration:(void (^)(FEMManagedObjectMapping *sender))configuration {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName];
+    configuration(mapping);
+    return mapping;
 }
 
-- (void)addAttributeMappingOfProperty:(NSString *)property atKeypath:(NSString *)keypath {
-    [self addAttributeWithProperty:property keyPath:keypath];
++ (FEMMapping *)mappingForEntityName:(NSString *)entityName
+                            rootPath:(NSString *)rootPath
+                       configuration:(void (^)(FEMManagedObjectMapping *sender))configuration {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName rootPath:rootPath];
+    configuration(mapping);
+    return mapping;
 }
 
-- (NSArray *)attributeMappings {
-    return self.attributes;
+@end
+
+@implementation FEMMapping (FEMObjectMapping_Deprecated)
+
++ (FEMMapping *)mappingForClass:(Class)objectClass configuration:(void (^)(FEMObjectMapping *mapping))configuration {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:objectClass];
+    configuration(mapping);
+    return mapping;
 }
 
-- (void)addAttributeMapping:(FEMAttributeMapping *)attributeMapping {
-    [self addAttribute:attributeMapping];
-}
-
-- (FEMAttributeMapping *)attributeMappingForProperty:(NSString *)property {
-    return [self attributeForProperty:property];
-}
-
-- (NSArray *)relationshipMappings {
-    return self.relationships;
-}
-
-- (void)addRelationshipMapping:(FEMRelationshipMapping *)relationshipMapping {
-    [self addRelationship:relationshipMapping];
-}
-
-- (FEMRelationshipMapping *)relationshipMappingForProperty:(NSString *)property {
-    return [self relationshipForProperty:property];
++ (FEMMapping *)mappingForClass:(Class)objectClass rootPath:(NSString *)rootPath configuration:(void (^)(FEMObjectMapping *mapping))configuration {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:objectClass rootPath:rootPath];
+    configuration(mapping);
+    return mapping;
 }
 
 @end

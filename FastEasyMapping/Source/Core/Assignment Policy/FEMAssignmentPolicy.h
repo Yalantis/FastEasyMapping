@@ -1,18 +1,15 @@
-//
-// Created by zen on 15/06/14.
-// Copyright (c) 2014 Yalantis. All rights reserved.
-//
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
-@class FEMAssignmentPolicyMetadata;
+@class FEMRelationshipAssignmentContext;
 
-typedef id (^FEMAssignmentPolicy)(FEMAssignmentPolicyMetadata *metadata);
+typedef __nullable id (^FEMAssignmentPolicy)(FEMRelationshipAssignmentContext * __nonnull context);
 
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyAssign;
+OBJC_EXTERN __nonnull FEMAssignmentPolicy FEMAssignmentPolicyAssign;
 
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyObjectMerge;
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge;
+OBJC_EXTERN __nonnull FEMAssignmentPolicy FEMAssignmentPolicyObjectMerge;
+OBJC_EXTERN __nonnull FEMAssignmentPolicy FEMAssignmentPolicyCollectionMerge;
 
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace;
-OBJC_EXTERN FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace;
+OBJC_EXTERN __nonnull FEMAssignmentPolicy FEMAssignmentPolicyObjectReplace;
+OBJC_EXTERN __nonnull FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace;

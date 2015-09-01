@@ -17,8 +17,8 @@
 
     self = [super init];
     if (self) {
-        _property = [property copy];
-        [self setKeyPath:keyPath];
+        self.property = property;
+        self.keyPath = keyPath;
 
         FEMMapBlock passthroughMap = ^(id value) {
             return value;
@@ -75,6 +75,10 @@
 
 + (instancetype)mappingOfProperty:(NSString *)property map:(FEMMapBlock)map {
     return [self mappingOfProperty:property toKeyPath:nil map:map reverseMap:NULL];
+}
+
++ (nonnull instancetype)mappingOfProperty:(nonnull NSString *)property reverseMap:(nonnull FEMMapBlock)reverseMap {
+    return [self mappingOfProperty:property toKeyPath:nil map:NULL reverseMap:reverseMap];
 }
 
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath dateFormat:(NSString *)dateFormat {
