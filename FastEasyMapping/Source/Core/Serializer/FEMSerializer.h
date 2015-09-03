@@ -4,9 +4,13 @@
 #import "FEMMapping.h"
 #import "FEMSerializer.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FEMSerializer : NSObject
 
-+ (nonnull NSDictionary *)serializeObject:(nonnull id)object usingMapping:(nonnull FEMMapping *)mapping;
-+ (nonnull id)serializeCollection:(nonnull NSArray *)collection usingMapping:(nonnull FEMMapping *)mapping;
++ (NSDictionary *)serializeObject:(id)object usingMapping:(FEMMapping *)mapping;
++ (id)serializeCollection:(NSArray *)collection usingMapping:(FEMMapping *)mapping;
 
 @end
+
+NS_ASSUME_NONNULL_END
