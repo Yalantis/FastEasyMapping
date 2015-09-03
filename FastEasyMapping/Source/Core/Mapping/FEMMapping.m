@@ -4,7 +4,10 @@
 #import "FEMManagedObjectMapping.h"
 #import "FEMObjectMapping.h"
 
-@implementation FEMMapping
+@implementation FEMMapping {
+    NSMutableDictionary *_attributeMap;
+    NSMutableDictionary *_relationshipMap;
+}
 
 #pragma mark - Init
 
