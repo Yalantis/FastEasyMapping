@@ -23,10 +23,12 @@
 		1D6A3821F8D06660ABDEE560 /* FEMRelationshipAssignmentContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31CC30FC2DC11994EBA8 /* FEMRelationshipAssignmentContext.m */; };
 		1D6A38BAA53A46E856AF5CC4 /* FEMRelationshipAssignmentContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A37E108D6B12FA8587FA6 /* FEMRelationshipAssignmentContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */; };
+		1D6A3BA4DDC30918B26299BC /* FEMDeserializer+Realm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3395C0F680B899E9C6D7 /* FEMDeserializer+Realm.m */; };
 		1D6A3BB7C54CCCC7720A793A /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A32B1909842797CD2E0D3 /* FEMObjectStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D6A3BC1A08D550FFFF3E9A5 /* FEMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C63218EDC50D1C848E3 /* FEMAttribute.m */; };
 		1D6A3D2F519049D3E97895A9 /* FEMMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3DB6E70D06B240357965 /* FEMMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3ACBBC8E66609F169E94 /* Person_2.json */; };
+		1D6A3DD58DA8A9172682DD07 /* FEMRealmStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3D9D81F330EA7988B178 /* FEMRealmStore.m */; };
 		1D6A3E950CAD3D0A01F2C1B3 /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3EDB0333D6F8C6AF1C22 /* FEMRelationship.m */; };
 		1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
 		1D6A3FE5C05F54B80DCD6D93 /* FEMRepresentationUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A328FCE22411C60FBC7C4 /* FEMRepresentationUtility.m */; };
@@ -119,6 +121,13 @@
 			remoteGlobalIDString = AD1404771B9841D9008F8FFF;
 			remoteInfo = "FastEasyMapping-Realm";
 		};
+		AD14048F1B9845F5008F8FFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CF8097018C3AD5700C07899 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CF8097718C3AD5700C07899;
+			remoteInfo = FastEasyMapping;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -152,13 +161,16 @@
 		1D6A328FCE22411C60FBC7C4 /* FEMRepresentationUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRepresentationUtility.m; sourceTree = "<group>"; };
 		1D6A32B1909842797CD2E0D3 /* FEMObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectStore.h; sourceTree = "<group>"; };
 		1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAttributeMappingSpec.m; sourceTree = "<group>"; };
+		1D6A3395C0F680B899E9C6D7 /* FEMDeserializer+Realm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FEMDeserializer+Realm.m"; sourceTree = "<group>"; };
 		1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMergeableCollection.m; sourceTree = "<group>"; };
 		1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar_2.json; sourceTree = "<group>"; };
 		1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithMissingRelationships.json; sourceTree = "<group>"; };
 		1D6A34B621512A2FE61ECE26 /* FEMMappingUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMMappingUtility.h; sourceTree = "<group>"; };
 		1D6A368ADA05F6A09F22A3AC /* FEMMergeableCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMMergeableCollection.h; sourceTree = "<group>"; };
 		1D6A3781CA28E31A3CDCE626 /* FEMProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMProperty.h; sourceTree = "<group>"; };
+		1D6A37D00FD38C6C23B4A6A0 /* FEMDeserializer+Realm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FEMDeserializer+Realm.h"; sourceTree = "<group>"; };
 		1D6A37E108D6B12FA8587FA6 /* FEMRelationshipAssignmentContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRelationshipAssignmentContext.h; sourceTree = "<group>"; };
+		1D6A38AFE75275C8ABBB594A /* FEMRealmStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRealmStore.h; sourceTree = "<group>"; };
 		1D6A3936AEC2DF329B7D5C0C /* FEMCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMCacheSpec.m; sourceTree = "<group>"; };
 		1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithNullRelationships.json; sourceTree = "<group>"; };
 		1D6A3A4F887B37995524457E /* FEMMappingUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMappingUtility.m; sourceTree = "<group>"; };
@@ -168,6 +180,7 @@
 		1D6A3BDA3CA0DDFF256CDB49 /* FEMExcludableCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMExcludableCollection.m; sourceTree = "<group>"; };
 		1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAssignmentPolicy.m; sourceTree = "<group>"; };
 		1D6A3C63218EDC50D1C848E3 /* FEMAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAttribute.m; sourceTree = "<group>"; };
+		1D6A3D9D81F330EA7988B178 /* FEMRealmStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRealmStore.m; sourceTree = "<group>"; };
 		1D6A3DB6E70D06B240357965 /* FEMMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMMapping.h; sourceTree = "<group>"; };
 		1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar_1.json; sourceTree = "<group>"; };
 		1D6A3E335535878DA801854C /* FEMManagedObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectMapping.h; sourceTree = "<group>"; };
@@ -315,9 +328,20 @@
 			path = Collection;
 			sourceTree = "<group>";
 		};
+		1D6A3143F57D8DEDC4083FCA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A3395C0F680B899E9C6D7 /* FEMDeserializer+Realm.m */,
+				1D6A37D00FD38C6C23B4A6A0 /* FEMDeserializer+Realm.h */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		1D6A3728132C53909220BF36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1D6A3ED580E8AA9B8C4B01F6 /* Store */,
+				1D6A3143F57D8DEDC4083FCA /* Extension */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -341,6 +365,15 @@
 				1D6A311D0B99D619E11B0641 /* FEMManagedObjectStore.h */,
 				1D6A30748FCFC86CFA72493D /* FEMObjectStore.m */,
 				1D6A32164D7EFFBC35F34F17 /* FEMManagedObjectStore.m */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		1D6A3ED580E8AA9B8C4B01F6 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A38AFE75275C8ABBB594A /* FEMRealmStore.h */,
+				1D6A3D9D81F330EA7988B178 /* FEMRealmStore.m */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -733,6 +766,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				AD1404901B9845F5008F8FFF /* PBXTargetDependency */,
 			);
 			name = "FastEasyMapping-Realm";
 			productName = "FastEasyMapping-Realm";
@@ -928,6 +962,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D6A3DD58DA8A9172682DD07 /* FEMRealmStore.m in Sources */,
+				1D6A3BA4DDC30918B26299BC /* FEMDeserializer+Realm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,6 +986,11 @@
 			isa = PBXTargetDependency;
 			target = AD1404771B9841D9008F8FFF /* FastEasyMapping-Realm */;
 			targetProxy = AD1404841B9841D9008F8FFF /* PBXContainerItemProxy */;
+		};
+		AD1404901B9845F5008F8FFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CF8097718C3AD5700C07899 /* FastEasyMapping */;
+			targetProxy = AD14048F1B9845F5008F8FFF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
