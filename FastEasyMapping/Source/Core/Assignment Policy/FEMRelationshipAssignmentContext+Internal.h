@@ -7,12 +7,16 @@
 
 #import "FEMRelationshipAssignmentContext.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FEMRelationshipAssignmentContext (Internal)
 
 @property (nonatomic, strong) id destinationObject;
 @property (nonatomic, strong) FEMRelationship *relationship;
 
-@property (nonatomic, strong) id sourceRelationshipValue;
-@property (nonatomic, strong) id targetRelationshipValue;
+@property (nonatomic, strong, nullable) id sourceRelationshipValue;
+@property (nonatomic, strong, nullable) id targetRelationshipValue;
 
 @end
+
+NS_ASSUME_NONNULL_END
