@@ -4,7 +4,9 @@
 
 @class FEMMapping, NSManagedObjectContext;
 
-typedef id<NSFastEnumeration> (^FEMObjectCacheSource)(FEMMapping *objectMapping, NSSet *primaryKeys);
+NS_ASSUME_NONNULL_BEGIN
+
+typedef __nonnull id<NSFastEnumeration> (^FEMObjectCacheSource)(FEMMapping *objectMapping, NSSet *primaryKeys);
 
 @interface FEMObjectCache : NSObject
 
@@ -23,3 +25,5 @@ typedef id<NSFastEnumeration> (^FEMObjectCacheSource)(FEMMapping *objectMapping,
 - (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation context:(NSManagedObjectContext *)context;
 
 @end
+
+NS_ASSUME_NONNULL_END
