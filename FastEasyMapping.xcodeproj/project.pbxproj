@@ -343,6 +343,13 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		1D6A3270C4CB1152C5A5C39B /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Specs;
+			sourceTree = "<group>";
+		};
 		1D6A3728132C53909220BF36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +681,7 @@
 			isa = PBXGroup;
 			children = (
 				AD1404871B9841D9008F8FFF /* Supporting Files */,
+				1D6A3270C4CB1152C5A5C39B /* Specs */,
 			);
 			path = "FastEasyMapping-RealmTests";
 			sourceTree = "<group>";
