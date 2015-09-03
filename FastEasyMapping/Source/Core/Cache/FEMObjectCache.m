@@ -8,21 +8,19 @@
 #import "FEMRepresentationUtility.h"
 
 @implementation FEMObjectCache {
-	NSManagedObjectContext *_context;
-
 	NSDictionary *_lookupKeysMap;
 	NSMutableDictionary *_lookupObjectsMap;
 
-	FEMObjectCacheObjectsSource _source;
+	FEMObjectCacheSource _source;
 }
 
 #pragma mark - Init
 
-- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation source:(FEMObjectCacheObjectsSource)source {
+- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation source:(FEMObjectCacheSource)source {
 	NSParameterAssert(mapping);
 	NSParameterAssert(representation);
 
-	self = [self init];
+	self = [super init];
 	if (self) {
 		_source = [source copy];
 		_lookupKeysMap = FEMRepresentationCollectPresentedPrimaryKeys(representation, mapping);
@@ -40,7 +38,7 @@
 		[fetchRequest setPredicate:predicate];
 		[fetchRequest setFetchLimit:primaryKeys.count];
 
-		NSArray *existingObjects = [_context executeFetchRequest:fetchRequest error:NULL];
+		NSArray *existingObjects = [context executeFetchRequest:fetchRequest error:NULL];
 		return existingObjects;
 	}];
 }
