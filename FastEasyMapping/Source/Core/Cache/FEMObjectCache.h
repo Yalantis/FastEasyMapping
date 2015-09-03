@@ -5,7 +5,7 @@
 @class FEMMapping, NSManagedObjectContext;
 @class FEMObjectCache;
 
-typedef NSArray *(^FEMObjectCacheObjectsSource)(FEMMapping *mapping, NSArray *primaryKeys);
+typedef NSArray *(^FEMObjectCacheObjectsSource)(FEMMapping *mapping, NSSet *primaryKeys);
 
 @interface FEMObjectCache : NSObject
 

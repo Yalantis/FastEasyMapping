@@ -34,13 +34,12 @@
 
 
 - (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation context:(NSManagedObjectContext *)context {
-	return [self initWithMapping:mapping representation:representation source:^NSArray *(FEMMapping *objectMapping, NSArray *primaryKeys) {
+	return [self initWithMapping:mapping representation:representation source:^NSArray *(FEMMapping *objectMapping, NSSet *primaryKeys) {
 		NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, primaryKeys];
 		[fetchRequest setPredicate:predicate];
 		[fetchRequest setFetchLimit:primaryKeys.count];
 
-		NSMutableDictionary *output = [NSMutableDictionary new];
 		NSArray *existingObjects = [_context executeFetchRequest:fetchRequest error:NULL];
 		return existingObjects;
 	}];
@@ -52,12 +51,11 @@
 	NSSet *lookupValues = _lookupKeysMap[mapping.entityName];
 	if (lookupValues.count == 0) return [NSMutableDictionary dictionary];
 
-	NSArray *obects = _source(mapping, lookupValues);
-	for (NSManagedObject *object in existingObjects) {
+	NSMutableDictionary *output = [NSMutableDictionary new];
+	NSArray *objects = _source(mapping, lookupValues);
+	for (NSObject *object in objects) {
 		output[[object valueForKey:mapping.primaryKey]] = object;
 	}
-
-	return
 
 	return output;
 }
