@@ -37,7 +37,7 @@
 	if (lookupValues.count == 0) return [NSMutableDictionary dictionary];
 
 	NSMutableDictionary *output = [NSMutableDictionary new];
-	NSArray *objects = _source(mapping, lookupValues);
+	id<NSFastEnumeration> objects = _source(mapping, lookupValues);
 	for (NSObject *object in objects) {
 		output[[object valueForKey:mapping.primaryKey]] = object;
 	}
