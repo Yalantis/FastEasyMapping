@@ -91,8 +91,8 @@
 
 - (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation context:(NSManagedObjectContext *)context {
 	return [self initWithMapping:mapping representation:representation source:^id<NSFastEnumeration> (FEMMapping *objectMapping, NSSet *primaryKeys) {
-		NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, primaryKeys];
+		NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:objectMapping.entityName];
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", objectMapping.primaryKey, primaryKeys];
 		[fetchRequest setPredicate:predicate];
 		[fetchRequest setFetchLimit:primaryKeys.count];
 

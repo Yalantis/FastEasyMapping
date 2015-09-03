@@ -14,8 +14,8 @@
 
 - (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation realm:(RLMRealm *)realm {
     return [self initWithMapping:mapping representation:representation source:^id<NSFastEnumeration> (FEMMapping *objectMapping, NSSet *primaryKeys) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, primaryKeys];
-        RLMResults *results = [realm objects:mapping.entityName withPredicate:predicate];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", objectMapping.primaryKey, primaryKeys];
+        RLMResults *results = [realm objects:objectMapping.entityName withPredicate:predicate];
         return results;
     }];
 }
