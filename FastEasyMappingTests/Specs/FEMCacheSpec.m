@@ -34,19 +34,6 @@ SPEC_BEGIN(FEMCacheSpec)
         [MagicalRecord cleanUp];
     });
 
-    describe(@"init", ^{
-        it(@"should store NSManagedObjectContext", ^{
-            id representation = [CMFixture buildUsingFixture:@"Car"];
-            id mapping = [MappingProvider carMapping];
-
-            FEMObjectCache *cache = [[FEMObjectCache alloc] initWithMapping:mapping
-                                                                           representation:representation
-                                                                                  context:context];
-
-            [[cache.context should] equal:context];
-        });
-    });
-
     describe(@"object retrieval", ^{
         __block NSDictionary *representation = nil;
         __block FEMMapping *mapping = nil;
