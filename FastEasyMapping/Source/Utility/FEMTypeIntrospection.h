@@ -3,6 +3,10 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-extern BOOL FEMObjectPropertyTypeIsScalar(id object, NSString *propertyName);
+NS_ASSUME_NONNULL_BEGIN
 
-extern NSString * FEMPropertyTypeStringRepresentation(objc_property_t property);
+FOUNDATION_EXTERN BOOL FEMObjectPropertyTypeIsScalar(id object, NSString *propertyName);
+
+FOUNDATION_EXTERN NSString * FEMPropertyTypeStringRepresentation(objc_property_t property);
+
+NS_ASSUME_NONNULL_END
