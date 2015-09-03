@@ -5,13 +5,15 @@
 #import "FEMTypes.h"
 #import "FEMProperty.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FEMAttribute : NSObject <FEMProperty>
 
 - (nullable id)mapValue:(nullable id)value;
 - (nullable id)reverseMapValue:(nullable id)value;
 
-- (nonnull instancetype)initWithProperty:(nonnull NSString *)property keyPath:(nullable NSString *)keyPath map:(nullable FEMMapBlock)map reverseMap:(nullable FEMMapBlock)reverseMap;
-+ (nonnull instancetype)mappingOfProperty:(nonnull NSString *)property toKeyPath:(nullable NSString *)keyPath map:(nullable FEMMapBlock)map reverseMap:(nullable FEMMapBlock)reverseMap;
+- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath map:(nullable FEMMapBlock)map reverseMap:(nullable FEMMapBlock)reverseMap;
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(nullable NSString *)keyPath map:(nullable FEMMapBlock)map reverseMap:(nullable FEMMapBlock)reverseMap;
 
 @end
 
@@ -20,34 +22,36 @@
 /**
 * same as +[FEMAttribute mappingOfProperty:property toKeyPath:property];
 */
-+ (nonnull instancetype)mappingOfProperty:(nonnull NSString *)property;
++ (instancetype)mappingOfProperty:(NSString *)property;
 
 /**
 * same as +[FEMAttribute mappingOfProperty:property toKeyPath:nil map:NULL];
 */
-+ (nonnull instancetype)mappingOfProperty:(nonnull NSString *)property toKeyPath:(nonnull NSString *)keyPath;
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath;
 
 /**
 * same as +[FEMAttribute mappingOfProperty:property toKeyPath:nil map:map];
 */
-+ (nonnull instancetype)mappingOfProperty:(nonnull NSString *)property map:(nonnull FEMMapBlock)map;
++ (instancetype)mappingOfProperty:(NSString *)property map:(FEMMapBlock)map;
 
-+ (nonnull instancetype)mappingOfProperty:(nonnull NSString *)property reverseMap:(nonnull FEMMapBlock)reverseMap;
++ (instancetype)mappingOfProperty:(NSString *)property reverseMap:(FEMMapBlock)reverseMap;
 
 /**
 * same as +[FEMAttribute mappingOfProperty:property toKeyPath:nil map:NULL reverseMap:NULL];
 */
-+ (nonnull instancetype)mappingOfProperty:(nonnull NSString *)property toKeyPath:(nonnull NSString *)keyPath map:(nonnull FEMMapBlock)map;
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(NSString *)keyPath map:(FEMMapBlock)map;
 
 /**
 * create mapping object, based on NSDateFormatter.
 * NSDateFormatter instance uses en_US_POSIX locale and UTC Timezone
 */
-+ (nonnull instancetype)mappingOfProperty:(nonnull NSString *)property toKeyPath:(nullable NSString *)keyPath dateFormat:(nonnull NSString *)dateFormat;
++ (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(nullable NSString *)keyPath dateFormat:(NSString *)dateFormat;
 
 /**
 * property represented by NSURL, value at keyPath - NSString
 */
-+ (nonnull instancetype)mappingOfURLProperty:(nonnull NSString *)property toKeyPath:(nullable NSString *)keyPath;
++ (instancetype)mappingOfURLProperty:(NSString *)property toKeyPath:(nullable NSString *)keyPath;
 
 @end
+
+NS_ASSUME_NONNULL_END
