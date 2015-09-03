@@ -4,11 +4,15 @@
 
 @class NSManagedObjectContext;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FEMManagedObjectStore : FEMObjectStore
 
-- (nonnull instancetype)initWithContext:(nonnull NSManagedObjectContext *)context NS_DESIGNATED_INITIALIZER;
-@property (nonatomic, strong, readonly, nonnull) NSManagedObjectContext *context;
+- (instancetype)initWithContext:(NSManagedObjectContext *)context NS_DESIGNATED_INITIALIZER;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *context;
 
 @property (nonatomic) BOOL saveContextOnCommit;
 
 @end
+
+NS_ASSUME_NONNULL_END
