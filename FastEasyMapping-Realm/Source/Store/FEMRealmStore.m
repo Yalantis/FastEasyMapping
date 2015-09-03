@@ -8,13 +8,7 @@
 
 #import <FastEasyMapping/FastEasyMapping.h>
 
-@implementation FEMRealmStore {
-    RLMRealm *_realm;
-
-    NSDictionary *_lookupKeysMap;
-    NSMutableDictionary *_lookupObjectsMap;
-    NSMutableSet *_standaloneObjects;
-}
+@implementation FEMRealmStore
 
 - (instancetype)initWithRealm:(RLMRealm *)realm {
     self = [super init];
@@ -23,10 +17,6 @@
     }
 
     return self;
-}
-
-+ (instancetype)storeWithRealm:(RLMRealm *)realm {
-    return [[self alloc] initWithRealm:realm];
 }
 
 #pragma mark - Cache

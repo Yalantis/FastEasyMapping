@@ -5,8 +5,11 @@
 
 @import Foundation;
 
-#import <Realm/Realm.h>
 #import <FastEasyMapping/FEMObjectStore.h>
+
+@class RLMRealm;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface FEMRealmStore : FEMObjectStore
 
@@ -14,7 +17,6 @@
 
 - (instancetype)initWithRealm:(RLMRealm *)realm;
 
-+ (instancetype)storeWithRealm:(RLMRealm *)realm;
-
-
 @end
+
+NS_ASSUME_NONNULL_END
