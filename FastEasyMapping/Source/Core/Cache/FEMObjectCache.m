@@ -30,19 +30,6 @@
 	return self;
 }
 
-
-- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation context:(NSManagedObjectContext *)context {
-	return [self initWithMapping:mapping representation:representation source:^NSArray *(FEMMapping *objectMapping, NSSet *primaryKeys) {
-		NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, primaryKeys];
-		[fetchRequest setPredicate:predicate];
-		[fetchRequest setFetchLimit:primaryKeys.count];
-
-		NSArray *existingObjects = [context executeFetchRequest:fetchRequest error:NULL];
-		return existingObjects;
-	}];
-}
-
 #pragma mark - Inspection
 
 - (NSMutableDictionary *)fetchExistingObjectsForMapping:(FEMMapping *)mapping {
@@ -96,6 +83,22 @@
 
 - (NSDictionary *)existingObjectsForMapping:(FEMMapping *)mapping {
     return [[self cachedObjectsForMapping:mapping] copy];
+}
+
+@end
+
+@implementation FEMObjectCache (CoreData)
+
+- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation context:(NSManagedObjectContext *)context {
+	return [self initWithMapping:mapping representation:representation source:^id<NSFastEnumeration> (FEMMapping *objectMapping, NSSet *primaryKeys) {
+		NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, primaryKeys];
+		[fetchRequest setPredicate:predicate];
+		[fetchRequest setFetchLimit:primaryKeys.count];
+
+		NSArray *existingObjects = [context executeFetchRequest:fetchRequest error:NULL];
+		return existingObjects;
+	}];
 }
 
 @end
