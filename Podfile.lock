@@ -13,11 +13,15 @@ PODS:
   - Mantle (1.0):
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
+  - Realm (0.95.0):
+    - Realm/Headers (= 0.95.0)
+  - Realm/Headers (0.95.0)
 
 DEPENDENCIES:
   - CMFactory (~> 1.4.0)
   - Kiwi (~> 2.3.0)
   - MagicalRecord (~> 2.2)
+  - Realm (~> 0.95.0)
 
 SPEC CHECKSUMS:
   CMFactory: 535c1473e91f4d0d13cb290de2144faa75a882a3
@@ -25,5 +29,6 @@ SPEC CHECKSUMS:
   libextobjc: f2802d4262f6885570df9799747409ceb1de602c
   MagicalRecord: f8a56bb87ab6552f20c4bb8681a1958a197ea3cd
   Mantle: 3fbcca07bdfe76c54a08c241689a60d34d08e783
+  Realm: bbb171b96728ea136ed5cd354dca2a3d6529923c
 
-COCOAPODS: 0.37.1
+COCOAPODS: 0.38.2
