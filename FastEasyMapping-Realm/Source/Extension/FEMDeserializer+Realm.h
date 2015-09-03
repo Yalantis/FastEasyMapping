@@ -9,8 +9,12 @@
 
 @class RLMRealm;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FEMDeserializer (Realm)
 
-- (nonnull instancetype)initWithRealm:(RLMRealm *)realm;
+- (instancetype)initWithRealm:(RLMRealm *)realm;
 
 @end
+
+NS_ASSUME_NONNULL_END
