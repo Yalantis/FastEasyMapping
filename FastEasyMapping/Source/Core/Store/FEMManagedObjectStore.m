@@ -5,14 +5,14 @@
 #import <CoreData/CoreData.h>
 
 #import "FEMManagedObjectMapping.h"
-#import "FEMManagedObjectCache.h"
+#import "FEMObjectCache.h"
 
 __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     NSCAssert(mapping.entityName != nil, @"Entity name can't be nil. Please, use -[FEMMapping initWithEntityName:]");
 }
 
 @implementation FEMManagedObjectStore {
-    FEMManagedObjectCache *_cache;
+    FEMObjectCache *_cache;
 }
 
 #pragma mark - Init
@@ -30,7 +30,7 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
 #pragma mark - Transaction
 
 - (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping ofRepresentation:(nonnull NSArray *)representation {
-    _cache = [[FEMManagedObjectCache alloc] initWithMapping:mapping representation:representation context:self.context];
+    _cache = [[FEMObjectCache alloc] initWithMapping:mapping representation:representation context:self.context];
 }
 
 - (void)beginTransaction {}

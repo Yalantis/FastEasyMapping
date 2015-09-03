@@ -1,36 +1,49 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
-#import "FEMManagedObjectCache.h"
+#import "FEMObjectCache.h"
 
 #import <CoreData/CoreData.h>
 
 #import "FEMMapping.h"
 #import "FEMRepresentationUtility.h"
 
-@implementation FEMManagedObjectCache {
+@implementation FEMObjectCache {
 	NSManagedObjectContext *_context;
 
 	NSDictionary *_lookupKeysMap;
 	NSMutableDictionary *_lookupObjectsMap;
+
+	FEMObjectCacheObjectsSource _source;
 }
 
 #pragma mark - Init
 
-
-- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation context:(NSManagedObjectContext *)context {
+- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation source:(FEMObjectCacheObjectsSource)source {
 	NSParameterAssert(mapping);
-    NSParameterAssert(representation);
-	NSParameterAssert(context);
+	NSParameterAssert(representation);
 
 	self = [self init];
 	if (self) {
-		_context = context;
-
+		_source = [source copy];
 		_lookupKeysMap = FEMRepresentationCollectPresentedPrimaryKeys(representation, mapping);
 		_lookupObjectsMap = [NSMutableDictionary new];
 	}
 
 	return self;
+}
+
+
+- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation context:(NSManagedObjectContext *)context {
+	return [self initWithMapping:mapping representation:representation source:^NSArray *(FEMMapping *objectMapping, NSArray *primaryKeys) {
+		NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, primaryKeys];
+		[fetchRequest setPredicate:predicate];
+		[fetchRequest setFetchLimit:primaryKeys.count];
+
+		NSMutableDictionary *output = [NSMutableDictionary new];
+		NSArray *existingObjects = [_context executeFetchRequest:fetchRequest error:NULL];
+		return existingObjects;
+	}];
 }
 
 #pragma mark - Inspection
@@ -39,16 +52,12 @@
 	NSSet *lookupValues = _lookupKeysMap[mapping.entityName];
 	if (lookupValues.count == 0) return [NSMutableDictionary dictionary];
 
-	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, lookupValues];
-	[fetchRequest setPredicate:predicate];
-	[fetchRequest setFetchLimit:lookupValues.count];
-
-	NSMutableDictionary *output = [NSMutableDictionary new];
-	NSArray *existingObjects = [_context executeFetchRequest:fetchRequest error:NULL];
+	NSArray *obects = _source(mapping, lookupValues);
 	for (NSManagedObject *object in existingObjects) {
 		output[[object valueForKey:mapping.primaryKey]] = object;
 	}
+
+	return
 
 	return output;
 }

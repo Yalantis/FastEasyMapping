@@ -79,12 +79,12 @@
 		69ED7144E37E067666813AF9 /* NSArray+FEMPropertyRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED757059F6C7A26468D880 /* NSArray+FEMPropertyRepresentation.m */; };
 		69ED72338B6419101B1C8CDB /* NSObject+FEMKVCExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED769040647781DD8B196D /* NSObject+FEMKVCExtension.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		69ED74D218BD6B3888549434 /* NSObject+FEMKVCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED770C14BAB15CA7926116 /* NSObject+FEMKVCExtension.m */; };
-		69ED756EBF9D955A7B6A580A /* FEMManagedObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7D24C1EE78C03CAB9C9B /* FEMManagedObjectCache.m */; };
+		69ED756EBF9D955A7B6A580A /* FEMObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7D24C1EE78C03CAB9C9B /* FEMObjectCache.m */; };
 		69ED7687C035FA51A536AB56 /* FEMTypeIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7F5DB5E0C3FF6672226E /* FEMTypeIntrospection.m */; };
 		69ED797C93C27C8E3BBC1BDB /* FEMSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED73028D190C49BF2E0F8D /* FEMSerializer.m */; };
 		69ED7D115200A0D4F52DBBCA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69ED730BF972DF74DC2BA5B3 /* InfoPlist.strings */; };
 		69ED7DADB8044F2B42C1CD94 /* FEMDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED772E50A1A831B78D48B3 /* FEMDeserializer.m */; };
-		69ED7E8934131F087C5492A3 /* FEMManagedObjectCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7DE30D50997F9408F36E /* FEMManagedObjectCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		69ED7E8934131F087C5492A3 /* FEMObjectCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7DE30D50997F9408F36E /* FEMObjectCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9983A129111A4AB8A30520BE /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */; };
 		AD11B5EC1B038E8700B53F5A /* FEMMergeableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */; };
 		AD11B5ED1B038E8900B53F5A /* FEMExcludableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BDA3CA0DDFF256CDB49 /* FEMExcludableCollection.m */; };
@@ -255,9 +255,9 @@
 		69ED7C1B2AB96554F9FDF10B /* FEMSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMSerializer.h; sourceTree = "<group>"; };
 		69ED7CB8A80C99BF8D7413F6 /* FastEasyMappingTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = "FastEasyMappingTests-Info.plist"; sourceTree = "<group>"; };
 		69ED7CF6DFFBDF7A0BF32AFC /* NativeChild.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = NativeChild.json; sourceTree = "<group>"; };
-		69ED7D24C1EE78C03CAB9C9B /* FEMManagedObjectCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMManagedObjectCache.m; sourceTree = "<group>"; };
+		69ED7D24C1EE78C03CAB9C9B /* FEMObjectCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectCache.m; sourceTree = "<group>"; };
 		69ED7D96C7E8C393B9DEB695 /* Female.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Female.json; sourceTree = "<group>"; };
-		69ED7DE30D50997F9408F36E /* FEMManagedObjectCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectCache.h; sourceTree = "<group>"; };
+		69ED7DE30D50997F9408F36E /* FEMObjectCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectCache.h; sourceTree = "<group>"; };
 		69ED7DE7AE4C126B96E6BD93 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		69ED7E3F8292CA5FAB383E45 /* PhoneNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNative.m; sourceTree = "<group>"; };
 		69ED7E6CB1B484C7F335B55F /* FEMTypeIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMTypeIntrospection.h; sourceTree = "<group>"; };
@@ -640,8 +640,8 @@
 		69ED7CB4B4B9CD8DDF958D64 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7D24C1EE78C03CAB9C9B /* FEMManagedObjectCache.m */,
-				69ED7DE30D50997F9408F36E /* FEMManagedObjectCache.h */,
+				69ED7D24C1EE78C03CAB9C9B /* FEMObjectCache.m */,
+				69ED7DE30D50997F9408F36E /* FEMObjectCache.h */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -694,7 +694,7 @@
 				AD52DF7F1B03657900E46915 /* FEMObjectDeserializer.h in Headers */,
 				1D6A369BF512C6E71C26FBF0 /* FEMProperty.h in Headers */,
 				AD4E3A5F1B909710007D5511 /* FEMManagedObjectStore.h in Headers */,
-				69ED7E8934131F087C5492A3 /* FEMManagedObjectCache.h in Headers */,
+				69ED7E8934131F087C5492A3 /* FEMObjectCache.h in Headers */,
 				1D6A38BAA53A46E856AF5CC4 /* FEMRelationshipAssignmentContext.h in Headers */,
 				1D6A3BB7C54CCCC7720A793A /* FEMObjectStore.h in Headers */,
 				ADC5B81F194E0FB700F07712 /* FEMAssignmentPolicy.h in Headers */,
@@ -912,7 +912,7 @@
 				AD52DF821B03865000E46915 /* FEMManagedObjectStore.m in Sources */,
 				69ED7144E37E067666813AF9 /* NSArray+FEMPropertyRepresentation.m in Sources */,
 				69ED7687C035FA51A536AB56 /* FEMTypeIntrospection.m in Sources */,
-				69ED756EBF9D955A7B6A580A /* FEMManagedObjectCache.m in Sources */,
+				69ED756EBF9D955A7B6A580A /* FEMObjectCache.m in Sources */,
 				AD11B5ED1B038E8900B53F5A /* FEMExcludableCollection.m in Sources */,
 				69ED74D218BD6B3888549434 /* NSObject+FEMKVCExtension.m in Sources */,
 				AD11B5EC1B038E8700B53F5A /* FEMMergeableCollection.m in Sources */,

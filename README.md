@@ -40,7 +40,7 @@ or add as a static library.
 ### Advanced Deserialization
 - `FEMObjectStore`
 - `FEMManagedObjectStore`
-- `FEMManagedObjectCache`
+- `FEMObjectCache`
 
 ## Usage
 ### Deserialization
