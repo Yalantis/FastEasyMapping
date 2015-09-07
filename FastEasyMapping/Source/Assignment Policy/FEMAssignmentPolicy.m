@@ -46,7 +46,7 @@ FEMAssignmentPolicy FEMAssignmentPolicyCollectionReplace = ^id(FEMRelationshipAs
             NSStringFromProtocol(@protocol(FEMExcludableCollection))
         );
 
-        id objectsToDelete = [(id <FEMExcludableCollection>) context.sourceRelationshipValue collectionByExcludingObjects:context.targetRelationshipValue];
+        id objectsToDelete = [(id <FEMExcludableCollection>)context.sourceRelationshipValue collectionByExcludingObjects:context.targetRelationshipValue];
         for (id object in objectsToDelete) {
             [context deleteRelationshipObject:object];
         }
