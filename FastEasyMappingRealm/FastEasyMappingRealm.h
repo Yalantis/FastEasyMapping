@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Yalantis. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT double FastEasyMappingRealmVersionNumber;
 

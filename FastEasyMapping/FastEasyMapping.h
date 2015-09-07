@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Yalantis. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for FastEasyMapping.
 FOUNDATION_EXPORT double FastEasyMappingVersionNumber;
