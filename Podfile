@@ -1,12 +1,16 @@
 platform :ios, :deployment_target => "7.0"
 inhibit_all_warnings!
 
-target :'FastEasyMapping-Realm', :exclusive => true do
-    pod 'Realm', '~> 0.95.0'
-end
-
-target :'FastEasyMappingTests', :exclusive => true do
+def import_tests
   pod 'Kiwi', '~> 2.3.0'
   pod 'CMFactory', '~> 1.4.0'
   pod 'MagicalRecord', '~> 2.2'
+end
+
+target :'FastEasyMappingTests', :exclusive => true do
+  import_tests
+end
+
+target :'FastEasyMappingRealmTests', :exclusive => true do
+  import_tests
 end
