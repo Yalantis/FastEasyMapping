@@ -1,7 +1,18 @@
-// For License please refer to LICENSE file in the root of FastEasyMapping project
+//
+//  FastEasyMapping.h
+//  FastEasyMapping
+//
+//  Created by zen on 07/09/15.
+//  Copyright (c) 2015 Yalantis. All rights reserved.
+//
 
-#ifndef _FASTEASYMAPPING_
-#define _FASTEASYMAPPING_
+#import <UIKit/UIKit.h>
+
+//! Project version number for FastEasyMapping.
+FOUNDATION_EXPORT double FastEasyMappingVersionNumber;
+
+//! Project version string for FastEasyMapping.
+FOUNDATION_EXPORT const unsigned char FastEasyMappingVersionString[];
 
 #import "FEMProperty.h"
 #import "FEMAttribute.h"
@@ -25,5 +36,3 @@
 #import "FEMTypes.h"
 #import "FEMRepresentationUtility.h"
 #import "FEMMappingUtility.h"
-
-#endif /* _FASTEASYMAPPING_ */

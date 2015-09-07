@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2CF8097718C3AD5700C07899"
-               BuildableName = "libFastEasyMapping.a"
+               BlueprintIdentifier = "ADEC66A81B9D9DEB00F528C8"
+               BuildableName = "FastEasyMapping.framework"
                BlueprintName = "FastEasyMapping"
                ReferencedContainer = "container:FastEasyMapping.xcodeproj">
             </BuildableReference>
@@ -52,8 +52,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2CF8097718C3AD5700C07899"
-            BuildableName = "libFastEasyMapping.a"
+            BlueprintIdentifier = "ADEC66A81B9D9DEB00F528C8"
+            BuildableName = "FastEasyMapping.framework"
             BlueprintName = "FastEasyMapping"
             ReferencedContainer = "container:FastEasyMapping.xcodeproj">
          </BuildableReference>
