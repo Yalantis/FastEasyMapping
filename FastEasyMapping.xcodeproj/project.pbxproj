@@ -75,6 +75,7 @@
 		69ED7D115200A0D4F52DBBCA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69ED730BF972DF74DC2BA5B3 /* InfoPlist.strings */; };
 		6A5B5D97D6121AC62AF27C72 /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 523ACE0BE849DD1AC2A8B240 /* libPods-FastEasyMappingTests.a */; };
 		7F86EF41F2032565EEFD5AD5 /* libPods-FastEasyMappingRealmTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32116107E176EC31192827C8 /* libPods-FastEasyMappingRealmTests.a */; };
+		AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */; };
 		AD52DF831B0387C000E46915 /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
 		AD52DF841B0387C000E46915 /* FEMManagedObjectDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C1B06B95B6C90EBB53A /* FEMManagedObjectDeserializerSpec.m */; };
 		AD52DF851B0387C000E46915 /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
@@ -138,6 +139,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AD41A6A21B9DF9D4007F5729 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CF8097018C3AD5700C07899 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADEC66A81B9D9DEB00F528C8;
+			remoteInfo = FastEasyMapping;
+		};
 		ADF700B11B99F58000713D61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2CF8097018C3AD5700C07899 /* Project object */;
@@ -289,6 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */,
 				2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */,
 				6A5B5D97D6121AC62AF27C72 /* libPods-FastEasyMappingTests.a in Frameworks */,
 			);
@@ -758,6 +767,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				AD41A6A31B9DF9D4007F5729 /* PBXTargetDependency */,
 			);
 			name = FastEasyMappingTests;
 			productName = EasyMappingKitTests;
@@ -1089,6 +1099,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AD41A6A31B9DF9D4007F5729 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADEC66A81B9D9DEB00F528C8 /* FastEasyMapping */;
+			targetProxy = AD41A6A21B9DF9D4007F5729 /* PBXContainerItemProxy */;
+		};
 		ADF700B21B99F58000713D61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ADF700A41B99F57F00713D61 /* FastEasyMappingRealm */;

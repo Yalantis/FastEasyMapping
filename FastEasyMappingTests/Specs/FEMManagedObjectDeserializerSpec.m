@@ -8,12 +8,10 @@
 #import "Person.h"
 #import "Car.h"
 
-#import "FEMDeserializer.h"
-#import "FEMRelationship.h"
-
-#import "FEMMapping.h"
 #import "Phone.h"
-#import "FEMManagedObjectDeserializer.h"
+
+#import "FastEasyMapping.h"
+
 
 SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
