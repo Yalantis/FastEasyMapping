@@ -10,42 +10,13 @@
 # Options
 ######################
 
-usage()
-{
-cat << EOF
-usage: $0 options
-
-This script run the test1 or test2 over a machine.
-
-OPTIONS:
-   -target      Target within project. Required parameter
-   -t      Test type, can be ‘test1’ or ‘test2’
-   -r      Server address
-   -p      Server root password
-   -v      Verbose
-EOF
-}
-
 TARGET_NAME="${PROJECT_NAME}"
-REVEAL_ARCHIVE_IN_FINDER=true
 
-while getopts “target:reveal” OPTION
-do
-     case $OPTION in
-         target)
-             TARGET_NAME=$OPTARG
-             ;;
-         reveal)
-             REVEAL_ARCHIVE_IN_FINDER=$OPTARG
-             ;;
-     esac
-done
-
-if [[ -z $TARGET_NAME ]]
-then
-	usage
-	exit 1
+if [ ! -z "$1" ]; then
+TARGET_NAME="$1"
 fi
+
+REVEAL_ARCHIVE_IN_FINDER=true
 
 FRAMEWORK_NAME=${TARGET_NAME}
 
