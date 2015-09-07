@@ -6,6 +6,31 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		ADEC66EF1B9DA45600F528C8 /* FastEasyMapping Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = ADEC66F01B9DA45600F528C8 /* Build configuration list for PBXAggregateTarget "FastEasyMapping Universal" */;
+			buildPhases = (
+				ADEC66F31B9DA45F00F528C8 /* Lipo */,
+			);
+			dependencies = (
+			);
+			name = "FastEasyMapping Universal";
+			productName = "FastEasyMapping Universal";
+		};
+		ADEC66F81B9DA4B700F528C8 /* FastEasyMappingRealm Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = ADEC66FA1B9DA4B700F528C8 /* Build configuration list for PBXAggregateTarget "FastEasyMappingRealm Universal" */;
+			buildPhases = (
+				ADEC66F91B9DA4B700F528C8 /* Lipo */,
+			);
+			dependencies = (
+			);
+			name = "FastEasyMappingRealm Universal";
+			productName = "FastEasyMapping Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
 		1D6A34C84E523B5F58F87C5E /* PersonWithMissingRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */; };
@@ -780,6 +805,9 @@
 					ADEC66A81B9D9DEB00F528C8 = {
 						CreatedOnToolsVersion = 6.4;
 					};
+					ADEC66EF1B9DA45600F528C8 = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					ADF700A41B99F57F00713D61 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -801,9 +829,11 @@
 			projectRoot = "";
 			targets = (
 				ADEC66A81B9D9DEB00F528C8 /* FastEasyMapping */,
+				ADEC66EF1B9DA45600F528C8 /* FastEasyMapping Universal */,
 				2CF8098718C3AD5700C07899 /* FastEasyMappingTests */,
 				ADF700A41B99F57F00713D61 /* FastEasyMappingRealm */,
 				ADF700AE1B99F58000713D61 /* FastEasyMappingRealmTests */,
+				ADEC66F81B9DA4B700F528C8 /* FastEasyMappingRealm Universal */,
 			);
 		};
 /* End PBXProject section */
@@ -860,6 +890,37 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ADEC66F31B9DA45F00F528C8 /* Lipo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lipo;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script is based on Jacob Van Order's answer on apple dev forums https://devforums.apple.com/message/971277\n# See also http://spin.atomicobject.com/2011/12/13/building-a-universal-framework-for-ios/ for the start\n\n\n# To get this to work with a Xcode 6 Cocoa Touch Framework, create Framework\n# Then create a new Aggregate Target. Throw this script into a Build Script Phrase on the Aggregate\n\n\n######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=true\n\nTARGET_NAME=\"${PROJECT_NAME}\"\n\nFRAMEWORK_NAME=${TARGET_NAME}\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${TARGET_NAME} -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator | echo\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${TARGET_NAME} -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos | echo\n\n#xcodebuild -target ${PROJECT_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" | echo\n\n#xcodebuild -target ${PROJECT_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" | echo\n\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make fat universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n\n######################\n# On Release, copy the result to desktop folder\n######################\n\nif [ \"${CONFIGURATION}\" == \"Release\" ]; then\nmkdir \"${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\ncp -r \"${FRAMEWORK}\" \"${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\nfi\n\n\n######################\n# If needed, open the Framework folder\n######################\n\nif [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\nif [ \"${CONFIGURATION}\" == \"Release\" ]; then\nopen \"${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\nelse\nopen \"${UNIVERSAL_LIBRARY_DIR}/\"\nfi\nfi";
+		};
+		ADEC66F91B9DA4B700F528C8 /* Lipo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lipo;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script is based on Jacob Van Order's answer on apple dev forums https://devforums.apple.com/message/971277\n# See also http://spin.atomicobject.com/2011/12/13/building-a-universal-framework-for-ios/ for the start\n\n\n# To get this to work with a Xcode 6 Cocoa Touch Framework, create Framework\n# Then create a new Aggregate Target. Throw this script into a Build Script Phrase on the Aggregate\n\n\n######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=true\n\nTARGET_NAME=\"${PROJECT_NAME}Realm\"\n\nFRAMEWORK_NAME=${TARGET_NAME}\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${TARGET_NAME} -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator | echo\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${TARGET_NAME} -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos | echo\n\n#xcodebuild -target ${PROJECT_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" | echo\n\n#xcodebuild -target ${PROJECT_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" | echo\n\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make fat universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n\n######################\n# On Release, copy the result to desktop folder\n######################\n\nif [ \"${CONFIGURATION}\" == \"Release\" ]; then\nmkdir \"${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\ncp -r \"${FRAMEWORK}\" \"${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\nfi\n\n\n######################\n# If needed, open the Framework folder\n######################\n\nif [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\nif [ \"${CONFIGURATION}\" == \"Release\" ]; then\nopen \"${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\nelse\nopen \"${UNIVERSAL_LIBRARY_DIR}/\"\nfi\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2CF8098418C3AD5700C07899 /* Sources */ = {
@@ -1062,7 +1123,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1095,7 +1156,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1116,6 +1177,34 @@
 			};
 			name = Release;
 		};
+		ADEC66F11B9DA45600F528C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ADEC66F21B9DA45600F528C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		ADEC66FB1B9DA4B700F528C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "FastEasyMapping Universal copy";
+			};
+			name = Debug;
+		};
+		ADEC66FC1B9DA4B700F528C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "FastEasyMapping Universal copy";
+			};
+			name = Release;
+		};
 		ADF700B91B99F58000713D61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1123,7 +1212,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1162,7 +1251,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1264,6 +1353,23 @@
 				ADEC66BE1B9D9DEB00F528C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+		};
+		ADEC66F01B9DA45600F528C8 /* Build configuration list for PBXAggregateTarget "FastEasyMapping Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADEC66F11B9DA45600F528C8 /* Debug */,
+				ADEC66F21B9DA45600F528C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ADEC66FA1B9DA4B700F528C8 /* Build configuration list for PBXAggregateTarget "FastEasyMappingRealm Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADEC66FB1B9DA4B700F528C8 /* Debug */,
+				ADEC66FC1B9DA4B700F528C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADF700B81B99F58000713D61 /* Build configuration list for PBXNativeTarget "FastEasyMappingRealm" */ = {
 			isa = XCConfigurationList;
