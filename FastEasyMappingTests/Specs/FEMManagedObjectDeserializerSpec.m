@@ -2,7 +2,7 @@
 
 #import <Kiwi/Kiwi.h>
 #import <CMFactory/CMFixture.h>
-#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord.h>
 
 #import "MappingProvider.h"
 #import "Person.h"
