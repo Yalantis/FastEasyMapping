@@ -8,6 +8,8 @@
 
 #import <Realm/RLMObject.h>
 
+@class FEMMapping;
+
 @interface RealmObject : RLMObject
 
 @property (nonatomic) BOOL boolProperty;
@@ -22,6 +24,12 @@
 @property (nonatomic, copy) NSString *stringProperty;
 @property (nonatomic, strong) NSDate *dateProperty;
 @property (nonatomic, strong) NSData *dataProperty;
+
+@end
+
+@interface RealmObject (Mapping)
+
++ (FEMMapping *)supportedTypesMapping;
 
 @end
 
