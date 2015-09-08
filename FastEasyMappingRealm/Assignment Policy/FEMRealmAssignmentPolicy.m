@@ -46,9 +46,7 @@ FEMAssignmentPolicy FEMRealmAssignmentPolicyCollectionReplace = ^id(FEMRelations
         return nil;
     }
 
-    NSMutableArray *mergedObjects = [[NSMutableArray alloc] init];
     NSMutableSet *targetObjectsSet = [[NSMutableSet alloc] initWithArray:context.targetRelationshipValue];
-
     for (RLMObject *sourceObject in (id<NSFastEnumeration>)context.sourceRelationshipValue) {
         if (![targetObjectsSet containsObject:sourceObject]) {
             [context deleteRelationshipObject:sourceObject];
