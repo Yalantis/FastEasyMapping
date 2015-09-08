@@ -1,10 +1,11 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import <Kiwi/Kiwi.h>
-
+#import <CMFactory/CMFixture.h>
 #import <FastEasyMapping/FastEasyMapping.h>
 #import <FastEasyMappingRealm/FastEasyMappingRealm.h>
 #import <Realm/Realm.h>
+#import "RealmObject.h"
 
 SPEC_BEGIN(FEMDeserializerSpec)
     describe(@"FEMDeserializer", ^{
@@ -26,6 +27,116 @@ SPEC_BEGIN(FEMDeserializerSpec)
             store = nil;
             deserializer = nil;
         });
+
+            context(@"attributes mapping", ^{
+                __block RealmObject *realmObject = nil;
+
+                beforeEach(^{
+                    NSDictionary *json = [CMFixture buildUsingFixture:@"SupportedTypes"];
+                    realmObject = [deserializer objectFromRepresentation:json mapping:[RealmObject supportedTypesMapping]];
+                });
+
+                afterEach(^{
+                    [realm transactionWithBlock:^{
+                        [realm deleteObject:realmObject];
+                    }];
+                    realmObject = nil;
+                });
+
+//                @property (nonatomic) BOOL boolProperty;
+//                @property (nonatomic) bool booleanProperty;
+//                @property (nonatomic) int intProperty;
+//                @property (nonatomic) NSInteger integerProperty;
+//                @property (nonatomic) long longProperty;
+//                @property (nonatomic) long long longLongProperty;
+//                @property (nonatomic) float floatProperty;
+//                @property (nonatomic) double doubleProperty;
+//                @property (nonatomic) CGFloat cgFloatProperty;
+//                @property (nonatomic, copy) NSString *stringProperty;
+//                @property (nonatomic, strong) NSDate *dateProperty;
+//                @property (nonatomic, strong) NSData *dataProperty;
+
+
+                specify(^{
+                    BOOL expected = YES;
+                    [[@(realmObject.booleanProperty) should] equal:@(expected)];
+                });
+
+//                specify(^{
+//                    unsigned char expected = 'u';
+//                    [[@(native.unsignedCharProperty) should] equal:@(expected)];
+//                });
+
+//                specify(^{
+//                    short expexted = 1;
+//                    [[@(native.shortProperty) should] equal:@(expexted)];
+//                });
+//
+//                specify(^{
+//                    unsigned short expected = 2;
+//                    [[@(native.unsignedShortProperty) should] equal:@(expected)];
+//                });
+//
+//                specify(^{
+//                    int expected = 3;
+//                    [[@(native.intProperty) should] equal:@(expected)];
+//                });
+//
+//                specify(^{
+//                    unsigned int expected = 4;
+//                    [[@(native.unsignedIntProperty) should] equal:@(expected)];
+//                });
+//
+//                specify(^{
+//                    NSInteger expected = 5;
+//                    [[@(native.integerProperty) should] equal:@(expected)];
+//                });
+//
+//                specify(^{
+//                    NSUInteger expected = 6;
+//                    [[@(native.unsignedIntegerProperty) should] equal:@(expected)];
+//                });
+//
+//                specify(^{
+//                    long expected = 7;
+//                    [[@(native.longProperty) should] equal:@(expected)];
+//                });
+//
+//                specify(^{
+//                    unsigned long expected = 8;
+//                    [[@(native.unsignedLongProperty) should] equal:@(expected)];
+//                });
+//
+//                specify(^{
+//                    long long expected = 9;
+//                    [[@(native.longLongProperty) should] equal:@(expected)];
+//                });
+//
+//                specify(^{
+//                    unsigned long long expected = 10;
+//                    [[@(native.unsignedLongLongProperty) should] equal:@(expected)];
+//                });
+//
+//                specify(^{
+//                    float expected = 11.1f;
+//                    [[@(native.floatProperty) should] equal:expected withDelta:0.001];
+//                });
+//
+//                specify(^{
+//                    CGFloat expected = 12.2f;
+//                    [[@(native.cgFloatProperty) should] equal:expected withDelta:0.001];
+//                });
+//
+//                specify(^{
+//                    double expected = 13.3;
+//                    [[@(native.doubleProperty) should] equal:expected withDelta:0.001];
+//                });
+//
+//                specify(^{
+//                    [[@(native.boolProperty) should] beYes];
+//                });
+            });
+
 
 //        describe(@".objectFromExternalRepresentation:mapping:", ^{
 //

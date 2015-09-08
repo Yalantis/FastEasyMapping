@@ -99,7 +99,8 @@
 		AD52DF891B0387C000E46915 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
 		AD8600461B9ECCDB00265307 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */; };
 		AD86004A1B9ECF2100265307 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8600491B9ECF2100265307 /* Realm.framework */; };
-		AD86004C1B9ECF4800265307 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD86004B1B9ECF4800265307 /* libc++.tbd */; };
+		AD86004D1B9ED9C800265307 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD86004B1B9ECF4800265307 /* libc++.tbd */; };
+		ADABAFDD1B9EDC1A003D8614 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ADF700F21B9A1EE200713D61 /* libc++.dylib */; };
 		ADEC66C41B9D9E7000F528C8 /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEC66C21B9D9E7000F528C8 /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADEC66C61B9D9F5200F528C8 /* NSArray+FEMPropertyRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7645386941DA79C1E53A /* NSArray+FEMPropertyRepresentation.h */; };
 		ADEC66C71B9D9F5200F528C8 /* NSObject+FEMKVCExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED769040647781DD8B196D /* NSObject+FEMKVCExtension.h */; };
@@ -144,7 +145,6 @@
 		ADEC66EE1B9D9FBB00F528C8 /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C4B6BB4FD8C58AE917F /* FEMRelationship.m */; };
 		ADF700AA1B99F58000713D61 /* FastEasyMappingRealm.h in Headers */ = {isa = PBXBuildFile; fileRef = ADF700A91B99F58000713D61 /* FastEasyMappingRealm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADF700B01B99F58000713D61 /* FastEasyMappingRealm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADF700A51B99F57F00713D61 /* FastEasyMappingRealm.framework */; };
-		ADF700B71B99F58000713D61 /* FastEasyMappingRealmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF700B61B99F58000713D61 /* FastEasyMappingRealmTests.m */; };
 		ADF700C71B99F5AA00713D61 /* FEMDeserializer+Realm.h in Headers */ = {isa = PBXBuildFile; fileRef = ADF700BF1B99F5AA00713D61 /* FEMDeserializer+Realm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADF700C81B99F5AA00713D61 /* FEMDeserializer+Realm.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF700C01B99F5AA00713D61 /* FEMDeserializer+Realm.m */; };
 		ADF700C91B99F5AA00713D61 /* FEMObjectCache+Realm.h in Headers */ = {isa = PBXBuildFile; fileRef = ADF700C11B99F5AA00713D61 /* FEMObjectCache+Realm.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -316,7 +316,6 @@
 		ADF700A91B99F58000713D61 /* FastEasyMappingRealm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastEasyMappingRealm.h; sourceTree = "<group>"; };
 		ADF700AF1B99F58000713D61 /* FastEasyMappingRealmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastEasyMappingRealmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF700B51B99F58000713D61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADF700B61B99F58000713D61 /* FastEasyMappingRealmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastEasyMappingRealmTests.m; sourceTree = "<group>"; };
 		ADF700BF1B99F5AA00713D61 /* FEMDeserializer+Realm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FEMDeserializer+Realm.h"; sourceTree = "<group>"; };
 		ADF700C01B99F5AA00713D61 /* FEMDeserializer+Realm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FEMDeserializer+Realm.m"; sourceTree = "<group>"; };
 		ADF700C11B99F5AA00713D61 /* FEMObjectCache+Realm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FEMObjectCache+Realm.h"; sourceTree = "<group>"; };
@@ -360,7 +359,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD86004C1B9ECF4800265307 /* libc++.tbd in Frameworks */,
+				ADABAFDD1B9EDC1A003D8614 /* libc++.dylib in Frameworks */,
+				AD86004D1B9ED9C800265307 /* libc++.tbd in Frameworks */,
 				AD86004A1B9ECF2100265307 /* Realm.framework in Frameworks */,
 				AD8600461B9ECCDB00265307 /* FastEasyMapping.framework in Frameworks */,
 				ADF700B01B99F58000713D61 /* FastEasyMappingRealm.framework in Frameworks */,
@@ -737,7 +737,6 @@
 		ADF700B31B99F58000713D61 /* FastEasyMappingRealmTests */ = {
 			isa = PBXGroup;
 			children = (
-				ADF700B61B99F58000713D61 /* FastEasyMappingRealmTests.m */,
 				ADF700B41B99F58000713D61 /* Supporting Files */,
 				1D6A3E844B82C8308B231F0A /* Model */,
 				1D6A3DD3F554B5B5230BFF9D /* Specs */,
@@ -1183,7 +1182,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADF700B71B99F58000713D61 /* FastEasyMappingRealmTests.m in Sources */,
 				1D6A3AF7BB43E426B1660DF8 /* RealmObject.m in Sources */,
 				1D6A387E0A67DFC3C1AA2489 /* FEMDeserializerSpec.m in Sources */,
 			);
@@ -1588,6 +1586,7 @@
 				AD86003F1B9ECBCD00265307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADEC66BC1B9D9DEB00F528C8 /* Build configuration list for PBXNativeTarget "FastEasyMapping" */ = {
 			isa = XCConfigurationList;
