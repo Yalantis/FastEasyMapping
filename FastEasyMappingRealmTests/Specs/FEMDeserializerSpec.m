@@ -30,111 +30,84 @@ SPEC_BEGIN(FEMDeserializerSpec)
 
             context(@"attributes mapping", ^{
                 __block RealmObject *realmObject = nil;
+                __block FEMMapping *mapping = nil;
 
                 beforeEach(^{
+                    mapping = [RealmObject supportedTypesMapping];
                     NSDictionary *json = [CMFixture buildUsingFixture:@"SupportedTypes"];
-                    realmObject = [deserializer objectFromRepresentation:json mapping:[RealmObject supportedTypesMapping]];
+                    realmObject = [deserializer objectFromRepresentation:json mapping:mapping];
                 });
 
                 afterEach(^{
+                    mapping = nil;
+
                     [realm transactionWithBlock:^{
                         [realm deleteObject:realmObject];
                     }];
                     realmObject = nil;
                 });
 
-//                @property (nonatomic) BOOL boolProperty;
-//                @property (nonatomic) bool booleanProperty;
-//                @property (nonatomic) int intProperty;
-//                @property (nonatomic) NSInteger integerProperty;
-//                @property (nonatomic) long longProperty;
-//                @property (nonatomic) long long longLongProperty;
-//                @property (nonatomic) float floatProperty;
-//                @property (nonatomic) double doubleProperty;
-//                @property (nonatomic) CGFloat cgFloatProperty;
-//                @property (nonatomic, copy) NSString *stringProperty;
-//                @property (nonatomic, strong) NSDate *dateProperty;
-//                @property (nonatomic, strong) NSData *dataProperty;
-
-
                 specify(^{
                     BOOL expected = YES;
+                    [[@(realmObject.boolProperty) should] equal:@(expected)];
+                });
+
+                specify(^{
+                    bool expected = true;
                     [[@(realmObject.booleanProperty) should] equal:@(expected)];
                 });
 
-//                specify(^{
-//                    unsigned char expected = 'u';
-//                    [[@(native.unsignedCharProperty) should] equal:@(expected)];
-//                });
+                specify(^{
+                    int expected = 3;
+                    [[@(realmObject.intProperty) should] equal:@(expected)];
+                });
+                
+                specify(^{
+                    NSInteger expected = 5;
+                    [[@(realmObject.integerProperty) should] equal:@(expected)];
+                });
 
-//                specify(^{
-//                    short expexted = 1;
-//                    [[@(native.shortProperty) should] equal:@(expexted)];
-//                });
-//
-//                specify(^{
-//                    unsigned short expected = 2;
-//                    [[@(native.unsignedShortProperty) should] equal:@(expected)];
-//                });
-//
-//                specify(^{
-//                    int expected = 3;
-//                    [[@(native.intProperty) should] equal:@(expected)];
-//                });
-//
-//                specify(^{
-//                    unsigned int expected = 4;
-//                    [[@(native.unsignedIntProperty) should] equal:@(expected)];
-//                });
-//
-//                specify(^{
-//                    NSInteger expected = 5;
-//                    [[@(native.integerProperty) should] equal:@(expected)];
-//                });
-//
-//                specify(^{
-//                    NSUInteger expected = 6;
-//                    [[@(native.unsignedIntegerProperty) should] equal:@(expected)];
-//                });
-//
-//                specify(^{
-//                    long expected = 7;
-//                    [[@(native.longProperty) should] equal:@(expected)];
-//                });
-//
-//                specify(^{
-//                    unsigned long expected = 8;
-//                    [[@(native.unsignedLongProperty) should] equal:@(expected)];
-//                });
-//
-//                specify(^{
-//                    long long expected = 9;
-//                    [[@(native.longLongProperty) should] equal:@(expected)];
-//                });
-//
-//                specify(^{
-//                    unsigned long long expected = 10;
-//                    [[@(native.unsignedLongLongProperty) should] equal:@(expected)];
-//                });
-//
-//                specify(^{
-//                    float expected = 11.1f;
-//                    [[@(native.floatProperty) should] equal:expected withDelta:0.001];
-//                });
-//
-//                specify(^{
-//                    CGFloat expected = 12.2f;
-//                    [[@(native.cgFloatProperty) should] equal:expected withDelta:0.001];
-//                });
-//
-//                specify(^{
-//                    double expected = 13.3;
-//                    [[@(native.doubleProperty) should] equal:expected withDelta:0.001];
-//                });
-//
-//                specify(^{
-//                    [[@(native.boolProperty) should] beYes];
-//                });
+                specify(^{
+                    long expected = 7;
+                    [[@(realmObject.longProperty) should] equal:@(expected)];
+                });
+                
+                specify(^{
+                    long long expected = 9;
+                    [[@(realmObject.longLongProperty) should] equal:@(expected)];
+                });
+                
+                specify(^{
+                    float expected = 11.1f;
+                    [[@(realmObject.floatProperty) should] equal:expected withDelta:0.01f];
+                });
+                
+                specify(^{
+                    double expected = 12.2f;
+                    [[@(realmObject.doubleProperty) should] equal:expected withDelta:0.01f];
+                });
+                
+                specify(^{
+                    CGFloat expected = 13.3f;
+                    [[@(realmObject.cgFloatProperty) should] equal:expected withDelta:0.01f];
+                });
+
+                specify(^{
+                    NSString *expected = @"string";
+                    [[realmObject.stringProperty should] equal:expected];
+                });
+
+                specify(^{
+                    FEMAttribute *attribute = [mapping attributeForProperty:@"dateProperty"];
+                    NSDate *expected = [attribute mapValue:@"2005-08-09T18:31:42+03"];
+                    [[realmObject.dateProperty should] equal:expected];
+                });
+
+                specify(^{
+                    FEMAttribute *attribute = [mapping attributeForProperty:@"dataProperty"];
+                    NSData *expected = [attribute mapValue:@"utf8"];
+                    [[realmObject.dataProperty should] equal:expected];
+                });
             });
 
 
