@@ -32,7 +32,7 @@ describe(@"FEMDeserializer", ^{
         context(@"attributes", ^{
             __block RealmObject *realmObject = nil;
 
-            afterEach(^{
+            afterAll(^{
                 [realm transactionWithBlock:^{
                     [realm deleteAllObjects];
                 }];
@@ -116,7 +116,7 @@ describe(@"FEMDeserializer", ^{
             });
 
             context(@"null values", ^{
-                beforeAll(^{
+                beforeEach(^{
                     FEMMapping *mapping = [RealmObject supportedNullableTypesMapping];
                     NSDictionary *json = [CMFixture buildUsingFixture:@"SupportedNullTypes"];
                     realmObject = [deserializer objectFromRepresentation:json mapping:mapping];
@@ -241,7 +241,7 @@ describe(@"FEMDeserializer", ^{
 
 
         context(@"to-one relationship", ^{
-            context(@"nonnull", ^{
+            context(@"nonnull value", ^{
                 __block RealmObject *realmObject = nil;
                 __block ChildRealmObject *childRealmObject = nil;
                 __block FEMMapping *mapping = nil;
@@ -269,7 +269,7 @@ describe(@"FEMDeserializer", ^{
 
                 specify(^{
                     [[realmObject.toOneRelationship shouldNot] beNil];
-                    [[realmObject.toOneRelationship should] equal:childRealmObject];
+                    [[@([realmObject.toOneRelationship isEqualToObject:childRealmObject]) should] beTrue];
                 });
 
                 specify(^{
