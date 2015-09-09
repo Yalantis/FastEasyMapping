@@ -51,6 +51,7 @@
 		1D6A34C84E523B5F58F87C5E /* PersonWithMissingRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */; };
 		1D6A36D76A61ACAC1EE30391 /* SupportedNullTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E348DC1D06590052FC6 /* SupportedNullTypes.json */; };
 		1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
+		1D6A37CFF135BB3D058D43CF /* ToOneNullRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3C6340421D5EC70DD868 /* ToOneNullRelationship.json */; };
 		1D6A381998AD1EAAA2E7D491 /* FEMAttribute+Realm.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3D2E5773DAC44962E5B3 /* FEMAttribute+Realm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D6A387E0A67DFC3C1AA2489 /* FEMDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3F67D4BEFD25642585B9 /* FEMDeserializerSpec.m */; };
 		1D6A389CE92FFA3EDB5BD3D4 /* ChildRealmObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3E843DB3807E64A99CD8 /* ChildRealmObject.m */; };
@@ -237,6 +238,7 @@
 		1D6A3BF4258AB646755B4920 /* FEMAttribute+Realm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FEMAttribute+Realm.m"; sourceTree = "<group>"; };
 		1D6A3C3EADDE4B98CA7ED02D /* FEMObjectCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectCache.h; sourceTree = "<group>"; };
 		1D6A3C4B6BB4FD8C58AE917F /* FEMRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRelationship.m; sourceTree = "<group>"; };
+		1D6A3C6340421D5EC70DD868 /* ToOneNullRelationship.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ToOneNullRelationship.json; sourceTree = "<group>"; };
 		1D6A3CBCF802462694FAD510 /* FEMObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectStore.m; sourceTree = "<group>"; };
 		1D6A3CD9F047ADC68ECAC7DA /* FEMDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMDeserializer.m; sourceTree = "<group>"; };
 		1D6A3D2E5773DAC44962E5B3 /* FEMAttribute+Realm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FEMAttribute+Realm.h"; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				1D6A36124FB2AD338633B51E /* SupportedTypes.json */,
 				1D6A3E348DC1D06590052FC6 /* SupportedNullTypes.json */,
 				1D6A3250D07220CA0839D6EE /* ToOneRelationship.json */,
+				1D6A3C6340421D5EC70DD868 /* ToOneNullRelationship.json */,
 			);
 			path = Fixture;
 			sourceTree = "<group>";
@@ -1023,6 +1026,7 @@
 				1D6A32E571F68582DB1ED8F0 /* SupportedTypes.json in Resources */,
 				1D6A36D76A61ACAC1EE30391 /* SupportedNullTypes.json in Resources */,
 				1D6A31EF2D3E58E11872FDFB /* ToOneRelationship.json in Resources */,
+				1D6A37CFF135BB3D058D43CF /* ToOneNullRelationship.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
