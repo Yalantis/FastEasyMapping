@@ -45,6 +45,7 @@
 /* Begin PBXBuildFile section */
 		1D6A31EF2D3E58E11872FDFB /* ToOneRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3250D07220CA0839D6EE /* ToOneRelationship.json */; };
 		1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
+		1D6A328ADB786A4A7B8CA925 /* FEMRealmStoreSpeс.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3E77707265687DD5C1C0 /* FEMRealmStoreSpeс.m */; };
 		1D6A32C7277B790720AC1B66 /* ToManyNullRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31F6EBDE44008F52FE4A /* ToManyNullRelationship.json */; };
 		1D6A32E571F68582DB1ED8F0 /* SupportedTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A36124FB2AD338633B51E /* SupportedTypes.json */; };
 		1D6A32FD3994DE168D52A429 /* FEMRealmAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35F087F7336FE6068111 /* FEMRealmAssignmentPolicy.m */; };
@@ -250,6 +251,7 @@
 		1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar_1.json; sourceTree = "<group>"; };
 		1D6A3E348DC1D06590052FC6 /* SupportedNullTypes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SupportedNullTypes.json; sourceTree = "<group>"; };
 		1D6A3E65B1DB73E680A495BA /* FEMMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMapping.m; sourceTree = "<group>"; };
+		1D6A3E77707265687DD5C1C0 /* FEMRealmStoreSpeс.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FEMRealmStoreSpeс.m"; sourceTree = "<group>"; };
 		1D6A3E843DB3807E64A99CD8 /* ChildRealmObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildRealmObject.m; sourceTree = "<group>"; };
 		1D6A3E942488A7A8C0C01C0C /* FEMRepresentationUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRepresentationUtility.h; sourceTree = "<group>"; };
 		1D6A3F1887266DBDD813C8D3 /* FEMRealmAssignmentPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRealmAssignmentPolicy.h; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6A3F67D4BEFD25642585B9 /* FEMDeserializerSpec.m */,
+				1D6A3E77707265687DD5C1C0 /* FEMRealmStoreSpeс.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -1220,6 +1223,7 @@
 			files = (
 				1D6A3AF7BB43E426B1660DF8 /* RealmObject.m in Sources */,
 				1D6A387E0A67DFC3C1AA2489 /* FEMDeserializerSpec.m in Sources */,
+				1D6A328ADB786A4A7B8CA925 /* FEMRealmStoreSpeс.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,6 @@
 
 @implementation FEMRealmStore {
     FEMObjectCache *_cache;
-    NSMutableSet *_newObjects;
 }
 
 - (instancetype)initWithRealm:(RLMRealm *)realm {
@@ -31,17 +30,15 @@
 
 - (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping ofRepresentation:(nonnull NSArray *)representation {
     _cache = [[FEMObjectCache alloc] initWithMapping:mapping representation:representation realm:self.realm];
-    _newObjects = [[NSMutableSet alloc] init];
 }
 
 - (void)beginTransaction {
+    NSParameterAssert(_cache != nil);
+
     [self.realm beginWriteTransaction];
 }
 
 - (NSError *)commitTransaction {
-    [self.realm addObjects:_newObjects];
-    _newObjects = nil;
-
     [self.realm commitWriteTransaction];
 
     return nil;
@@ -52,8 +49,6 @@
     Class realmObjectClass = NSClassFromString(entityName);
     RLMObject *object = [(RLMObject *)[realmObjectClass alloc] init];
 
-    [_newObjects addObject:object];
-
     return object;
 }
 
@@ -63,7 +58,7 @@
 
 - (void)registerObject:(id)object forMapping:(FEMMapping *)mapping {
     [_cache addExistingObject:object mapping:mapping];
-    [_newObjects addObject:object];
+    [_realm addObject:object];
 }
 
 - (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
@@ -78,10 +73,8 @@
 
 - (void)assignmentContext:(FEMRelationshipAssignmentContext *)context deletedObject:(id)object {
     RLMObject *rlmObject = object;
-    if (rlmObject.realm == nil) {
-        [_newObjects removeObject:rlmObject];
-    } else {
-        [self.realm deleteObject:object];
+    if (rlmObject.realm == _realm) {
+        [_realm deleteObject:rlmObject];
     }
 }
 

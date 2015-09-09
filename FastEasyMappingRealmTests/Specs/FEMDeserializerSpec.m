@@ -330,39 +330,6 @@ describe(@"FEMDeserializer", ^{
                     [[@(relationship.count) should] equal:@(0)];
                 });
             });
-//            context(@"null value", ^{
-//                __block RealmObject *realmObject = nil;
-//                beforeEach(^{
-//                    FEMMapping *mapping = [RealmObject toOneRelationshipMapping];
-//                    NSDictionary *json = [CMFixture buildUsingFixture:@"ToOneNullRelationship"];
-//                    realmObject = [deserializer objectFromRepresentation:json mapping:mapping];
-//                });
-//
-//                specify(^{
-//                    [[@(realmObject.integerProperty) should] equal:@(5)];
-//                });
-//
-//                specify(^{
-//                    [[realmObject.toOneRelationship should] beNil];
-//                });
-//            });
-//
-//            context(@"update to null value", ^{
-//                __block RealmObject *realmObject = nil;
-//                beforeEach(^{
-//                    FEMMapping *mapping = [RealmObject toOneRelationshipMapping];
-//                    realmObject = [deserializer objectFromRepresentation:[CMFixture buildUsingFixture:@"ToOneRelationship"] mapping:mapping];
-//                    [deserializer fillObject:realmObject fromRepresentation:[CMFixture buildUsingFixture:@"ToOneNullRelationship"] mapping:mapping];
-//                });
-//
-//                specify(^{
-//                    [[@(realmObject.integerProperty) should] equal:@(5)];
-//                });
-//
-//                specify(^{
-//                    [[realmObject.toOneRelationship should] beNil];
-//                });
-//            });
         });
     });
 });
