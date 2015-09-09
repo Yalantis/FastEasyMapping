@@ -29,17 +29,15 @@
 #pragma mark - Transaction
 
 - (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping ofRepresentation:(nonnull NSArray *)representation {
-    _cache = [[FEMObjectCache alloc] initWithMapping:mapping representation:representation realm:self.realm];
+    _cache = [[FEMObjectCache alloc] initWithMapping:mapping representation:representation realm:_realm];
 }
 
 - (void)beginTransaction {
-    NSParameterAssert(_cache != nil);
-
     [self.realm beginWriteTransaction];
 }
 
 - (NSError *)commitTransaction {
-    [self.realm commitWriteTransaction];
+    [_realm commitWriteTransaction];
 
     return nil;
 }
@@ -49,6 +47,8 @@
     Class realmObjectClass = NSClassFromString(entityName);
     RLMObject *object = [(RLMObject *)[realmObjectClass alloc] init];
 
+    [_realm addObject:object];
+
     return object;
 }
 
@@ -57,8 +57,9 @@
 }
 
 - (void)registerObject:(id)object forMapping:(FEMMapping *)mapping {
+    NSParameterAssert([self canRegisterObject:object forMapping:mapping]);
+
     [_cache addExistingObject:object mapping:mapping];
-    [_realm addObject:object];
 }
 
 - (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
@@ -66,7 +67,7 @@
 }
 
 - (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
-    return mapping.primaryKey != nil && [(RLMObject *)object realm] == nil;
+    return mapping.primaryKey != nil;
 }
 
 #pragma mark - FEMRelationshipAssignmentContextDelegate
