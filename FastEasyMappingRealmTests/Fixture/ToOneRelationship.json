@@ -1,6 +1,6 @@
 {
   "integerProperty": 5,
-  "child": {
+  "toOneRelationship": {
   	"identifier": 10
   }
 }

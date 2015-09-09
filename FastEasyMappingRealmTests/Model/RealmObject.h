@@ -34,7 +34,7 @@
 
 + (FEMMapping *)supportedTypesMapping;
 + (FEMMapping *)supportedNullableTypesMapping;
-
++ (FEMMapping *)toOneRelationshipMapping;
 
 @end
 

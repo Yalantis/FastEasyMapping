@@ -65,4 +65,12 @@
     return mapping;
 }
 
++ (FEMMapping *)toOneRelationshipMapping {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:[self className]];
+    [mapping addAttributesFromArray:@[@"integerProperty"]];
+    [mapping addRelationshipMapping:[ChildRealmObject defaultMapping] forProperty:@"toOneRelationship" keyPath:@"toOneRelationship"];
+
+    return mapping;
+}
+
 @end
