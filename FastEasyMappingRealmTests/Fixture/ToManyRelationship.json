@@ -1,0 +1,11 @@
+{
+  "integerProperty": 5,
+  "toManyRelationship": [
+    {
+      "identifier": 10
+    },
+    {
+      "identifier": 11
+    }
+  ]
+}
