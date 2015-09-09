@@ -20,3 +20,5 @@
 + (FEMMapping *)defaultMapping;
 
 @end
+
+RLM_ARRAY_TYPE(ChildRealmObject)

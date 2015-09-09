@@ -3,6 +3,7 @@
 // Copyright (c) 2015 Yalantis. All rights reserved.
 //
 
+#import <Realm/Realm.h>
 #import "RealmObject.h"
 #import "FEMMapping.h"
 

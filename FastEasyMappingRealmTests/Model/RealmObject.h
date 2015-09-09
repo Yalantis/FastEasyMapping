@@ -10,6 +10,7 @@
 #import "ChildRealmObject.h"
 
 @class FEMMapping;
+@class RLMArray;
 
 @interface RealmObject : RLMObject
 
@@ -28,7 +29,10 @@
 
 @property (nonatomic, strong) ChildRealmObject *toOneRelationship;
 
+@property RLMArray<ChildRealmObject *><ChildRealmObject> *toManyRelationship;
+
 @end
+
 
 @interface RealmObject (Mapping)
 
