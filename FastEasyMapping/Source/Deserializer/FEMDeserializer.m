@@ -111,8 +111,11 @@
 
 - (id)_objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping allocateIfNeeded:(BOOL)allocate {
     id object = [self.store registeredObjectForRepresentation:representation mapping:mapping];
+
+    BOOL newObject = NO;
     if (!object && allocate) {
         object = [self.store newObjectForMapping:mapping];
+        newObject = YES;
     }
     
     if (!object) {
@@ -125,7 +128,7 @@
 
     [self _fillObject:object fromRepresentation:representation mapping:mapping];
 
-    if ([self.store canRegisterObject:object forMapping:mapping]) {
+    if (newObject && [self.store canRegisterObject:object forMapping:mapping]) {
         [self.store registerObject:object forMapping:mapping];
     }
 
