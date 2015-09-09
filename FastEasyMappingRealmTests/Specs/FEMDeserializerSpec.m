@@ -83,12 +83,12 @@ SPEC_BEGIN(FEMDeserializerSpec)
             });
 
             specify(^{
-                double expected = 12.2f;
+                double expected = 12.2;
                 [[@(realmObject.doubleProperty) should] equal:expected withDelta:0.01f];
             });
 
             specify(^{
-                CGFloat expected = 13.3f;
+                CGFloat expected = 13.3;
                 [[@(realmObject.cgFloatProperty) should] equal:expected withDelta:0.01f];
             });
 
@@ -115,8 +115,8 @@ SPEC_BEGIN(FEMDeserializerSpec)
             __block FEMMapping *mapping = nil;
 
             beforeEach(^{
-                mapping = [RealmObject supportedTypesMapping];
-                NSDictionary *json = [CMFixture buildUsingFixture:@"SupportedTypes"];
+                mapping = [RealmObject supportedNullableTypesMapping];
+                NSDictionary *json = [CMFixture buildUsingFixture:@"SupportedNullTypes"];
                 realmObject = [deserializer objectFromRepresentation:json mapping:mapping];
             });
 
@@ -130,66 +130,66 @@ SPEC_BEGIN(FEMDeserializerSpec)
             });
 
             specify(^{
-                BOOL expected = YES;
+                BOOL expected = NO;
                 [[@(realmObject.boolProperty) should] equal:@(expected)];
             });
 
             specify(^{
-                bool expected = true;
+                bool expected = false;
                 [[@(realmObject.booleanProperty) should] equal:@(expected)];
             });
 
             specify(^{
-                int expected = 3;
+                int expected = 0;
                 [[@(realmObject.intProperty) should] equal:@(expected)];
             });
 
             specify(^{
-                NSInteger expected = 5;
+                NSInteger expected = 0;
                 [[@(realmObject.integerProperty) should] equal:@(expected)];
             });
 
             specify(^{
-                long expected = 7;
+                long expected = 0;
                 [[@(realmObject.longProperty) should] equal:@(expected)];
             });
 
             specify(^{
-                long long expected = 9;
+                long long expected = 0;
                 [[@(realmObject.longLongProperty) should] equal:@(expected)];
             });
 
             specify(^{
-                float expected = 11.1f;
+                float expected = 0.f;
                 [[@(realmObject.floatProperty) should] equal:expected withDelta:0.01f];
             });
 
             specify(^{
-                double expected = 12.2f;
+                double expected = 0.0;
                 [[@(realmObject.doubleProperty) should] equal:expected withDelta:0.01f];
             });
 
             specify(^{
-                CGFloat expected = 13.3f;
+                CGFloat expected = 0.0;
                 [[@(realmObject.cgFloatProperty) should] equal:expected withDelta:0.01f];
             });
 
-            specify(^{
-                NSString *expected = @"string";
-                [[realmObject.stringProperty should] equal:expected];
-            });
+            // Not yet supported by Realm <= 0.95.0
+//            specify(^{
+//                [[realmObject.stringProperty should] beNil];
+//            });
+//
+//            specify(^{
+//                [[realmObject.dateProperty should] beNil];
+//            });
+//
+//            specify(^{
+//                [[realmObject.dataProperty should] beNil];
+//            });
+        });
 
-            specify(^{
-                FEMAttribute *attribute = [mapping attributeForProperty:@"dateProperty"];
-                NSDate *expected = [attribute mapValue:@"2005-08-09T18:31:42+03"];
-                [[realmObject.dateProperty should] equal:expected];
-            });
+        context(@"to-one relationship", ^{
 
-            specify(^{
-                FEMAttribute *attribute = [mapping attributeForProperty:@"dataProperty"];
-                NSData *expected = [attribute mapValue:@"utf8"];
-                [[realmObject.dataProperty should] equal:expected];
-            });
         });
 
 //        describe(@".objectFromExternalRepresentation:mapping:", ^{

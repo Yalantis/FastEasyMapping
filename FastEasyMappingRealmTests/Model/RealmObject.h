@@ -7,6 +7,7 @@
 @import CoreGraphics;
 
 #import <Realm/RLMObject.h>
+#import "ChildRealmObject.h"
 
 @class FEMMapping;
 
@@ -25,11 +26,15 @@
 @property (nonatomic, strong) NSDate *dateProperty;
 @property (nonatomic, strong) NSData *dataProperty;
 
+@property (nonatomic, strong) ChildRealmObject *toOneRelationship;
+
 @end
 
 @interface RealmObject (Mapping)
 
 + (FEMMapping *)supportedTypesMapping;
++ (FEMMapping *)supportedNullableTypesMapping;
+
 
 @end
 

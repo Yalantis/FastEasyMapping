@@ -1,0 +1,6 @@
+{
+  "integerProperty": 5,
+  "child": {
+  	"identifier": 10
+  }
+}
