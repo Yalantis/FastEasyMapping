@@ -23,13 +23,13 @@
 @property (nonatomic) float floatProperty;
 @property (nonatomic) double doubleProperty;
 @property (nonatomic) CGFloat cgFloatProperty;
+
 @property (nonatomic, copy) NSString *stringProperty;
 @property (nonatomic, strong) NSDate *dateProperty;
 @property (nonatomic, strong) NSData *dataProperty;
 
 @property (nonatomic, strong) ChildRealmObject *toOneRelationship;
-
-@property RLMArray<ChildRealmObject *><ChildRealmObject> *toManyRelationship;
+@property RLMArray<ChildRealmObject> *toManyRelationship;
 
 @end
 
@@ -39,6 +39,7 @@
 + (FEMMapping *)supportedTypesMapping;
 + (FEMMapping *)supportedNullableTypesMapping;
 + (FEMMapping *)toOneRelationshipMapping;
++ (FEMMapping *)toManyRelationshipMapping;
 
 @end
 

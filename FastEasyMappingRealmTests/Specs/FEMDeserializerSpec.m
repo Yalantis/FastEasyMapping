@@ -304,13 +304,13 @@ describe(@"FEMDeserializer", ^{
         context(@"to-many relationship", ^{
             context(@"nonnull value", ^{
                 __block RealmObject *realmObject = nil;
-                __block ChildRealmObject *childRealmObject = nil;
+                __block RLMArray<ChildRealmObject> *relationship = nil;
 
                 beforeEach(^{
-                    FEMMapping *mapping = [RealmObject toOneRelationshipMapping];
+                    FEMMapping *mapping = [RealmObject toManyRelationshipMapping];
                     NSDictionary *json = [CMFixture buildUsingFixture:@"ToOneRelationship"];
                     realmObject = [deserializer objectFromRepresentation:json mapping:mapping];
-                    childRealmObject = realmObject.toOneRelationship;
+                    relationship = realmObject.toManyRelationship;
                 });
 
                 specify(^{
