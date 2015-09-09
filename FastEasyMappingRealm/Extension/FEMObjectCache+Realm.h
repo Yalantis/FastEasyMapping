@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation realm:(RLMRealm *)realm;
 
+- (instancetype)initWithRealm:(RLMRealm *)realm;
+
 @end
 
 NS_ASSUME_NONNULL_END

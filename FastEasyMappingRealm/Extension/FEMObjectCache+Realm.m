@@ -20,4 +20,12 @@
     }];
 }
 
+- (instancetype)initWithRealm:(RLMRealm *)realm {
+    return [self initWithSource:^id <NSFastEnumeration>(FEMMapping *objectMapping, NSSet *primaryKeys) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", objectMapping.primaryKey, primaryKeys];
+        RLMResults *results = [realm objects:objectMapping.entityName withPredicate:predicate];
+        return results;
+    }];
+}
+
 @end
