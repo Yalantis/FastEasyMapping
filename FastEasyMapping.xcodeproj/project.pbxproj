@@ -45,6 +45,7 @@
 /* Begin PBXBuildFile section */
 		1D6A31EF2D3E58E11872FDFB /* ToOneRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3250D07220CA0839D6EE /* ToOneRelationship.json */; };
 		1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
+		1D6A32C7277B790720AC1B66 /* ToManyNullRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31F6EBDE44008F52FE4A /* ToManyNullRelationship.json */; };
 		1D6A32E571F68582DB1ED8F0 /* SupportedTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A36124FB2AD338633B51E /* SupportedTypes.json */; };
 		1D6A32FD3994DE168D52A429 /* FEMRealmAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35F087F7336FE6068111 /* FEMRealmAssignmentPolicy.m */; };
 		1D6A3433EA8580CEC6FD46A9 /* FEMAttribute+Realm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BF4258AB646755B4920 /* FEMAttribute+Realm.m */; };
@@ -203,6 +204,7 @@
 		1D6A3173DBF517B9BF8D6A52 /* FEMObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectMapping.h; sourceTree = "<group>"; };
 		1D6A31AE458D626C0C69EC91 /* FEMRelationshipAssignmentContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRelationshipAssignmentContext.m; sourceTree = "<group>"; };
 		1D6A31C3D577329518B3E664 /* Person_1.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Person_1.json; sourceTree = "<group>"; };
+		1D6A31F6EBDE44008F52FE4A /* ToManyNullRelationship.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ToManyNullRelationship.json; sourceTree = "<group>"; };
 		1D6A323CABA155AEC9B3D6B8 /* FEMManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectDeserializer.h; sourceTree = "<group>"; };
 		1D6A324ACF5FB42E37E0D8CF /* FEMAssignmentPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAssignmentPolicy.m; sourceTree = "<group>"; };
 		1D6A3250D07220CA0839D6EE /* ToOneRelationship.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ToOneRelationship.json; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				1D6A3250D07220CA0839D6EE /* ToOneRelationship.json */,
 				1D6A3C6340421D5EC70DD868 /* ToOneNullRelationship.json */,
 				1D6A341208D2C52D9CAEA707 /* ToManyRelationship.json */,
+				1D6A31F6EBDE44008F52FE4A /* ToManyNullRelationship.json */,
 			);
 			path = Fixture;
 			sourceTree = "<group>";
@@ -1031,6 +1034,7 @@
 				1D6A31EF2D3E58E11872FDFB /* ToOneRelationship.json in Resources */,
 				1D6A37CFF135BB3D058D43CF /* ToOneNullRelationship.json in Resources */,
 				1D6A39A0FF7325163DE93331 /* ToManyRelationship.json in Resources */,
+				1D6A32C7277B790720AC1B66 /* ToManyNullRelationship.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,10 +2,10 @@
   "integerProperty": 5,
   "toManyRelationship": [
     {
-      "identifier": 10
+      "identifier": 20
     },
     {
-      "identifier": 11
+      "identifier": 21
     }
   ]
 }

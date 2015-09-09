@@ -253,10 +253,6 @@ describe(@"FEMDeserializer", ^{
                 });
 
                 specify(^{
-                    [[@(realmObject.integerProperty) should] equal:@(5)];
-                });
-
-                specify(^{
                     [[realmObject.toOneRelationship shouldNot] beNil];
                     [[@([realmObject.toOneRelationship isEqualToObject:childRealmObject]) should] beTrue];
                 });
@@ -275,30 +271,22 @@ describe(@"FEMDeserializer", ^{
                 });
 
                 specify(^{
-                    [[@(realmObject.integerProperty) should] equal:@(5)];
-                });
-
-                specify(^{
                     [[realmObject.toOneRelationship should] beNil];
                 });
             });
 
-            context(@"update to null value", ^{
-                __block RealmObject *realmObject = nil;
-                beforeEach(^{
-                    FEMMapping *mapping = [RealmObject toOneRelationshipMapping];
-                    realmObject = [deserializer objectFromRepresentation:[CMFixture buildUsingFixture:@"ToOneRelationship"] mapping:mapping];
-                    [deserializer fillObject:realmObject fromRepresentation:[CMFixture buildUsingFixture:@"ToOneNullRelationship"] mapping:mapping];
-                });
-
-                specify(^{
-                    [[@(realmObject.integerProperty) should] equal:@(5)];
-                });
-
-                specify(^{
-                    [[realmObject.toOneRelationship should] beNil];
-                });
-            });
+//            context(@"update to null value", ^{
+//                __block RealmObject *realmObject = nil;
+//                beforeEach(^{
+//                    FEMMapping *mapping = [RealmObject toOneRelationshipMapping];
+//                    realmObject = [deserializer objectFromRepresentation:[CMFixture buildUsingFixture:@"ToOneRelationship"] mapping:mapping];
+//                    [deserializer fillObject:realmObject fromRepresentation:[CMFixture buildUsingFixture:@"ToOneNullRelationship"] mapping:mapping];
+//                });
+//
+//                specify(^{
+//                    [[realmObject.toOneRelationship should] beNil];
+//                });
+//            });
         });
 
         context(@"to-many relationship", ^{
@@ -308,58 +296,73 @@ describe(@"FEMDeserializer", ^{
 
                 beforeEach(^{
                     FEMMapping *mapping = [RealmObject toManyRelationshipMapping];
-                    NSDictionary *json = [CMFixture buildUsingFixture:@"ToOneRelationship"];
+                    NSDictionary *json = [CMFixture buildUsingFixture:@"ToManyRelationship"];
                     realmObject = [deserializer objectFromRepresentation:json mapping:mapping];
                     relationship = realmObject.toManyRelationship;
                 });
 
                 specify(^{
-                    [[@(realmObject.integerProperty) should] equal:@(5)];
+                    [[relationship shouldNot] beNil];
+                    [[@(relationship.count) should] equal:@(2)];
                 });
 
                 specify(^{
-                    [[realmObject.toOneRelationship shouldNot] beNil];
-                    [[@([realmObject.toOneRelationship isEqualToObject:childRealmObject]) should] beTrue];
-                });
+                    ChildRealmObject *child0 = relationship[0];
+                    [[@(child0.identifier) should] equal:@(20)];
 
-                specify(^{
-                    [[@(childRealmObject.identifier) should] equal:@(10)];
+                    ChildRealmObject *child1 = relationship[1];
+                    [[@(child1.identifier) should] equal:@(21)];
                 });
             });
 
             context(@"null value", ^{
                 __block RealmObject *realmObject = nil;
+                __block RLMArray<ChildRealmObject> *relationship = nil;
+
                 beforeEach(^{
-                    FEMMapping *mapping = [RealmObject toOneRelationshipMapping];
-                    NSDictionary *json = [CMFixture buildUsingFixture:@"ToOneNullRelationship"];
+                    FEMMapping *mapping = [RealmObject toManyRelationshipMapping];
+                    NSDictionary *json = [CMFixture buildUsingFixture:@"ToManyNullRelationship"];
                     realmObject = [deserializer objectFromRepresentation:json mapping:mapping];
+                    relationship = realmObject.toManyRelationship;
                 });
 
                 specify(^{
-                    [[@(realmObject.integerProperty) should] equal:@(5)];
-                });
-
-                specify(^{
-                    [[realmObject.toOneRelationship should] beNil];
+                    [[@(relationship.count) should] equal:@(0)];
                 });
             });
-
-            context(@"update to null value", ^{
-                __block RealmObject *realmObject = nil;
-                beforeEach(^{
-                    FEMMapping *mapping = [RealmObject toOneRelationshipMapping];
-                    realmObject = [deserializer objectFromRepresentation:[CMFixture buildUsingFixture:@"ToOneRelationship"] mapping:mapping];
-                    [deserializer fillObject:realmObject fromRepresentation:[CMFixture buildUsingFixture:@"ToOneNullRelationship"] mapping:mapping];
-                });
-
-                specify(^{
-                    [[@(realmObject.integerProperty) should] equal:@(5)];
-                });
-
-                specify(^{
-                    [[realmObject.toOneRelationship should] beNil];
-                });
-            });
+//            context(@"null value", ^{
+//                __block RealmObject *realmObject = nil;
+//                beforeEach(^{
+//                    FEMMapping *mapping = [RealmObject toOneRelationshipMapping];
+//                    NSDictionary *json = [CMFixture buildUsingFixture:@"ToOneNullRelationship"];
+//                    realmObject = [deserializer objectFromRepresentation:json mapping:mapping];
+//                });
+//
+//                specify(^{
+//                    [[@(realmObject.integerProperty) should] equal:@(5)];
+//                });
+//
+//                specify(^{
+//                    [[realmObject.toOneRelationship should] beNil];
+//                });
+//            });
+//
+//            context(@"update to null value", ^{
+//                __block RealmObject *realmObject = nil;
+//                beforeEach(^{
+//                    FEMMapping *mapping = [RealmObject toOneRelationshipMapping];
+//                    realmObject = [deserializer objectFromRepresentation:[CMFixture buildUsingFixture:@"ToOneRelationship"] mapping:mapping];
+//                    [deserializer fillObject:realmObject fromRepresentation:[CMFixture buildUsingFixture:@"ToOneNullRelationship"] mapping:mapping];
+//                });
+//
+//                specify(^{
+//                    [[@(realmObject.integerProperty) should] equal:@(5)];
+//                });
+//
+//                specify(^{
+//                    [[realmObject.toOneRelationship should] beNil];
+//                });
+//            });
         });
     });
 });
