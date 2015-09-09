@@ -10,6 +10,7 @@ typedef __nonnull id<NSFastEnumeration> (^FEMObjectCacheSource)(FEMMapping *obje
 
 @interface FEMObjectCache : NSObject
 
+- (instancetype)initWithSource:(FEMObjectCacheSource)source NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation source:(FEMObjectCacheSource)source NS_DESIGNATED_INITIALIZER;
 
 - (id)existingObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;

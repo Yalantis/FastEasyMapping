@@ -16,9 +16,22 @@
 
 #pragma mark - Init
 
+- (instancetype)initWithSource:(FEMObjectCacheSource)source {
+	NSParameterAssert(source != NULL);
+	self = [super init];
+	if (self) {
+		_source = [source copy];
+		_lookupKeysMap = @{};
+		_lookupObjectsMap = [NSMutableDictionary new];
+	}
+
+	return self;
+}
+
 - (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation source:(FEMObjectCacheSource)source {
 	NSParameterAssert(mapping);
 	NSParameterAssert(representation);
+	NSParameterAssert(source != NULL);
 
 	self = [super init];
 	if (self) {
