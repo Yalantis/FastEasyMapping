@@ -27,6 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSString *primaryKey;
 @property (nonatomic, strong, readonly, nullable) FEMAttribute *primaryKeyAttribute;
 
+/**
+ * Defines whether `primaryKey` attribute can be updated during deserialization or not. Evaluated only if current Object's primary key is `nil`.
+ * Default value is `YES`.
+ *
+ * @warning For Realm it is required to set this property to `NO`, otherwise exception will be thrown.
+*/
+@property (nonatomic) BOOL updatePrimaryKey;
+
 @property (nonatomic, strong, readonly) NSArray *attributes;
 - (void)addAttribute:(FEMAttribute *)attribute;
 - (nullable FEMAttribute *)attributeForProperty:(NSString *)property;
@@ -40,13 +48,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FEMMapping (Shortcut)
 
 - (void)addAttributesFromArray:(NSArray *)attributes;
-
 - (void)addAttributesFromDictionary:(NSDictionary *)attributesToKeyPath;
-
 - (void)addAttributeWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath;
 
 - (void)addRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(nullable NSString *)keyPath;
-
 - (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(nullable NSString *)keyPath;
 
 @end
