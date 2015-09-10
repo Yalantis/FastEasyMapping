@@ -12,6 +12,8 @@
 @interface UniqueRealmObject : RLMObject
 
 @property (nonatomic) int primaryKeyProperty;
+@property (nonatomic) long long longLongProperty;
+@property (nonatomic, copy) NSString *stringProperty;
 
 @end
 

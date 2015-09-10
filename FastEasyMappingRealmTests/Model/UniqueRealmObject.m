@@ -13,6 +13,10 @@
     return @"primaryKeyProperty";
 }
 
++ (NSDictionary *)defaultPropertyValues {
+    return @{@"stringProperty": @""};
+}
+
 @end
 
 @implementation UniqueRealmObject (Mapping)
