@@ -88,20 +88,17 @@
     }
 }
 
-- (void)setAttributeValue:(FEMAttribute *)attribute onObject:(id)object fromRepresentation:(id)representation {
-    id value = FEMRepresentationValueForAttribute(representation, attribute);
-    if (value == NSNull.null) {
-        if (!FEMObjectPropertyTypeIsScalar(object, attribute.property)) {
-            [object setValue:nil forKey:attribute.property];
-        }
-    } else if (value) {
-        [object fem_setValueIfDifferent:value forKey:attribute.property];
-    }
-}
-
 - (id)_fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
+//    FEMAttribute *primaryKeyAttribute = mapping.primaryKeyAttribute;
     for (FEMAttribute *attribute in mapping.attributes) {
-        [self setAttributeValue:attribute onObject:object fromRepresentation:representation];
+        id newValue = FEMRepresentationValueForAttribute(representation, attribute);
+        if (newValue == NSNull.null) {
+            if (!FEMObjectPropertyTypeIsScalar(object, attribute.property)) {
+                [object setValue:nil forKey:attribute.property];
+            }
+        } else if (newValue) {
+            [object fem_setValueIfDifferent:newValue forKey:attribute.property];
+        }
     }
 
     [self fulfillObjectRelationships:object fromRepresentation:representation usingMapping:mapping];
