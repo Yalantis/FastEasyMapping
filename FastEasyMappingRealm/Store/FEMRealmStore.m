@@ -13,6 +13,7 @@
 
 @implementation FEMRealmStore {
     FEMObjectCache *_cache;
+    NSHashTable<RLMObject *> *_newObjects;
 }
 
 - (instancetype)initWithRealm:(RLMRealm *)realm {
@@ -33,10 +34,19 @@
 }
 
 - (void)beginTransaction {
-    [self.realm beginWriteTransaction];
+    // for test purpose
+    if (_cache == nil) {
+        _cache = [[FEMObjectCache alloc] initWithRealm:_realm];
+    }
+
+    _newObjects = [NSHashTable hashTableWithOptions:NSHashTableObjectPointerPersonality];
+    [_realm beginWriteTransaction];
 }
 
 - (NSError *)commitTransaction {
+    [_realm addObjects:_newObjects];
+    _newObjects = nil;
+
     [_realm commitWriteTransaction];
 
     return nil;
@@ -47,7 +57,7 @@
     Class realmObjectClass = NSClassFromString(entityName);
     RLMObject *object = [(RLMObject *)[realmObjectClass alloc] init];
 
-    [_realm addObject:object];
+    [_newObjects addObject:object];
 
     return object;
 }
@@ -67,7 +77,7 @@
 }
 
 - (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
-    return mapping.primaryKey != nil;
+    return mapping.primaryKey != nil && [(RLMObject *)object realm] == nil;
 }
 
 #pragma mark - FEMRelationshipAssignmentContextDelegate
@@ -76,6 +86,8 @@
     RLMObject *rlmObject = object;
     if (rlmObject.realm == _realm) {
         [_realm deleteObject:rlmObject];
+    } else {
+        [_newObjects removeObject:rlmObject];
     }
 }
 
