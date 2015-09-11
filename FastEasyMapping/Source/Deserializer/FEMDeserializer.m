@@ -88,8 +88,12 @@
 }
 
 - (id)_fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-//    FEMAttribute *primaryKeyAttribute = mapping.primaryKeyAttribute;
+    FEMAttribute *primaryKeyAttribute = mapping.primaryKeyAttribute;
     for (FEMAttribute *attribute in mapping.attributes) {
+        if (primaryKeyAttribute == attribute && !mapping.updatePrimaryKey && !FEMObjectPropertyValueIsNil(object, attribute.property)) {
+            continue;
+        }
+
         id newValue = FEMRepresentationValueForAttribute(representation, attribute);
         if (newValue == NSNull.null) {
             if (!FEMObjectPropertyTypeIsScalar(object, attribute.property)) {
