@@ -4,6 +4,7 @@
 #import <CMFactory/CMFixture.h>
 #import <FastEasyMapping/FastEasyMapping.h>
 #import <FastEasyMappingRealm/FastEasyMappingRealm.h>
+#import "UniqueObject.h"
 
 SPEC_BEGIN(FEMDeserializerSpec)
 describe(@"FEMDeserializer", ^{
@@ -19,7 +20,14 @@ describe(@"FEMDeserializer", ^{
         });
 
         context(@"primary key", ^{
+            __block FEMMapping *mapping = nil;
+            beforeEach(^{
+                mapping = [[FEMMapping alloc] initWithObjectClass:[UniqueObject class]];
+            });
 
+            it(@"should update primary key by default", ^{
+
+            });
         });
     });
 });
