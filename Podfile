@@ -9,6 +9,7 @@ end
 
 target :'FastEasyMappingTests', :exclusive => true do
   import_tests
+  pod 'OCMock', '~> 3.1.5'
 end
 
 target :'FastEasyMappingRealmTests', :exclusive => true do

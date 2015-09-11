@@ -2,6 +2,7 @@
 
 #import <Kiwi/Kiwi.h>
 #import <CMFactory/CMFixture.h>
+#import <CMFactory/CMFactory.h>
 #import <FastEasyMapping/FastEasyMapping.h>
 #import <FastEasyMappingRealm/FastEasyMappingRealm.h>
 #import "UniqueObject.h"
@@ -19,14 +20,23 @@ describe(@"FEMDeserializer", ^{
             deserializer = nil;
         });
 
-        context(@"primary key", ^{
+        context(@"scalar primary key", ^{
             __block FEMMapping *mapping = nil;
+            __block NSDictionary *json = nil;
             beforeEach(^{
                 mapping = [UniqueObject defaultMapping];
+                mapping.primaryKey = @"integerPrimaryKey";
+                json = [CMFixture buildUsingFixture:@"UniqueObject"];
             });
 
-            it(@"should update primary key by default", ^{
 
+
+            context(@"updatePrimaryKey is true", ^{
+                it(@"should update PK value", ^{
+                    mapping.updatePrimaryKey = YES;
+
+                    CMFac
+                });
             });
         });
     });

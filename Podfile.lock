@@ -11,11 +11,13 @@ PODS:
   - Mantle (1.0):
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
+  - OCMock (3.1.5)
 
 DEPENDENCIES:
   - CMFactory (~> 1.4.0)
   - Kiwi (~> 2.4.0)
   - MagicalRecord (~> 2.3)
+  - OCMock (~> 3.1.5)
 
 SPEC CHECKSUMS:
   CMFactory: 535c1473e91f4d0d13cb290de2144faa75a882a3
@@ -23,5 +25,6 @@ SPEC CHECKSUMS:
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
   Mantle: 3fbcca07bdfe76c54a08c241689a60d34d08e783
+  OCMock: 4c2925291f80407c3738dd1db14d21d0cc278864
 
 COCOAPODS: 0.38.2
