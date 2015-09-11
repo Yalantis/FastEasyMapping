@@ -14,6 +14,8 @@
 - (instancetype)initWithObjectClass:(Class)objectClass {
     self = [super init];
     if (self) {
+        _updatePrimaryKey = YES;
+        
         _attributeMap = [NSMutableDictionary new];
         _relationshipMap = [NSMutableDictionary new];
 
@@ -35,6 +37,8 @@
 - (instancetype)initWithEntityName:(NSString *)entityName {
     self = [super init];
     if (self) {
+        _updatePrimaryKey = YES;
+        
         _attributeMap = [NSMutableDictionary new];
         _relationshipMap = [NSMutableDictionary new];
 
