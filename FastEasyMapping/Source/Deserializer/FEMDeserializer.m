@@ -87,10 +87,15 @@
     }
 }
 
-- (id)_fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
+- (id)_fillObject:(id)object allocated:(BOOL)allocated fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
     FEMAttribute *primaryKeyAttribute = mapping.primaryKeyAttribute;
     for (FEMAttribute *attribute in mapping.attributes) {
-        if (primaryKeyAttribute == attribute && !mapping.updatePrimaryKey && !FEMObjectPropertyValueIsNil(object, attribute.property)) {
+        BOOL ignoreAttribute = !allocated &&
+            primaryKeyAttribute == attribute &&
+            !mapping.updatePrimaryKey &&
+            !FEMObjectPropertyValueIsNil(object, attribute.property);
+
+        if (ignoreAttribute) {
             continue;
         }
 
@@ -99,6 +104,8 @@
             if (!FEMObjectPropertyTypeIsScalar(object, attribute.property)) {
                 [object setValue:nil forKey:attribute.property];
             }
+        } else if (allocated && newValue) {
+            [object setValue:newValue forKey:attribute.property];
         } else if (newValue) {
             id oldValue = [object valueForKey:attribute.property];
 
@@ -130,7 +137,7 @@
         [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
     }
 
-    [self _fillObject:object fromRepresentation:representation mapping:mapping];
+    [self _fillObject:object allocated:newObject fromRepresentation:representation mapping:mapping];
 
     if (newObject && [self.store canRegisterObject:object forMapping:mapping]) {
         [self.store registerObject:object forMapping:mapping];
@@ -187,7 +194,7 @@
     [self.store beginTransaction];
 
     id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-    [self _fillObject:object fromRepresentation:root mapping:mapping];
+    [self _fillObject:object allocated:NO fromRepresentation:root mapping:mapping];
 
     [self.store commitTransaction];
 
