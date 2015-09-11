@@ -72,6 +72,60 @@ describe(@"FEMDeserializer", ^{
                 });
             });
         });
+
+        context(@"object primary key", ^{
+            __block FEMMapping *mapping = nil;
+            __block NSDictionary *json = nil;
+            beforeEach(^{
+                mapping = [UniqueObject defaultMapping];
+                mapping.primaryKey = @"stringPrimaryKey";
+                json = [CMFixture buildUsingFixture:@"UniqueObject"];
+            });
+
+            context(@"updatePrimaryKey is true", ^{
+                it(@"should update PK value", ^{
+                    mapping.updatePrimaryKey = YES;
+
+                    id objectMock = OCMClassMock([UniqueObject class]);
+                    OCMStub([objectMock stringPrimaryKey]).andReturn(@"PK");
+                    [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
+
+                    OCMVerify([objectMock setValue:@"PK" forKey:@"stringPrimaryKey"]);
+                });
+
+                it(@"should update nil PK value", ^{
+                    mapping.updatePrimaryKey = YES;
+
+                    id objectMock = OCMClassMock([UniqueObject class]);
+                    OCMStub([objectMock stringPrimaryKey]).andReturn(nil);
+                    [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
+
+                    OCMVerify([objectMock setValue:@"PK" forKey:@"stringPrimaryKey"]);
+                });
+            });
+
+            context(@"updatePrimaryKey is false", ^{
+                it(@"should not update PK value", ^{
+                    mapping.updatePrimaryKey = NO;
+
+                    id objectMock = OCMClassMock([UniqueObject class]);
+                    OCMStub([objectMock stringPrimaryKey]).andReturn(@"PK");
+                    [[objectMock reject] setValue:@"PK" forKey:@"stringPrimaryKey"];
+
+                    [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
+                });
+
+                it(@"should update nil PK value", ^{
+                    mapping.updatePrimaryKey = NO;
+
+                    id objectMock = OCMClassMock([UniqueObject class]);
+                    OCMStub([objectMock stringPrimaryKey]).andReturn(nil);
+                    [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
+
+                    OCMVerify([objectMock setValue:@"PK" forKey:@"stringPrimaryKey"]);
+                });
+            });
+        });
     });
 });
 
