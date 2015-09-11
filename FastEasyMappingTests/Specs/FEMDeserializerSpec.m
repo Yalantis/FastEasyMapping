@@ -2,12 +2,11 @@
 
 #import <Kiwi/Kiwi.h>
 #import <CMFactory/CMFixture.h>
-#import <CMFactory/CMFactory.h>
+#import <OCMock/OCMock.h>
 #import <FastEasyMapping/FastEasyMapping.h>
-#import <FastEasyMappingRealm/FastEasyMappingRealm.h>
 #import "UniqueObject.h"
 
-SPEC_BEGIN(FEMDeserializerSpec)
+SPEC_BEGIN(FEMDeserializerOptionsSpec)
 describe(@"FEMDeserializer", ^{
     context(@"deserialization", ^{
         __block FEMDeserializer *deserializer = nil;
@@ -29,13 +28,18 @@ describe(@"FEMDeserializer", ^{
                 json = [CMFixture buildUsingFixture:@"UniqueObject"];
             });
 
-
-
             context(@"updatePrimaryKey is true", ^{
                 it(@"should update PK value", ^{
                     mapping.updatePrimaryKey = YES;
 
-                    CMFac
+                    id objectMock = OCMClassMock([UniqueObject class]);
+                    OCMStub([objectMock integerPrimaryKey]).andReturn(@0);
+                    [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
+
+                    OCMVerify([objectMock setValue:@5 forKey:@"integerPrimaryKey"]);
+
+//                    [[objectMock reject] setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>]
+//                    OCMExpect([objectMock setValue:@5 forKey:@"integerPrimaryKey"]);
                 });
             });
         });
