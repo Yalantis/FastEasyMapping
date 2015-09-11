@@ -3,22 +3,47 @@
 #import "FEMTypeIntrospection.h"
 #import <objc/runtime.h>
 
-static const char ScalarTypeEncodings[] = {
-	_C_BOOL, _C_BFLD,          // BOOL
-	_C_CHR, _C_UCHR,           // char, unsigned char
-	_C_SHT, _C_USHT,           // short, unsigned short
-	_C_INT, _C_UINT,           // int, unsigned int, NSInteger, NSUInteger
-	_C_LNG, _C_ULNG,           // long, unsigned long
-	_C_LNG_LNG, _C_ULNG_LNG,   // long long, unsigned long long
-	_C_FLT, _C_DBL,            // float, CGFloat, double
-	0
-};
+BOOL FEMObjectPropertyValueIsNil(id object, NSString *propertyName) {
+	id value = [object valueForKey:propertyName];
+	if (value == nil || value == [NSNull null]) {
+		return YES;
+	} else if ([value isKindOfClass:[NSNumber class]]) {
+		return [(NSNumber *)value longLongValue] == 0;
+	} else if ([value isKindOfClass:[NSString class]]) {
+		return [(NSString *)value length] == 0;
+	}
+
+	return NO;
+}
 
 BOOL FEMObjectPropertyTypeIsScalar(id object, NSString *propertyName) {
 	objc_property_t property = class_getProperty(object_getClass(object), [propertyName UTF8String]);
 	NSString *type = property ? FEMPropertyTypeStringRepresentation(property) : nil;
 
-	return (type.length == 1) && (NSNotFound != [@(ScalarTypeEncodings) rangeOfString:type].location);
+	if (type.length == 1) {
+		switch ([type UTF8String][0]) {
+			case _C_BOOL:
+			case _C_BFLD:          // BOOL
+			case _C_CHR:
+			case _C_UCHR:           // char, unsigned char
+			case _C_SHT:
+			case _C_USHT:           // short, unsigned short
+			case _C_INT:
+			case _C_UINT:           // int, unsigned int, NSInteger, NSUInteger
+			case _C_LNG:
+			case _C_ULNG:           // long, unsigned long
+			case _C_LNG_LNG:
+			case _C_ULNG_LNG:   // long long, unsigned long long
+			case _C_FLT:
+			case _C_DBL:            // float, CGFloat, double
+				return YES;
+
+			default:
+				break;
+		}
+	}
+
+	return NO;
 }
 
 NSString * FEMPropertyTypeStringRepresentation(objc_property_t property) {
