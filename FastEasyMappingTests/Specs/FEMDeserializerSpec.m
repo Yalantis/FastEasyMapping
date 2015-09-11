@@ -33,13 +33,42 @@ describe(@"FEMDeserializer", ^{
                     mapping.updatePrimaryKey = YES;
 
                     id objectMock = OCMClassMock([UniqueObject class]);
+                    OCMStub([objectMock integerPrimaryKey]).andReturn(@3);
+                    [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
+
+                    OCMVerify([objectMock setValue:@5 forKey:@"integerPrimaryKey"]);
+                });
+
+                it(@"should update 0 PK value", ^{
+                    mapping.updatePrimaryKey = YES;
+
+                    id objectMock = OCMClassMock([UniqueObject class]);
                     OCMStub([objectMock integerPrimaryKey]).andReturn(@0);
                     [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
 
                     OCMVerify([objectMock setValue:@5 forKey:@"integerPrimaryKey"]);
+                });
+            });
 
-//                    [[objectMock reject] setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>]
-//                    OCMExpect([objectMock setValue:@5 forKey:@"integerPrimaryKey"]);
+            context(@"updatePrimaryKey is false", ^{
+                it(@"should not update PK value", ^{
+                    mapping.updatePrimaryKey = NO;
+
+                    id objectMock = OCMClassMock([UniqueObject class]);
+                    OCMStub([objectMock integerPrimaryKey]).andReturn(@5);
+                    [[objectMock reject] setValue:@5 forKey:@"integerPrimaryKey"];
+
+                    [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
+                });
+
+                it(@"should update 0 PK value", ^{
+                    mapping.updatePrimaryKey = NO;
+
+                    id objectMock = OCMClassMock([UniqueObject class]);
+                    OCMStub([objectMock integerPrimaryKey]).andReturn(@0);
+                    [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
+
+                    OCMVerify([objectMock setValue:@5 forKey:@"integerPrimaryKey"]);
                 });
             });
         });
