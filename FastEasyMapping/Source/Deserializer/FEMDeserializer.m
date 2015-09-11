@@ -97,7 +97,11 @@
                 [object setValue:nil forKey:attribute.property];
             }
         } else if (newValue) {
-            [object fem_setValueIfDifferent:newValue forKey:attribute.property];
+            id oldValue = [object valueForKey:attribute.property];
+
+            if (oldValue != newValue && ![oldValue isEqual:newValue]) {
+                [object setValue:newValue forKey:attribute.property];
+            }
         }
     }
 
