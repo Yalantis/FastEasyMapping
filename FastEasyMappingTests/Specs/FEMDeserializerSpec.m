@@ -22,7 +22,7 @@ describe(@"FEMDeserializer", ^{
         context(@"primary key", ^{
             __block FEMMapping *mapping = nil;
             beforeEach(^{
-                mapping = [[FEMMapping alloc] initWithObjectClass:[UniqueObject class]];
+                mapping = [UniqueObject defaultMapping];
             });
 
             it(@"should update primary key by default", ^{

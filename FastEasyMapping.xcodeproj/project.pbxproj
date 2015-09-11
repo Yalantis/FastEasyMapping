@@ -43,6 +43,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1D6A3162AACCD806BB3CBF59 /* UniqueObject.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E4E69862D892DB99262 /* UniqueObject.json */; };
 		1D6A318B77C6FB356E1B0D02 /* UniqueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A39978E70C9CA36660CAF /* UniqueObject.m */; };
 		1D6A31EF2D3E58E11872FDFB /* ToOneRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3250D07220CA0839D6EE /* ToOneRelationship.json */; };
 		1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
@@ -259,6 +260,7 @@
 		1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar_1.json; sourceTree = "<group>"; };
 		1D6A3E348DC1D06590052FC6 /* SupportedNullTypes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SupportedNullTypes.json; sourceTree = "<group>"; };
 		1D6A3E351ED08B818DBEE984 /* PrimaryKey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PrimaryKey.json; sourceTree = "<group>"; };
+		1D6A3E4E69862D892DB99262 /* UniqueObject.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UniqueObject.json; sourceTree = "<group>"; };
 		1D6A3E65B1DB73E680A495BA /* FEMMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMapping.m; sourceTree = "<group>"; };
 		1D6A3E77707265687DD5C1C0 /* FEMRealmStoreSpeс.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FEMRealmStoreSpeс.m"; sourceTree = "<group>"; };
 		1D6A3E843DB3807E64A99CD8 /* ChildRealmObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildRealmObject.m; sourceTree = "<group>"; };
@@ -721,6 +723,7 @@
 				1D6A3ACBBC8E66609F169E94 /* Person_2.json */,
 				1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */,
 				1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */,
+				1D6A3E4E69862D892DB99262 /* UniqueObject.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -1027,6 +1030,7 @@
 				1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */,
 				1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */,
 				1D6A34C84E523B5F58F87C5E /* PersonWithMissingRelationships.json in Resources */,
+				1D6A3162AACCD806BB3CBF59 /* UniqueObject.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
