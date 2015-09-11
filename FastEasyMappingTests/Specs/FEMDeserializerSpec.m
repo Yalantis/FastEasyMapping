@@ -33,7 +33,7 @@ describe(@"FEMDeserializer", ^{
                     mapping.updatePrimaryKey = YES;
 
                     id objectMock = OCMClassMock([UniqueObject class]);
-                    OCMStub([objectMock integerPrimaryKey]).andReturn(@3);
+                    OCMStub([objectMock valueForKey:@"integerPrimaryKey"]).andReturn(@3);
                     [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
 
                     OCMVerify([objectMock setValue:@5 forKey:@"integerPrimaryKey"]);
@@ -43,7 +43,7 @@ describe(@"FEMDeserializer", ^{
                     mapping.updatePrimaryKey = YES;
 
                     id objectMock = OCMClassMock([UniqueObject class]);
-                    OCMStub([objectMock integerPrimaryKey]).andReturn(@0);
+                    OCMStub([objectMock valueForKey:@"integerPrimaryKey"]).andReturn(@0);
                     [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
 
                     OCMVerify([objectMock setValue:@5 forKey:@"integerPrimaryKey"]);
@@ -55,7 +55,7 @@ describe(@"FEMDeserializer", ^{
                     mapping.updatePrimaryKey = NO;
 
                     id objectMock = OCMClassMock([UniqueObject class]);
-                    OCMStub([objectMock integerPrimaryKey]).andReturn(@5);
+                    OCMStub([objectMock valueForKey:@"integerPrimaryKey"]).andReturn(@5);
                     [[objectMock reject] setValue:@5 forKey:@"integerPrimaryKey"];
 
                     [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
@@ -65,7 +65,7 @@ describe(@"FEMDeserializer", ^{
                     mapping.updatePrimaryKey = NO;
 
                     id objectMock = OCMClassMock([UniqueObject class]);
-                    OCMStub([objectMock integerPrimaryKey]).andReturn(@0);
+                    OCMStub([objectMock valueForKey:@"integerPrimaryKey"]).andReturn(@0);
                     [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
 
                     OCMVerify([objectMock setValue:@5 forKey:@"integerPrimaryKey"]);
@@ -87,7 +87,7 @@ describe(@"FEMDeserializer", ^{
                     mapping.updatePrimaryKey = YES;
 
                     id objectMock = OCMClassMock([UniqueObject class]);
-                    OCMStub([objectMock stringPrimaryKey]).andReturn(@"PK");
+                    OCMStub([objectMock valueForKey:@"stringPrimaryKey"]).andReturn(@"PK!"); // should be different to trigger update
                     [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
 
                     OCMVerify([objectMock setValue:@"PK" forKey:@"stringPrimaryKey"]);
@@ -97,7 +97,7 @@ describe(@"FEMDeserializer", ^{
                     mapping.updatePrimaryKey = YES;
 
                     id objectMock = OCMClassMock([UniqueObject class]);
-                    OCMStub([objectMock stringPrimaryKey]).andReturn(nil);
+                    OCMStub([objectMock valueForKey:@"stringPrimaryKey"]).andReturn(nil);
                     [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
 
                     OCMVerify([objectMock setValue:@"PK" forKey:@"stringPrimaryKey"]);
@@ -109,7 +109,7 @@ describe(@"FEMDeserializer", ^{
                     mapping.updatePrimaryKey = NO;
 
                     id objectMock = OCMClassMock([UniqueObject class]);
-                    OCMStub([objectMock stringPrimaryKey]).andReturn(@"PK");
+                    OCMStub([objectMock valueForKey:@"stringPrimaryKey"]).andReturn(@"PK!"); // should be different to trigger update
                     [[objectMock reject] setValue:@"PK" forKey:@"stringPrimaryKey"];
 
                     [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
@@ -119,7 +119,7 @@ describe(@"FEMDeserializer", ^{
                     mapping.updatePrimaryKey = NO;
 
                     id objectMock = OCMClassMock([UniqueObject class]);
-                    OCMStub([objectMock stringPrimaryKey]).andReturn(nil);
+                    OCMStub([objectMock valueForKey:@"stringPrimaryKey"]).andReturn(nil);
                     [deserializer fillObject:objectMock fromRepresentation:json mapping:mapping];
 
                     OCMVerify([objectMock setValue:@"PK" forKey:@"stringPrimaryKey"]);
