@@ -90,12 +90,8 @@
 - (id)_fillObject:(id)object allocated:(BOOL)allocated fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
     FEMAttribute *primaryKeyAttribute = mapping.primaryKeyAttribute;
     for (FEMAttribute *attribute in mapping.attributes) {
-        BOOL ignoreAttribute = !allocated &&
-            primaryKeyAttribute == attribute &&
-            !mapping.updatePrimaryKey &&
-            !FEMObjectPropertyValueIsNil(object, attribute.property);
-
-        if (ignoreAttribute) {
+        BOOL updateAttribute = allocated || primaryKeyAttribute != attribute || mapping.updatePrimaryKey || FEMObjectPropertyValueIsNil(object, attribute.property);
+        if (!updateAttribute) {
             continue;
         }
 
