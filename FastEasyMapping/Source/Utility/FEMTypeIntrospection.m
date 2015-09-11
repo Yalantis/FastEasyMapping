@@ -22,6 +22,9 @@ BOOL FEMObjectPropertyTypeIsScalar(id object, NSString *propertyName) {
 
 	if (type.length == 1) {
 		switch ([type UTF8String][0]) {
+			case _C_ID:
+				return NO;
+
 			case _C_BOOL:
 			case _C_BFLD:          // BOOL
 			case _C_CHR:
