@@ -106,14 +106,14 @@ In order to map _JSON to Object_ and vice versa we have to describe the mapping 
 @implementation Person (Mapping)
 
 + (FEMMapping *)defaultMapping {
-	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
     [mapping addAttributesFromArray:@[@"name"]];
     [mapping addAttributesFromDictionary:@{@"email": @"user_email"}];
 
     [mapping addRelationshipMapping:[Car defaultMapping] forProperty:@"car" keyPath:@"car"];
-    [mapping addToManyRelationshipMapping:[Person defaultMapping] forProperty:@"phones" keyPath:@"phones"];
+    [mapping addToManyRelationshipMapping:[Phone defaultMapping] forProperty:@"phones" keyPath:@"phones"];
 
-  	return mapping;
+    return mapping;
 }
 
 @end
@@ -242,7 +242,7 @@ First of all we've defined [NSDateFormatter](https://developer.apple.com/library
 
 #### Adding attribute to FEMMapping
 There are several shortcuts that allow you to add attributes easier to the mapping itself:
-##### Excplicitly
+##### Explicitly
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"url"];
@@ -255,13 +255,13 @@ FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 [mapping addAttributeWithProperty:@"property" keyPath:@"keyPath"];
 ```
 
-##### As Dictionary
+##### As a Dictionary
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 [mapping addAttributesFromDictionary:@{@"property": @"keyPath"}];
 ```
 
-##### As Array
+##### As an Array
 Useful when the `property` is equal to the `keyPath`:
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
@@ -307,7 +307,7 @@ Assignment policy describes how deserialized relationship value should be assign
 
 #### Adding relationship to FEMMapping
 
-##### Excplicitly
+##### Explicitly
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 FEMMapping *carMapping = [[FEMMapping alloc] initWithObjectClass:[Car class]];
