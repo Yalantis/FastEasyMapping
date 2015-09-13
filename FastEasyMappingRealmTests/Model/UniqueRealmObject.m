@@ -4,8 +4,11 @@
 //
 
 #import "UniqueRealmObject.h"
+#import "UniqueChildRealmObject.h"
+#import "UniqueToManyChildRealmObject.h"
 
 #import <FastEasyMapping/FastEasyMapping.h>
+#import <Realm/Realm.h>
 
 @implementation UniqueRealmObject
 
@@ -25,6 +28,34 @@
     FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:[self className]];
     mapping.primaryKey = [self primaryKey];
     [mapping addAttributesFromArray:@[@"primaryKeyProperty"]];
+
+    return mapping;
+}
+
++ (FEMMapping *)toOneRelationshipMappingWithPolicy:(FEMAssignmentPolicy)policy {
+    FEMMapping *mapping = [self defaultMapping];
+
+    FEMMapping *relationshipMapping = [[FEMMapping alloc] initWithEntityName:[UniqueChildRealmObject className]];
+    relationshipMapping.primaryKey = @"primaryKey";
+    [relationshipMapping addAttributesFromArray:@[@"primaryKey"]];
+
+    FEMRelationship *relationship = [[FEMRelationship alloc] initWithProperty:@"toOneRelationship" keyPath:@"toOne" mapping:relationshipMapping];
+    relationship.assignmentPolicy = policy;
+    [mapping addRelationship:relationship];
+
+    return mapping;
+}
+
++ (FEMMapping *)toManyRelationshipMappingWithPolicy:(FEMAssignmentPolicy)policy {
+    FEMMapping *mapping = [self defaultMapping];
+
+    FEMMapping *relationshipMapping = [[FEMMapping alloc] initWithEntityName:[UniqueToManyChildRealmObject className]];
+    relationshipMapping.primaryKey = @"primaryKey";
+    [relationshipMapping addAttributesFromArray:@[@"primaryKey"]];
+
+    FEMRelationship *relationship = [[FEMRelationship alloc] initWithProperty:@"toManyRelationship" keyPath:@"toMany" mapping:relationshipMapping];
+    relationship.assignmentPolicy = policy;
+    [mapping addRelationship:relationship];
 
     return mapping;
 }
