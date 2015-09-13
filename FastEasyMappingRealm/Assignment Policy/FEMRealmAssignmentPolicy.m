@@ -12,16 +12,24 @@
 
 FEMAssignmentPolicy FEMRealmAssignmentPolicyCollectionMerge = ^id(FEMRelationshipAssignmentContext *context) {
     if (context.targetRelationshipValue == nil || [(NSArray *)context.targetRelationshipValue count] == 0) {
-        return context.sourceRelationshipValue;
+        // Realm <= 0.95.0 drops relationship data is we're using the same RLMArray
+        NSMutableArray *copiedSourceValue = [[NSMutableArray alloc] initWithCapacity:[(RLMArray *)context.sourceRelationshipValue count]];
+        for (id object in context.sourceRelationshipValue) {
+            [copiedSourceValue addObject:object];
+        }
+
+        return copiedSourceValue;
     }
 
     if (context.sourceRelationshipValue == nil) {
         return  context.targetRelationshipValue;
     }
 
+    // Realm <= 0.95.0 drops relationship data is we're using the same RLMArray
     RLMArray *sourceObjects = context.sourceRelationshipValue;
-    NSMutableSet *sourceSet = [[NSMutableSet alloc] initWithCapacity:sourceObjects.count];
     NSMutableArray *targetObjects = [[NSMutableArray alloc] initWithCapacity:sourceObjects.count];
+    NSMutableSet *sourceSet = [[NSMutableSet alloc] initWithCapacity:sourceObjects.count];
+
     for (RLMObject *sourceObject in sourceObjects) {
         [sourceSet addObject:sourceObject];
         [targetObjects addObject:sourceObject];
@@ -30,7 +38,6 @@ FEMAssignmentPolicy FEMRealmAssignmentPolicyCollectionMerge = ^id(FEMRelationshi
     for (RLMObject *targetObject in (id<NSFastEnumeration>)context.targetRelationshipValue) {
         if (![sourceSet containsObject:targetObject]) {
             [targetObjects addObject:targetObject];
-
         }
     }
 
