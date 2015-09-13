@@ -54,6 +54,7 @@
     [relationshipMapping addAttributesFromArray:@[@"primaryKey"]];
 
     FEMRelationship *relationship = [[FEMRelationship alloc] initWithProperty:@"toManyRelationship" keyPath:@"toMany" mapping:relationshipMapping];
+    relationship.toMany = YES;
     relationship.assignmentPolicy = policy;
     [mapping addRelationship:relationship];
 

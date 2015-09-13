@@ -4,13 +4,14 @@
 //
 
 #import "FEMRealmAssignmentPolicy.h"
+#import "FEMRelationshipAssignmentContext+Internal.h"
 
 #import <FastEasyMapping/FEMRelationshipAssignmentContext.h>
 #import <Realm/RLMObject.h>
 #import <Realm/RLMArray.h>
 
 FEMAssignmentPolicy FEMRealmAssignmentPolicyCollectionMerge = ^id(FEMRelationshipAssignmentContext *context) {
-    if (context.targetRelationshipValue == nil) {
+    if (context.targetRelationshipValue == nil || [(NSArray *)context.targetRelationshipValue count] == 0) {
         return context.sourceRelationshipValue;
     }
 
@@ -20,17 +21,20 @@ FEMAssignmentPolicy FEMRealmAssignmentPolicyCollectionMerge = ^id(FEMRelationshi
 
     RLMArray *sourceObjects = context.sourceRelationshipValue;
     NSMutableSet *sourceSet = [[NSMutableSet alloc] initWithCapacity:sourceObjects.count];
+    NSMutableArray *targetObjects = [[NSMutableArray alloc] initWithCapacity:sourceObjects.count];
     for (RLMObject *sourceObject in sourceObjects) {
         [sourceSet addObject:sourceObject];
+        [targetObjects addObject:sourceObject];
     }
 
     for (RLMObject *targetObject in (id<NSFastEnumeration>)context.targetRelationshipValue) {
         if (![sourceSet containsObject:targetObject]) {
-            [sourceObjects addObject:targetObject];
+            [targetObjects addObject:targetObject];
+
         }
     }
 
-    return sourceObjects;
+    return targetObjects;
 };
 
 FEMAssignmentPolicy FEMRealmAssignmentPolicyCollectionReplace = ^id(FEMRelationshipAssignmentContext *context) {

@@ -1,0 +1,6 @@
+{
+  "primaryKeyProperty": 5,
+  "toMany": [
+    {"primaryKey": 11}
+  ]
+}
