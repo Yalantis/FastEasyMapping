@@ -51,13 +51,13 @@
 		1D6A32C7277B790720AC1B66 /* ToManyNullRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31F6EBDE44008F52FE4A /* ToManyNullRelationship.json */; };
 		1D6A32E571F68582DB1ED8F0 /* SupportedTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A36124FB2AD338633B51E /* SupportedTypes.json */; };
 		1D6A32FD3994DE168D52A429 /* FEMRealmAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35F087F7336FE6068111 /* FEMRealmAssignmentPolicy.m */; };
-		1D6A331A96802AA9636D741A /* AssingmentPolicy_ToMany_Assign_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3C46820D667216C348CB /* AssingmentPolicy_ToMany_Assign_1.json */; };
-		1D6A33F2272F7E1A33B1D7FC /* AssingmentPolicy_ToMany_Assign_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A317E1F38E33196D624F5 /* AssingmentPolicy_ToMany_Assign_3.json */; };
-		1D6A34259396ADC8674E44A1 /* AssingmentPolicy_ToMany_Assign_0.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3426C72B79468CAA1A76 /* AssingmentPolicy_ToMany_Assign_0.json */; };
+		1D6A331A96802AA9636D741A /* AssingmentPolicyToManyUpdate.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3C46820D667216C348CB /* AssingmentPolicyToManyUpdate.json */; };
+		1D6A33F2272F7E1A33B1D7FC /* AssingmentPolicyToManyEmptyArray.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A317E1F38E33196D624F5 /* AssingmentPolicyToManyEmptyArray.json */; };
+		1D6A34259396ADC8674E44A1 /* AssingmentPolicyToManyInit.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3426C72B79468CAA1A76 /* AssingmentPolicyToManyInit.json */; };
 		1D6A3433EA8580CEC6FD46A9 /* FEMAttribute+Realm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BF4258AB646755B4920 /* FEMAttribute+Realm.m */; };
 		1D6A34A46592A6078E02C412 /* UniqueChildRealmObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A36C98C6DC7CC2C4CCA41 /* UniqueChildRealmObject.m */; };
 		1D6A34C84E523B5F58F87C5E /* PersonWithMissingRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */; };
-		1D6A354ABE158A2252246FFB /* AssingmentPolicy_ToMany_Assign_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A3E89901D3AB514A01F /* AssingmentPolicy_ToMany_Assign_2.json */; };
+		1D6A354ABE158A2252246FFB /* AssingmentPolicyToManyNull.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A3E89901D3AB514A01F /* AssingmentPolicyToManyNull.json */; };
 		1D6A36C4F4F626AAA2A6EC5E /* FEMDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31F075A797425408C339 /* FEMDeserializerSpec.m */; };
 		1D6A36D76A61ACAC1EE30391 /* SupportedNullTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E348DC1D06590052FC6 /* SupportedNullTypes.json */; };
 		1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
@@ -212,7 +212,7 @@
 		1D6A312125E7A338A36E4EC2 /* FEMAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAttribute.m; sourceTree = "<group>"; };
 		1D6A313C570B41A66D37D381 /* RealmObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealmObject.h; sourceTree = "<group>"; };
 		1D6A3173DBF517B9BF8D6A52 /* FEMObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectMapping.h; sourceTree = "<group>"; };
-		1D6A317E1F38E33196D624F5 /* AssingmentPolicy_ToMany_Assign_3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AssingmentPolicy_ToMany_Assign_3.json; sourceTree = "<group>"; };
+		1D6A317E1F38E33196D624F5 /* AssingmentPolicyToManyEmptyArray.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AssingmentPolicyToManyEmptyArray.json; sourceTree = "<group>"; };
 		1D6A31AE458D626C0C69EC91 /* FEMRelationshipAssignmentContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRelationshipAssignmentContext.m; sourceTree = "<group>"; };
 		1D6A31C3D577329518B3E664 /* Person_1.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Person_1.json; sourceTree = "<group>"; };
 		1D6A31F075A797425408C339 /* FEMDeserializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMDeserializerSpec.m; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 		1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAttributeMappingSpec.m; sourceTree = "<group>"; };
 		1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMergeableCollection.m; sourceTree = "<group>"; };
 		1D6A341208D2C52D9CAEA707 /* ToManyRelationship.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ToManyRelationship.json; sourceTree = "<group>"; };
-		1D6A3426C72B79468CAA1A76 /* AssingmentPolicy_ToMany_Assign_0.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AssingmentPolicy_ToMany_Assign_0.json; sourceTree = "<group>"; };
+		1D6A3426C72B79468CAA1A76 /* AssingmentPolicyToManyInit.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AssingmentPolicyToManyInit.json; sourceTree = "<group>"; };
 		1D6A3430AF228C5020B144CF /* FEMManagedObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectStore.h; sourceTree = "<group>"; };
 		1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar_2.json; sourceTree = "<group>"; };
 		1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithMissingRelationships.json; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 		1D6A382D3C311B6D926D5486 /* FEMAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMAttribute.h; sourceTree = "<group>"; };
 		1D6A390821CF04D2FB6CBA66 /* UniqueObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniqueObject.h; sourceTree = "<group>"; };
 		1D6A39978E70C9CA36660CAF /* UniqueObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniqueObject.m; sourceTree = "<group>"; };
-		1D6A3A3E89901D3AB514A01F /* AssingmentPolicy_ToMany_Assign_2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AssingmentPolicy_ToMany_Assign_2.json; sourceTree = "<group>"; };
+		1D6A3A3E89901D3AB514A01F /* AssingmentPolicyToManyNull.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AssingmentPolicyToManyNull.json; sourceTree = "<group>"; };
 		1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithNullRelationships.json; sourceTree = "<group>"; };
 		1D6A3A4F887B37995524457E /* FEMMappingUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMappingUtility.m; sourceTree = "<group>"; };
 		1D6A3A6202A14A056B23F7DE /* ChildRealmObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildRealmObject.h; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 		1D6A3BDA3CA0DDFF256CDB49 /* FEMExcludableCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMExcludableCollection.m; sourceTree = "<group>"; };
 		1D6A3BF4258AB646755B4920 /* FEMAttribute+Realm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FEMAttribute+Realm.m"; sourceTree = "<group>"; };
 		1D6A3C3EADDE4B98CA7ED02D /* FEMObjectCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectCache.h; sourceTree = "<group>"; };
-		1D6A3C46820D667216C348CB /* AssingmentPolicy_ToMany_Assign_1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AssingmentPolicy_ToMany_Assign_1.json; sourceTree = "<group>"; };
+		1D6A3C46820D667216C348CB /* AssingmentPolicyToManyUpdate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AssingmentPolicyToManyUpdate.json; sourceTree = "<group>"; };
 		1D6A3C4B6BB4FD8C58AE917F /* FEMRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRelationship.m; sourceTree = "<group>"; };
 		1D6A3C52069AF019EF22207F /* UniqueToManyChildRealmObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniqueToManyChildRealmObject.m; sourceTree = "<group>"; };
 		1D6A3C6340421D5EC70DD868 /* ToOneNullRelationship.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ToOneNullRelationship.json; sourceTree = "<group>"; };
@@ -459,10 +459,10 @@
 				1D6A341208D2C52D9CAEA707 /* ToManyRelationship.json */,
 				1D6A31F6EBDE44008F52FE4A /* ToManyNullRelationship.json */,
 				1D6A3E351ED08B818DBEE984 /* PrimaryKey.json */,
-				1D6A3426C72B79468CAA1A76 /* AssingmentPolicy_ToMany_Assign_0.json */,
-				1D6A3C46820D667216C348CB /* AssingmentPolicy_ToMany_Assign_1.json */,
-				1D6A3A3E89901D3AB514A01F /* AssingmentPolicy_ToMany_Assign_2.json */,
-				1D6A317E1F38E33196D624F5 /* AssingmentPolicy_ToMany_Assign_3.json */,
+				1D6A3426C72B79468CAA1A76 /* AssingmentPolicyToManyInit.json */,
+				1D6A3C46820D667216C348CB /* AssingmentPolicyToManyUpdate.json */,
+				1D6A3A3E89901D3AB514A01F /* AssingmentPolicyToManyNull.json */,
+				1D6A317E1F38E33196D624F5 /* AssingmentPolicyToManyEmptyArray.json */,
 			);
 			path = Fixture;
 			sourceTree = "<group>";
@@ -1071,10 +1071,10 @@
 				1D6A39A0FF7325163DE93331 /* ToManyRelationship.json in Resources */,
 				1D6A32C7277B790720AC1B66 /* ToManyNullRelationship.json in Resources */,
 				1D6A372138CB42C10C48BC5A /* PrimaryKey.json in Resources */,
-				1D6A34259396ADC8674E44A1 /* AssingmentPolicy_ToMany_Assign_0.json in Resources */,
-				1D6A331A96802AA9636D741A /* AssingmentPolicy_ToMany_Assign_1.json in Resources */,
-				1D6A354ABE158A2252246FFB /* AssingmentPolicy_ToMany_Assign_2.json in Resources */,
-				1D6A33F2272F7E1A33B1D7FC /* AssingmentPolicy_ToMany_Assign_3.json in Resources */,
+				1D6A34259396ADC8674E44A1 /* AssingmentPolicyToManyInit.json in Resources */,
+				1D6A331A96802AA9636D741A /* AssingmentPolicyToManyUpdate.json in Resources */,
+				1D6A354ABE158A2252246FFB /* AssingmentPolicyToManyNull.json in Resources */,
+				1D6A33F2272F7E1A33B1D7FC /* AssingmentPolicyToManyEmptyArray.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
