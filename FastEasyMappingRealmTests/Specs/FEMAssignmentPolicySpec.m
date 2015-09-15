@@ -64,10 +64,12 @@ describe(@"FEMAssignmentPolicy", ^{
 
             it(@"should assign value", ^{
                 [[@(object.primaryKeyProperty) should] equal:@5];
-                [[@(object.toManyRelationship.count) should] equal:@1];
+                [[@(object.toManyRelationship.count) should] equal:@2];
 
-                UniqueToManyChildRealmObject *child = object.toManyRelationship.firstObject;
-                [[@(child.primaryKey) should] equal:@10];
+                UniqueToManyChildRealmObject *child0 = object.toManyRelationship[0];
+                [[@(child0.primaryKey) should] equal:@10];
+                UniqueToManyChildRealmObject *child1 = object.toManyRelationship[1];
+                [[@(child1.primaryKey) should] equal:@11];
             });
 
             it(@"should re-assign value", ^{
@@ -75,12 +77,14 @@ describe(@"FEMAssignmentPolicy", ^{
                 [deserializer fillObject:object fromRepresentation:fixture1 mapping:mapping];
 
                 [[@(object.primaryKeyProperty) should] equal:@5];
-                [[@(object.toManyRelationship.count) should] equal:@1];
+                [[@(object.toManyRelationship.count) should] equal:@2];
 
-                UniqueToManyChildRealmObject *child = object.toManyRelationship.firstObject;
-                [[@(child.primaryKey) should] equal:@11];
+                UniqueToManyChildRealmObject *child0 = object.toManyRelationship[0];
+                [[@(child0.primaryKey) should] equal:@11];
+                UniqueToManyChildRealmObject *child1 = object.toManyRelationship[1];
+                [[@(child1.primaryKey) should] equal:@12];
 
-                [[@([UniqueToManyChildRealmObject allObjectsInRealm:realm].count) should] equal:@2];
+                [[@([UniqueToManyChildRealmObject allObjectsInRealm:realm].count) should] equal:@3];
                 [[[UniqueToManyChildRealmObject objectsInRealm:realm where:@"primaryKey == 10"] shouldNot] beNil];
             });
 
@@ -91,8 +95,9 @@ describe(@"FEMAssignmentPolicy", ^{
                 [[@(object.primaryKeyProperty) should] equal:@5];
                 [[@(object.toManyRelationship.count) should] equal:@0];
 
-                [[@([UniqueToManyChildRealmObject allObjectsInRealm:realm].count) should] equal:@1];
+                [[@([UniqueToManyChildRealmObject allObjectsInRealm:realm].count) should] equal:@2];
                 [[[UniqueToManyChildRealmObject objectsInRealm:realm where:@"primaryKey == 10"] shouldNot] beNil];
+                [[[UniqueToManyChildRealmObject objectsInRealm:realm where:@"primaryKey == 11"] shouldNot] beNil];
             });
         });
 
@@ -112,10 +117,12 @@ describe(@"FEMAssignmentPolicy", ^{
 
             it(@"should assign value", ^{
                 [[@(object.primaryKeyProperty) should] equal:@5];
-                [[@(object.toManyRelationship.count) should] equal:@1];
+                [[@(object.toManyRelationship.count) should] equal:@2];
 
-                UniqueToManyChildRealmObject *child = object.toManyRelationship.firstObject;
-                [[@(child.primaryKey) should] equal:@10];
+                UniqueToManyChildRealmObject *child0 = object.toManyRelationship[0];
+                [[@(child0.primaryKey) should] equal:@10];
+                UniqueToManyChildRealmObject *child1 = object.toManyRelationship[1];
+                [[@(child1.primaryKey) should] equal:@11];
             });
 
             it(@"should merge values", ^{
@@ -123,13 +130,14 @@ describe(@"FEMAssignmentPolicy", ^{
                 [deserializer fillObject:object fromRepresentation:fixture1 mapping:mapping];
 
                 [[@(object.primaryKeyProperty) should] equal:@5];
-                [[@(object.toManyRelationship.count) should] equal:@2];
+                [[@(object.toManyRelationship.count) should] equal:@3];
 
                 UniqueToManyChildRealmObject *child0 = object.toManyRelationship[0];
                 [[@(child0.primaryKey) should] equal:@10];
-
                 UniqueToManyChildRealmObject *child1 = object.toManyRelationship[1];
                 [[@(child1.primaryKey) should] equal:@11];
+                UniqueToManyChildRealmObject *child2 = object.toManyRelationship[2];
+                [[@(child2.primaryKey) should] equal:@12];
             });
 
             it(@"should ignore null value", ^{
@@ -137,10 +145,12 @@ describe(@"FEMAssignmentPolicy", ^{
                 [deserializer fillObject:object fromRepresentation:fixture2 mapping:mapping];
 
                 [[@(object.primaryKeyProperty) should] equal:@5];
-                [[@(object.toManyRelationship.count) should] equal:@1];
+                [[@(object.toManyRelationship.count) should] equal:@2];
 
                 UniqueToManyChildRealmObject *child0 = object.toManyRelationship[0];
                 [[@(child0.primaryKey) should] equal:@10];
+                UniqueToManyChildRealmObject *child1 = object.toManyRelationship[1];
+                [[@(child1.primaryKey) should] equal:@11];
             });
 
             it(@"should ignore empty array", ^{
@@ -148,10 +158,12 @@ describe(@"FEMAssignmentPolicy", ^{
                 [deserializer fillObject:object fromRepresentation:fixture3 mapping:mapping];
 
                 [[@(object.primaryKeyProperty) should] equal:@5];
-                [[@(object.toManyRelationship.count) should] equal:@1];
+                [[@(object.toManyRelationship.count) should] equal:@2];
 
                 UniqueToManyChildRealmObject *child0 = object.toManyRelationship[0];
                 [[@(child0.primaryKey) should] equal:@10];
+                UniqueToManyChildRealmObject *child1 = object.toManyRelationship[1];
+                [[@(child1.primaryKey) should] equal:@11];
             });
         });
 
