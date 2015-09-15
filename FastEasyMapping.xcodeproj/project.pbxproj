@@ -117,8 +117,8 @@
 		AD52DF851B0387C000E46915 /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
 		AD52DF871B0387C000E46915 /* FEMSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* FEMSerializerSpec.m */; };
 		AD52DF891B0387C000E46915 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
+		AD68FA5C1BA8630B005B4F4A /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8600491B9ECF2100265307 /* Realm.framework */; };
 		AD8600461B9ECCDB00265307 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */; };
-		AD86004A1B9ECF2100265307 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8600491B9ECF2100265307 /* Realm.framework */; };
 		AD86004D1B9ED9C800265307 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD86004B1B9ECF4800265307 /* libc++.tbd */; };
 		ADABAFDD1B9EDC1A003D8614 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ADF700F21B9A1EE200713D61 /* libc++.dylib */; };
 		ADEC66C41B9D9E7000F528C8 /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEC66C21B9D9E7000F528C8 /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -401,7 +401,7 @@
 			files = (
 				ADABAFDD1B9EDC1A003D8614 /* libc++.dylib in Frameworks */,
 				AD86004D1B9ED9C800265307 /* libc++.tbd in Frameworks */,
-				AD86004A1B9ECF2100265307 /* Realm.framework in Frameworks */,
+				AD68FA5C1BA8630B005B4F4A /* Realm.framework in Frameworks */,
 				AD8600461B9ECCDB00265307 /* FastEasyMapping.framework in Frameworks */,
 				ADF700B01B99F58000713D61 /* FastEasyMappingRealm.framework in Frameworks */,
 				7F86EF41F2032565EEFD5AD5 /* libPods-FastEasyMappingRealmTests.a in Frameworks */,
@@ -1594,9 +1594,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/External/Realm/build/ios",
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(PROJECT_DIR)/External/Realm/build/ios",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1604,6 +1604,18 @@
 					"$(inherited)",
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/External/Realm/",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CMFactory\"",
+					"\"${PODS_ROOT}/Headers/Public/Kiwi\"",
+					"\"${PODS_ROOT}/Headers/Public/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/Public/MagicalRecord/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/Public/Mantle\"",
+					"\"${PODS_ROOT}/Headers/Public/OCMock\"",
+					"\"${PODS_ROOT}/Headers/Public/libextobjc\"",
+				);
 				INFOPLIST_FILE = FastEasyMappingRealmTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1623,12 +1635,24 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/External/Realm/build/ios",
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(PROJECT_DIR)/External/Realm/build/ios",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/External/Realm/",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CMFactory\"",
+					"\"${PODS_ROOT}/Headers/Public/Kiwi\"",
+					"\"${PODS_ROOT}/Headers/Public/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/Public/MagicalRecord/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/Public/Mantle\"",
+					"\"${PODS_ROOT}/Headers/Public/OCMock\"",
+					"\"${PODS_ROOT}/Headers/Public/libextobjc\"",
+				);
 				INFOPLIST_FILE = FastEasyMappingRealmTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
