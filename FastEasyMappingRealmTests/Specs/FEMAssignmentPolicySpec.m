@@ -52,7 +52,7 @@ describe(@"FEMAssignmentPolicy", ^{
             __block UniqueRealmObject *object = nil;
             beforeEach(^{
                 mapping = [UniqueRealmObject toManyRelationshipMappingWithPolicy:FEMAssignmentPolicyAssign];
-                NSDictionary *fixture0 = [CMFixture buildUsingFixture:@"AssingmentPolicy_ToMany_Assign_0"];
+                NSDictionary *fixture0 = [CMFixture buildUsingFixture:@"AssingmentPolicyToManyInit"];
                 object = [deserializer objectFromRepresentation:fixture0 mapping:mapping];
             });
 
@@ -71,7 +71,7 @@ describe(@"FEMAssignmentPolicy", ^{
             });
 
             it(@"should re-assign value", ^{
-                NSDictionary *fixture1 = [CMFixture buildUsingFixture:@"AssingmentPolicy_ToMany_Assign_1"];
+                NSDictionary *fixture1 = [CMFixture buildUsingFixture:@"AssingmentPolicyToManyUpdate"];
                 [deserializer fillObject:object fromRepresentation:fixture1 mapping:mapping];
 
                 [[@(object.primaryKeyProperty) should] equal:@5];
@@ -84,8 +84,8 @@ describe(@"FEMAssignmentPolicy", ^{
                 [[[UniqueToManyChildRealmObject objectsInRealm:realm where:@"primaryKey == 10"] shouldNot] beNil];
             });
 
-            it(@"should assign nil", ^{
-                NSDictionary *fixture2 = [CMFixture buildUsingFixture:@"AssingmentPolicy_ToMany_Assign_2"];
+            it(@"should assign null", ^{
+                NSDictionary *fixture2 = [CMFixture buildUsingFixture:@"AssingmentPolicyToManyNull"];
                 [deserializer fillObject:object fromRepresentation:fixture2 mapping:mapping];
 
                 [[@(object.primaryKeyProperty) should] equal:@5];
@@ -100,7 +100,7 @@ describe(@"FEMAssignmentPolicy", ^{
             __block UniqueRealmObject *object = nil;
             beforeEach(^{
                 mapping = [UniqueRealmObject toManyRelationshipMappingWithPolicy:FEMRealmAssignmentPolicyCollectionMerge];
-                NSDictionary *fixture0 = [CMFixture buildUsingFixture:@"AssingmentPolicy_ToMany_Assign_0"];
+                NSDictionary *fixture0 = [CMFixture buildUsingFixture:@"AssingmentPolicyToManyInit"];
                 object = [deserializer objectFromRepresentation:fixture0 mapping:mapping];
             });
 
@@ -119,7 +119,7 @@ describe(@"FEMAssignmentPolicy", ^{
             });
 
             it(@"should merge values", ^{
-                NSDictionary *fixture1 = [CMFixture buildUsingFixture:@"AssingmentPolicy_ToMany_Assign_1"];
+                NSDictionary *fixture1 = [CMFixture buildUsingFixture:@"AssingmentPolicyToManyUpdate"];
                 [deserializer fillObject:object fromRepresentation:fixture1 mapping:mapping];
 
                 [[@(object.primaryKeyProperty) should] equal:@5];
@@ -133,7 +133,7 @@ describe(@"FEMAssignmentPolicy", ^{
             });
 
             it(@"should ignore null value", ^{
-                NSDictionary *fixture2 = [CMFixture buildUsingFixture:@"AssingmentPolicy_ToMany_Assign_2"];
+                NSDictionary *fixture2 = [CMFixture buildUsingFixture:@"AssingmentPolicyToManyNull"];
                 [deserializer fillObject:object fromRepresentation:fixture2 mapping:mapping];
 
                 [[@(object.primaryKeyProperty) should] equal:@5];
@@ -144,7 +144,7 @@ describe(@"FEMAssignmentPolicy", ^{
             });
 
             it(@"should ignore empty array", ^{
-                NSDictionary *fixture3 = [CMFixture buildUsingFixture:@"AssingmentPolicy_ToMany_Assign_3"];
+                NSDictionary *fixture3 = [CMFixture buildUsingFixture:@"AssingmentPolicyToManyEmptyArray"];
                 [deserializer fillObject:object fromRepresentation:fixture3 mapping:mapping];
 
                 [[@(object.primaryKeyProperty) should] equal:@5];
