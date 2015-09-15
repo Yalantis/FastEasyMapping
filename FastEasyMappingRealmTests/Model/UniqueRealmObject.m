@@ -12,9 +12,9 @@
 
 @implementation UniqueRealmObject
 
-+ (NSString *)primaryKey {
-    return @"primaryKeyProperty";
-}
+//+ (NSString *)primaryKey {
+//    return @"primaryKeyProperty";
+//}
 
 + (NSDictionary *)defaultPropertyValues {
     return @{@"stringProperty": @""};
