@@ -18,7 +18,7 @@ It turns out, that almost all popular libraries for JSON mapping are SLOW. The m
 ```ruby
 #Podfile
 platform :ios, '7.0'
-pod 'FastEasyMapping', '~> 1.0'
+pod 'FastEasyMapping', '~> 1.0.1'
 ```
 or add as a static library.
 
