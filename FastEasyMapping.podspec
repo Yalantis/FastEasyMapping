@@ -10,6 +10,7 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   spec.ios.deployment_target = '7.0'
   spec.osx.deployment_target = '10.9'
+  spec.tvos.deployment_target = '9.0'
   spec.frameworks = 'CoreData'
 
   spec.source_files = 'FastEasyMapping/Source/**/*.{h,m}'
