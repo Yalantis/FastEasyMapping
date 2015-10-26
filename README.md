@@ -106,14 +106,14 @@ In order to map _JSON to Object_ and vice versa we have to describe the mapping 
 @implementation Person (Mapping)
 
 + (FEMMapping *)defaultMapping {
-	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
     [mapping addAttributesFromArray:@[@"name"]];
     [mapping addAttributesFromDictionary:@{@"email": @"user_email"}];
 
     [mapping addRelationshipMapping:[Car defaultMapping] forProperty:@"car" keyPath:@"car"];
-    [mapping addToManyRelationshipMapping:[Person defaultMapping] forProperty:@"phones" keyPath:@"phones"];
+    [mapping addToManyRelationshipMapping:[Phone defaultMapping] forProperty:@"phones" keyPath:@"phones"];
 
-  	return mapping;
+    return mapping;
 }
 
 @end
@@ -242,7 +242,7 @@ First of all we've defined [NSDateFormatter](https://developer.apple.com/library
 
 #### Adding attribute to FEMMapping
 There are several shortcuts that allow you to add attributes easier to the mapping itself:
-##### Excplicitly
+##### Explicitly
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"url"];
@@ -255,13 +255,13 @@ FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 [mapping addAttributeWithProperty:@"property" keyPath:@"keyPath"];
 ```
 
-##### As Dictionary
+##### As a Dictionary
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 [mapping addAttributesFromDictionary:@{@"property": @"keyPath"}];
 ```
 
-##### As Array
+##### As an Array
 Useful when the `property` is equal to the `keyPath`:
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
@@ -307,7 +307,7 @@ Assignment policy describes how deserialized relationship value should be assign
 
 #### Adding relationship to FEMMapping
 
-##### Excplicitly
+##### Explicitly
 ```objective-c
 FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[Person class]];
 FEMMapping *carMapping = [[FEMMapping alloc] initWithObjectClass:[Car class]];
@@ -563,20 +563,20 @@ During deserialization of persons collection order will be the following:
 
 ### 1.0
 - [Nullability](https://developer.apple.com/swift/blog/?id=25) support for easier Swift integration.
-- Replacing of `FEMObjectDeserializer` and `FEMManagedObjectDeserializer` by `FEMDeserializer`.
-- Replacing of `FEMObjectMapping` and `FEMManagedObjectMapping` by `FEMMapping`.
+- Replacing of `FEMObjectDeserializer` and `FEMManagedObjectDeserializer` by `FEMDeserializer`. Backward compatible via [@compatibility_alias](http://nshipster.com/at-compiler-directives/).
+- Replacing of `FEMObjectMapping` and `FEMManagedObjectMapping` by `FEMMapping`. Backward compatible via [@compatibility_alias](http://nshipster.com/at-compiler-directives/).
 - Added Delegation for `FEMDeserializer`.
 - `FEMDeserializer` supports weak relationships.
 - Fixed bug when `nil` value for custom `FEMAttribute` map is ignored during deserialization. 
 - Fixed bug when `nil` value for custom `FEMAttribute` reverse map is ignored during serialization.
 - Refactoring of internals.
-- Numerious renaming in favour of shorter method names.
+- Numerious renaming in favour of shorter method names. Methods from [0.5.1](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/) marked as deprecated.
 - Update tests and examples to latest syntax.
 - Add full description to README.
 
 ### 0.5.1
-- Rename [FEMAttributeMapping](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttributeMapping.h) to [FEMAttribute](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttribute.h), [FEMRelationshipMapping](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationshipMapping.h) to [FEMRelationship](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationship.h)
-- [Shorten FEMMapping mutation methods](https://github.com/Yalantis/FastEasyMapping/blob/release/0.5.1/FastEasyMapping/Source/Core/Mapping/FEMMapping.h#42)
+- Rename [FEMAttributeMapping](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttributeMapping.h) to [FEMAttribute](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttribute.h), [FEMRelationshipMapping](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationshipMapping.h) to [FEMRelationship](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationship.h)
+- [Shorten FEMMapping mutation methods](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/Source/Core/Mapping/FEMMapping.h#L42)
 
 ### 0.4.1
 - Resolves: [#19](https://github.com/Yalantis/FastEasyMapping/issues/19), [#18](https://github.com/Yalantis/FastEasyMapping/issues/18), [#16](https://github.com/Yalantis/FastEasyMapping/issues/16), [#12](https://github.com/Yalantis/FastEasyMapping/issues/12)
