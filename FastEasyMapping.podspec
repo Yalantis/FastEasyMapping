@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/Yalantis/FastEasyMapping"
   spec.license      = { :type => 'MIT', :file => 'LICENSE' }
   spec.author       = { 'Dmitriy Zen' => 'zen.dev@yandex.com' }
-  spec.source       = { :git => 'https://github.com/Yalantis/FastEasyMapping.git', :tag => '#{spec.version}' }
+  spec.source       = { :git => 'https://github.com/Yalantis/FastEasyMapping.git', :tag => spec.version.to_s }
 
   spec.requires_arc = true
   spec.ios.deployment_target = '7.0'
