@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL weak;
 @property (nonatomic, copy) FEMAssignmentPolicy assignmentPolicy;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath mapping:(FEMMapping *)mapping NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithProperty:(NSString *)property mapping:(FEMMapping *)mapping;
 - (instancetype)initWithProperty:(NSString *)property keyPath:(NSString *)keyPath mapping:(FEMMapping *)mapping assignmentPolicy:(FEMAssignmentPolicy)assignmentPolicy;
