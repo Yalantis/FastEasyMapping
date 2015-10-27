@@ -560,68 +560,7 @@ During deserialization of persons collection order will be the following:
 7. didMapCollection:`Persons instances Array` fromRepresentation:`Persons Array` mapping:`Person mapping`
 
 # Changelog
-
-### 1.0
-- [Nullability](https://developer.apple.com/swift/blog/?id=25) support for easier Swift integration.
-- Replacing of `FEMObjectDeserializer` and `FEMManagedObjectDeserializer` by `FEMDeserializer`. Backward compatible via [@compatibility_alias](http://nshipster.com/at-compiler-directives/).
-- Replacing of `FEMObjectMapping` and `FEMManagedObjectMapping` by `FEMMapping`. Backward compatible via [@compatibility_alias](http://nshipster.com/at-compiler-directives/).
-- Added Delegation for `FEMDeserializer`.
-- `FEMDeserializer` supports weak relationships.
-- Fixed bug when `nil` value for custom `FEMAttribute` map is ignored during deserialization. 
-- Fixed bug when `nil` value for custom `FEMAttribute` reverse map is ignored during serialization.
-- Refactoring of internals.
-- Numerious renaming in favour of shorter method names. Methods from [0.5.1](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/) marked as deprecated.
-- Update tests and examples to latest syntax.
-- Add full description to README.
-
-### 0.5.1
-- Rename [FEMAttributeMapping](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttributeMapping.h) to [FEMAttribute](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/Source/Core/Mapping/Attribute/FEMAttribute.h), [FEMRelationshipMapping](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationshipMapping.h) to [FEMRelationship](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/Source/Core/Mapping/Relationship/FEMRelationship.h)
-- [Shorten FEMMapping mutation methods](https://github.com/Yalantis/FastEasyMapping/blob/0.5.1/FastEasyMapping/Source/Core/Mapping/FEMMapping.h#L42)
-
-### 0.4.1
-- Resolves: [#19](https://github.com/Yalantis/FastEasyMapping/issues/19), [#18](https://github.com/Yalantis/FastEasyMapping/issues/18), [#16](https://github.com/Yalantis/FastEasyMapping/issues/16), [#12](https://github.com/Yalantis/FastEasyMapping/issues/12)
-- Add Specs for AttributeMapping
-
-### 0.3.7
-- Added equality check before objects removal in FEMAssignmentPolicyObjectReplace
-- Fixed minor issues
-
-
-### 0.3.7
-- Add synchronization to [FEMManagedObjectDeserializer](https://github.com/Yalantis/FastEasyMapping/blob/release/0.3.7/FastEasyMapping/Source/Core/Deserializer/FEMManagedObjectDeserializer.h#L43)
-- Minor refactoring
-- Fixed minor naming issues
-
-### 0.3.3
-- Update null-relationship handling in Managed Object Deserializer & Cache [handling of nil-relationship](https://github.com/Yalantis/FastEasyMapping/issues/7)
-
-### 0.3.2
-- Fix [handling of nil-relationship](https://github.com/Yalantis/FastEasyMapping/issues/7) data during deserialization
-- Remove compiler warnings
-
-### 0.3.1
-- Set deployment target to 6.0
-- Fix missing cache for + [FEMManagedObjectDeserializer fillObject:fromExternalRepresentation:usingMapping:]
-- Update hanlding of nil relationships in assignment policies
-
-### 0.3.0
-- Add assignment policy support for FEMManagedObjectDeserializer: Assign, Merge, Replace
-- Cover FEMCache by tests
-
-### 0.2.1
-- Improved types introspection by @advantis
-
-### 0.2.0
-- Renamed to FastEasyMapping
-
-### 0.1.2
-- Fixed serialization of BOOL properties on 64 bits
-
-### 0.1.1
-- Fixed caching behaviour for new objects
-
-### 0.1
-- Added managed objects cache for deserialization
+Moved to [releases](https://github.com/Yalantis/FastEasyMapping/releases)
 
 # Thanks
 * Special thanks to [lucasmedeirosleite](https://github.com/lucasmedeirosleite) for amazing framework.
