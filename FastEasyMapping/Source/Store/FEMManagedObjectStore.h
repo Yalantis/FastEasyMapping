@@ -2,13 +2,15 @@
 
 #import "FEMObjectStore.h"
 
-@class NSManagedObjectContext;
-
 NS_ASSUME_NONNULL_BEGIN
+
+@class NSManagedObjectContext;
 
 @interface FEMManagedObjectStore : FEMObjectStore
 
+- (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithContext:(NSManagedObjectContext *)context NS_DESIGNATED_INITIALIZER;
+
 @property (nonatomic, strong, readonly) NSManagedObjectContext *context;
 
 @property (nonatomic) BOOL saveContextOnCommit;
