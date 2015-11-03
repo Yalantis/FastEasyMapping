@@ -83,10 +83,10 @@
 	NSParameterAssert(object);
 
 	id primaryKeyValue = [object valueForKey:mapping.primaryKey];
-    if (primaryKeyValue) {
-        NSMutableDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
-        entityObjectsMap[primaryKeyValue] = object;
-    }
+	if (primaryKeyValue) {
+		NSMutableDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
+		entityObjectsMap[primaryKeyValue] = object;
+	}
 }
 
 - (NSDictionary *)existingObjectsForMapping:(FEMMapping *)mapping {
