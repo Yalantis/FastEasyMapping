@@ -3,10 +3,10 @@
 [![Build Status](https://travis-ci.org/Yalantis/FastEasyMapping.png)](https://travis-ci.org/Yalantis/FastEasyMapping)
 
 ### Note
-This is a fork of [EasyMapping](https://github.com/lucasmedeirosleite/EasyMapping), a flexible and easy framework for JSON mapping.
+This is a fork of [EasyMapping](https://github.com/EasyMapping/EasyMapping), a flexible and easy framework for JSON mapping.
 
 ## Reason
-It turns out, that almost all popular libraries for JSON mapping are SLOW. The main reason for that is multiple trips to database during the lookup of existing objects. We [decided](https://yalantis.com/blog/from-json-to-core-data-fast-and-effectively/) to take an already existing [flexible solution](https://github.com/lucasmedeirosleite/EasyMapping) (i.e. EasyMapping) and improve its overall performance.
+It turns out, that almost all popular libraries for JSON mapping are SLOW. The main reason for that is multiple trips to database during the lookup of existing objects. We [decided](https://yalantis.com/blog/from-json-to-core-data-fast-and-effectively/) to take an already existing [flexible solution](https://github.com/EasyMapping/EasyMapping) (i.e. EasyMapping) and improve its overall performance.
 
 <p align="center" >
   <img src="https://raw.githubusercontent.com/Yalantis/FastEasyMapping/efabb88b0831c7ece88e728b9665edc4d3af5b1f/Assets/performance.png" alt="FastEasyMapping" title="FastEasyMapping">
@@ -566,4 +566,4 @@ Moved to [releases](https://github.com/Yalantis/FastEasyMapping/releases)
 * Special thanks to [lucasmedeirosleite](https://github.com/lucasmedeirosleite) for amazing framework.
 
 # Extra
-Read out [blogpost](http://yalantis.com/blog/from-json-to-core-data-fast-and-effectively/) about FastEasyMapping.
+Read out [blogpost](https://yalantis.com/blog/from-json-to-core-data-fast-and-effectively/) about FastEasyMapping.
