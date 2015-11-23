@@ -17,4 +17,6 @@
 + (FEMMapping *)personWithPhoneMapping;
 + (FEMMapping *)personWithCarMapping;
 
++ (FEMMapping *)personWithCarPKMapping;
+
 @end

@@ -96,4 +96,18 @@
     return mapping;
 }
 
++ (FEMMapping *)personWithCarPKMapping {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    mapping.primaryKey = @"personID";
+    [mapping addAttributesFromDictionary:@{@"personID": @"id"}];
+    [mapping addAttributesFromArray:@[@"name", @"email"]];
+
+    FEMMapping *carMapping = [[FEMMapping alloc] initWithEntityName:@"Car"];
+    carMapping.primaryKey = @"carID";
+    [carMapping addAttributeWithProperty:@"carID" keyPath:nil];
+    [mapping addRelationshipMapping:carMapping forProperty:@"car" keyPath:@"car"];
+
+    return mapping;
+}
+
 @end
