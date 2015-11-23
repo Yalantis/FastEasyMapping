@@ -468,9 +468,9 @@ In the example above there is an issue: what if our database doesn't contain `Ca
 	FEMMapping *categoryMapping = [[FEMMapping alloc] initWithEntityName:@"Category"];
 	categoryMapping.primaryKey = @"identifier";
 	categoryMapping.weak = YES;
-	[categoryMapping addAttributesFromDictionary:@{@"identifier": @"category"}];
+    [categoryMapping addAttributeWithProperty:@"identifier" keyPath:nil];
 
-	[mapping addRelationshipMapping:categoryMapping property:@"category" keyPath:nil];
+	[mapping addRelationshipMapping:categoryMapping property:@"category" keyPath:@"category"];
 
 	return mapping;
 }
