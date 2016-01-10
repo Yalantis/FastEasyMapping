@@ -205,14 +205,14 @@ Examples:
 ```objective-c
 FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"url"];
 // or 
-FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"url" keyPath:@"url" map:NULL, reverseMap:NULL];
+FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"url" keyPath:@"url" map:NULL reverseMap:NULL];
 ``` 
 
 #### Mapping of value with different keys and the same type:
 ```objective-c
 FEMAttribute *attribute = [FEMAttribute mappingOfProperty:@"urlString" toKeyPath:@"URL"];
 // or 
-FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"urlString" keyPath:@"URL" map:NULL, reverseMap:NULL];
+FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:@"urlString" keyPath:@"URL" map:NULL reverseMap:NULL];
 ``` 
 
 #### Mapping of different types:
