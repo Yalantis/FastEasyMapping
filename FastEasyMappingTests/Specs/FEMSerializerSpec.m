@@ -131,6 +131,7 @@ SPEC_BEGIN(FEMSerializerSpec)
 				__block NSDate *date = [NSDate date];
 
 				NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
 				[formatter setDateFormat:@"yyyy-MM-dd"];
 				__block NSString *dateString = [formatter stringFromDate:date];
 

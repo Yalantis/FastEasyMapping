@@ -4,7 +4,7 @@
 //
 
 #import <Kiwi/Kiwi.h>
-#import <MagicalRecord/MagicalRecord.h>
+#import <MagicalRecord/CoreData+MagicalRecord.h>
 #import <CMFactory/CMFixture.h>
 
 #import "Person.h"
