@@ -11,5 +11,7 @@
 @property (nonatomic, retain) NSString * year;
 @property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSManagedObject *person;
+@property (nonatomic, assign) BOOL * electric;
+
 
 @end

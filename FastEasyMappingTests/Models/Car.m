@@ -10,5 +10,6 @@
 @dynamic year;
 @dynamic createdAt;
 @dynamic person;
+@dynamic electric;
 
 @end

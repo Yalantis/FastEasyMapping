@@ -15,6 +15,7 @@
 #import "Phone.h"
 #import "FEMManagedObjectDeserializer.h"
 #import "KWNilMatcher.h"
+#import "FEMSerializer.h"
 
 SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
@@ -58,6 +59,13 @@ SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
                 specify(^{
                     [[car.year should] equal:[externalRepresentation objectForKey:@"year"]];
+                });
+                
+                specify(^{
+                    NSDictionary *representation = [FEMSerializer serializeObject:car usingMapping:[MappingProvider carMapping]];
+                    NSNumber *boolNumber = representation[@"electric"];
+                    BOOL isBool = (boolNumber == (void*)kCFBooleanFalse || boolNumber == (void*)kCFBooleanTrue);
+                    [[@(isBool) should] equal:@YES];
                 });
 
             });

@@ -21,7 +21,7 @@
 
 + (FEMMapping *)carMapping {
     FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Car"];
-    [mapping addAttributesFromArray:@[@"model", @"year"]];
+    [mapping addAttributesFromArray:@[@"model", @"year", @"electric"]];
 
     return mapping;
 }
