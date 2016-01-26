@@ -2,7 +2,7 @@
 
 #import <Kiwi/Kiwi.h>
 #import <CMFactory/CMFixture.h>
-#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord.h>
 
 #import "MappingProvider.h"
 #import "Person.h"
@@ -14,6 +14,7 @@
 #import "FEMMapping.h"
 #import "Phone.h"
 #import "FEMManagedObjectDeserializer.h"
+#import "KWNilMatcher.h"
 
 SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
@@ -230,6 +231,29 @@ SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
                 });
 
+            });
+
+            context(@"with null relationship for PK mapping", ^{
+                __block Person *person;
+                __block NSDictionary *externalRepresentation;
+
+                beforeEach(^{
+                    externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithNullRelationships"];
+                    person = [FEMDeserializer objectFromRepresentation:externalRepresentation
+                                                               mapping:[MappingProvider personWithCarPKMapping]
+                                                               context:moc];
+                });
+
+                specify(^{
+                    [[person.car should] beNil];
+
+//                    [[person.model should] equal:[externalRepresentation objectForKey:@"model"]];
+                });
+
+//                specify(^{
+//                    [[person.year should] equal:[externalRepresentation objectForKey:@"year"]];
+//                });
+                
             });
 
             context(@"with hasOne mapping", ^{
@@ -493,6 +517,10 @@ SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
                 });
             });
         });
+
+
+
+
 
 //    describe(@"synchronization", ^{
 //        __block Car *car;

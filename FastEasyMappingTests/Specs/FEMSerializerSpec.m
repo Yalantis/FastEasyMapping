@@ -326,6 +326,22 @@ SPEC_BEGIN(FEMSerializerSpec)
 						[[[[representation objectForKey:@"vehicle"] objectForKey:@"model"] should] equal:@"i30"];
 					});
 				});
+                
+                context(@"nil relationship for PK mapping", ^{
+                    __block PersonNative *person;
+					__block NSDictionary *representation;
+                    
+                    beforeEach(^{
+                        person = [[PersonNative alloc] init];
+                        person.name = @"Name";
+                        representation = [FEMSerializer serializeObject:person usingMapping:[MappingProviderNative personWithCarPKMapping]];
+                    });
+                    
+                    specify(^{
+                        [[representation[@"name"] should] equal:person.name];
+                        [[representation[@"car"] should] beNil];
+                    });
+                });
 
 				context(@"with hasManyRelation", ^{
 

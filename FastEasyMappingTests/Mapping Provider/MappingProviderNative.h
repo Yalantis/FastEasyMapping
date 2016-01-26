@@ -13,6 +13,8 @@
 + (FEMMapping *)phoneMapping;
 + (FEMMapping *)personMapping;
 + (FEMMapping *)personWithCarMapping;
++ (FEMMapping *)personWithCarPKMapping;
+
 + (FEMMapping *)personWithPhonesMapping;
 + (FEMMapping *)personWithOnlyValueBlockMapping;
 + (FEMMapping *)addressMapping;

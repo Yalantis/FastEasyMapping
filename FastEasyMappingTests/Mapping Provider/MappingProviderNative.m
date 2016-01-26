@@ -83,6 +83,19 @@
     return mapping;
 }
 
++ (FEMMapping *)personWithCarPKMapping {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
+    [mapping addAttributesFromArray:@[@"name"]];
+    
+    FEMMapping *carMapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class]];
+    carMapping.primaryKey = @"model";
+    [carMapping addAttributeWithProperty:@"model" keyPath:nil];
+
+    [mapping addRelationshipMapping:carMapping forProperty:@"car" keyPath:@"car"];
+    
+    return mapping;
+}
+
 + (FEMMapping *)personWithPhonesMapping {
     FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
     [mapping addAttributesFromArray:@[@"name", @"email"]];
