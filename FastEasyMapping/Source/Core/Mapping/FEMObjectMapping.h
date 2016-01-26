@@ -2,4 +2,4 @@
 
 #import "FEMMapping.h"
 
-@compatibility_alias FEMObjectMapping FEMMapping;
+#define FEMObjectMapping FEMMapping
