@@ -631,6 +631,7 @@
 				2CF8098418C3AD5700C07899 /* Sources */,
 				2CF8098518C3AD5700C07899 /* Frameworks */,
 				2CF8098618C3AD5700C07899 /* Resources */,
+				8889EA99FDF2E095312539E3 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -648,7 +649,7 @@
 		2CF8097018C3AD5700C07899 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Yalantis;
 				TargetAttributes = {
 					2CF8098718C3AD5700C07899 = {
@@ -704,6 +705,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8889EA99FDF2E095312539E3 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FastEasyMappingTests/Pods-FastEasyMappingTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2CF8097418C3AD5700C07899 /* Sources */ = {
@@ -800,6 +819,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -896,6 +916,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yalantis.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = FastEasyMappingTests;
 			};
 			name = Debug;
@@ -909,6 +930,7 @@
 				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yalantis.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = FastEasyMappingTests;
 			};
 			name = Release;
