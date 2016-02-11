@@ -14,7 +14,7 @@ It turns out, that almost all popular libraries for JSON mapping are SLOW. The m
 
 # Installation
 
-#### Cocoapods:
+#### CocoaPods:
 ```ruby
 #Podfile
 platform :ios, '7.0'
