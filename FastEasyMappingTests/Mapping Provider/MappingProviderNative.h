@@ -24,5 +24,7 @@
 + (FEMMapping *)planeMapping;
 + (FEMMapping *)alienMapping;
 + (FEMMapping *)nativeChildMapping;
++ (FEMMapping *)personWithRecursiveFriendsMapping;
++ (FEMMapping *)personWithRecursivePartnerMapping;
 
 @end

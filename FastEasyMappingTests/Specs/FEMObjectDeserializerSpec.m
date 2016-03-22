@@ -481,6 +481,54 @@ describe(@"FEMDeserializer", ^{
 
     });
     
+    context(@"with hasMany recursive mapping" , ^{
+        __block PersonNative *person;
+        
+        beforeEach(^{
+            NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithRecursiveRelationship"];
+            person = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative personWithRecursiveFriendsMapping]];
+        });
+        
+            it(@"should be a person", ^{
+                [[person should] beKindOfClass:[PersonNative class]];
+            });
+            
+            it(@"should have friends", ^{
+                [[@(person.friends.count) should] equal:@2];
+            });
+            
+            it(@"should have friends that have friends", ^{
+                PersonNative *friend = person.friends.firstObject;
+                [[@(friend.friends.count) should] equal:@1];
+                [[friend.friends.firstObject should] beKindOfClass:[PersonNative class]];
+                PersonNative *friendsFriend = (PersonNative *)friend.friends.firstObject;
+                [[friendsFriend.name should] equal:@"Pedro"];
+                [[friendsFriend.email should] equal:@"pedro@gmail.com"];
+                [[friendsFriend.friends should] beNil];
+            });
+    });
+    
+    context(@"with hasOne recursive mapping" , ^{
+        
+        __block PersonNative *person;
+        
+        beforeEach(^{
+            NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithRecursiveRelationship"];
+            person = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative personWithRecursivePartnerMapping]];
+        });
+        
+        it(@"should be a person", ^{
+            [[person should] beKindOfClass:[PersonNative class]];
+        });
+        
+        it(@"should have a parter", ^{
+            [[person.partner should] beNonNil];
+            [[person.partner.name should] equal:@"Ana"];
+            [[person.partner.email should] equal:@"ana@gmail.com"];
+        });
+    });
+    
+    
     context(@"with hasMany mapping with set and different key name", ^{
         
         __block SeaplaneNative * seaplane;
@@ -521,7 +569,6 @@ describe(@"FEMDeserializer", ^{
         });
     
     });
-    
 });
 
 SPEC_END

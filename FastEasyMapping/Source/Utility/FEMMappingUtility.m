@@ -10,7 +10,9 @@ void FEMMappingApply(FEMMapping *mapping, void (^apply)(FEMMapping *object)) {
     apply(mapping);
 
     for (FEMRelationship *relationship in mapping.relationships) {
-        FEMMappingApply(relationship.mapping, apply);
+        if (![relationship.mapping isEqual:mapping]) {
+            FEMMappingApply(relationship.mapping, apply);
+        }
     }
 }
 

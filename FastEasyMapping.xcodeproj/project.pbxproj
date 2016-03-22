@@ -82,6 +82,8 @@
 		69ED7D115200A0D4F52DBBCA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69ED730BF972DF74DC2BA5B3 /* InfoPlist.strings */; };
 		69ED7DADB8044F2B42C1CD94 /* FEMDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED772E50A1A831B78D48B3 /* FEMDeserializer.m */; };
 		69ED7E8934131F087C5492A3 /* FEMManagedObjectCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7DE30D50997F9408F36E /* FEMManagedObjectCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A14E88D1CA071BD007F4806 /* PersonWithRecursiveRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A14E88C1CA071BD007F4806 /* PersonWithRecursiveRelationship.json */; };
+		8AF453DF1CA0A6E000D38D8C /* ManagedPersonWithRecursiveRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AF453DE1CA0A6E000D38D8C /* ManagedPersonWithRecursiveRelationship.json */; };
 		9983A129111A4AB8A30520BE /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A6B49F30D4D58A8309D61 /* libPods-FastEasyMappingTests.a */; };
 		AD11B5EC1B038E8700B53F5A /* FEMMergeableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */; };
 		AD11B5ED1B038E8900B53F5A /* FEMExcludableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BDA3CA0DDFF256CDB49 /* FEMExcludableCollection.m */; };
@@ -235,6 +237,8 @@
 		69ED7F5DB5E0C3FF6672226E /* FEMTypeIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMTypeIntrospection.m; sourceTree = "<group>"; };
 		69ED7FE4AD3F8C3BD25B5825 /* CarWithRoot.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CarWithRoot.json; sourceTree = "<group>"; };
 		69ED7FF7736562A674D3696D /* PlaneNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneNative.h; sourceTree = "<group>"; };
+		8A14E88C1CA071BD007F4806 /* PersonWithRecursiveRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonWithRecursiveRelationship.json; sourceTree = "<group>"; };
+		8AF453DE1CA0A6E000D38D8C /* ManagedPersonWithRecursiveRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ManagedPersonWithRecursiveRelationship.json; sourceTree = "<group>"; };
 		95A8DE2E9CC533DA840A0845 /* Pods-FastEasyMappingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMappingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FastEasyMappingTests/Pods-FastEasyMappingTests.release.xcconfig"; sourceTree = "<group>"; };
 		AD52DF791B03657900E46915 /* FEMManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectDeserializer.h; sourceTree = "<group>"; };
 		AD52DF7B1B03657900E46915 /* FEMObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectDeserializer.h; sourceTree = "<group>"; };
@@ -513,6 +517,8 @@
 				1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */,
 				1D6A31C3D577329518B3E664 /* Person_1.json */,
 				1D6A3ACBBC8E66609F169E94 /* Person_2.json */,
+				8A14E88C1CA071BD007F4806 /* PersonWithRecursiveRelationship.json */,
+				8AF453DE1CA0A6E000D38D8C /* ManagedPersonWithRecursiveRelationship.json */,
 				1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */,
 				1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */,
 			);
@@ -691,8 +697,10 @@
 				2C375F3018CCD40200FCB8EA /* Female.json in Resources */,
 				2C375F3818CCD40200FCB8EA /* CarWithNestedAttributes.json in Resources */,
 				2C375F3618CCD40200FCB8EA /* CarWithRoot.json in Resources */,
+				8A14E88D1CA071BD007F4806 /* PersonWithRecursiveRelationship.json in Resources */,
 				2C375F3D18CCD40200FCB8EA /* NativeChild.json in Resources */,
 				2C375F3418CCD40200FCB8EA /* Alien.json in Resources */,
+				8AF453DF1CA0A6E000D38D8C /* ManagedPersonWithRecursiveRelationship.json in Resources */,
 				2C375F3A18CCD40200FCB8EA /* Address.json in Resources */,
 				2C375F3718CCD40200FCB8EA /* CarWithDate.json in Resources */,
 				1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */,
@@ -916,6 +924,10 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yalantis.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = FastEasyMappingTests;
 			};
@@ -930,6 +942,10 @@
 				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yalantis.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = FastEasyMappingTests;
 			};
