@@ -83,7 +83,7 @@
             context.targetRelationshipValue = targetValue;
 
             id assignmentValue = relationship.assignmentPolicy(context);
-            [object setValue:assignmentValue forKey:relationship.property];
+            [object fem_setValueIfDifferent:assignmentValue forKey:relationship.property];
         }
     }
 }
@@ -92,7 +92,7 @@
     id value = FEMRepresentationValueForAttribute(representation, attribute);
     if (value == NSNull.null) {
         if (!FEMObjectPropertyTypeIsScalar(object, attribute.property)) {
-            [object setValue:nil forKey:attribute.property];
+            [object fem_setValueIfDifferent:nil forKey:attribute.property];
         }
     } else if (value) {
         [object fem_setValueIfDifferent:value forKey:attribute.property];
