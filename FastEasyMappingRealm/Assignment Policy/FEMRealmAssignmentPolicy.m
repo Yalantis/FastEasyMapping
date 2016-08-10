@@ -7,7 +7,7 @@
 #import "FEMRelationshipAssignmentContext+Internal.h"
 
 #import <FastEasyMapping/FEMRelationshipAssignmentContext.h>
-#import <Realm/RLMObject.h>
+#import <Realm/RLMObjectBase.h>
 #import <Realm/RLMArray.h>
 
 FEMAssignmentPolicy FEMRealmAssignmentPolicyCollectionMerge = ^id(FEMRelationshipAssignmentContext *context) {
@@ -30,12 +30,12 @@ FEMAssignmentPolicy FEMRealmAssignmentPolicyCollectionMerge = ^id(FEMRelationshi
     NSMutableArray *targetObjects = [[NSMutableArray alloc] initWithCapacity:sourceObjects.count];
     NSMutableSet *sourceSet = [[NSMutableSet alloc] initWithCapacity:sourceObjects.count];
 
-    for (RLMObject *sourceObject in sourceObjects) {
+    for (RLMObjectBase *sourceObject in sourceObjects) {
         [sourceSet addObject:sourceObject];
         [targetObjects addObject:sourceObject];
     }
 
-    for (RLMObject *targetObject in (id<NSFastEnumeration>)context.targetRelationshipValue) {
+    for (RLMObjectBase *targetObject in (id<NSFastEnumeration>)context.targetRelationshipValue) {
         if (![sourceSet containsObject:targetObject]) {
             [targetObjects addObject:targetObject];
         }
@@ -50,7 +50,7 @@ FEMAssignmentPolicy FEMRealmAssignmentPolicyCollectionReplace = ^id(FEMRelations
     }
 
     if (context.targetRelationshipValue == nil) {
-        for (RLMObject *object in (id<NSFastEnumeration>)context.sourceRelationshipValue) {
+        for (RLMObjectBase *object in (id<NSFastEnumeration>)context.sourceRelationshipValue) {
             [context deleteRelationshipObject:object];
         }
 
@@ -58,7 +58,7 @@ FEMAssignmentPolicy FEMRealmAssignmentPolicyCollectionReplace = ^id(FEMRelations
     }
 
     NSMutableSet *targetObjectsSet = [[NSMutableSet alloc] initWithArray:context.targetRelationshipValue];
-    for (RLMObject *sourceObject in (id<NSFastEnumeration>)context.sourceRelationshipValue) {
+    for (RLMObjectBase *sourceObject in (id<NSFastEnumeration>)context.sourceRelationshipValue) {
         if (![targetObjectsSet containsObject:sourceObject]) {
             [context deleteRelationshipObject:sourceObject];
         }

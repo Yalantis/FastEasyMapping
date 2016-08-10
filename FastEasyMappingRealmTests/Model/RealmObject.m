@@ -9,13 +9,13 @@
 
 @implementation RealmObject
 
-+ (NSDictionary *)defaultPropertyValues {
-    return @{
-        @"stringProperty": @"",
-        @"dateProperty": [NSDate dateWithTimeIntervalSince1970:0.0],
-        @"dataProperty": [NSData data]
-    };
-}
+//+ (NSDictionary *)defaultPropertyValues {
+//    return @{
+//        @"stringProperty": @"",
+//        @"dateProperty": [NSDate dateWithTimeIntervalSince1970:0.0],
+//        @"dataProperty": [NSData data]
+//    };
+//}
 
 @end
 
@@ -37,14 +37,18 @@
     ]];
 
     [mapping addAttribute:[FEMAttribute mappingOfProperty:@"dateProperty" toKeyPath:@"dateProperty" dateFormat:@"YYYY-mm-dd'T'HH:mm:ssZZZZ"]];
-    [mapping addAttribute:[FEMAttribute mappingOfProperty:@"dataProperty" toKeyPath:@"dataProperty" map:^id(id value) {
-        if ([value isKindOfClass:[NSString class]]) {
-            return [(NSString *)value dataUsingEncoding:NSUTF8StringEncoding];
-        }
-        return [NSData data];
-    } reverseMap:^id(id value) {
-        return [[NSString alloc] initWithData:value encoding:NSUTF8StringEncoding];
-    }]];
+	
+	[mapping addAttribute:[FEMAttribute mappingOfProperty:@"dataProperty" toKeyPath:@"dataProperty" map:^id(id value) {
+		if ([value isKindOfClass:[NSString class]]) {
+			return [(NSString *)value dataUsingEncoding:NSUTF8StringEncoding];
+		}
+		return nil;
+	} reverseMap:^id(id value) {
+		if ([value isKindOfClass:[NSData class]]) {
+			return [[NSString alloc] initWithData:value encoding:NSUTF8StringEncoding];
+		}
+		return nil;
+	}]];
 
     return mapping;
 }
@@ -61,7 +65,23 @@
         @"floatProperty",
         @"doubleProperty",
         @"cgFloatProperty",
+				@"stringProperty",
+				@"dataProperty"
     ]];
+	
+	[mapping addAttribute:[FEMAttribute mappingOfProperty:@"dateProperty" toKeyPath:@"dateProperty" dateFormat:@"YYYY-mm-dd'T'HH:mm:ssZZZZ"]];
+
+	[mapping addAttribute:[FEMAttribute mappingOfProperty:@"dataProperty" toKeyPath:@"dataProperty" map:^id(id value) {
+		if ([value isKindOfClass:[NSString class]]) {
+			return [(NSString *)value dataUsingEncoding:NSUTF8StringEncoding];
+		}
+		return nil;
+	} reverseMap:^id(id value) {
+		if ([value isKindOfClass:[NSData class]]) {
+			return [[NSString alloc] initWithData:value encoding:NSUTF8StringEncoding];
+		}
+		return nil;
+	}]];
 
     return mapping;
 }

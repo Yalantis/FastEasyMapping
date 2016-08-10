@@ -225,17 +225,17 @@ describe(@"FEMDeserializer", ^{
                 });
 
                 // Not yet supported by Realm <= 0.95.0
-//                specify(^{
-//                    [[realmObject.stringProperty should] beNil];
-//                });
-//
-//                specify(^{
-//                    [[realmObject.dateProperty should] beNil];
-//                });
-//
-//                specify(^{
-//                    [[realmObject.dataProperty should] beNil];
-//                });
+                specify(^{
+                    [[realmObject.stringProperty should] beNil];
+                });
+
+                specify(^{
+                    [[realmObject.dateProperty should] beNil];
+                });
+
+                specify(^{
+                    [[realmObject.dataProperty should] beNil];
+                });
             });
         });
 

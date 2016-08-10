@@ -1,5 +1,7 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
+#import <CoreGraphics/CoreGraphics.h>
+
 #import "MappingProviderNative.h"
 #import "CarNative.h"
 #import "PhoneNative.h"

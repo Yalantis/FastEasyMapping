@@ -96,4 +96,21 @@
     return mapping;
 }
 
++ (FEMMapping *)defaultMapping {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Website"];
+    mapping.primaryKey = @"identifier";
+    [mapping addAttributesFromDictionary:@{@"identifier": @"id", @"title": @"title"}];
+
+    FEMMapping *categoryMapping = [[FEMMapping alloc] initWithEntityName:@"Category"];
+    categoryMapping.primaryKey = @"identifier";
+    [categoryMapping addAttributeWithProperty:@"identifier" keyPath:nil];
+
+    FEMRelationship *categoryRelationship = [[FEMRelationship alloc] initWithProperty:@"category" keyPath:@"category" mapping:categoryMapping];
+    categoryRelationship.weak = YES;
+
+    [mapping addRelationship:categoryRelationship];
+
+    return mapping;
+}
+
 @end
