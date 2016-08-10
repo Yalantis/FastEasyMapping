@@ -461,18 +461,20 @@ In the example above there is an issue: what if our database doesn't contain `Ca
 @implementation Website (Mapping)
 
 + (FEMMapping *)defaultMapping {
-	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Website"];
-	mapping.primaryKey = @"identifier";
-	[mapping addAttributesFromDictionary:@{@"identifier": @"id", @"title": @"title"}];
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Website"];
+    mapping.primaryKey = @"identifier";
+    [mapping addAttributesFromDictionary:@{@"identifier": @"id", @"title": @"title"}];
 
-	FEMMapping *categoryMapping = [[FEMMapping alloc] initWithEntityName:@"Category"];
-	categoryMapping.primaryKey = @"identifier";
-	categoryMapping.weak = YES;
+    FEMMapping *categoryMapping = [[FEMMapping alloc] initWithEntityName:@"Category"];
+    categoryMapping.primaryKey = @"identifier";
     [categoryMapping addAttributeWithProperty:@"identifier" keyPath:nil];
 
-	[mapping addRelationshipMapping:categoryMapping property:@"category" keyPath:@"category"];
+    FEMRelationship *categoryRelationship = [[FEMRelationship alloc] initWithProperty:@"category" keyPath:@"category" mapping:categoryMapping];
+    categoryRelationship.weak = YES;
 
-	return mapping;
+    [mapping addRelationship:categoryRelationship];
+
+    return mapping;
 }
 
 @end
