@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Automatic">
     <entity name="Car" representedClassName="Car" syncable="YES">
+        <attribute name="electric" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="carID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="model" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,7 +24,7 @@
         <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="phones" inverseEntity="Person" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Car" positionX="243" positionY="-990" width="128" height="120"/>
+        <element name="Car" positionX="243" positionY="-990" width="128" height="135"/>
         <element name="Person" positionX="54" positionY="-990" width="128" height="135"/>
         <element name="Phone" positionX="-173" positionY="-975" width="128" height="120"/>
     </elements>

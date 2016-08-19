@@ -5,6 +5,8 @@
 #import "FEMTypeIntrospection.h"
 #import "FEMRelationship.h"
 
+#import <CoreData/CoreData.h>
+
 @implementation FEMSerializer
 
 + (NSDictionary *)_serializeObject:(id)object usingMapping:(FEMMapping *)mapping {
@@ -47,6 +49,16 @@
 + (void)setValueOnRepresentation:(NSMutableDictionary *)representation fromObject:(id)object withFieldMapping:(FEMAttribute *)fieldMapping {
 	id returnedValue = [object valueForKey:fieldMapping.property];
 	if (returnedValue) {
+        
+        // Fix boolean properties type mistake for managed objects
+        if ([returnedValue isKindOfClass:[NSNumber class]] &&
+            [object isKindOfClass:[NSManagedObject class]]) {
+            NSEntityDescription *entity = [(NSManagedObject *)object entity];
+            if (entity.attributesByName[fieldMapping.property].attributeType == NSBooleanAttributeType) {
+                returnedValue = @([returnedValue boolValue]);
+            }
+        }
+        
         returnedValue = [fieldMapping reverseMapValue:returnedValue] ?: [NSNull null];
 
 		[self setValue:returnedValue forKeyPath:fieldMapping.keyPath inRepresentation:representation];
