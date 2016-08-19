@@ -1,5 +1,17 @@
 language: objective-c
+os: osx
+osx_image: xcode7.3
+
 before_install:
-    - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+    - gem install xcpretty -N --no-ri --no-rdoc
+
+env:
+    matrix:
+        - MATRIX_TARGET="-scheme FastEasyMapping -sdk iphonesimulator"
+
 script:
-    - xcodebuild test -workspace FastEasyMapping.xcworkspace -scheme FastEasyMapping -sdk iphonesimulator
+    - set -o pipefail
+    - xcodebuild clean test -workspace FastEasyMapping.xcworkspace $MATRIX_TARGET -enableCodeCoverage YES | xcpretty
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
