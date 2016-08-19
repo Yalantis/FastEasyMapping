@@ -11,7 +11,7 @@ env:
 
 script:
     - set -o pipefail
-    - xcodebuild clean test -workspace FastEasyMapping.xcworkspace $MATRIX_TARGET GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+    - xcodebuild clean test -workspace FastEasyMapping.xcworkspace $MATRIX_TARGET -enableCodeCoverage YES | xcpretty
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
