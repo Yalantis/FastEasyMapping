@@ -4,6 +4,13 @@
 #import "FEMManagedObjectMapping.h"
 #import "FEMObjectMapping.h"
 
+@interface FEMMapping ()
+
+@property (nonatomic, strong) NSMutableDictionary *attributeMap;
+@property (nonatomic, strong) NSMutableDictionary *relationshipMap;
+
+@end
+
 @implementation FEMMapping
 
 #pragma mark - Init
