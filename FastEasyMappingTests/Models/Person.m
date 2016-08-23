@@ -11,5 +11,7 @@
 @dynamic email;
 @dynamic car;
 @dynamic phones;
+@dynamic friends;
+@dynamic partner;
 
 @end

@@ -504,6 +504,8 @@
 				1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */,
 				1D6A31C3D577329518B3E664 /* Person_1.json */,
 				1D6A3ACBBC8E66609F169E94 /* Person_2.json */,
+				8A14E88C1CA071BD007F4806 /* PersonWithRecursiveRelationship.json */,
+				8AF453DE1CA0A6E000D38D8C /* ManagedPersonWithRecursiveRelationship.json */,
 				1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */,
 				1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */,
 			);
@@ -693,8 +695,10 @@
 				2C375F3018CCD40200FCB8EA /* Female.json in Resources */,
 				2C375F3818CCD40200FCB8EA /* CarWithNestedAttributes.json in Resources */,
 				2C375F3618CCD40200FCB8EA /* CarWithRoot.json in Resources */,
+				8A14E88D1CA071BD007F4806 /* PersonWithRecursiveRelationship.json in Resources */,
 				2C375F3D18CCD40200FCB8EA /* NativeChild.json in Resources */,
 				2C375F3418CCD40200FCB8EA /* Alien.json in Resources */,
+				8AF453DF1CA0A6E000D38D8C /* ManagedPersonWithRecursiveRelationship.json in Resources */,
 				2C375F3A18CCD40200FCB8EA /* Address.json in Resources */,
 				2C375F3718CCD40200FCB8EA /* CarWithDate.json in Resources */,
 				1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */,
@@ -948,6 +952,10 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yalantis.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = FastEasyMappingTests;
 			};
@@ -962,6 +970,10 @@
 				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yalantis.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = FastEasyMappingTests;
 			};

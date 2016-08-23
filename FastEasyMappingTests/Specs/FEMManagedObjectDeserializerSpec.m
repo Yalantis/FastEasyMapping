@@ -2,7 +2,8 @@
 
 #import <Kiwi/Kiwi.h>
 #import <CMFactory/CMFixture.h>
-#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord.h>
+
 
 #import "MappingProvider.h"
 #import "Person.h"
@@ -284,6 +285,36 @@ SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
                 });
 
             });
+            
+            context(@"with hasOne recursive mapping", ^{
+                __block Person *person;
+                __block Person *partner;
+                
+                beforeEach(^{
+                    partner = [Person MR_createEntity];
+                    partner.personID = @21;
+                    partner.name = @"Ana";
+                    partner.email = @"ana@gmail.com";
+                    
+                    NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"ManagedPersonWithRecursiveRelationship"];
+                    person = [FEMDeserializer objectFromRepresentation:externalRepresentation
+                                                               mapping:[MappingProvider personWithRecursiveMapping]
+                                                               context:moc];
+                });
+                
+                specify(^{
+                    [person.partner shouldNotBeNil];
+                });
+                
+                specify(^{
+                    [[person.partner.personID should] equal:partner.personID];
+                });
+                
+                specify(^{
+                    [[person.partner.name should] equal:partner.name];
+                });
+                
+            });
 
             context(@"with hasMany mapping", ^{
                 __block Person *person;
@@ -304,6 +335,35 @@ SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
                     [[person.phones should] haveCountOf:2];
                 });
 
+            });
+            
+            context(@"with hasMany recursive mapping", ^{
+                __block Person *person;
+                
+                beforeEach(^{
+                    
+                    NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"ManagedPersonWithRecursiveRelationship"];
+                    person = [FEMDeserializer objectFromRepresentation:externalRepresentation
+                                                               mapping:[MappingProvider personWithRecursiveToManyMapping]
+                                                               context:moc];
+                });
+                
+                it(@"should be a person", ^{
+                    [[person should] beKindOfClass:[Person class]];
+                });
+                
+                it(@"should have friends", ^{
+                    [[@(person.friends.count) should] equal:@2];
+                });
+                
+                it(@"should have friends that have friends", ^{
+                    Person *friend = person.friends.allObjects.firstObject;
+                    [[@(friend.friends.count) should] equal:@1];
+                    [[friend.friends.allObjects.firstObject should] beKindOfClass:[Person class]];
+                    Person *friendsFriend = (Person *)friend.friends.allObjects.firstObject;
+                    [[friendsFriend.name should] equal:@"Pedro"];
+                    [[friendsFriend.email should] equal:@"pedro@gmail.com"];
+                });
             });
 
         });

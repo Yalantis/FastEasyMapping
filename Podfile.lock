@@ -1,15 +1,15 @@
 PODS:
   - CMFactory (1.4.1):
     - Mantle (= 1.0)
-  - Kiwi (2.3.0)
-  - libextobjc/EXTKeyPathCoding (0.4):
+  - Kiwi (2.3.1)
+  - libextobjc/EXTKeyPathCoding (0.4.1):
     - libextobjc/RuntimeExtensions
-  - libextobjc/EXTScope (0.4):
+  - libextobjc/EXTScope (0.4.1):
     - libextobjc/RuntimeExtensions
-  - libextobjc/RuntimeExtensions (0.4)
-  - MagicalRecord (2.2):
-    - MagicalRecord/Core (= 2.2)
-  - MagicalRecord/Core (2.2)
+  - libextobjc/RuntimeExtensions (0.4.1)
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
   - Mantle (1.0):
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
@@ -21,9 +21,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   CMFactory: 535c1473e91f4d0d13cb290de2144faa75a882a3
-  Kiwi: 4c3988bd551f80f6ca0009f302f7c1a2e3777bf2
-  libextobjc: f2802d4262f6885570df9799747409ceb1de602c
-  MagicalRecord: 2dc87179ae7c1f2a274442624ec65a07d4357a6f
+  Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
+  libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Mantle: 3fbcca07bdfe76c54a08c241689a60d34d08e783
 
 PODFILE CHECKSUM: 901d21733d60103731090223fb79bd05c654765f
