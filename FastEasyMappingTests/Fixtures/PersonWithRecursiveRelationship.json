@@ -1,0 +1,31 @@
+{
+    "name": "Jose",
+    "email": "jose@gmail.com",
+    "gender" : "male",
+    "partner": {
+        "name": "Ana",
+        "email": "ana@gmail.com",
+        "gender" : "female"
+    },
+    "friends": [
+       {
+        "name": "Juan",
+        "email": "juan@gmail.com",
+        "gender" : "male",
+        "friends": [
+            {
+            "name": "Pedro",
+            "email": "pedro@gmail.com",
+            "gender" : "male",
+            "friends":null
+            }
+        ]
+       },
+       {
+        "name": "Maria",
+        "email": "maria@gmail.com",
+        "gender" : "female",
+        "friends":null
+        }
+    ]
+}

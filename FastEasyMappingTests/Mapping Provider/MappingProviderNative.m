@@ -119,6 +119,22 @@
     return mapping;
 }
 
++ (FEMMapping *)personWithRecursiveFriendsMapping {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
+    [mapping addAttributesFromArray:@[@"name", @"email"]];
+    [mapping addRecursiveToManyRelationshipForProperty:@"friends" keypath:@"friends"];
+    
+    return mapping;
+}
+
++ (FEMMapping *)personWithRecursivePartnerMapping {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
+    [mapping addAttributesFromArray:@[@"name", @"email"]];
+    [mapping addRecursiveRelationshipMappingForProperty:@"partner" keypath:@"partner"];
+    
+    return mapping;
+}
+
 + (FEMMapping *)addressMapping {
     FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[AddressNative class]];
     [mapping addAttributesFromArray:@[@"street"]];

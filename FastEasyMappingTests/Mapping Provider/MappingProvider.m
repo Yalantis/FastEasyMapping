@@ -78,11 +78,31 @@
     mapping.primaryKey = @"personID";
     [mapping addAttributesFromDictionary:@{@"personID" : @"id"}];
     [mapping addAttributesFromArray:@[@"name", @"email", @"gender"]];
-
+    
     FEMMapping *phoneMapping = [self phoneMapping];
     phoneMapping.primaryKey = @"phoneID";
     [mapping addToManyRelationshipMapping:phoneMapping forProperty:@"phones" keyPath:@"phones"];
+    
+    return mapping;
+}
 
++ (FEMMapping *)personWithRecursiveMapping {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    mapping.primaryKey = @"personID";
+    [mapping addAttributesFromDictionary:@{@"personID" : @"id"}];
+    [mapping addAttributesFromArray:@[@"name", @"email", @"gender"]];
+    [mapping addRecursiveRelationshipMappingForProperty:@"partner" keypath:@"partner"];
+    
+    return mapping;
+}
+
++ (FEMMapping *)personWithRecursiveToManyMapping {
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    mapping.primaryKey = @"personID";
+    [mapping addAttributesFromDictionary:@{@"personID" : @"id"}];
+    [mapping addAttributesFromArray:@[@"name", @"email", @"gender"]];
+    [mapping addRecursiveToManyRelationshipForProperty:@"friends" keypath:@"friends"];
+    
     return mapping;
 }
 
