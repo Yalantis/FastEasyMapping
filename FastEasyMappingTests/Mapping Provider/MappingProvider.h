@@ -19,4 +19,7 @@
 
 + (FEMMapping *)personWithCarPKMapping;
 
++ (FEMMapping *)personWithRecursiveMapping;
++ (FEMMapping *)personWithRecursiveToManyMapping;
+
 @end

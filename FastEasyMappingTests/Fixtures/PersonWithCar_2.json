@@ -1,11 +1,11 @@
 {
-    "id": 1,
-    "name": "Lucas",
-    "email": "lucastoc@gmail.com",
-    "gender" : "male",
-    "car": {
-        "id": 2,
-        "model": "i30",
-        "year": "2013"
-    }
+  "id": 1,
+  "name": "Lucas",
+  "email": "lucastoc@gmail.com",
+  "gender": "male",
+  "car": {
+    "id": 2,
+    "model": "i30",
+    "year": "2013"
+  }
 }

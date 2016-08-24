@@ -5,11 +5,7 @@
 #import "FEMAttribute.h"
 #import "FEMRelationship.h"
 
-@interface FEMMapping : NSObject {
-    @protected
-	NSMutableDictionary *_attributeMap;
-	NSMutableDictionary *_relationshipMap;
-}
+@interface FEMMapping : NSObject
 
 - (nonnull instancetype)init __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] insted")));
 + (nonnull instancetype)new __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] insted")));
@@ -47,6 +43,8 @@
 
 - (void)addRelationshipMapping:(nonnull FEMMapping *)mapping forProperty:(nonnull NSString *)property keyPath:(nullable NSString *)keyPath;
 - (void)addToManyRelationshipMapping:(nonnull FEMMapping *)mapping forProperty:(nonnull NSString *)property keyPath:(nullable NSString *)keyPath;
+- (void)addRecursiveRelationshipMappingForProperty:(nonnull NSString *)property keypath:(nullable NSString *)keyPath;
+- (void)addRecursiveToManyRelationshipForProperty:(nonnull NSString *)property keypath:(nullable NSString *)keyPath;
 
 @end
 
