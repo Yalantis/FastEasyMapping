@@ -2,10 +2,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FEMTypes.h"
 #import "FEMProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef _Nullable id (^FEMMapBlock)(id value);
 
 @interface FEMAttribute : NSObject <FEMProperty>
 

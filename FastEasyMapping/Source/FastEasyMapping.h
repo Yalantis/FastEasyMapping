@@ -22,7 +22,6 @@
 #import "FEMRelationshipAssignmentContext.h"
 #import "FEMAssignmentPolicy.h"
 
-#import "FEMTypes.h"
 #import "FEMRepresentationUtility.h"
 #import "FEMMappingUtility.h"
 
