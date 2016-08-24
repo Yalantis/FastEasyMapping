@@ -1,9 +1,8 @@
-//
-// Created by zen on 12/08/14.
-// Copyright (c) 2014 Yalantis. All rights reserved.
-//
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @protocol FEMMergeableCollection <NSObject>
 @required
@@ -28,3 +27,5 @@
 - (NSOrderedSet *)collectionByMergingObjects:(NSOrderedSet *)object;
 
 @end
+
+NS_ASSUME_NONNULL_END

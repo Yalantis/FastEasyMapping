@@ -1,10 +1,6 @@
-//
-// Created by zen on 19/06/14.
-// Copyright (c) 2014 Yalantis. All rights reserved.
-//
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import "FEMExcludableCollection.h"
-
 
 @implementation NSArray (FEMExcludableCollection)
 
