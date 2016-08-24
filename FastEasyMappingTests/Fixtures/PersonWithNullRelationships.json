@@ -1,7 +1,7 @@
 {
-    "name": "Lucas",
-    "email": "lucastoc@gmail.com",
-    "gender" : "male",
-    "car": null,
-    "phones": null
+  "name": "Lucas",
+  "email": "lucastoc@gmail.com",
+  "gender": "male",
+  "car": null,
+  "phones": null
 }
