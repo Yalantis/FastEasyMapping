@@ -12,6 +12,8 @@
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) Car *car;
 @property (nonatomic, retain) NSSet *phones;
+@property (nonatomic, retain) NSSet<Person *> *friends;
+@property (nonatomic, retain) Person *partner;
 @end
 
 @interface Person (CoreDataGeneratedAccessors)
@@ -20,5 +22,10 @@
 - (void)removePhonesObject:(NSManagedObject *)value;
 - (void)addPhones:(NSSet *)values;
 - (void)removePhones:(NSSet *)values;
+
+- (void)addFriendsObject:(Person *)value;
+- (void)removeFriendsObject:(Person *)value;
+- (void)addFriends:(NSSet<Person *> *)values;
+- (void)removeFriends:(NSSet<Person *> *)values;
 
 @end

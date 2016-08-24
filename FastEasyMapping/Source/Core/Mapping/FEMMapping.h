@@ -47,7 +47,8 @@
 
 - (void)addRelationshipMapping:(nonnull FEMMapping *)mapping forProperty:(nonnull NSString *)property keyPath:(nullable NSString *)keyPath;
 - (void)addToManyRelationshipMapping:(nonnull FEMMapping *)mapping forProperty:(nonnull NSString *)property keyPath:(nullable NSString *)keyPath;
-
+- (void)addRecursiveRelationshipMappingForProperty:(NSString *)property keypath:(NSString *)keyPath;
+- (void)addRecursiveToManyRelationshipForProperty:(nonnull NSString *)property keypath:(nullable NSString *)keyPath;
 @end
 
 @interface FEMMapping (FEMObjectMapping_Deprecated)

@@ -16,5 +16,7 @@ typedef enum {
 @property (nonatomic, assign) Gender gender;
 @property (nonatomic, strong) CarNative *car;
 @property (nonatomic, strong) NSArray *phones;
+@property (nonatomic, strong) NSArray *friends;
+@property (nonatomic, strong) PersonNative *partner;
 
 @end
