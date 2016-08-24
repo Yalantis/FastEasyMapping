@@ -5,9 +5,9 @@
 #import "FEMAssignmentPolicy.h"
 #import "FEMProperty.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @class FEMMapping;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface FEMRelationship : NSObject <FEMProperty>
 
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath mapping:(FEMMapping *)mapping NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithProperty:(NSString *)property mapping:(FEMMapping *)mapping;
-- (instancetype)initWithProperty:(NSString *)property keyPath:(NSString *)keyPath mapping:(FEMMapping *)mapping assignmentPolicy:(FEMAssignmentPolicy)assignmentPolicy;
+- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath mapping:(FEMMapping *)mapping assignmentPolicy:(FEMAssignmentPolicy)assignmentPolicy;
 
 - (void)setMapping:(FEMMapping *)mapping forKeyPath:(nullable NSString *)keyPath;
 
