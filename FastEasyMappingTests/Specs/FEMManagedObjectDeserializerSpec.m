@@ -13,8 +13,6 @@
 
 #import "FEMMapping.h"
 #import "Phone.h"
-#import "FEMManagedObjectDeserializer.h"
-#import "KWNilMatcher.h"
 
 SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
@@ -340,7 +338,6 @@ SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
                 __block Person *person;
                 
                 beforeEach(^{
-                    
                     NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"ManagedPersonWithRecursiveRelationship"];
                     person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                mapping:[MappingProvider personWithRecursiveToManyMapping]
@@ -356,10 +353,13 @@ SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
                 });
                 
                 it(@"should have friends that have friends", ^{
-                    Person *friend = person.friends.allObjects.firstObject;
+                    Person *friend = [[person.friends objectsPassingTest:^BOOL(Person *obj, BOOL *stop) {
+                        return [obj.personID isEqual:@(22)];
+                    }] anyObject];
+
                     [[@(friend.friends.count) should] equal:@1];
                     [[friend.friends.allObjects.firstObject should] beKindOfClass:[Person class]];
-                    Person *friendsFriend = (Person *)friend.friends.allObjects.firstObject;
+                    Person *friendsFriend = friend.friends.allObjects.firstObject;
                     [[friendsFriend.name should] equal:@"Pedro"];
                     [[friendsFriend.email should] equal:@"pedro@gmail.com"];
                 });
