@@ -1,9 +1,8 @@
-//
-// Created by zen on 19/06/14.
-// Copyright (c) 2014 Yalantis. All rights reserved.
-//
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @protocol FEMExcludableCollection <NSObject>
 @required
@@ -28,3 +27,5 @@
 - (NSOrderedSet *)collectionByExcludingObjects:(NSOrderedSet *)objects;
 
 @end
+
+NS_ASSUME_NONNULL_END

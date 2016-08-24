@@ -1,7 +1,4 @@
-//
-// Created by zen on 13/05/15.
-// Copyright (c) 2015 Yalantis. All rights reserved.
-//
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import <Foundation/Foundation.h>
 
