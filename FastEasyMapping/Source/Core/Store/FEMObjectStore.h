@@ -6,19 +6,23 @@
 
 @class FEMMapping;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FEMObjectStore : NSObject <FEMRelationshipAssignmentContextDelegate>
 
-- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping ofRepresentation:(nonnull NSArray *)representation;
+- (void)prepareTransactionForMapping:(FEMMapping *)mapping ofRepresentation:(NSArray *)representation;
 - (void)beginTransaction;
 - (nullable NSError *)commitTransaction;
 
-- (nonnull id)newObjectForMapping:(nonnull FEMMapping *)mapping;
-- (nonnull FEMRelationshipAssignmentContext *)newAssignmentContext;
+- (id)newObjectForMapping:(FEMMapping *)mapping;
+- (FEMRelationshipAssignmentContext *)newAssignmentContext;
 
-- (void)registerObject:(nonnull id)object forMapping:(nonnull FEMMapping *)mapping;
-- (BOOL)canRegisterObject:(nonnull id)object forMapping:(nonnull FEMMapping *)mapping;
+- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping;
+- (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping;
 
-- (nonnull NSDictionary *)registeredObjectsForMapping:(nonnull FEMMapping *)mapping;
-- (nullable id)registeredObjectForRepresentation:(nonnull id)representation mapping:(nonnull FEMMapping *)mapping;
+- (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping;
+- (nullable id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;
 
 @end
+
+NS_ASSUME_NONNULL_END

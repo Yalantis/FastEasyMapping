@@ -9,6 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FEMManagedObjectStore : FEMObjectStore
 
 - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)context NS_DESIGNATED_INITIALIZER;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *context;
