@@ -35,6 +35,10 @@
     return [[self alloc] initWithProperty:property keyPath:keyPath map:map reverseMap:reverseMap];
 }
 
+- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath {
+    return [self initWithProperty:property keyPath:keyPath map:NULL reverseMap:NULL];
+}
+
 #pragma mark - Description
 
 - (NSString *)description {
