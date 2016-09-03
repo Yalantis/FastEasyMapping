@@ -26,7 +26,6 @@ typedef _Nullable id (^FEMMapBlock)(_Nullable id value);
  };
  
  // json's expected values are: "read", "write" and "readwrite". We need to map them
- 
  NSDictionary *accessTypeMap = @{
     @"read": @(AccessTypeRead),
     @"write": @(AccessTypeWrite),

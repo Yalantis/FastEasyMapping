@@ -236,7 +236,6 @@
 		69ED7FF7736562A674D3696D /* PlaneNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneNative.h; sourceTree = "<group>"; };
 		8A14E88C1CA071BD007F4806 /* PersonWithRecursiveRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonWithRecursiveRelationship.json; sourceTree = "<group>"; };
 		8AF453DE1CA0A6E000D38D8C /* ManagedPersonWithRecursiveRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ManagedPersonWithRecursiveRelationship.json; sourceTree = "<group>"; };
-		95A8DE2E9CC533DA840A0845 /* Pods-FastEasyMappingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMappingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FastEasyMappingTests/Pods-FastEasyMappingTests.release.xcconfig"; sourceTree = "<group>"; };
 		AACE150790E252A56425341C /* Pods-FastEasyMappingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMappingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FastEasyMappingTests/Pods-FastEasyMappingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AD52DF791B03657900E46915 /* FEMManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectDeserializer.h; sourceTree = "<group>"; };
 		AD52DF7B1B03657900E46915 /* FEMObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectDeserializer.h; sourceTree = "<group>"; };
@@ -473,14 +472,14 @@
 			isa = PBXGroup;
 			children = (
 				1D6A3781CA28E31A3CDCE626 /* FEMProperty.h */,
-				1D6A3DB6E70D06B240357965 /* FEMMapping.h */,
-				1D6A3E335535878DA801854C /* FEMManagedObjectMapping.h */,
-				1D6A3F8FD0F112B4BA9380FE /* FEMObjectMapping.h */,
-				1D6A3B87ABEBEDD845682F62 /* FEMMapping.m */,
 				1D6A32731DF0CE9F69F54AE4 /* FEMAttribute.h */,
 				1D6A3C63218EDC50D1C848E3 /* FEMAttribute.m */,
-				1D6A3EDB0333D6F8C6AF1C22 /* FEMRelationship.m */,
 				1D6A3F0C9AE4FD7FC200D09F /* FEMRelationship.h */,
+				1D6A3EDB0333D6F8C6AF1C22 /* FEMRelationship.m */,
+				1D6A3DB6E70D06B240357965 /* FEMMapping.h */,
+				1D6A3B87ABEBEDD845682F62 /* FEMMapping.m */,
+				1D6A3E335535878DA801854C /* FEMManagedObjectMapping.h */,
+				1D6A3F8FD0F112B4BA9380FE /* FEMObjectMapping.h */,
 			);
 			path = Mapping;
 			sourceTree = "<group>";
