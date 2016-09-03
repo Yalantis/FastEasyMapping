@@ -97,7 +97,7 @@
 + (instancetype)mappingOfURLProperty:(NSString *)property toKeyPath:(NSString *)keyPath {
     return [FEMAttribute mappingOfProperty:property toKeyPath:keyPath map:^id(id value) {
         return [value isKindOfClass:NSString.class] ? [NSURL URLWithString:value] : NSNull.null;
-    }                           reverseMap:^id(NSURL *value) {
+    } reverseMap:^id(NSURL *value) {
         return [value absoluteString];
     }];
 }

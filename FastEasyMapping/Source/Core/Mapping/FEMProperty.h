@@ -32,7 +32,7 @@
 @property (nonatomic, copy, nonnull) NSString *property;
 
 /**
- @description Key Path to the required value in the JSON's representation. It may include dots which represents embeded dictionaries.
+ @description keyPath to the required value in the JSON's representation. It may include dots which represents embeded dictionaries.
  This value is optional.
  
  For example key path for the "title" property of the given JSON is going to be "info.title".

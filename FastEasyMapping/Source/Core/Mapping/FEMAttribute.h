@@ -59,50 +59,155 @@ typedef _Nullable id (^FEMMapBlock)(_Nullable id value);
  */
 @interface FEMAttribute : NSObject <FEMProperty>
 
-- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath;
-- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath map:(nullable FEMMapBlock)map reverseMap:(nullable FEMMapBlock)reverseMap;
+/**
+ @brief Initialize FEMAttribute with a given property and a keyPath and transformation blocks for value transformation.
+ 
+ @discussion Returns a new FEMAttribute for a given property and a keyPath.
+ Block `map` will be executed before value applied from the JSON to the Object's property.
+ Block `reverseMap` - when Object's property value transfomed to the JSON.
+ 
+ @param property   Object's property name (same as for the KVC).
+ @param keyPath    JSON's keyPath to the value (optional).
+ @param map        Transform of the value before applying it from the JSON to the Object's property. If `nil` - no transformation perfomed.
+ @param reverseMap Transform of the value before applying it from the Object's property to the JSON. If `nil` - no transformation perfomed.
+
+ @return New instance of the FEMAttribute.
+ */
+- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath map:(nullable FEMMapBlock)map reverseMap:(nullable FEMMapBlock)reverseMap NS_DESIGNATED_INITIALIZER;
+
+/// Shortcut the for -[FEMAttribute initWithProperty:keyPath:map:reverseMap:]. See original `-initWithProperty:keyPath:map:reverseMap:` for full documentation.
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(nullable NSString *)keyPath map:(nullable FEMMapBlock)map reverseMap:(nullable FEMMapBlock)reverseMap;
 
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
+/**
+ @brief Initialize FEMAttribute with a given property and a keyPath.
+ 
+ @discussion Returns new FEMAttribute for a given property and a keyPath. JSON Value doesn't require any additional transformation
+ and will be applied as it is to the Object's attribute (therefore String to String, Int to Int and so on).
+ 
+ @param property Object's property name (same as for the KVC)
+ @param keyPath  JSON's keyPath to the value (optional)
+ 
+ @return New instance of the FEMAttribute.
+ */
+- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath;
+
+
+/**
+ @brief Map given `value` using `map` block passed in the -init (if any). This function doesn't have any side effect on the Object's property / JSON.
+ 
+ @discussion Developer most likely will never invoke this function on his own. Utilized by FEMDeserializer internals.
+ 
+ @param value JSON's value that is going to be applied to the Object's property.
+
+ @return Mapped value or the same if no mapping specified.
+ */
 - (nullable id)mapValue:(nullable id)value;
-- (nullable id)reverseMapValue:(nullable id)value;
 
+/**
+ @brief Map given `value` using `reverseMap` block passed in the -init (if any). This function doesn't have any side effect on the Object's property / JSON.
+ 
+ @discussion Developer most likely will never invoke this function on his own. Utilized by FEMSerializer internals.
+ 
+ @param value Object's property value that is going to be applied to the JSON.
+ 
+ @return Mapped value or the same if no mapping specified.
+ */
+- (nullable id)reverseMapValue:(nullable id)value;
 
 @end
 
 @interface FEMAttribute (Shortcut)
 
 /**
-* same as +[FEMAttribute mappingOfProperty:property toKeyPath:property];
-*/
+ @brief FEMAttribute that doesn't have a keyPath (`keyPath = nil`) and value doesn't require any additional tranforms.
+
+ @discussion Equivalent for `-[FEMAttribute initWithProperty:property keyPath:nil map:nil reverseMap:nil]`
+ 
+ @param property name of the property (same as for the KVC).
+
+ @return New instance of the FEMAttribute.
+ */
 + (instancetype)mappingOfProperty:(NSString *)property;
 
 /**
-* same as +[FEMAttribute mappingOfProperty:property toKeyPath:nil map:NULL];
-*/
+ @brief FEMAttribute where value doesn't require any additional tranforms.
+
+ @discussion Equivalent for `-[FEMAttribute initWithProperty:property keyPath:keyPath map:nil reverseMap:nil]`
+
+ @param property name of the property (same as for the KVC).
+ @param keyPath  JSON's keyPath to the value (optional).
+
+ @return New instance of the FEMAttribute.
+ */
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(nullable NSString *)keyPath;
 
 /**
-* same as +[FEMAttribute mappingOfProperty:property toKeyPath:nil map:map];
-*/
+ @brief FEMAttribute that doesn't have a keyPath (`keyPath = nil`) and requires transformation from JSON to Object's property.
+
+ @discussion Useful in case Object only needs to be deserialized (from JSON to Object) and JSON's value requires transformation. 
+ Equivalent for `-[FEMAttribute initWithProperty:property keyPath:nil map:map reverseMap:nil]`
+ 
+ @param property name of the property (same as for the KVC).
+ @param map      Transform of the value before applying it from the JSON to the Object's property.
+
+ @return New instance of the FEMAttribute.
+ */
 + (instancetype)mappingOfProperty:(NSString *)property map:(FEMMapBlock)map;
 
+/**
+ @brief Shortcut for FEMAttribute that doesn't have a keyPath (`keyPath = nil`) and requires transformation from JSON to Object's property.
+ 
+ @discussion Useful in case Object only needs to be serialized (from Object to JSON) and Object's property value requires transformation.
+ Equivalent for `-[FEMAttribute initWithProperty:property keyPath:nil map:nil reverseMap:reverseMap]`
+ 
+ @param property name of the property (same as for the KVC).
+ @param reverseMap Transform of the value before applying it from the Object's property to the JSON.
+ 
+ @return New instance of the FEMAttribute.
+ */
 + (instancetype)mappingOfProperty:(NSString *)property reverseMap:(FEMMapBlock)reverseMap;
 
 /**
-* same as +[FEMAttribute mappingOfProperty:property toKeyPath:nil map:NULL reverseMap:NULL];
-*/
+ @brief FEMAttribute where value requires transformation from JSON to Object's property.
+ 
+ @discussion Useful in case Object only needs to be deserialized (from JSON to Object) and JSON's value requires transformation.
+ Equivalent for `-[FEMAttribute initWithProperty:property keyPath:keyPath map:map reverseMap:nil]`
+ 
+ @param property name of the property (same as for the KVC).
+ @param keyPath  JSON's keyPath to the value (optional).
+ @param map      Transform of the value before applying it from the JSON to the Object's property.
+ 
+ @return New instance of the FEMAttribute.
+ */
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(nullable NSString *)keyPath map:(FEMMapBlock)map;
 
 /**
-* create mapping object, based on NSDateFormatter.
-* NSDateFormatter instance uses en_US_POSIX locale and UTC Timezone
-*/
+ @brief FEMAttribute that maps to Object's NSDate from JSON's String using given date format.
+ 
+ @discussion FEMAttribute that uses `NSDateFormatter` to map String from the JSON to the NSDate.
+ Used locale identifier: en_US_POSIX, time zone: UTC.
+ 
+ @param property   name of the property (same as for the KVC).
+ @param keyPath    JSON's keyPath to the value (optional).
+ @param dateFormat date format used by NSDateFormatter. For example `yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ` for `2016-09-03T10:12:21.121+02:00`
+
+ @return New instance of the FEMAttribute.
+ */
 + (instancetype)mappingOfProperty:(NSString *)property toKeyPath:(nullable NSString *)keyPath dateFormat:(NSString *)dateFormat;
 
 /**
-* property represented by NSURL, value at keyPath - NSString
-*/
+ @brief FEMAttribute that maps to Object's NSURL from JSON's String.
+ 
+ @discussion FEMAttribute that maps String from the JSON to the NSURL using `-[NSURL initWithString:]`. Reverse map returns `-[NSURL absoluteString]`
+ 
+ @param property   name of the property (same as for the KVC).
+ @param keyPath    JSON's keyPath to the value (optional).
+
+ @return New instance of the FEMAttribute.
+ */
 + (instancetype)mappingOfURLProperty:(NSString *)property toKeyPath:(nullable NSString *)keyPath;
 
 @end
