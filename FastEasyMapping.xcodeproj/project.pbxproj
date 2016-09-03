@@ -910,6 +910,7 @@
 		2CF8099C18C3AD5700C07899 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DSTROOT = /tmp/FastEasyMapping.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
@@ -926,6 +927,7 @@
 		2CF8099D18C3AD5700C07899 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DSTROOT = /tmp/FastEasyMapping.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";

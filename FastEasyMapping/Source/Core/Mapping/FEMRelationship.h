@@ -59,7 +59,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FEMRelationship : NSObject <FEMProperty>
 
-/// FEMMapping that describes nested Object
+/**
+ @brief FEMMapping that describes nested Object
+ 
+ @discussion IMPORTANT: `FEMRelationship.keyPath` *always* takes predesence over `FEMMapping.rootPath`. The last one is ignored during relationship mapping.
+ */
 @property (nonatomic, strong) FEMMapping *mapping;
 
 /**
@@ -168,20 +172,56 @@ NS_ASSUME_NONNULL_BEGIN
  * `FEMAssignmentPolicyObjectReplace` replaces Old value with New by deleting Old. Designed for to-one relationship.
  * `FEMAssignmentPolicyCollectionMerge` merges a New and Old values of relationship. Supported collections are: NSSet, NSArray, NSOrderedSet and their successors. Designed for to-many relationship.
  * `FEMAssignmentPolicyCollectionReplace` deletes objects not presented in union of New and Old values sets. Union set is used as a New value. Designed for to-many relationship.
- 
+
  IMPORTANT: setting to-one relationship policy for relationship that is a to-many and vice versa leads to underfined behaviour and potential runtime errors.
  */
 @property (nonatomic, copy) FEMAssignmentPolicy assignmentPolicy;
 
-- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath mapping:(FEMMapping *)mapping NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithProperty:(NSString *)property mapping:(FEMMapping *)mapping;
-- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath mapping:(FEMMapping *)mapping assignmentPolicy:(FEMAssignmentPolicy)assignmentPolicy;
+/**
+ @brief Initialize FEMRelationship with a given property, keyPath and mapping of the Object.
 
+ @param property Object's property name (same as for the KVC).
+ @param keyPath  JSON's keyPath to the relationship (optional).
+ @param mapping  Instance of the FEMMapping that describes Object.
+
+ @return New instance of the FEMRelationship.
+ */
+- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath mapping:(FEMMapping *)mapping NS_DESIGNATED_INITIALIZER;
+
+/**
+ @brief Initialize FEMRelationship with a given property, `nil` keyPath and a mapping of the Object.
+ 
+ @param property Object's property name (same as for the KVC).
+ @param mapping  Instance of the FEMMapping that describes Object.
+ 
+ @return New instance of the FEMRelationship.
+ */
+- (instancetype)initWithProperty:(NSString *)property mapping:(FEMMapping *)mapping;
+
+
+/**
+ @brief Initialize FEMRelationship with a given property, keyPath, mapping of the Object and assingment policy.
+
+ @param property Object's property name (same as for the KVC).
+ @param keyPath  JSON's keyPath to the relationship (optional).
+ @param mapping  Instance of the FEMMapping that describes Object.
+ @param assignmentPolicy Block of FEMAssingmentPolicy type.
+
+ @return New instance of the FEMRelationship.
+ */
+- (instancetype)initWithProperty:(NSString *)property keyPath:(nullable NSString *)keyPath mapping:(FEMMapping *)mapping assignmentPolicy:(FEMAssignmentPolicy)assignmentPolicy;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
+/**
+ @brief Updates mapping and key path simultaniously. 
+ 
+ @discussion This method may be useful during manual FEMRelationship configuration, however most of its functionality can be achieved by initializers.
 
+ @param mapping  Instance of the FEMMapping that describes Object.
+ @param keyPath  JSON's keyPath to the relationship (optional).
+ */
 - (void)setMapping:(FEMMapping *)mapping forKeyPath:(nullable NSString *)keyPath;
 
 @end
@@ -195,9 +235,7 @@ NS_ASSUME_NONNULL_BEGIN
                 assignmentPolicy:(nullable FEMAssignmentPolicy)policy
                    objectMapping:(nullable FEMMapping *)objectMapping __attribute__((deprecated("Use -[FEMRelationship initWithProperty:keyPath:mapping:assignmentPolicy:] instead")));
 
-/**
-* same as + [FEMRelationship mappingOfProperty:property toKeyPath:nil mapping:mapping];
-*/
+
 + (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping __attribute__((deprecated("Use -[FEMRelationship initWithProperty:mapping:] instead")));
 
 + (instancetype)mappingOfProperty:(NSString *)property
