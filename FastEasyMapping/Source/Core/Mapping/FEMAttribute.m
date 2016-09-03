@@ -20,12 +20,8 @@
         self.property = property;
         self.keyPath = keyPath;
 
-        FEMMapBlock passthroughMap = ^(id value) {
-            return value;
-        };
-
-        _map = map ?: passthroughMap;
-        _reverseMap = reverseMap ?: passthroughMap;
+        _map = [map copy];
+        _reverseMap = [reverseMap copy];
     }
 
     return self;
@@ -54,11 +50,19 @@
 #pragma mark - Mapping
 
 - (id)mapValue:(id)value {
-    return _map(value);
+    if (_map != NULL) {
+        return _map(value);
+    }
+
+    return value;
 }
 
 - (id)reverseMapValue:(id)value {
-    return _reverseMap(value);
+    if (_reverseMap != NULL) {
+        return _reverseMap(value);
+    }
+
+    return value;
 }
 
 @end
