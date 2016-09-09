@@ -68,7 +68,11 @@
                                                      allocateIfNeeded:!relationship.weak];
 
                     objc_property_t property = class_getProperty([object class], [relationship.property UTF8String]);
-                    targetValue = [targetValue fem_propertyRepresentation:property];
+                    if (property == NULL && [object isKindOfClass:[NSManagedObject class]]) {
+                        targetValue = [NSSet setWithArray:targetValue];
+                    } else {
+                        targetValue = [targetValue fem_propertyRepresentation:property];
+                    }
                 } else {
                     targetValue = [self _objectFromRepresentation:relationshipRepresentation
                                                           mapping:relationship.mapping
