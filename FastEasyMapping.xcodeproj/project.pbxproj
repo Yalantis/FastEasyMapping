@@ -547,8 +547,8 @@
 		69ED7CB4B4B9CD8DDF958D64 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7D24C1EE78C03CAB9C9B /* FEMManagedObjectCache.m */,
 				69ED7DE30D50997F9408F36E /* FEMManagedObjectCache.h */,
+				69ED7D24C1EE78C03CAB9C9B /* FEMManagedObjectCache.m */,
 			);
 			path = Cache;
 			sourceTree = "<group>";

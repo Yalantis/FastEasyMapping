@@ -177,7 +177,7 @@
 
 @end
 
-@implementation FEMMapping (FEMManagedObjectMapping_Deprecated)
+@implementation FEMMapping (Deprecated)
 
 + (FEMMapping *)mappingForEntityName:(NSString *)entityName {
     FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName];
@@ -199,9 +199,6 @@
     return mapping;
 }
 
-@end
-
-@implementation FEMMapping (FEMObjectMapping_Deprecated)
 
 + (FEMMapping *)mappingForClass:(Class)objectClass configuration:(void (^)(FEMObjectMapping *mapping))configuration {
     FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:objectClass];
