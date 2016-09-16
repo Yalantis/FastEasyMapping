@@ -7,13 +7,99 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ @brief Interface for delegate that allows FEMDeserializer to inform outer object about deserialization process.
+
+ @discussion Sometime it is useful to perform additional actions at some points of deserialization process. For example to
+ updated external index once User instance has been deserialized or similar. Develope needs to be aware that deserialization is
+ recursive and therefore you won't receive `-deserializer:didMapObject:fromRepresentation:mapping:` for the next object in the same collection
+ until all nested relationships deserialized.
+ 
+ For example lets deserialize following JSON: 
+ @code
+ {
+     "name": "Lucas",
+     "user_email": "lucastoc@gmail.com",
+     "phones": [
+         {
+             "ddi": "55",
+             "ddd": "85",
+             "number": "1111-1111"
+         }
+     ]
+ }
+ @endcode
+
+ Mapping described as follows:
+ @code
+ @implementation Person (Mapping)
+
+ + (FEMMapping *)defaultMapping {
+     FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+     [mapping addAttributesFromArray:@[@"name"]];
+     [mapping addAttributesFromDictionary:@{@"email": @"user_email"}];
+     [mapping addToManyRelationshipMapping:[Person defaultMapping] forProperty:@"phones" keyPath:@"phones"];
+
+     return mapping;
+ }
+ @end
+
+ @implementation Phone (Mapping)
+ + (FEMMapping *)defaultMapping {
+     FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Phone"];
+     [mapping addAttributesFromArray:@[@"number", @"ddd", @"ddi"]];
+
+     return mapping;
+ }
+ @end
+ @endcode
+
+ During deserialization of persons collection order will be the following:
+ * -willMapCollectionFromRepresentation:`Persons Array` mapping:`Person mapping`
+ * -willMapObjectFromRepresentation:`Person Dictionary` mapping:`Person mapping`
+ * -willMapCollectionFromRepresentation:`Phones Array` mapping:`Phone mapping`
+ * -willMapObjectFromRepresentation:`Phone Dictionary` mapping:`Phone mapping`
+ * -didMapObject:`Phone instance` fromRepresentation:`Phone Dictionary` mapping:`Phone mapping`
+ * -didMapObject:`Person instance` fromRepresentation:`Person Dictionary` mapping:`Person mapping`
+ * -didMapCollection:`Persons instances Array` fromRepresentation:`Persons Array` mapping:`Person mapping`
+ */
 @protocol FEMDeserializerDelegate <NSObject>
 
 @optional
+/**
+ @brief `deserializer` is going to deserialize representation by using a given `mapping`.
+
+ @param deserializer Sender of the message.
+ @param representation JSON value that is going to be deserialized. It will be of an JSON-valid type (Dictionary, Array, Int, String, etc).
+ @param mapping Instance of FEMMapping that is going to be used for deserializing of `representation`.
+ */
 - (void)deserializer:(FEMDeserializer *)deserializer willMapObjectFromRepresentation:(id)representation mapping:(FEMMapping *)mapping;
+
+/**
+ @brief `deserializer` did deserialize representation by using a given `mapping` to the `object` instance.
+
+ @param deserializer Sender of the message.
+ @param representation JSON value was deserialized. It will be of an JSON-valid type (Dictionary, Array, Int, String, etc).
+ @param mapping Instance of FEMMapping that was used for deserializing of `representation`.
+ */
 - (void)deserializer:(FEMDeserializer *)deserializer didMapObject:(id)object fromRepresentation:(id)representation mapping:(FEMMapping *)mapping;
 
+/**
+ @brief `deserializer` is going to deserialize collection of representations by using a given `mapping`.
+
+ @param deserializer Sender of the message.
+ @param representation Array of JSON values that is going to be deserialized. It contains values of an JSON-valid type (Dictionary, Array, Int, String, etc).
+ @param mapping Instance of FEMMapping that is going to be used for deserializing of `representation`.
+ */
 - (void)deserializer:(FEMDeserializer *)deserializer willMapCollectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping;
+
+/**
+ @brief `deserializer` did deserialize collection of representations by using a given `mapping`.
+
+ @param deserializer Sender of the message.
+ @param representation Array of JSON values that was deserialized. It contains values of an JSON-valid type (Dictionary, Array, Int, String, etc).
+ @param mapping Instance of FEMMapping that was used for deserializing of `representation`.
+ */
 - (void)deserializer:(FEMDeserializer *)deserializer didMapCollection:(NSArray *)collection fromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping;
 
 @end
