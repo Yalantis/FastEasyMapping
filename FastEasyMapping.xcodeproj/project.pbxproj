@@ -280,10 +280,10 @@
 		1D6A3A11394959655882C6B7 /* Assignment Policy */ = {
 			isa = PBXGroup;
 			children = (
-				1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */,
 				1D6A3E68C0FB99F7A73DE0C5 /* FEMAssignmentPolicy.h */,
-				1D6A31CC30FC2DC11994EBA8 /* FEMRelationshipAssignmentContext.m */,
+				1D6A3C137E92421E8D0A5E41 /* FEMAssignmentPolicy.m */,
 				1D6A37E108D6B12FA8587FA6 /* FEMRelationshipAssignmentContext.h */,
+				1D6A31CC30FC2DC11994EBA8 /* FEMRelationshipAssignmentContext.m */,
 				1D6A3E939A8527DF07B8E6EB /* FEMRelationshipAssignmentContext+Internal.h */,
 			);
 			path = "Assignment Policy";
@@ -293,8 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				1D6A32B1909842797CD2E0D3 /* FEMObjectStore.h */,
-				1D6A311D0B99D619E11B0641 /* FEMManagedObjectStore.h */,
 				1D6A30748FCFC86CFA72493D /* FEMObjectStore.m */,
+				1D6A311D0B99D619E11B0641 /* FEMManagedObjectStore.h */,
 				1D6A32164D7EFFBC35F34F17 /* FEMManagedObjectStore.m */,
 			);
 			path = Store;
@@ -342,12 +342,12 @@
 		69ED7057C5D3DBE4072F331B /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				69ED7F5DB5E0C3FF6672226E /* FEMTypeIntrospection.m */,
 				69ED7E6CB1B484C7F335B55F /* FEMTypeIntrospection.h */,
-				1D6A328FCE22411C60FBC7C4 /* FEMRepresentationUtility.m */,
+				69ED7F5DB5E0C3FF6672226E /* FEMTypeIntrospection.m */,
 				1D6A3E942488A7A8C0C01C0C /* FEMRepresentationUtility.h */,
-				1D6A3A4F887B37995524457E /* FEMMappingUtility.m */,
+				1D6A328FCE22411C60FBC7C4 /* FEMRepresentationUtility.m */,
 				1D6A34B621512A2FE61ECE26 /* FEMMappingUtility.h */,
+				1D6A3A4F887B37995524457E /* FEMMappingUtility.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -462,8 +462,8 @@
 			children = (
 				69ED7645386941DA79C1E53A /* NSArray+FEMPropertyRepresentation.h */,
 				69ED757059F6C7A26468D880 /* NSArray+FEMPropertyRepresentation.m */,
-				69ED770C14BAB15CA7926116 /* NSObject+FEMKVCExtension.m */,
 				69ED769040647781DD8B196D /* NSObject+FEMKVCExtension.h */,
+				69ED770C14BAB15CA7926116 /* NSObject+FEMKVCExtension.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
