@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FEMRelationship : NSObject <FEMProperty>
+@interface FEMRelationship : NSObject <NSCopying, FEMProperty>
 
 @property (nonatomic, strong) FEMMapping *mapping;
 @property (nonatomic, getter=isToMany) BOOL toMany;

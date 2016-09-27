@@ -34,6 +34,16 @@
     return self;
 }
 
+#pragma mark - NSCopying
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    FEMRelationship *relationship = [[FEMRelationship allocWithZone:zone] initWithProperty:self.property keyPath:self.keyPath mapping:self.mapping];
+    relationship.assignmentPolicy = self.assignmentPolicy;
+    relationship.toMany = self.toMany;
+    relationship.weak = self.weak;
+    return relationship;
+}
+
 #pragma mark - Shortcut
 
 - (void)setMapping:(nonnull FEMMapping *)mapping forKeyPath:(nullable NSString *)keyPath {

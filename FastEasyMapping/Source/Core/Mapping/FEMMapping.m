@@ -62,11 +62,11 @@
     mapping.primaryKey = self.primaryKey;
     
     for (FEMAttribute *attribute in self.attributes) {
-        [mapping addAttribute:attribute];
+        [mapping addAttribute:[attribute copy]];
     }
     
     for (FEMRelationship *relationship in self.relationships) {
-        [mapping addRelationship:relationship];
+        [mapping addRelationship:[relationship copy]];
     }
     
     return mapping;
