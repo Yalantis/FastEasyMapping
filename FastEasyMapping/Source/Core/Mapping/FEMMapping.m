@@ -56,8 +56,7 @@
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    FEMMapping *mapping = [[self.class allocWithZone:zone] init];
-    mapping.entityName = self.entityName;
+    FEMMapping *mapping = [[self.class allocWithZone:zone] initWithEntityName:self.entityName];
     mapping.objectClass = self.objectClass;
     mapping.rootPath = self.rootPath;
     mapping.primaryKey = self.primaryKey;
