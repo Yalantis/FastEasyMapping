@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  @brief Deserializer from JSON to Object using FEMMapping.
 
- @discussion Most of the time you're going to user FEMDeserializer with FEMMapping in order to get Objects from the JSON.
+ @discussion Most of the time you're going to use FEMDeserializer with FEMMapping in order to get Objects from the JSON.
  Currently it supports 2 types of Objets: subclasses of the NSObject and sublasses of the NSManagedObject. You can extend
  supported types by providing your custom implementation of `FEMObjectStore`.
 
