@@ -53,6 +53,26 @@
     return self;
 }
 
+#pragma mark - NSCopying
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    FEMMapping *mapping = [[self.class allocWithZone:zone] init];
+    mapping.entityName = self.entityName;
+    mapping.objectClass = self.objectClass;
+    mapping.rootPath = self.rootPath;
+    mapping.primaryKey = self.primaryKey;
+    
+    for (FEMAttribute *attribute in self.attributes) {
+        [mapping addAttribute:attribute];
+    }
+    
+    for (FEMRelationship *relationship in self.relationships) {
+        [mapping addRelationship:relationship];
+    }
+    
+    return mapping;
+}
+
 #pragma mark - Attribute Mapping
 
 - (void)addPropertyMapping:(id<FEMProperty>)propertyMapping toMap:(NSMutableDictionary *)map {
