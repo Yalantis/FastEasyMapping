@@ -35,6 +35,12 @@
     return [[self alloc] initWithProperty:property keyPath:keyPath map:map reverseMap:reverseMap];
 }
 
+#pragma mark - NSCopying
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    return [[self.class allocWithZone:zone] initWithProperty:self.property keyPath:self.keyPath map:_map reverseMap:_reverseMap];
+}
+
 #pragma mark - Description
 
 - (NSString *)description {

@@ -8,7 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef _Nullable id (^FEMMapBlock)(id value);
 
-@interface FEMAttribute : NSObject <FEMProperty>
+@interface FEMAttribute : NSObject <NSCopying, FEMProperty>
 
 - (nullable id)mapValue:(nullable id)value;
 - (nullable id)reverseMapValue:(nullable id)value;

@@ -7,7 +7,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FEMMapping : NSObject
+@interface FEMMapping : NSObject <NSCopying>
 
 - (instancetype)init __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] instead")));
 + (instancetype)new __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] instead")));
@@ -19,8 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithEntityName:(NSString *)entityName NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithEntityName:(NSString *)entityName rootPath:(nullable NSString *)rootPath;
 
-@property (nonatomic, readonly, nullable) Class objectClass;
-@property (nonatomic, copy, readonly, nullable) NSString *entityName;
+@property (nonatomic, strong, nullable) Class objectClass;
+@property (nonatomic, copy, nullable) NSString *entityName;
 
 @property (nonatomic, copy, nullable) NSString *rootPath;
 
