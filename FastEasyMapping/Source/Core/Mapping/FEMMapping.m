@@ -56,8 +56,12 @@
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    FEMMapping *mapping = [[self.class allocWithZone:zone] initWithEntityName:self.entityName];
-    mapping.objectClass = self.objectClass;
+    FEMMapping *mapping = [self.class allocWithZone:zone];
+    if (self.objectClass) {
+        mapping = [mapping initWithObjectClass:self.objectClass];
+    } else {
+        mapping = [mapping initWithEntityName:self.entityName];
+    }
     mapping.rootPath = self.rootPath;
     mapping.primaryKey = self.primaryKey;
     
@@ -118,6 +122,20 @@
 
 - (NSArray *)relationships {
 	return [_relationshipMap allValues];
+}
+
+- (void)setEntityName:(NSString *)entityName {
+    _entityName = [entityName copy];
+    if (_entityName) {
+        _objectClass = nil;
+    }
+}
+
+- (void)setObjectClass:(Class)objectClass {
+    _objectClass = objectClass;
+    if (_objectClass) {
+        _entityName = nil;
+    }
 }
 
 #pragma mark -
