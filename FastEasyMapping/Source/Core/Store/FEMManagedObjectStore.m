@@ -46,8 +46,6 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     return nil;
 }
 
-
-
 - (id)newObjectForMapping:(FEMMapping *)mapping {
     validateMapping(mapping);
 
