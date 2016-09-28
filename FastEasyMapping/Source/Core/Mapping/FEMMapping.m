@@ -56,12 +56,13 @@
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    FEMMapping *mapping = [self.class allocWithZone:zone];
+    FEMMapping *mapping = nil;
     if (self.objectClass) {
-        mapping = [mapping initWithObjectClass:self.objectClass];
+        mapping = [[self.class allocWithZone:zone] initWithObjectClass:self.objectClass];
     } else {
-        mapping = [mapping initWithEntityName:self.entityName];
+        mapping = [[self.class allocWithZone:zone] initWithEntityName:self.entityName];
     }
+    
     mapping.rootPath = self.rootPath;
     mapping.primaryKey = self.primaryKey;
     
@@ -70,7 +71,12 @@
     }
     
     for (FEMRelationship *relationship in self.relationships) {
-        [mapping addRelationship:[relationship copy]];
+        // recursive mapping copy will lead to infinite recursive copying
+        if (relationship.mapping == self) {
+            [mapping addRecursiveRelationshipMappingForProperty:relationship.property keypath:relationship.keyPath];
+        } else {
+            [mapping addRelationship:[relationship copy]];
+        }
     }
     
     return mapping;
