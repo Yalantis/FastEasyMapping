@@ -56,7 +56,7 @@ typedef _Nullable id (^FEMMapBlock)(_Nullable id value);
  
  @endcode
  */
-@interface FEMAttribute : NSObject <FEMProperty>
+@interface FEMAttribute : NSObject <FEMProperty, NSCopying>
 
 /**
  @brief Initialize FEMAttribute with a given property and a keyPath and transformation blocks for value transformation.

@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  [user addRelationship:phonesRelationship];
  @endcode
  */
-@interface FEMRelationship : NSObject <FEMProperty>
+@interface FEMRelationship : NSObject <FEMProperty, NSCopying>
 
 /**
  @brief FEMMapping that describes nested Object

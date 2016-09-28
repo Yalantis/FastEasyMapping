@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  FEMMapping *managedObjectMapping = [[FEMMapping alloc] initWithEntityName:@"EntityName"];
  @endcode
  */
-@interface FEMMapping : NSObject
+@interface FEMMapping : NSObject <NSCopying>
 
 /**
  @brief Initialize FEMMapping with a given NSObject-success class. 
@@ -64,7 +64,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithEntityName:(NSString *)entityName NS_DESIGNATED_INITIALIZER;
 
-
 /**
  @brief Initialize FEMMapping with a given CoreData's entity name.
 
@@ -77,15 +76,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithEntityName:(NSString *)entityName rootPath:(nullable NSString *)rootPath;
 
+
 - (instancetype)init __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] instead")));
 + (instancetype)new __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] instead")));
 
 
 /// NSObject successor's class used during NSObject mapping. It can be nil for CoreData-targeted mappings. Has representation of `[CustomNSObjectSuccessor class]`
-@property (nonatomic, readonly, nullable) Class objectClass;
+@property (nonatomic, strong, nullable) Class objectClass;
 
 /// CoreData entity name used during CoreData-targeted mapping. It can be nil for NSObject-targeted mappings.
-@property (nonatomic, copy, readonly, nullable) NSString *entityName;
+@property (nonatomic, copy, nullable) NSString *entityName;
 
 /**
  @brief path to the Object's representation in the JSON. Same as `keyPath` property of the `FEMProperty` protocol. 

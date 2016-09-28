@@ -53,6 +53,29 @@
     return self;
 }
 
+#pragma mark - NSCopying
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    FEMMapping *mapping = [self.class allocWithZone:zone];
+    if (self.objectClass) {
+        mapping = [mapping initWithObjectClass:self.objectClass];
+    } else {
+        mapping = [mapping initWithEntityName:self.entityName];
+    }
+    mapping.rootPath = self.rootPath;
+    mapping.primaryKey = self.primaryKey;
+    
+    for (FEMAttribute *attribute in self.attributes) {
+        [mapping addAttribute:[attribute copy]];
+    }
+    
+    for (FEMRelationship *relationship in self.relationships) {
+        [mapping addRelationship:[relationship copy]];
+    }
+    
+    return mapping;
+}
+
 #pragma mark - Attribute Mapping
 
 - (void)addPropertyMapping:(id<FEMProperty>)propertyMapping toMap:(NSMutableDictionary *)map {
@@ -99,6 +122,20 @@
 
 - (NSArray *)relationships {
 	return [_relationshipMap allValues];
+}
+
+- (void)setEntityName:(NSString *)entityName {
+    _entityName = [entityName copy];
+    if (_entityName) {
+        _objectClass = nil;
+    }
+}
+
+- (void)setObjectClass:(Class)objectClass {
+    _objectClass = objectClass;
+    if (_objectClass) {
+        _entityName = nil;
+    }
 }
 
 #pragma mark -
