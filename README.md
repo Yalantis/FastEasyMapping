@@ -1,6 +1,7 @@
 # FastEasyMapping
 
 [![Build Status](https://travis-ci.org/Yalantis/FastEasyMapping.svg)](https://travis-ci.org/Yalantis/FastEasyMapping)
+[![codecov.io](https://codecov.io/github/Yalantis/FastEasyMapping/coverage.svg?branch=master)](https://codecov.io/github/Yalantis/FastEasyMapping?branch=master)
 
 ### Note
 This is a fork of [EasyMapping](https://github.com/EasyMapping/EasyMapping), a flexible and easy framework for JSON mapping.
