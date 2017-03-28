@@ -1,0 +1,14 @@
+{
+  "boolProperty": true,
+  "booleanProperty": true,
+  "intProperty": 3,
+  "integerProperty": 5,
+  "longProperty": 7,
+  "longLongProperty": 9,
+  "floatProperty": 11.1,
+  "doubleProperty": 12.2,
+  "cgFloatProperty": 13.3,
+  "stringProperty": "string",
+  "dateProperty": "2005-08-09T18:31:42+03",
+  "dataProperty": "utf8"
+}
