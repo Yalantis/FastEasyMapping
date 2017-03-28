@@ -7,7 +7,9 @@ PODS:
   - libextobjc/EXTScope (0.4.1):
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
-  - MagicalRecord (2.3.0)
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
   - Mantle (1.0):
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
@@ -23,8 +25,10 @@ SPEC CHECKSUMS:
   CMFactory: 535c1473e91f4d0d13cb290de2144faa75a882a3
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Mantle: 3fbcca07bdfe76c54a08c241689a60d34d08e783
   OCMock: 4c2925291f80407c3738dd1db14d21d0cc278864
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: be0c6da070c3524f8eaaf9d1585cea0a5e0b989d
+
+COCOAPODS: 1.2.0
