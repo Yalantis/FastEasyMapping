@@ -1,6 +1,0 @@
-{
-  "integerProperty": 5,
-  "toOneRelationship": {
-  	"identifier": 10
-  }
-}
