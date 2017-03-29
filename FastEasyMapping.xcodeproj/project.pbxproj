@@ -63,7 +63,6 @@
 		2C375F4318CCD49B00FCB8EA /* MappingProviderNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED799D533AED10DCFB4106 /* MappingProviderNative.m */; };
 		2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7532E1E5E3196BC27932 /* MappingProvider.m */; };
 		2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097B18C3AD5700C07899 /* Foundation.framework */; };
-		69ED7D115200A0D4F52DBBCA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69ED730BF972DF74DC2BA5B3 /* InfoPlist.strings */; };
 		7A436317F4B16AE5CB7A5A7B /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F197C2371647DD2F3BE4FE4 /* libPods-FastEasyMappingTests.a */; };
 		AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */; };
 		AD52DF831B0387C000E46915 /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
@@ -176,7 +175,6 @@
 		69ED70F7239A59402E626302 /* Cars.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Cars.json; sourceTree = "<group>"; };
 		69ED70FD89800BB41C8894FE /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
 		69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressNative.m; sourceTree = "<group>"; };
-		69ED7153320369C3FEB8A8F4 /* FastEasyMapping-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FastEasyMapping-Prefix.pch"; sourceTree = "<group>"; };
 		69ED71666439C5B0BC0A6650 /* CatNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatNative.h; sourceTree = "<group>"; };
 		69ED71A71F750AEBC8BA6FF0 /* MappingProviderNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProviderNative.h; sourceTree = "<group>"; };
 		69ED7209D50C3640D4456C8D /* Plane.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Plane.json; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 		69ED75B675560A0A804494CB /* FEMSerializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMSerializerSpec.m; sourceTree = "<group>"; };
 		69ED75DAD53214AD94FAB868 /* NativeChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeChild.h; sourceTree = "<group>"; };
 		69ED7645386941DA79C1E53A /* NSArray+FEMPropertyRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FEMPropertyRepresentation.h"; sourceTree = "<group>"; };
-		69ED764EB359C8472262F3FB /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		69ED767EE6E89A487714CDF8 /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
 		69ED76A25E3A25F0BDFF4BCF /* PersonNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonNative.h; sourceTree = "<group>"; };
 		69ED76A31CE5167D72298490 /* AlienNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlienNative.m; sourceTree = "<group>"; };
@@ -425,7 +422,6 @@
 			children = (
 				69ED70EFE263881EF2703FEE /* Specs */,
 				69ED72A18D441F9A3397D384 /* Models */,
-				69ED744E18215206BCE42591 /* en.lproj */,
 				69ED77FF1B7BCBBE52569877 /* Fixtures */,
 				69ED7CB8A80C99BF8D7413F6 /* FastEasyMappingTests-Info.plist */,
 				69ED713D0205449C289F72C9 /* Mapping Provider */,
@@ -471,15 +467,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		69ED744E18215206BCE42591 /* en.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				69ED730BF972DF74DC2BA5B3 /* InfoPlist.strings */,
-				69ED79C6C00F61AE646C591E /* Supporting Files */,
-			);
-			path = en.lproj;
-			sourceTree = "<group>";
-		};
 		69ED752D2981B7C6882366D2 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,15 +505,6 @@
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
-		};
-		69ED79C6C00F61AE646C591E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				69ED7153320369C3FEB8A8F4 /* FastEasyMapping-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			path = FastEasyMapping;
-			sourceTree = SOURCE_ROOT;
 		};
 		69ED7BED4BE92D2D4F4716FF /* Source */ = {
 			isa = PBXGroup;
@@ -684,7 +662,6 @@
 				2C375F3318CCD40200FCB8EA /* Native.json in Resources */,
 				AD94006E1E8AA93700558F37 /* PersonWithRecursiveRelationship.json in Resources */,
 				2C375F3918CCD40200FCB8EA /* Male.json in Resources */,
-				69ED7D115200A0D4F52DBBCA /* InfoPlist.strings in Resources */,
 				2C375F3B18CCD40200FCB8EA /* Person.json in Resources */,
 				2C375F3518CCD40200FCB8EA /* Plane.json in Resources */,
 				2C375F3118CCD40200FCB8EA /* PersonWithDifferentNaming.json in Resources */,
@@ -844,17 +821,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		69ED730BF972DF74DC2BA5B3 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				69ED764EB359C8472262F3FB /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		2CF8099918C3AD5700C07899 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -942,8 +908,6 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DSTROOT = /tmp/FastEasyMapping.dst;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -962,8 +926,6 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DSTROOT = /tmp/FastEasyMapping.dst;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FastEasyMapping/FastEasyMapping-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fastEasyMapping.${PRODUCT_NAME:rfc1034identifier}";
