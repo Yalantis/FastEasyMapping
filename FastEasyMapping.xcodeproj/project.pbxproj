@@ -71,8 +71,8 @@
 		AD52DF871B0387C000E46915 /* FEMSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* FEMSerializerSpec.m */; };
 		AD52DF891B0387C000E46915 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
 		AD9400641E8AA43500558F37 /* FEMTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400631E8AA43500558F37 /* FEMTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD9400681E8AA7AD00558F37 /* FEMRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400671E8AA7AD00558F37 /* FEMRelationship.h */; };
-		AD94006A1E8AA7C000558F37 /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400691E8AA7C000558F37 /* FEMObjectStore.h */; };
+		AD9400681E8AA7AD00558F37 /* FEMRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400671E8AA7AD00558F37 /* FEMRelationship.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD94006A1E8AA7C000558F37 /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400691E8AA7C000558F37 /* FEMObjectStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD94006D1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = AD94006B1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json */; };
 		AD94006E1E8AA93700558F37 /* PersonWithRecursiveRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = AD94006C1E8AA93700558F37 /* PersonWithRecursiveRelationship.json */; };
 		ADEC66C41B9D9E7000F528C8 /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEC66C21B9D9E7000F528C8 /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -84,7 +84,7 @@
 		ADEC66CD1B9D9F5200F528C8 /* FEMMappingUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A34B621512A2FE61ECE26 /* FEMMappingUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADEC66CE1B9D9F5200F528C8 /* FEMAssignmentPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A34FA0B6FCD6F0C7F5EC0 /* FEMAssignmentPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADEC66CF1B9D9F5200F528C8 /* FEMRelationshipAssignmentContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A37361CCBDC43020DFFCE /* FEMRelationshipAssignmentContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ADEC66D01B9D9F5200F528C8 /* FEMRelationshipAssignmentContext+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A30804948F002D8862B62 /* FEMRelationshipAssignmentContext+Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADEC66D01B9D9F5200F528C8 /* FEMRelationshipAssignmentContext+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A30804948F002D8862B62 /* FEMRelationshipAssignmentContext+Internal.h */; };
 		ADEC66D11B9D9F5200F528C8 /* FEMObjectCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3C3EADDE4B98CA7ED02D /* FEMObjectCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADEC66D21B9D9F5200F528C8 /* FEMDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A331F4EC8BC4E757BBF85 /* FEMDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADEC66D31B9D9F5200F528C8 /* FEMManagedObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A323CABA155AEC9B3D6B8 /* FEMManagedObjectDeserializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
