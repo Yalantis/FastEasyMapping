@@ -7,11 +7,13 @@ before_install:
 
 env:
     matrix:
-        - MATRIX_TARGET="-scheme FastEasyMapping -sdk iphonesimulator"
+      - MATRIX_TARGET="-sdk iphonesimulator8.1 -destination 'platform=iOS Simulator,name=iPhone 6'"
+      - MATRIX_TARGET="-sdk iphonesimulator9.3 -destination 'platform=iOS Simulator,name=iPhone 6s'"
+      - MATRIX_TARGET="-sdk iphonesimulator10.1 -destination 'platform=iOS Simulator,name=iPhone 7'"
 
 script:
     - set -o pipefail
-    - xcodebuild clean test -workspace FastEasyMapping.xcworkspace $MATRIX_TARGET -enableCodeCoverage YES | xcpretty
+    - xcodebuild clean test -workspace FastEasyMapping.xcworkspace -scheme FastEasyMapping $MATRIX_TARGET -enableCodeCoverage YES | xcpretty
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
