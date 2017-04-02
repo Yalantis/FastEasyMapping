@@ -54,19 +54,25 @@
 
 #pragma mark - Deserialization
 
-- (void)fulfillObjectRelationships:(id)object fromRepresentation:(NSDictionary *)representation usingMapping:(FEMMapping *)mapping {
+- (void)applyAttributesToObject:(id)object representation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
+    for (FEMAttribute *attribute in mapping.attributes) {
+        [self setAttributeValue:attribute onObject:object fromRepresentation:representation];
+    }
+}
+
+- (void)applyRelationshipsToObject:(id)object representation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
     for (FEMRelationship *relationship in mapping.relationships) {
         @autoreleasepool {
             id relationshipRepresentation = FEMRepresentationRootForKeyPath(representation, relationship.keyPath);
             if (relationshipRepresentation == nil) continue;
-
+            
             id targetValue = nil;
             if (relationshipRepresentation != NSNull.null) {
                 if (relationship.isToMany) {
                     targetValue = [self _collectionFromRepresentation:relationshipRepresentation
                                                               mapping:relationship.mapping
                                                      allocateIfNeeded:!relationship.weak];
-
+                    
                     objc_property_t property = class_getProperty([object class], [relationship.property UTF8String]);
                     targetValue = [targetValue fem_propertyRepresentation:property];
                 } else {
@@ -75,13 +81,13 @@
                                                  allocateIfNeeded:!relationship.weak];
                 }
             }
-
+            
             FEMRelationshipAssignmentContext *context = [self.store newAssignmentContext];
             context.destinationObject = object;
             context.relationship = relationship;
             context.sourceRelationshipValue = [object valueForKey:relationship.property];
             context.targetRelationshipValue = targetValue;
-
+            
             id assignmentValue = relationship.assignmentPolicy(context);
             [object setValue:assignmentValue forKey:relationship.property];
         }
@@ -99,16 +105,6 @@
     }
 }
 
-- (id)_fillObject:(id)object fromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-    for (FEMAttribute *attribute in mapping.attributes) {
-        [self setAttributeValue:attribute onObject:object fromRepresentation:representation];
-    }
-
-    [self fulfillObjectRelationships:object fromRepresentation:representation usingMapping:mapping];
-
-    return object;
-}
-
 - (id)_objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping allocateIfNeeded:(BOOL)allocate {
     id object = [self.store registeredObjectForRepresentation:representation mapping:mapping];
     if (!object && allocate) {
@@ -123,11 +119,13 @@
         [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
     }
 
-    [self _fillObject:object fromRepresentation:representation mapping:mapping];
-
+    [self applyAttributesToObject:object representation:representation mapping:mapping];
+    
     if ([self.store canRegisterObject:object forMapping:mapping]) {
         [self.store registerObject:object forMapping:mapping];
     }
+
+    [self applyRelationshipsToObject:object representation:representation mapping:mapping];
 
     if (_delegateFlags.didMapObject) {
         [self.delegate deserializer:self didMapObject:object fromRepresentation:representation mapping:mapping];
@@ -180,7 +178,8 @@
     [self.store beginTransaction];
 
     id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-    [self _fillObject:object fromRepresentation:root mapping:mapping];
+    [self applyAttributesToObject:object representation:root mapping:mapping];
+    [self applyRelationshipsToObject:object representation:root mapping:mapping];
 
     [self.store commitTransaction];
 
