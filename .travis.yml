@@ -6,14 +6,17 @@ before_install:
     - gem install xcpretty -N --no-ri --no-rdoc
 
 env:
-    matrix:
-      - MATRIX_TARGET="-sdk iphonesimulator8.1 -destination 'platform=iOS Simulator,name=iPhone 6'"
-      - MATRIX_TARGET="-sdk iphonesimulator9.3 -destination 'platform=iOS Simulator,name=iPhone 6s'"
-      - MATRIX_TARGET="-sdk iphonesimulator10.1 -destination 'platform=iOS Simulator,name=iPhone 7'"
+  - WORKSPACE=FastEasyMapping.xcworkspace
+  - IOS_SCHEME=FastEasyMapping
+  - IOS_SDK=iphonesimulator10.3
 
+    matrix:
+      - DESTINATION="OS=8.1,name=iPhone 6" SDK="$IOS_SDK" SCHEME="$IOS_SCHEME"
+      - DESTINATION="OS=9.0,name=iPhone 6s" SDK="$IOS_SDK"  SCHEME="$IOS_SCHEME"
+      - DESTINATION="OS=10.0,name=iPhone 7" SDK="$IOS_SDK"  SCHEME="$IOS_SCHEME"
 script:
     - set -o pipefail
-    - xcodebuild clean test -workspace FastEasyMapping.xcworkspace -scheme FastEasyMapping $MATRIX_TARGET -enableCodeCoverage YES | xcpretty
+    - xcodebuild clean test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -enableCodeCoverage YES | xcpretty
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
