@@ -1,0 +1,9 @@
+{
+  "primaryKey": 1,
+  "child": {
+    "primaryKey": 2,
+    "child": {
+      "primaryKey": 1
+    }
+  }
+}

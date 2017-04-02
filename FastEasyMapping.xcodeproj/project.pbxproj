@@ -25,10 +25,12 @@
 		1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */; };
 		1D6A3BB7C54CCCC7720A793A /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A32B1909842797CD2E0D3 /* FEMObjectStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D6A3BC1A08D550FFFF3E9A5 /* FEMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C63218EDC50D1C848E3 /* FEMAttribute.m */; };
+		1D6A3BDE5FBAAA0BAA503655 /* RecursiveCyclicRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */; };
 		1D6A3D2F519049D3E97895A9 /* FEMMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3DB6E70D06B240357965 /* FEMMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3ACBBC8E66609F169E94 /* Person_2.json */; };
 		1D6A3E950CAD3D0A01F2C1B3 /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3EDB0333D6F8C6AF1C22 /* FEMRelationship.m */; };
 		1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
+		1D6A3EBE458C75A2F395107D /* RecursiveRelationship+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A32EFC67384FE93544E57 /* RecursiveRelationship+Mapping.m */; };
 		1D6A3FE5C05F54B80DCD6D93 /* FEMRepresentationUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A328FCE22411C60FBC7C4 /* FEMRepresentationUtility.m */; };
 		1D6A3FFE3771AC234D28EA4D /* FEMMappingUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3A4F887B37995524457E /* FEMMappingUtility.m */; };
 		2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
@@ -127,6 +129,7 @@
 
 /* Begin PBXFileReference section */
 		1D6A30748FCFC86CFA72493D /* FEMObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectStore.m; sourceTree = "<group>"; };
+		1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecursiveCyclicRelationship.json; sourceTree = "<group>"; };
 		1D6A311D0B99D619E11B0641 /* FEMManagedObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectStore.h; sourceTree = "<group>"; };
 		1D6A31C3D577329518B3E664 /* Person_1.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Person_1.json; sourceTree = "<group>"; };
 		1D6A31CC30FC2DC11994EBA8 /* FEMRelationshipAssignmentContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRelationshipAssignmentContext.m; sourceTree = "<group>"; };
@@ -134,11 +137,13 @@
 		1D6A32731DF0CE9F69F54AE4 /* FEMAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMAttribute.h; sourceTree = "<group>"; };
 		1D6A328FCE22411C60FBC7C4 /* FEMRepresentationUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRepresentationUtility.m; sourceTree = "<group>"; };
 		1D6A32B1909842797CD2E0D3 /* FEMObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectStore.h; sourceTree = "<group>"; };
+		1D6A32EFC67384FE93544E57 /* RecursiveRelationship+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RecursiveRelationship+Mapping.m"; sourceTree = "<group>"; };
 		1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAttributeMappingSpec.m; sourceTree = "<group>"; };
 		1D6A33C793CC8D51633186DC /* FEMMergeableCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMergeableCollection.m; sourceTree = "<group>"; };
 		1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithCar_2.json; sourceTree = "<group>"; };
 		1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithMissingRelationships.json; sourceTree = "<group>"; };
 		1D6A34B621512A2FE61ECE26 /* FEMMappingUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMMappingUtility.h; sourceTree = "<group>"; };
+		1D6A35EB7BEFF813678DA065 /* RecursiveRelationship+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RecursiveRelationship+Mapping.h"; sourceTree = "<group>"; };
 		1D6A368ADA05F6A09F22A3AC /* FEMMergeableCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMMergeableCollection.h; sourceTree = "<group>"; };
 		1D6A3781CA28E31A3CDCE626 /* FEMProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMProperty.h; sourceTree = "<group>"; };
 		1D6A37E108D6B12FA8587FA6 /* FEMRelationshipAssignmentContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRelationshipAssignmentContext.h; sourceTree = "<group>"; };
@@ -373,6 +378,8 @@
 				69ED799D533AED10DCFB4106 /* MappingProviderNative.m */,
 				69ED70FD89800BB41C8894FE /* MappingProvider.h */,
 				69ED7532E1E5E3196BC27932 /* MappingProvider.m */,
+				1D6A32EFC67384FE93544E57 /* RecursiveRelationship+Mapping.m */,
+				1D6A35EB7BEFF813678DA065 /* RecursiveRelationship+Mapping.h */,
 			);
 			path = "Mapping Provider";
 			sourceTree = "<group>";
@@ -509,6 +516,7 @@
 				8AF453DE1CA0A6E000D38D8C /* ManagedPersonWithRecursiveRelationship.json */,
 				1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */,
 				1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */,
+				1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -707,6 +715,7 @@
 				1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */,
 				1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */,
 				1D6A34C84E523B5F58F87C5E /* PersonWithMissingRelationships.json in Resources */,
+				1D6A3BDE5FBAAA0BAA503655 /* RecursiveCyclicRelationship.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,7 +764,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -813,6 +822,7 @@
 				2C375F2018CCD3FB00FCB8EA /* PersonNative.m in Sources */,
 				2C375F2118CCD3FB00FCB8EA /* CarNative.m in Sources */,
 				AD52DF891B0387C000E46915 /* FEMAttributeMappingSpec.m in Sources */,
+				1D6A3EBE458C75A2F395107D /* RecursiveRelationship+Mapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,7 +880,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -901,7 +911,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
