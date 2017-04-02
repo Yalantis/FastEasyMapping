@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15C50" minimumToolsVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Car" representedClassName="Car" syncable="YES">
-        <attribute name="carID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="carID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="model" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="car" inverseEntity="Person" syncable="YES"/>
@@ -11,7 +11,7 @@
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="personID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="personID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="car" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Car" inverseName="person" inverseEntity="Car" syncable="YES"/>
         <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
         <relationship name="partner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
@@ -21,12 +21,18 @@
         <attribute name="ddd" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ddi" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="phoneID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="phoneID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="phones" inverseEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="RecursiveRelationship" representedClassName="RecursiveRelationship" syncable="YES" codeGenerationType="class">
+        <attribute name="primaryKey" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <relationship name="child" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecursiveRelationship" inverseName="parent" inverseEntity="RecursiveRelationship" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecursiveRelationship" inverseName="child" inverseEntity="RecursiveRelationship" syncable="YES"/>
     </entity>
     <elements>
         <element name="Car" positionX="243" positionY="-990" width="128" height="120"/>
         <element name="Person" positionX="54" positionY="-990" width="128" height="165"/>
         <element name="Phone" positionX="-173" positionY="-975" width="128" height="120"/>
+        <element name="RecursiveRelationship" positionX="36" positionY="-918" width="128" height="90"/>
     </elements>
 </model>

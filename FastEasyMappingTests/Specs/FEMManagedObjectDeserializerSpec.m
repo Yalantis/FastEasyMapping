@@ -14,6 +14,8 @@
 #import "FEMMapping.h"
 #import "Phone.h"
 
+#import "RecursiveRelationship+Mapping.h"
+
 SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
 
     describe(@"FEMDeserializer", ^{
@@ -364,7 +366,24 @@ SPEC_BEGIN(FEMManagedObjectDeserializerSpec)
                     [[friendsFriend.email should] equal:@"pedro@gmail.com"];
                 });
             });
-
+            
+            context(@"recursive cyclic relationship", ^{
+                __block RecursiveRelationship *object;
+                __block RecursiveRelationship *child;
+                beforeEach(^{
+                    NSDictionary *fixture = [CMFixture buildUsingFixture:@"RecursiveCyclicRelationship"];
+                    FEMMapping *mapping = [RecursiveRelationship defaultMapping];
+                    object = [FEMDeserializer objectFromRepresentation:fixture mapping:mapping context:moc];
+                    child = object.child;
+                });
+                
+                it(@"should map cyclic relationship", ^{
+                    [[object.primaryKey should] equal:@1];
+                    [[child.primaryKey should] equal:@2];
+                    
+                    [[child.child should] equal:object];
+                });
+            });
         });
 
         describe(@".deserializeCollectionExternalRepresentation:usingmapping:", ^{
