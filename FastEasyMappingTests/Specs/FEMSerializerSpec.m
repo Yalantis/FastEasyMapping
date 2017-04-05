@@ -128,11 +128,14 @@ SPEC_BEGIN(FEMSerializerSpec)
 
 				__block CarNative *car;
 				__block NSDictionary *representation;
-				__block NSDate *date = [NSDate date];
+				__block NSDate *referenceDate = [NSDate dateWithTimeIntervalSince1970:0];
 
-				NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-				[formatter setDateFormat:@"yyyy-MM-dd"];
-				__block NSString *dateString = [formatter stringFromDate:date];
+                NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+                dayComponent.day = 1;
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+
+                __block NSDate *date = [calendar dateByAddingComponents:dayComponent toDate:referenceDate options:0];
+                __block NSString *dateString = @"1970-01-02";
 
 				beforeEach(^{
 
