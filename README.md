@@ -1,6 +1,6 @@
 # FastEasyMapping
 
-[![Build Status](https://travis-ci.org/Yalantis/FastEasyMapping.svg)](https://travis-ci.org/Yalantis/FastEasyMapping)
+[![Build Status](https://travis-ci.org/Yalantis/FastEasyMapping.svg?branch=master)](https://travis-ci.org/Yalantis/FastEasyMapping)
 [![codecov.io](https://codecov.io/github/Yalantis/FastEasyMapping/coverage.svg?branch=master)](https://codecov.io/github/Yalantis/FastEasyMapping?branch=master)
 
 ### Note

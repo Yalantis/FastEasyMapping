@@ -126,10 +126,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, readonly, nullable) FEMAttribute *primaryKeyAttribute;
 
-
-@property (nonatomic) BOOL updatePrimaryKey;
-
-
 /**
  @brief Returns all known attributes. Order is not saved.
  */
