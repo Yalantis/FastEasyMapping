@@ -9,8 +9,7 @@ env:
   global:
   - WORKSPACE=FastEasyMapping.xcworkspace
   - RUN_TESTS="YES"
-  # On slow CI 30 seconds sometimes not enough
-  - DESTINATION_TIMEOUT=120
+  - DESTINATION_TIMEOUT=120 # On slow CI 30 seconds sometimes not enough
   - IOS_SCHEME="FastEasyMapping iOS"
   - MACOS_SCHEME="FastEasyMapping macOS"
   - TVOS_SCHEME="FastEasyMapping tvOS"
@@ -22,17 +21,17 @@ env:
   - WATCHOS_SDK=watchsimulator3.2
 
   matrix:
-      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=8.1,name=iPhone 6"
-      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=9.0,name=iPhone 6s"
-      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=10.3,name=iPhone 7"
+      #- SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=8.1,name=iPhone 6"
+      #- SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=9.3,name=iPhone 6s"
+      #- SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=10.3,name=iPhone 7"
 
-      - SCHEME="$MACOS_SCHEME" SDK="$MACOS_SDK" DESTINATION="arch=x86_64"
+      #- SCHEME="$MACOS_SCHEME" SDK="$MACOS_SDK" DESTINATION="arch=x86_64"
 
-      - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=9.0,name=Apple TV 1080p" RUN_TESTS="NO"
-      - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=10.0,name=Apple TV 1080p" RUN_TESTS="NO"
+      #- SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=9.0,name=Apple TV 1080p" RUN_TESTS="NO"
+      #- SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=10.0,name=Apple TV 1080p" RUN_TESTS="NO"
 
-      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=2.0,name=Apple Watch - 38mm" RUN_TESTS="NO"
-      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=3.2,name=Apple Watch - 38mm" RUN_TESTS="NO"
+      #- SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=2.0,name=Apple Watch - 38mm" RUN_TESTS="NO"
+      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=3.2,name=Apple Watch Series 2 - 38mm" RUN_TESTS="NO"
 
 script:
     - set -o pipefail
