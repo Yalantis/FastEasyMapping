@@ -9,7 +9,8 @@ env:
   global:
   - WORKSPACE=FastEasyMapping.xcworkspace
   - RUN_TESTS="YES"
-
+  # On slow CI 30 seconds sometimes not enough
+  - DESTINATION_TIMEOUT=120
   - IOS_SCHEME="FastEasyMapping iOS"
   - MACOS_SCHEME="FastEasyMapping macOS"
   - TVOS_SCHEME="FastEasyMapping tvOS"
@@ -30,8 +31,8 @@ env:
       - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=9.0,name=Apple TV 1080p" RUN_TESTS="NO"
       - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=10.0,name=Apple TV 1080p" RUN_TESTS="NO"
 
-      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=9.0,name=name=iPhone 6s" RUN_TESTS="NO"
-      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=10.0,name=iPhone 7" RUN_TESTS="NO"
+      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=2.0,name=name=Apple Watch - 38mm" RUN_TESTS="NO"
+      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=3.2,name=Apple Watch Series 2 - 38mm" RUN_TESTS="NO"
 
 script:
     - set -o pipefail
@@ -41,13 +42,13 @@ script:
     # Build Framework in Debug and Run Tests if specified
     - xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug build | xcpretty;
     - if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES test | xcpretty;
+        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -destination-timeout $DESTINATION_TIMEOUT -configuration Debug -enableCodeCoverage YES test | xcpretty;
       fi
 
     # Build Framework in Release and Run Tests if specified
     - xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release build | xcpretty;
     - if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release test | xcpretty;
+        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -destination-timeout $DESTINATION_TIMEOUT -configuration Release test | xcpretty;
       fi
 
 after_success:
