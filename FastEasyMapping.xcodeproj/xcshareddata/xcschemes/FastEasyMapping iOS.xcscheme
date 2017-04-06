@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ADEC66A81B9D9DEB00F528C8"
-               BuildableName = "FastEasyMapping iOS.framework"
+               BuildableName = "FastEasyMapping.framework"
                BlueprintName = "FastEasyMapping iOS"
                ReferencedContainer = "container:FastEasyMapping.xcodeproj">
             </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ADEC66A81B9D9DEB00F528C8"
-            BuildableName = "FastEasyMapping iOS.framework"
+            BuildableName = "FastEasyMapping.framework"
             BlueprintName = "FastEasyMapping iOS"
             ReferencedContainer = "container:FastEasyMapping.xcodeproj">
          </BuildableReference>
