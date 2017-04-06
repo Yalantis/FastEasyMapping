@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		ADEC66EF1B9DA45600F528C8 /* FastEasyMapping Universal */ = {
+		ADEC66EF1B9DA45600F528C8 /* FastEasyMapping iOS Universal */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = ADEC66F01B9DA45600F528C8 /* Build configuration list for PBXAggregateTarget "FastEasyMapping Universal" */;
+			buildConfigurationList = ADEC66F01B9DA45600F528C8 /* Build configuration list for PBXAggregateTarget "FastEasyMapping iOS Universal" */;
 			buildPhases = (
 				ADEC66F31B9DA45F00F528C8 /* Lipo */,
 			);
 			dependencies = (
 			);
-			name = "FastEasyMapping Universal";
+			name = "FastEasyMapping iOS Universal";
 			productName = "FastEasyMapping Universal";
 		};
 /* End PBXAggregateTarget section */
@@ -65,7 +65,7 @@
 		2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7532E1E5E3196BC27932 /* MappingProvider.m */; };
 		2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097B18C3AD5700C07899 /* Foundation.framework */; };
 		7A436317F4B16AE5CB7A5A7B /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F197C2371647DD2F3BE4FE4 /* libPods-FastEasyMappingTests.a */; };
-		AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */; };
+		AD41A6A41B9DFA4C007F5729 /* FastEasyMapping iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping iOS.framework */; };
 		AD52DF831B0387C000E46915 /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
 		AD52DF851B0387C000E46915 /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
 		AD52DF871B0387C000E46915 /* FEMSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* FEMSerializerSpec.m */; };
@@ -237,7 +237,7 @@
 		AD9400691E8AA7C000558F37 /* FEMObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectStore.h; sourceTree = "<group>"; };
 		AD94006B1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ManagedPersonWithRecursiveRelationship.json; sourceTree = "<group>"; };
 		AD94006C1E8AA93700558F37 /* PersonWithRecursiveRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonWithRecursiveRelationship.json; sourceTree = "<group>"; };
-		ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FastEasyMapping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "FastEasyMapping iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADEC66C21B9D9E7000F528C8 /* FastEasyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastEasyMapping.h; sourceTree = "<group>"; };
 		ADEC66C31B9D9E7000F528C8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADF700D01B99F5F600713D61 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -249,7 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */,
+				AD41A6A41B9DFA4C007F5729 /* FastEasyMapping iOS.framework in Frameworks */,
 				2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */,
 				7A436317F4B16AE5CB7A5A7B /* libPods-FastEasyMappingTests.a in Frameworks */,
 			);
@@ -359,7 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				2CF8098818C3AD5700C07899 /* FastEasyMappingTests.xctest */,
-				ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */,
+				ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping iOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -584,9 +584,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2CF8098718C3AD5700C07899 /* FastEasyMappingTests */ = {
+		2CF8098718C3AD5700C07899 /* FastEasyMapping iOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2CF8099E18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "FastEasyMappingTests" */;
+			buildConfigurationList = 2CF8099E18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "FastEasyMapping iOS Tests" */;
 			buildPhases = (
 				9C4B08136E85C13699AC1F2E /* [CP] Check Pods Manifest.lock */,
 				2CF8098418C3AD5700C07899 /* Sources */,
@@ -600,14 +600,14 @@
 			dependencies = (
 				AD41A6A31B9DF9D4007F5729 /* PBXTargetDependency */,
 			);
-			name = FastEasyMappingTests;
+			name = "FastEasyMapping iOS Tests";
 			productName = EasyMappingKitTests;
 			productReference = 2CF8098818C3AD5700C07899 /* FastEasyMappingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		ADEC66A81B9D9DEB00F528C8 /* FastEasyMapping */ = {
+		ADEC66A81B9D9DEB00F528C8 /* FastEasyMapping iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ADEC66BC1B9D9DEB00F528C8 /* Build configuration list for PBXNativeTarget "FastEasyMapping" */;
+			buildConfigurationList = ADEC66BC1B9D9DEB00F528C8 /* Build configuration list for PBXNativeTarget "FastEasyMapping iOS" */;
 			buildPhases = (
 				ADEC66A41B9D9DEB00F528C8 /* Sources */,
 				ADEC66A51B9D9DEB00F528C8 /* Frameworks */,
@@ -618,9 +618,9 @@
 			);
 			dependencies = (
 			);
-			name = FastEasyMapping;
+			name = "FastEasyMapping iOS";
 			productName = FastEasyMapping;
-			productReference = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */;
+			productReference = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -655,9 +655,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ADEC66A81B9D9DEB00F528C8 /* FastEasyMapping */,
-				ADEC66EF1B9DA45600F528C8 /* FastEasyMapping Universal */,
-				2CF8098718C3AD5700C07899 /* FastEasyMappingTests */,
+				ADEC66A81B9D9DEB00F528C8 /* FastEasyMapping iOS */,
+				ADEC66EF1B9DA45600F528C8 /* FastEasyMapping iOS Universal */,
+				2CF8098718C3AD5700C07899 /* FastEasyMapping iOS Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -826,7 +826,7 @@
 /* Begin PBXTargetDependency section */
 		AD41A6A31B9DF9D4007F5729 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ADEC66A81B9D9DEB00F528C8 /* FastEasyMapping */;
+			target = ADEC66A81B9D9DEB00F528C8 /* FastEasyMapping iOS */;
 			targetProxy = AD41A6A21B9DF9D4007F5729 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1033,7 +1033,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2CF8099E18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "FastEasyMappingTests" */ = {
+		2CF8099E18C3AD5700C07899 /* Build configuration list for PBXNativeTarget "FastEasyMapping iOS Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CF8099F18C3AD5700C07899 /* Debug */,
@@ -1042,7 +1042,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADEC66BC1B9D9DEB00F528C8 /* Build configuration list for PBXNativeTarget "FastEasyMapping" */ = {
+		ADEC66BC1B9D9DEB00F528C8 /* Build configuration list for PBXNativeTarget "FastEasyMapping iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ADEC66BD1B9D9DEB00F528C8 /* Debug */,
@@ -1051,7 +1051,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADEC66F01B9DA45600F528C8 /* Build configuration list for PBXAggregateTarget "FastEasyMapping Universal" */ = {
+		ADEC66F01B9DA45600F528C8 /* Build configuration list for PBXAggregateTarget "FastEasyMapping iOS Universal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ADEC66F11B9DA45600F528C8 /* Debug */,

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ADEC66A81B9D9DEB00F528C8"
-               BuildableName = "FastEasyMapping.framework"
-               BlueprintName = "FastEasyMapping"
+               BlueprintIdentifier = "ADEC66EF1B9DA45600F528C8"
+               BuildableName = "FastEasyMapping iOS Universal"
+               BlueprintName = "FastEasyMapping iOS Universal"
                ReferencedContainer = "container:FastEasyMapping.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,16 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2CF8098718C3AD5700C07899"
-               BuildableName = "FastEasyMappingTests.xctest"
-               BlueprintName = "FastEasyMappingTests"
-               ReferencedContainer = "container:FastEasyMapping.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>
@@ -55,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ADEC66A81B9D9DEB00F528C8"
-            BuildableName = "FastEasyMapping.framework"
-            BlueprintName = "FastEasyMapping"
+            BlueprintIdentifier = "ADEC66EF1B9DA45600F528C8"
+            BuildableName = "FastEasyMapping iOS Universal"
+            BlueprintName = "FastEasyMapping iOS Universal"
             ReferencedContainer = "container:FastEasyMapping.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -70,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "ADEC66EF1B9DA45600F528C8"
+            BuildableName = "FastEasyMapping iOS Universal"
+            BlueprintName = "FastEasyMapping iOS Universal"
+            ReferencedContainer = "container:FastEasyMapping.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
