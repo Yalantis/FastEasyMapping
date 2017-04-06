@@ -1,7 +1,6 @@
 inhibit_all_warnings!
 
 abstract_target 'Tests' do
-
     pod 'Kiwi', '~> 2.4.0'
     pod 'CMFactory', '~> 1.4.0'
     pod 'MagicalRecord', '~> 2.3'
