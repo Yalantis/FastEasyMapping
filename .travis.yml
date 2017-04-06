@@ -39,7 +39,7 @@ script:
     - xcodebuild -showsdks
 
     # Build Framework in Debug and Run Tests if specified
-    = xcodebuild $CMD -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug | xcpretty;
+    - xcodebuild $CMD -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug | xcpretty;
     # Build Framework in Release and Run Tests if specified
     - xcodebuild $CMD -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;
 after_success:
