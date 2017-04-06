@@ -8,7 +8,7 @@ before_install:
 env:
   global:
   - WORKSPACE=FastEasyMapping.xcworkspace
-  - CMD="test -enableCodeCoverage YES"
+  - RUN_TESTS="YES"
 
   - IOS_SCHEME="FastEasyMapping iOS"
   - MACOS_SCHEME="FastEasyMapping macOS"
@@ -27,11 +27,11 @@ env:
 
       - SCHEME="$MACOS_SCHEME" SDK="$MACOS_SDK" DESTINATION="arch=x86_64"
 
-      - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=9.0,name=Apple TV 1080p" CMD="build"
-      - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=10.0,name=Apple TV 1080p" CMD="build"
+      - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=9.0,name=Apple TV 1080p" RUN_TESTS="NO"
+      - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=10.0,name=Apple TV 1080p" RUN_TESTS="NO"
 
-      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=9.0,name=name=iPhone 6s" CMD="build"
-      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=10.0,name=iPhone 7" CMD="build"
+      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=9.0,name=name=iPhone 6s" RUN_TESTS="NO"
+      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=10.0,name=iPhone 7" RUN_TESTS="NO"
 
 script:
     - set -o pipefail
@@ -39,8 +39,16 @@ script:
     - xcodebuild -showsdks
 
     # Build Framework in Debug and Run Tests if specified
-    - xcodebuild $CMD -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug | xcpretty;
+    - xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug build | xcpretty;
+    - if [ $RUN_TESTS == "YES" ]; then
+        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES test | xcpretty;
+      fi
+
     # Build Framework in Release and Run Tests if specified
-    - xcodebuild $CMD -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;
+    - xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release build | xcpretty;
+    - if [ $RUN_TESTS == "YES" ]; then
+        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release test | xcpretty;
+      fi
+
 after_success:
     - bash <(curl -s https://codecov.io/bash)
