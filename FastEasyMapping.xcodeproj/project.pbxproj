@@ -65,6 +65,7 @@
 		2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7532E1E5E3196BC27932 /* MappingProvider.m */; };
 		2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097B18C3AD5700C07899 /* Foundation.framework */; };
 		7A436317F4B16AE5CB7A5A7B /* libPods-FastEasyMappingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F197C2371647DD2F3BE4FE4 /* libPods-FastEasyMappingTests.a */; };
+		ACC93B02811D5D3D8CB79B0A /* libPods-Tests-FastEasyMapping iOS Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 029175FA979BE7CB66DAB5CC /* libPods-Tests-FastEasyMapping iOS Tests.a */; };
 		AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */; };
 		AD52DF831B0387C000E46915 /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
 		AD52DF851B0387C000E46915 /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
@@ -198,6 +199,104 @@
 		ADCD43D51E963CEB006C8106 /* FEMProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3341482134DF540C9984 /* FEMProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADCD43D61E963CEB006C8106 /* FEMRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400671E8AA7AD00558F37 /* FEMRelationship.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADCD43D71E963ECD006C8106 /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEC66C21B9D9E7000F528C8 /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADCD43D81E9640AB006C8106 /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
+		ADCD43D91E9640AB006C8106 /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
+		ADCD43DA1E9640AB006C8106 /* FEMSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* FEMSerializerSpec.m */; };
+		ADCD43DB1E9640AB006C8106 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
+		ADCD43DC1E9640AB006C8106 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3B2EBB16587406F244B6 /* FEMCacheSpec.m */; };
+		ADCD43DD1E9640AB006C8106 /* FEMDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31F075A797425408C339 /* FEMDeserializerSpec.m */; };
+		ADCD43DE1E9640AB006C8106 /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
+		ADCD43DF1E9640AB006C8106 /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
+		ADCD43E01E9640AB006C8106 /* FEMSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* FEMSerializerSpec.m */; };
+		ADCD43E11E9640AB006C8106 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
+		ADCD43E21E9640AB006C8106 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3B2EBB16587406F244B6 /* FEMCacheSpec.m */; };
+		ADCD43E31E9640AB006C8106 /* FEMDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31F075A797425408C339 /* FEMDeserializerSpec.m */; };
+		ADCD43E41E9640C7006C8106 /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
+		ADCD43E51E9640C7006C8106 /* AddressNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */; };
+		ADCD43E61E9640C7006C8106 /* AlienNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED76A31CE5167D72298490 /* AlienNative.m */; };
+		ADCD43E71E9640C7006C8106 /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED767EE6E89A487714CDF8 /* Car.m */; };
+		ADCD43E81E9640C7006C8106 /* CarNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED734D9AF0D834B3D9D190 /* CarNative.m */; };
+		ADCD43E91E9640C7006C8106 /* CatNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED76E0E8184C9BDF3CE713 /* CatNative.m */; };
+		ADCD43EA1E9640C7006C8106 /* FingerNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7E9D5D47846FEFCA62F5 /* FingerNative.m */; };
+		ADCD43EB1E9640C7006C8106 /* Native.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED749AC1C7BE9BBB361F2B /* Native.m */; };
+		ADCD43EC1E9640C7006C8106 /* NativeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED747DF1709A9ABAC81F68 /* NativeChild.m */; };
+		ADCD43ED1E9640C7006C8106 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED78FBF03886650959C5AE /* Person.m */; };
+		ADCD43EE1E9640C7006C8106 /* PersonNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C0B46A2C9AC90B37710 /* PersonNative.m */; };
+		ADCD43EF1E9640C7006C8106 /* Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75A1803E4FA721E79895 /* Phone.m */; };
+		ADCD43F01E9640C7006C8106 /* PhoneNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7E3F8292CA5FAB383E45 /* PhoneNative.m */; };
+		ADCD43F11E9640C7006C8106 /* PlaneNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED74EA8FEC3EC66EF72AA7 /* PlaneNative.m */; };
+		ADCD43F21E9640C7006C8106 /* SeaplaneNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED782333EB910A1F420719 /* SeaplaneNative.m */; };
+		ADCD43F31E9640C7006C8106 /* UniqueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A39978E70C9CA36660CAF /* UniqueObject.m */; };
+		ADCD43F41E9640C7006C8106 /* Female.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7D96C7E8C393B9DEB695 /* Female.json */; };
+		ADCD43F51E9640C7006C8106 /* PersonWithDifferentNaming.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED793ABFE3F8A13E1E3D30 /* PersonWithDifferentNaming.json */; };
+		ADCD43F61E9640C7006C8106 /* Cars.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED70F7239A59402E626302 /* Cars.json */; };
+		ADCD43F71E9640C7006C8106 /* Native.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED796AD9048CFCF07439D0 /* Native.json */; };
+		ADCD43F81E9640C7006C8106 /* Alien.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7EC1199D47734B9812E7 /* Alien.json */; };
+		ADCD43F91E9640C7006C8106 /* Plane.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7209D50C3640D4456C8D /* Plane.json */; };
+		ADCD43FA1E9640C7006C8106 /* CarWithRoot.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7FE4AD3F8C3BD25B5825 /* CarWithRoot.json */; };
+		ADCD43FB1E9640C7006C8106 /* CarWithDate.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED758473F42E39AE484636 /* CarWithDate.json */; };
+		ADCD43FC1E9640C7006C8106 /* CarWithNestedAttributes.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7BBE657BC5F333DD5560 /* CarWithNestedAttributes.json */; };
+		ADCD43FD1E9640C7006C8106 /* Male.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED78A3F1B154B04AA09ABB /* Male.json */; };
+		ADCD43FE1E9640C7006C8106 /* Address.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7810DD72B240882E07DF /* Address.json */; };
+		ADCD43FF1E9640C7006C8106 /* Person.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED79AD80703DC44EFCC7EE /* Person.json */; };
+		ADCD44001E9640C7006C8106 /* Car.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED74F0986B6C6DD2614CB7 /* Car.json */; };
+		ADCD44011E9640C7006C8106 /* NativeChild.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7CF6DFFBDF7A0BF32AFC /* NativeChild.json */; };
+		ADCD44021E9640C7006C8106 /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
+		ADCD44031E9640C7006C8106 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
+		ADCD44041E9640C7006C8106 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
+		ADCD44051E9640C7006C8106 /* Person_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3ACBBC8E66609F169E94 /* Person_2.json */; };
+		ADCD44061E9640C7006C8106 /* PersonWithNullRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */; };
+		ADCD44071E9640C7006C8106 /* PersonWithMissingRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */; };
+		ADCD44081E9640C7006C8106 /* UniqueObject.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E4E69862D892DB99262 /* UniqueObject.json */; };
+		ADCD44091E9640C7006C8106 /* ManagedPersonWithRecursiveRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = AD94006B1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json */; };
+		ADCD440A1E9640C7006C8106 /* PersonWithRecursiveRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = AD94006C1E8AA93700558F37 /* PersonWithRecursiveRelationship.json */; };
+		ADCD440B1E9640C7006C8106 /* RecursiveCyclicRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */; };
+		ADCD440C1E9640C7006C8106 /* MappingProviderNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED799D533AED10DCFB4106 /* MappingProviderNative.m */; };
+		ADCD440D1E9640C7006C8106 /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7532E1E5E3196BC27932 /* MappingProvider.m */; };
+		ADCD440E1E9640C7006C8106 /* RecursiveRelationship+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A32EFC67384FE93544E57 /* RecursiveRelationship+Mapping.m */; };
+		ADCD440F1E9640C7006C8106 /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
+		ADCD44101E9640C7006C8106 /* AddressNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */; };
+		ADCD44111E9640C7006C8106 /* AlienNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED76A31CE5167D72298490 /* AlienNative.m */; };
+		ADCD44121E9640C7006C8106 /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED767EE6E89A487714CDF8 /* Car.m */; };
+		ADCD44131E9640C7006C8106 /* CarNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED734D9AF0D834B3D9D190 /* CarNative.m */; };
+		ADCD44141E9640C7006C8106 /* CatNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED76E0E8184C9BDF3CE713 /* CatNative.m */; };
+		ADCD44151E9640C7006C8106 /* FingerNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7E9D5D47846FEFCA62F5 /* FingerNative.m */; };
+		ADCD44161E9640C7006C8106 /* Native.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED749AC1C7BE9BBB361F2B /* Native.m */; };
+		ADCD44171E9640C7006C8106 /* NativeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED747DF1709A9ABAC81F68 /* NativeChild.m */; };
+		ADCD44181E9640C7006C8106 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED78FBF03886650959C5AE /* Person.m */; };
+		ADCD44191E9640C7006C8106 /* PersonNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C0B46A2C9AC90B37710 /* PersonNative.m */; };
+		ADCD441A1E9640C7006C8106 /* Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75A1803E4FA721E79895 /* Phone.m */; };
+		ADCD441B1E9640C7006C8106 /* PhoneNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7E3F8292CA5FAB383E45 /* PhoneNative.m */; };
+		ADCD441C1E9640C7006C8106 /* PlaneNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED74EA8FEC3EC66EF72AA7 /* PlaneNative.m */; };
+		ADCD441D1E9640C7006C8106 /* SeaplaneNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED782333EB910A1F420719 /* SeaplaneNative.m */; };
+		ADCD441E1E9640C7006C8106 /* UniqueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A39978E70C9CA36660CAF /* UniqueObject.m */; };
+		ADCD441F1E9640C7006C8106 /* Female.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7D96C7E8C393B9DEB695 /* Female.json */; };
+		ADCD44201E9640C7006C8106 /* PersonWithDifferentNaming.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED793ABFE3F8A13E1E3D30 /* PersonWithDifferentNaming.json */; };
+		ADCD44211E9640C7006C8106 /* Cars.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED70F7239A59402E626302 /* Cars.json */; };
+		ADCD44221E9640C7006C8106 /* Native.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED796AD9048CFCF07439D0 /* Native.json */; };
+		ADCD44231E9640C7006C8106 /* Alien.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7EC1199D47734B9812E7 /* Alien.json */; };
+		ADCD44241E9640C7006C8106 /* Plane.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7209D50C3640D4456C8D /* Plane.json */; };
+		ADCD44251E9640C7006C8106 /* CarWithRoot.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7FE4AD3F8C3BD25B5825 /* CarWithRoot.json */; };
+		ADCD44261E9640C7006C8106 /* CarWithDate.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED758473F42E39AE484636 /* CarWithDate.json */; };
+		ADCD44271E9640C7006C8106 /* CarWithNestedAttributes.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7BBE657BC5F333DD5560 /* CarWithNestedAttributes.json */; };
+		ADCD44281E9640C7006C8106 /* Male.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED78A3F1B154B04AA09ABB /* Male.json */; };
+		ADCD44291E9640C7006C8106 /* Address.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7810DD72B240882E07DF /* Address.json */; };
+		ADCD442A1E9640C7006C8106 /* Person.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED79AD80703DC44EFCC7EE /* Person.json */; };
+		ADCD442B1E9640C7006C8106 /* Car.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED74F0986B6C6DD2614CB7 /* Car.json */; };
+		ADCD442C1E9640C7006C8106 /* NativeChild.json in Resources */ = {isa = PBXBuildFile; fileRef = 69ED7CF6DFFBDF7A0BF32AFC /* NativeChild.json */; };
+		ADCD442D1E9640C7006C8106 /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
+		ADCD442E1E9640C7006C8106 /* PersonWithCar_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3466BDE4D4241DCB93D3 /* PersonWithCar_2.json */; };
+		ADCD442F1E9640C7006C8106 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
+		ADCD44301E9640C7006C8106 /* Person_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3ACBBC8E66609F169E94 /* Person_2.json */; };
+		ADCD44311E9640C7006C8106 /* PersonWithNullRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */; };
+		ADCD44321E9640C7006C8106 /* PersonWithMissingRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */; };
+		ADCD44331E9640C7006C8106 /* UniqueObject.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E4E69862D892DB99262 /* UniqueObject.json */; };
+		ADCD44341E9640C7006C8106 /* ManagedPersonWithRecursiveRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = AD94006B1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json */; };
+		ADCD44351E9640C7006C8106 /* PersonWithRecursiveRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = AD94006C1E8AA93700558F37 /* PersonWithRecursiveRelationship.json */; };
+		ADCD44361E9640C7006C8106 /* RecursiveCyclicRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */; };
+		ADCD44371E9640C7006C8106 /* MappingProviderNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED799D533AED10DCFB4106 /* MappingProviderNative.m */; };
+		ADCD44381E9640C7006C8106 /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7532E1E5E3196BC27932 /* MappingProvider.m */; };
+		ADCD44391E9640C7006C8106 /* RecursiveRelationship+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A32EFC67384FE93544E57 /* RecursiveRelationship+Mapping.m */; };
 		ADEC66C41B9D9E7000F528C8 /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEC66C21B9D9E7000F528C8 /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADEC66C61B9D9F5200F528C8 /* NSArray+FEMPropertyRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED7645386941DA79C1E53A /* NSArray+FEMPropertyRepresentation.h */; };
 		ADEC66C81B9D9F5200F528C8 /* FEMExcludableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3AF6BD6EABAAACD8D4B8 /* FEMExcludableCollection.h */; };
@@ -235,6 +334,7 @@
 		ADEC66EC1B9D9FBB00F528C8 /* FEMMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3E65B1DB73E680A495BA /* FEMMapping.m */; };
 		ADEC66ED1B9D9FBB00F528C8 /* FEMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A312125E7A338A36E4EC2 /* FEMAttribute.m */; };
 		ADEC66EE1B9D9FBB00F528C8 /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C4B6BB4FD8C58AE917F /* FEMRelationship.m */; };
+		C3EBB0009691B2F985971DD4 /* libPods-Tests-FastEasyMapping macOS Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F82FAEC7E16AD969A117669 /* libPods-Tests-FastEasyMapping macOS Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +363,7 @@
 
 /* Begin PBXFileReference section */
 		017645D3C316D6C51A30E658 /* Pods-FastEasyMappingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMappingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FastEasyMappingTests/Pods-FastEasyMappingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		029175FA979BE7CB66DAB5CC /* libPods-Tests-FastEasyMapping iOS Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests-FastEasyMapping iOS Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6A305882C576DFB358EEFB /* FEMObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectDeserializer.h; sourceTree = "<group>"; };
 		1D6A30804948F002D8862B62 /* FEMRelationshipAssignmentContext+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FEMRelationshipAssignmentContext+Internal.h"; sourceTree = "<group>"; };
 		1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecursiveCyclicRelationship.json; sourceTree = "<group>"; };
@@ -313,6 +414,8 @@
 		2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyMappingCoreDataExample.xcdatamodel; sourceTree = "<group>"; };
 		2CF8097B18C3AD5700C07899 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CF8098818C3AD5700C07899 /* FastEasyMapping iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FastEasyMapping iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F82FAEC7E16AD969A117669 /* libPods-Tests-FastEasyMapping macOS Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests-FastEasyMapping macOS Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52361C0D2926FC317122DC36 /* Pods-Tests-FastEasyMapping macOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FastEasyMapping macOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests.release.xcconfig"; sourceTree = "<group>"; };
 		69ED70F7239A59402E626302 /* Cars.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Cars.json; sourceTree = "<group>"; };
 		69ED70FD89800BB41C8894FE /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
 		69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressNative.m; sourceTree = "<group>"; };
@@ -367,7 +470,10 @@
 		69ED7F5DB5E0C3FF6672226E /* FEMTypeIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMTypeIntrospection.m; sourceTree = "<group>"; };
 		69ED7FE4AD3F8C3BD25B5825 /* CarWithRoot.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CarWithRoot.json; sourceTree = "<group>"; };
 		69ED7FF7736562A674D3696D /* PlaneNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneNative.h; sourceTree = "<group>"; };
+		8821CD79258FB9F7C2C59579 /* Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8F197C2371647DD2F3BE4FE4 /* libPods-FastEasyMappingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FastEasyMappingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		92271872E2BB25BC18248ED4 /* Pods-Tests-FastEasyMapping macOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FastEasyMapping macOS Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		A61CB534E29A73D768625E58 /* Pods-Tests-FastEasyMapping iOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FastEasyMapping iOS Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		AD9400631E8AA43500558F37 /* FEMTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMTypes.h; sourceTree = "<group>"; };
 		AD9400671E8AA7AD00558F37 /* FEMRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRelationship.h; sourceTree = "<group>"; };
 		AD9400691E8AA7C000558F37 /* FEMObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectStore.h; sourceTree = "<group>"; };
@@ -393,6 +499,7 @@
 				AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */,
 				2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */,
 				7A436317F4B16AE5CB7A5A7B /* libPods-FastEasyMappingTests.a in Frameworks */,
+				ACC93B02811D5D3D8CB79B0A /* libPods-Tests-FastEasyMapping iOS Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCD43221E963AB3006C8106 /* FastEasyMapping.framework in Frameworks */,
+				C3EBB0009691B2F985971DD4 /* libPods-Tests-FastEasyMapping macOS Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +661,8 @@
 				ADF700D01B99F5F600713D61 /* CoreData.framework */,
 				2CF8097B18C3AD5700C07899 /* Foundation.framework */,
 				8F197C2371647DD2F3BE4FE4 /* libPods-FastEasyMappingTests.a */,
+				029175FA979BE7CB66DAB5CC /* libPods-Tests-FastEasyMapping iOS Tests.a */,
+				3F82FAEC7E16AD969A117669 /* libPods-Tests-FastEasyMapping macOS Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -726,6 +836,10 @@
 			children = (
 				017645D3C316D6C51A30E658 /* Pods-FastEasyMappingTests.debug.xcconfig */,
 				BE52839E47894F143345964D /* Pods-FastEasyMappingTests.release.xcconfig */,
+				A61CB534E29A73D768625E58 /* Pods-Tests-FastEasyMapping iOS Tests.debug.xcconfig */,
+				8821CD79258FB9F7C2C59579 /* Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig */,
+				92271872E2BB25BC18248ED4 /* Pods-Tests-FastEasyMapping macOS Tests.debug.xcconfig */,
+				52361C0D2926FC317122DC36 /* Pods-Tests-FastEasyMapping macOS Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -903,9 +1017,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADCD432D1E963AB3006C8106 /* Build configuration list for PBXNativeTarget "FastEasyMapping macOS Tests" */;
 			buildPhases = (
+				F1481348349A06CCAE247B59 /* [CP] Check Pods Manifest.lock */,
 				ADCD431D1E963AB3006C8106 /* Sources */,
 				ADCD431E1E963AB3006C8106 /* Frameworks */,
 				ADCD431F1E963AB3006C8106 /* Resources */,
+				C3E7F76DDD38FC5185BF5E37 /* [CP] Embed Pods Frameworks */,
+				5AE5B3027CE527FEDAB159E4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1101,6 +1218,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADCD43FE1E9640C7006C8106 /* Address.json in Resources */,
+				ADCD43FB1E9640C7006C8106 /* CarWithDate.json in Resources */,
+				ADCD43FF1E9640C7006C8106 /* Person.json in Resources */,
+				ADCD43F51E9640C7006C8106 /* PersonWithDifferentNaming.json in Resources */,
+				ADCD43FD1E9640C7006C8106 /* Male.json in Resources */,
+				ADCD43F41E9640C7006C8106 /* Female.json in Resources */,
+				ADCD44031E9640C7006C8106 /* PersonWithCar_2.json in Resources */,
+				ADCD43F71E9640C7006C8106 /* Native.json in Resources */,
+				ADCD44041E9640C7006C8106 /* Person_1.json in Resources */,
+				ADCD44071E9640C7006C8106 /* PersonWithMissingRelationships.json in Resources */,
+				ADCD440B1E9640C7006C8106 /* RecursiveCyclicRelationship.json in Resources */,
+				ADCD44051E9640C7006C8106 /* Person_2.json in Resources */,
+				ADCD44011E9640C7006C8106 /* NativeChild.json in Resources */,
+				ADCD44001E9640C7006C8106 /* Car.json in Resources */,
+				ADCD44091E9640C7006C8106 /* ManagedPersonWithRecursiveRelationship.json in Resources */,
+				ADCD43FC1E9640C7006C8106 /* CarWithNestedAttributes.json in Resources */,
+				ADCD44081E9640C7006C8106 /* UniqueObject.json in Resources */,
+				ADCD440A1E9640C7006C8106 /* PersonWithRecursiveRelationship.json in Resources */,
+				ADCD44061E9640C7006C8106 /* PersonWithNullRelationships.json in Resources */,
+				ADCD43F81E9640C7006C8106 /* Alien.json in Resources */,
+				ADCD43F91E9640C7006C8106 /* Plane.json in Resources */,
+				ADCD44021E9640C7006C8106 /* PersonWithCar_1.json in Resources */,
+				ADCD43F61E9640C7006C8106 /* Cars.json in Resources */,
+				ADCD43FA1E9640C7006C8106 /* CarWithRoot.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1115,6 +1256,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADCD44291E9640C7006C8106 /* Address.json in Resources */,
+				ADCD44261E9640C7006C8106 /* CarWithDate.json in Resources */,
+				ADCD442A1E9640C7006C8106 /* Person.json in Resources */,
+				ADCD44201E9640C7006C8106 /* PersonWithDifferentNaming.json in Resources */,
+				ADCD44281E9640C7006C8106 /* Male.json in Resources */,
+				ADCD441F1E9640C7006C8106 /* Female.json in Resources */,
+				ADCD442E1E9640C7006C8106 /* PersonWithCar_2.json in Resources */,
+				ADCD44221E9640C7006C8106 /* Native.json in Resources */,
+				ADCD442F1E9640C7006C8106 /* Person_1.json in Resources */,
+				ADCD44321E9640C7006C8106 /* PersonWithMissingRelationships.json in Resources */,
+				ADCD44361E9640C7006C8106 /* RecursiveCyclicRelationship.json in Resources */,
+				ADCD44301E9640C7006C8106 /* Person_2.json in Resources */,
+				ADCD442C1E9640C7006C8106 /* NativeChild.json in Resources */,
+				ADCD442B1E9640C7006C8106 /* Car.json in Resources */,
+				ADCD44341E9640C7006C8106 /* ManagedPersonWithRecursiveRelationship.json in Resources */,
+				ADCD44271E9640C7006C8106 /* CarWithNestedAttributes.json in Resources */,
+				ADCD44331E9640C7006C8106 /* UniqueObject.json in Resources */,
+				ADCD44351E9640C7006C8106 /* PersonWithRecursiveRelationship.json in Resources */,
+				ADCD44311E9640C7006C8106 /* PersonWithNullRelationships.json in Resources */,
+				ADCD44231E9640C7006C8106 /* Alien.json in Resources */,
+				ADCD44241E9640C7006C8106 /* Plane.json in Resources */,
+				ADCD442D1E9640C7006C8106 /* PersonWithCar_1.json in Resources */,
+				ADCD44211E9640C7006C8106 /* Cars.json in Resources */,
+				ADCD44251E9640C7006C8106 /* CarWithRoot.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1135,6 +1300,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5AE5B3027CE527FEDAB159E4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9C4B08136E85C13699AC1F2E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1162,7 +1342,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FastEasyMappingTests/Pods-FastEasyMappingTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ADEC66F31B9DA45F00F528C8 /* Lipo */ = {
@@ -1179,6 +1359,21 @@
 			shellPath = /bin/sh;
 			shellScript = ". scripts/build.sh";
 		};
+		C3E7F76DDD38FC5185BF5E37 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E4684757DB4DF0401AEFFD2C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1191,7 +1386,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FastEasyMappingTests/Pods-FastEasyMappingTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1481348349A06CCAE247B59 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1256,6 +1466,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADCD43EF1E9640C7006C8106 /* Phone.m in Sources */,
+				ADCD43E71E9640C7006C8106 /* Car.m in Sources */,
+				ADCD43E91E9640C7006C8106 /* CatNative.m in Sources */,
+				ADCD440D1E9640C7006C8106 /* MappingProvider.m in Sources */,
+				ADCD43EE1E9640C7006C8106 /* PersonNative.m in Sources */,
+				ADCD43E61E9640C7006C8106 /* AlienNative.m in Sources */,
+				ADCD440C1E9640C7006C8106 /* MappingProviderNative.m in Sources */,
+				ADCD43E81E9640C7006C8106 /* CarNative.m in Sources */,
+				ADCD43EB1E9640C7006C8106 /* Native.m in Sources */,
+				ADCD43EA1E9640C7006C8106 /* FingerNative.m in Sources */,
+				ADCD43F01E9640C7006C8106 /* PhoneNative.m in Sources */,
+				ADCD43EC1E9640C7006C8106 /* NativeChild.m in Sources */,
+				ADCD43DD1E9640AB006C8106 /* FEMDeserializerSpec.m in Sources */,
+				ADCD43F11E9640C7006C8106 /* PlaneNative.m in Sources */,
+				ADCD43D81E9640AB006C8106 /* FEMManagedObjectMappingSpec.m in Sources */,
+				ADCD43E41E9640C7006C8106 /* EasyMappingCoreDataExample.xcdatamodel in Sources */,
+				ADCD43ED1E9640C7006C8106 /* Person.m in Sources */,
+				ADCD43F31E9640C7006C8106 /* UniqueObject.m in Sources */,
+				ADCD43DA1E9640AB006C8106 /* FEMSerializerSpec.m in Sources */,
+				ADCD43D91E9640AB006C8106 /* FEMObjectMappingSpec.m in Sources */,
+				ADCD43F21E9640C7006C8106 /* SeaplaneNative.m in Sources */,
+				ADCD43DC1E9640AB006C8106 /* FEMCacheSpec.m in Sources */,
+				ADCD43DB1E9640AB006C8106 /* FEMAttributeMappingSpec.m in Sources */,
+				ADCD43E51E9640C7006C8106 /* AddressNative.m in Sources */,
+				ADCD440E1E9640C7006C8106 /* RecursiveRelationship+Mapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1521,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADCD441A1E9640C7006C8106 /* Phone.m in Sources */,
+				ADCD44121E9640C7006C8106 /* Car.m in Sources */,
+				ADCD44141E9640C7006C8106 /* CatNative.m in Sources */,
+				ADCD44381E9640C7006C8106 /* MappingProvider.m in Sources */,
+				ADCD44191E9640C7006C8106 /* PersonNative.m in Sources */,
+				ADCD44111E9640C7006C8106 /* AlienNative.m in Sources */,
+				ADCD44371E9640C7006C8106 /* MappingProviderNative.m in Sources */,
+				ADCD44131E9640C7006C8106 /* CarNative.m in Sources */,
+				ADCD44161E9640C7006C8106 /* Native.m in Sources */,
+				ADCD44151E9640C7006C8106 /* FingerNative.m in Sources */,
+				ADCD441B1E9640C7006C8106 /* PhoneNative.m in Sources */,
+				ADCD44171E9640C7006C8106 /* NativeChild.m in Sources */,
+				ADCD43E31E9640AB006C8106 /* FEMDeserializerSpec.m in Sources */,
+				ADCD441C1E9640C7006C8106 /* PlaneNative.m in Sources */,
+				ADCD43DE1E9640AB006C8106 /* FEMManagedObjectMappingSpec.m in Sources */,
+				ADCD440F1E9640C7006C8106 /* EasyMappingCoreDataExample.xcdatamodel in Sources */,
+				ADCD44181E9640C7006C8106 /* Person.m in Sources */,
+				ADCD441E1E9640C7006C8106 /* UniqueObject.m in Sources */,
+				ADCD43E01E9640AB006C8106 /* FEMSerializerSpec.m in Sources */,
+				ADCD43DF1E9640AB006C8106 /* FEMObjectMappingSpec.m in Sources */,
+				ADCD441D1E9640C7006C8106 /* SeaplaneNative.m in Sources */,
+				ADCD43E21E9640AB006C8106 /* FEMCacheSpec.m in Sources */,
+				ADCD43E11E9640AB006C8106 /* FEMAttributeMappingSpec.m in Sources */,
+				ADCD44101E9640C7006C8106 /* AddressNative.m in Sources */,
+				ADCD44391E9640C7006C8106 /* RecursiveRelationship+Mapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1451,7 +1711,7 @@
 		};
 		2CF8099F18C3AD5700C07899 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 017645D3C316D6C51A30E658 /* Pods-FastEasyMappingTests.debug.xcconfig */;
+			baseConfigurationReference = A61CB534E29A73D768625E58 /* Pods-Tests-FastEasyMapping iOS Tests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DSTROOT = /tmp/FastEasyMapping.dst;
@@ -1469,7 +1729,7 @@
 		};
 		2CF809A018C3AD5700C07899 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE52839E47894F143345964D /* Pods-FastEasyMappingTests.release.xcconfig */;
+			baseConfigurationReference = 8821CD79258FB9F7C2C59579 /* Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DSTROOT = /tmp/FastEasyMapping.dst;
@@ -1538,6 +1798,7 @@
 		};
 		ADCD432E1E963AB3006C8106 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92271872E2BB25BC18248ED4 /* Pods-Tests-FastEasyMapping macOS Tests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1558,6 +1819,7 @@
 		};
 		ADCD432F1E963AB3006C8106 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52361C0D2926FC317122DC36 /* Pods-Tests-FastEasyMapping macOS Tests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1818,6 +2080,7 @@
 				ADCD432C1E963AB3006C8106 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADCD432D1E963AB3006C8106 /* Build configuration list for PBXNativeTarget "FastEasyMapping macOS Tests" */ = {
 			isa = XCConfigurationList;
@@ -1826,6 +2089,7 @@
 				ADCD432F1E963AB3006C8106 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADCD43461E963AC2006C8106 /* Build configuration list for PBXNativeTarget "FastEasyMapping tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1834,6 +2098,7 @@
 				ADCD43481E963AC2006C8106 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADCD43491E963AC2006C8106 /* Build configuration list for PBXNativeTarget "FastEasyMapping tvOS Tests" */ = {
 			isa = XCConfigurationList;
@@ -1842,6 +2107,7 @@
 				ADCD434B1E963AC2006C8106 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADCD43561E963AD1006C8106 /* Build configuration list for PBXNativeTarget "FastEasyMapping watchOS" */ = {
 			isa = XCConfigurationList;
@@ -1850,6 +2116,7 @@
 				ADCD43581E963AD1006C8106 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADEC66BC1B9D9DEB00F528C8 /* Build configuration list for PBXNativeTarget "FastEasyMapping iOS" */ = {
 			isa = XCConfigurationList;

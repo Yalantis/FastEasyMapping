@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2CF8098718C3AD5700C07899"
-               BuildableName = "FastEasyMappingTests.xctest"
+               BuildableName = "FastEasyMapping iOS Tests.xctest"
                BlueprintName = "FastEasyMapping iOS Tests"
                ReferencedContainer = "container:FastEasyMapping.xcodeproj">
             </BuildableReference>
