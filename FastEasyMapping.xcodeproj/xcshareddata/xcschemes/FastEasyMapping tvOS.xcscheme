@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ADEC66EF1B9DA45600F528C8"
-               BuildableName = "FastEasyMapping Universal"
-               BlueprintName = "FastEasyMapping Universal"
+               BlueprintIdentifier = "ADCD43341E963AC1006C8106"
+               BuildableName = "FastEasyMapping.framework"
+               BlueprintName = "FastEasyMapping tvOS"
                ReferencedContainer = "container:FastEasyMapping.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ADCD433C1E963AC2006C8106"
+               BuildableName = "FastEasyMapping tvOS Tests.xctest"
+               BlueprintName = "FastEasyMapping tvOS Tests"
+               ReferencedContainer = "container:FastEasyMapping.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "ADCD43341E963AC1006C8106"
+            BuildableName = "FastEasyMapping.framework"
+            BlueprintName = "FastEasyMapping tvOS"
+            ReferencedContainer = "container:FastEasyMapping.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -45,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ADEC66EF1B9DA45600F528C8"
-            BuildableName = "FastEasyMapping Universal"
-            BlueprintName = "FastEasyMapping Universal"
+            BlueprintIdentifier = "ADCD43341E963AC1006C8106"
+            BuildableName = "FastEasyMapping.framework"
+            BlueprintName = "FastEasyMapping tvOS"
             ReferencedContainer = "container:FastEasyMapping.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ADEC66EF1B9DA45600F528C8"
-            BuildableName = "FastEasyMapping Universal"
-            BlueprintName = "FastEasyMapping Universal"
+            BlueprintIdentifier = "ADCD43341E963AC1006C8106"
+            BuildableName = "FastEasyMapping.framework"
+            BlueprintName = "FastEasyMapping tvOS"
             ReferencedContainer = "container:FastEasyMapping.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

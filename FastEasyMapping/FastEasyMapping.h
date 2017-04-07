@@ -14,24 +14,22 @@ FOUNDATION_EXPORT double FastEasyMappingVersionNumber;
 //! Project version string for FastEasyMapping.
 FOUNDATION_EXPORT const unsigned char FastEasyMappingVersionString[];
 
-#import "FEMProperty.h"
-#import "FEMAttribute.h"
-#import "FEMRelationship.h"
-
-#import "FEMObjectStore.h"
-#import "FEMManagedObjectStore.h"
-
-#import "FEMMapping.h"
-#import "FEMObjectMapping.h"
-#import "FEMManagedObjectMapping.h"
-
-#import "FEMDeserializer.h"
-#import "FEMObjectDeserializer.h"
-#import "FEMManagedObjectDeserializer.h"
-#import "FEMSerializer.h"
-
-#import "FEMRelationshipAssignmentContext.h"
-#import "FEMAssignmentPolicy.h"
-
-#import "FEMRepresentationUtility.h"
-#import "FEMMappingUtility.h"
+#import <FastEasyMapping/FEMProperty.h>
+#import <FastEasyMapping/FEMAttribute.h>
+#import <FastEasyMapping/FEMRelationship.h>
+#import <FastEasyMapping/FEMObjectStore.h>
+#import <FastEasyMapping/FEMManagedObjectStore.h>
+#import <FastEasyMapping/FEMObjectCache.h>
+#import <FastEasyMapping/FEMMapping.h>
+#import <FastEasyMapping/FEMObjectMapping.h>
+#import <FastEasyMapping/FEMManagedObjectMapping.h>
+#import <FastEasyMapping/FEMDeserializer.h>
+#import <FastEasyMapping/FEMObjectDeserializer.h>
+#import <FastEasyMapping/FEMManagedObjectDeserializer.h>
+#import <FastEasyMapping/FEMSerializer.h>
+#import <FastEasyMapping/FEMRelationshipAssignmentContext.h>
+#import <FastEasyMapping/FEMAssignmentPolicy.h>
+#import <FastEasyMapping/FEMTypes.h>
+#import <FastEasyMapping/FEMTypeIntrospection.h>
+#import <FastEasyMapping/FEMRepresentationUtility.h>
+#import <FastEasyMapping/FEMMappingUtility.h>

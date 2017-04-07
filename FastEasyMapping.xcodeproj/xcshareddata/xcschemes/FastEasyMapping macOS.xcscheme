@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ADEC66A81B9D9DEB00F528C8"
+               BlueprintIdentifier = "ADCD43181E963AB3006C8106"
                BuildableName = "FastEasyMapping.framework"
-               BlueprintName = "FastEasyMapping"
+               BlueprintName = "FastEasyMapping macOS"
                ReferencedContainer = "container:FastEasyMapping.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,13 +32,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2CF8098718C3AD5700C07899"
-               BuildableName = "FastEasyMappingTests.xctest"
-               BlueprintName = "FastEasyMappingTests"
+               BlueprintIdentifier = "ADCD43201E963AB3006C8106"
+               BuildableName = "FastEasyMapping macOS Tests.xctest"
+               BlueprintName = "FastEasyMapping macOS Tests"
                ReferencedContainer = "container:FastEasyMapping.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "ADCD43181E963AB3006C8106"
+            BuildableName = "FastEasyMapping.framework"
+            BlueprintName = "FastEasyMapping macOS"
+            ReferencedContainer = "container:FastEasyMapping.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -55,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ADEC66A81B9D9DEB00F528C8"
+            BlueprintIdentifier = "ADCD43181E963AB3006C8106"
             BuildableName = "FastEasyMapping.framework"
-            BlueprintName = "FastEasyMapping"
+            BlueprintName = "FastEasyMapping macOS"
             ReferencedContainer = "container:FastEasyMapping.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -70,6 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "ADCD43181E963AB3006C8106"
+            BuildableName = "FastEasyMapping.framework"
+            BlueprintName = "FastEasyMapping macOS"
+            ReferencedContainer = "container:FastEasyMapping.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
