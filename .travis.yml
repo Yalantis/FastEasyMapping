@@ -10,7 +10,7 @@ env:
   global:
   - WORKSPACE=FastEasyMapping.xcworkspace
   - RUN_TESTS="YES"
-  - DESTINATION_TIMEOUT=120 # On slow CI 30 seconds sometimes not enough
+  - DESTINATION_TIMEOUT=240 # https://github.com/travis-ci/travis-ci/issues/6422
   - IOS_SCHEME="FastEasyMapping iOS"
   - MACOS_SCHEME="FastEasyMapping macOS"
   - TVOS_SCHEME="FastEasyMapping tvOS"
