@@ -18,6 +18,7 @@
     FEMMapping *mapping = [self defaultMapping];
     
     FEMRelationship *children = [[FEMRelationship alloc] initWithProperty:@"children" keyPath:@"children" mapping:[Child defaultMapping]];
+    children.toMany = YES;
     children.assignmentPolicy = policy;
     [mapping addRelationship:children];
     

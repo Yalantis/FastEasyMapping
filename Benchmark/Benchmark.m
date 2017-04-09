@@ -7,11 +7,12 @@
 #import "Parent+Mapping.h"
 #import "Child+Mapping.h"
 
-const NSUInteger ObjectsCount = 100000;
+const NSUInteger ObjectsCount = 10000;
 
 @interface Benchmark : XCTestCase
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSArray *representation;
 
 @end
 
@@ -23,6 +24,8 @@ const NSUInteger ObjectsCount = 100000;
     [MagicalRecord setDefaultModelFromClass:[self class]];
     [MagicalRecord setupCoreDataStackWithStoreNamed:[NSBundle bundleForClass:self.class].bundleIdentifier];
     self.context = [NSManagedObjectContext MR_rootSavingContext];
+    
+    self.representation = [self generateTestData:ObjectsCount];
 }
 
 - (void)tearDown {
@@ -71,40 +74,49 @@ const NSUInteger ObjectsCount = 100000;
     return representation;
 }
 
-- (void)testParentOnlyInsertPerformance {
-    FEMMapping *mapping = [Parent defaultMapping];
-    NSArray *representation = [self generateTestData:ObjectsCount];
+
+//- (void)testParentOnlyInsertPerformance {
+//    FEMMapping *mapping = [Parent defaultMapping];
+//    
+//    [self measureMetrics:[self.class defaultPerformanceMetrics] automaticallyStartMeasuring:NO forBlock:^{
+//        FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithContext:self.context];
+//        [self startMeasuring];
+//        [deserializer collectionFromRepresentation:self.representation mapping:mapping];
+//        [self stopMeasuring];
+//        [Parent MR_truncateAllInContext:self.context];
+//    }];
+//}
+//
+//- (void)testParentOnlyUpdatePerformance {
+//    FEMMapping *mapping = [Parent defaultMapping];
+//    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithContext:self.context];
+//    [deserializer collectionFromRepresentation:self.representation mapping:mapping];
+//    
+//    [self measureMetrics:[self.class defaultPerformanceMetrics] automaticallyStartMeasuring:YES forBlock:^{
+//        [deserializer collectionFromRepresentation:self.representation mapping:mapping];
+//    }];
+//}
+
+- (void)testAssignmentInsertWithPerformance {
+    FEMMapping *mapping = [Parent childrenMappingWithPolicy:FEMAssignmentPolicyAssign];
     
     [self measureMetrics:[self.class defaultPerformanceMetrics] automaticallyStartMeasuring:NO forBlock:^{
         FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithContext:self.context];
-        
         [self startMeasuring];
-        
-        [deserializer collectionFromRepresentation:representation mapping:mapping];
-        
+        [deserializer collectionFromRepresentation:self.representation mapping:mapping];
         [self stopMeasuring];
-        
         [Parent MR_truncateAllInContext:self.context];
     }];
 }
 
-- (void)testParentOnlyUpdatePerformance {
-    FEMMapping *mapping = [Parent defaultMapping];
-    NSArray *representation = [self generateTestData:ObjectsCount];
+- (void)testAssignmentUpdatePerformance {
+    FEMMapping *mapping = [Parent childrenMappingWithPolicy:FEMAssignmentPolicyAssign];
     FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithContext:self.context];
-    [deserializer collectionFromRepresentation:representation mapping:mapping];
-
+    [deserializer collectionFromRepresentation:self.representation mapping:mapping];
+    
     [self measureMetrics:[self.class defaultPerformanceMetrics] automaticallyStartMeasuring:YES forBlock:^{
-        [deserializer collectionFromRepresentation:representation mapping:mapping];
+        [deserializer collectionFromRepresentation:self.representation mapping:mapping];
     }];
-}
-
-- (void)testInsertPerformance {
-    
-}
-
-- (void)testUpdatePerformance {
-    
 }
 
 @end
