@@ -74,28 +74,27 @@ const NSUInteger ObjectsCount = 10000;
     return representation;
 }
 
+- (void)testParentOnlyInsertPerformance {
+    FEMMapping *mapping = [Parent defaultMapping];
+    
+    [self measureMetrics:[self.class defaultPerformanceMetrics] automaticallyStartMeasuring:NO forBlock:^{
+        FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithContext:self.context];
+        [self startMeasuring];
+        [deserializer collectionFromRepresentation:self.representation mapping:mapping];
+        [self stopMeasuring];
+        [Parent MR_truncateAllInContext:self.context];
+    }];
+}
 
-//- (void)testParentOnlyInsertPerformance {
-//    FEMMapping *mapping = [Parent defaultMapping];
-//    
-//    [self measureMetrics:[self.class defaultPerformanceMetrics] automaticallyStartMeasuring:NO forBlock:^{
-//        FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithContext:self.context];
-//        [self startMeasuring];
-//        [deserializer collectionFromRepresentation:self.representation mapping:mapping];
-//        [self stopMeasuring];
-//        [Parent MR_truncateAllInContext:self.context];
-//    }];
-//}
-//
-//- (void)testParentOnlyUpdatePerformance {
-//    FEMMapping *mapping = [Parent defaultMapping];
-//    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithContext:self.context];
-//    [deserializer collectionFromRepresentation:self.representation mapping:mapping];
-//    
-//    [self measureMetrics:[self.class defaultPerformanceMetrics] automaticallyStartMeasuring:YES forBlock:^{
-//        [deserializer collectionFromRepresentation:self.representation mapping:mapping];
-//    }];
-//}
+- (void)testParentOnlyUpdatePerformance {
+    FEMMapping *mapping = [Parent defaultMapping];
+    FEMDeserializer *deserializer = [[FEMDeserializer alloc] initWithContext:self.context];
+    [deserializer collectionFromRepresentation:self.representation mapping:mapping];
+    
+    [self measureMetrics:[self.class defaultPerformanceMetrics] automaticallyStartMeasuring:YES forBlock:^{
+        [deserializer collectionFromRepresentation:self.representation mapping:mapping];
+    }];
+}
 
 - (void)testAssignmentInsertWithPerformance {
     FEMMapping *mapping = [Parent childrenMappingWithPolicy:FEMAssignmentPolicyAssign];
