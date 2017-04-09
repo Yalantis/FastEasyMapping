@@ -20,3 +20,9 @@ abstract_target 'Tests' do
     #   platform :tvos, :deployment_target => '9.0'
     # end
 end
+
+target 'Benchmark' do
+    platform :osx, :deployment_target => '10.10'
+    
+    pod 'MagicalRecord', '~> 2.3'
+end
