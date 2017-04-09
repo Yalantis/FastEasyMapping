@@ -94,14 +94,18 @@
                 }
             }
             
-            FEMRelationshipAssignmentContext *context = [self.store newAssignmentContext];
-            context.destinationObject = object;
-            context.relationship = relationship;
-            context.sourceRelationshipValue = [object valueForKey:relationship.property];
-            context.targetRelationshipValue = targetValue;
-            
-            id assignmentValue = relationship.assignmentPolicy(context);
-            [object setValue:assignmentValue forKey:relationship.property];
+            if (relationship.assignmentPolicy != FEMAssignmentPolicyAssign) {
+                FEMRelationshipAssignmentContext *context = [self.store newAssignmentContext];
+                context.destinationObject = object;
+                context.relationship = relationship;
+                context.sourceRelationshipValue = [object valueForKey:relationship.property];
+                context.targetRelationshipValue = targetValue;
+                
+                id assignmentValue = relationship.assignmentPolicy(context);
+                [object setValue:assignmentValue forKey:relationship.property];
+            } else {
+                [object setValue:targetValue forKey:relationship.property];
+            }
         }
     }
 }
