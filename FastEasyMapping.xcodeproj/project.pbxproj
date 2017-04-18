@@ -34,7 +34,7 @@
 		1D6A3E518B28A2D171B3B2F4 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3B2EBB16587406F244B6 /* FEMCacheSpec.m */; };
 		1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
 		226A096FD7A8F2F82546A4B5 /* libPods-Tests-FastEasyMapping iOS Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1CEA144F1C88674EEC18D4 /* libPods-Tests-FastEasyMapping iOS Tests.a */; };
-		2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
+		2C375F1318CCD3FB00FCB8EA /* CoreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* CoreData.xcdatamodel */; };
 		2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED767EE6E89A487714CDF8 /* Car.m */; };
 		2C375F1518CCD3FB00FCB8EA /* Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75A1803E4FA721E79895 /* Phone.m */; };
 		2C375F1618CCD3FB00FCB8EA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED78FBF03886650959C5AE /* Person.m */; };
@@ -213,7 +213,7 @@
 		ADCD43DB1E9640AB006C8106 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
 		ADCD43DC1E9640AB006C8106 /* FEMCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3B2EBB16587406F244B6 /* FEMCacheSpec.m */; };
 		ADCD43DD1E9640AB006C8106 /* FEMDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31F075A797425408C339 /* FEMDeserializerSpec.m */; };
-		ADCD43E41E9640C7006C8106 /* EasyMappingCoreDataExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */; };
+		ADCD43E41E9640C7006C8106 /* CoreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* CoreData.xcdatamodel */; };
 		ADCD43E51E9640C7006C8106 /* AddressNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */; };
 		ADCD43E61E9640C7006C8106 /* AlienNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED76A31CE5167D72298490 /* AlienNative.m */; };
 		ADCD43E71E9640C7006C8106 /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED767EE6E89A487714CDF8 /* Car.m */; };
@@ -371,7 +371,7 @@
 		1D6A3E4E69862D892DB99262 /* UniqueObject.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UniqueObject.json; sourceTree = "<group>"; };
 		1D6A3E65B1DB73E680A495BA /* FEMMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMapping.m; sourceTree = "<group>"; };
 		1D6A3E942488A7A8C0C01C0C /* FEMRepresentationUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRepresentationUtility.h; sourceTree = "<group>"; };
-		2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyMappingCoreDataExample.xcdatamodel; sourceTree = "<group>"; };
+		2C375F1018CCBC2900FCB8EA /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		2CF8097B18C3AD5700C07899 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CF8098818C3AD5700C07899 /* FastEasyMapping iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FastEasyMapping iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4986DA962D790596C4C54673 /* Pods-Tests-FastEasyMapping macOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FastEasyMapping macOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -737,7 +737,7 @@
 		69ED72A18D441F9A3397D384 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2C375F1018CCBC2900FCB8EA /* EasyMappingCoreDataExample.xcdatamodel */,
+				2C375F1018CCBC2900FCB8EA /* CoreData.xcdatamodel */,
 				69ED794EEC7B9F51E50AC8FA /* AddressNative.h */,
 				69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */,
 				69ED76DB4A492924FFE33FAF /* AlienNative.h */,
@@ -1455,7 +1455,7 @@
 				2C375F4318CCD49B00FCB8EA /* MappingProviderNative.m in Sources */,
 				2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */,
 				AD4E0B271EA619E200D12923 /* CommonTypesObject.swift in Sources */,
-				2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */,
+				2C375F1318CCD3FB00FCB8EA /* CoreData.xcdatamodel in Sources */,
 				2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */,
 				2C375F1518CCD3FB00FCB8EA /* Phone.m in Sources */,
 				2C375F1618CCD3FB00FCB8EA /* Person.m in Sources */,
@@ -1528,7 +1528,7 @@
 				ADCD43DD1E9640AB006C8106 /* FEMDeserializerSpec.m in Sources */,
 				ADCD43F11E9640C7006C8106 /* PlaneNative.m in Sources */,
 				ADCD43D81E9640AB006C8106 /* FEMManagedObjectMappingSpec.m in Sources */,
-				ADCD43E41E9640C7006C8106 /* EasyMappingCoreDataExample.xcdatamodel in Sources */,
+				ADCD43E41E9640C7006C8106 /* CoreData.xcdatamodel in Sources */,
 				ADCD43ED1E9640C7006C8106 /* Person.m in Sources */,
 				ADCD43F31E9640C7006C8106 /* UniqueObject.m in Sources */,
 				ADCD43DA1E9640AB006C8106 /* FEMSerializerSpec.m in Sources */,
