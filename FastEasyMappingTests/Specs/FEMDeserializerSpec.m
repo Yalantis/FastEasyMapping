@@ -1,11 +1,12 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import <Kiwi/Kiwi.h>
-#import <CMFactory/CMFixture.h>
 #import <CMFactory/CMFactory.h>
 #import <OCMock/OCMock.h>
 #import <FastEasyMapping/FastEasyMapping.h>
 #import <MagicalRecord/MagicalRecord.h>
+
+#import "Fixture.h"
 
 #import "MappingProvider.h"
 #import "Person.h"
@@ -51,7 +52,7 @@ describe(@"FEMDeserializer", ^{
                 __block NSDictionary *externalRepresentation;
 
                 beforeEach(^{
-                    externalRepresentation = [CMFixture buildUsingFixture:@"Car"];
+                    externalRepresentation = [Fixture buildUsingFixture:@"Car"];
                     car = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                             mapping:[MappingProvider carMapping]
                                                             context:moc];
@@ -159,7 +160,7 @@ describe(@"FEMDeserializer", ^{
                 __block NSDictionary *externalRepresentation;
 
                 beforeEach(^{
-                    externalRepresentation = [CMFixture buildUsingFixture:@"CarWithRoot"];
+                    externalRepresentation = [Fixture buildUsingFixture:@"CarWithRoot"];
                     car = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                             mapping:[MappingProvider carWithRootKeyMapping]
                                                             context:moc];
@@ -185,7 +186,7 @@ describe(@"FEMDeserializer", ^{
                 __block NSDictionary *externalRepresentation;
 
                 beforeEach(^{
-                    externalRepresentation = [CMFixture buildUsingFixture:@"CarWithNestedAttributes"];
+                    externalRepresentation = [Fixture buildUsingFixture:@"CarWithNestedAttributes"];
                     car = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                             mapping:[MappingProvider carNestedAttributesMapping]
                                                             context:moc];
@@ -211,7 +212,7 @@ describe(@"FEMDeserializer", ^{
 
                 beforeEach(^{
                     moc = [NSManagedObjectContext MR_defaultContext];
-                    externalRepresentation = [CMFixture buildUsingFixture:@"CarWithDate"];
+                    externalRepresentation = [Fixture buildUsingFixture:@"CarWithDate"];
                     car = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                             mapping:[MappingProvider carWithDateMapping]
                                                             context:moc];
@@ -247,7 +248,7 @@ describe(@"FEMDeserializer", ^{
                 __block NSDictionary *externalRepresentation;
                 
                 beforeEach(^{
-                    externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithNullRelationships"];
+                    externalRepresentation = [Fixture buildUsingFixture:@"PersonWithNullRelationships"];
                     person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                mapping:[MappingProvider personWithCarPKMapping]
                                                                context:moc];
@@ -267,7 +268,7 @@ describe(@"FEMDeserializer", ^{
                     expectedCar.model = @"i30";
                     expectedCar.year = @"2013";
 
-                    NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Person"];
+                    NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"Person"];
                     person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                mapping:[MappingProvider personMapping]
                                                                context:moc];
@@ -296,7 +297,7 @@ describe(@"FEMDeserializer", ^{
                     partner.name = @"Ana";
                     partner.email = @"ana@gmail.com";
                     
-                    NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"ManagedPersonWithRecursiveRelationship"];
+                    NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"ManagedPersonWithRecursiveRelationship"];
                     person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                mapping:[MappingProvider personWithRecursiveMapping]
                                                                context:moc];
@@ -320,7 +321,7 @@ describe(@"FEMDeserializer", ^{
 
                 beforeEach(^{
                     moc = [NSManagedObjectContext MR_defaultContext];
-                    NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Person"];
+                    NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"Person"];
                     person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                mapping:[MappingProvider personMapping]
                                                                context:moc];
@@ -339,7 +340,7 @@ describe(@"FEMDeserializer", ^{
                 __block Person *person;
                 
                 beforeEach(^{
-                    NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"ManagedPersonWithRecursiveRelationship"];
+                    NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"ManagedPersonWithRecursiveRelationship"];
                     person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                mapping:[MappingProvider personWithRecursiveToManyMapping]
                                                                context:moc];
@@ -370,7 +371,7 @@ describe(@"FEMDeserializer", ^{
                 __block RecursiveRelationship *object;
                 __block RecursiveRelationship *child;
                 beforeEach(^{
-                    NSDictionary *fixture = [CMFixture buildUsingFixture:@"RecursiveCyclicRelationship"];
+                    NSDictionary *fixture = [Fixture buildUsingFixture:@"RecursiveCyclicRelationship"];
                     FEMMapping *mapping = [RecursiveRelationship defaultMapping];
                     object = [FEMDeserializer objectFromRepresentation:fixture mapping:mapping context:moc];
                     child = object.child;
@@ -390,7 +391,7 @@ describe(@"FEMDeserializer", ^{
             __block NSArray *externalRepresentation;
 
             beforeEach(^{
-                externalRepresentation = [CMFixture buildUsingFixture:@"Cars"];
+                externalRepresentation = [Fixture buildUsingFixture:@"Cars"];
                 carsArray = [FEMDeserializer collectionFromRepresentation:externalRepresentation
                                                                   mapping:[MappingProvider carMapping]
                                                                   context:moc];
@@ -410,7 +411,7 @@ describe(@"FEMDeserializer", ^{
             __block Person *person = nil;
 
             beforeAll(^{
-                NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithMissingRelationships"];
+                NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"PersonWithMissingRelationships"];
                 FEMMapping *mapping = [MappingProvider personMapping];
                 person = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:mapping context:moc];
             });
@@ -436,8 +437,8 @@ describe(@"FEMDeserializer", ^{
 
             context(@"to-one", ^{
                 beforeEach(^{
-                    externalRepresentation_v1 = [CMFixture buildUsingFixture:@"PersonWithCar_1"];
-                    externalRepresentation_v2 = [CMFixture buildUsingFixture:@"PersonWithCar_2"];
+                    externalRepresentation_v1 = [Fixture buildUsingFixture:@"PersonWithCar_1"];
+                    externalRepresentation_v2 = [Fixture buildUsingFixture:@"PersonWithCar_2"];
                     mapping = [MappingProvider personWithCarMapping];
                     relationshipMapping = [mapping relationshipForProperty:@"car"];
                 });
@@ -531,8 +532,8 @@ describe(@"FEMDeserializer", ^{
             
             context(@"to-many", ^{
                 beforeEach(^{
-                    externalRepresentation_v1 = [CMFixture buildUsingFixture:@"Person_1"];
-                    externalRepresentation_v2 = [CMFixture buildUsingFixture:@"Person_2"];
+                    externalRepresentation_v1 = [Fixture buildUsingFixture:@"Person_1"];
+                    externalRepresentation_v2 = [Fixture buildUsingFixture:@"Person_2"];
                     mapping = [MappingProvider personWithPhoneMapping];
                     relationshipMapping = [mapping relationshipForProperty:@"phones"];
                 });
@@ -606,7 +607,7 @@ describe(@"FEMDeserializer", ^{
                 __block NSDictionary *externalRepresentation;
 
                 beforeEach(^{
-                    externalRepresentation = [CMFixture buildUsingFixture:@"Car"];
+                    externalRepresentation = [Fixture buildUsingFixture:@"Car"];
                     car = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative carMapping]];
                 });
 
@@ -630,7 +631,7 @@ describe(@"FEMDeserializer", ^{
                 __block NSDictionary *externalRepresentation;
 
                 beforeEach(^{
-                    externalRepresentation = [CMFixture buildUsingFixture:@"CarWithRoot"];
+                    externalRepresentation = [Fixture buildUsingFixture:@"CarWithRoot"];
                     car = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative carWithRootKeyMapping]];
                     externalRepresentation = [externalRepresentation objectForKey:@"car"];
                 });
@@ -655,7 +656,7 @@ describe(@"FEMDeserializer", ^{
                 __block NSDictionary *externalRepresentation;
 
                 beforeEach(^{
-                    externalRepresentation = [CMFixture buildUsingFixture:@"CarWithNestedAttributes"];
+                    externalRepresentation = [Fixture buildUsingFixture:@"CarWithNestedAttributes"];
                     car = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative carNestedAttributesMapping]];
                 });
 
@@ -679,7 +680,7 @@ describe(@"FEMDeserializer", ^{
                 __block NSDictionary *externalRepresentation;
 
                 beforeEach(^{
-                    externalRepresentation = [CMFixture buildUsingFixture:@"CarWithDate"];
+                    externalRepresentation = [Fixture buildUsingFixture:@"CarWithDate"];
                     car = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative carWithDateMapping]];
                 });
 
@@ -716,7 +717,7 @@ describe(@"FEMDeserializer", ^{
                     __block NSDictionary *externalRepresentation;
 
                     beforeEach(^{
-                        externalRepresentation = [CMFixture buildUsingFixture:@"Male"];
+                        externalRepresentation = [Fixture buildUsingFixture:@"Male"];
                         person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                    mapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
                     });
@@ -733,7 +734,7 @@ describe(@"FEMDeserializer", ^{
                     __block NSDictionary *externalRepresentation;
 
                     beforeEach(^{
-                        externalRepresentation = [CMFixture buildUsingFixture:@"Female"];
+                        externalRepresentation = [Fixture buildUsingFixture:@"Female"];
                         person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                    mapping:[MappingProviderNative personWithOnlyValueBlockMapping]];
                     });
@@ -750,7 +751,7 @@ describe(@"FEMDeserializer", ^{
                     __block NSDictionary *externalRepresentation;
 
                     beforeEach(^{
-                        externalRepresentation = [CMFixture buildUsingFixture:@"Address"];
+                        externalRepresentation = [Fixture buildUsingFixture:@"Address"];
                         address = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                     mapping:[MappingProviderNative addressMapping]];
                     });
@@ -783,7 +784,7 @@ describe(@"FEMDeserializer", ^{
                     }];
                     expectedCar = [carFactory build];
 
-                    NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Person"];
+                    NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"Person"];
                     person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                mapping:[MappingProviderNative personMapping]];
                 });
@@ -812,7 +813,7 @@ describe(@"FEMDeserializer", ^{
                     FEMObjectMapping *mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
                     [mapping addRelationshipMapping:[MappingProviderNative carMapping] forProperty:@"car" keyPath:@"vehicle"];
 
-                    NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
+                    NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"PersonWithDifferentNaming"];
                     person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                mapping:mapping];
                 });
@@ -840,7 +841,7 @@ describe(@"FEMDeserializer", ^{
                 __block PersonNative *person;
 
                 beforeEach(^{
-                    NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Person"];
+                    NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"Person"];
                     person = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                mapping:[MappingProviderNative personMapping]];
                 });
@@ -864,7 +865,7 @@ describe(@"FEMDeserializer", ^{
                     [mapping addToManyRelationshipMapping:[MappingProviderNative phoneMapping]
                                               forProperty:@"phones"
                                                   keyPath:@"cellphones"];
-                    NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
+                    NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"PersonWithDifferentNaming"];
                     person = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:mapping];
                 });
 
@@ -893,7 +894,7 @@ describe(@"FEMDeserializer", ^{
 
                 beforeEach(^{
                     FEMObjectMapping * mapping = [MappingProviderNative nativeMapping];
-                    NSDictionary * externalRepresentation = [CMFixture buildUsingFixture:@"Native"];
+                    NSDictionary * externalRepresentation = [Fixture buildUsingFixture:@"Native"];
                     native = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:mapping];
                 });
 
@@ -1004,7 +1005,7 @@ describe(@"FEMDeserializer", ^{
             __block NSArray *externalRepresentation;
 
             beforeEach(^{
-                externalRepresentation = [CMFixture buildUsingFixture:@"Cars"];
+                externalRepresentation = [Fixture buildUsingFixture:@"Cars"];
                 carsArray = [FEMDeserializer collectionFromRepresentation:externalRepresentation mapping:[MappingProviderNative carMapping]];
             });
 
@@ -1022,7 +1023,7 @@ describe(@"FEMDeserializer", ^{
             __block PlaneNative * plane;
 
             beforeEach(^{
-                NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Plane"];
+                NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"Plane"];
                 FEMObjectMapping * mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PlaneNative class]];
                 [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"persons" keyPath:@"persons"];
                 [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"pilots" keyPath:@"pilots"];
@@ -1059,7 +1060,7 @@ describe(@"FEMDeserializer", ^{
             __block PersonNative *person;
             
             beforeEach(^{
-                NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithRecursiveRelationship"];
+                NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"PersonWithRecursiveRelationship"];
                 person = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative personWithRecursiveFriendsMapping]];
             });
             
@@ -1086,7 +1087,7 @@ describe(@"FEMDeserializer", ^{
             __block PersonNative *person;
             
             beforeEach(^{
-                NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithRecursiveRelationship"];
+                NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"PersonWithRecursiveRelationship"];
                 person = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative personWithRecursivePartnerMapping]];
             });
             
@@ -1105,7 +1106,7 @@ describe(@"FEMDeserializer", ^{
             __block SeaplaneNative * seaplane;
 
             beforeEach(^{
-                NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Plane"];
+                NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"Plane"];
                 FEMObjectMapping * mapping = [[FEMObjectMapping alloc] initWithObjectClass:[SeaplaneNative class]];
                 [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"passengers" keyPath:@"persons"];
 
@@ -1127,7 +1128,7 @@ describe(@"FEMDeserializer", ^{
             __block AlienNative *alien;
 
             beforeEach(^{
-                NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Alien"];
+                NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"Alien"];
                 alien = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:[MappingProviderNative alienMapping]];
             });
 
@@ -1159,7 +1160,7 @@ describe(@"FEMDeserializer", ^{
             beforeEach(^{
                 mapping = [UniqueObject defaultMapping];
                 mapping.primaryKey = @"integerPrimaryKey";
-                json = [CMFixture buildUsingFixture:@"UniqueObject"];
+                json = [Fixture buildUsingFixture:@"UniqueObject"];
             });
             
             context(@"when zero", ^{
@@ -1189,7 +1190,7 @@ describe(@"FEMDeserializer", ^{
             beforeEach(^{
                 mapping = [UniqueObject defaultMapping];
                 mapping.primaryKey = @"stringPrimaryKey";
-                json = [CMFixture buildUsingFixture:@"UniqueObject"];
+                json = [Fixture buildUsingFixture:@"UniqueObject"];
             });
 
             context(@"when nil", ^{
