@@ -24,7 +24,7 @@ extension ManagedObject {
     @NSManaged public var string: String?
     @NSManaged public var date: NSDate?
     @NSManaged public var data: NSData?
-    @NSManaged public var children: NSSet?
+    @NSManaged public var children: Set<ManagedObjectChild>?
 
 }
 

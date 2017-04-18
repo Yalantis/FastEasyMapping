@@ -1,8 +1,8 @@
 
 import Foundation
 
-
-// Supported objc types from https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
+// Supported objc types from
+// https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
 
 class Object: NSObject {
   // Scalar types
@@ -43,4 +43,3 @@ class Object: NSObject {
   dynamic var children: Set<ObjectChild>?
 }
 
-class ObjectChild: NSObject {}

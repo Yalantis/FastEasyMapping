@@ -9,6 +9,8 @@ extension ManagedObjectChild {
         return NSFetchRequest<ManagedObjectChild>(entityName: "ManagedObjectChild")
     }
 
+    @NSManaged public var string: String?
+  
     @NSManaged public var parent: ManagedObject?
 
 }

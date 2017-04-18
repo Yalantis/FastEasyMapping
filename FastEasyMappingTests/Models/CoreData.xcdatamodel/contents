@@ -26,6 +26,7 @@
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ManagedObjectChild" inverseName="parent" inverseEntity="ManagedObjectChild" syncable="YES"/>
     </entity>
     <entity name="ManagedObjectChild" representedClassName="ManagedObjectChild" syncable="YES">
+        <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedObject" inverseName="children" inverseEntity="ManagedObject" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES">
@@ -52,10 +53,10 @@
     </entity>
     <elements>
         <element name="Car" positionX="243" positionY="-990" width="128" height="120"/>
+        <element name="ManagedObject" positionX="54" positionY="-900" width="128" height="285"/>
+        <element name="ManagedObjectChild" positionX="63" positionY="-810" width="128" height="75"/>
         <element name="Person" positionX="54" positionY="-990" width="128" height="165"/>
         <element name="Phone" positionX="-173" positionY="-975" width="128" height="120"/>
         <element name="RecursiveRelationship" positionX="36" positionY="-918" width="128" height="90"/>
-        <element name="ManagedObject" positionX="54" positionY="-900" width="128" height="285"/>
-        <element name="ManagedObjectChild" positionX="63" positionY="-810" width="128" height="60"/>
     </elements>
 </model>
