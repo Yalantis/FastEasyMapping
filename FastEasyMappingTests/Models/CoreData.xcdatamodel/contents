@@ -7,6 +7,27 @@
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="car" inverseEntity="Person" syncable="YES"/>
     </entity>
+    <entity name="ManagedObject" representedClassName="ManagedObject" syncable="YES">
+        <attribute name="booleanObject" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="booleanValue" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="doubleObject" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="doubleValue" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="floatObject" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="floatValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="intObject" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="intValue" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longLongObject" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="longLongValue" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="shortObject" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="shortValue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ManagedObjectChild" inverseName="parent" inverseEntity="ManagedObjectChild" syncable="YES"/>
+    </entity>
+    <entity name="ManagedObjectChild" representedClassName="ManagedObjectChild" syncable="YES">
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedObject" inverseName="children" inverseEntity="ManagedObject" syncable="YES"/>
+    </entity>
     <entity name="Person" representedClassName="Person" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,5 +55,7 @@
         <element name="Person" positionX="54" positionY="-990" width="128" height="165"/>
         <element name="Phone" positionX="-173" positionY="-975" width="128" height="120"/>
         <element name="RecursiveRelationship" positionX="36" positionY="-918" width="128" height="90"/>
+        <element name="ManagedObject" positionX="54" positionY="-900" width="128" height="285"/>
+        <element name="ManagedObjectChild" positionX="63" positionY="-810" width="128" height="60"/>
     </elements>
 </model>

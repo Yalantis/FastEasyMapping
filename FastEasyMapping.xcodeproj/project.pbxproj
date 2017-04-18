@@ -70,10 +70,14 @@
 		AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */; };
 		AD4E0B241EA618EC00D12923 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B231EA618EC00D12923 /* Object.swift */; };
 		AD4E0B251EA618EC00D12923 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B231EA618EC00D12923 /* Object.swift */; };
-		AD4E0B271EA619E200D12923 /* CommonTypesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B261EA619E200D12923 /* CommonTypesObject.swift */; };
-		AD4E0B281EA619E200D12923 /* CommonTypesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B261EA619E200D12923 /* CommonTypesObject.swift */; };
-		AD4E0B2A1EA61A0D00D12923 /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B291EA61A0D00D12923 /* ManagedObject.swift */; };
-		AD4E0B2B1EA61A0D00D12923 /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B291EA61A0D00D12923 /* ManagedObject.swift */; };
+		AD4E0B301EA6254800D12923 /* ManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B2C1EA6254800D12923 /* ManagedObject+CoreDataClass.swift */; };
+		AD4E0B311EA6254800D12923 /* ManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B2C1EA6254800D12923 /* ManagedObject+CoreDataClass.swift */; };
+		AD4E0B321EA6254800D12923 /* ManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B2D1EA6254800D12923 /* ManagedObject+CoreDataProperties.swift */; };
+		AD4E0B331EA6254800D12923 /* ManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B2D1EA6254800D12923 /* ManagedObject+CoreDataProperties.swift */; };
+		AD4E0B341EA6254800D12923 /* ManagedObjectChild+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B2E1EA6254800D12923 /* ManagedObjectChild+CoreDataClass.swift */; };
+		AD4E0B351EA6254800D12923 /* ManagedObjectChild+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B2E1EA6254800D12923 /* ManagedObjectChild+CoreDataClass.swift */; };
+		AD4E0B361EA6254800D12923 /* ManagedObjectChild+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B2F1EA6254800D12923 /* ManagedObjectChild+CoreDataProperties.swift */; };
+		AD4E0B371EA6254800D12923 /* ManagedObjectChild+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B2F1EA6254800D12923 /* ManagedObjectChild+CoreDataProperties.swift */; };
 		AD4FC99E1E9A8074006C6C56 /* Parent+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4FC99D1E9A8074006C6C56 /* Parent+Mapping.m */; };
 		AD4FC9A11E9A80F2006C6C56 /* Child+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4FC9A01E9A80F2006C6C56 /* Child+Mapping.m */; };
 		AD52DF831B0387C000E46915 /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
@@ -438,8 +442,10 @@
 		87889F714B1917217207F8B0 /* Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8DD467A98A0ADC37A89DEA25 /* Pods-Benchmark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Benchmark.release.xcconfig"; path = "Pods/Target Support Files/Pods-Benchmark/Pods-Benchmark.release.xcconfig"; sourceTree = "<group>"; };
 		AD4E0B231EA618EC00D12923 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
-		AD4E0B261EA619E200D12923 /* CommonTypesObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTypesObject.swift; sourceTree = "<group>"; };
-		AD4E0B291EA61A0D00D12923 /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObject.swift; sourceTree = "<group>"; };
+		AD4E0B2C1EA6254800D12923 /* ManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AD4E0B2D1EA6254800D12923 /* ManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AD4E0B2E1EA6254800D12923 /* ManagedObjectChild+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObjectChild+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AD4E0B2F1EA6254800D12923 /* ManagedObjectChild+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObjectChild+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AD4FC99C1E9A8074006C6C56 /* Parent+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Parent+Mapping.h"; sourceTree = "<group>"; };
 		AD4FC99D1E9A8074006C6C56 /* Parent+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Parent+Mapping.m"; sourceTree = "<group>"; };
 		AD4FC99F1E9A80F2006C6C56 /* Child+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Child+Mapping.h"; sourceTree = "<group>"; };
@@ -607,8 +613,10 @@
 			isa = PBXGroup;
 			children = (
 				AD4E0B231EA618EC00D12923 /* Object.swift */,
-				AD4E0B261EA619E200D12923 /* CommonTypesObject.swift */,
-				AD4E0B291EA61A0D00D12923 /* ManagedObject.swift */,
+				AD4E0B2C1EA6254800D12923 /* ManagedObject+CoreDataClass.swift */,
+				AD4E0B2D1EA6254800D12923 /* ManagedObject+CoreDataProperties.swift */,
+				AD4E0B2E1EA6254800D12923 /* ManagedObjectChild+CoreDataClass.swift */,
+				AD4E0B2F1EA6254800D12923 /* ManagedObjectChild+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1453,11 +1461,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C375F4318CCD49B00FCB8EA /* MappingProviderNative.m in Sources */,
+				AD4E0B361EA6254800D12923 /* ManagedObjectChild+CoreDataProperties.swift in Sources */,
 				2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */,
-				AD4E0B271EA619E200D12923 /* CommonTypesObject.swift in Sources */,
 				2C375F1318CCD3FB00FCB8EA /* CoreData.xcdatamodel in Sources */,
 				2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */,
+				AD4E0B321EA6254800D12923 /* ManagedObject+CoreDataProperties.swift in Sources */,
 				2C375F1518CCD3FB00FCB8EA /* Phone.m in Sources */,
+				AD4E0B301EA6254800D12923 /* ManagedObject+CoreDataClass.swift in Sources */,
 				2C375F1618CCD3FB00FCB8EA /* Person.m in Sources */,
 				2C375F1718CCD3FB00FCB8EA /* NativeChild.m in Sources */,
 				2C375F1818CCD3FB00FCB8EA /* AddressNative.m in Sources */,
@@ -1466,13 +1476,13 @@
 				AD4E0B241EA618EC00D12923 /* Object.swift in Sources */,
 				2C375F1A18CCD3FB00FCB8EA /* PhoneNative.m in Sources */,
 				AD52DF851B0387C000E46915 /* FEMObjectMappingSpec.m in Sources */,
-				AD4E0B2A1EA61A0D00D12923 /* ManagedObject.swift in Sources */,
 				2C375F1B18CCD3FB00FCB8EA /* PlaneNative.m in Sources */,
 				2C375F1C18CCD3FB00FCB8EA /* Native.m in Sources */,
 				2C375F1D18CCD3FB00FCB8EA /* FingerNative.m in Sources */,
 				AD52DF871B0387C000E46915 /* FEMSerializerSpec.m in Sources */,
 				2C375F1E18CCD3FB00FCB8EA /* SeaplaneNative.m in Sources */,
 				2C375F1F18CCD3FB00FCB8EA /* AlienNative.m in Sources */,
+				AD4E0B341EA6254800D12923 /* ManagedObjectChild+CoreDataClass.swift in Sources */,
 				2C375F2018CCD3FB00FCB8EA /* PersonNative.m in Sources */,
 				2C375F2118CCD3FB00FCB8EA /* CarNative.m in Sources */,
 				AD52DF891B0387C000E46915 /* FEMAttributeMappingSpec.m in Sources */,
@@ -1511,11 +1521,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCD43EF1E9640C7006C8106 /* Phone.m in Sources */,
+				AD4E0B371EA6254800D12923 /* ManagedObjectChild+CoreDataProperties.swift in Sources */,
 				ADCD43E71E9640C7006C8106 /* Car.m in Sources */,
-				AD4E0B281EA619E200D12923 /* CommonTypesObject.swift in Sources */,
 				ADCD43E91E9640C7006C8106 /* CatNative.m in Sources */,
 				ADCD440D1E9640C7006C8106 /* MappingProvider.m in Sources */,
+				AD4E0B331EA6254800D12923 /* ManagedObject+CoreDataProperties.swift in Sources */,
 				ADCD43EE1E9640C7006C8106 /* PersonNative.m in Sources */,
+				AD4E0B311EA6254800D12923 /* ManagedObject+CoreDataClass.swift in Sources */,
 				ADCD43E61E9640C7006C8106 /* AlienNative.m in Sources */,
 				ADCD440C1E9640C7006C8106 /* MappingProviderNative.m in Sources */,
 				ADCD43E81E9640C7006C8106 /* CarNative.m in Sources */,
@@ -1524,13 +1536,13 @@
 				AD4E0B251EA618EC00D12923 /* Object.swift in Sources */,
 				ADCD43F01E9640C7006C8106 /* PhoneNative.m in Sources */,
 				ADCD43EC1E9640C7006C8106 /* NativeChild.m in Sources */,
-				AD4E0B2B1EA61A0D00D12923 /* ManagedObject.swift in Sources */,
 				ADCD43DD1E9640AB006C8106 /* FEMDeserializerSpec.m in Sources */,
 				ADCD43F11E9640C7006C8106 /* PlaneNative.m in Sources */,
 				ADCD43D81E9640AB006C8106 /* FEMManagedObjectMappingSpec.m in Sources */,
 				ADCD43E41E9640C7006C8106 /* CoreData.xcdatamodel in Sources */,
 				ADCD43ED1E9640C7006C8106 /* Person.m in Sources */,
 				ADCD43F31E9640C7006C8106 /* UniqueObject.m in Sources */,
+				AD4E0B351EA6254800D12923 /* ManagedObjectChild+CoreDataClass.swift in Sources */,
 				ADCD43DA1E9640AB006C8106 /* FEMSerializerSpec.m in Sources */,
 				ADCD43D91E9640AB006C8106 /* FEMObjectMappingSpec.m in Sources */,
 				ADCD43F21E9640C7006C8106 /* SeaplaneNative.m in Sources */,
@@ -1728,6 +1740,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.FastEasyMapping.Core;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
