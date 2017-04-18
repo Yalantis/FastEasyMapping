@@ -19,8 +19,8 @@ extension Object {
       #keyPath(intValue),
       #keyPath(uintValue),
       
-      #keyPath(long),
-      #keyPath(ulong),
+      #keyPath(longValue),
+      #keyPath(ulongValue),
       
       #keyPath(longLongValue),
       #keyPath(ulongLongValue),
@@ -29,19 +29,19 @@ extension Object {
       #keyPath(doubleValue),
       
       // Common bridgeable types
-      
-      #keyPath(nsvalue),
-      #keyPath(nsnumber),
+    
+      #keyPath(nsnumberBool),
       
       #keyPath(string),
-      #keyPath(date),
-      #keyPath(url),
-      #keyPath(data),
   
       #keyPath(arrayOfStrings),
       #keyPath(setOfStrings)
     ])
-
+    
+    mapping.addAttribute(FEMAttribute.mapping(ofURLProperty: #keyPath(url), toKeyPath: "url"))
+    mapping.addAttribute(FEMAttribute.mapping(ofProperty: #keyPath(date), toKeyPath: "date", dateFormat: "YYYY"))
+    mapping.addAttribute(FEMAttribute.stringToDataMapping(of: #keyPath(data), keyPath: "data"))
+    
     let child = FEMMapping(objectClass: ObjectChild.self)
     child.addAttributes(from: [#keyPath(string)])
     mapping.add(toManyRelationshipMapping: child, forProperty: #keyPath(children), keyPath: "children")

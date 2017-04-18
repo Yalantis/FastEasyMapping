@@ -8,8 +8,10 @@ extension ManagedObject {
     let mapping = FEMMapping(entityName: NSStringFromClass(self))
     
     mapping.addAttributes(from: [
-      #keyPath(booleanValue),
-      #keyPath(booleanObject),
+      #keyPath(boolValue),
+      #keyPath(boolObject),
+      #keyPath(malformedBoolValue),
+      #keyPath(malformedBoolObject),
       #keyPath(shortValue),
       #keyPath(shortObject),
       #keyPath(intValue),
@@ -20,10 +22,11 @@ extension ManagedObject {
       #keyPath(floatObject),
       #keyPath(doubleValue),
       #keyPath(doubleObject),
-      #keyPath(string),
-      #keyPath(date),
-      #keyPath(data)
+      #keyPath(string)
     ])
+    
+    mapping.addAttribute(FEMAttribute.mapping(ofProperty: #keyPath(date), toKeyPath: "date", dateFormat: "YYYY"))
+    mapping.addAttribute(FEMAttribute.stringToDataMapping(of: #keyPath(data), keyPath: "data"))
     
     let child = FEMMapping(entityName: NSStringFromClass(ManagedObjectChild.self))
     child.addAttributes(from: [#keyPath(string)])

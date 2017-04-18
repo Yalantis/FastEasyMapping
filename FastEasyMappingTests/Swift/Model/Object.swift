@@ -18,8 +18,8 @@ class Object: NSObject {
   dynamic var intValue: Int32 = 0 // CInt i - int
   dynamic var uintValue: UInt32 = 0 // CUnsignedInt I - int
   
-  dynamic var long: Int = 0 // CLong l - long
-  dynamic var ulong: UInt = 0 // CUnsignedLong L - long
+  dynamic var longValue: Int = 0 // CLong l - long
+  dynamic var ulongValue: UInt = 0 // CUnsignedLong L - long
   
   dynamic var longLongValue: Int64 = 0 // CLongLong q - long long
   dynamic var ulongLongValue: UInt64 = 0 // CUnsignedLongLong Q - long long
@@ -29,16 +29,15 @@ class Object: NSObject {
   
   // Common bridgeable types 
   
-  dynamic var nsvalue: NSValue?
-  dynamic var nsnumber: NSNumber?
+  dynamic var nsnumberBool: NSNumber?
   
   dynamic var string: String? // NSString
   dynamic var date: Date? // NSDate
-  dynamic var url: URL?
-  dynamic var data: Data?
+  dynamic var url: URL? // NSURL
+  dynamic var data: Data? // NSData
   
-  dynamic var arrayOfStrings: [String]?// = []
-  dynamic var setOfStrings: Set<String>?// = []
+  dynamic var arrayOfStrings: [String]? // NSArray
+  dynamic var setOfStrings: Set<String>? // NSSet
   
   dynamic var children: Set<ObjectChild>?
 }

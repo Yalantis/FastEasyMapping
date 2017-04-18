@@ -8,8 +8,8 @@
         <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="car" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="ManagedObject" representedClassName="ManagedObject" syncable="YES">
-        <attribute name="booleanObject" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="booleanValue" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="boolObject" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="boolValue" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="doubleObject" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
@@ -20,6 +20,8 @@
         <attribute name="intValue" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longLongObject" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="longLongValue" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="malformedBoolObject" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="malformedBoolValue" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="shortObject" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="shortValue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
@@ -53,7 +55,7 @@
     </entity>
     <elements>
         <element name="Car" positionX="243" positionY="-990" width="128" height="120"/>
-        <element name="ManagedObject" positionX="54" positionY="-900" width="128" height="285"/>
+        <element name="ManagedObject" positionX="54" positionY="-900" width="128" height="315"/>
         <element name="ManagedObjectChild" positionX="63" positionY="-810" width="128" height="75"/>
         <element name="Person" positionX="54" positionY="-990" width="128" height="165"/>
         <element name="Phone" positionX="-173" positionY="-975" width="128" height="120"/>

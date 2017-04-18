@@ -9,8 +9,10 @@ extension ManagedObject {
         return NSFetchRequest<ManagedObject>(entityName: "ManagedObject")
     }
 
-    @NSManaged public var booleanValue: Bool
-    @NSManaged public var booleanObject: NSNumber?
+    @NSManaged public var boolValue: Bool
+    @NSManaged public var boolObject: NSNumber?
+    @NSManaged public var malformedBoolValue: Bool
+    @NSManaged public var malformedBoolObject: NSNumber?
     @NSManaged public var shortValue: Int16
     @NSManaged public var shortObject: NSNumber?
     @NSManaged public var intValue: Int32

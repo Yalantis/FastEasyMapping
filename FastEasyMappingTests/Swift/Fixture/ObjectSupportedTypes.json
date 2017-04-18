@@ -1,0 +1,39 @@
+{
+  "boolValue": true,
+  "charValue": 127,
+  "ucharValue": 255,
+  
+  "shortValue": 32767,
+  "ushortValue": 65535,
+  
+  "intValue": 2147483647,
+  "uintValue": 4294967295,
+  
+  "longValue": 2147483647,
+  "ulongValue": 4294967295,
+  
+  "longLongValue": 9223372036854775807,
+  "ulongLongValue": 18446744073709551615,
+  
+  "floatValue": 11.1,
+  "doubleValue": 12.2,
+  
+  "nsnumberBool": true,
+  
+  "string": "string",
+  "date": "2017",
+  "url": "https://google.com",
+  "data": "utf8",
+  
+  "arrayOfStrings": ["1", "2"],
+  "setOfStrings": ["3", "4"],
+  
+  "children": [
+  {
+    "string": "1"
+  },
+  {
+    "string": "2"
+  }
+  ]
+}

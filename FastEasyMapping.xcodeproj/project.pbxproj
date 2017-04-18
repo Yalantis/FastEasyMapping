@@ -26,6 +26,7 @@
 		1D6A318B77C6FB356E1B0D02 /* UniqueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A39978E70C9CA36660CAF /* UniqueObject.m */; };
 		1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A31C3D577329518B3E664 /* Person_1.json */; };
 		1D6A32FF0F9B70A6989DAD65 /* ManagedObject+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3AC516F9E107669E194E /* ManagedObject+Mapping.swift */; };
+		1D6A330FBBB5C1D18B2942F6 /* FEMAttribute+UTF8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A329682C48D8EAC9E26A1 /* FEMAttribute+UTF8.swift */; };
 		1D6A34C84E523B5F58F87C5E /* PersonWithMissingRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */; };
 		1D6A35820A545E8E51D23BA5 /* Object+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A340C51A06FC5F65B7372 /* Object+Mapping.swift */; };
 		1D6A36C4F4F626AAA2A6EC5E /* FEMDeserializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31F075A797425408C339 /* FEMDeserializerSpec.m */; };
@@ -33,6 +34,7 @@
 		1D6A396900DE2C4D49445EF8 /* ObjectChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3153EC42600502833431 /* ObjectChild.swift */; };
 		1D6A39C445741258BFE87EF8 /* ManagedObject+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3AC516F9E107669E194E /* ManagedObject+Mapping.swift */; };
 		1D6A3A02BC14551628844333 /* Object+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A340C51A06FC5F65B7372 /* Object+Mapping.swift */; };
+		1D6A3AC0F1E1C03BF2647B73 /* FEMAttribute+UTF8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A329682C48D8EAC9E26A1 /* FEMAttribute+UTF8.swift */; };
 		1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */; };
 		1D6A3BDE5FBAAA0BAA503655 /* RecursiveCyclicRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */; };
 		1D6A3C67EC7AC73D60E077B6 /* ObjectChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3153EC42600502833431 /* ObjectChild.swift */; };
@@ -306,6 +308,14 @@
 		ADEC66EC1B9D9FBB00F528C8 /* FEMMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3E65B1DB73E680A495BA /* FEMMapping.m */; };
 		ADEC66ED1B9D9FBB00F528C8 /* FEMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A312125E7A338A36E4EC2 /* FEMAttribute.m */; };
 		ADEC66EE1B9D9FBB00F528C8 /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C4B6BB4FD8C58AE917F /* FEMRelationship.m */; };
+		ADEDDEB01EA62C7B00E28577 /* ObjectSupportedTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = ADEDDEAF1EA62C7B00E28577 /* ObjectSupportedTypes.json */; };
+		ADEDDEB11EA62C7B00E28577 /* ObjectSupportedTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = ADEDDEAF1EA62C7B00E28577 /* ObjectSupportedTypes.json */; };
+		ADEDDEB31EA62EDF00E28577 /* ObjectSupportedTypesNull.json in Resources */ = {isa = PBXBuildFile; fileRef = ADEDDEB21EA62EDF00E28577 /* ObjectSupportedTypesNull.json */; };
+		ADEDDEB41EA62EDF00E28577 /* ObjectSupportedTypesNull.json in Resources */ = {isa = PBXBuildFile; fileRef = ADEDDEB21EA62EDF00E28577 /* ObjectSupportedTypesNull.json */; };
+		ADEDDEB61EA6351D00E28577 /* ManagedObjectSupportedTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = ADEDDEB51EA6351D00E28577 /* ManagedObjectSupportedTypes.json */; };
+		ADEDDEB71EA6351D00E28577 /* ManagedObjectSupportedTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = ADEDDEB51EA6351D00E28577 /* ManagedObjectSupportedTypes.json */; };
+		ADEDDEB91EA636D700E28577 /* ManagedObjectSupportedTypesNull.json in Resources */ = {isa = PBXBuildFile; fileRef = ADEDDEB81EA636D700E28577 /* ManagedObjectSupportedTypesNull.json */; };
+		ADEDDEBA1EA636D700E28577 /* ManagedObjectSupportedTypesNull.json in Resources */ = {isa = PBXBuildFile; fileRef = ADEDDEB81EA636D700E28577 /* ManagedObjectSupportedTypesNull.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -345,6 +355,7 @@
 		1D6A323CABA155AEC9B3D6B8 /* FEMManagedObjectDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMManagedObjectDeserializer.h; sourceTree = "<group>"; };
 		1D6A324ACF5FB42E37E0D8CF /* FEMAssignmentPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAssignmentPolicy.m; sourceTree = "<group>"; };
 		1D6A328FCE22411C60FBC7C4 /* FEMRepresentationUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRepresentationUtility.m; sourceTree = "<group>"; };
+		1D6A329682C48D8EAC9E26A1 /* FEMAttribute+UTF8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FEMAttribute+UTF8.swift"; sourceTree = "<group>"; };
 		1D6A32D65203DD23C623AAD3 /* FEMManagedObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMManagedObjectStore.m; sourceTree = "<group>"; };
 		1D6A32EFC67384FE93544E57 /* RecursiveRelationship+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RecursiveRelationship+Mapping.m"; sourceTree = "<group>"; };
 		1D6A331F4EC8BC4E757BBF85 /* FEMDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMDeserializer.h; sourceTree = "<group>"; };
@@ -475,6 +486,10 @@
 		ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FastEasyMapping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADEC66C21B9D9E7000F528C8 /* FastEasyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastEasyMapping.h; sourceTree = "<group>"; };
 		ADEC66C31B9D9E7000F528C8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADEDDEAF1EA62C7B00E28577 /* ObjectSupportedTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ObjectSupportedTypes.json; sourceTree = "<group>"; };
+		ADEDDEB21EA62EDF00E28577 /* ObjectSupportedTypesNull.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ObjectSupportedTypesNull.json; sourceTree = "<group>"; };
+		ADEDDEB51EA6351D00E28577 /* ManagedObjectSupportedTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ManagedObjectSupportedTypes.json; sourceTree = "<group>"; };
+		ADEDDEB81EA636D700E28577 /* ManagedObjectSupportedTypesNull.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ManagedObjectSupportedTypesNull.json; sourceTree = "<group>"; };
 		ADF700D01B99F5F600713D61 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -600,6 +615,17 @@
 			path = "Assignment Policy";
 			sourceTree = "<group>";
 		};
+		1D6A36BB419C244EB7EF4A08 /* Fixture */ = {
+			isa = PBXGroup;
+			children = (
+				ADEDDEAF1EA62C7B00E28577 /* ObjectSupportedTypes.json */,
+				ADEDDEB21EA62EDF00E28577 /* ObjectSupportedTypesNull.json */,
+				ADEDDEB51EA6351D00E28577 /* ManagedObjectSupportedTypes.json */,
+				ADEDDEB81EA636D700E28577 /* ManagedObjectSupportedTypesNull.json */,
+			);
+			path = Fixture;
+			sourceTree = "<group>";
+		};
 		1D6A3838132A50A10EEF5772 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,6 +642,14 @@
 				1D6A3D4C21C207B043AF6F1A /* FEMSerializer.m */,
 			);
 			path = Serializer;
+			sourceTree = "<group>";
+		};
+		1D6A3C667F45F3863D0AC8B2 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A329682C48D8EAC9E26A1 /* FEMAttribute+UTF8.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		1D6A3C7752787C313A5A7597 /* Model */ = {
@@ -637,6 +671,8 @@
 			isa = PBXGroup;
 			children = (
 				1D6A3C7752787C313A5A7597 /* Model */,
+				1D6A36BB419C244EB7EF4A08 /* Fixture */,
+				1D6A3C667F45F3863D0AC8B2 /* Utility */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -1226,15 +1262,19 @@
 				2C375F3B18CCD40200FCB8EA /* Person.json in Resources */,
 				2C375F3518CCD40200FCB8EA /* Plane.json in Resources */,
 				2C375F3118CCD40200FCB8EA /* PersonWithDifferentNaming.json in Resources */,
+				ADEDDEB61EA6351D00E28577 /* ManagedObjectSupportedTypes.json in Resources */,
 				2C375F3C18CCD40200FCB8EA /* Car.json in Resources */,
 				2C375F3218CCD40200FCB8EA /* Cars.json in Resources */,
 				2C375F3018CCD40200FCB8EA /* Female.json in Resources */,
+				ADEDDEB91EA636D700E28577 /* ManagedObjectSupportedTypesNull.json in Resources */,
 				2C375F3818CCD40200FCB8EA /* CarWithNestedAttributes.json in Resources */,
 				2C375F3618CCD40200FCB8EA /* CarWithRoot.json in Resources */,
 				2C375F3D18CCD40200FCB8EA /* NativeChild.json in Resources */,
 				2C375F3418CCD40200FCB8EA /* Alien.json in Resources */,
 				2C375F3A18CCD40200FCB8EA /* Address.json in Resources */,
 				AD94006D1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json in Resources */,
+				ADEDDEB01EA62C7B00E28577 /* ObjectSupportedTypes.json in Resources */,
+				ADEDDEB31EA62EDF00E28577 /* ObjectSupportedTypesNull.json in Resources */,
 				2C375F3718CCD40200FCB8EA /* CarWithDate.json in Resources */,
 				1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */,
 				1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */,
@@ -1264,15 +1304,19 @@
 				ADCD43F51E9640C7006C8106 /* PersonWithDifferentNaming.json in Resources */,
 				ADCD43FD1E9640C7006C8106 /* Male.json in Resources */,
 				ADCD43F41E9640C7006C8106 /* Female.json in Resources */,
+				ADEDDEB71EA6351D00E28577 /* ManagedObjectSupportedTypes.json in Resources */,
 				ADCD44031E9640C7006C8106 /* PersonWithCar_2.json in Resources */,
 				ADCD43F71E9640C7006C8106 /* Native.json in Resources */,
 				ADCD44041E9640C7006C8106 /* Person_1.json in Resources */,
+				ADEDDEBA1EA636D700E28577 /* ManagedObjectSupportedTypesNull.json in Resources */,
 				ADCD44071E9640C7006C8106 /* PersonWithMissingRelationships.json in Resources */,
 				ADCD440B1E9640C7006C8106 /* RecursiveCyclicRelationship.json in Resources */,
 				ADCD44051E9640C7006C8106 /* Person_2.json in Resources */,
 				ADCD44011E9640C7006C8106 /* NativeChild.json in Resources */,
 				ADCD44001E9640C7006C8106 /* Car.json in Resources */,
 				ADCD44091E9640C7006C8106 /* ManagedPersonWithRecursiveRelationship.json in Resources */,
+				ADEDDEB11EA62C7B00E28577 /* ObjectSupportedTypes.json in Resources */,
+				ADEDDEB41EA62EDF00E28577 /* ObjectSupportedTypesNull.json in Resources */,
 				ADCD43FC1E9640C7006C8106 /* CarWithNestedAttributes.json in Resources */,
 				ADCD44081E9640C7006C8106 /* UniqueObject.json in Resources */,
 				ADCD440A1E9640C7006C8106 /* PersonWithRecursiveRelationship.json in Resources */,
@@ -1505,6 +1549,7 @@
 				1D6A3C67EC7AC73D60E077B6 /* ObjectChild.swift in Sources */,
 				1D6A39C445741258BFE87EF8 /* ManagedObject+Mapping.swift in Sources */,
 				1D6A35820A545E8E51D23BA5 /* Object+Mapping.swift in Sources */,
+				1D6A330FBBB5C1D18B2942F6 /* FEMAttribute+UTF8.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1568,6 +1613,7 @@
 				1D6A396900DE2C4D49445EF8 /* ObjectChild.swift in Sources */,
 				1D6A32FF0F9B70A6989DAD65 /* ManagedObject+Mapping.swift in Sources */,
 				1D6A3A02BC14551628844333 /* Object+Mapping.swift in Sources */,
+				1D6A3AC0F1E1C03BF2647B73 /* FEMAttribute+UTF8.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
