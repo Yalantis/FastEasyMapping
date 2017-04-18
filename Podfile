@@ -6,6 +6,9 @@ abstract_target 'Tests' do
     pod 'CMFactory', '~> 1.4.0'
     pod 'MagicalRecord', '~> 2.3'
     pod 'OCMock', '~> 3.4'
+    
+    pod 'Nimble', '~> 6.0'
+    pod 'Quick', '~> 1.0'
 
     target 'FastEasyMapping iOS Tests' do
       platform :ios, :deployment_target => '8.0'
