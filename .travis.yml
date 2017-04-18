@@ -5,6 +5,7 @@ osx_image: xcode8.3
 before_install:
     - gem install xcpretty -N --no-ri --no-rdoc
     - xcrun simctl delete 38C891AB-EC79-43E4-9311-6FDEB12DCF11 || true # https://github.com/travis-ci/travis-ci/issues/7580
+    - pod outdated | awk '{ if ( $1 ~ /^-/ ) { print $0 } }' | awk '{ if ( $3 != $5 ) { pod update $2 } else { print "No updated needed it for" $2 } }
 
 env:
   global:
