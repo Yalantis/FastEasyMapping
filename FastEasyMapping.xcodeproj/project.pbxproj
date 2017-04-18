@@ -68,6 +68,12 @@
 		2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097B18C3AD5700C07899 /* Foundation.framework */; };
 		7FE9032CCDCE9C11F2BA79B8 /* libPods-Tests-FastEasyMapping macOS Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 835D8A69DF1EBC990780073B /* libPods-Tests-FastEasyMapping macOS Tests.a */; };
 		AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */; };
+		AD4E0B241EA618EC00D12923 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B231EA618EC00D12923 /* Object.swift */; };
+		AD4E0B251EA618EC00D12923 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B231EA618EC00D12923 /* Object.swift */; };
+		AD4E0B271EA619E200D12923 /* CommonTypesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B261EA619E200D12923 /* CommonTypesObject.swift */; };
+		AD4E0B281EA619E200D12923 /* CommonTypesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B261EA619E200D12923 /* CommonTypesObject.swift */; };
+		AD4E0B2A1EA61A0D00D12923 /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B291EA61A0D00D12923 /* ManagedObject.swift */; };
+		AD4E0B2B1EA61A0D00D12923 /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E0B291EA61A0D00D12923 /* ManagedObject.swift */; };
 		AD4FC99E1E9A8074006C6C56 /* Parent+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4FC99D1E9A8074006C6C56 /* Parent+Mapping.m */; };
 		AD4FC9A11E9A80F2006C6C56 /* Child+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4FC9A01E9A80F2006C6C56 /* Child+Mapping.m */; };
 		AD52DF831B0387C000E46915 /* FEMManagedObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */; };
@@ -351,6 +357,7 @@
 		1D6A39978E70C9CA36660CAF /* UniqueObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniqueObject.m; sourceTree = "<group>"; };
 		1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithNullRelationships.json; sourceTree = "<group>"; };
 		1D6A3A4F887B37995524457E /* FEMMappingUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMMappingUtility.m; sourceTree = "<group>"; };
+		1D6A3A7AF3939BED2A6FAE2E /* FastEasyMappingTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FastEasyMappingTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		1D6A3ACBBC8E66609F169E94 /* Person_2.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Person_2.json; sourceTree = "<group>"; };
 		1D6A3AF6BD6EABAAACD8D4B8 /* FEMExcludableCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMExcludableCollection.h; sourceTree = "<group>"; };
 		1D6A3B2EBB16587406F244B6 /* FEMCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMCacheSpec.m; sourceTree = "<group>"; };
@@ -430,6 +437,9 @@
 		835D8A69DF1EBC990780073B /* libPods-Tests-FastEasyMapping macOS Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests-FastEasyMapping macOS Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87889F714B1917217207F8B0 /* Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8DD467A98A0ADC37A89DEA25 /* Pods-Benchmark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Benchmark.release.xcconfig"; path = "Pods/Target Support Files/Pods-Benchmark/Pods-Benchmark.release.xcconfig"; sourceTree = "<group>"; };
+		AD4E0B231EA618EC00D12923 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		AD4E0B261EA619E200D12923 /* CommonTypesObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTypesObject.swift; sourceTree = "<group>"; };
+		AD4E0B291EA61A0D00D12923 /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObject.swift; sourceTree = "<group>"; };
 		AD4FC99C1E9A8074006C6C56 /* Parent+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Parent+Mapping.h"; sourceTree = "<group>"; };
 		AD4FC99D1E9A8074006C6C56 /* Parent+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Parent+Mapping.m"; sourceTree = "<group>"; };
 		AD4FC99F1E9A80F2006C6C56 /* Child+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Child+Mapping.h"; sourceTree = "<group>"; };
@@ -593,6 +603,24 @@
 			path = Serializer;
 			sourceTree = "<group>";
 		};
+		1D6A3C7752787C313A5A7597 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD4E0B231EA618EC00D12923 /* Object.swift */,
+				AD4E0B261EA619E200D12923 /* CommonTypesObject.swift */,
+				AD4E0B291EA61A0D00D12923 /* ManagedObject.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1D6A3CFF030CC61290D0B2E2 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A3C7752787C313A5A7597 /* Model */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
 		1D6A3D3D6A057ACBDA2AD438 /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,8 +726,10 @@
 				69ED70EFE263881EF2703FEE /* Specs */,
 				69ED72A18D441F9A3397D384 /* Models */,
 				69ED77FF1B7BCBBE52569877 /* Fixtures */,
-				69ED7CB8A80C99BF8D7413F6 /* FastEasyMappingTests-Info.plist */,
 				69ED713D0205449C289F72C9 /* Mapping Provider */,
+				1D6A3CFF030CC61290D0B2E2 /* Swift */,
+				69ED7CB8A80C99BF8D7413F6 /* FastEasyMappingTests-Info.plist */,
+				1D6A3A7AF3939BED2A6FAE2E /* FastEasyMappingTests-Bridging-Header.h */,
 			);
 			path = FastEasyMappingTests;
 			sourceTree = "<group>";
@@ -1104,6 +1134,7 @@
 				ORGANIZATIONNAME = Yalantis;
 				TargetAttributes = {
 					2CF8098718C3AD5700C07899 = {
+						LastSwiftMigration = 0830;
 						TestTargetID = 2CF8097718C3AD5700C07899;
 					};
 					ADCD43181E963AB3006C8106 = {
@@ -1114,6 +1145,7 @@
 					ADCD43201E963AB3006C8106 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = B22C3P93TG;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					ADCD43341E963AC1006C8106 = {
@@ -1422,6 +1454,7 @@
 			files = (
 				2C375F4318CCD49B00FCB8EA /* MappingProviderNative.m in Sources */,
 				2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */,
+				AD4E0B271EA619E200D12923 /* CommonTypesObject.swift in Sources */,
 				2C375F1318CCD3FB00FCB8EA /* EasyMappingCoreDataExample.xcdatamodel in Sources */,
 				2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */,
 				2C375F1518CCD3FB00FCB8EA /* Phone.m in Sources */,
@@ -1430,8 +1463,10 @@
 				2C375F1818CCD3FB00FCB8EA /* AddressNative.m in Sources */,
 				2C375F1918CCD3FB00FCB8EA /* CatNative.m in Sources */,
 				AD52DF831B0387C000E46915 /* FEMManagedObjectMappingSpec.m in Sources */,
+				AD4E0B241EA618EC00D12923 /* Object.swift in Sources */,
 				2C375F1A18CCD3FB00FCB8EA /* PhoneNative.m in Sources */,
 				AD52DF851B0387C000E46915 /* FEMObjectMappingSpec.m in Sources */,
+				AD4E0B2A1EA61A0D00D12923 /* ManagedObject.swift in Sources */,
 				2C375F1B18CCD3FB00FCB8EA /* PlaneNative.m in Sources */,
 				2C375F1C18CCD3FB00FCB8EA /* Native.m in Sources */,
 				2C375F1D18CCD3FB00FCB8EA /* FingerNative.m in Sources */,
@@ -1477,6 +1512,7 @@
 			files = (
 				ADCD43EF1E9640C7006C8106 /* Phone.m in Sources */,
 				ADCD43E71E9640C7006C8106 /* Car.m in Sources */,
+				AD4E0B281EA619E200D12923 /* CommonTypesObject.swift in Sources */,
 				ADCD43E91E9640C7006C8106 /* CatNative.m in Sources */,
 				ADCD440D1E9640C7006C8106 /* MappingProvider.m in Sources */,
 				ADCD43EE1E9640C7006C8106 /* PersonNative.m in Sources */,
@@ -1485,8 +1521,10 @@
 				ADCD43E81E9640C7006C8106 /* CarNative.m in Sources */,
 				ADCD43EB1E9640C7006C8106 /* Native.m in Sources */,
 				ADCD43EA1E9640C7006C8106 /* FingerNative.m in Sources */,
+				AD4E0B251EA618EC00D12923 /* Object.swift in Sources */,
 				ADCD43F01E9640C7006C8106 /* PhoneNative.m in Sources */,
 				ADCD43EC1E9640C7006C8106 /* NativeChild.m in Sources */,
+				AD4E0B2B1EA61A0D00D12923 /* ManagedObject.swift in Sources */,
 				ADCD43DD1E9640AB006C8106 /* FEMDeserializerSpec.m in Sources */,
 				ADCD43F11E9640C7006C8106 /* PlaneNative.m in Sources */,
 				ADCD43D81E9640AB006C8106 /* FEMManagedObjectMappingSpec.m in Sources */,
@@ -1701,6 +1739,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E91E6345665CC4848FA0511 /* Pods-Tests-FastEasyMapping iOS Tests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DSTROOT = /tmp/FastEasyMapping.dst;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1710,8 +1749,12 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fastEasyMapping.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "FastEasyMapping iOS Tests";
+				SWIFT_OBJC_BRIDGING_HEADER = "FastEasyMappingTests/FastEasyMappingTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1719,13 +1762,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 87889F714B1917217207F8B0 /* Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DSTROOT = /tmp/FastEasyMapping.dst;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "FastEasyMappingTests/FastEasyMappingTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fastEasyMapping.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "FastEasyMapping iOS Tests";
+				SWIFT_OBJC_BRIDGING_HEADER = "FastEasyMappingTests/FastEasyMappingTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1790,6 +1837,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1802,6 +1850,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fastEasyMapping.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "FastEasyMappingTests/FastEasyMappingTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1811,6 +1862,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1824,6 +1876,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fastEasyMapping.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "FastEasyMappingTests/FastEasyMappingTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
