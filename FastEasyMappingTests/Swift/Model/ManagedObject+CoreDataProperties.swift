@@ -24,8 +24,8 @@ extension ManagedObject {
     @NSManaged public var doubleValue: Double
     @NSManaged public var doubleObject: NSNumber?
     @NSManaged public var string: String?
-    @NSManaged public var date: NSDate?
-    @NSManaged public var data: NSData?
+    @NSManaged public var date: Date?
+    @NSManaged public var data: Data?
     @NSManaged public var children: Set<ManagedObjectChild>?
 
 }

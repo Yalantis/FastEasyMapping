@@ -3,3 +3,4 @@
 //
 
 #import "Fixture.h"
+#import "MagicalRecord+FEMExtension.h"
