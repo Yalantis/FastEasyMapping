@@ -1,3 +1,4 @@
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 import Quick
 import Nimble
@@ -12,7 +13,7 @@ class ManagedObjectMappingSpeс: QuickSpec {
       let mapping = ManagedObject.defaultMapping()
       var object: ManagedObject!
       
-      beforeSuite {
+      beforeEach {
         MagicalRecord.setLoggingLevel(.error)
         MagicalRecord.fem_setupTestsSQLiteStore()
         
@@ -22,7 +23,7 @@ class ManagedObjectMappingSpeс: QuickSpec {
         object = FEMDeserializer.object(fromRepresentation: fixture, mapping: mapping, context: context) as! ManagedObject
       }
       
-      afterSuite {
+      afterEach {
         MagicalRecord.fem_cleanUp()
       }
       
@@ -99,12 +100,12 @@ class ManagedObjectMappingSpeс: QuickSpec {
             expect(object.children) != nil
             expect(object.children!).to(haveCount(2))
             
-            expect(object.children!.flatMap({ $0.string })).to(equal(["1", "2"]))
+            expect(object.children!.flatMap({ $0.string })).to(contain(["1", "2"]))
         }
       }
       
       describe("null attributes") {
-        beforeSuite {
+        beforeEach {
           let fixture = Fixture.build(usingFixture: "ManagedObjectSupportedTypesNull") as! [AnyHashable: Any]
           object = FEMDeserializer.fill(object, fromRepresentation: fixture, mapping: mapping) as! ManagedObject
         }
@@ -114,7 +115,7 @@ class ManagedObjectMappingSpeс: QuickSpec {
         }
         
         it("should nullify boolObject") {
-          expect(object.boolObject) == nil
+          expect(object.boolObject).to(beNil())
         }
         
         it("should skip malformedBoolValue") {
@@ -122,7 +123,7 @@ class ManagedObjectMappingSpeс: QuickSpec {
         }
         
         it("should nullify malformedBoolObject") {
-          expect(object.malformedBoolObject) == nil
+          expect(object.malformedBoolObject).to(beNil())
         }
         
         it("should skip shortValue") {
@@ -130,7 +131,7 @@ class ManagedObjectMappingSpeс: QuickSpec {
         }
         
         it("should nullify shortObject") {
-          expect(object.shortObject) == nil
+          expect(object.shortObject).to(beNil())
         }
         
         it("should skip intValue") {
@@ -138,7 +139,7 @@ class ManagedObjectMappingSpeс: QuickSpec {
         }
         
         it("should nullify intObject") {
-          expect(object.intObject) == nil
+          expect(object.intObject).to(beNil())
         }
         
         it("should skip longLongValue") {
@@ -146,7 +147,7 @@ class ManagedObjectMappingSpeс: QuickSpec {
         }
         
         it("should nullify longLongObject") {
-          expect(object.longLongObject) == nil
+          expect(object.longLongObject).to(beNil())
         }
         
         it("should skip floatValue") {
@@ -154,7 +155,7 @@ class ManagedObjectMappingSpeс: QuickSpec {
         }
         
         it("should nullify floatObject") {
-          expect(object.floatObject) == nil
+          expect(object.floatObject).to(beNil())
         }
         
         it("should skip doubleValue") {
@@ -162,23 +163,23 @@ class ManagedObjectMappingSpeс: QuickSpec {
         }
         
         it("should nullify doubleObject") {
-          expect(object.doubleObject) == nil
+          expect(object.doubleObject).to(beNil())
         }
         
         it("should nullify string") {
-          expect(object.string) == nil
+          expect(object.string).to(beNil())
         }
         
         it("should nullify date") {
-          expect(object.date) == nil
+          expect(object.date).to(beNil())
         }
         
         it("should nullify data") {
-          expect(object.data) == nil
+          expect(object.data).to(beNil())
         }
         
         it("should nullify children") {
-          expect(object.children) == nil
+          expect(object.children).to(beEmpty()) // CoreData doesn't nullify but rather sets an empty collection
         }
       }
     }

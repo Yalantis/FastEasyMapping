@@ -1,10 +1,4 @@
-//
-//  FastEasyMapping.h
-//  FastEasyMapping
-//
-//  Created by zen on 07/09/15.
-//  Copyright (c) 2015 Yalantis. All rights reserved.
-//
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import <Foundation/Foundation.h>
 

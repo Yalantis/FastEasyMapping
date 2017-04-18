@@ -1,7 +1,4 @@
-//
-// Created by zen on 17/10/14.
-// Copyright (c) 2014 Yalantis. All rights reserved.
-//
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import <Kiwi/Kiwi.h>
 

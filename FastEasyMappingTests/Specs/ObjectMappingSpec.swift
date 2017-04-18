@@ -1,3 +1,5 @@
+// For License please refer to LICENSE file in the root of FastEasyMapping project
+
 import Quick
 import Nimble
 import FastEasyMapping
@@ -103,7 +105,7 @@ class ObjectMappingSpeс: QuickSpec {
           expect(object.children) != nil
           expect(object.children!).to(haveCount(2))
           
-          expect(object.children!.flatMap({ $0.string })).to(equal(["1", "2"]))
+          expect(object.children!.flatMap({ $0.string })).to(contain(["1", "2"]))
         }
       }
       

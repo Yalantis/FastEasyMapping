@@ -661,8 +661,8 @@
 		1D6A3EE793E764FCB56479BE /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				1D6A31AC86F859B7021C9DE7 /* Fixture.m */,
 				1D6A3DA6652245951653588B /* Fixture.h */,
+				1D6A31AC86F859B7021C9DE7 /* Fixture.m */,
 				1D6A37B072375A59449030E9 /* MagicalRecord+FEMExtension.h */,
 				1D6A346E016BEA3E5A71BEB1 /* MagicalRecord+FEMExtension.m */,
 				1D6A3775AEE3FBCDEAB8C677 /* FEMAttribute+UTF8.swift */,
@@ -780,9 +780,9 @@
 				69ED72A18D441F9A3397D384 /* Models */,
 				69ED77FF1B7BCBBE52569877 /* Fixtures */,
 				69ED713D0205449C289F72C9 /* Mapping Provider */,
+				1D6A3EE793E764FCB56479BE /* Utility */,
 				69ED7CB8A80C99BF8D7413F6 /* FastEasyMappingTests-Info.plist */,
 				1D6A3A7AF3939BED2A6FAE2E /* FastEasyMappingTests-Bridging-Header.h */,
-				1D6A3EE793E764FCB56479BE /* Utility */,
 			);
 			path = FastEasyMappingTests;
 			sourceTree = "<group>";
@@ -790,7 +790,6 @@
 		69ED72A18D441F9A3397D384 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2C375F1018CCBC2900FCB8EA /* CoreData.xcdatamodel */,
 				69ED794EEC7B9F51E50AC8FA /* AddressNative.h */,
 				69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */,
 				69ED76DB4A492924FFE33FAF /* AlienNative.h */,
@@ -801,12 +800,21 @@
 				69ED734D9AF0D834B3D9D190 /* CarNative.m */,
 				69ED71666439C5B0BC0A6650 /* CatNative.h */,
 				69ED76E0E8184C9BDF3CE713 /* CatNative.m */,
+				2C375F1018CCBC2900FCB8EA /* CoreData.xcdatamodel */,
 				69ED741033C38A5C3BAA7B08 /* FingerNative.h */,
 				69ED7E9D5D47846FEFCA62F5 /* FingerNative.m */,
+				1D6A3997CF701292F11C88D3 /* ManagedObject+CoreDataClass.swift */,
+				1D6A30C2751740DF8E99DE47 /* ManagedObject+CoreDataProperties.swift */,
+				1D6A3701E6FF875765DCB681 /* ManagedObject+Mapping.swift */,
+				1D6A35FAB537019510CFAB52 /* ManagedObjectChild+CoreDataClass.swift */,
+				1D6A35A3F7A4EB768C57D8D2 /* ManagedObjectChild+CoreDataProperties.swift */,
 				69ED7AF90069A8C5CBFF2B75 /* Native.h */,
 				69ED749AC1C7BE9BBB361F2B /* Native.m */,
 				69ED75DAD53214AD94FAB868 /* NativeChild.h */,
 				69ED747DF1709A9ABAC81F68 /* NativeChild.m */,
+				1D6A342BEB620D98EE43F13C /* Object.swift */,
+				1D6A3FE288D12DDB32E4FE9B /* Object+Mapping.swift */,
+				1D6A37057319CD39BD366C73 /* ObjectChild.swift */,
 				69ED7DE7AE4C126B96E6BD93 /* Person.h */,
 				69ED78FBF03886650959C5AE /* Person.m */,
 				69ED76A25E3A25F0BDFF4BCF /* PersonNative.h */,
@@ -821,14 +829,6 @@
 				69ED782333EB910A1F420719 /* SeaplaneNative.m */,
 				1D6A390821CF04D2FB6CBA66 /* UniqueObject.h */,
 				1D6A39978E70C9CA36660CAF /* UniqueObject.m */,
-				1D6A35A3F7A4EB768C57D8D2 /* ManagedObjectChild+CoreDataProperties.swift */,
-				1D6A37057319CD39BD366C73 /* ObjectChild.swift */,
-				1D6A3997CF701292F11C88D3 /* ManagedObject+CoreDataClass.swift */,
-				1D6A3701E6FF875765DCB681 /* ManagedObject+Mapping.swift */,
-				1D6A3FE288D12DDB32E4FE9B /* Object+Mapping.swift */,
-				1D6A35FAB537019510CFAB52 /* ManagedObjectChild+CoreDataClass.swift */,
-				1D6A342BEB620D98EE43F13C /* Object.swift */,
-				1D6A30C2751740DF8E99DE47 /* ManagedObject+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -869,9 +869,9 @@
 				AD94006B1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json */,
 				AD94006C1E8AA93700558F37 /* PersonWithRecursiveRelationship.json */,
 				1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */,
+				1D6A39199C892D7ABCEB1EF7 /* ManagedObjectSupportedTypes.json */,
 				1D6A3D85D370CEE526FC4741 /* ManagedObjectSupportedTypesNull.json */,
 				1D6A3D9FA1D3591DA900649B /* ObjectSupportedTypes.json */,
-				1D6A39199C892D7ABCEB1EF7 /* ManagedObjectSupportedTypes.json */,
 				1D6A3CCD66211CADA2C175E0 /* ObjectSupportedTypesNull.json */,
 			);
 			path = Fixtures;
