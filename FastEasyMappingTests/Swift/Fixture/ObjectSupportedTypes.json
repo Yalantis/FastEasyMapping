@@ -1,5 +1,7 @@
 {
   "boolValue": true,
+  "malformedBoolValue": 1,
+  
   "charValue": 127,
   "ucharValue": 255,
   
@@ -26,7 +28,7 @@
   "data": "utf8",
   
   "arrayOfStrings": ["1", "2"],
-  "setOfStrings": ["3", "4"],
+  "setOfStrings": ["1", "2"],
   
   "children": [
   {

@@ -35,12 +35,12 @@
 		1D6A38ED86DA0D1A384E8CB7 /* Fixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31AC86F859B7021C9DE7 /* Fixture.m */; };
 		1D6A396900DE2C4D49445EF8 /* ObjectChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3153EC42600502833431 /* ObjectChild.swift */; };
 		1D6A39C445741258BFE87EF8 /* ManagedObject+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3AC516F9E107669E194E /* ManagedObject+Mapping.swift */; };
-		1D6A39F926C497DBF8CD85E1 /* ObjectDeserializationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A34AC462BD3F0B3889FA8 /* ObjectDeserializationSpec.swift */; };
+		1D6A39F926C497DBF8CD85E1 /* ObjectMappingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A34AC462BD3F0B3889FA8 /* ObjectMappingSpec.swift */; };
 		1D6A3A02BC14551628844333 /* Object+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A340C51A06FC5F65B7372 /* Object+Mapping.swift */; };
 		1D6A3A7E9B30652E43B73474 /* MagicalRecord+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A346E016BEA3E5A71BEB1 /* MagicalRecord+FEMExtension.m */; };
 		1D6A3AC0F1E1C03BF2647B73 /* FEMAttribute+UTF8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A329682C48D8EAC9E26A1 /* FEMAttribute+UTF8.swift */; };
 		1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */; };
-		1D6A3B278AD4B8B29C218FA1 /* ObjectDeserializationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A34AC462BD3F0B3889FA8 /* ObjectDeserializationSpec.swift */; };
+		1D6A3B278AD4B8B29C218FA1 /* ObjectMappingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A34AC462BD3F0B3889FA8 /* ObjectMappingSpec.swift */; };
 		1D6A3B431A0D1418209F5238 /* Fixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31AC86F859B7021C9DE7 /* Fixture.m */; };
 		1D6A3BDE5FBAAA0BAA503655 /* RecursiveCyclicRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */; };
 		1D6A3C4918983E6785FBACCE /* ManagedObjectMappingSpeс.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35B4593514B707DBFBB7 /* ManagedObjectMappingSpeс.swift */; };
@@ -377,7 +377,7 @@
 		1D6A346E016BEA3E5A71BEB1 /* MagicalRecord+FEMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MagicalRecord+FEMExtension.m"; sourceTree = "<group>"; };
 		1D6A34832F9D9655B8006CA7 /* PersonWithMissingRelationships.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = PersonWithMissingRelationships.json; sourceTree = "<group>"; };
 		1D6A3491990508675E01E8DC /* FEMObjectCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectCache.m; sourceTree = "<group>"; };
-		1D6A34AC462BD3F0B3889FA8 /* ObjectDeserializationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDeserializationSpec.swift; sourceTree = "<group>"; };
+		1D6A34AC462BD3F0B3889FA8 /* ObjectMappingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectMappingSpec.swift; sourceTree = "<group>"; };
 		1D6A34B621512A2FE61ECE26 /* FEMMappingUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMMappingUtility.h; sourceTree = "<group>"; };
 		1D6A34DBB2F5A1C87E4DE53E /* FEMMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMMapping.h; sourceTree = "<group>"; };
 		1D6A34FA0B6FCD6F0C7F5EC0 /* FEMAssignmentPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMAssignmentPolicy.h; sourceTree = "<group>"; };
@@ -662,7 +662,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6A35B4593514B707DBFBB7 /* ManagedObjectMappingSpeс.swift */,
-				1D6A34AC462BD3F0B3889FA8 /* ObjectDeserializationSpec.swift */,
+				1D6A34AC462BD3F0B3889FA8 /* ObjectMappingSpec.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -1587,7 +1587,7 @@
 				1D6A35820A545E8E51D23BA5 /* Object+Mapping.swift in Sources */,
 				1D6A330FBBB5C1D18B2942F6 /* FEMAttribute+UTF8.swift in Sources */,
 				1D6A37CA8C5A47C659C2BF0D /* ManagedObjectMappingSpeс.swift in Sources */,
-				1D6A3B278AD4B8B29C218FA1 /* ObjectDeserializationSpec.swift in Sources */,
+				1D6A3B278AD4B8B29C218FA1 /* ObjectMappingSpec.swift in Sources */,
 				1D6A38ED86DA0D1A384E8CB7 /* Fixture.m in Sources */,
 				1D6A33EA1A00E52471D14E57 /* MagicalRecord+FEMExtension.m in Sources */,
 			);
@@ -1655,7 +1655,7 @@
 				1D6A3A02BC14551628844333 /* Object+Mapping.swift in Sources */,
 				1D6A3AC0F1E1C03BF2647B73 /* FEMAttribute+UTF8.swift in Sources */,
 				1D6A3C4918983E6785FBACCE /* ManagedObjectMappingSpeс.swift in Sources */,
-				1D6A39F926C497DBF8CD85E1 /* ObjectDeserializationSpec.swift in Sources */,
+				1D6A39F926C497DBF8CD85E1 /* ObjectMappingSpec.swift in Sources */,
 				1D6A3B431A0D1418209F5238 /* Fixture.m in Sources */,
 				1D6A3A7E9B30652E43B73474 /* MagicalRecord+FEMExtension.m in Sources */,
 			);

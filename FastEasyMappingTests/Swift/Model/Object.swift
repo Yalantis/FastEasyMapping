@@ -8,6 +8,7 @@ class Object: NSObject {
   // Scalar types
   
   dynamic var boolValue: Bool = false // CBool - B
+  dynamic var malformedBoolValue: Bool = false // CBool - B when JSON contains 1/0 instead of true/false
   
   dynamic var charValue: Int8 = 0 // CChar c - char
   dynamic var ucharValue: UInt8 = 0 // CUnsignedChar C - unsigned char

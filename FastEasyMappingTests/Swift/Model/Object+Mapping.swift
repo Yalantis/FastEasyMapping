@@ -9,7 +9,8 @@ extension Object {
     
     mapping.addAttributes(from: [
       #keyPath(boolValue),
-      
+      #keyPath(malformedBoolValue),
+
       #keyPath(charValue),
       #keyPath(ucharValue),
       
