@@ -7,6 +7,7 @@ cache: cocoapods
 before_install:
     - gem install xcpretty -N --no-ri --no-rdoc
     - xcrun simctl delete 38C891AB-EC79-43E4-9311-6FDEB12DCF11 || true # https://github.com/travis-ci/travis-ci/issues/7580
+    - pod install
 
 env:
   global:
