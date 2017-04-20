@@ -14,7 +14,7 @@
     
     NSURL *baseURL = [[NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES]
                       URLByAppendingPathComponent:@"com.FastEaysMapping.Core.Tests" isDirectory:YES];
-    NSURL *url = [NSURL fileURLWithPath:@"database" relativeToURL:baseURL];
+    NSURL *url = [baseURL URLByAppendingPathComponent:@"database"];
     
     [[NSFileManager defaultManager] removeItemAtURL:baseURL error:nil]; // drop if there any sqlite store
     
