@@ -6,7 +6,7 @@ import FastEasyMapping
 import MagicalRecord
 import CoreData
 
-class ManagedObjectMappingSpeс: QuickSpec {
+class ManagedObjectMappingSpec: QuickSpec {
 
   override func spec() {
     describe("mapping") {

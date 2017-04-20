@@ -12,20 +12,31 @@
     NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:@[[NSBundle bundleForClass:[Fixture class]]]];
     [NSManagedObjectModel MR_setDefaultManagedObjectModel:model];
     
-    NSURL *url = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
-    NSString *storeName = @"FastEasyMappingTests.sqlite";
-    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:[url URLByAppendingPathComponent:storeName]];
+    NSURL *baseURL = [[NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES]
+                      URLByAppendingPathComponent:@"com.FastEaysMapping.Core.Tests" isDirectory:YES];
+    NSURL *url = [NSURL fileURLWithPath:@"database" relativeToURL:baseURL];
+    
+    [[NSFileManager defaultManager] removeItemAtURL:baseURL error:nil]; // drop if there any sqlite store
+    
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:url];
 }
 
 + (void)fem_cleanUp {
     NSPersistentStoreCoordinator *coordinator = [NSPersistentStoreCoordinator MR_defaultStoreCoordinator];
     for (NSPersistentStore *store in coordinator.persistentStores) {
-        if (store.URL != nil) {
-            [coordinator destroyPersistentStoreAtURL:store.URL withType:store.type options:store.options error:nil];
-        }
         [coordinator removePersistentStore:store error:nil];
-    }
 
+        if (store.URL != nil) {
+            // running on iOS 9+
+            if ([coordinator respondsToSelector:@selector(destroyPersistentStoreAtURL:withType:options:error:)]) {
+                [coordinator destroyPersistentStoreAtURL:store.URL withType:store.type options:store.options error:nil];
+            } else {
+                NSURL *baseURL = [store.URL URLByDeletingLastPathComponent];
+                [[NSFileManager defaultManager] removeItemAtURL:baseURL error:nil];
+            }
+        }
+    }
+    
     [MagicalRecord cleanUp];
 }
 
