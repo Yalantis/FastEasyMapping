@@ -1,0 +1,35 @@
+{
+  "boolValue": true,
+  "boolObject": true,
+
+  "malformedBoolValue": 1,
+  "malformedBoolObject": 1,
+
+  "shortValue": 32767,
+  "shortObject": 32767,
+
+  "intValue": 2147483647,
+  "intObject": 2147483647,
+
+  "longLongValue": 9223372036854775807,
+  "longLongObject": 9223372036854775807,
+
+  "floatValue": 11.1,
+  "floatObject": 11.1,
+
+  "doubleValue": 12.2,
+  "doubleObject": 12.2,
+
+  "string": "string",
+  "date": "2017",
+  "data": "utf8",
+
+  "children": [
+  {
+    "string": "1"
+  },
+  {
+    "string": "2"
+  }
+  ]
+}

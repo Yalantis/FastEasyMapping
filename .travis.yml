@@ -1,10 +1,13 @@
-language: objective-c
 os: osx
 osx_image: xcode8.3
+
+language: objective-c
+cache: cocoapods
 
 before_install:
     - gem install xcpretty -N --no-ri --no-rdoc
     - xcrun simctl delete 38C891AB-EC79-43E4-9311-6FDEB12DCF11 || true # https://github.com/travis-ci/travis-ci/issues/7580
+    - pod install
 
 env:
   global:
@@ -23,7 +26,7 @@ env:
 
   matrix:
       - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=8.1,name=iPhone 6"
-      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=9.3,name=iPhone 6s"
+      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=9.3,name=iPhone SE"
       - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=10.3,name=iPhone 7"
 
       - SCHEME="$MACOS_SCHEME" SDK="$MACOS_SDK" DESTINATION="arch=x86_64"
@@ -41,16 +44,20 @@ script:
     - instruments -s devices
 
     # Build Framework in Debug and Run Tests if specified
-    - xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug build | xcpretty;
     - if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -destination-timeout $DESTINATION_TIMEOUT -configuration Debug -enableCodeCoverage YES test | xcpretty;
+        xcodebuild build-for-testing -configuration Debug -enableCodeCoverage YES -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
+        xcodebuild testing-without-building -configuration Debug -enableCodeCoverage YES -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
+      else
+        xcodebuild build -configuration Debug -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
       fi
 
     # Build Framework in Release and Run Tests if specified
-    - xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release build | xcpretty;
     - if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -destination-timeout $DESTINATION_TIMEOUT -configuration Release test | xcpretty;
-      fi
+      xcodebuild build-for-testing -configuration Release -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
+      xcodebuild testing-without-building -configuration Release -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
+    else
+      xcodebuild build -configuration Release -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
+    fi
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)

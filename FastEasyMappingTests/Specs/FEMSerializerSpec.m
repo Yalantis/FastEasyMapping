@@ -2,7 +2,7 @@
 
 #import "Kiwi.h"
 #import "CMFactory.h"
-#import "CMFixture.h"
+#import "Fixture.h"
 #import "MappingProviderNative.h"
 #import "PersonNative.h"
 #import "CarNative.h"
@@ -309,7 +309,7 @@ SPEC_BEGIN(FEMSerializerSpec)
 						                    forProperty:@"car"
 								                keyPath:@"vehicle"];
 
-						NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
+						NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"PersonWithDifferentNaming"];
 
 						person = [FEMDeserializer objectFromRepresentation:externalRepresentation
 						                                                           mapping:mapping];
@@ -398,7 +398,7 @@ SPEC_BEGIN(FEMSerializerSpec)
 						                          forProperty:@"phones"
 								                      keyPath:@"cellphones"];
 
-						NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"PersonWithDifferentNaming"];
+						NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"PersonWithDifferentNaming"];
 						person = [FEMDeserializer objectFromRepresentation:externalRepresentation
 						                                                           mapping:mapping];
 
@@ -432,7 +432,7 @@ SPEC_BEGIN(FEMSerializerSpec)
 				__block NSDictionary *representation;
 
 				beforeEach(^{
-					NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"Native"];
+					NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"Native"];
 					native = [FEMDeserializer objectFromRepresentation:externalRepresentation
 					                                                           mapping:[MappingProviderNative nativeMapping]];
 					representation = [FEMSerializer serializeObject:native usingMapping:[MappingProviderNative nativeMapping]];
@@ -525,7 +525,7 @@ SPEC_BEGIN(FEMSerializerSpec)
 				__block NSDictionary *representation;
 
 				beforeEach(^{
-					NSDictionary *externalRepresentation = [CMFixture buildUsingFixture:@"NativeChild"];
+					NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"NativeChild"];
 					nativeChild = [FEMDeserializer objectFromRepresentation:externalRepresentation
                                                                     mapping:[MappingProviderNative nativeChildMapping]];
 					representation = [FEMSerializer serializeObject:nativeChild

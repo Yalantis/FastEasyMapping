@@ -1,11 +1,9 @@
-//
-// Created by zen on 15/06/14.
-// Copyright (c) 2014 Yalantis. All rights reserved.
-//
+// For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import <Kiwi/Kiwi.h>
 #import <MagicalRecord/MagicalRecord.h>
-#import <CMFactory/CMFixture.h>
+
+#import "Fixture.h"
 
 #import "Person.h"
 #import "FEMMapping.h"
@@ -16,7 +14,6 @@
 #import "FEMDeserializer.h"
 #import "FEMRelationship.h"
 #import "FEMManagedObjectDeserializer.h"
-
 
 SPEC_BEGIN(FEMCacheSpec)
     __block NSManagedObjectContext *context = nil;
@@ -113,7 +110,7 @@ SPEC_BEGIN(FEMCacheSpec)
         __block FEMMapping *carMapping = nil;
 
         beforeEach(^{
-            representation = [CMFixture buildUsingFixture:@"PersonWithCar_1"];
+            representation = [Fixture buildUsingFixture:@"PersonWithCar_1"];
             mapping = [MappingProvider personWithCarMapping];
 
             cache = [[FEMObjectCache alloc] initWithMapping:mapping representation:representation context:context];

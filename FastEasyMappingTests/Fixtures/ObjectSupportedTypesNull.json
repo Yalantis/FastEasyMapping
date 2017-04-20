@@ -1,0 +1,32 @@
+{
+  "boolValue": null,
+  "charValue": null,
+  "ucharValue": null,
+  
+  "shortValue": null,
+  "ushortValue": null,
+  
+  "intValue": null,
+  "uintValue": null,
+  
+  "longValue": null,
+  "ulongValue": null,
+  
+  "longLongValue": null,
+  "ulongLongValue": null,
+  
+  "floatValue": null,
+  "doubleValue": null,
+  
+  "nsnumberBool": null,
+  
+  "string": null,
+  "date": null,
+  "url": null,
+  "data": null,
+  
+  "arrayOfStrings": null,
+  "setOfStrings": null,
+  
+  "children": null
+}
