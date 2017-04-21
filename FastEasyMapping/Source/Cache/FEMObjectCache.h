@@ -15,8 +15,8 @@ typedef _Nonnull id<NSFastEnumeration> (^FEMObjectCacheSource)(FEMMapping *mappi
 
 - (instancetype)initWithSource:(FEMObjectCacheSource)source NS_DESIGNATED_INITIALIZER;
 
-- (id)existingObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;
-- (id)existingObjectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping;
+- (nullable id)existingObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;
+- (nullable id)existingObjectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping;
 
 - (void)addExistingObject:(id)object mapping:(FEMMapping *)mapping;
 - (NSDictionary *)existingObjectsForMapping:(FEMMapping *)mapping;

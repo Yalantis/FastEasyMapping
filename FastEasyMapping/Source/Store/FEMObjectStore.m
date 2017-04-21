@@ -36,7 +36,7 @@
 }
 
 - (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
-    return nil;
+    return @{};
 }
 
 - (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
