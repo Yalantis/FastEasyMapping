@@ -5,16 +5,16 @@
 
 @implementation FEMObjectStore
 
-- (BOOL)requiresPrefetch {
-    return NO;
+- (void)beginTransaction:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys {
+    // no-op
 }
-
-//- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping ofRepresentation:(nonnull NSArray *)representation {}
-
-- (void)beginTransaction:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys {}
 
 - (NSError *)commitTransaction {
     return nil;
+}
+
++ (BOOL)requiresPrefetch {
+    return NO;
 }
 
 - (id)newObjectForMapping:(FEMMapping *)mapping {

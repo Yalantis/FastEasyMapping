@@ -19,20 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FEMObjectStore : NSObject <FEMRelationshipAssignmentContextDelegate>
 
-- (BOOL)requiresPrefetch;
-
 /**
- @discussion Invoked by FEMDeserialized at the very beggining of deserialization. Your implementation may inspect given `representation`
- in order to perform prefetch of objects. Default implementation does nothing.
-
- @param mapping        FEMMapping that is passed to the FEMDeserializer to perform deserialization
- @param representation JSON passed to the FEMDeserialializer to perform deserialization. Note that it always of Array type for both Collection and Object deserialization.
- */
-//- (void)prepareTransactionForMapping:(FEMMapping *)mapping ofRepresentation:(NSArray *)representation;
-
-/**
- @discussion Invoked by FEMDeserializer after -prepareTransactionForMapping:ofRepresentation:. 
+ @discussion Invoked by FEMDeserializer at the very beginning of deserialization.
  Custom implementation may want to begin write transaction or similar. Default implementation does nothing.
+
+ @param presentedPrimaryKeys when `+[YourObjectStoreSubclass requiresPrefetch]` returns `YES` then `presentedPrimaryKeys contains a non-nil MapTable with FEMMapping to Set of primary keys pairs. In case +requiresPrefetch returns NO - nil value passed.
  */
 - (void)beginTransaction:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys;
 
@@ -41,6 +32,17 @@ NS_ASSUME_NONNULL_BEGIN
  Custom implementation may want to commit opened transaction or similar. Default implementation does nothing.
  */
 - (nullable NSError *)commitTransaction;
+
+/**
+ @brief Specifies whether your custom store requires prefetch of existing objects or not.
+
+ @discussion During deserialization it is useful to prefetch objects from the actual store (Realm, sqlite, etc) by the primary keys that are presented in the JSON.
+ Later those objects can be returned from the -registeredObjectForRepresentation:mapping: to no populate actual store with the duplicates.
+ `FEMManagedObjectStore` by default returns `YES`.
+
+ @return Flag indicating whether Store will perform prefetch or not. For instances of classes that returns `YES` `FEMDeserializer` collects presented keys, otherwise it does nothing.
+ */
++ (BOOL)requiresPrefetch;
 
 /**
  @brief Initialize new object for the given mapping.

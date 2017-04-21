@@ -164,7 +164,7 @@
 
 - (void)beginTransactionForMapping:(FEMMapping *)mapping representation:(NSArray<id> *)representation {
     NSMapTable *presentedPrimaryKeys = nil;
-    if ([self.store requiresPrefetch]) {
+    if ([[self.store class] requiresPrefetch]) {
         presentedPrimaryKeys = FEMRepresentationCollectPresentedPrimaryKeys(representation, mapping);
     }
 

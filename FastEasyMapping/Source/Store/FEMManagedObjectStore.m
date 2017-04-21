@@ -15,10 +15,6 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     FEMObjectCache *_cache;
 }
 
-- (BOOL)requiresPrefetch {
-    return YES;
-}
-
 #pragma mark - Init
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)context {
@@ -46,6 +42,10 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     }
 
     return nil;
+}
+
++ (BOOL)requiresPrefetch {
+    return YES;
 }
 
 - (id)newObjectForMapping:(FEMMapping *)mapping {
