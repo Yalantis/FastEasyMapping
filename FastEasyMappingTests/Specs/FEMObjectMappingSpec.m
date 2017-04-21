@@ -1,21 +1,22 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
+
 #import "PersonNative.h"
 #import "CarNative.h"
 #import "MappingProviderNative.h"
-#import "FEMObjectMapping.h"
+#import "FEMMapping.h"
 #import "FEMAttribute.h"
 #import "FEMRelationship.h"
 #import "PhoneNative.h"
 
 SPEC_BEGIN(FEMObjectMappingSpec)
 
-    describe(@"FEMObjectMapping", ^{
+    describe(@"FEMMapping", ^{
 
         describe(@".mappingForClass:withBlock:", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
 
             beforeEach(^{
                 mapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class]];
@@ -33,7 +34,7 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@".mappingForClass:rootPath:configuration:", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
 
             beforeEach(^{
                 mapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class] rootPath:@"car"];
@@ -55,10 +56,10 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@"#initWithObjectClass:", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
 
             beforeEach(^{
-                mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
+                mapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class]];
             });
 
             specify(^{
@@ -73,10 +74,10 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@"#initWithObjectClass:rootPath:", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
 
             beforeEach(^{
-                mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class] rootPath:@"car"];
+                mapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class] rootPath:@"car"];
             });
 
             specify(^{
@@ -95,11 +96,11 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@"#mapKey:toField:", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
             __block FEMAttribute *fieldMapping;
 
             beforeEach(^{
-                mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
+                mapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class]];
                 [mapping addAttributeWithProperty:@"createdAt" keyPath:@"created_at"];
                 fieldMapping = [mapping attributeForProperty:@"createdAt"];
             });
@@ -116,10 +117,10 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@"#mapKeyFieldsFromArray", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
 
             beforeEach(^{
-                mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
+                mapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class]];
                 [mapping addAttributesFromArray:@[@"name", @"email"]];
             });
 
@@ -162,10 +163,10 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@"#mapKeyFieldsFromDictionary", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
 
             beforeEach(^{
-                mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
+                mapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class]];
                 [mapping addAttributesFromDictionary:@{
                     @"identifier" : @"id",
                     @"email" : @"contact.email"
@@ -211,10 +212,10 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@"#mapKey:toField:withDateFormat", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
 
             beforeEach(^{
-                mapping = [[FEMObjectMapping alloc] initWithObjectClass:[CarNative class]];
+                mapping = [[FEMMapping alloc] initWithObjectClass:[CarNative class]];
                 [mapping addAttribute:[FEMAttribute mappingOfProperty:@"birthday"
                                                             toKeyPath:@"birthday"
                                                            dateFormat:@"yyyy-MM-dd"]];
@@ -237,7 +238,7 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@"#mapKey:toField:withValueBlock:", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
             __block FEMAttribute *fieldMapping;
 
             beforeEach(^{
@@ -247,7 +248,7 @@ SPEC_BEGIN(FEMObjectMappingSpec)
                     @"female" : @(GenderFemale)
                 };
 
-                mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+                mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
                 [mapping addAttribute:[FEMAttribute mappingOfProperty:@"gender"
                                                             toKeyPath:@"gender"
                                                                   map:^id(id value) {
@@ -266,7 +267,7 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@"#mapKey:toField:withValueBlock:withReverseBlock:", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
             __block FEMAttribute *fieldMapping;
 
             beforeEach(^{
@@ -275,7 +276,7 @@ SPEC_BEGIN(FEMObjectMappingSpec)
                     @"female" : @(GenderFemale)
                 };
 
-                mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+                mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
                 [mapping addAttribute:[FEMAttribute mappingOfProperty:@"gender" toKeyPath:@"gender" map:^id(id value) {
                     return genders[value];
                 }
@@ -293,7 +294,7 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@"#hasOneMapping:forKey:", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
 
             beforeEach(^{
                 mapping = [MappingProviderNative personMapping];
@@ -322,10 +323,10 @@ SPEC_BEGIN(FEMObjectMappingSpec)
         });
 
         describe(@"#hasOneMapping:forKey:forField:", ^{
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
 
             beforeEach(^{
-                mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+                mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
                 [mapping addRelationshipMapping:[MappingProviderNative carMapping] forProperty:@"personCar" keyPath:@"car"];
 
                 [mapping addToManyRelationshipMapping:[MappingProviderNative phoneMapping] forProperty:@"personPhones" keyPath:@"phones"];
@@ -350,7 +351,7 @@ SPEC_BEGIN(FEMObjectMappingSpec)
 
         describe(@"#hasManyMapping:forKey:", ^{
 
-            __block FEMObjectMapping *mapping;
+            __block FEMMapping *mapping;
 
             beforeEach(^{
                 mapping = [MappingProviderNative personMapping];
@@ -364,6 +365,53 @@ SPEC_BEGIN(FEMObjectMappingSpec)
                 [[mapping relationshipForProperty:@"phones"] shouldNotBeNil];
             });
 
+        });
+
+        describe(@"flattening", ^{
+            __block FEMMapping *mapping;
+            beforeEach(^{
+                mapping = [[FEMMapping alloc] initWithObjectClass:[NSObject class]];
+            });
+
+            context(@"when no relationships", ^{
+                it(@"should return receiver", ^{
+                    NSSet *flatten = [mapping flatten];
+                    [[flatten should] haveCountOf:1];
+                    [[flatten should] contain:mapping];
+                });
+            });
+
+            context(@"when has relationships", ^{
+               it(@"should return receiver and relationships", ^{
+                   FEMMapping *child = [mapping copy];
+                   [mapping addRelationshipMapping:child forProperty:@"property" keyPath:@"keyPath"];
+
+                   NSSet *flatten = [mapping flatten];
+                   [[flatten should] haveCountOf:2];
+                   [[flatten should] contain:mapping];
+                   [[flatten should] contain:child];
+               });
+
+                it(@"should return nested relationships", ^{
+                    FEMMapping *child = [mapping copy];
+                    [mapping addRelationshipMapping:child forProperty:@"property" keyPath:@"keyPath"];
+                    FEMMapping *nestedChild = [child copy];
+                    [child addRelationshipMapping:nestedChild forProperty:@"property" keyPath:@"keyPath"];
+
+                    NSSet *flatten = [mapping flatten];
+                    [[flatten should] haveCountOf:3];
+                    [[flatten should] contain:mapping];
+                    [[flatten should] contain:child];
+                    [[flatten should] contain:nestedChild];
+                });
+
+                it(@"should not return recursive relationships", ^{
+                    [mapping addRecursiveRelationshipMappingForProperty:@"property" keypath:@"keyPath"];
+                    NSSet *flatten = [mapping flatten];
+                    [[flatten should] haveCountOf:1];
+                    [[flatten should] contain:mapping];
+                });
+            });
         });
     });
 
