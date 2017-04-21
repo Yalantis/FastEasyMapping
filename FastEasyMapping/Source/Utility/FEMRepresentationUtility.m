@@ -32,7 +32,7 @@ void _FEMRepresentationCollectObjectPrimaryKeys(id object, FEMMapping *mapping, 
 }
 
 void _FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping, NSMapTable<FEMMapping *, NSMutableSet<id> *> *container) {
-    if ([representation conformsToProtocol:@protocol(NSFastEnumeration)]) {
+    if ([representation isKindOfClass:[NSArray class]]) {
         for (id object in (id<NSFastEnumeration>)representation) {
             _FEMRepresentationCollectObjectPrimaryKeys(object, mapping, container);
         }
@@ -42,7 +42,7 @@ void _FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping
         NSCAssert(
             NO,
             @"Can not collect primary keys for a given representation.\n"
-            "Expected container classes / interfaces: id<NSFastEnumeration>, NSDictionary, NSNumber or NSString. Got: %@.\n"
+            "Expected container classes: NSArray, NSDictionary, NSNumber or NSString. Got: %@.\n"
             "Mapping: %@\nRepresentation:%@",
             NSStringFromClass([representation class]), mapping, representation
         );
@@ -52,8 +52,8 @@ void _FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping
 NSMapTable<FEMMapping *, NSSet<id> *> *FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping) {
     NSSet<FEMMapping *> *flattenMappings = [mapping flatten];
 
-    NSPointerFunctionsOptions options = NSPointerFunctionsStrongMemory | NSPointerFunctionsOpaquePersonality;
-    NSMapTable<FEMMapping *, NSMutableSet<id> *> *map = [[NSMapTable alloc] initWithKeyOptions:options valueOptions:options capacity:flattenMappings.count];
+    NSPointerFunctionsOptions options = NSPointerFunctionsStrongMemory | NSPointerFunctionsObjectPointerPersonality;
+    NSMapTable *map = [[NSMapTable alloc] initWithKeyOptions:options valueOptions:options capacity:flattenMappings.count];
 
     for (FEMMapping *key in flattenMappings) {
         [map setObject:[NSMutableSet new] forKey:key];

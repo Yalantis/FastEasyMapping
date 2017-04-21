@@ -162,12 +162,19 @@
     return output;
 }
 
+- (void)beginTransactionForMapping:(FEMMapping *)mapping representation:(NSArray<id> *)representation {
+    [self.store prepareTransactionForMapping:mapping ofRepresentation:representation];
+    [self.store beginTransaction];
+}
+
+- (void)commitTransaction {
+    [self.store commitTransaction];
+}
+
 #pragma mark - Public
 
-
 - (id)objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping {
-    [self.store prepareTransactionForMapping:mapping ofRepresentation:@[representation]];
-    [self.store beginTransaction];
+    [self beginTransactionForMapping:mapping representation:@[representation]];
 
     id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
     id object = [self _objectFromRepresentation:root mapping:mapping allocateIfNeeded:YES];
@@ -182,15 +189,14 @@
         [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
     }
 
-    [self.store prepareTransactionForMapping:mapping ofRepresentation:@[representation]];
-    [self.store beginTransaction];
+    [self beginTransactionForMapping:mapping representation:@[representation]];
 
     id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
 
     [self applyAttributesToObject:object representation:root mapping:mapping allocated:NO];
     [self applyRelationshipsToObject:object representation:root mapping:mapping];
 
-    [self.store commitTransaction];
+    [self commitTransaction];
 
     if (_delegateFlags.didMapObject) {
         [self.delegate deserializer:self didMapObject:object fromRepresentation:representation mapping:mapping];
@@ -200,13 +206,12 @@
 }
 
 - (NSArray *)collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping {
-    [self.store prepareTransactionForMapping:mapping ofRepresentation:representation];
-    [self.store beginTransaction];
+    [self beginTransactionForMapping:mapping representation:representation];
 
     id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
     NSArray *objects = [self _collectionFromRepresentation:root mapping:mapping allocateIfNeeded:YES];
 
-    [self.store commitTransaction];
+    [self commitTransaction];
 
     return objects;
 }

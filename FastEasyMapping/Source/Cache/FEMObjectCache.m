@@ -8,7 +8,7 @@
 #import "FEMRepresentationUtility.h"
 
 @implementation FEMObjectCache {
-	NSDictionary *_lookupKeysMap;
+	NSMapTable<FEMMapping *, NSSet<id> *> *_lookupKeysMap;
 	NSMutableDictionary *_lookupObjectsMap;
 
 	FEMObjectCacheSource _source;
@@ -21,7 +21,7 @@
 	self = [super init];
 	if (self) {
 		_source = [source copy];
-		_lookupKeysMap = @{};
+		_lookupKeysMap = nil;
 		_lookupObjectsMap = [NSMutableDictionary new];
 	}
 
@@ -46,7 +46,7 @@
 #pragma mark - Inspection
 
 - (NSMutableDictionary *)fetchExistingObjectsForMapping:(FEMMapping *)mapping {
-	NSSet *lookupValues = _lookupKeysMap[mapping.entityName];
+	NSSet<id> *lookupValues = [_lookupKeysMap objectForKey:mapping];
 	if (lookupValues.count == 0) return [NSMutableDictionary dictionary];
 
 	NSMutableDictionary *output = [NSMutableDictionary new];
