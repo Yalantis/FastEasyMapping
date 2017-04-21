@@ -83,7 +83,9 @@ const NSUInteger ObjectsCount = 10000;
         [self startMeasuring];
         [deserializer collectionFromRepresentation:self.representation mapping:mapping];
         [self stopMeasuring];
+        
         [Parent MR_truncateAllInContext:self.context];
+        [self.context reset];
     }];
 }
 
@@ -105,7 +107,9 @@ const NSUInteger ObjectsCount = 10000;
         [self startMeasuring];
         [deserializer collectionFromRepresentation:self.representation mapping:mapping];
         [self stopMeasuring];
+        
         [Parent MR_truncateAllInContext:self.context];
+        [self.context reset];
     }];
 }
 
