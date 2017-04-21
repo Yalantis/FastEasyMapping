@@ -3,19 +3,6 @@
 #import "FEMTypeIntrospection.h"
 #import <objc/runtime.h>
 
-BOOL FEMObjectPropertyValueIsNil(id object, NSString *propertyName) {
-	id value = [object valueForKey:propertyName];
-	if (value == nil || value == [NSNull null]) {
-		return YES;
-	} else if ([value isKindOfClass:[NSNumber class]]) {
-		return [(NSNumber *)value longLongValue] == 0;
-	} else if ([value isKindOfClass:[NSString class]]) {
-		return [(NSString *)value length] == 0;
-	}
-
-	return NO;
-}
-
 BOOL FEMObjectPropertyTypeIsScalar(id object, NSString *propertyName) {
 	objc_property_t property = class_getProperty(object_getClass(object), [propertyName UTF8String]);
 	NSString *type = property ? FEMPropertyTypeStringRepresentation(property) : nil;
