@@ -44,20 +44,22 @@ script:
     - instruments -s devices
 
     # Build Framework in Debug and Run Tests if specified
-    - if [ $RUN_TESTS == "YES" ]; then
+    - |
+      if [ $RUN_TESTS == "YES" ]; then
         xcodebuild build-for-testing -configuration Debug -enableCodeCoverage YES -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
         xcodebuild testing-without-building -configuration Debug -enableCodeCoverage YES -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
       else
         xcodebuild build -configuration Debug -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
-      fi
+      fi;
 
     # Build Framework in Release and Run Tests if specified
-    - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild build-for-testing -configuration Release -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
-      xcodebuild testing-without-building -configuration Release -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
-    else
-      xcodebuild build -configuration Release -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
-    fi
+    - |
+      if [ $RUN_TESTS == "YES" ]; then
+        xcodebuild build-for-testing -configuration Release -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
+        xcodebuild testing-without-building -configuration Release -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
+      else
+        xcodebuild build -configuration Release -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" | xcpretty
+      fi
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
