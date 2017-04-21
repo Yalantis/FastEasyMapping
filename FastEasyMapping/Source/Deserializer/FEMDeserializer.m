@@ -163,8 +163,12 @@
 }
 
 - (void)beginTransactionForMapping:(FEMMapping *)mapping representation:(NSArray<id> *)representation {
-    [self.store prepareTransactionForMapping:mapping ofRepresentation:representation];
-    [self.store beginTransaction];
+    NSMapTable *presentedPrimaryKeys = nil;
+    if ([self.store requiresPrefetch]) {
+        presentedPrimaryKeys = FEMRepresentationCollectPresentedPrimaryKeys(representation, mapping);
+    }
+
+    [self.store beginTransaction:presentedPrimaryKeys];
 }
 
 - (void)commitTransaction {

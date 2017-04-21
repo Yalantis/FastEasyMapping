@@ -14,6 +14,7 @@
 #import "FEMDeserializer.h"
 #import "FEMRelationship.h"
 #import "FEMManagedObjectDeserializer.h"
+#import "FEMRepresentationUtility.h"
 
 SPEC_BEGIN(FEMCacheSpec)
     __block NSManagedObjectContext *context = nil;
@@ -43,7 +44,8 @@ SPEC_BEGIN(FEMCacheSpec)
             };
             mapping = [MappingProvider carMappingWithPrimaryKey];
 
-            cache = [[FEMObjectCache alloc] initWithMapping:mapping representation:representation context:context];
+            cache = [[FEMObjectCache alloc] initWithContext:context
+                                       presentedPrimaryKeys:FEMRepresentationCollectPresentedPrimaryKeys(representation, mapping)];
         });
         afterEach(^{
             mapping = nil;
@@ -113,7 +115,8 @@ SPEC_BEGIN(FEMCacheSpec)
             representation = [Fixture buildUsingFixture:@"PersonWithCar_1"];
             mapping = [MappingProvider personWithCarMapping];
 
-            cache = [[FEMObjectCache alloc] initWithMapping:mapping representation:representation context:context];
+            cache = [[FEMObjectCache alloc] initWithContext:context
+                                       presentedPrimaryKeys:FEMRepresentationCollectPresentedPrimaryKeys(representation, mapping)];
             carMapping = (id) [mapping relationshipForProperty:@"car"].mapping;
         });
 

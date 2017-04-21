@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FEMObjectStore : NSObject <FEMRelationshipAssignmentContextDelegate>
 
+- (BOOL)requiresPrefetch;
+
 /**
  @discussion Invoked by FEMDeserialized at the very beggining of deserialization. Your implementation may inspect given `representation`
  in order to perform prefetch of objects. Default implementation does nothing.
@@ -26,13 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param mapping        FEMMapping that is passed to the FEMDeserializer to perform deserialization
  @param representation JSON passed to the FEMDeserialializer to perform deserialization. Note that it always of Array type for both Collection and Object deserialization.
  */
-- (void)prepareTransactionForMapping:(FEMMapping *)mapping ofRepresentation:(NSArray *)representation;
+//- (void)prepareTransactionForMapping:(FEMMapping *)mapping ofRepresentation:(NSArray *)representation;
 
 /**
  @discussion Invoked by FEMDeserializer after -prepareTransactionForMapping:ofRepresentation:. 
  Custom implementation may want to begin write transaction or similar. Default implementation does nothing.
  */
-- (void)beginTransaction;
+- (void)beginTransaction:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys;
 
 /**
  @discussion Invoked by FEMDeserializer after all data has been deserialized.

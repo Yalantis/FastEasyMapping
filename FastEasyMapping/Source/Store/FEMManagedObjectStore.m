@@ -15,6 +15,10 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     FEMObjectCache *_cache;
 }
 
+- (BOOL)requiresPrefetch {
+    return YES;
+}
+
 #pragma mark - Init
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)context {
@@ -29,11 +33,9 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
 
 #pragma mark - Transaction
 
-- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping ofRepresentation:(nonnull NSArray *)representation {
-    _cache = [[FEMObjectCache alloc] initWithMapping:mapping representation:representation context:self.context];
+- (void)beginTransaction:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys {
+    _cache = [[FEMObjectCache alloc] initWithContext:self.context presentedPrimaryKeys:presentedPrimaryKeys];
 }
-
-- (void)beginTransaction {}
 
 - (NSError *)commitTransaction {
     _cache = nil;
