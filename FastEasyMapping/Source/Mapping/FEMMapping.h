@@ -219,6 +219,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable FEMRelationship *)relationshipForProperty:(NSString *)property;
 
+/**
+ * @brief Returns collection of the mapping itself and all of the relationships by flattening them into a Set.
+ * @return `NSSet` that contains all of the unique mappings owned by the receiver via relationships including receiver.
+ */
+- (NSSet<FEMMapping *> *)flatten;
+
 @end
 
 @interface FEMMapping (Shortcut)

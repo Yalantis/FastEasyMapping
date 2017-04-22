@@ -6,6 +6,7 @@
 
 #import "FEMManagedObjectMapping.h"
 #import "FEMObjectCache.h"
+#import "FEMRepresentationUtility.h"
 
 __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     NSCAssert(mapping.entityName != nil, @"Entity name can't be nil. Please, use -[FEMMapping initWithEntityName:]");
@@ -29,11 +30,9 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
 
 #pragma mark - Transaction
 
-- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping ofRepresentation:(nonnull NSArray *)representation {
-    _cache = [[FEMObjectCache alloc] initWithMapping:mapping representation:representation context:self.context];
+- (void)beginTransaction:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys {
+    _cache = [[FEMObjectCache alloc] initWithContext:self.context presentedPrimaryKeys:presentedPrimaryKeys];
 }
-
-- (void)beginTransaction {}
 
 - (NSError *)commitTransaction {
     _cache = nil;
@@ -46,6 +45,10 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     return nil;
 }
 
++ (BOOL)requiresPrefetch {
+    return YES;
+}
+
 - (id)newObjectForMapping:(FEMMapping *)mapping {
     validateMapping(mapping);
 
@@ -53,28 +56,23 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
 }
 
-- (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
+- (id)objectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping {
     validateMapping(mapping);
-
-    return [_cache existingObjectForRepresentation:representation mapping:mapping];
+    return [_cache objectForKey:primaryKey mapping:mapping];
 }
 
-- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping {
+- (void)addObject:(id)object forPrimaryKey:(nullable id)primaryKey mapping:(FEMMapping *)mapping {
     validateMapping(mapping);
 
-    [_cache addExistingObject:object mapping:mapping];
+    if (primaryKey != nil && [object isInserted]) {
+        [_cache setObject:object forKey:primaryKey mapping:mapping];
+    }
 }
 
-- (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
+- (NSDictionary *)objectsForMapping:(FEMMapping *)mapping {
     validateMapping(mapping);
 
-    return [_cache existingObjectsForMapping:mapping];
-}
-
-- (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
-    validateMapping(mapping);
-
-    return mapping.primaryKey != nil && [object isInserted];
+    return [_cache objectsForMapping:mapping];
 }
 
 #pragma mark - FEMRelationshipAssignmentContextDelegate

@@ -23,6 +23,7 @@ const NSUInteger ObjectsCount = 10000;
     
     [MagicalRecord setDefaultModelFromClass:[self class]];
     [MagicalRecord setupCoreDataStackWithStoreNamed:[NSBundle bundleForClass:self.class].bundleIdentifier];
+    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelError];
     self.context = [NSManagedObjectContext MR_rootSavingContext];
     
     self.representation = [self generateTestData:ObjectsCount];
@@ -82,7 +83,9 @@ const NSUInteger ObjectsCount = 10000;
         [self startMeasuring];
         [deserializer collectionFromRepresentation:self.representation mapping:mapping];
         [self stopMeasuring];
+        
         [Parent MR_truncateAllInContext:self.context];
+        [self.context reset];
     }];
 }
 
@@ -104,7 +107,9 @@ const NSUInteger ObjectsCount = 10000;
         [self startMeasuring];
         [deserializer collectionFromRepresentation:self.representation mapping:mapping];
         [self stopMeasuring];
+        
         [Parent MR_truncateAllInContext:self.context];
+        [self.context reset];
     }];
 }
 

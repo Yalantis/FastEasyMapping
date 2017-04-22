@@ -5,12 +5,16 @@
 
 @implementation FEMObjectStore
 
-- (void)prepareTransactionForMapping:(nonnull FEMMapping *)mapping ofRepresentation:(nonnull NSArray *)representation {}
-
-- (void)beginTransaction {}
+- (void)beginTransaction:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys {
+    // no-op
+}
 
 - (NSError *)commitTransaction {
     return nil;
+}
+
++ (BOOL)requiresPrefetch {
+    return NO;
 }
 
 - (id)newObjectForMapping:(FEMMapping *)mapping {
@@ -23,19 +27,15 @@
     return context;
 }
 
-- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping {
+- (void)addObject:(id)object forPrimaryKey:(nullable id)primaryKey mapping:(FEMMapping *)mapping {
     // no-op
 }
 
-- (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
-    return mapping.primaryKeyAttribute != nil;
+- (NSDictionary *)objectsForMapping:(FEMMapping *)mapping {
+    return @{};
 }
 
-- (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
-    return nil;
-}
-
-- (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
+- (id)objectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping {
     return nil;
 }
 

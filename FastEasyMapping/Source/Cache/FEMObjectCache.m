@@ -8,9 +8,7 @@
 #import "FEMRepresentationUtility.h"
 
 @implementation FEMObjectCache {
-	NSDictionary *_lookupKeysMap;
-	NSMutableDictionary *_lookupObjectsMap;
-
+	NSMapTable<FEMMapping *, NSMutableDictionary<id, id> *> *_lookupObjectsMap;
 	FEMObjectCacheSource _source;
 }
 
@@ -21,24 +19,10 @@
 	self = [super init];
 	if (self) {
 		_source = [source copy];
-		_lookupKeysMap = @{};
-		_lookupObjectsMap = [NSMutableDictionary new];
-	}
 
-	return self;
-}
-
-- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation source:(FEMObjectCacheSource)source {
-	NSParameterAssert(mapping);
-	NSParameterAssert(representation);
-	NSParameterAssert(source != NULL);
-
-	self = [super init];
-	if (self) {
-		_source = [source copy];
-		_lookupKeysMap = FEMRepresentationCollectPresentedPrimaryKeys(representation, mapping);
-		_lookupObjectsMap = [NSMutableDictionary new];
-	}
+        NSPointerFunctionsOptions options = NSPointerFunctionsObjectPointerPersonality | NSPointerFunctionsStrongMemory;
+		_lookupObjectsMap = [[NSMapTable alloc] initWithKeyOptions:options valueOptions:options capacity:0];
+    }
 
 	return self;
 }
@@ -46,11 +30,8 @@
 #pragma mark - Inspection
 
 - (NSMutableDictionary *)fetchExistingObjectsForMapping:(FEMMapping *)mapping {
-	NSSet *lookupValues = _lookupKeysMap[mapping.entityName];
-	if (lookupValues.count == 0) return [NSMutableDictionary dictionary];
-
 	NSMutableDictionary *output = [NSMutableDictionary new];
-	id<NSFastEnumeration> objects = _source(mapping, lookupValues);
+	id<NSFastEnumeration> objects = _source(mapping);
 	for (NSObject *object in objects) {
 		output[[object valueForKey:mapping.primaryKey]] = object;
 	}
@@ -59,42 +40,32 @@
 }
 
 - (NSMutableDictionary *)cachedObjectsForMapping:(FEMMapping *)mapping {
-	NSMutableDictionary *entityObjectsMap = _lookupObjectsMap[mapping.entityName];
+	NSMutableDictionary *entityObjectsMap = [_lookupObjectsMap objectForKey:mapping];
 	if (!entityObjectsMap) {
 		entityObjectsMap = [self fetchExistingObjectsForMapping:mapping];
-		_lookupObjectsMap[mapping.entityName] = entityObjectsMap;
+        [_lookupObjectsMap setObject:entityObjectsMap forKey:mapping];
 	}
 
 	return entityObjectsMap;
 }
 
-- (id)existingObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
-	NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
+- (id)objectForKey:(id)key mapping:(FEMMapping *)mapping {
+    NSParameterAssert(mapping.primaryKey != nil);
 
-	id primaryKeyValue = FEMRepresentationValueForAttribute(representation, mapping.primaryKeyAttribute);
-	if (primaryKeyValue == nil || primaryKeyValue == NSNull.null) return nil;
-
-	return entityObjectsMap[primaryKeyValue];
-}
-
-- (id)existingObjectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping {
     NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
-
-    return entityObjectsMap[primaryKey];
+	return entityObjectsMap[key];
 }
 
-- (void)addExistingObject:(id)object mapping:(FEMMapping *)mapping {
-	NSParameterAssert(mapping.primaryKey);
-	NSParameterAssert(object);
-
-	id primaryKeyValue = [object valueForKey:mapping.primaryKey];
-	NSAssert(primaryKeyValue, @"No value for key (%@) on object (%@) found", mapping.primaryKey, object);
+- (void)setObject:(id)object forKey:(id)key mapping:(FEMMapping *)mapping {
+	NSParameterAssert(mapping.primaryKey != nil);
+	NSParameterAssert(object != nil);
+    NSParameterAssert(key != nil);
 
 	NSMutableDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
-    entityObjectsMap[primaryKeyValue] = object;
+    entityObjectsMap[key] = object;
 }
 
-- (NSDictionary *)existingObjectsForMapping:(FEMMapping *)mapping {
+- (NSDictionary *)objectsForMapping:(FEMMapping *)mapping {
     return [[self cachedObjectsForMapping:mapping] copy];
 }
 
@@ -102,16 +73,23 @@
 
 @implementation FEMObjectCache (CoreData)
 
-- (instancetype)initWithMapping:(FEMMapping *)mapping representation:(id)representation context:(NSManagedObjectContext *)context {
-	return [self initWithMapping:mapping representation:representation source:^id<NSFastEnumeration> (FEMMapping *objectMapping, NSSet *primaryKeys) {
-		NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:objectMapping.entityName];
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", objectMapping.primaryKey, primaryKeys];
-		[fetchRequest setPredicate:predicate];
-		[fetchRequest setFetchLimit:primaryKeys.count];
+- (instancetype)initWithContext:(NSManagedObjectContext *)context
+           presentedPrimaryKeys:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys
+{
+    return [self initWithSource:^id<NSFastEnumeration> (FEMMapping *mapping) {
+        NSSet *primaryKeys = [presentedPrimaryKeys objectForKey:mapping];
+        if (primaryKeys.count > 0) {
+            NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, primaryKeys];
+            [fetchRequest setPredicate:predicate];
+            [fetchRequest setFetchLimit:primaryKeys.count];
 
-		NSArray *existingObjects = [context executeFetchRequest:fetchRequest error:NULL];
-		return existingObjects;
-	}];
+            NSArray *existingObjects = [context executeFetchRequest:fetchRequest error:NULL];
+            return existingObjects;
+        }
+
+        return @[];
+    }];
 }
 
 @end

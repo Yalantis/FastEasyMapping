@@ -5,8 +5,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXTERN BOOL FEMObjectPropertyValueIsNil(id object, NSString *propertyName);
-
 FOUNDATION_EXTERN BOOL FEMObjectPropertyTypeIsScalar(id object, NSString *propertyName);
 
 FOUNDATION_EXTERN NSString * FEMPropertyTypeStringRepresentation(objc_property_t property);

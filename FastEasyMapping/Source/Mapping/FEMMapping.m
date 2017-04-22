@@ -175,6 +175,25 @@
     return description;
 }
 
+- (void)flattenInCollection:(NSMutableSet<FEMMapping *> *)collection {
+    [collection addObject:self];
+
+    for (FEMRelationship *relationship in self.relationships) {
+        // todo: fix ugly relationship testing workaround
+        if (relationship.mapping != self) {
+            [relationship.mapping flattenInCollection:collection];
+        }
+    }
+}
+
+- (NSSet<FEMMapping *> *)flatten {
+    NSMutableSet *set = [[NSMutableSet alloc] init];
+
+    [self flattenInCollection:set];
+
+    return [set copy];
+}
+
 @end
 
 @implementation FEMMapping (Shortcut)
