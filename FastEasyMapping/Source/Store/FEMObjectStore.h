@@ -66,33 +66,24 @@ NS_ASSUME_NONNULL_BEGIN
 - (FEMRelationshipAssignmentContext *)newAssignmentContext;
 
 /**
- @brief Register object in the cache storage.
+ @brief Adds object to the storage.
  
- @discussion Once FEMDeserializer has fulfilled object's attributes and relationships `-registerObject:forMapping:` is invoked. 
- Later FEMDeserializer may ask FEMObjectStore for registered objects `-registeredObjectsForMapping:` to not populate database with copies.
+ @discussion Once FEMDeserializer has fulfilled object's attributes `-addObject:forPrimaryKey:mapping:` is invoked.
+ Later FEMDeserializer may ask FEMObjectStore for registered objects `-objectForPrimaryKey:mapping:` to not populate database with copies.
  You may want to implement sort of a Map where key is a `primaryKey` and `value` is an `object` itself.
  
  Default implementation does nothing.
- 
- IMPORTANT: This method invoked only in case `-canRegisterObject:forMapping:` returns true.
+
+ IMPORTANT: At this point Object contains only mapped attributes and no relationships (except existing).
 
  @param object  Fully deserialized the Object with fulfilled attributes and relationships.
+ @param primaryKey PrimaryKey value if presented in JSON and setup via FEMMapping.primaryKey or nil.
  @param mapping Mapping that is describing the `object`. You may want to ask for the `mapping.primaryKey` in order to get primary key value from `object`.
  */
 - (void)addObject:(id)object forPrimaryKey:(nullable id)primaryKey mapping:(FEMMapping *)mapping;
 
 /**
- @brief Evaluates whether object can be registered in the internal cache or not.
- 
- @param object  Fully deserialized the Object with fulfilled attributes and relationships.
- @param mapping Mapping that is describing the `object`. You may want to ask for the `mapping.primaryKey` in order to get primary key value from `object`.
-
- @return Flag indicating whether `object` can be stored in the internal cache or not.
- */
-- (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping;
-
-/**
- @brief Dictionary of registered objects for the given `mapping`. 
+ @brief Dictionary of registered objects for the given `mapping`.
  
  @discussion Expected format is: Dictionary<PrimaryKey, Object>
 
@@ -103,13 +94,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDictionary *)objectsForMapping:(FEMMapping *)mapping;
 
 /**
- @brief Returns regitered Object for the given JSON representation of the Object.
+ @brief Returns registered Object for the given PrimaryKey of the Object.
  
  @discussion When FEMDeserializer start processing JSON of a particular Object it asks FEMObjectStore for registered Object 
- for the given JSON. FEMObjectStore may want to perform a lookup in the internal cache for existing object by extracting
- primary key from the JSON.
+ for the given PrimaryKey. FEMObjectStore may want to perform a lookup in the internal cache for existing object by the given PrimaryKey.
  
- @param primaryKey JSON representing the Object
+ @param primaryKey PrimaryKey value from the JSON.
  @param mapping Mapping for which registered object requested.
  
  @return Registered Object or nil.
