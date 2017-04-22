@@ -8,7 +8,7 @@
 #import "FEMRepresentationUtility.h"
 
 @implementation FEMObjectCache {
-	NSMutableDictionary *_lookupObjectsMap;
+	NSMapTable<FEMMapping *, NSMutableDictionary<id, id> *> *_lookupObjectsMap;
 	FEMObjectCacheSource _source;
 }
 
@@ -19,8 +19,10 @@
 	self = [super init];
 	if (self) {
 		_source = [source copy];
-		_lookupObjectsMap = [NSMutableDictionary new];
-	}
+
+        NSPointerFunctionsOptions options = NSPointerFunctionsObjectPointerPersonality | NSPointerFunctionsStrongMemory;
+		_lookupObjectsMap = [[NSMapTable alloc] initWithKeyOptions:options valueOptions:options capacity:0];
+    }
 
 	return self;
 }
@@ -38,23 +40,26 @@
 }
 
 - (NSMutableDictionary *)cachedObjectsForMapping:(FEMMapping *)mapping {
-	NSMutableDictionary *entityObjectsMap = _lookupObjectsMap[mapping.entityName];
+	NSMutableDictionary *entityObjectsMap = [_lookupObjectsMap objectForKey:mapping];
 	if (!entityObjectsMap) {
 		entityObjectsMap = [self fetchExistingObjectsForMapping:mapping];
-		_lookupObjectsMap[mapping.entityName] = entityObjectsMap;
+        [_lookupObjectsMap setObject:entityObjectsMap forKey:mapping];
 	}
 
 	return entityObjectsMap;
 }
 
 - (id)objectForKey:(id)key mapping:(FEMMapping *)mapping {
-	NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
+    NSParameterAssert(mapping.primaryKey != nil);
+
+    NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
 	return entityObjectsMap[key];
 }
 
 - (void)setObject:(id)object forKey:(id)key mapping:(FEMMapping *)mapping {
-	NSParameterAssert(mapping.primaryKey);
-	NSParameterAssert(object);
+	NSParameterAssert(mapping.primaryKey != nil);
+	NSParameterAssert(object != nil);
+    NSParameterAssert(key != nil);
 
 	NSMutableDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
     entityObjectsMap[key] = object;
@@ -71,7 +76,7 @@
 - (instancetype)initWithContext:(NSManagedObjectContext *)context
            presentedPrimaryKeys:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys
 {
-    return [self initWithSource:^id <NSFastEnumeration>(FEMMapping *mapping) {
+    return [self initWithSource:^id<NSFastEnumeration> (FEMMapping *mapping) {
         NSSet *primaryKeys = [presentedPrimaryKeys objectForKey:mapping];
         if (primaryKeys.count > 0) {
             NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
