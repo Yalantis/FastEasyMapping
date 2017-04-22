@@ -6,6 +6,7 @@
 
 #import "FEMManagedObjectMapping.h"
 #import "FEMObjectCache.h"
+#import "FEMRepresentationUtility.h"
 
 __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     NSCAssert(mapping.entityName != nil, @"Entity name can't be nil. Please, use -[FEMMapping initWithEntityName:]");
@@ -55,22 +56,23 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
 }
 
-- (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
+- (id)objectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping {
     validateMapping(mapping);
-
-    return [_cache existingObjectForRepresentation:representation mapping:mapping];
+    return [_cache objectForKey:primaryKey mapping:mapping];
 }
 
-- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping {
+- (void)addObject:(id)object forPrimaryKey:(nullable id)primaryKey mapping:(FEMMapping *)mapping {
     validateMapping(mapping);
 
-    [_cache addExistingObject:object mapping:mapping];
+    if (primaryKey != nil) {
+        [_cache setObject:object forKey:primaryKey mapping:mapping];
+    }
 }
 
-- (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
+- (NSDictionary *)objectsForMapping:(FEMMapping *)mapping {
     validateMapping(mapping);
 
-    return [_cache existingObjectsForMapping:mapping];
+    return [_cache objectsForMapping:mapping];
 }
 
 - (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping {

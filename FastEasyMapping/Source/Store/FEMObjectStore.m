@@ -27,7 +27,7 @@
     return context;
 }
 
-- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping {
+- (void)addObject:(id)object forPrimaryKey:(nullable id)primaryKey mapping:(FEMMapping *)mapping {
     // no-op
 }
 
@@ -35,11 +35,11 @@
     return mapping.primaryKeyAttribute != nil;
 }
 
-- (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping {
+- (NSDictionary *)objectsForMapping:(FEMMapping *)mapping {
     return @{};
 }
 
-- (id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
+- (id)objectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping {
     return nil;
 }
 

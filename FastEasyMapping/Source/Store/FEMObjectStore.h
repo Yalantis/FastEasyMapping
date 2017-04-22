@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param object  Fully deserialized the Object with fulfilled attributes and relationships.
  @param mapping Mapping that is describing the `object`. You may want to ask for the `mapping.primaryKey` in order to get primary key value from `object`.
  */
-- (void)registerObject:(id)object forMapping:(FEMMapping *)mapping;
+- (void)addObject:(id)object forPrimaryKey:(nullable id)primaryKey mapping:(FEMMapping *)mapping;
 
 /**
  @brief Evaluates whether object can be registered in the internal cache or not.
@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Dictionary where key is a Primary Key and value is Object.
  */
-- (NSDictionary *)registeredObjectsForMapping:(FEMMapping *)mapping;
+- (NSDictionary *)objectsForMapping:(FEMMapping *)mapping;
 
 /**
  @brief Returns regitered Object for the given JSON representation of the Object.
@@ -109,12 +109,12 @@ NS_ASSUME_NONNULL_BEGIN
  for the given JSON. FEMObjectStore may want to perform a lookup in the internal cache for existing object by extracting
  primary key from the JSON.
  
- @param representation JSON representing the Object
+ @param primaryKey JSON representing the Object
  @param mapping Mapping for which registered object requested.
  
  @return Registered Object or nil.
  */
-- (nullable id)registeredObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping;
+- (nullable id)objectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping;
 
 @end
 

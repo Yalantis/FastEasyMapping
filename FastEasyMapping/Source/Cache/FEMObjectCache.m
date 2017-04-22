@@ -47,33 +47,20 @@
 	return entityObjectsMap;
 }
 
-- (id)existingObjectForRepresentation:(id)representation mapping:(FEMMapping *)mapping {
+- (id)objectForKey:(id)key mapping:(FEMMapping *)mapping {
 	NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
-
-	id primaryKeyValue = FEMRepresentationValueForAttribute(representation, mapping.primaryKeyAttribute);
-	if (primaryKeyValue == nil || primaryKeyValue == NSNull.null) return nil;
-
-	return entityObjectsMap[primaryKeyValue];
+	return entityObjectsMap[key];
 }
 
-- (id)existingObjectForPrimaryKey:(id)primaryKey mapping:(FEMMapping *)mapping {
-    NSDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
-
-    return entityObjectsMap[primaryKey];
-}
-
-- (void)addExistingObject:(id)object mapping:(FEMMapping *)mapping {
+- (void)setObject:(id)object forKey:(id)key mapping:(FEMMapping *)mapping {
 	NSParameterAssert(mapping.primaryKey);
 	NSParameterAssert(object);
 
-	id primaryKeyValue = [object valueForKey:mapping.primaryKey];
-	NSAssert(primaryKeyValue, @"No value for key (%@) on object (%@) found", mapping.primaryKey, object);
-
 	NSMutableDictionary *entityObjectsMap = [self cachedObjectsForMapping:mapping];
-    entityObjectsMap[primaryKeyValue] = object;
+    entityObjectsMap[key] = object;
 }
 
-- (NSDictionary *)existingObjectsForMapping:(FEMMapping *)mapping {
+- (NSDictionary *)objectsForMapping:(FEMMapping *)mapping {
     return [[self cachedObjectsForMapping:mapping] copy];
 }
 

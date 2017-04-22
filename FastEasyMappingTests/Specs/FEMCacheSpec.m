@@ -33,6 +33,7 @@ SPEC_BEGIN(FEMCacheSpec)
     });
 
     describe(@"object retrieval", ^{
+        __block id primaryKey = @1;
         __block NSDictionary *representation = nil;
         __block FEMMapping *mapping = nil;
         __block FEMObjectCache *cache = nil;
@@ -55,25 +56,17 @@ SPEC_BEGIN(FEMCacheSpec)
 
         it(@"should return nil for missing object", ^{
             [[@([Car MR_countOfEntitiesWithContext:context]) should] beZero];
-            [[[cache existingObjectForRepresentation:representation mapping:mapping] should] beNil];
-
-            id missingRepresentation = @{
-                @"id": @1,
-                @"model": @"i30",
-                @"year": @"2013"
-            };
-
-            [[[cache existingObjectForRepresentation:missingRepresentation mapping:mapping] should] beNil];
+            [[[cache objectForKey:primaryKey mapping:mapping] should] beNil];
         });
 
         it(@"should add objects", ^{
             [[@([Car MR_countOfEntitiesWithContext:context]) should] beZero];
-            [[[cache existingObjectForRepresentation:representation mapping:mapping] should] beNil];
+            [[[cache objectForKey:primaryKey mapping:mapping] should] beNil];
 
             Car *car = [FEMDeserializer objectFromRepresentation:representation mapping:mapping context:context];
 
-            [cache addExistingObject:car mapping:mapping];
-            [[[cache existingObjectForRepresentation:representation mapping:mapping] should] equal:car];
+            [cache setObject:car forKey:primaryKey mapping:mapping];
+            [[[cache objectForKey:primaryKey mapping:mapping] should] equal:car];
         });
 
         it(@"should return registered object", ^{
@@ -84,7 +77,7 @@ SPEC_BEGIN(FEMCacheSpec)
             [[@(car.objectID.isTemporaryID) should] beTrue];
             [[[context objectRegisteredForID:car.objectID] should] equal:car];
 
-            [[[cache existingObjectForRepresentation:representation mapping:mapping] should] equal:car];
+            [[[cache objectForKey:primaryKey mapping:mapping] should] equal:car];
         });
 
         it(@"should return saved object", ^{
@@ -101,7 +94,7 @@ SPEC_BEGIN(FEMCacheSpec)
             [[[context objectRegisteredForID:car.objectID] should] beNil];
 
             car = [Car MR_findFirstInContext:context];
-            [[[cache existingObjectForRepresentation:representation mapping:mapping] should] equal:car];
+            [[[cache objectForKey:primaryKey mapping:mapping] should] equal:car];
         });
     });
 
@@ -129,14 +122,14 @@ SPEC_BEGIN(FEMCacheSpec)
 
         it(@"should return nil for missing nested object", ^{
             [FEMDeserializer objectFromRepresentation:representation mapping:mapping context:context];
-            id missingObjectRepresentation = @{@"id": @2};
+            id missingKey = @2;
 
-            [[[cache existingObjectForRepresentation:missingObjectRepresentation mapping:carMapping] should] beNil];
+            [[[cache objectForKey:missingKey mapping:carMapping] should] beNil];
         });
 
         it(@"should return existing nested object", ^{
             Person *person = [FEMDeserializer objectFromRepresentation:representation mapping:mapping context:context];
-            [[[cache existingObjectForRepresentation:representation[@"car"] mapping:carMapping] should] equal:person.car];
+            [[[cache objectForKey:[person.car valueForKey:carMapping.primaryKey] mapping:carMapping] should] equal:person.car];
         });
     });
 

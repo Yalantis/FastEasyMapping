@@ -110,13 +110,22 @@
     }
 }
 
-- (id)_objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping allocateIfNeeded:(BOOL)allocate {
-    id object = [self.store registeredObjectForRepresentation:representation mapping:mapping];
+- (id)_objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping allocateIfNeeded:(BOOL)allocateIfNeeded {
+    id object = nil;
+    id primaryKey = nil;
 
-    BOOL newObject = NO;
-    if (!object && allocate) {
+    FEMAttribute *primaryKeyAttribute = mapping.primaryKeyAttribute;
+    if (primaryKeyAttribute) {
+        primaryKey = FEMRepresentationValueForAttribute(representation, primaryKeyAttribute);
+        if (primaryKey != nil && primaryKey != [NSNull null]) {
+            object = [self.store objectForPrimaryKey:primaryKey mapping:mapping];
+        }
+    }
+
+    BOOL allocated = NO;
+    if (!object && allocateIfNeeded) {
         object = [self.store newObjectForMapping:mapping];
-        newObject = YES;
+        allocated = YES;
     }
     
     if (!object) {
@@ -127,10 +136,10 @@
         [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
     }
 
-    [self applyAttributesToObject:object representation:representation mapping:mapping allocated:newObject];
+    [self applyAttributesToObject:object representation:representation mapping:mapping allocated:allocated];
 
-    if (newObject && [self.store canRegisterObject:object forMapping:mapping]) {
-        [self.store registerObject:object forMapping:mapping];
+    if (allocated) {
+        [self.store addObject:object forPrimaryKey:primaryKey mapping:mapping];
     }
 
     [self applyRelationshipsToObject:object representation:representation mapping:mapping];
@@ -142,7 +151,7 @@
     return object;
 }
 
-- (NSArray *)_collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping allocateIfNeeded:(BOOL)allocate {
+- (NSArray *)_collectionFromRepresentation:(NSArray *)representation mapping:(FEMMapping *)mapping allocateIfNeeded:(BOOL)allocateIfNeeded {
     if (_delegateFlags.willMapCollection) {
         [self.delegate deserializer:self willMapCollectionFromRepresentation:representation mapping:mapping];
     }
@@ -150,7 +159,7 @@
     NSMutableArray *output = [[NSMutableArray alloc] initWithCapacity:representation.count];
     for (id objectRepresentation in representation) {
         @autoreleasepool {
-            id object = [self _objectFromRepresentation:objectRepresentation mapping:mapping allocateIfNeeded:allocate];
+            id object = [self _objectFromRepresentation:objectRepresentation mapping:mapping allocateIfNeeded:allocateIfNeeded];
             [output addObject:object];
         }
     }
