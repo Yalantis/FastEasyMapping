@@ -31,10 +31,6 @@
     // no-op
 }
 
-- (BOOL)canRegisterObject:(id)object forMapping:(FEMMapping *)mapping {
-    return mapping.primaryKeyAttribute != nil;
-}
-
 - (NSDictionary *)objectsForMapping:(FEMMapping *)mapping {
     return @{};
 }
