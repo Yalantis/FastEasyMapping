@@ -2,6 +2,13 @@
 
 #import "FEMRelationship.h"
 #import "FEMMapping.h"
+#import "FEMObjectRef.h"
+
+@interface FEMRelationship ()
+
+@property (nonatomic) FEMObjectRef<FEMMapping *> *mappingRef;
+
+@end
 
 @implementation FEMRelationship
 
@@ -63,6 +70,31 @@
         @(self.toMany),
         [self.mapping description]
     ];
+}
+
+#pragma mark - Recursive Relationships Support
+
+- (BOOL)isRecursive {
+    return self.owner == self.mapping;
+}
+
+- (void)setMapping:(FEMMapping *)mapping {
+    if (mapping != nil) {
+        self.mappingRef = [[FEMObjectRef alloc] initWithValue:mapping];
+        self.mappingRef.useWeakOwnership = mapping == self.owner;
+    } else {
+        self.mappingRef = nil;
+    }
+}
+
+- (FEMMapping *)mapping {
+    return self.mappingRef.value;
+}
+
+- (void)setOwner:(FEMMapping *)owner {
+    _owner = owner;
+    
+    self.mappingRef.useWeakOwnership = self.mapping == owner;
 }
 
 @end

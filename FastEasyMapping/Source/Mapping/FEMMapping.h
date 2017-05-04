@@ -196,7 +196,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  @brief Returns all known relationships. Order is not saved.
  */
-@property (nonatomic, strong, readonly) NSArray *relationships;
+@property (nonatomic, strong, readonly) NSArray<FEMRelationship *> *relationships;
 
 /**
  @brief Adds an relationship to the mapping.

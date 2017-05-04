@@ -59,6 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FEMRelationship : NSObject <FEMProperty, NSCopying>
 
+@property (nonatomic, weak, null_resettable) FEMMapping *owner;
+@property (nonatomic, readonly, getter=isRecursive) BOOL recursive;
+
 /**
  @brief FEMMapping that describes nested Object
  
