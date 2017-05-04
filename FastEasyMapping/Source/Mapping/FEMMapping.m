@@ -4,10 +4,14 @@
 #import "FEMManagedObjectMapping.h"
 #import "FEMObjectMapping.h"
 
-@implementation FEMMapping {
-    NSMutableDictionary *_attributeMap;
-    NSMutableDictionary *_relationshipMap;
-}
+@interface FEMMapping ()
+
+@property (nonatomic, strong) NSMutableDictionary<NSString *, FEMAttribute *> *attributeMap;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, FEMRelationship *> *relationshipMap;
+
+@end
+
+@implementation FEMMapping
 
 #pragma mark - Init
 
@@ -71,12 +75,13 @@
     }
     
     for (FEMRelationship *relationship in self.relationships) {
-        // recursive mapping copy will lead to infinite recursive copying
-        if (relationship.mapping == self) {
-            [mapping addRecursiveRelationshipMappingForProperty:relationship.property keypath:relationship.keyPath];
-        } else {
-            [mapping addRelationship:[relationship copy]];
+        FEMRelationship *relationshipCopy = [relationship copy];
+        
+        if (relationship.recursive) {
+            relationshipCopy.mapping = mapping;
         }
+        
+        [mapping addRelationship:relationshipCopy];
     }
     
     return mapping;
@@ -103,31 +108,32 @@
 }
 
 - (void)addAttribute:(FEMAttribute *)attribute {
-    [self addPropertyMapping:attribute toMap:_attributeMap];
+    [self addPropertyMapping:attribute toMap:self.attributeMap];
 }
 
 - (FEMAttribute *)attributeForProperty:(NSString *)property {
-	return _attributeMap[property];
+	return self.attributeMap[property];
 }
 
 #pragma mark - Relationship Mapping
 
 - (void)addRelationship:(FEMRelationship *)relationship {
-    [self addPropertyMapping:relationship toMap:_relationshipMap];
+    relationship.owner = self;
+    [self addPropertyMapping:relationship toMap:self.relationshipMap];
 }
 
 - (FEMRelationship *)relationshipForProperty:(NSString *)property {
-	return _relationshipMap[property];
+	return self.relationshipMap[property];
 }
 
 #pragma mark - Properties
 
 - (NSArray *)attributes {
-	return [_attributeMap allValues];
+	return [self.attributeMap allValues];
 }
 
 - (NSArray *)relationships {
-	return [_relationshipMap allValues];
+	return [self.relationshipMap allValues];
 }
 
 - (void)setEntityName:(NSString *)entityName {
@@ -147,7 +153,7 @@
 #pragma mark -
 
 - (FEMAttribute *)primaryKeyAttribute {
-    return _attributeMap[self.primaryKey];
+    return self.attributeMap[self.primaryKey];
 }
 
 #pragma mark - Description
@@ -179,8 +185,7 @@
     [collection addObject:self];
 
     for (FEMRelationship *relationship in self.relationships) {
-        // todo: fix ugly relationship testing workaround
-        if (relationship.mapping != self) {
+        if (!relationship.recursive) {
             [relationship.mapping flattenInCollection:collection];
         }
     }
@@ -230,8 +235,7 @@
     [self addRelationship:relationship];
 }
 
-- (void)addRecursiveToManyRelationshipForProperty:(nonnull NSString *)property keypath:(nullable NSString *)keyPath
-{
+- (void)addRecursiveToManyRelationshipForProperty:(nonnull NSString *)property keypath:(nullable NSString *)keyPath {
     FEMRelationship *relationship = [[FEMRelationship alloc] initWithProperty:property keyPath:keyPath mapping:self];
     relationship.toMany = YES;
     [self addRelationship:relationship];

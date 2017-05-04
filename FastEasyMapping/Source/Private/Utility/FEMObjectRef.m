@@ -13,6 +13,10 @@
 }
 
 - (void)setUseWeakOwnership:(BOOL)useWeakOwnership {
+    if (_useWeakOwnership == useWeakOwnership) {
+        return;
+    }
+    
     _useWeakOwnership = useWeakOwnership;
     
     if (_useWeakOwnership) {
