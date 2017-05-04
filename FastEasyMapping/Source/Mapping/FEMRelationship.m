@@ -44,7 +44,9 @@
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    FEMRelationship *relationship = [[FEMRelationship allocWithZone:zone] initWithProperty:self.property keyPath:self.keyPath mapping:[self.mapping copy]];
+    FEMMapping *mapping = self.isRecursive ? self.mapping : [self.mapping copy];
+    
+    FEMRelationship *relationship = [[FEMRelationship allocWithZone:zone] initWithProperty:self.property keyPath:self.keyPath mapping:mapping];
     relationship.assignmentPolicy = self.assignmentPolicy;
     relationship.toMany = self.toMany;
     relationship.weak = self.weak;
@@ -61,15 +63,26 @@
 #pragma mark - Description
 
 - (NSString *)description {
-    return [NSString stringWithFormat:
-        @"<%@ %p>\n {\nproperty:%@ keyPath:%@ toMany:%@\nmapping:(%@)}\n",
-        NSStringFromClass(self.class),
-        (__bridge void *) self,
-        self.property,
-        self.keyPath,
-        @(self.toMany),
-        [self.mapping description]
-    ];
+    if (self.isRecursive) {
+        return [NSString stringWithFormat:
+            @"<%@ %p>\n {\nproperty:%@ keyPath:%@ toMany:%@\nrecursive}\n",
+            NSStringFromClass(self.class),
+            (__bridge void *)self,
+            self.property,
+            self.keyPath,
+            @(self.toMany)
+        ];
+    } else {
+        return [NSString stringWithFormat:
+            @"<%@ %p>\n {\nproperty:%@ keyPath:%@ toMany:%@\nmapping:%@}\n",
+            NSStringFromClass(self.class),
+            (__bridge void *)self,
+            self.property,
+            self.keyPath,
+            @(self.toMany),
+            [self.mapping description]
+        ];
+    }
 }
 
 #pragma mark - Recursive Relationships Support

@@ -115,6 +115,8 @@
 		AD90A4C51EBB4B93006751E9 /* FEMObjectRef.m in Sources */ = {isa = PBXBuildFile; fileRef = AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */; };
 		AD90A4C61EBB4B93006751E9 /* FEMObjectRef.m in Sources */ = {isa = PBXBuildFile; fileRef = AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */; };
 		AD90A4C71EBB4B93006751E9 /* FEMObjectRef.m in Sources */ = {isa = PBXBuildFile; fileRef = AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */; };
+		AD90A4C91EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = AD90A4C81EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m */; };
+		AD90A4CA1EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = AD90A4C81EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m */; };
 		AD9400641E8AA43500558F37 /* FEMTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400631E8AA43500558F37 /* FEMTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD9400681E8AA7AD00558F37 /* FEMRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400671E8AA7AD00558F37 /* FEMRelationship.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD94006A1E8AA7C000558F37 /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400691E8AA7C000558F37 /* FEMObjectStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -496,6 +498,7 @@
 		AD4FC9A01E9A80F2006C6C56 /* Child+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Child+Mapping.m"; sourceTree = "<group>"; };
 		AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectRef.h; sourceTree = "<group>"; };
 		AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectRef.m; sourceTree = "<group>"; };
+		AD90A4C81EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRelationshipMappingSpec.m; sourceTree = "<group>"; };
 		AD9400631E8AA43500558F37 /* FEMTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMTypes.h; sourceTree = "<group>"; };
 		AD9400671E8AA7AD00558F37 /* FEMRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRelationship.h; sourceTree = "<group>"; };
 		AD9400691E8AA7C000558F37 /* FEMObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectStore.h; sourceTree = "<group>"; };
@@ -758,6 +761,7 @@
 		69ED70EFE263881EF2703FEE /* Specs */ = {
 			isa = PBXGroup;
 			children = (
+				AD90A4C81EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m */,
 				69ED7C04E2BE02B24CFA1D7C /* FEMManagedObjectMappingSpec.m */,
 				69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */,
 				69ED75B675560A0A804494CB /* FEMSerializerSpec.m */,
@@ -1559,6 +1563,7 @@
 				2C375F1B18CCD3FB00FCB8EA /* PlaneNative.m in Sources */,
 				2C375F1C18CCD3FB00FCB8EA /* Native.m in Sources */,
 				2C375F1D18CCD3FB00FCB8EA /* FingerNative.m in Sources */,
+				AD90A4C91EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m in Sources */,
 				AD52DF871B0387C000E46915 /* FEMSerializerSpec.m in Sources */,
 				2C375F1E18CCD3FB00FCB8EA /* SeaplaneNative.m in Sources */,
 				2C375F1F18CCD3FB00FCB8EA /* AlienNative.m in Sources */,
@@ -1628,6 +1633,7 @@
 				ADCD43DD1E9640AB006C8106 /* FEMDeserializerSpec.m in Sources */,
 				ADCD43F11E9640C7006C8106 /* PlaneNative.m in Sources */,
 				ADCD43D81E9640AB006C8106 /* FEMManagedObjectMappingSpec.m in Sources */,
+				AD90A4CA1EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m in Sources */,
 				ADCD43E41E9640C7006C8106 /* CoreData.xcdatamodel in Sources */,
 				ADCD43ED1E9640C7006C8106 /* Person.m in Sources */,
 				ADCD43F31E9640C7006C8106 /* UniqueObject.m in Sources */,
