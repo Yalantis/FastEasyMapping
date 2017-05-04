@@ -107,6 +107,14 @@
 		AD52DF851B0387C000E46915 /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
 		AD52DF871B0387C000E46915 /* FEMSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* FEMSerializerSpec.m */; };
 		AD52DF891B0387C000E46915 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
+		AD90A4C01EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
+		AD90A4C11EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
+		AD90A4C21EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
+		AD90A4C31EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
+		AD90A4C41EBB4B93006751E9 /* FEMObjectRef.m in Sources */ = {isa = PBXBuildFile; fileRef = AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */; };
+		AD90A4C51EBB4B93006751E9 /* FEMObjectRef.m in Sources */ = {isa = PBXBuildFile; fileRef = AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */; };
+		AD90A4C61EBB4B93006751E9 /* FEMObjectRef.m in Sources */ = {isa = PBXBuildFile; fileRef = AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */; };
+		AD90A4C71EBB4B93006751E9 /* FEMObjectRef.m in Sources */ = {isa = PBXBuildFile; fileRef = AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */; };
 		AD9400641E8AA43500558F37 /* FEMTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400631E8AA43500558F37 /* FEMTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD9400681E8AA7AD00558F37 /* FEMRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400671E8AA7AD00558F37 /* FEMRelationship.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD94006A1E8AA7C000558F37 /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400691E8AA7C000558F37 /* FEMObjectStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -486,6 +494,8 @@
 		AD4FC99D1E9A8074006C6C56 /* Parent+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Parent+Mapping.m"; sourceTree = "<group>"; };
 		AD4FC99F1E9A80F2006C6C56 /* Child+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Child+Mapping.h"; sourceTree = "<group>"; };
 		AD4FC9A01E9A80F2006C6C56 /* Child+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Child+Mapping.m"; sourceTree = "<group>"; };
+		AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectRef.h; sourceTree = "<group>"; };
+		AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectRef.m; sourceTree = "<group>"; };
 		AD9400631E8AA43500558F37 /* FEMTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMTypes.h; sourceTree = "<group>"; };
 		AD9400671E8AA7AD00558F37 /* FEMRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRelationship.h; sourceTree = "<group>"; };
 		AD9400691E8AA7C000558F37 /* FEMObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectStore.h; sourceTree = "<group>"; };
@@ -880,6 +890,7 @@
 		69ED7BED4BE92D2D4F4716FF /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				AD90A4B21EBB4AEB006751E9 /* Private */,
 				69ED7D6D5B95704EF3E879DA /* Extensions */,
 				69ED7057C5D3DBE4072F331B /* Utility */,
 				1D6A353F7E2E42D3F9DA950E /* Assignment Policy */,
@@ -899,6 +910,23 @@
 				1D6A306B73919EBCC64B91BE /* Collection */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AD90A4B21EBB4AEB006751E9 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				AD90A4BD1EBB4B93006751E9 /* Utility */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		AD90A4BD1EBB4B93006751E9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */,
+				AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		ADE1F3711E9A793100F457E9 /* Benchmark */ = {
@@ -934,6 +962,7 @@
 				ADCD43BC1E963CE9006C8106 /* FEMObjectMapping.h in Headers */,
 				ADCD43B61E963CE9006C8106 /* FEMSerializer.h in Headers */,
 				ADCD43741E963C92006C8106 /* FEMMappingUtility.h in Headers */,
+				AD90A4C11EBB4B93006751E9 /* FEMObjectRef.h in Headers */,
 				ADCD43B31E963CE9006C8106 /* FEMDeserializer.h in Headers */,
 				ADCD43891E963CA7006C8106 /* FEMAssignmentPolicy.h in Headers */,
 				ADCD43B51E963CE9006C8106 /* FEMObjectDeserializer.h in Headers */,
@@ -965,6 +994,7 @@
 				ADCD43C71E963CEA006C8106 /* FEMMapping.h in Headers */,
 				ADCD43C51E963CEA006C8106 /* FEMAttribute.h in Headers */,
 				ADCD43781E963C92006C8106 /* FEMMappingUtility.h in Headers */,
+				AD90A4C21EBB4B93006751E9 /* FEMObjectRef.h in Headers */,
 				ADCD437B1E963C92006C8106 /* FEMTypes.h in Headers */,
 				ADCD43671E963C7F006C8106 /* FEMMergeableCollection.h in Headers */,
 				ADCD43C91E963CEA006C8106 /* FEMProperty.h in Headers */,
@@ -996,6 +1026,7 @@
 				ADCD43D31E963CEB006C8106 /* FEMMapping.h in Headers */,
 				ADCD43D11E963CEB006C8106 /* FEMAttribute.h in Headers */,
 				ADCD437C1E963C93006C8106 /* FEMMappingUtility.h in Headers */,
+				AD90A4C31EBB4B93006751E9 /* FEMObjectRef.h in Headers */,
 				ADCD437F1E963C93006C8106 /* FEMTypes.h in Headers */,
 				ADCD436A1E963C80006C8106 /* FEMMergeableCollection.h in Headers */,
 				ADCD43D51E963CEB006C8106 /* FEMProperty.h in Headers */,
@@ -1027,6 +1058,7 @@
 				ADEC66D71B9D9F5200F528C8 /* FEMManagedObjectStore.h in Headers */,
 				ADEC66D81B9D9F5200F528C8 /* FEMProperty.h in Headers */,
 				ADEC66D91B9D9F5300F528C8 /* FEMMapping.h in Headers */,
+				AD90A4C01EBB4B93006751E9 /* FEMObjectRef.h in Headers */,
 				ADEC66DA1B9D9F5300F528C8 /* FEMManagedObjectMapping.h in Headers */,
 				ADEC66DB1B9D9F5300F528C8 /* FEMObjectMapping.h in Headers */,
 				ADEC66DC1B9D9F5300F528C8 /* FEMAttribute.h in Headers */,
@@ -1568,6 +1600,7 @@
 				ADCD43B11E963CDD006C8106 /* FEMMapping.m in Sources */,
 				ADCD439B1E963CCD006C8106 /* FEMObjectCache.m in Sources */,
 				ADCD43881E963C9D006C8106 /* FEMTypeIntrospection.m in Sources */,
+				AD90A4C51EBB4B93006751E9 /* FEMObjectRef.m in Sources */,
 				ADCD43921E963CB5006C8106 /* FEMAssignmentPolicy.m in Sources */,
 				ADCD43AF1E963CDD006C8106 /* FEMManagedObjectStore.m in Sources */,
 				ADCD436C1E963C86006C8106 /* FEMExcludableCollection.m in Sources */,
@@ -1636,6 +1669,7 @@
 				ADCD43AA1E963CDC006C8106 /* FEMMapping.m in Sources */,
 				ADCD439C1E963CCE006C8106 /* FEMObjectCache.m in Sources */,
 				ADCD43851E963C9C006C8106 /* FEMTypeIntrospection.m in Sources */,
+				AD90A4C61EBB4B93006751E9 /* FEMObjectRef.m in Sources */,
 				ADCD43941E963CB5006C8106 /* FEMAssignmentPolicy.m in Sources */,
 				ADCD43A81E963CDC006C8106 /* FEMManagedObjectStore.m in Sources */,
 				ADCD436F1E963C87006C8106 /* FEMExcludableCollection.m in Sources */,
@@ -1659,6 +1693,7 @@
 				ADCD43A31E963CDB006C8106 /* FEMMapping.m in Sources */,
 				ADCD439D1E963CCE006C8106 /* FEMObjectCache.m in Sources */,
 				ADCD43821E963C9C006C8106 /* FEMTypeIntrospection.m in Sources */,
+				AD90A4C71EBB4B93006751E9 /* FEMObjectRef.m in Sources */,
 				ADCD43961E963CB6006C8106 /* FEMAssignmentPolicy.m in Sources */,
 				ADCD43A11E963CDB006C8106 /* FEMManagedObjectStore.m in Sources */,
 				ADCD43721E963C88006C8106 /* FEMExcludableCollection.m in Sources */,
@@ -1693,6 +1728,7 @@
 				ADEC66EC1B9D9FBB00F528C8 /* FEMMapping.m in Sources */,
 				ADEC66E21B9D9FBB00F528C8 /* FEMTypeIntrospection.m in Sources */,
 				ADEC66E31B9D9FBB00F528C8 /* FEMRepresentationUtility.m in Sources */,
+				AD90A4C41EBB4B93006751E9 /* FEMObjectRef.m in Sources */,
 				ADEC66E81B9D9FBB00F528C8 /* FEMDeserializer.m in Sources */,
 				ADEC66EE1B9D9FBB00F528C8 /* FEMRelationship.m in Sources */,
 				ADEC66E01B9D9FBB00F528C8 /* FEMExcludableCollection.m in Sources */,
