@@ -229,35 +229,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FEMRelationship (Deprecated)
-
-- (void)setObjectMapping:(FEMMapping *)objectMapping forKeyPath:(nullable NSString *)keyPath __attribute__((deprecated("Use -[FEMRelationship setMappaing:forKeyPath:] instead")));
-
-- (instancetype)initWithProperty:(NSString *)property
-                         keyPath:(nullable NSString *)keyPath
-                assignmentPolicy:(nullable FEMAssignmentPolicy)policy
-                   objectMapping:(nullable FEMMapping *)objectMapping __attribute__((deprecated("Use -[FEMRelationship initWithProperty:keyPath:mapping:assignmentPolicy:] instead")));
-
-
-+ (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping __attribute__((deprecated("Use -[FEMRelationship initWithProperty:mapping:] instead")));
-
-+ (instancetype)mappingOfProperty:(NSString *)property
-                        toKeyPath:(nullable NSString *)keyPath
-                    objectMapping:(FEMMapping *)objectMapping __attribute__((deprecated("Use -[FEMRelationship initWithProperty:keyPath:mapping:] instead")));
-
-@property (nonatomic, strong) FEMMapping *objectMapping __attribute__((deprecated("Use FEMRelationship.mapping instead")));
-
-@end
-
-@interface FEMRelationship (Unavailable)
-
-+ (instancetype)mappingOfProperty:(NSString *)property
-                    configuration:(void (^)(FEMRelationship *__mapping))configuration __attribute__((unavailable("Use -[FEMRelationship initWithProperty:keyPath:mapping:] instead")));
-
-+ (instancetype)mappingOfProperty:(NSString *)property
-                        toKeyPath:(nullable NSString *)keyPath
-                    configuration:(void (^)(FEMRelationship *__mapping))configuration __attribute__((unavailable("Use -[FEMRelationship initWithProperty:keyPath:mapping:] instead")));
-
-@end
-
 NS_ASSUME_NONNULL_END
