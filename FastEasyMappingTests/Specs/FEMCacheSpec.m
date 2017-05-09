@@ -13,7 +13,6 @@
 
 #import "FEMDeserializer.h"
 #import "FEMRelationship.h"
-#import "FEMManagedObjectDeserializer.h"
 #import "FEMRepresentationUtility.h"
 
 SPEC_BEGIN(FEMCacheSpec)

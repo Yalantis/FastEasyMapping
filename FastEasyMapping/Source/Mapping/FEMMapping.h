@@ -342,21 +342,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FEMMapping (Deprecated)
-
-+ (FEMMapping *)mappingForClass:(Class)objectClass configuration:(void (^)(FEMMapping * __mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:] instead")));
-+ (FEMMapping *)mappingForClass:(Class)objectClass rootPath:(nullable NSString *)rootPath configuration:(void (^)(FEMMapping * __mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:rootPath:] instead")));
-
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName configuration:(nullable void (^)(FEMMapping * __sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName rootPath:(nullable NSString *)rootPath configuration:(nullable void (^)(FEMMapping * __sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
-
-@end
-
-@interface FEMMapping (Unavailable)
-
-- (instancetype)initWithRootPath:(nullable NSString *)rootPath __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] instead")));
-
-@end
-
 NS_ASSUME_NONNULL_END

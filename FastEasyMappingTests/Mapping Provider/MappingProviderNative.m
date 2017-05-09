@@ -2,6 +2,8 @@
 
 #import <CoreGraphics/CoreGraphics.h>
 
+@import FastEasyMapping;
+
 #import "MappingProviderNative.h"
 #import "CarNative.h"
 #import "PhoneNative.h"
@@ -13,10 +15,6 @@
 #import "FingerNative.h"
 #import "NativeChild.h"
 #import "CatNative.h"
-
-#import "FEMMapping.h"
-#import "FEMAttribute.h"
-#import "FEMObjectMapping.h"
 
 @implementation MappingProviderNative
 

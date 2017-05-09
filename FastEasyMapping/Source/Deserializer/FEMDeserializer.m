@@ -270,31 +270,3 @@
 }
 
 @end
-
-@implementation FEMDeserializer (FEMManagedObjectDeserializer_Deprecated)
-
-+ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context {
-    return [self objectFromRepresentation:externalRepresentation mapping:mapping context:context];
-}
-
-+ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(FEMMapping *)mapping context:(NSManagedObjectContext *)context {
-    return [self collectionFromRepresentation:externalRepresentation mapping:mapping context:context];
-}
-
-@end
-
-@implementation FEMDeserializer (FEMObjectDeserializer_Deprecated)
-
-+ (id)deserializeObjectExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMMapping *)mapping {
-    return [self objectFromRepresentation:externalRepresentation mapping:mapping];
-}
-
-+ (id)fillObject:(NSManagedObject *)object fromExternalRepresentation:(NSDictionary *)externalRepresentation usingMapping:(FEMMapping *)mapping {
-    return [self fillObject:object fromRepresentation:externalRepresentation mapping:mapping];
-}
-
-+ (NSArray *)deserializeCollectionExternalRepresentation:(NSArray *)externalRepresentation usingMapping:(FEMMapping *)mapping {
-    return [self collectionFromRepresentation:externalRepresentation mapping:mapping];
-}
-
-@end

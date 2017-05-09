@@ -3,25 +3,11 @@
 #import "Kiwi.h"
 #import "Person.h"
 #import "FEMMapping.h"
-#import "FEMObjectMapping.h"
-#import "FEMManagedObjectMapping.h"
 
 SPEC_BEGIN(FEMMappingSpec)
 
 describe(@"FEMMapping", ^{
-    
-    describe(@"class methods", ^{
         
-        specify(^{
-	        [[FEMMapping should] respondToSelector:@selector(mappingForEntityName:configuration:)];
-        });
-        
-        specify(^{
-	        [[FEMMapping should] respondToSelector:@selector(mappingForEntityName:rootPath:configuration:)];
-        });
-        
-    });
-    
     describe(@"constructors", ^{
         
         __block FEMMapping *mapping;

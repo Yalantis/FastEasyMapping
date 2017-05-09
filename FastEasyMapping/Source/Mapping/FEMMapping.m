@@ -1,8 +1,6 @@
 // For License please refer to LICENSE file in the root of FastEasyMapping project
 
 #import "FEMMapping.h"
-#import "FEMManagedObjectMapping.h"
-#import "FEMObjectMapping.h"
 
 @interface FEMMapping ()
 
@@ -239,43 +237,6 @@
     FEMRelationship *relationship = [[FEMRelationship alloc] initWithProperty:property keyPath:keyPath mapping:self];
     relationship.toMany = YES;
     [self addRelationship:relationship];
-}
-
-@end
-
-@implementation FEMMapping (Deprecated)
-
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName {
-    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName];
-    return mapping;
-}
-
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName
-                       configuration:(void (^)(FEMManagedObjectMapping *sender))configuration {
-    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName];
-    configuration(mapping);
-    return mapping;
-}
-
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName
-                            rootPath:(NSString *)rootPath
-                       configuration:(void (^)(FEMManagedObjectMapping *sender))configuration {
-    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:entityName rootPath:rootPath];
-    configuration(mapping);
-    return mapping;
-}
-
-
-+ (FEMMapping *)mappingForClass:(Class)objectClass configuration:(void (^)(FEMObjectMapping *mapping))configuration {
-    FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:objectClass];
-    configuration(mapping);
-    return mapping;
-}
-
-+ (FEMMapping *)mappingForClass:(Class)objectClass rootPath:(NSString *)rootPath configuration:(void (^)(FEMObjectMapping *mapping))configuration {
-    FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:objectClass rootPath:rootPath];
-    configuration(mapping);
-    return mapping;
 }
 
 @end

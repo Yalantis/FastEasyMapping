@@ -15,15 +15,10 @@ FOUNDATION_EXPORT const unsigned char FastEasyMappingVersionString[];
 #import <FastEasyMapping/FEMManagedObjectStore.h>
 #import <FastEasyMapping/FEMObjectCache.h>
 #import <FastEasyMapping/FEMMapping.h>
-#import <FastEasyMapping/FEMObjectMapping.h>
-#import <FastEasyMapping/FEMManagedObjectMapping.h>
 #import <FastEasyMapping/FEMDeserializer.h>
-#import <FastEasyMapping/FEMObjectDeserializer.h>
-#import <FastEasyMapping/FEMManagedObjectDeserializer.h>
 #import <FastEasyMapping/FEMSerializer.h>
 #import <FastEasyMapping/FEMRelationshipAssignmentContext.h>
 #import <FastEasyMapping/FEMAssignmentPolicy.h>
 #import <FastEasyMapping/FEMTypes.h>
 #import <FastEasyMapping/FEMTypeIntrospection.h>
 #import <FastEasyMapping/FEMRepresentationUtility.h>
-#import <FastEasyMapping/FEMMappingUtility.h>
