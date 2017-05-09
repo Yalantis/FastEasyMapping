@@ -59,9 +59,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FEMRelationship : NSObject <FEMProperty, NSCopying>
 
-@property (nonatomic, weak, null_resettable) FEMMapping *owner;
-@property (nonatomic, readonly, getter=isRecursive) BOOL recursive;
-
 /**
  @brief FEMMapping that describes nested Object
  
@@ -80,6 +77,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, getter=isToMany) BOOL toMany;
 
+/// Instance of the `FEMMapping` containing receiver. Set automatically after `-[FEMMapping addRelationship:]`
+@property (nonatomic, weak, null_resettable) FEMMapping *owner;
+
+/// Flag indicating whether `FEMRelationship` describes recursive dependency or not (i.e. `mapping` equals to the `owner`).
+@property (nonatomic, readonly, getter=isRecursive) BOOL recursive;
 
 /**
  @brief Flag indicating whether FEM should skip nested Object mapping if it is not presented in the database or not. Default is `NO`.
