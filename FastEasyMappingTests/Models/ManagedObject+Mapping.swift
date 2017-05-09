@@ -32,7 +32,7 @@ extension ManagedObject {
     let child = FEMMapping(entityName: NSStringFromClass(ManagedObjectChild.self))
     child.addAttributes(from: [#keyPath(string)])
     
-    mapping.add(toManyRelationshipMapping: child, forProperty: #keyPath(children), keyPath: "children")
+    mapping.addToManyRelationshipMapping(child, forProperty: #keyPath(children), keyPath: "children")
 
     return mapping
   }

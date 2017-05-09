@@ -46,7 +46,7 @@ extension Object {
     
     let child = FEMMapping(objectClass: ObjectChild.self)
     child.addAttributes(from: [#keyPath(string)])
-    mapping.add(toManyRelationshipMapping: child, forProperty: #keyPath(children), keyPath: "children")
+    mapping.addToManyRelationshipMapping(child, forProperty: #keyPath(children), keyPath: "children")
 
     return mapping
   }

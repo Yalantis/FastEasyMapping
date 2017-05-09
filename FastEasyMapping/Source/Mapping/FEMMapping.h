@@ -286,7 +286,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param property Property name for the Relationship (same as for the KVC)
  @param keyPath  KeyPath for the Relationship from the JSON (optional)
  */
-- (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(nullable NSString *)keyPath;
+- (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(nullable NSString *)keyPath NS_SWIFT_NAME(addToManyRelationshipMapping(_:forProperty:keyPath:));
 
 /**
  @brief Adds recursive to-one relationship with the given `property` and `keyPath`.
