@@ -84,7 +84,15 @@
             [fetchRequest setPredicate:predicate];
             [fetchRequest setFetchLimit:primaryKeys.count];
 
-            NSArray *existingObjects = [context executeFetchRequest:fetchRequest error:NULL];
+            NSError *error = nil;
+            NSArray *existingObjects = [context executeFetchRequest:fetchRequest error:&error];
+
+            // TODO: Errors handling needed. This is a temprorary solution to at least indicate critical situation
+            // rather than pollute database with duplicates
+            if (error != nil) {
+                @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:[error debugDescription] userInfo:nil];
+            }
+            
             return existingObjects;
         }
 
