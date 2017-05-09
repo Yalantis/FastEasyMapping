@@ -2,7 +2,6 @@
 
 #import "FEMRepresentationUtility.h"
 #import "FEMMapping.h"
-#import "FEMMappingUtility.h"
 #import "FEMAttribute.h"
 
 id FEMRepresentationRootForKeyPath(id representation, NSString *keyPath) {

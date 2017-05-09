@@ -286,7 +286,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param property Property name for the Relationship (same as for the KVC)
  @param keyPath  KeyPath for the Relationship from the JSON (optional)
  */
-- (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(nullable NSString *)keyPath;
+- (void)addToManyRelationshipMapping:(FEMMapping *)mapping forProperty:(NSString *)property keyPath:(nullable NSString *)keyPath NS_SWIFT_NAME(addToManyRelationshipMapping(_:forProperty:keyPath:));
 
 /**
  @brief Adds recursive to-one relationship with the given `property` and `keyPath`.
@@ -339,23 +339,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param keyPath  KeyPath for the Relationship from the JSON (optional)
  */
 - (void)addRecursiveToManyRelationshipForProperty:(NSString *)property keypath:(nullable NSString *)keyPath;
-
-@end
-
-@interface FEMMapping (Deprecated)
-
-+ (FEMMapping *)mappingForClass:(Class)objectClass configuration:(void (^)(FEMMapping * __mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:] instead")));
-+ (FEMMapping *)mappingForClass:(Class)objectClass rootPath:(nullable NSString *)rootPath configuration:(void (^)(FEMMapping * __mapping))configuration __attribute__((deprecated("Use -[FEMMapping initWithObjectClass:rootPath:] instead")));
-
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName configuration:(nullable void (^)(FEMMapping * __sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:] instead")));
-+ (FEMMapping *)mappingForEntityName:(NSString *)entityName rootPath:(nullable NSString *)rootPath configuration:(nullable void (^)(FEMMapping * __sender))configuration __attribute__((deprecated("Use -[FEMMapping initWithEntityName:rootPath:] instead")));
-
-@end
-
-@interface FEMMapping (Unavailable)
-
-- (instancetype)initWithRootPath:(nullable NSString *)rootPath __attribute__((unavailable("use -[FEMMapping initWithObjectClass:] or -[FEMMapping initWithEntityName:] instead")));
 
 @end
 

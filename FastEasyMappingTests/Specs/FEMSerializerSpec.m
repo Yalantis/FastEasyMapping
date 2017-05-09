@@ -11,9 +11,7 @@
 #import "Native.h"
 #import "NativeChild.h"
 #import "FEMSerializer.h"
-#import "FEMObjectMapping.h"
 #import "FEMDeserializer.h"
-#import "FEMObjectDeserializer.h"
 #import <CoreLocation/CoreLocation.h>
 
 SPEC_BEGIN(FEMSerializerSpec)
@@ -304,7 +302,7 @@ SPEC_BEGIN(FEMSerializerSpec)
 
 					beforeEach(^{
 
-						FEMObjectMapping * mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+						FEMMapping * mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
 						[mapping addRelationshipMapping:[MappingProviderNative carMapping]
 						                    forProperty:@"car"
 								                keyPath:@"vehicle"];
@@ -393,7 +391,7 @@ SPEC_BEGIN(FEMSerializerSpec)
 					__block NSDictionary * representation;
 
 					beforeEach(^{
-						FEMObjectMapping * mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+						FEMMapping * mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
 						[mapping addToManyRelationshipMapping:[MappingProviderNative phoneMapping]
 						                          forProperty:@"phones"
 								                      keyPath:@"cellphones"];

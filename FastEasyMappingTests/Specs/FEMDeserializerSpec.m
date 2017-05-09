@@ -810,7 +810,7 @@ describe(@"FEMDeserializer", ^{
                     expectedCar = [[CarNative alloc] init];
                     expectedCar.model = @"i30";
                     expectedCar.year = @"2013";
-                    FEMObjectMapping *mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+                    FEMMapping *mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
                     [mapping addRelationshipMapping:[MappingProviderNative carMapping] forProperty:@"car" keyPath:@"vehicle"];
 
                     NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"PersonWithDifferentNaming"];
@@ -861,7 +861,7 @@ describe(@"FEMDeserializer", ^{
                 __block PersonNative * person;
 
                 beforeEach(^{
-                    FEMObjectMapping * mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PersonNative class]];
+                    FEMMapping * mapping = [[FEMMapping alloc] initWithObjectClass:[PersonNative class]];
                     [mapping addToManyRelationshipMapping:[MappingProviderNative phoneMapping]
                                               forProperty:@"phones"
                                                   keyPath:@"cellphones"];
@@ -893,7 +893,7 @@ describe(@"FEMDeserializer", ^{
                 __block Native *native;
 
                 beforeEach(^{
-                    FEMObjectMapping * mapping = [MappingProviderNative nativeMapping];
+                    FEMMapping * mapping = [MappingProviderNative nativeMapping];
                     NSDictionary * externalRepresentation = [Fixture buildUsingFixture:@"Native"];
                     native = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:mapping];
                 });
@@ -982,7 +982,7 @@ describe(@"FEMDeserializer", ^{
                     __block CatNative *cat;
 
                     beforeEach(^{
-                        FEMObjectMapping *catMapping = [MappingProviderNative nativeMappingWithNullPropertie];
+                        FEMMapping *catMapping = [MappingProviderNative nativeMappingWithNullPropertie];
                         NSDictionary *values = @{ @"age": [NSNull null] };
                         cat = [FEMDeserializer objectFromRepresentation:values mapping:catMapping];
                     });
@@ -1024,7 +1024,7 @@ describe(@"FEMDeserializer", ^{
 
             beforeEach(^{
                 NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"Plane"];
-                FEMObjectMapping * mapping = [[FEMObjectMapping alloc] initWithObjectClass:[PlaneNative class]];
+                FEMMapping * mapping = [[FEMMapping alloc] initWithObjectClass:[PlaneNative class]];
                 [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"persons" keyPath:@"persons"];
                 [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"pilots" keyPath:@"pilots"];
                 [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"stewardess" keyPath:@"stewardess"];
@@ -1107,7 +1107,7 @@ describe(@"FEMDeserializer", ^{
 
             beforeEach(^{
                 NSDictionary *externalRepresentation = [Fixture buildUsingFixture:@"Plane"];
-                FEMObjectMapping * mapping = [[FEMObjectMapping alloc] initWithObjectClass:[SeaplaneNative class]];
+                FEMMapping * mapping = [[FEMMapping alloc] initWithObjectClass:[SeaplaneNative class]];
                 [mapping addToManyRelationshipMapping:[MappingProviderNative personMapping] forProperty:@"passengers" keyPath:@"persons"];
 
                 seaplane = [FEMDeserializer objectFromRepresentation:externalRepresentation mapping:mapping];

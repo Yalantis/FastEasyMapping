@@ -4,7 +4,7 @@
 
 #import <CoreData/CoreData.h>
 
-#import "FEMManagedObjectMapping.h"
+#import "FEMMapping.h"
 #import "FEMObjectCache.h"
 #import "FEMRepresentationUtility.h"
 

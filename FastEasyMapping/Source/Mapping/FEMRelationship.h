@@ -59,9 +59,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FEMRelationship : NSObject <FEMProperty, NSCopying>
 
-@property (nonatomic, weak, null_resettable) FEMMapping *owner;
-@property (nonatomic, readonly, getter=isRecursive) BOOL recursive;
-
 /**
  @brief FEMMapping that describes nested Object
  
@@ -80,6 +77,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, getter=isToMany) BOOL toMany;
 
+/// Instance of the `FEMMapping` containing receiver. Set automatically after `-[FEMMapping addRelationship:]`
+@property (nonatomic, weak, null_resettable) FEMMapping *owner;
+
+/// Flag indicating whether `FEMRelationship` describes recursive dependency or not (i.e. `mapping` equals to the `owner`).
+@property (nonatomic, readonly, getter=isRecursive) BOOL recursive;
 
 /**
  @brief Flag indicating whether FEM should skip nested Object mapping if it is not presented in the database or not. Default is `NO`.
@@ -226,37 +228,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param keyPath  JSON's keyPath to the relationship (optional).
  */
 - (void)setMapping:(FEMMapping *)mapping forKeyPath:(nullable NSString *)keyPath;
-
-@end
-
-@interface FEMRelationship (Deprecated)
-
-- (void)setObjectMapping:(FEMMapping *)objectMapping forKeyPath:(nullable NSString *)keyPath __attribute__((deprecated("Use -[FEMRelationship setMappaing:forKeyPath:] instead")));
-
-- (instancetype)initWithProperty:(NSString *)property
-                         keyPath:(nullable NSString *)keyPath
-                assignmentPolicy:(nullable FEMAssignmentPolicy)policy
-                   objectMapping:(nullable FEMMapping *)objectMapping __attribute__((deprecated("Use -[FEMRelationship initWithProperty:keyPath:mapping:assignmentPolicy:] instead")));
-
-
-+ (instancetype)mappingOfProperty:(NSString *)property objectMapping:(FEMMapping *)objectMapping __attribute__((deprecated("Use -[FEMRelationship initWithProperty:mapping:] instead")));
-
-+ (instancetype)mappingOfProperty:(NSString *)property
-                        toKeyPath:(nullable NSString *)keyPath
-                    objectMapping:(FEMMapping *)objectMapping __attribute__((deprecated("Use -[FEMRelationship initWithProperty:keyPath:mapping:] instead")));
-
-@property (nonatomic, strong) FEMMapping *objectMapping __attribute__((deprecated("Use FEMRelationship.mapping instead")));
-
-@end
-
-@interface FEMRelationship (Unavailable)
-
-+ (instancetype)mappingOfProperty:(NSString *)property
-                    configuration:(void (^)(FEMRelationship *__mapping))configuration __attribute__((unavailable("Use -[FEMRelationship initWithProperty:keyPath:mapping:] instead")));
-
-+ (instancetype)mappingOfProperty:(NSString *)property
-                        toKeyPath:(nullable NSString *)keyPath
-                    configuration:(void (^)(FEMRelationship *__mapping))configuration __attribute__((unavailable("Use -[FEMRelationship initWithProperty:keyPath:mapping:] instead")));
 
 @end
 
