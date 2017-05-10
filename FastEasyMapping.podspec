@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name         = 'FastEasyMapping'
-  spec.version      = '1.1.2'
-  spec.summary      = 'Fast mapping from JSON to NSObject / NSManagedObject and back'
+  spec.version      = '1.2'
+  spec.summary      = 'Fast mapping from JSON to CoreData / Realm (github.com/Yalantis/FastEasyMappingRealm) / Plain NSObject'
   spec.homepage     = "https://github.com/Yalantis/FastEasyMapping"
   spec.license      = { :type => 'MIT', :file => 'LICENSE' }
   spec.author       = { 'Dima Zen' => 'zen.dev@yandex.com' }
@@ -16,5 +16,5 @@ Pod::Spec.new do |spec|
   spec.frameworks = 'CoreData'
 
   spec.source_files = 'FastEasyMapping/**/*.{h,m}'
-  spec.private_header_files = ['FastEasyMapping/Source/Extensions/**/*{.h}', 'FastEasyMapping/Sources/Private/**/*{.h}']
+  spec.private_header_files = 'FastEasyMapping/Sources/Private/**/*{.h}'
 end
