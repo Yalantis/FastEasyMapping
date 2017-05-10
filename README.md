@@ -1,47 +1,94 @@
-# FastEasyMapping
-
+[![GitHub release](https://img.shields.io/github/release/Yalantis/FastEasyMapping.svg)](https://github.com/Yalantis/FastEasyMapping/releases)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/FastEasyMapping.svg)](https://img.shields.io/cocoapods/v/FastEasyMapping.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/Yalantis/FastEasyMapping.svg?branch=master)](https://travis-ci.org/Yalantis/FastEasyMapping)
 [![codecov.io](https://codecov.io/github/Yalantis/FastEasyMapping/coverage.svg?branch=master)](https://codecov.io/github/Yalantis/FastEasyMapping?branch=master)
+
+# FastEasyMapping
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Installation](#installation)
+	- [CocoaPods](#cocoapods)
+	- [Carthage](#carthage)
+- [Usage](#usage)
+	- [Deserialization](#deserialization)
+	- [Serialization](#serialization)
+- [Mapping](#mapping)
+	- [Attributes](#femattribute)
+	- [Relationships](#femrelationship)
+	- [Assignment policy](#assignment-policy)
+- [Uniquing](#uniquing)
+	- [Relationship bindings](#relationship-bindings-by-pk)
+	- [Weak relationship](#weak-relationship)
+- [Delegation](#delegation)
+- [Releases/Changelog](https://github.com/Yalantis/FastEasyMapping/releases)
+- [Thanks](#thanks)
 
 ### Note
 This is a fork of [EasyMapping](https://github.com/EasyMapping/EasyMapping), a flexible and easy framework for JSON mapping.
 
-## Reason
+## Overview
 It turns out, that almost all popular libraries for JSON mapping are SLOW. The main reason for that is multiple trips to database during the lookup of existing objects. We [decided](https://yalantis.com/blog/from-json-to-core-data-fast-and-effectively/) to take an already existing [flexible solution](https://github.com/EasyMapping/EasyMapping) (i.e. EasyMapping) and improve its overall performance.
+
+> Benchmark done on June/2014. Results may be outdated (EasyMapping performs nearly identical nowadays).
 
 <p align="center" >
   <img src="https://raw.githubusercontent.com/Yalantis/FastEasyMapping/efabb88b0831c7ece88e728b9665edc4d3af5b1f/Assets/performance.png" alt="FastEasyMapping" title="FastEasyMapping">
 </p>
 
-# Installation
 
-#### CocoaPods:
-```ruby
-#Podfile
-platform :ios, '7.0'
-pod 'FastEasyMapping', '~> 1.1'
+## Requirements
+Platform | Min Deployment Target
+:---: | :---:
+iOS | 8.0
+macOS | 10.10
+tvOS | 9.0
+watchOS | 2.0
+
+Build using Xcode 8.3.2+
+
+## Installation
+### CocoaPods
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
 ```
-or add as a static library.
+To integrate FastEasyMapping into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
-## Architecture
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
 
-### Mapping
+target '<Your Target Name>' do
+    pod 'FastEasyMapping, '~> 1.2'
+end
+```
 
-* `FEMMapping`
-* `<FEMProperty>`
-	- `FEMAttribute`
-	- `FEMRelationship`
+Then, run the following command:
 
-### Deserialization _(JSON to Object)_
-- `FEMDeserializer`
+```bash
+$ pod install
+```
 
-### Serialization _(Object to JSON)_
-- `FEMSerializer`
+### Carthage
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 
-### Advanced Deserialization
-- `FEMObjectStore`
-- `FEMManagedObjectStore`
-- `FEMObjectCache`
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate FastEasyMappingRealm into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "Yalantis/FastEasyMapping" ~> 1.2
+```
+
+Run `carthage update` to build the framework and drag the built `FastEasyMapping.framework` into your Xcode project. 
 
 ## Usage
 ### Deserialization
@@ -561,9 +608,6 @@ During deserialization of persons collection order will be the following:
 5. didMapObject:`Phone instance` fromRepresentation:`Phone Dictionary` mapping:`Phone mapping`
 6. didMapObject:`Person instance` fromRepresentation:`Person Dictionary` mapping:`Person mapping`
 7. didMapCollection:`Persons instances Array` fromRepresentation:`Persons Array` mapping:`Person mapping`
-
-# Changelog
-Moved to [releases](https://github.com/Yalantis/FastEasyMapping/releases)
 
 # Thanks
 * Special thanks to [lucasmedeirosleite](https://github.com/lucasmedeirosleite) for amazing framework.
