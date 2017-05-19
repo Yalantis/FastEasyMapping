@@ -23,9 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Invoked by FEMDeserializer at the very beginning of deserialization.
  Custom implementation may want to begin write transaction or similar. Default implementation does nothing.
 
- @param presentedPrimaryKeys when `+[YourObjectStoreSubclass requiresPrefetch]` returns `YES` then `presentedPrimaryKeys contains a non-nil MapTable with FEMMapping to Set of primary keys pairs. In case +requiresPrefetch returns NO - nil value passed.
+ @param presentedPrimaryKeys when `+[YourObjectStoreSubclass requiresPrefetch]` returns `YES` then `presentedPrimaryKeys contains a non-nil Dictionary with `-[FEMMapping uniqueIdentifier]` to Set of primary keys pairs. In case +requiresPrefetch returns NO - nil value passed.
  */
-- (void)beginTransaction:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys;
+- (void)beginTransaction:(nullable NSDictionary<NSNumber *, NSSet<id> *> *)presentedPrimaryKeys;
 
 /**
  @discussion Invoked by FEMDeserializer after all data has been deserialized.

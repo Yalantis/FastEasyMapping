@@ -30,7 +30,7 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
 
 #pragma mark - Transaction
 
-- (void)beginTransaction:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys {
+- (void)beginTransaction:(nullable NSDictionary<NSNumber *, NSSet<id> *> *)presentedPrimaryKeys {
     _cache = [[FEMObjectCache alloc] initWithContext:self.context presentedPrimaryKeys:presentedPrimaryKeys];
 }
 

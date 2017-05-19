@@ -74,10 +74,10 @@
 @implementation FEMObjectCache (CoreData)
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)context
-           presentedPrimaryKeys:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys
+           presentedPrimaryKeys:(nullable NSDictionary<NSNumber *, NSSet<id> *> *)presentedPrimaryKeys
 {
     return [self initWithSource:^id<NSFastEnumeration> (FEMMapping *mapping) {
-        NSSet *primaryKeys = [presentedPrimaryKeys objectForKey:mapping];
+        NSSet *primaryKeys = presentedPrimaryKeys[mapping.uniqueIdentifier];
         if (primaryKeys.count > 0) {
             NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.entityName];
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", mapping.primaryKey, primaryKeys];
