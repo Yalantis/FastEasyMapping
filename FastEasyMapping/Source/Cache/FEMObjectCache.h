@@ -24,7 +24,7 @@ typedef _Nonnull id<NSFastEnumeration> (^FEMObjectCacheSource)(FEMMapping *mappi
 @interface FEMObjectCache (CoreData)
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)context
-           presentedPrimaryKeys:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys;
+           presentedPrimaryKeys:(nullable NSDictionary<NSNumber *, NSSet<id> *> *)presentedPrimaryKeys;
 
 @end
 

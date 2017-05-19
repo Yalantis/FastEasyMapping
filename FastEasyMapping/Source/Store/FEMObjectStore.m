@@ -5,7 +5,7 @@
 
 @implementation FEMObjectStore
 
-- (void)beginTransaction:(nullable NSMapTable<FEMMapping *, NSSet<id> *> *)presentedPrimaryKeys {
+- (void)beginTransaction:(nullable NSDictionary<NSNumber *, NSSet<id> *> *)presentedPrimaryKeys {
     // no-op
 }
 
