@@ -7,6 +7,10 @@
 #import "FEMMapping.h"
 #import "FEMRepresentationUtility.h"
 
+FEMObjectCacheSource FEMObjectCacheSourceStub = ^id<NSFastEnumeration> (FEMMapping *mapping) {
+    return @[];
+};
+
 @implementation FEMObjectCache {
 	NSMapTable<FEMMapping *, NSMutableDictionary<id, id> *> *_lookupObjectsMap;
 	FEMObjectCacheSource _source;
@@ -15,16 +19,19 @@
 #pragma mark - Init
 
 - (instancetype)initWithSource:(FEMObjectCacheSource)source {
-	NSParameterAssert(source != NULL);
 	self = [super init];
 	if (self) {
-		_source = [source copy];
+        _source = source ?: FEMObjectCacheSourceStub;
 
         NSPointerFunctionsOptions options = NSPointerFunctionsObjectPointerPersonality | NSPointerFunctionsStrongMemory;
 		_lookupObjectsMap = [[NSMapTable alloc] initWithKeyOptions:options valueOptions:options capacity:0];
     }
 
 	return self;
+}
+
+- (instancetype)init {
+    return [self initWithSource:nil];
 }
 
 #pragma mark - Inspection
