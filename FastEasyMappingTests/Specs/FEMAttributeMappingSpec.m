@@ -4,7 +4,7 @@
 
 #import "FEMAttribute.h"
 
-SPEC_BEGIN(FEMAttributeMappingSpec)
+SPEC_BEGIN(FEMAttributeSpec)
 
 describe(@"FEMAttribute", ^{
     FEMMapBlock map = ^id (id value) {

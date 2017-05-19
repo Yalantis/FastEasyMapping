@@ -135,6 +135,8 @@
 		AD5BB53D1ECF507600E914EB /* Object+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BB5391ECF507600E914EB /* Object+Mapping.swift */; };
 		AD5BB53F1ECF5CB600E914EB /* RecursiveChatMessages.json in Resources */ = {isa = PBXBuildFile; fileRef = AD5BB53E1ECF5CB600E914EB /* RecursiveChatMessages.json */; };
 		AD5BB5401ECF5CB600E914EB /* RecursiveChatMessages.json in Resources */ = {isa = PBXBuildFile; fileRef = AD5BB53E1ECF5CB600E914EB /* RecursiveChatMessages.json */; };
+		AD5BB5421ECF605400E914EB /* RecursiveChatLastMessage.json in Resources */ = {isa = PBXBuildFile; fileRef = AD5BB5411ECF605400E914EB /* RecursiveChatLastMessage.json */; };
+		AD5BB5431ECF605400E914EB /* RecursiveChatLastMessage.json in Resources */ = {isa = PBXBuildFile; fileRef = AD5BB5411ECF605400E914EB /* RecursiveChatLastMessage.json */; };
 		AD90A4C01EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
 		AD90A4C11EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
 		AD90A4C21EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
@@ -473,6 +475,7 @@
 		AD5BB5381ECF507600E914EB /* ManagedObject+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObject+Mapping.swift"; sourceTree = "<group>"; };
 		AD5BB5391ECF507600E914EB /* Object+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Object+Mapping.swift"; sourceTree = "<group>"; };
 		AD5BB53E1ECF5CB600E914EB /* RecursiveChatMessages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecursiveChatMessages.json; sourceTree = "<group>"; };
+		AD5BB5411ECF605400E914EB /* RecursiveChatLastMessage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecursiveChatLastMessage.json; sourceTree = "<group>"; };
 		AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectRef.h; sourceTree = "<group>"; };
 		AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectRef.m; sourceTree = "<group>"; };
 		AD90A4C81EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRelationshipMappingSpec.m; sourceTree = "<group>"; };
@@ -871,6 +874,7 @@
 				AD94006B1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json */,
 				AD94006C1E8AA93700558F37 /* PersonWithRecursiveRelationship.json */,
 				1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */,
+				AD5BB5411ECF605400E914EB /* RecursiveChatLastMessage.json */,
 				AD5BB53E1ECF5CB600E914EB /* RecursiveChatMessages.json */,
 				1D6A39199C892D7ABCEB1EF7 /* ManagedObjectSupportedTypes.json */,
 				1D6A3D85D370CEE526FC4741 /* ManagedObjectSupportedTypesNull.json */,
@@ -1250,6 +1254,7 @@
 			files = (
 				2C375F3318CCD40200FCB8EA /* Native.json in Resources */,
 				AD94006E1E8AA93700558F37 /* PersonWithRecursiveRelationship.json in Resources */,
+				AD5BB5421ECF605400E914EB /* RecursiveChatLastMessage.json in Resources */,
 				2C375F3918CCD40200FCB8EA /* Male.json in Resources */,
 				2C375F3B18CCD40200FCB8EA /* Person.json in Resources */,
 				2C375F3518CCD40200FCB8EA /* Plane.json in Resources */,
@@ -1293,6 +1298,7 @@
 			files = (
 				ADCD43FE1E9640C7006C8106 /* Address.json in Resources */,
 				ADCD43FB1E9640C7006C8106 /* CarWithDate.json in Resources */,
+				AD5BB5431ECF605400E914EB /* RecursiveChatLastMessage.json in Resources */,
 				ADCD43FF1E9640C7006C8106 /* Person.json in Resources */,
 				ADCD43F51E9640C7006C8106 /* PersonWithDifferentNaming.json in Resources */,
 				ADCD43FD1E9640C7006C8106 /* Male.json in Resources */,
