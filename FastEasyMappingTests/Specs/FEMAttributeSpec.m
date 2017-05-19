@@ -2,7 +2,7 @@
 
 #import <Kiwi/Kiwi.h>
 
-#import "FEMAttribute.h"
+@import FastEasyMapping;
 
 SPEC_BEGIN(FEMAttributeSpec)
 

@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSString *entityName;
 
 /// Opaque unique value that is used internally to combine different in-memory instances that describes same Class / Entity.
-@property (nonatomic, strong, readonly) NSNumber *uniquingIdentifier;
+@property (nonatomic, strong, readonly) NSNumber *uniqueIdentifier;
 
 /**
  @brief path to the Object's representation in the JSON. Same as `keyPath` property of the `FEMProperty` protocol. 
