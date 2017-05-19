@@ -133,6 +133,8 @@
 		AD5BB53B1ECF507600E914EB /* ManagedObject+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BB5381ECF507600E914EB /* ManagedObject+Mapping.swift */; };
 		AD5BB53C1ECF507600E914EB /* Object+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BB5391ECF507600E914EB /* Object+Mapping.swift */; };
 		AD5BB53D1ECF507600E914EB /* Object+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BB5391ECF507600E914EB /* Object+Mapping.swift */; };
+		AD5BB53F1ECF5CB600E914EB /* RecursiveChatMessages.json in Resources */ = {isa = PBXBuildFile; fileRef = AD5BB53E1ECF5CB600E914EB /* RecursiveChatMessages.json */; };
+		AD5BB5401ECF5CB600E914EB /* RecursiveChatMessages.json in Resources */ = {isa = PBXBuildFile; fileRef = AD5BB53E1ECF5CB600E914EB /* RecursiveChatMessages.json */; };
 		AD90A4C01EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
 		AD90A4C11EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
 		AD90A4C21EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
@@ -470,6 +472,7 @@
 		AD5BB5311ECF500600E914EB /* RecursiveRelationship+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RecursiveRelationship+Mapping.m"; sourceTree = "<group>"; };
 		AD5BB5381ECF507600E914EB /* ManagedObject+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObject+Mapping.swift"; sourceTree = "<group>"; };
 		AD5BB5391ECF507600E914EB /* Object+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Object+Mapping.swift"; sourceTree = "<group>"; };
+		AD5BB53E1ECF5CB600E914EB /* RecursiveChatMessages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecursiveChatMessages.json; sourceTree = "<group>"; };
 		AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectRef.h; sourceTree = "<group>"; };
 		AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectRef.m; sourceTree = "<group>"; };
 		AD90A4C81EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRelationshipMappingSpec.m; sourceTree = "<group>"; };
@@ -868,6 +871,7 @@
 				AD94006B1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json */,
 				AD94006C1E8AA93700558F37 /* PersonWithRecursiveRelationship.json */,
 				1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */,
+				AD5BB53E1ECF5CB600E914EB /* RecursiveChatMessages.json */,
 				1D6A39199C892D7ABCEB1EF7 /* ManagedObjectSupportedTypes.json */,
 				1D6A3D85D370CEE526FC4741 /* ManagedObjectSupportedTypesNull.json */,
 				1D6A3D9FA1D3591DA900649B /* ObjectSupportedTypes.json */,
@@ -1262,6 +1266,7 @@
 				2C375F3718CCD40200FCB8EA /* CarWithDate.json in Resources */,
 				1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */,
 				1D6A370F588D1C2F011CAAD0 /* PersonWithCar_2.json in Resources */,
+				AD5BB53F1ECF5CB600E914EB /* RecursiveChatMessages.json in Resources */,
 				1D6A324055B27F52CF7B8719 /* Person_1.json in Resources */,
 				1D6A3D32342A71CC6BCA3855 /* Person_2.json in Resources */,
 				1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */,
@@ -1304,6 +1309,7 @@
 				ADCD43FC1E9640C7006C8106 /* CarWithNestedAttributes.json in Resources */,
 				ADCD44081E9640C7006C8106 /* UniqueObject.json in Resources */,
 				ADCD440A1E9640C7006C8106 /* PersonWithRecursiveRelationship.json in Resources */,
+				AD5BB5401ECF5CB600E914EB /* RecursiveChatMessages.json in Resources */,
 				ADCD44061E9640C7006C8106 /* PersonWithNullRelationships.json in Resources */,
 				ADCD43F81E9640C7006C8106 /* Alien.json in Resources */,
 				ADCD43F91E9640C7006C8106 /* Plane.json in Resources */,

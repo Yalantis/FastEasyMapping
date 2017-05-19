@@ -1,0 +1,8 @@
+{
+  "primaryKey": 1,
+  
+  "messages": [{
+    "primaryKey": 345,
+    "chat": { "primaryKey": 1 }
+  }]
+}
