@@ -35,7 +35,6 @@
 		1D6A327B28153077CB022599 /* FEMExcludableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3EE99F140F128650AC05 /* FEMExcludableCollection.h */; };
 		1D6A32888DA546DE0CD41E65 /* FEMMergeableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A31B7B26282578A66D583 /* FEMMergeableCollection.h */; };
 		1D6A3297C2D46A008B480DF7 /* ManagedObjectChild+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35FAB537019510CFAB52 /* ManagedObjectChild+CoreDataClass.swift */; };
-		1D6A33777167253364E6A073 /* ManagedObject+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3701E6FF875765DCB681 /* ManagedObject+Mapping.swift */; };
 		1D6A337BB32C4E49BF14D262 /* ManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A30C2751740DF8E99DE47 /* ManagedObject+CoreDataProperties.swift */; };
 		1D6A33B263F7408F954C86E8 /* ObjectChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A37057319CD39BD366C73 /* ObjectChild.swift */; };
 		1D6A33EA1A00E52471D14E57 /* MagicalRecord+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A346E016BEA3E5A71BEB1 /* MagicalRecord+FEMExtension.m */; };
@@ -65,14 +64,11 @@
 		1D6A38CD9BE499B74898BF3A /* FEMAttribute+UTF8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3775AEE3FBCDEAB8C677 /* FEMAttribute+UTF8.swift */; };
 		1D6A38ED86DA0D1A384E8CB7 /* Fixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31AC86F859B7021C9DE7 /* Fixture.m */; };
 		1D6A39023A88E3537FA1E34A /* FEMExcludableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3EE99F140F128650AC05 /* FEMExcludableCollection.h */; };
-		1D6A3944490753FDEA1BF961 /* Object+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3FE288D12DDB32E4FE9B /* Object+Mapping.swift */; };
-		1D6A39F5F6845B77543618B3 /* Object+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3FE288D12DDB32E4FE9B /* Object+Mapping.swift */; };
 		1D6A3A7E9B30652E43B73474 /* MagicalRecord+FEMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A346E016BEA3E5A71BEB1 /* MagicalRecord+FEMExtension.m */; };
 		1D6A3AFB8621699B5A005C8F /* NSArray+FEMPropertyRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3887C14E45496D77FDE4 /* NSArray+FEMPropertyRepresentation.m */; };
 		1D6A3B04DDB373C1542E785F /* PersonWithNullRelationships.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3A47A8DEF276ECDCDF46 /* PersonWithNullRelationships.json */; };
 		1D6A3B431A0D1418209F5238 /* Fixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A31AC86F859B7021C9DE7 /* Fixture.m */; };
 		1D6A3BDE5FBAAA0BAA503655 /* RecursiveCyclicRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */; };
-		1D6A3C154126DB980CFC29F4 /* ManagedObject+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3701E6FF875765DCB681 /* ManagedObject+Mapping.swift */; };
 		1D6A3C2F9AE23D7F09F8D811 /* ManagedObjectMappingSpeс.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3547ACE37AC71C512055 /* ManagedObjectMappingSpeс.swift */; };
 		1D6A3C618FD0523B17AD7099 /* NSArray+FEMPropertyRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A3FD4689AD4087F5F12FE /* NSArray+FEMPropertyRepresentation.h */; };
 		1D6A3C7DDF63FC1F1C286D7D /* ManagedObjectMappingSpeс.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3547ACE37AC71C512055 /* ManagedObjectMappingSpeс.swift */; };
@@ -131,6 +127,12 @@
 		AD52DF851B0387C000E46915 /* FEMObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7EC086EF5CE3263C6D8D /* FEMObjectMappingSpec.m */; };
 		AD52DF871B0387C000E46915 /* FEMSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75B675560A0A804494CB /* FEMSerializerSpec.m */; };
 		AD52DF891B0387C000E46915 /* FEMAttributeMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */; };
+		AD5BB5361ECF500600E914EB /* RecursiveRelationship+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5BB5311ECF500600E914EB /* RecursiveRelationship+Mapping.m */; };
+		AD5BB5371ECF500600E914EB /* RecursiveRelationship+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5BB5311ECF500600E914EB /* RecursiveRelationship+Mapping.m */; };
+		AD5BB53A1ECF507600E914EB /* ManagedObject+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BB5381ECF507600E914EB /* ManagedObject+Mapping.swift */; };
+		AD5BB53B1ECF507600E914EB /* ManagedObject+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BB5381ECF507600E914EB /* ManagedObject+Mapping.swift */; };
+		AD5BB53C1ECF507600E914EB /* Object+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BB5391ECF507600E914EB /* Object+Mapping.swift */; };
+		AD5BB53D1ECF507600E914EB /* Object+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5BB5391ECF507600E914EB /* Object+Mapping.swift */; };
 		AD90A4C01EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
 		AD90A4C11EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
 		AD90A4C21EBB4B93006751E9 /* FEMObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */; };
@@ -146,7 +148,10 @@
 		AD94006A1E8AA7C000558F37 /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9400691E8AA7C000558F37 /* FEMObjectStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD94006D1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = AD94006B1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json */; };
 		AD94006E1E8AA93700558F37 /* PersonWithRecursiveRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = AD94006C1E8AA93700558F37 /* PersonWithRecursiveRelationship.json */; };
-		ADCD41E91E962E1B006C8106 /* RecursiveRelationship+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A32EFC67384FE93544E57 /* RecursiveRelationship+Mapping.m */; };
+		ADAC7AE91ECF4CB8009A6571 /* Chat+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAC7AE81ECF4CB8009A6571 /* Chat+Mapping.m */; };
+		ADAC7AEA1ECF4CB8009A6571 /* Chat+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAC7AE81ECF4CB8009A6571 /* Chat+Mapping.m */; };
+		ADAC7AED1ECF4CE2009A6571 /* ChatMessage+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAC7AEC1ECF4CE2009A6571 /* ChatMessage+Mapping.m */; };
+		ADAC7AEE1ECF4CE2009A6571 /* ChatMessage+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAC7AEC1ECF4CE2009A6571 /* ChatMessage+Mapping.m */; };
 		ADCD43221E963AB3006C8106 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCD43191E963AB3006C8106 /* FastEasyMapping.framework */; };
 		ADCD435C1E963C45006C8106 /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEC66C21B9D9E7000F528C8 /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADCD435D1E963C45006C8106 /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEC66C21B9D9E7000F528C8 /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -280,7 +285,6 @@
 		ADCD440B1E9640C7006C8106 /* RecursiveCyclicRelationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */; };
 		ADCD440C1E9640C7006C8106 /* MappingProviderNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED799D533AED10DCFB4106 /* MappingProviderNative.m */; };
 		ADCD440D1E9640C7006C8106 /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7532E1E5E3196BC27932 /* MappingProvider.m */; };
-		ADCD440E1E9640C7006C8106 /* RecursiveRelationship+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A32EFC67384FE93544E57 /* RecursiveRelationship+Mapping.m */; };
 		ADE1F3731E9A793100F457E9 /* Benchmark.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE1F3721E9A793100F457E9 /* Benchmark.m */; };
 		ADE1F3751E9A793100F457E9 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCD43191E963AB3006C8106 /* FastEasyMapping.framework */; };
 		ADE1F37D1E9A7D0400F457E9 /* Benchmark.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADE1F37B1E9A7D0400F457E9 /* Benchmark.xcdatamodeld */; };
@@ -349,7 +353,6 @@
 		1D6A324ACF5FB42E37E0D8CF /* FEMAssignmentPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAssignmentPolicy.m; sourceTree = "<group>"; };
 		1D6A328FCE22411C60FBC7C4 /* FEMRepresentationUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRepresentationUtility.m; sourceTree = "<group>"; };
 		1D6A32D65203DD23C623AAD3 /* FEMManagedObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMManagedObjectStore.m; sourceTree = "<group>"; };
-		1D6A32EFC67384FE93544E57 /* RecursiveRelationship+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RecursiveRelationship+Mapping.m"; sourceTree = "<group>"; };
 		1D6A331F4EC8BC4E757BBF85 /* FEMDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMDeserializer.h; sourceTree = "<group>"; };
 		1D6A3341482134DF540C9984 /* FEMProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMProperty.h; sourceTree = "<group>"; };
 		1D6A334CB9A14401554BDA18 /* FEMAttributeMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMAttributeMappingSpec.m; sourceTree = "<group>"; };
@@ -368,7 +371,6 @@
 		1D6A35FAB537019510CFAB52 /* ManagedObjectChild+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObjectChild+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1D6A36B3B94BD2B0D6C4AD06 /* FEMSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMSerializer.h; sourceTree = "<group>"; };
 		1D6A36C16AAE84F6468FE6DD /* FEMExcludableCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMExcludableCollection.m; sourceTree = "<group>"; };
-		1D6A3701E6FF875765DCB681 /* ManagedObject+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObject+Mapping.swift"; sourceTree = "<group>"; };
 		1D6A37057319CD39BD366C73 /* ObjectChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectChild.swift; sourceTree = "<group>"; };
 		1D6A37361CCBDC43020DFFCE /* FEMRelationshipAssignmentContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRelationshipAssignmentContext.h; sourceTree = "<group>"; };
 		1D6A3775AEE3FBCDEAB8C677 /* FEMAttribute+UTF8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FEMAttribute+UTF8.swift"; sourceTree = "<group>"; };
@@ -399,7 +401,6 @@
 		1D6A3E942488A7A8C0C01C0C /* FEMRepresentationUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMRepresentationUtility.h; sourceTree = "<group>"; };
 		1D6A3EE99F140F128650AC05 /* FEMExcludableCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMExcludableCollection.h; sourceTree = "<group>"; };
 		1D6A3FD4689AD4087F5F12FE /* NSArray+FEMPropertyRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FEMPropertyRepresentation.h"; sourceTree = "<group>"; };
-		1D6A3FE288D12DDB32E4FE9B /* Object+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Object+Mapping.swift"; sourceTree = "<group>"; };
 		2C375F1018CCBC2900FCB8EA /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		2CF8097B18C3AD5700C07899 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CF8098818C3AD5700C07899 /* FastEasyMapping iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FastEasyMapping iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -466,6 +467,9 @@
 		AD4FC99D1E9A8074006C6C56 /* Parent+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Parent+Mapping.m"; sourceTree = "<group>"; };
 		AD4FC99F1E9A80F2006C6C56 /* Child+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Child+Mapping.h"; sourceTree = "<group>"; };
 		AD4FC9A01E9A80F2006C6C56 /* Child+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Child+Mapping.m"; sourceTree = "<group>"; };
+		AD5BB5311ECF500600E914EB /* RecursiveRelationship+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RecursiveRelationship+Mapping.m"; sourceTree = "<group>"; };
+		AD5BB5381ECF507600E914EB /* ManagedObject+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObject+Mapping.swift"; sourceTree = "<group>"; };
+		AD5BB5391ECF507600E914EB /* Object+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Object+Mapping.swift"; sourceTree = "<group>"; };
 		AD90A4BE1EBB4B93006751E9 /* FEMObjectRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectRef.h; sourceTree = "<group>"; };
 		AD90A4BF1EBB4B93006751E9 /* FEMObjectRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMObjectRef.m; sourceTree = "<group>"; };
 		AD90A4C81EBB4EB1006751E9 /* FEMRelationshipMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEMRelationshipMappingSpec.m; sourceTree = "<group>"; };
@@ -474,6 +478,10 @@
 		AD9400691E8AA7C000558F37 /* FEMObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMObjectStore.h; sourceTree = "<group>"; };
 		AD94006B1E8AA93700558F37 /* ManagedPersonWithRecursiveRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ManagedPersonWithRecursiveRelationship.json; sourceTree = "<group>"; };
 		AD94006C1E8AA93700558F37 /* PersonWithRecursiveRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PersonWithRecursiveRelationship.json; sourceTree = "<group>"; };
+		ADAC7AE71ECF4CB8009A6571 /* Chat+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Chat+Mapping.h"; sourceTree = "<group>"; };
+		ADAC7AE81ECF4CB8009A6571 /* Chat+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Chat+Mapping.m"; sourceTree = "<group>"; };
+		ADAC7AEB1ECF4CE2009A6571 /* ChatMessage+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChatMessage+Mapping.h"; sourceTree = "<group>"; };
+		ADAC7AEC1ECF4CE2009A6571 /* ChatMessage+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChatMessage+Mapping.m"; sourceTree = "<group>"; };
 		ADCD43191E963AB3006C8106 /* FastEasyMapping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FastEasyMapping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADCD43211E963AB3006C8106 /* FastEasyMapping macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FastEasyMapping macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADCD43351E963AC1006C8106 /* FastEasyMapping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FastEasyMapping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -763,8 +771,14 @@
 				69ED799D533AED10DCFB4106 /* MappingProviderNative.m */,
 				69ED70FD89800BB41C8894FE /* MappingProvider.h */,
 				69ED7532E1E5E3196BC27932 /* MappingProvider.m */,
-				1D6A32EFC67384FE93544E57 /* RecursiveRelationship+Mapping.m */,
 				1D6A35EB7BEFF813678DA065 /* RecursiveRelationship+Mapping.h */,
+				AD5BB5311ECF500600E914EB /* RecursiveRelationship+Mapping.m */,
+				ADAC7AE71ECF4CB8009A6571 /* Chat+Mapping.h */,
+				ADAC7AE81ECF4CB8009A6571 /* Chat+Mapping.m */,
+				ADAC7AEB1ECF4CE2009A6571 /* ChatMessage+Mapping.h */,
+				ADAC7AEC1ECF4CE2009A6571 /* ChatMessage+Mapping.m */,
+				AD5BB5381ECF507600E914EB /* ManagedObject+Mapping.swift */,
+				AD5BB5391ECF507600E914EB /* Object+Mapping.swift */,
 			);
 			path = "Mapping Provider";
 			sourceTree = "<group>";
@@ -801,7 +815,6 @@
 				69ED7E9D5D47846FEFCA62F5 /* FingerNative.m */,
 				1D6A3997CF701292F11C88D3 /* ManagedObject+CoreDataClass.swift */,
 				1D6A30C2751740DF8E99DE47 /* ManagedObject+CoreDataProperties.swift */,
-				1D6A3701E6FF875765DCB681 /* ManagedObject+Mapping.swift */,
 				1D6A35FAB537019510CFAB52 /* ManagedObjectChild+CoreDataClass.swift */,
 				1D6A35A3F7A4EB768C57D8D2 /* ManagedObjectChild+CoreDataProperties.swift */,
 				69ED7AF90069A8C5CBFF2B75 /* Native.h */,
@@ -809,7 +822,6 @@
 				69ED75DAD53214AD94FAB868 /* NativeChild.h */,
 				69ED747DF1709A9ABAC81F68 /* NativeChild.m */,
 				1D6A342BEB620D98EE43F13C /* Object.swift */,
-				1D6A3FE288D12DDB32E4FE9B /* Object+Mapping.swift */,
 				1D6A37057319CD39BD366C73 /* ObjectChild.swift */,
 				69ED7DE7AE4C126B96E6BD93 /* Person.h */,
 				69ED78FBF03886650959C5AE /* Person.m */,
@@ -1493,13 +1505,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C375F4318CCD49B00FCB8EA /* MappingProviderNative.m in Sources */,
+				AD5BB53A1ECF507600E914EB /* ManagedObject+Mapping.swift in Sources */,
 				2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */,
 				2C375F1318CCD3FB00FCB8EA /* CoreData.xcdatamodel in Sources */,
 				2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */,
 				2C375F1518CCD3FB00FCB8EA /* Phone.m in Sources */,
 				2C375F1618CCD3FB00FCB8EA /* Person.m in Sources */,
+				AD5BB53C1ECF507600E914EB /* Object+Mapping.swift in Sources */,
 				2C375F1718CCD3FB00FCB8EA /* NativeChild.m in Sources */,
 				2C375F1818CCD3FB00FCB8EA /* AddressNative.m in Sources */,
+				ADAC7AED1ECF4CE2009A6571 /* ChatMessage+Mapping.m in Sources */,
 				2C375F1918CCD3FB00FCB8EA /* CatNative.m in Sources */,
 				AD52DF831B0387C000E46915 /* FEMManagedObjectMappingSpec.m in Sources */,
 				2C375F1A18CCD3FB00FCB8EA /* PhoneNative.m in Sources */,
@@ -1517,20 +1532,19 @@
 				1D6A3E518B28A2D171B3B2F4 /* FEMCacheSpec.m in Sources */,
 				1D6A36C4F4F626AAA2A6EC5E /* FEMDeserializerSpec.m in Sources */,
 				1D6A318B77C6FB356E1B0D02 /* UniqueObject.m in Sources */,
-				ADCD41E91E962E1B006C8106 /* RecursiveRelationship+Mapping.m in Sources */,
 				1D6A38ED86DA0D1A384E8CB7 /* Fixture.m in Sources */,
 				1D6A33EA1A00E52471D14E57 /* MagicalRecord+FEMExtension.m in Sources */,
 				1D6A34F889DA5B630555E033 /* ManagedObjectChild+CoreDataProperties.swift in Sources */,
 				1D6A34F29AD10AED6697CBE1 /* ObjectChild.swift in Sources */,
+				ADAC7AE91ECF4CB8009A6571 /* Chat+Mapping.m in Sources */,
 				1D6A31960A6981EC47CB6DCA /* ManagedObject+CoreDataClass.swift in Sources */,
-				1D6A33777167253364E6A073 /* ManagedObject+Mapping.swift in Sources */,
-				1D6A39F5F6845B77543618B3 /* Object+Mapping.swift in Sources */,
 				1D6A3E56451B5D82F1DAF88B /* ManagedObjectChild+CoreDataClass.swift in Sources */,
 				1D6A364E503D8268E39D4F46 /* Object.swift in Sources */,
 				1D6A3CC6072E0A916D0E2D14 /* ManagedObject+CoreDataProperties.swift in Sources */,
 				1D6A376D56514B0597CB75A1 /* ObjectMappingSpec.swift in Sources */,
 				1D6A3C2F9AE23D7F09F8D811 /* ManagedObjectMappingSpeс.swift in Sources */,
 				1D6A38CD9BE499B74898BF3A /* FEMAttribute+UTF8.swift in Sources */,
+				AD5BB5361ECF500600E914EB /* RecursiveRelationship+Mapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1562,13 +1576,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCD43EF1E9640C7006C8106 /* Phone.m in Sources */,
+				AD5BB53B1ECF507600E914EB /* ManagedObject+Mapping.swift in Sources */,
 				ADCD43E71E9640C7006C8106 /* Car.m in Sources */,
 				ADCD43E91E9640C7006C8106 /* CatNative.m in Sources */,
 				ADCD440D1E9640C7006C8106 /* MappingProvider.m in Sources */,
 				ADCD43EE1E9640C7006C8106 /* PersonNative.m in Sources */,
 				ADCD43E61E9640C7006C8106 /* AlienNative.m in Sources */,
+				AD5BB53D1ECF507600E914EB /* Object+Mapping.swift in Sources */,
 				ADCD440C1E9640C7006C8106 /* MappingProviderNative.m in Sources */,
 				ADCD43E81E9640C7006C8106 /* CarNative.m in Sources */,
+				ADAC7AEE1ECF4CE2009A6571 /* ChatMessage+Mapping.m in Sources */,
 				ADCD43EB1E9640C7006C8106 /* Native.m in Sources */,
 				ADCD43EA1E9640C7006C8106 /* FingerNative.m in Sources */,
 				ADCD43F01E9640C7006C8106 /* PhoneNative.m in Sources */,
@@ -1586,20 +1603,19 @@
 				ADCD43DC1E9640AB006C8106 /* FEMCacheSpec.m in Sources */,
 				ADCD43DB1E9640AB006C8106 /* FEMAttributeMappingSpec.m in Sources */,
 				ADCD43E51E9640C7006C8106 /* AddressNative.m in Sources */,
-				ADCD440E1E9640C7006C8106 /* RecursiveRelationship+Mapping.m in Sources */,
 				1D6A3B431A0D1418209F5238 /* Fixture.m in Sources */,
 				1D6A3A7E9B30652E43B73474 /* MagicalRecord+FEMExtension.m in Sources */,
 				1D6A3F26697E598E5EDE1C43 /* ManagedObjectChild+CoreDataProperties.swift in Sources */,
 				1D6A33B263F7408F954C86E8 /* ObjectChild.swift in Sources */,
+				ADAC7AEA1ECF4CB8009A6571 /* Chat+Mapping.m in Sources */,
 				1D6A362F744E73B881FD7C8A /* ManagedObject+CoreDataClass.swift in Sources */,
-				1D6A3C154126DB980CFC29F4 /* ManagedObject+Mapping.swift in Sources */,
-				1D6A3944490753FDEA1BF961 /* Object+Mapping.swift in Sources */,
 				1D6A3297C2D46A008B480DF7 /* ManagedObjectChild+CoreDataClass.swift in Sources */,
 				1D6A36B55E45D6AAD5A081DB /* Object.swift in Sources */,
 				1D6A337BB32C4E49BF14D262 /* ManagedObject+CoreDataProperties.swift in Sources */,
 				1D6A3266ECC3AC09BB35224B /* ObjectMappingSpec.swift in Sources */,
 				1D6A3C7DDF63FC1F1C286D7D /* ManagedObjectMappingSpeс.swift in Sources */,
 				1D6A34E36403358F0E2CED2B /* FEMAttribute+UTF8.swift in Sources */,
+				AD5BB5371ECF500600E914EB /* RecursiveRelationship+Mapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
