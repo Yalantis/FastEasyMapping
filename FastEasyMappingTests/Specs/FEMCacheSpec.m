@@ -132,4 +132,34 @@ SPEC_BEGIN(FEMCacheSpec)
         });
     });
 
+    describe(@"indirect relationship", ^{
+        __block FEMMapping *mappingA;
+        __block FEMMapping *mappingB;
+        __block FEMObjectCache *cache;
+        
+        beforeEach(^{
+            mappingA = [[FEMMapping alloc] initWithObjectClass:[NSObject class]];
+            mappingA.primaryKey = @"a";
+            
+            mappingB = [[FEMMapping alloc] initWithObjectClass:[NSObject class]];
+            mappingB.primaryKey = @"b";
+            
+            cache = [[FEMObjectCache alloc] init];
+        });
+        
+        it(@"should combine objects from similar mappings", ^{
+            NSObject *a = [NSObject new];
+            NSObject *b = [NSObject new];
+            
+            [cache setObject:a forKey:@1 mapping:mappingA];
+            [cache setObject:b forKey:@2 mapping:mappingB];
+            
+            [[[cache objectForKey:@1 mapping:mappingA] should] equal:a];
+            [[[cache objectForKey:@1 mapping:mappingB] should] equal:a];
+            
+            [[[cache objectForKey:@2 mapping:mappingA] should] equal:b];
+            [[[cache objectForKey:@2 mapping:mappingB] should] equal:b];
+        });
+    });
+
 SPEC_END

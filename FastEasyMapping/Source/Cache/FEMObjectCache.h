@@ -10,10 +10,7 @@ typedef _Nonnull id<NSFastEnumeration> (^FEMObjectCacheSource)(FEMMapping *mappi
 
 @interface FEMObjectCache : NSObject
 
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)new NS_UNAVAILABLE;
-
-- (instancetype)initWithSource:(FEMObjectCacheSource)source NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithSource:(nullable FEMObjectCacheSource)source NS_DESIGNATED_INITIALIZER;
 
 - (nullable id)objectForKey:(id)key mapping:(FEMMapping *)mapping;
 - (void)setObject:(id)object forKey:(id)key mapping:(FEMMapping *)mapping;
