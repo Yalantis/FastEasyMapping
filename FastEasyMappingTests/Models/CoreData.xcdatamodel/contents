@@ -9,11 +9,11 @@
     </entity>
     <entity name="Chat" representedClassName="Chat" syncable="YES" codeGenerationType="class">
         <attribute name="primaryKey" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ChatMessage" inverseName="chat" inverseEntity="ChatMessage" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ChatMessage" syncable="YES"/>
     </entity>
     <entity name="ChatMessage" representedClassName="ChatMessage" syncable="YES" codeGenerationType="class">
         <attribute name="primaryKey" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="chat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" inverseName="messages" inverseEntity="Chat" syncable="YES"/>
+        <relationship name="chat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" syncable="YES"/>
     </entity>
     <entity name="ManagedObject" representedClassName="ManagedObject" syncable="YES">
         <attribute name="boolObject" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>

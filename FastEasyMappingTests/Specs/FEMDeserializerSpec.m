@@ -25,6 +25,8 @@
 #import "FingerNative.h"
 #import "CatNative.h"
 #import "RecursiveRelationship+Mapping.h"
+#import "Chat+Mapping.h"
+#import "ChatMessage+Mapping.h"
 
 SPEC_BEGIN(FEMDeserializerOptionsSpec)
 describe(@"FEMDeserializer", ^{
@@ -382,6 +384,30 @@ describe(@"FEMDeserializer", ^{
                     [[child.primaryKey should] equal:@2];
                     
                     [[child.child should] equal:object];
+                });
+            });
+            
+            context(@"indirect recursive relationship", ^{
+                __block Chat *chat;
+                __block Chat *indirectChat;
+                __block ChatMessage *message;
+                
+                beforeEach(^{
+                    NSDictionary *fixture = [Fixture buildUsingFixture:@"RecursiveChatMessages"];
+                    FEMMapping *mapping = [Chat recursiveMapping];
+                    chat = [FEMDeserializer objectFromRepresentation:fixture mapping:mapping context:moc];
+                    message = [chat.messages anyObject];
+                    indirectChat = message.chat;
+                });
+                
+                it(@"should map values", ^{
+                    [[chat.primaryKey should] equal:@1];
+                    [[message.primaryKey should] equal:@345];
+                    [[indirectChat.primaryKey should] equal:@1];
+                });
+                
+                it(@"should not duplicate chat", ^{
+                    [[chat should] equal:indirectChat];
                 });
             });
         });
