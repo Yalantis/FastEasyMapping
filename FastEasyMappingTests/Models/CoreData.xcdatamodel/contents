@@ -9,6 +9,7 @@
     </entity>
     <entity name="Chat" representedClassName="Chat" syncable="YES" codeGenerationType="class">
         <attribute name="primaryKey" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="lastMessage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChatMessage" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ChatMessage" syncable="YES"/>
     </entity>
     <entity name="ChatMessage" representedClassName="ChatMessage" syncable="YES" codeGenerationType="class">
@@ -63,7 +64,7 @@
     </entity>
     <elements>
         <element name="Car" positionX="243" positionY="-990" width="128" height="120"/>
-        <element name="Chat" positionX="45" positionY="-828" width="128" height="75"/>
+        <element name="Chat" positionX="45" positionY="-828" width="128" height="90"/>
         <element name="ChatMessage" positionX="54" positionY="-819" width="128" height="75"/>
         <element name="ManagedObject" positionX="54" positionY="-900" width="128" height="315"/>
         <element name="ManagedObjectChild" positionX="63" positionY="-810" width="128" height="75"/>

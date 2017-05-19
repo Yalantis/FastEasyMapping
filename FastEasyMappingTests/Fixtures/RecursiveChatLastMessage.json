@@ -1,8 +1,8 @@
 {
   "primaryKey": 1,
-  
-  "messages": [{
+
+  "lastMessage": {
     "primaryKey": 300,
     "chat": { "primaryKey": 1 }
-  }]
+  }
 }

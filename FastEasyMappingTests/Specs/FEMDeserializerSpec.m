@@ -28,7 +28,7 @@
 #import "Chat+Mapping.h"
 #import "ChatMessage+Mapping.h"
 
-SPEC_BEGIN(FEMDeserializerOptionsSpec)
+SPEC_BEGIN(FEMDeserializerSpec)
 describe(@"FEMDeserializer", ^{
     context(@"NSManagedObject", ^{
         __block NSManagedObjectContext *moc;
@@ -386,15 +386,39 @@ describe(@"FEMDeserializer", ^{
                     [[child.child should] equal:object];
                 });
             });
+          
+            context(@"indirect to-one recursive relationship", ^{
+                __block Chat *chat;
+                __block Chat *indirectChat;
+                __block ChatMessage *message;
+                
+                beforeEach(^{
+                    NSDictionary *fixture = [Fixture buildUsingFixture:@"RecursiveChatLastMessage"];
+                    FEMMapping *mapping = [Chat chatLastMessageMapping];
+                    chat = [FEMDeserializer objectFromRepresentation:fixture mapping:mapping context:moc];
+                    message = chat.lastMessage;
+                    indirectChat = message.chat;
+                });
+                
+                it(@"should map values", ^{
+                    [[chat.primaryKey should] equal:@1];
+                    [[message.primaryKey should] equal:@300];
+                    [[indirectChat.primaryKey should] equal:@1];
+                });
+                
+                it(@"should not duplicate chat", ^{
+                    [[chat should] equal:indirectChat];
+                });
+            });
             
-            context(@"indirect recursive relationship", ^{
+            context(@"indirect to-many recursive relationship", ^{
                 __block Chat *chat;
                 __block Chat *indirectChat;
                 __block ChatMessage *message;
                 
                 beforeEach(^{
                     NSDictionary *fixture = [Fixture buildUsingFixture:@"RecursiveChatMessages"];
-                    FEMMapping *mapping = [Chat recursiveMapping];
+                    FEMMapping *mapping = [Chat chatMessagesMapping];
                     chat = [FEMDeserializer objectFromRepresentation:fixture mapping:mapping context:moc];
                     message = [chat.messages anyObject];
                     indirectChat = message.chat;
@@ -402,7 +426,7 @@ describe(@"FEMDeserializer", ^{
                 
                 it(@"should map values", ^{
                     [[chat.primaryKey should] equal:@1];
-                    [[message.primaryKey should] equal:@345];
+                    [[message.primaryKey should] equal:@300];
                     [[indirectChat.primaryKey should] equal:@1];
                 });
                 

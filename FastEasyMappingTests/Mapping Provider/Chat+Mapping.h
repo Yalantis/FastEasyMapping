@@ -7,6 +7,7 @@
 @interface Chat (Mapping)
 
 + (FEMMapping *)defaultMapping;
-+ (FEMMapping *)recursiveMapping;
++ (FEMMapping *)chatLastMessageMapping;
++ (FEMMapping *)chatMessagesMapping;
 
 @end
