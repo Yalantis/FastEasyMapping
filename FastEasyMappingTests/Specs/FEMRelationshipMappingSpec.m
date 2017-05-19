@@ -54,7 +54,7 @@ describe(@"FEMRelationship", ^{
             __block __weak FEMMapping *weakMapping = nil;
             @autoreleasepool {
                 FEMMapping *strongMapping = [mapping copy];
-                FEMRelationship *rel = [[FEMRelationship alloc] initWithProperty:@"property" mapping:strongMapping];
+                FEMRelationship *rel = [[FEMRelationship alloc] initWithProperty:@"property" mapping:strongMapping]; 
                 [strongMapping addRelationship:rel];
                 weakMapping = strongMapping;
             }
