@@ -20,7 +20,7 @@
         _relationshipMap = [NSMutableDictionary new];
 
         _objectClass = objectClass;
-        _uniquingIdentifier = @((NSUInteger)objectClass);
+        _uniqueIdentifier = @((NSUInteger)objectClass);
     }
 
     return self;
@@ -42,7 +42,7 @@
         _relationshipMap = [NSMutableDictionary new];
 
         _entityName = [entityName copy];
-        _uniquingIdentifier = @(entityName.hash);
+        _uniqueIdentifier = @(entityName.hash);
     }
 
     return self;
