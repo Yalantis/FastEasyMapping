@@ -12,7 +12,7 @@ FEMObjectCacheSource FEMObjectCacheSourceStub = ^id<NSFastEnumeration> (FEMMappi
 };
 
 @implementation FEMObjectCache {
-	NSMapTable<FEMMapping *, NSMutableDictionary<id, id> *> *_lookupObjectsMap;
+	NSMutableDictionary<NSNumber *, NSMutableDictionary<id, id> *> *_lookupObjectsMap;
 	FEMObjectCacheSource _source;
 }
 
@@ -22,9 +22,7 @@ FEMObjectCacheSource FEMObjectCacheSourceStub = ^id<NSFastEnumeration> (FEMMappi
 	self = [super init];
 	if (self) {
         _source = source ?: FEMObjectCacheSourceStub;
-
-        NSPointerFunctionsOptions options = NSPointerFunctionsObjectPointerPersonality | NSPointerFunctionsStrongMemory;
-		_lookupObjectsMap = [[NSMapTable alloc] initWithKeyOptions:options valueOptions:options capacity:0];
+        _lookupObjectsMap = [[NSMutableDictionary alloc] init];
     }
 
 	return self;
@@ -47,10 +45,10 @@ FEMObjectCacheSource FEMObjectCacheSourceStub = ^id<NSFastEnumeration> (FEMMappi
 }
 
 - (NSMutableDictionary *)cachedObjectsForMapping:(FEMMapping *)mapping {
-	NSMutableDictionary *entityObjectsMap = [_lookupObjectsMap objectForKey:mapping];
+    NSMutableDictionary *entityObjectsMap = _lookupObjectsMap[mapping.uniqueIdentifier];
 	if (!entityObjectsMap) {
 		entityObjectsMap = [self fetchExistingObjectsForMapping:mapping];
-        [_lookupObjectsMap setObject:entityObjectsMap forKey:mapping];
+        _lookupObjectsMap[mapping.uniqueIdentifier] = entityObjectsMap;
 	}
 
 	return entityObjectsMap;
