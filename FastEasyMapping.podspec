@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'FastEasyMapping'
-  spec.version      = '1.2'
+  spec.version      = '1.2.1'
   spec.summary      = 'Fast mapping from JSON to CoreData / Realm (github.com/Yalantis/FastEasyMappingRealm) / Plain NSObject'
   spec.homepage     = "https://github.com/Yalantis/FastEasyMapping"
   spec.license      = { :type => 'MIT', :file => 'LICENSE' }
