@@ -46,7 +46,7 @@
 
 - (void)setValueOnRepresentation:(NSMutableDictionary *)representation fromObject:(id)object withFieldMapping:(FEMAttribute *)fieldMapping {
 	id returnedValue = [object valueForKey:fieldMapping.property];
-	if (returnedValue) {
+	if (returnedValue || self.includeNulls) {
         returnedValue = [fieldMapping reverseMapValue:returnedValue] ?: [NSNull null];
 
 		[self setValue:returnedValue forKeyPath:fieldMapping.keyPath inRepresentation:representation];
@@ -79,13 +79,16 @@
                    usingMapping:(FEMRelationship *)relationshipMapping
 			         fromObject:(id)object {
 	id value = [object valueForKey:relationshipMapping.property];
-	if (value) {
-		id relationshipRepresentation = nil;
-		if (relationshipMapping.isToMany) {
-			relationshipRepresentation = [self _serializeCollection:value usingMapping:relationshipMapping.mapping];
-		} else {
-			relationshipRepresentation = [self _serializeObject:value usingMapping:relationshipMapping.mapping];
-		}
+	if (value || self.includeNulls) {
+		id relationshipRepresentation = [NSNull null];
+        
+        if (value) {
+            if (relationshipMapping.isToMany) {
+                relationshipRepresentation = [self _serializeCollection:value usingMapping:relationshipMapping.mapping];
+            } else {
+                relationshipRepresentation = [self _serializeObject:value usingMapping:relationshipMapping.mapping];
+            }
+        }
 
 		if (relationshipMapping.keyPath.length > 0) {
 			[representation setObject:relationshipRepresentation forKey:relationshipMapping.keyPath];
