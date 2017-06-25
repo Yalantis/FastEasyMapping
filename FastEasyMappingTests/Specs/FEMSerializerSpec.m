@@ -537,7 +537,173 @@ describe(@"FEMSerializer", ^{
         });
 
     });
- 
+    
+    describe(@"include nulls", ^{
+        __block FEMMapping *mapping;
+        __block KWMock *object;
+        __block FEMSerializer *serializer;
+        
+        beforeEach(^{
+            mapping = [[FEMMapping alloc] initWithObjectClass:[NSObject class]];
+            object = [NSObject mock];
+            serializer = [[FEMSerializer alloc] init];
+        });
+        
+        context(@"when NO", ^{
+            context(@"attribute", ^{
+                beforeEach(^{
+                    [mapping addAttributesFromArray:@[@"attribute"]];
+                });
+                
+                context(@"is nil", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(attribute) andReturn:nil];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"attribute"] should] beNil];
+                    });
+                });
+                
+                context(@"is null", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(attribute) andReturn:[NSNull null]];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"attribute"] should] beNil];
+                    });
+                });
+            });
+
+            context(@"to-one relationship", ^{
+                beforeEach(^{
+                    // shortcut for relationship creation
+                    [mapping addRecursiveRelationshipMappingForProperty:@"relatinoship" keypath:@"relatinoship"];
+                });
+                
+                context(@"is nil", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(relationship) andReturn:nil];
+
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"relationship"] should] beNil];
+                    });
+                });
+                
+                context(@"is null", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(relationship) andReturn:[NSNull null]];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"relationship"] should] beNil];
+                    });
+                });
+            });
+            
+            context(@"to-many relationship", ^{
+                beforeEach(^{
+                    [mapping addRecursiveToManyRelationshipForProperty:@"relationship" keypath:@"relationship"];
+                });
+                
+                context(@"is nil", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(relationship) andReturn:nil];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"relationship"] should] beNil];
+                    });
+                });
+                
+                context(@"is null", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(relationship) andReturn:[NSNull null]];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"relationship"] should] beNil];
+                    });
+                });
+            });
+        });
+        
+        context(@"when YES", ^{
+            beforeEach(^{
+                serializer.includeNulls = YES;
+            });
+            
+            context(@"attribute", ^{
+                beforeEach(^{
+                    [mapping addAttributesFromArray:@[@"attribute"]];
+                });
+                
+                context(@"is nil", ^{
+                    it(@"should be included as Null", ^{
+                        [object stub:@selector(attribute) andReturn:nil];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"attribute"] should] equal:[NSNull null]];
+                    });
+                });
+                
+                context(@"is null", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(attribute) andReturn:[NSNull null]];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"attribute"] should] equal:[NSNull null]];
+                    });
+                });
+            });
+            
+            context(@"to-one relationship", ^{
+                beforeEach(^{
+                    // shortcut for relationship creation
+                    [mapping addRecursiveRelationshipMappingForProperty:@"relatinoship" keypath:@"relatinoship"];
+                });
+                
+                context(@"is nil", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(relationship) andReturn:nil];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"relationship"] should] equal:[NSNull null]];
+                    });
+                });
+                
+                context(@"is null", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(relationship) andReturn:[NSNull null]];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"relationship"] should] equal:[NSNull null]];
+                    });
+                });
+            });
+            
+            context(@"to-many relationship", ^{
+                beforeEach(^{
+                    [mapping addRecursiveToManyRelationshipForProperty:@"relationship" keypath:@"relationship"];
+                });
+                
+                context(@"is nil", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(relationship) andReturn:nil];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"relationship"] should] equal:[NSNull null]];
+                    });
+                });
+                
+                context(@"is null", ^{
+                    it(@"should not be included", ^{
+                        [object stub:@selector(relationship) andReturn:[NSNull null]];
+                        
+                        NSDictionary *output = [serializer serializeObject:object usingMapping:mapping];
+                        [[[output objectForKey:@"relationship"] should] equal:[NSNull null]];
+                    });
+                });
+            });
+        });
+    });
+
 });
 
 SPEC_END
