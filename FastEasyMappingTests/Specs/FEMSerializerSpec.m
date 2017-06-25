@@ -538,6 +538,9 @@ describe(@"FEMSerializer", ^{
 
     });
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    
     describe(@"include nulls", ^{
         __block FEMMapping *mapping;
         __block KWMock *object;
@@ -573,7 +576,7 @@ describe(@"FEMSerializer", ^{
                     });
                 });
             });
-
+            
             context(@"to-one relationship", ^{
                 beforeEach(^{
                     // shortcut for relationship creation
@@ -656,7 +659,7 @@ describe(@"FEMSerializer", ^{
             context(@"to-one relationship", ^{
                 beforeEach(^{
                     // shortcut for relationship creation
-                    [mapping addRecursiveRelationshipMappingForProperty:@"relatinoship" keypath:@"relatinoship"];
+                    [mapping addRecursiveRelationshipMappingForProperty:@"relationship" keypath:@"relationship"];
                 });
                 
                 context(@"is nil", ^{
@@ -703,6 +706,8 @@ describe(@"FEMSerializer", ^{
             });
         });
     });
+    
+#pragma clang diagnostic pop
 
 });
 
