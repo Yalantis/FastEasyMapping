@@ -13,13 +13,12 @@ env:
   global:
   - WORKSPACE=FastEasyMapping.xcworkspace
   - RUN_TESTS="YES"
-  - DESTINATION_TIMEOUT=240 # https://github.com/travis-ci/travis-ci/issues/6422
   - IOS_SCHEME="FastEasyMapping iOS"
   - MACOS_SCHEME="FastEasyMapping macOS"
   - TVOS_SCHEME="FastEasyMapping tvOS"
   - WATCHOS_SCHEME="FastEasyMapping watchOS"
 
-  - IOS_SDK=iphonesimulator10.3
+  - IOS_SDK=iphonesimulator10.0
   - MACOS_SDK=macosx10.12
   - TVOS_SDK=appletvsimulator10.2
   - WATCHOS_SDK=watchsimulator3.2
@@ -27,7 +26,7 @@ env:
   matrix:
       - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=8.1,name=iPhone 6"
       - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=9.3,name=iPhone SE"
-      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=10.3,name=iPhone 7"
+      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=10.0,name=iPhone 7"
 
       - SCHEME="$MACOS_SCHEME" SDK="$MACOS_SDK" DESTINATION="arch=x86_64"
 
