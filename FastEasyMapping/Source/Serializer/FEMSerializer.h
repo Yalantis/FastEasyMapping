@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FEMSerializer : NSObject
 
+@property (nonatomic) BOOL includeNulls;
+
 /**
  @brief Serialize Object to JSON using given `mapping`.
  
@@ -95,7 +97,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return Representation of Object in form of Dictionary.
  */
 - (id)serializeCollection:(NSArray *)collection usingMapping:(FEMMapping *)mapping;
-
 
 @end
 
