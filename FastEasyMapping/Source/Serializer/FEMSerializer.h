@@ -13,6 +13,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FEMSerializer : NSObject
 
+/**
+ @brief Indicates whether include Null values to the resulting JSON or not. Default is `NO`
+ 
+ @discussion In case Object returns `nil` for a specific attribute or relationship FEMSerializer doesn't include it
+ into the resulting JSON by default. Settings this property to `YES` forces FEMSerializer to include every nil value as a
+ NSNull.
+ 
+ For `FEMAttribute` with custom mapping blocks there is a difference in behavior:
+ 
+ - when Object returns `nil` value and `includeNulls` set to `NO` then no mapping block i
+ - when Object returns `nil` value and `includeNulls` set to `YES` then mapping block invoked with `nil`.
+ 
+ */
 @property (nonatomic) BOOL includeNulls;
 
 /**
@@ -94,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see FEMAttribute
  
- @return Representation of Object in form of Dictionary.
+ @return Representation of the Collection of the Objects in form of Dictionary / Array.
  */
 - (id)serializeCollection:(NSArray *)collection usingMapping:(FEMMapping *)mapping;
 
@@ -102,8 +115,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FEMSerializer (Shortcut)
 
+
+/**
+ @brief Shortcut for the `-[FEMSerializer serializeObject:usingMapping:]`
+ 
+ @param object  Object that is going to be serialized to JSON.
+ @param mapping Mapping describing how to map given `object` to JSON.
+ @return Representation of Object in form of Dictionary.
+ */
 + (NSDictionary *)serializeObject:(id)object usingMapping:(FEMMapping *)mapping;
 
+/**
+ @brief Shortcut for the `-[FEMSerializer serializeCollection:usingMapping:]`
+ 
+ @param collection Collection of Objects that are going to be serialized to the JSON.
+ @param mapping Mapping describing how to map given `object` to the JSON.
+ @return Representation of the Collection of the Objects in form of Dictionary / Array.
+*/
 + (id)serializeCollection:(NSArray *)collection usingMapping:(FEMMapping *)mapping;
 
 @end
