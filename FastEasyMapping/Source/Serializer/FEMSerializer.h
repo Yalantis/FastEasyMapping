@@ -71,8 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Representation of Object in form of Dictionary.
  */
-+ (NSDictionary *)serializeObject:(id)object usingMapping:(FEMMapping *)mapping;
-
+- (NSDictionary *)serializeObject:(id)object usingMapping:(FEMMapping *)mapping;
 
 /**
  @brief Serialize Collection of Objects to JSON using given `mapping`.
@@ -95,6 +94,15 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Representation of Object in form of Dictionary.
  */
+- (id)serializeCollection:(NSArray *)collection usingMapping:(FEMMapping *)mapping;
+
+
+@end
+
+@interface FEMSerializer (Shortcut)
+
++ (NSDictionary *)serializeObject:(id)object usingMapping:(FEMMapping *)mapping;
+
 + (id)serializeCollection:(NSArray *)collection usingMapping:(FEMMapping *)mapping;
 
 @end
