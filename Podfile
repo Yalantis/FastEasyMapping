@@ -7,7 +7,7 @@ abstract_target 'Tests' do
     pod 'MagicalRecord', '~> 2.3'
     pod 'OCMock', '~> 3.4'
 
-    pod 'Nimble', '6.0.1'
+    pod 'Nimble', '7.0'
     pod 'Quick', '~> 1.0'
 
     target 'FastEasyMapping iOS Tests' do
