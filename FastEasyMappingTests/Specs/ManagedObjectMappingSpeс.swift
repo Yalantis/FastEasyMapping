@@ -97,7 +97,7 @@ class ManagedObjectMappingSpec: QuickSpec {
         }
         
         it("should map children") {
-            expect(object.children) != nil
+            expect(object.children).toNot(beNil())
             expect(object.children!).to(haveCount(2))
             
             expect(object.children!.flatMap({ $0.string })).to(contain(["1", "2"]))
