@@ -113,17 +113,21 @@
 - (id)_objectFromRepresentation:(NSDictionary *)representation mapping:(FEMMapping *)mapping allocateIfNeeded:(BOOL)allocateIfNeeded {
     id object = nil;
     id primaryKey = nil;
+    
+    BOOL allocationAllowed = allocateIfNeeded;
 
     FEMAttribute *primaryKeyAttribute = mapping.primaryKeyAttribute;
     if (primaryKeyAttribute) {
         primaryKey = FEMRepresentationValueForAttribute(representation, primaryKeyAttribute);
         if (primaryKey != nil && primaryKey != [NSNull null]) {
             object = [self.store objectForPrimaryKey:primaryKey mapping:mapping];
+        } else if (mapping.primaryKeyRequired) {
+            allocationAllowed = NO;
         }
     }
 
     BOOL allocated = NO;
-    if (!object && allocateIfNeeded) {
+    if (!object && allocationAllowed) {
         object = [self.store newObjectForMapping:mapping];
         allocated = YES;
     }
