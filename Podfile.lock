@@ -25,6 +25,17 @@ DEPENDENCIES:
   - OCMock (~> 3.4)
   - Quick (~> 1.0)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CMFactory
+    - Kiwi
+    - libextobjc
+    - MagicalRecord
+    - Mantle
+    - Nimble
+    - OCMock
+    - Quick
+
 SPEC CHECKSUMS:
   CMFactory: 535c1473e91f4d0d13cb290de2144faa75a882a3
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
@@ -37,4 +48,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: aaca2b498077e54e9c4a387d50a365b3169c53a5
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
