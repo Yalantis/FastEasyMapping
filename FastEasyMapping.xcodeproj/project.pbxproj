@@ -1054,7 +1054,6 @@
 				2CF8098518C3AD5700C07899 /* Frameworks */,
 				2CF8098618C3AD5700C07899 /* Resources */,
 				9A4D03A520C0CDEF78D03380 /* [CP] Embed Pods Frameworks */,
-				CEC0F575EF1C0D8DCDD9F021 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1093,7 +1092,6 @@
 				ADCD431E1E963AB3006C8106 /* Frameworks */,
 				ADCD431F1E963AB3006C8106 /* Resources */,
 				497F98792715F5940C9D3DA3 /* [CP] Embed Pods Frameworks */,
-				6C2C92317907F6AE1B45AE45 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1150,7 +1148,6 @@
 				ADE1F36D1E9A793100F457E9 /* Frameworks */,
 				ADE1F36E1E9A793100F457E9 /* Resources */,
 				D0180ABB27EC728691758F21 /* [CP] Embed Pods Frameworks */,
-				125CDA32C3FFF7FBA2D21B70 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1190,7 +1187,7 @@
 				ORGANIZATIONNAME = Yalantis;
 				TargetAttributes = {
 					2CF8098718C3AD5700C07899 = {
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0920;
 						TestTargetID = 2CF8097718C3AD5700C07899;
 					};
 					ADCD43181E963AB3006C8106 = {
@@ -1370,28 +1367,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tests-FastEasyMapping macOS Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		125CDA32C3FFF7FBA2D21B70 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Benchmark/Pods-Benchmark-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		497F98792715F5940C9D3DA3 /* [CP] Embed Pods Frameworks */ = {
@@ -1400,28 +1385,30 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MagicalRecord-macOS/MagicalRecord.framework",
+				"${BUILT_PRODUCTS_DIR}/CMFactory-macOS/CMFactory.framework",
+				"${BUILT_PRODUCTS_DIR}/Kiwi-macOS/Kiwi.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle-macOS/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble-macOS/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/OCMock-macOS/OCMock.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick-macOS/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/libextobjc-macOS/libextobjc.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CMFactory.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kiwi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libextobjc.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6C2C92317907F6AE1B45AE45 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		907179569F44FB43C93D4DEE /* [CP] Check Pods Manifest.lock */ = {
@@ -1430,13 +1417,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tests-FastEasyMapping iOS Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9A4D03A520C0CDEF78D03380 /* [CP] Embed Pods Frameworks */ = {
@@ -1445,9 +1435,26 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MagicalRecord-iOS/MagicalRecord.framework",
+				"${BUILT_PRODUCTS_DIR}/CMFactory-iOS/CMFactory.framework",
+				"${BUILT_PRODUCTS_DIR}/Kiwi-iOS/Kiwi.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle-iOS/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble-iOS/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/OCMock-iOS/OCMock.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick-iOS/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/libextobjc-iOS/libextobjc.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CMFactory.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kiwi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libextobjc.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1474,28 +1481,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Benchmark-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		CEC0F575EF1C0D8DCDD9F021 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D0180ABB27EC728691758F21 /* [CP] Embed Pods Frameworks */ = {
@@ -1504,9 +1499,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Benchmark/Pods-Benchmark-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MagicalRecord-macOS/MagicalRecord.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1784,6 +1782,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.FastEasyMapping.Core;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -1829,6 +1828,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1855,7 +1855,8 @@
 				PRODUCT_NAME = "FastEasyMapping iOS Tests";
 				SWIFT_OBJC_BRIDGING_HEADER = "FastEasyMappingTests/FastEasyMappingTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1873,7 +1874,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fastEasyMapping.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "FastEasyMapping iOS Tests";
 				SWIFT_OBJC_BRIDGING_HEADER = "FastEasyMappingTests/FastEasyMappingTests-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1947,7 +1949,7 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "FastEasyMappingTests/FastEasyMappingTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1972,7 +1974,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "FastEasyMappingTests/FastEasyMappingTests-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
