@@ -169,10 +169,10 @@ In order to map _JSON to Object_ and vice versa we have to describe the mapping 
 @implementation Car (Mapping)
 
 + (FEMMapping *)defaultMapping {
-	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Car"];
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Car"];
     [mapping addAttributesFromArray:@[@"model", @"year"]];
 
-  	return mapping;
+    return mapping;
 }
 
 @end
@@ -407,8 +407,8 @@ Mapping will look like this:
 @implementation Person (Mapping)
 
 + (FEMMapping *)defaultMapping {
-	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
-	mapping.rootPath = @"result";
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    mapping.rootPath = @"result";
 
     [mapping addAttributesFromArray:@[@"name"]];
     [mapping addAttributesFromDictionary:@{@"email": @"user_email"}];
@@ -428,14 +428,14 @@ It is a common case when you're deserializing JSON into CoreData and don't want 
 @implementation Person (Mapping)
 
 + (FEMMapping *)defaultMapping {
-	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
     mapping.primaryKey = @"email";
     [mapping addAttributesFromArray:@[@"name"]];
     [mapping addAttributesFromDictionary:@{@"email": @"user_email"}];
 
     [mapping addRelationshipMapping:[Car defaultMapping] forProperty:@"car" keyPath:@"car"];
-  
-  	return mapping;
+    
+    return mapping;
 }
 
 @end
@@ -578,12 +578,12 @@ Mapping:
 @implementation Person (Mapping)
 
 + (FEMMapping *)defaultMapping {
-	FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
+    FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"Person"];
     [mapping addAttributesFromArray:@[@"name"]];
     [mapping addAttributesFromDictionary:@{@"email": @"user_email"}];
     [mapping addToManyRelationshipMapping:[Person defaultMapping] forProperty:@"phones" keyPath:@"phones"];
 
-  	return mapping;
+    return mapping;
 }
 
 @end
