@@ -1,5 +1,5 @@
 os: osx
-osx_image: xcode8.3
+osx_image: xcode11.2
 
 language: objective-c
 cache: cocoapods
@@ -18,23 +18,23 @@ env:
   - TVOS_SCHEME="FastEasyMapping tvOS"
   - WATCHOS_SCHEME="FastEasyMapping watchOS"
 
-  - IOS_SDK=iphonesimulator10.3
-  - MACOS_SDK=macosx10.12
-  - TVOS_SDK=appletvsimulator10.2
-  - WATCHOS_SDK=watchsimulator3.2
+  - IOS_SDK=iphonesimulator13.2
+  - MACOS_SDK=macosx10.15
+  - TVOS_SDK=appletvsimulator13.2
+  - WATCHOS_SDK=watchsimulator6.1
 
   matrix:
-      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=8.1,name=iPhone 6"
-      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=9.3,name=iPhone SE"
-      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=10.0,name=iPhone 7"
+      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=11.4,name=iPhone 6"
+      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=12.1,name=iPhone SE"
+      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=13.2,name=iPhone 8"
 
       - SCHEME="$MACOS_SCHEME" SDK="$MACOS_SDK" DESTINATION="arch=x86_64"
 
-      - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=9.0,name=Apple TV 1080p" RUN_TESTS="NO"
-      - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=10.0,name=Apple TV 1080p" RUN_TESTS="NO"
+      - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=12.1,name=Apple TV 1080p" RUN_TESTS="NO"
+      - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=13.2,name=Apple TV 1080p" RUN_TESTS="NO"
 
-      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=2.0,name=Apple Watch - 38mm" RUN_TESTS="NO"
-      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=3.2,name=Apple Watch - 38mm" RUN_TESTS="NO"
+      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=5.1,name=Apple Watch - 38mm" RUN_TESTS="NO"
+      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=6.1,name=Apple Watch - 38mm" RUN_TESTS="NO"
 
 script:
     - set -o pipefail
