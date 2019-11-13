@@ -13,7 +13,7 @@ PODS:
   - Mantle (1.0):
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
-  - Nimble (7.0.3)
+  - Nimble (8.0.4)
   - OCMock (3.4.1)
   - Quick (1.2.0)
 
@@ -21,20 +21,21 @@ DEPENDENCIES:
   - CMFactory (~> 1.4.0)
   - Kiwi (~> 2.4.0)
   - MagicalRecord (~> 2.3)
-  - Nimble (~> 7.0.3)
+  - Nimble (~> 8.0.1)
   - OCMock (~> 3.4)
   - Quick (~> 1.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - CMFactory
     - Kiwi
     - libextobjc
     - MagicalRecord
     - Mantle
-    - Nimble
     - OCMock
     - Quick
+  trunk:
+    - Nimble
 
 SPEC CHECKSUMS:
   CMFactory: 535c1473e91f4d0d13cb290de2144faa75a882a3
@@ -42,10 +43,10 @@ SPEC CHECKSUMS:
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Mantle: 3fbcca07bdfe76c54a08c241689a60d34d08e783
-  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
   OCMock: 2cd0716969bab32a2283ff3a46fd26a8c8b4c5e3
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 
-PODFILE CHECKSUM: aaca2b498077e54e9c4a387d50a365b3169c53a5
+PODFILE CHECKSUM: 9148ac5d5dcd27763a9c5bb786cb252db6e14e9a
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4
