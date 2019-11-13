@@ -4,5 +4,5 @@ import Foundation
 
 class ObjectChild: NSObject {
 
-  dynamic var string: String = ""
+  @objc dynamic var string: String = ""
 }
