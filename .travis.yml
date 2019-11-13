@@ -33,8 +33,8 @@ env:
       - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=12.1,name=Apple TV 4K (at 1080p)" RUN_TESTS="NO"
       - SCHEME="$TVOS_SCHEME" SDK="$TVOS_SDK" DESTINATION="OS=13.2,name=Apple TV 4K (at 1080p)" RUN_TESTS="NO"
 
-      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=5.1,name=Apple Watch - 38mm" RUN_TESTS="NO"
-      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=6.1,name=Apple Watch - 38mm" RUN_TESTS="NO"
+      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=5.1,name=Apple Watch Series 2 - 38mm" RUN_TESTS="NO"
+      - SCHEME="$WATCHOS_SCHEME" SDK="$WATCHOS_SDK" DESTINATION="OS=6.1,name=Apple Watch Series 5 - 44mm" RUN_TESTS="NO"
 
 script:
     - set -o pipefail
