@@ -86,7 +86,7 @@
 		1D6A3EB013A2AC7B8B7B69CE /* PersonWithCar_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A3E2CCF90DF3444D0707E /* PersonWithCar_1.json */; };
 		1D6A3F26697E598E5EDE1C43 /* ManagedObjectChild+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35A3F7A4EB768C57D8D2 /* ManagedObjectChild+CoreDataProperties.swift */; };
 		1D6A3F7B7BB9D2EF859D8443 /* FEMMergeableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6A31B7B26282578A66D583 /* FEMMergeableCollection.h */; };
-		22CECC1BDDF661C654569EFD /* Pods_Tests_FastEasyMapping_macOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CC4D4111F47CE029BF9B00 /* Pods_Tests_FastEasyMapping_macOS_Tests.framework */; };
+		29588F98D21E422BC08BFED9 /* Pods_FastEasyMapping_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4956ABD76FCACABD8168ACC4 /* Pods_FastEasyMapping_iOS_Tests.framework */; };
 		2C375F1318CCD3FB00FCB8EA /* CoreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C375F1018CCBC2900FCB8EA /* CoreData.xcdatamodel */; };
 		2C375F1418CCD3FB00FCB8EA /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED767EE6E89A487714CDF8 /* Car.m */; };
 		2C375F1518CCD3FB00FCB8EA /* Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED75A1803E4FA721E79895 /* Phone.m */; };
@@ -119,6 +119,7 @@
 		2C375F4318CCD49B00FCB8EA /* MappingProviderNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED799D533AED10DCFB4106 /* MappingProviderNative.m */; };
 		2C375F4418CCD49B00FCB8EA /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 69ED7532E1E5E3196BC27932 /* MappingProvider.m */; };
 		2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8097B18C3AD5700C07899 /* Foundation.framework */; };
+		387288284C62F836A286B03B /* Pods_FastEasyMapping_macOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B14DE4CCE0E3C9F2387F10A /* Pods_FastEasyMapping_macOS_Tests.framework */; };
 		6226FA6FAD89E10F289A578D /* Pods_Benchmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9577B48FE271F50869BB0E3B /* Pods_Benchmark.framework */; };
 		AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEC66A91B9D9DEB00F528C8 /* FastEasyMapping.framework */; };
 		AD4FC99E1E9A8074006C6C56 /* Parent+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4FC99D1E9A8074006C6C56 /* Parent+Mapping.m */; };
@@ -319,7 +320,6 @@
 		ADEC66EC1B9D9FBB00F528C8 /* FEMMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3E65B1DB73E680A495BA /* FEMMapping.m */; };
 		ADEC66ED1B9D9FBB00F528C8 /* FEMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A312125E7A338A36E4EC2 /* FEMAttribute.m */; };
 		ADEC66EE1B9D9FBB00F528C8 /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3C4B6BB4FD8C58AE917F /* FEMRelationship.m */; };
-		B14FAEBABFB0C8FEFC3AC769 /* Pods_Tests_FastEasyMapping_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559DD7DC33753168FB4A7D5D /* Pods_Tests_FastEasyMapping_iOS_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -347,6 +347,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DE4E58351D92F9295329201 /* Pods-FastEasyMapping macOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMapping macOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FastEasyMapping macOS Tests/Pods-FastEasyMapping macOS Tests.release.xcconfig"; sourceTree = "<group>"; };
+		1B14DE4CCE0E3C9F2387F10A /* Pods_FastEasyMapping_macOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FastEasyMapping_macOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6A30804948F002D8862B62 /* FEMRelationshipAssignmentContext+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FEMRelationshipAssignmentContext+Internal.h"; sourceTree = "<group>"; };
 		1D6A30C2751740DF8E99DE47 /* ManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1D6A30F341766BD719DB5C9F /* RecursiveCyclicRelationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecursiveCyclicRelationship.json; sourceTree = "<group>"; };
@@ -410,11 +412,11 @@
 		2C375F1018CCBC2900FCB8EA /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		2CF8097B18C3AD5700C07899 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CF8098818C3AD5700C07899 /* FastEasyMapping iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FastEasyMapping iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FAB4244DBA61D384E19BF63 /* Pods-FastEasyMapping iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMapping iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FastEasyMapping iOS Tests/Pods-FastEasyMapping iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
 		36CDD6E6A41ADF6ACD6281C9 /* Pods-Tests-FastEasyMapping macOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FastEasyMapping macOS Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		394A234A1348954592CA58C7 /* Pods-Tests-FastEasyMapping iOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FastEasyMapping iOS Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		43F52CB40638DAB0AED115C1 /* Pods-Benchmark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Benchmark.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Benchmark/Pods-Benchmark.debug.xcconfig"; sourceTree = "<group>"; };
-		559DD7DC33753168FB4A7D5D /* Pods_Tests_FastEasyMapping_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FastEasyMapping_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		55CC4D4111F47CE029BF9B00 /* Pods_Tests_FastEasyMapping_macOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FastEasyMapping_macOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4956ABD76FCACABD8168ACC4 /* Pods_FastEasyMapping_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FastEasyMapping_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69ED70F7239A59402E626302 /* Cars.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Cars.json; sourceTree = "<group>"; };
 		69ED70FD89800BB41C8894FE /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
 		69ED714FF0FE4A0F2A6F5928 /* AddressNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressNative.m; sourceTree = "<group>"; };
@@ -503,6 +505,8 @@
 		ADEC66C21B9D9E7000F528C8 /* FastEasyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastEasyMapping.h; sourceTree = "<group>"; };
 		ADEC66C31B9D9E7000F528C8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADF700D01B99F5F600713D61 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B2CC2E2E36FEE5B71CE84F94 /* Pods-FastEasyMapping iOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMapping iOS Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FastEasyMapping iOS Tests/Pods-FastEasyMapping iOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		B989D31A8BCEA48F11B5A618 /* Pods-FastEasyMapping macOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastEasyMapping macOS Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FastEasyMapping macOS Tests/Pods-FastEasyMapping macOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C2B2681876C4BE25C9B796FB /* Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F7319D65D29D40CF603E9C01 /* Pods-Benchmark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Benchmark.release.xcconfig"; path = "Pods/Target Support Files/Pods-Benchmark/Pods-Benchmark.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -514,7 +518,7 @@
 			files = (
 				AD41A6A41B9DFA4C007F5729 /* FastEasyMapping.framework in Frameworks */,
 				2CF8098B18C3AD5700C07899 /* Foundation.framework in Frameworks */,
-				B14FAEBABFB0C8FEFC3AC769 /* Pods_Tests_FastEasyMapping_iOS_Tests.framework in Frameworks */,
+				29588F98D21E422BC08BFED9 /* Pods_FastEasyMapping_iOS_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,7 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCD43221E963AB3006C8106 /* FastEasyMapping.framework in Frameworks */,
-				22CECC1BDDF661C654569EFD /* Pods_Tests_FastEasyMapping_macOS_Tests.framework in Frameworks */,
+				387288284C62F836A286B03B /* Pods_FastEasyMapping_macOS_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,8 +720,8 @@
 				ADF700D01B99F5F600713D61 /* CoreData.framework */,
 				2CF8097B18C3AD5700C07899 /* Foundation.framework */,
 				9577B48FE271F50869BB0E3B /* Pods_Benchmark.framework */,
-				559DD7DC33753168FB4A7D5D /* Pods_Tests_FastEasyMapping_iOS_Tests.framework */,
-				55CC4D4111F47CE029BF9B00 /* Pods_Tests_FastEasyMapping_macOS_Tests.framework */,
+				4956ABD76FCACABD8168ACC4 /* Pods_FastEasyMapping_iOS_Tests.framework */,
+				1B14DE4CCE0E3C9F2387F10A /* Pods_FastEasyMapping_macOS_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -741,6 +745,10 @@
 				C2B2681876C4BE25C9B796FB /* Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig */,
 				36CDD6E6A41ADF6ACD6281C9 /* Pods-Tests-FastEasyMapping macOS Tests.debug.xcconfig */,
 				7529120C70665C2BC64F204D /* Pods-Tests-FastEasyMapping macOS Tests.release.xcconfig */,
+				B2CC2E2E36FEE5B71CE84F94 /* Pods-FastEasyMapping iOS Tests.debug.xcconfig */,
+				2FAB4244DBA61D384E19BF63 /* Pods-FastEasyMapping iOS Tests.release.xcconfig */,
+				B989D31A8BCEA48F11B5A618 /* Pods-FastEasyMapping macOS Tests.debug.xcconfig */,
+				0DE4E58351D92F9295329201 /* Pods-FastEasyMapping macOS Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1372,7 +1380,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Tests-FastEasyMapping macOS Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-FastEasyMapping macOS Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1385,10 +1393,10 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MagicalRecord-macOS/MagicalRecord.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FastEasyMapping macOS Tests/Pods-FastEasyMapping macOS Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CMFactory-macOS/CMFactory.framework",
 				"${BUILT_PRODUCTS_DIR}/Kiwi-macOS/Kiwi.framework",
+				"${BUILT_PRODUCTS_DIR}/MagicalRecord-macOS/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle-macOS/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble-macOS/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/OCMock-macOS/OCMock.framework",
@@ -1397,9 +1405,9 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CMFactory.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kiwi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
@@ -1408,7 +1416,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tests-FastEasyMapping macOS Tests/Pods-Tests-FastEasyMapping macOS Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FastEasyMapping macOS Tests/Pods-FastEasyMapping macOS Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		907179569F44FB43C93D4DEE /* [CP] Check Pods Manifest.lock */ = {
@@ -1422,7 +1430,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Tests-FastEasyMapping iOS Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-FastEasyMapping iOS Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1435,10 +1443,10 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MagicalRecord-iOS/MagicalRecord.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FastEasyMapping iOS Tests/Pods-FastEasyMapping iOS Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CMFactory-iOS/CMFactory.framework",
 				"${BUILT_PRODUCTS_DIR}/Kiwi-iOS/Kiwi.framework",
+				"${BUILT_PRODUCTS_DIR}/MagicalRecord-iOS/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle-iOS/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble-iOS/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/OCMock-iOS/OCMock.framework",
@@ -1447,9 +1455,9 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CMFactory.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kiwi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
@@ -1458,7 +1466,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tests-FastEasyMapping iOS Tests/Pods-Tests-FastEasyMapping iOS Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FastEasyMapping iOS Tests/Pods-FastEasyMapping iOS Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ADEC66F31B9DA45F00F528C8 /* Lipo */ = {
@@ -1838,7 +1846,7 @@
 		};
 		2CF8099F18C3AD5700C07899 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 394A234A1348954592CA58C7 /* Pods-Tests-FastEasyMapping iOS Tests.debug.xcconfig */;
+			baseConfigurationReference = B2CC2E2E36FEE5B71CE84F94 /* Pods-FastEasyMapping iOS Tests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1862,7 +1870,7 @@
 		};
 		2CF809A018C3AD5700C07899 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2B2681876C4BE25C9B796FB /* Pods-Tests-FastEasyMapping iOS Tests.release.xcconfig */;
+			baseConfigurationReference = 2FAB4244DBA61D384E19BF63 /* Pods-FastEasyMapping iOS Tests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1930,7 +1938,7 @@
 		};
 		ADCD432E1E963AB3006C8106 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36CDD6E6A41ADF6ACD6281C9 /* Pods-Tests-FastEasyMapping macOS Tests.debug.xcconfig */;
+			baseConfigurationReference = B989D31A8BCEA48F11B5A618 /* Pods-FastEasyMapping macOS Tests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1955,7 +1963,7 @@
 		};
 		ADCD432F1E963AB3006C8106 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7529120C70665C2BC64F204D /* Pods-Tests-FastEasyMapping macOS Tests.release.xcconfig */;
+			baseConfigurationReference = 0DE4E58351D92F9295329201 /* Pods-FastEasyMapping macOS Tests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
