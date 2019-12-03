@@ -26,7 +26,7 @@ env:
   matrix:
       - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=11.4,name=iPhone 6"
       - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=12.1,name=iPhone SE"
-      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=13.2,name=iPhone 8"
+      - SCHEME="$IOS_SCHEME" SDK="$IOS_SDK" DESTINATION="OS=13.2.2,name=iPhone 8"
 
       - SCHEME="$MACOS_SCHEME" SDK="$MACOS_SDK" DESTINATION="arch=x86_64"
 
