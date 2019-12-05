@@ -114,6 +114,10 @@
     id object = nil;
     id primaryKey = nil;
 
+    if (_delegateFlags.willMapObject) {
+        [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
+    }
+    
     FEMAttribute *primaryKeyAttribute = mapping.primaryKeyAttribute;
     if (primaryKeyAttribute) {
         primaryKey = FEMRepresentationValueForAttribute(representation, primaryKeyAttribute);
@@ -130,10 +134,6 @@
     
     if (!object) {
         return nil;
-    }
-
-    if (_delegateFlags.willMapObject) {
-        [self.delegate deserializer:self willMapObjectFromRepresentation:representation mapping:mapping];
     }
 
     [self applyAttributesToObject:object representation:representation mapping:mapping allocated:allocated];
