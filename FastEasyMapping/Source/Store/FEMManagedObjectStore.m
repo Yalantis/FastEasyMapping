@@ -64,7 +64,7 @@ __attribute__((always_inline)) void validateMapping(FEMMapping *mapping) {
 - (void)addObject:(id)object forPrimaryKey:(nullable id)primaryKey mapping:(FEMMapping *)mapping {
     validateMapping(mapping);
 
-    if (primaryKey != nil && [object isInserted]) {
+    if (primaryKey != nil) {
         [_cache setObject:object forKey:primaryKey mapping:mapping];
     }
 }
